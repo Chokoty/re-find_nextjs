@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Roboto", sans-serif;
+    background: #151515;
+    color: #fff;
+}
+header {
+    display: flex;
+    height: 50px;
+    background: #1c1c1c;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+
+    .content {
+        text-decoration: none;
+        color: #fff;
+        // color: #ef5a9a;
+        font-size: 20px;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .logo {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+        .title {
+            font-size: 30px;
+            padding-top: 5px;
+        }
+    }
+}
+
+.home_body {
+    // background-color: #b7a9a9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    padding-top: 100px;
+
+    .counter {
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 10px;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        margin-bottom: 40px;
+    }
+
+    .title {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-bottom: 20px;
+
+        .title-main {
+            display: flex;
+            text-align: center;
+            font-size: 160px;
+
+            .highlight {
+                color: #ef5a9a;
+            }
+        }
+        .title-sub {
+            font-size: 50px;
+        }
+    }
+
+    .uploader {
+        width: 60%;
+        margin: 40px 0px;
+        padding: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        border: 4px dashed #6d6d6d;
+        border-radius: 20px;
+        cursor: pointer;
+
+        &:active {
+            border-color: #ef5a9a;
+        }
+
+        .dropzone {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            div {
+                margin: 20px 0;
+            }
+        }
+        .logo {
+            font-size: 100px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .fileView {
+        padding: 50px;
+    }
+
+    .description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    height: 40px;
+    position: relative;
+}

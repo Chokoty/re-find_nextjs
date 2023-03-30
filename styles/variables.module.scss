@@ -1,0 +1,16 @@
+@import "mixins";
+$color-primary: #ff0000;
+
+.title {
+    color: $color-primary;
+
+    a {
+        background-color: green;
+    }
+}
+
+@include mobile() {
+    .title {
+        color: blue;
+    }
+}
