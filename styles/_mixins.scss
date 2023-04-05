@@ -1,5 +1,22 @@
+@import "./variables";
+
 @mixin mobile {
-    @media screen and (max-width: 768px) {
+    /*브라우저 사이즈767px이하일때*/
+    @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    /*브라우저 사이즈1023px이하일때*/
+    @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    /*브라우저 사이즈1024px이상일때*/
+    @media (min-width: #{$breakpoint-desktop}) {
         @content;
     }
 }
