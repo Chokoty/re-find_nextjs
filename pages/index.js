@@ -8,10 +8,21 @@ import { Inter } from "@next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function Home({ counter }) {
     return (
         <>
             <HomePage />
         </>
     );
+}
+
+export async function getStaticProps() {
+    const counter = await fetch(
+        "https://last-airbender-api.fly.dev/api/v1/characters"
+    ).then((res) => res.json());
+    console.log(counter);
+
+    return {
+        props: { counter },
+    };
 }

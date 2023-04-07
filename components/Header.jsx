@@ -9,7 +9,9 @@ export const Header = () => {
                 <SlControlRewind className="logo" />
                 <span className="title">RE: FIND</span>
             </Link>
-            <Link href="/support">Supports</Link>
+            <Link href="/support" className="content">
+                Supports
+            </Link>
         </header>
     );
 };
