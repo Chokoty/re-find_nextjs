@@ -2,8 +2,8 @@ import React from "react";
 
 const support = () => {
     return (
-        <div>
-            support
+        <div className="support_body">
+            <h1 className="title">Support</h1>
             <div className="description">
                 <p>제작자: 레루루, 초코넛밀크티 </p>
                 <p>왁물원: 링크1 링크2 </p>

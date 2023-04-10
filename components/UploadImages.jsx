@@ -2,7 +2,7 @@ import React from "react";
 import { useDropzone } from "react-dropzone";
 import { AiOutlineFileImage } from "react-icons/ai";
 
-export const UploadImages = ({ getDataFromChild }) => {
+const UploadImages = ({ getDataFromChild }) => {
     const { getRootProps, getInputProps } = useDropzone({
         accept: {
             "image/*": [],
@@ -31,3 +31,5 @@ export const UploadImages = ({ getDataFromChild }) => {
         </div>
     );
 };
+
+export default UploadImages;

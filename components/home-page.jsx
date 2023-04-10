@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { UploadImages } from "./UploadImages";
+import UploadImages from "./UploadImages";
 import Thumb from "./Thumb";
 
 export const HomePage = () => {
