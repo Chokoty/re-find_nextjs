@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import variables from "../styles/variables.module.scss";
 
-import { HomePage } from "../components/home-page";
+import HomePage from "../components/home-page";
 import { Inter } from "@next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -11,15 +11,15 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home({ counter }) {
     return (
         <>
-            <HomePage />
+            <HomePage counter={counter} />
         </>
     );
 }
 
 export async function getStaticProps() {
-    const counter = await fetch(
-        "https://last-airbender-api.fly.dev/api/v1/characters"
-    ).then((res) => res.json());
+    const counter = await fetch("https://isd-fanart.reruru.com/counter").then(
+        (res) => res.json()
+    );
     console.log(counter);
 
     return {

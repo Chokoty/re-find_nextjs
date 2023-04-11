@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import UploadImages from "./UploadImages";
 import Thumb from "./Thumb";
+import CountUp from "react-countup";
 
-export const HomePage = () => {
+const HomePage = ({ counter }) => {
     const [files, setFiles] = useState([]);
     useEffect(() => {
         console.log(files);
@@ -25,7 +26,10 @@ export const HomePage = () => {
 
     return (
         <div className="home_body">
-            <div className="counter">현재까지 00개의 출처를 찾았습니다.</div>
+            <div className="counter">
+                현재까지 &nbsp; <CountUp end={counter} />
+                개의 출처를 찾았습니다.
+            </div>
             <div className="title">
                 <h1 className="title-main">
                     <span className="highlight">RE: </span> FIND
@@ -37,3 +41,5 @@ export const HomePage = () => {
         </div>
     );
 };
+
+export default HomePage;
