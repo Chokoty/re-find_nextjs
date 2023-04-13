@@ -1,6 +1,8 @@
 import React from "react";
 import { useDropzone } from "react-dropzone";
-import { AiOutlineFileImage } from "react-icons/ai";
+// import { TbCloudUpload } from "react-icons/tb";
+import { SlCloudUpload } from "react-icons/sl";
+// import { FiUpload } from "react-icons/fi";
 
 const UploadImages = ({ getDataFromChild }) => {
     const { getRootProps, getInputProps } = useDropzone({
@@ -23,10 +25,11 @@ const UploadImages = ({ getDataFromChild }) => {
         <div className="uploader">
             <div {...getRootProps({ className: "dropzone" })}>
                 <input {...getInputProps()} />
-                <div>화면을 클릭하여 이미지를 업로드</div>
-                <AiOutlineFileImage className="logo" />
-                <div>..또는</div>
-                <div>드래그 앤 드롭으로 이미지를 업로드해주세요.</div>
+                <SlCloudUpload className="logo" />
+                <div>
+                    여기로 이미지를 드래그하거나 화면을 클릭하여 파일을&nbsp;
+                    <span className="underline">업로드</span>하세요.
+                </div>
             </div>
         </div>
     );

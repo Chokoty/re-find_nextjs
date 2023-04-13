@@ -20,7 +20,6 @@ export async function getStaticProps() {
     const counter = await fetch("https://isd-fanart.reruru.com/counter").then(
         (res) => res.json()
     );
-    console.log(counter);
 
     return {
         props: { counter },

@@ -48,7 +48,7 @@ header {
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
-    padding-top: 100px;
+    padding-top: 80px;
 
     .counter {
         height: 30px;
@@ -59,6 +59,10 @@ header {
         border-radius: 20px;
         border: 1px solid #fff;
         margin-bottom: 10px;
+
+        @include mobile {
+            font-size: $font-size / 1.33333;
+        }
     }
 
     .title {
@@ -68,6 +72,11 @@ header {
         align-items: center;
         flex-direction: column;
         margin-bottom: 20px;
+
+        .content {
+            text-decoration: none;
+            color: #fff;
+        }
 
         .title-main {
             display: flex;
@@ -109,8 +118,13 @@ header {
         border-radius: 20px;
         cursor: pointer;
 
+        @include tablet {
+            width: 60%;
+            min-width: 500px;
+        }
         @include mobile {
             width: 80%;
+            max-width: 360px;
         }
 
         &:active {
@@ -129,8 +143,16 @@ header {
             }
         }
         .logo {
-            font-size: 100px;
+            font-size: 80px;
+            margin-top: 40px;
             margin-bottom: 10px;
+        }
+        div {
+            padding: 0 20px;
+        }
+        .underline {
+            color: #ef5a9a;
+            text-decoration: underline;
         }
     }
 
@@ -152,8 +174,9 @@ footer {
     justify-content: center;
     height: 40px;
     position: relative;
-    font-size: 14px;
-    color: #767676;
+    font-size: 16px;
+    padding: 32px;
+    color: #ced4da9a !important; // #767676;
 }
 
 .thumbsContainer {
