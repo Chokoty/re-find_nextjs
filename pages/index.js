@@ -17,11 +17,20 @@ export default function Home({ counter }) {
 }
 
 export async function getStaticProps() {
-    const counter = await fetch("https://isd-fanart.reruru.com/counter").then(
-        (res) => res.json()
-    );
+    try {
+        const counter = await fetch(
+            "https://isd-fanart.reruru.com/counter"
+        ).then((res) => res.json());
 
-    return {
-        props: { counter },
-    };
+        return {
+            props: { counter },
+        };
+    } catch (error) {
+        console.log("Error fetching counter:", error);
+
+        // Return an alternate value if the fetch fails
+        return {
+            props: { counter: null },
+        };
+    }
 }

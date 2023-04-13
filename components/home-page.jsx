@@ -27,10 +27,16 @@ const HomePage = ({ counter }) => {
 
     return (
         <div className="home_body">
-            <div className="counter">
-                <CountUp end={counter} />
-                개의 출처를 찾았습니다.
-            </div>
+            {counter === null ? (
+                <div className="counter">
+                    현재 서버와의 연결이 불안정합니다.
+                </div>
+            ) : (
+                <div className="counter">
+                    <CountUp end={counter} />
+                    개의 출처를 찾았습니다.
+                </div>
+            )}
 
             <div className="title">
                 <Link href="/" className="content">
