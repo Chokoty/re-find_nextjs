@@ -13,9 +13,9 @@ body {
 }
 header {
     display: flex;
-    height: 50px;
+    height: 58px;
     background: $header-color;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     padding: 0 20px;
 
@@ -126,9 +126,21 @@ header {
             width: 80%;
             max-width: 360px;
         }
-
+        &:hover {
+            border-color: #e0e0e0;
+            .dropzone {
+                .logo {
+                    color: #e0e0e0;
+                }
+            }
+        }
         &:active {
             border-color: #ef5a9a;
+            .dropzone {
+                .logo {
+                    color: #ef5a9a;
+                }
+            }
         }
 
         .dropzone {
@@ -146,6 +158,7 @@ header {
             font-size: 80px;
             margin-top: 40px;
             margin-bottom: 10px;
+            color: #6d6d6d;
         }
         div {
             padding: 0 20px;
