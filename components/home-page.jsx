@@ -6,6 +6,15 @@ import CountUp from "react-countup";
 
 const HomePage = ({ counter }) => {
     const [files, setFiles] = useState([]);
+    const [counter2, setCounter2] = useState(null);
+    // useEffect(() => {
+    //     const counter2 = fetch("https://isd-fanart.reruru.com/counter").then(
+    //         (res) => res.json()
+    //     );
+    //     console.log(counter2);
+    //     setCounter2(counter2);
+    // }, []);
+
     useEffect(() => {
         console.log(files);
         if (files.length > 0) {
@@ -37,6 +46,16 @@ const HomePage = ({ counter }) => {
                     개의 출처를 찾았습니다.
                 </div>
             )}
+            {/* {counter2 === null ? (
+                <div className="counter">
+                    현재 서버와의 연결이 불안정합니다.
+                </div>
+            ) : (
+                <div className="counter">
+                    <CountUp end={counter2} />
+                    개의 출처를 찾았습니다.
+                </div>
+            )} */}
 
             <div className="title">
                 <Link href="/" className="content">
