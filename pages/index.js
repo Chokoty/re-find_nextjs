@@ -16,7 +16,7 @@ export default function Home({ counter }) {
     );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     try {
         const counter = await fetch(
             "https://isd-fanart.reruru.com/counter"
