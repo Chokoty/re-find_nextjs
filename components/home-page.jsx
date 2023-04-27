@@ -16,8 +16,11 @@ const HomePage = ({ counter, today_counter }) => {
     const [error, setError] = useState(null);
     const { colorMode, toggleColorMode } = useColorMode();
 
+    // const titleColor = useColorModeValue("#154532", "#fff");
+    // const titleBg = useColorModeValue("#c4f1ca", "none");
     const bg = useColorModeValue("red.500", "red.200");
     const color = useColorModeValue("white", "gray.800");
+    const isDark = colorMode === "dark";
 
     const fetchOriginalUrl = async () => {
         try {
@@ -54,7 +57,7 @@ const HomePage = ({ counter, today_counter }) => {
                     현재 서버와의 연결이 불안정합니다.
                 </div>
             ) : (
-                <div className="counter">
+                <div className={`counter ${isDark ? "" : "light"}`}>
                     <CountUp end={counter} />
                     (+
                     <CountUp end={today_counter} duration={5} /> ) 개의 출처를
@@ -70,9 +73,9 @@ const HomePage = ({ counter, today_counter }) => {
                 </Link>
                 <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             </div>
-            <Box mb={4} bg={bg} color={color}>
+            {/* <Box mb={4} bg={bg} color={color}>
                 This boxs style will change based on the color mode.
-            </Box>
+            </Box> */}
             {files.length === 0 && (
                 <UploadImages getDataFromChild={getDataFromChild} />
             )}
