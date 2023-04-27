@@ -1,26 +1,25 @@
+import Link from "next/link";
 import React, { useState } from "react";
+import { slide as Menu } from "react-burger-menu";
 
-const HamburgerMenu = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    function toggleMenu() {
-        setIsOpen(!isOpen);
-    }
-
+const HamburgerMenu = ({ navbarOpen }) => {
     return (
-        <div className="hamburger-menu">
-            <button className="hamburger-icon" onClick={toggleMenu}>
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            {isOpen && (
-                <div className="menu-items">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
-                </div>
-            )}
-        </div>
+        <ul className={`menu-items${navbarOpen ? " show-menu" : ""}`}>
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </ul>
+        // <Menu right isOpen={isOpen}>
+        //     <Link className="menu-item" href="/">
+        //         Home
+        //     </Link>
+        //     <Link className="menu-item" href="/about">
+        //         About
+        //     </Link>
+        //     <Link className="menu-item" href="/contact">
+        //         Contact
+        //     </Link>
+        // </Menu>
     );
 };
 

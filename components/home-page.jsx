@@ -1,15 +1,23 @@
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import NextLink from "next/link";
 import UploadImages from "./UploadImages";
+
 import Preview from "./Preview";
 import CountUp from "react-countup";
 import axios from "axios";
+import { Box, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
+
+import { Heading, Link } from "@chakra-ui/react";
 
 const HomePage = ({ counter, today_counter }) => {
     const [files, setFiles] = useState([]);
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const { colorMode, toggleColorMode } = useColorMode();
+
+    const bg = useColorModeValue("red.500", "red.200");
+    const color = useColorModeValue("white", "gray.800");
 
     const fetchOriginalUrl = async () => {
         try {
@@ -56,12 +64,15 @@ const HomePage = ({ counter, today_counter }) => {
 
             <div className="title">
                 <Link href="/" className="content">
-                    <h1 className="title-main">
+                    <Heading className="title-main">
                         <span className="highlight">RE: </span> FIND
-                    </h1>
+                    </Heading>
                 </Link>
                 <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             </div>
+            <Box mb={4} bg={bg} color={color}>
+                This boxs style will change based on the color mode.
+            </Box>
             {files.length === 0 && (
                 <UploadImages getDataFromChild={getDataFromChild} />
             )}

@@ -1,24 +1,29 @@
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
-// import HamburgerMenu from "./HamburgerMenu";
-import { SlControlRewind } from "react-icons/sl";
+import { Niconne } from "@next/font/google";
 import { Sling as Hamburger } from "hamburger-react";
-import { useState } from "react";
+import "react-modern-drawer/dist/index.css";
+import MyDrawer from "./MyDrawer";
+import DarkModeToggle from "./DarkModeToggle";
 
 export const Header = () => {
-    const [isOpen, setOpen] = useState(false);
+    const [isOpen, setIsOpen] = React.useState(false);
+    const toggleDrawer = () => {
+        setIsOpen((prevState) => !prevState);
+    };
+    const btnRef = React.useRef();
+
     return (
         <header>
-            {/* <Link href="/support" className="content">
-                Supports
-            </Link> */}
+            <DarkModeToggle className="dark-mode-toggle" />
+            <MyDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
             <Hamburger
+                className="hamburger"
                 label="펼치기" // An ARIA label to improve accessibility.
                 size={20}
                 toggled={isOpen}
-                toggle={setOpen}
+                toggle={setIsOpen}
             />
-            {/* <HamburgerMenu /> */}
         </header>
     );
 };

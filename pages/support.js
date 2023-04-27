@@ -1,8 +1,18 @@
+import { Heading } from "@chakra-ui/react";
+import Link from "next/link";
 import React from "react";
 
 const support = () => {
     return (
         <div className="support_body">
+            <div className="title">
+                <Link href="/" className="content">
+                    <Heading className="title-main">
+                        <span className="highlight">RE: </span> FIND
+                    </Heading>
+                </Link>
+                <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
+            </div>
             <h1 className="title">Support</h1>
             <div className="description">
                 <p>제작자: 레루루, 초코넛밀크티 </p>

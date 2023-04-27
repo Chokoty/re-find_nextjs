@@ -1,15 +1,16 @@
+import Head from "next/head";
 import MainLayout from "../components/layout/main-layout";
+import { Chakra } from "../styles/Chakra";
 
 import "@/styles/globals.css";
 import "../styles/general.scss";
-import Head from "next/head";
+import { CSSReset } from "@chakra-ui/react";
 
 export default function App({ Component, pageProps }) {
     return (
         <>
             <Head>
                 <link rel="manifest" href="/manifest.json" />
-                {/* <link rel="manifest" href="/site.webmanifest"></link> */}
                 <meta name="apple-mobile-web-app-capable" content="yes" />
 
                 <link
@@ -31,9 +32,22 @@ export default function App({ Component, pageProps }) {
                     href="/apple-touch-icon.png"
                 />
             </Head>
-            <MainLayout>
-                <Component {...pageProps} />
-            </MainLayout>
+            <Chakra cookies={pageProps.cookies}>
+                <MainLayout>
+                    <CSSReset />
+                    <Component {...pageProps} />
+                </MainLayout>
+            </Chakra>
         </>
     );
 }
+
+App.getInitialProps = ({ req }) => {
+    return {
+        // first time users will not have any cookies and you may not return
+        // undefined here, hence ?? is necessary
+        cookies: req?.headers?.cookie ?? "",
+    };
+};
+
+export { getServerSideProps } from "../styles/Chakra";
