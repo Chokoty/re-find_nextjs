@@ -238,6 +238,13 @@ header {
         padding: 50px;
     }
 
+    .preview {
+        @include mobile {
+            width: 90%;
+            max-width: 360px;
+        }
+    }
+
     .description {
         display: flex;
         flex-direction: column;

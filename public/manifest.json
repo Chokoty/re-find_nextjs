@@ -1,6 +1,6 @@
 {
+    "short_name": "RE:FIND",
     "name": "Re:find 이세계 아이돌 팬아트 출처 찾기",
-    "short_name": "Re:find ",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#01bda1",
+    "theme_color": "#000000",
     "background_color": "#000000",
     "display": "fullscreen",
     "orientation": "portrait",

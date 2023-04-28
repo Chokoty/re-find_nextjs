@@ -11,9 +11,11 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.18",
     "@chakra-ui/react": "^2.5.5",
+    "@dhaiwat10/react-link-preview": "^1.15.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@next/font": "13.1.6",
+    "@vercel/analytics": "^1.0.0",
     "axios": "^1.3.6",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",

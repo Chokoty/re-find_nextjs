@@ -8,12 +8,14 @@ import axios from "axios";
 import { Box, Button, useColorMode, useColorModeValue } from "@chakra-ui/react";
 
 import { Heading, Link } from "@chakra-ui/react";
+import { LinkPreview } from "@dhaiwat10/react-link-preview";
 
 const HomePage = ({ counter, today_counter }) => {
     const [files, setFiles] = useState([]);
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [search, setSearch] = useState(false);
     const { colorMode, toggleColorMode } = useColorMode();
 
     // const titleColor = useColorModeValue("#154532", "#fff");
@@ -28,13 +30,16 @@ const HomePage = ({ counter, today_counter }) => {
             setLoading(true); // loading 상태를 true 로 바꿉니다.
             const body = new FormData();
             body.append("file", files[0]);
-            const response = await axios.post(
-                "https://isd-fanart.reruru.com/receive",
-                body
-            );
-            console.log(response.data.id);
-            setData(response.data.id[0]);
+            if (!search) {
+                const response = await axios.post(
+                    "https://isd-fanart.reruru.com/receive",
+                    body
+                );
+                console.log(response.data.id);
+                setData(response.data.id[0]);
+            }
             setLoading(false);
+            setSearch(true);
         } catch (err) {
             console.log(err);
         }
@@ -84,7 +89,23 @@ const HomePage = ({ counter, today_counter }) => {
                     {loading ? (
                         <div>검색중...</div>
                     ) : (
+                        // {
+
+                        //     data.length() === null ? (
+                        //         <div>
+                        //             검색결과 없음
+                        //         </div>
+                        // }
                         <div>
+                            <LinkPreview
+                                url={
+                                    "https://cafe.naver.com/steamindiegame/" +
+                                    data
+                                }
+                                width="400px"
+                                height="200px"
+                            />
+                            <br />
                             <a
                                 href={
                                     "https://cafe.naver.com/steamindiegame/" +
@@ -96,7 +117,7 @@ const HomePage = ({ counter, today_counter }) => {
                             <button>새 이미지 업로드</button>
                         </div>
                     )}
-                    <Preview files={files} />
+                    <Preview files={files} className="preview" />
                 </div>
             )}
         </div>

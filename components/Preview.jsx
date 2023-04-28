@@ -12,8 +12,10 @@ const Preview = ({ files }) => {
         marginBottom: 30,
     };
     const img = {
-        display: "block",
+        display: "flex",
         height: "100%",
+        // width: "90%",
+        // margin: "auto",
         borderRadius: "1rem",
     };
     return (
