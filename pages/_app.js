@@ -11,13 +11,32 @@ export default function App({ Component, pageProps }) {
     return (
         <>
             <Head>
+                <title>RE:FIND</title>
+                <meta
+                    name="viewport"
+                    content="width=device-width, initial-scale=1.0"
+                />
+                <meta
+                    name="description"
+                    content="이세계 아이돌 팬아트 출처 찾기"
+                />
+                <meta
+                    name="keywords"
+                    content="이세계, 아이돌, 팬아트, 출처, 찾기, 왁타버스, 왁물원
+                "
+                />
+                <meta name="author" content="레루루 & 초코넛밀크티" />
+
                 <meta property="og:title" content="RE:FIND" />
                 <meta
                     property="og:url"
                     content="https://test-refind.reruru.com/"
                 />
                 <meta property="og:type" content="website" />
-                <meta property="og:image" content="/android-chrome-512x512" />
+                <meta
+                    property="og:image"
+                    content="https://test-refind.reruru.com/android-chrome-512x512.png"
+                />
                 <meta
                     property="og:description"
                     content="이세계 아이돌 팬아트 출처 찾기"
