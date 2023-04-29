@@ -171,6 +171,29 @@ header {
         }
     }
 
+    .result-area {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .notFound {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            background: #01bda1;
+            width: 60%;
+            margin: auto;
+
+            .notFoundText {
+                color: #ef5a9a;
+                font-weight: 600;
+            }
+        }
+    }
+
     .uploader {
         width: 50%;
         margin: 40px 0px;

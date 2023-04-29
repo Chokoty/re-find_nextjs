@@ -12,10 +12,7 @@ export default function App({ Component, pageProps }) {
         <>
             <Head>
                 <title>RE:FIND</title>
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1.0"
-                />
+
                 <meta
                     name="description"
                     content="이세계 아이돌 팬아트 출처 찾기"
