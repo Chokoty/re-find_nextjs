@@ -6,7 +6,6 @@ import "react-modern-drawer/dist/index.css";
 import MyDrawer from "./MyDrawer";
 import DarkModeToggle from "./DarkModeToggle";
 import { BellIcon } from "@chakra-ui/icons";
-import { AvatarBadge, Button } from "@chakra-ui/react";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -17,10 +16,9 @@ export const Header = () => {
 
     return (
         <header>
-            <Button bg="none" _hover={{ bg: "#none" }}>
+            <Link href="/notice" className="box">
                 <BellIcon />
-            </Button>
-
+            </Link>
             <DarkModeToggle className="dark-mode-toggle" />
             <MyDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
             <Hamburger
