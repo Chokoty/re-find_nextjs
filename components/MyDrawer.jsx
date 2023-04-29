@@ -9,22 +9,28 @@ const MyDrawer = ({ isOpen, toggleDrawer }) => {
             <div className="drawer-content">
                 <ul>
                     <li>
-                        <div className="list-item">
-                            <BellIcon className="icon" />
-                            <Link href="/notices">Notice</Link>
-                        </div>
+                        <Link href="/notice" legacyBehavior>
+                            <a className="list-item">
+                                <BellIcon className="icon" />
+                                Notice
+                            </a>
+                        </Link>
                     </li>
                     <li>
-                        <div className="list-item">
-                            <InfoIcon className="icon" />
-                            <Link href="/about">About</Link>
-                        </div>
+                        <Link href="/about" legacyBehavior>
+                            <a className="list-item">
+                                <InfoIcon className="icon" />
+                                About
+                            </a>
+                        </Link>
                     </li>
                     <li>
-                        <div className="list-item">
-                            <MdOutlineContactSupport className="icon" />
-                            <Link href="/support">Support</Link>
-                        </div>
+                        <Link href="/support" legacyBehavior>
+                            <a className="list-item">
+                                <MdOutlineContactSupport className="icon" />
+                                Support
+                            </a>
+                        </Link>
                     </li>
                 </ul>
                 <div className="menu-footer">
