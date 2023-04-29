@@ -1,4 +1,4 @@
-import { Heading } from "@chakra-ui/react";
+import { Heading, Divider } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 
@@ -14,6 +14,7 @@ const support = () => {
                 <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             </div>
             <h1 className="title">Support</h1>
+            <Divider />
             <div className="description">
                 <p>제작자: 레루루, 초코넛밀크티 </p>
                 <p>왁물원: 링크1 링크2 </p>

@@ -11,7 +11,7 @@ body {
     background: $background-color; // !important;
     color: #fff; //!important;
     ::selection {
-        background: #01bda1; // #154532; // #01bda1; //#c4f1ca;
+        background: #ef5a9a; // #154532; // #01bda1; //#c4f1ca;
     }
 }
 header {
@@ -171,31 +171,9 @@ header {
         }
     }
 
-    .result-area {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        .notFound {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-
-            background: #01bda1;
-            width: 60%;
-            margin: auto;
-
-            .notFoundText {
-                color: #ef5a9a;
-                font-weight: 600;
-            }
-        }
-    }
-
     .uploader {
         width: 50%;
+        height: 250px;
         margin: 40px 0px;
         padding: 5px;
         display: flex;
@@ -242,6 +220,7 @@ header {
                 margin: 20px 0;
             }
         }
+
         .logo {
             font-size: 80px;
             margin-top: 40px;
@@ -256,7 +235,14 @@ header {
             text-decoration: underline;
         }
     }
-
+    .uploader.active {
+        border-color: #ef5a9a;
+        .dropzone {
+            .logo {
+                color: #ef5a9a;
+            }
+        }
+    }
     .fileView {
         padding: 50px;
     }
@@ -268,12 +254,64 @@ header {
         }
     }
 
-    .description {
+    .result-area {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin-bottom: 50px;
+
+        .loading {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .result {
+            width: 100%;
+            .notFound {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+                width: 100%;
+                margin: auto;
+                margin-bottom: 20px;
+
+                .notFoundText {
+                    color: #ef5a9a;
+                    font-weight: 600;
+                }
+                .description {
+                    width: 60%;
+
+                    ul {
+                        padding-left: 20px;
+                    }
+                    @include mobile {
+                        width: 90%;
+                        max-width: 360px;
+                    }
+                }
+            }
+
+            .found {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+
+                margin: auto;
+                margin-bottom: 20px;
+
+                width: 100%;
+                .link {
+                    word-break: break-all;
+                    width: 90%;
+                }
+            }
+        }
     }
 }
 

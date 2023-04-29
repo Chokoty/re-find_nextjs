@@ -7,12 +7,9 @@ const DarkModeToggle = () => {
     const isDark = colorMode === "dark";
 
     return (
-        <Button
-            bg="none"
-            _hover={{ bg: "#none" }}
-            onClick={toggleColorMode}
-            leftIcon={isDark ? <FiMoon /> : <SunIcon />}
-        ></Button>
+        <Button bg="none" _hover={{ bg: "#none" }} onClick={toggleColorMode}>
+            {isDark ? <FiMoon /> : <SunIcon />}
+        </Button>
     );
 };
 

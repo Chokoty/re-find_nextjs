@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import UploadImages from "./UploadImages";
@@ -6,7 +6,10 @@ import Preview from "./Preview";
 import CountUp from "react-countup";
 
 import {
+    Text,
+    Spinner,
     Box,
+    Badge,
     Button,
     Collapse,
     Heading,
@@ -14,17 +17,19 @@ import {
     useColorMode,
     useColorModeValue,
     useDisclosure,
+    UnorderedList,
+    ListItem,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-// import { LinkPreview } from "@dhaiwat10/react-link-preview";
 
 const HomePage = ({ counter, today_counter }) => {
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
     const [search, setSearch] = useState(false); // 검색 여부
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onToggle } = useDisclosure();
+    const loadingRef = useRef(null);
 
     // const titleColor = useColorModeValue("#154532", "#fff");
     // const titleBg = useColorModeValue("#c4f1ca", "none");
@@ -43,6 +48,7 @@ const HomePage = ({ counter, today_counter }) => {
                     body
                 );
                 console.log(response.data.id);
+                console.log(response.data);
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
@@ -62,6 +68,17 @@ const HomePage = ({ counter, today_counter }) => {
         }
     }, [files]);
 
+    useEffect(() => {
+        if (loadingRef.current) {
+            loadingRef.current.focus();
+            // scroll to
+            loadingRef.current.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+        }
+    }, []);
+
     const getDataFromChild = (data) => {
         setFiles(data);
     };
@@ -71,6 +88,7 @@ const HomePage = ({ counter, today_counter }) => {
         setFiles([]);
         setData(null);
         setSearch(false);
+        onToggle();
     };
 
     return (
@@ -82,9 +100,12 @@ const HomePage = ({ counter, today_counter }) => {
             ) : (
                 <div className={`counter ${isDark ? "" : "light"}`}>
                     <CountUp end={counter} />
-                    (+
-                    <CountUp end={today_counter} duration={5} /> ) 개의 출처를
-                    찾았습니다.
+                    &nbsp;
+                    <Badge colorScheme="green" fontSize="1em">
+                        +
+                        <CountUp end={today_counter} duration={5} />
+                    </Badge>
+                    &nbsp; 개의 출처를 찾았습니다.
                 </div>
             )}
 
@@ -101,93 +122,133 @@ const HomePage = ({ counter, today_counter }) => {
             )}
             {files.length !== 0 && (
                 <div className="result-area">
+                    <Preview files={files} />
                     {loading ? (
-                        <div>검색중...</div>
+                        <div className="loading" ref={loadingRef}>
+                            <div>검색중...</div>
+                            <Spinner size="sm" />
+                        </div>
                     ) : (
-                        <div>
+                        <div className="result">
                             {data === null ? (
                                 <div className="notFound">
-                                    <div className="notFoundText">
+                                    <Button
+                                        colorScheme="blue"
+                                        variant="outline"
+                                        onClick={onToggle}
+                                        className="notFoundText"
+                                    >
                                         이미지 출처를 찾지 못했습니다.
-                                    </div>
-                                    <div>
-                                        <Button
-                                            onClick={resetFiles}
-                                            colorScheme="blue"
-                                        >
-                                            다른 이미지 검색
-                                        </Button>
-                                        <Button onClick={onToggle}>
-                                            Click Me
-                                        </Button>
-                                    </div>
-
-                                    <Collapse in={isOpen} animateOpacity>
+                                    </Button>
+                                    <Collapse
+                                        in={isOpen}
+                                        animateOpacity
+                                        className="description"
+                                    >
                                         <Box
                                             p="40px"
                                             color="white"
+                                            m="auto"
                                             mt="4"
-                                            bg="teal.500"
                                             rounded="md"
                                             shadow="md"
+                                            border="2px"
+                                            borderColor="#01bda1"
                                         >
-                                            <p>
+                                            <Text as="b">
                                                 다음과 같은 경우에 검색결과가
                                                 나오지 않을 수 있습니다:
-                                            </p>
-                                            <ul>
-                                                <li>
-                                                    게시글이 존재하는 이미지여도
-                                                    못 찾는 모시깽이가 가끔
-                                                    있습니다.
-                                                </li>
-                                                <li>
-                                                    왁물원에 새로 올라온
-                                                    팬아트가 반영되기까지 시간이
-                                                    좀 걸릴 수 있습니다. (길면
-                                                    하루 정도)
-                                                </li>
-                                                <li>
-                                                    현재 상단에 명시된 게시판에
-                                                    올라온 것만 찾을 수
-                                                    있습니다. (자유 게시판이나
-                                                    웹툰 게시판에 올라온 것은
-                                                    찾을 수 없습니다.)
-                                                </li>
-                                                <li>
-                                                    원본 팬아트에서 변형을 가한
-                                                    경우 찾기 어렵습니다. (일부
-                                                    잘라낸 이미지, 크기 변형,
-                                                    배경 투명화 등)
-                                                </li>
-                                            </ul>
-                                            <p>
+                                            </Text>
+                                            <UnorderedList
+                                                spacing={2}
+                                                // color="#005666"
+                                                color="#01bda1"
+                                            >
+                                                <ListItem>
+                                                    <Text as="b">
+                                                        원본 팬아트에서 변형을
+                                                        가한 경우 찾기
+                                                        어렵습니다. (일부 잘라낸
+                                                        이미지, 크기 변형, 배경
+                                                        투명화 등)
+                                                    </Text>
+                                                </ListItem>
+                                                <ListItem fontSize="md">
+                                                    <Text as="b">
+                                                        왁물원에 새로 올라온
+                                                        팬아트가 반영되기까지
+                                                        시간이 좀 걸릴 수
+                                                        있습니다. (길면 하루
+                                                        정도)
+                                                    </Text>
+                                                </ListItem>
+                                                <ListItem>
+                                                    <Text as="b">
+                                                        현재 상단에 명시된
+                                                        게시판에 올라온 것만
+                                                        찾을 수 있습니다. (자유
+                                                        게시판이나 웹툰 게시판에
+                                                        올라온 것은 찾을 수
+                                                        없습니다.)
+                                                    </Text>
+                                                </ListItem>
+
+                                                <ListItem>
+                                                    {" "}
+                                                    <Text as="b">
+                                                        게시글이 존재하는
+                                                        이미지여도 못 찾는
+                                                        모시깽이가 가끔
+                                                        있습니다.
+                                                    </Text>
+                                                </ListItem>
+                                            </UnorderedList>
+
+                                            <Text as="b">
                                                 구글 이미지 검색을 활용하여 다른
                                                 곳에 업로드된 이미지를 찾은 뒤,
-                                                그것으로 검색하면 간혹 찾을 수
-                                                있습니다. [구글 이미지
-                                                검색](https://www.google.co.kr/imghp?hl=ko)
-                                            </p>
+                                                그걸로 검색하면 간혹 찾을 수
+                                                있습니다. &nbsp;
+                                                <Link
+                                                    as="b"
+                                                    color="#ef5a9a"
+                                                    href="https://www.google.co.kr/imghp?hl=ko"
+                                                    isExternal
+                                                >
+                                                    구글 이미지 검색
+                                                    <ExternalLinkIcon mx="2px" />
+                                                </Link>
+                                            </Text>
                                         </Box>
                                     </Collapse>
                                 </div>
                             ) : (
-                                <div>
+                                <div className="found">
                                     <Link
+                                        className="link"
                                         href={
                                             "https://cafe.naver.com/steamindiegame/" +
                                             data
                                         }
+                                        isExternal
                                     >
                                         https://cafe.naver.com/steamindiegame/
                                         {data} <ExternalLinkIcon mx="2px" />
                                     </Link>
+                                    {/* <p>작가: </p>
+                                    <p>게시판: </p> */}
                                 </div>
                             )}
                         </div>
                     )}
 
-                    <Preview files={files} className="preview" />
+                    {loading ? (
+                        ""
+                    ) : (
+                        <Button onClick={resetFiles} colorScheme="blue">
+                            다른 이미지 검색
+                        </Button>
+                    )}
                 </div>
             )}
         </div>

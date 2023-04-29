@@ -19,7 +19,7 @@ const Preview = ({ files }) => {
         borderRadius: "1rem",
     };
     return (
-        <div style={previewContainer}>
+        <div style={previewContainer} className="preview">
             <Image
                 alt={file.name}
                 width={475}
