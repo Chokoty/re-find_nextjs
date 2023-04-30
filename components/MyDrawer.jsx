@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FaTwitter } from "react-icons/fa";
 import { InfoIcon, BellIcon } from "@chakra-ui/icons";
 import { MdOutlineContactSupport } from "react-icons/md";
-import { Button } from "@chakra-ui/react";
+import { Button, Image } from "@chakra-ui/react";
 const MyDrawer = ({ isOpen, toggleDrawer }) => {
     return (
         <div className={`my-drawer ${isOpen ? "open" : ""}`}>
@@ -35,13 +35,30 @@ const MyDrawer = ({ isOpen, toggleDrawer }) => {
                 </ul>
                 <div className="menu-footer">
                     <Button
+                        width="32px"
+                        mr="2"
+                        p="0"
                         href="https://twitter.com/rerurureruru"
                         colorScheme="twitter"
-                        leftIcon={<FaTwitter />}
                         as="a"
                         target="_blank"
                     >
-                        Twitter
+                        <FaTwitter />
+                    </Button>
+                    <Button
+                        width="32px"
+                        p="0"
+                        href="https://cafe.naver.com/steamindiegame"
+                        // color="#03CF35"
+                        colorScheme="green"
+                        as="a"
+                        target="_blank"
+                    >
+                        <Image
+                            boxSize="30px"
+                            objectFit="cover"
+                            src="naver-cafe-logo.png"
+                        />
                     </Button>
                 </div>
             </div>

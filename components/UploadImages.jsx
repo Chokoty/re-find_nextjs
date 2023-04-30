@@ -13,7 +13,6 @@ const UploadImages = ({ getDataFromChild }) => {
         accept: {
             "image/*": [],
             // maxSize: 1048576, // 1MB
-            // onDrop: acceptedFiles,
         },
         onDrop: (acceptedFiles) => {
             // console.log(acceptedFiles);

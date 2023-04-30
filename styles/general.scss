@@ -42,6 +42,7 @@ header {
     }
 
     .my-drawer {
+        z-index: 4;
         width: 260px;
         height: 420px;
         position: fixed;
@@ -106,7 +107,7 @@ header {
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            flex-direction: row;
         }
     }
 
@@ -312,6 +313,7 @@ header {
                 margin-bottom: 20px;
 
                 .notFoundText {
+                    margin-top: 20px;
                     color: #ef5a9a;
                     font-weight: 600;
                 }
@@ -355,7 +357,7 @@ footer {
     position: relative;
     font-size: 16px;
     padding: 32px;
-    color: #ced4da9a !important; // #767676;
+    // color: #ced4da9a !important; // #767676;
 }
 
 .thumbsContainer {

@@ -6,16 +6,20 @@ import "react-modern-drawer/dist/index.css";
 import MyDrawer from "./MyDrawer";
 import DarkModeToggle from "./DarkModeToggle";
 import { BellIcon } from "@chakra-ui/icons";
+import { useColorMode, useColorModeValue } from "@chakra-ui/react";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
+    const { colorMode, toggleColorMode } = useColorMode();
+    const bgColor = useColorModeValue("#eeeeee", "#000000");
+
     const toggleDrawer = () => {
         setIsOpen((prevState) => !prevState);
     };
     const btnRef = React.useRef();
 
     return (
-        <header>
+        <header style={{ backgroundColor: bgColor }}>
             <Link href="/notice" className="box">
                 <BellIcon />
             </Link>

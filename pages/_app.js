@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 
 import "@/styles/globals.css";
 import "../styles/general.scss";
-import { CSSReset } from "@chakra-ui/react";
+// import { CSSReset } from "@chakra-ui/react";
 
 export default function App({ Component, pageProps }) {
     return (
@@ -233,7 +233,7 @@ export default function App({ Component, pageProps }) {
             </Head>
             <Chakra cookies={pageProps.cookies}>
                 <MainLayout>
-                    <CSSReset />
+                    {/* <CSSReset /> */}
                     <Component {...pageProps} />
                 </MainLayout>
             </Chakra>
@@ -242,12 +242,12 @@ export default function App({ Component, pageProps }) {
     );
 }
 
-App.getInitialProps = ({ req }) => {
-    return {
-        // first time users will not have any cookies and you may not return
-        // undefined here, hence ?? is necessary
-        cookies: req?.headers?.cookie ?? "",
-    };
-};
+// App.getInitialProps = ({ req }) => {
+//     return {
+//         // first time users will not have any cookies and you may not return
+//         // undefined here, hence ?? is necessary
+//         cookies: req?.headers?.cookie ?? "",
+//     };
+// };
 
 export { getServerSideProps } from "../styles/Chakra";

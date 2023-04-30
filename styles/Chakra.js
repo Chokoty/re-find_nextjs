@@ -1,8 +1,9 @@
+import theme from "./theme";
 import {
     ChakraProvider,
-    theme,
     cookieStorageManagerSSR,
     localStorageManager,
+    withDefaultColorScheme,
 } from "@chakra-ui/react";
 
 export function Chakra({ cookies, children }) {
@@ -21,11 +22,11 @@ export function Chakra({ cookies, children }) {
 
 // also export a reusable function getServerSideProps
 export function getServerSideProps({ req }) {
-    return {
-        props: {
-            // first time users will not have any cookies and you may not return
-            // undefined here, hence ?? is necessary
-            cookies: req.headers.cookie ?? "",
-        },
-    };
+    let cookies = "";
+    try {
+        cookies = req.headers.cookie ?? "";
+    } catch (error) {
+        console.error(error);
+    }
+    return { props: { cookies } };
 }
