@@ -8,6 +8,16 @@ const nextConfig = {
     sassOptions: {
         includePaths: [path.join(__dirname, "styles")],
     },
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "blogpfthumb-phinf.pstatic.net",
+                port: "",
+                pathname: "/**",
+            },
+        ],
+    },
 };
 
 module.exports = withPlugins(

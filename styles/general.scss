@@ -319,9 +319,14 @@ header {
                 }
                 .description {
                     width: 60%;
-
+                    // text-align: center;
                     ul {
+                        margin-bottom: 10px;
+                        margin-left: auto;
                         padding-left: 20px;
+                        li {
+                            // display: inline-block;
+                        }
                     }
                     @include mobile {
                         width: 90%;
@@ -402,4 +407,8 @@ footer {
         margin: auto 0;
         padding-top: 40px;
     }
+}
+
+.author-profile-card {
+    background-color: #ef5a9a;
 }

@@ -4,7 +4,16 @@ import axios from "axios";
 import UploadImages from "./UploadImages";
 import Preview from "./Preview";
 import CountUp from "react-countup";
+import AuthorProfileCard from "./AuthorProfileCard";
+import { lightMode, darkMode } from "@/styles/theme";
 
+import {
+    Accordion,
+    AccordionItem,
+    AccordionButton,
+    AccordionPanel,
+    AccordionIcon,
+} from "@chakra-ui/react";
 import {
     Text,
     Spinner,
@@ -20,10 +29,9 @@ import {
     UnorderedList,
     ListItem,
     useToast,
-    Wrap,
-    WrapItem,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import Image from "next/image";
 
 const HomePage = ({ counter, today_counter }) => {
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
@@ -39,20 +47,20 @@ const HomePage = ({ counter, today_counter }) => {
     const loadingRef = useRef(null);
     const [searchTime, setSearchTime] = useState(0);
     const toast = useToast();
-    const statuses = ["success", "error", "warning", "info"];
+    // const statuses = ["success", "error", "warning", "info"];
 
-    const bg = useColorModeValue("red.500", "red.200");
-    const color = useColorModeValue("white", "gray.800");
+    // Theme
     const isDark = colorMode === "dark";
-    const bgColor = useColorModeValue("#eeeeee", "#000000");
-    const highlightColor = useColorModeValue("#01bda1", "#ef5a9a");
-    const badge = useColorModeValue("#c1eadf", "#FC719F");
+    const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+    const color = useColorModeValue(lightMode.color, darkMode.color);
+    const highlightColor = useColorModeValue(
+        lightMode.highlight,
+        darkMode.highlight
+    );
+    const badge = useColorModeValue(lightMode.badge, darkMode.badge);
 
     const fetchOriginalUrl = async () => {
         try {
-            // if (counter === null) {
-            //     setData(null);
-            // }
             setLoading(true); // 검색중
             const body = new FormData();
             body.append("file", files[0]);
@@ -67,20 +75,55 @@ const HomePage = ({ counter, today_counter }) => {
                 const searchTime = endTime - startTime; // ms
                 setSearchTime(searchTime); // 차이값 저장
 
+                console.log(response.data);
                 console.log(response.data.id);
                 // console.log(response.data);
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
-                    setData(response.data.id[0]);
+                    // setData(response.data.id[0]);
+                    setData(response.data);
                 }
             }
             setLoading(false); //  검색 완료
             setSearch(true); // 재검색을 방지
-        } catch (err) {
-            console.log(err);
+        } catch (error) {
+            if (error.response && error.response.status === 500) {
+                console.log("Server Error: ", error.response.status);
+                setData(null);
+                setLoading(false); //  검색 완료
+                setSearch(true); // 재검색을 방지
+                toast({
+                    title: `현재 서버 점검중 입니다. 잠시 후 다시 시도해주세요.`,
+                    status: `error`,
+                    isClosable: true,
+                });
+                // 500 에러 처리 코드 작성
+            } else {
+                console.log(error);
+            }
         }
     };
+
+    // 작가 프로필 가져오기
+    const fetchAuthorProfile = async (postId) => {
+        try {
+            const response = await axios.get("/api/getAuthorProfile", {
+                params: {
+                    postId: postId,
+                },
+            });
+            const data = response.data;
+            console.log(data);
+            // setContent(data.content);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    // useEffect(() => {
+    //     fetchAuthorProfile("10933229");
+    // }, []);
 
     // 1분마다 counter 업데이트
     const fetchCounter = async () => {
@@ -148,7 +191,15 @@ const HomePage = ({ counter, today_counter }) => {
     };
 
     return (
-        <div className="home_body" style={{ backgroundColor: bgColor }}>
+        <div
+            className="home_body"
+            style={{ backgroundColor: bgColor, color: color }}
+        >
+            {/* <AuthorProfileCard
+                authorName={"ㄹㅇㄴㄹㅇㄴㄹ"}
+                authorUrl={"ㄴ아ㅣㄹㅇ너리안렁ㄴㄹ"}
+                authorProfUrl={null}
+            /> */}
             {counter === null ? (
                 <div className="counter">
                     현재 서버와의 연결이 불안정합니다.
@@ -194,24 +245,155 @@ const HomePage = ({ counter, today_counter }) => {
                     <Preview files={files} />
                     {loading ? (
                         <div className="loading" ref={loadingRef}>
-                            <div>검색중...</div>
+                            <div>검색중</div>
+                            &nbsp;
                             <Spinner size="sm" />
                         </div>
                     ) : (
                         <div className="result">
+                            <Text fontSize="xl" mb="20px" textAlign="center">
+                                검색시간: {searchTime / 1000}s
+                            </Text>
                             {data === null ? (
                                 <div className="notFound">
-                                    <Text fontSize="md">
-                                        검색시간: {searchTime / 1000}s
-                                    </Text>
-                                    <Button
-                                        colorScheme="blue"
-                                        variant="outline"
-                                        onClick={onToggle}
-                                        className="notFoundText"
+                                    <Accordion
+                                        className="description"
+                                        allowToggle
+                                        style={{
+                                            color: "#ef5a9a",
+                                        }}
                                     >
-                                        이미지 출처를 찾지 못했습니다.
-                                    </Button>
+                                        <AccordionItem>
+                                            <h2>
+                                                <AccordionButton
+                                                // _expanded={{ bg: "#ef5a9a", color: "white" }}
+                                                >
+                                                    <Box
+                                                        as="b"
+                                                        flex="1"
+                                                        textAlign="center"
+                                                    >
+                                                        이미지 출처를 찾지
+                                                        못했습니다.
+                                                    </Box>
+                                                    <AccordionIcon />
+                                                </AccordionButton>
+                                            </h2>
+                                            <AccordionPanel pb={4}>
+                                                <Box
+                                                    p="40px"
+                                                    color="white"
+                                                    m="auto"
+                                                    mt="4"
+                                                    rounded="md"
+                                                    shadow="md"
+                                                    border="2px"
+                                                    borderColor="#01bda1"
+                                                    style={{
+                                                        color: color,
+                                                    }}
+                                                >
+                                                    <Text as="b">
+                                                        다음과 같은 경우에
+                                                        검색결과가 나오지 않을
+                                                        수 있습니다!
+                                                    </Text>
+                                                    <UnorderedList
+                                                        spacing={2}
+                                                        // color="#005666"
+                                                        color="#01bda1"
+                                                    >
+                                                        <ListItem>
+                                                            <Text as="b">
+                                                                원본 팬아트에서
+                                                                변형을 가한 경우
+                                                                찾기 어렵습니다.{" "}
+                                                                <br />
+                                                                (일부 잘라낸
+                                                                이미지, 크기
+                                                                변형, 배경
+                                                                투명화 등)
+                                                            </Text>
+                                                        </ListItem>
+                                                        <ListItem fontSize="md">
+                                                            <Text as="b">
+                                                                왁물원에 새로
+                                                                올라온 팬아트가
+                                                                반영되기까지
+                                                                시간이 좀 걸릴
+                                                                수
+                                                                있습니다.(길면
+                                                                하루 정도)
+                                                            </Text>
+                                                        </ListItem>
+                                                        <ListItem>
+                                                            <Text as="b">
+                                                                현재 상단에
+                                                                명시된 게시판에
+                                                                올라온 것만 찾을
+                                                                수 있습니다.
+                                                                (자유 게시판이나
+                                                                웹툰 게시판에
+                                                                올라온 것은 찾을
+                                                                수 없습니다.)
+                                                            </Text>
+                                                        </ListItem>
+
+                                                        <ListItem>
+                                                            {" "}
+                                                            <Text as="b">
+                                                                게시글이
+                                                                존재하는
+                                                                이미지여도 못
+                                                                찾는 모시깽이가
+                                                                가끔 있습니다.
+                                                            </Text>
+                                                        </ListItem>
+                                                    </UnorderedList>
+
+                                                    <Text
+                                                        as="b"
+                                                        alignItems="center"
+                                                    >
+                                                        구글 이미지 검색을
+                                                        활용하여 다른 곳에
+                                                        업로드된 이미지를 찾은
+                                                        뒤, 그걸로 검색하면 간혹
+                                                        찾을 수 있습니다. &nbsp;
+                                                        <Link
+                                                            as="b"
+                                                            color="#ef5a9a"
+                                                            href="https://www.google.co.kr/imghp?hl=ko"
+                                                            isExternal
+                                                        >
+                                                            구글 이미지
+                                                            검색하러가기
+                                                            <ExternalLinkIcon mx="2px" />
+                                                        </Link>
+                                                    </Text>
+                                                </Box>
+                                            </AccordionPanel>
+                                        </AccordionItem>
+                                    </Accordion>
+                                    {/* <Box>
+                                        <Button
+                                            colorScheme="blue"
+                                            variant="outline"
+                                            onClick={onToggle}
+                                            className="notFoundText"
+                                        >
+                                            이미지 출처를 찾지 못했습니다.
+                                        </Button>
+                                        <Button
+                                            colorScheme="blue"
+                                            variant="outline"
+                                            onClick={onToggle}
+                                            className="notFoundText"
+                                        >
+                                            더보기
+                                        </Button>
+                                    </Box>
+
                                     <Collapse
                                         in={isOpen}
                                         animateOpacity
@@ -226,6 +408,9 @@ const HomePage = ({ counter, today_counter }) => {
                                             shadow="md"
                                             border="2px"
                                             borderColor="#01bda1"
+                                            style={{
+                                                color: color,
+                                            }}
                                         >
                                             <Text as="b">
                                                 다음과 같은 경우에 검색결과가
@@ -240,9 +425,10 @@ const HomePage = ({ counter, today_counter }) => {
                                                     <Text as="b">
                                                         원본 팬아트에서 변형을
                                                         가한 경우 찾기
-                                                        어렵습니다. (일부 잘라낸
-                                                        이미지, 크기 변형, 배경
-                                                        투명화 등)
+                                                        어렵습니다. <br />
+                                                        (일부 잘라낸 이미지,
+                                                        크기 변형, 배경 투명화
+                                                        등)
                                                     </Text>
                                                 </ListItem>
                                                 <ListItem fontSize="md">
@@ -250,7 +436,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                         왁물원에 새로 올라온
                                                         팬아트가 반영되기까지
                                                         시간이 좀 걸릴 수
-                                                        있습니다. (길면 하루
+                                                        있습니다.(길면 하루
                                                         정도)
                                                     </Text>
                                                 </ListItem>
@@ -276,7 +462,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                 </ListItem>
                                             </UnorderedList>
 
-                                            <Text as="b">
+                                            <Text as="b" alignItems="center">
                                                 구글 이미지 검색을 활용하여 다른
                                                 곳에 업로드된 이미지를 찾은 뒤,
                                                 그걸로 검색하면 간혹 찾을 수
@@ -287,12 +473,12 @@ const HomePage = ({ counter, today_counter }) => {
                                                     href="https://www.google.co.kr/imghp?hl=ko"
                                                     isExternal
                                                 >
-                                                    구글 이미지 검색
+                                                    구글 이미지 검색하러가기
                                                     <ExternalLinkIcon mx="2px" />
                                                 </Link>
                                             </Text>
                                         </Box>
-                                    </Collapse>
+                                    </Collapse> */}
                                 </div>
                             ) : (
                                 <div className="found">
@@ -306,13 +492,16 @@ const HomePage = ({ counter, today_counter }) => {
                                         isExternal
                                     >
                                         https://cafe.naver.com/steamindiegame/
-                                        {data} <ExternalLinkIcon mx="2px" />
+                                        {data.id[0]}{" "}
+                                        <ExternalLinkIcon mx="2px" />
                                     </Link>
-                                    <Text fontSize="md">
-                                        검색시간: {searchTime / 1000}s
-                                    </Text>
-                                    <p>작가: </p>
-                                    <p>게시판: </p>
+
+                                    {/* <AuthorProfileCard
+                                        authorName={data.author_name}
+                                        authorUrl={data.author_url}
+                                        authorProfUrl={data.author_prof_url}
+                                    /> */}
+                                    {/* <p>게시판: </p> */}
                                 </div>
                             )}
                         </div>

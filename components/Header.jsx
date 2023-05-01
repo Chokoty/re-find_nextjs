@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Niconne } from "@next/font/google";
-import { Sling as Hamburger } from "hamburger-react";
-import "react-modern-drawer/dist/index.css";
 import MyDrawer from "./MyDrawer";
 import DarkModeToggle from "./DarkModeToggle";
+import { lightMode, darkMode } from "@/styles/theme";
+
+import { useColorModeValue } from "@chakra-ui/react";
+import { Niconne } from "@next/font/google";
+import { Sling as Hamburger } from "hamburger-react";
 import { BellIcon } from "@chakra-ui/icons";
-import { useColorMode, useColorModeValue } from "@chakra-ui/react";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    const { colorMode, toggleColorMode } = useColorMode();
-    const bgColor = useColorModeValue("#eeeeee", "#000000");
+    // const bgColor = useColorModeValue("lightMode.bg", "darkMode.bg");
+    const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+    const color = useColorModeValue(lightMode.color, darkMode.color);
 
     const toggleDrawer = () => {
         setIsOpen((prevState) => !prevState);
@@ -19,10 +21,10 @@ export const Header = () => {
     const btnRef = React.useRef();
 
     return (
-        <header style={{ backgroundColor: bgColor }}>
-            <Link href="/notice" className="box">
+        <header style={{ backgroundColor: bgColor, color: color }}>
+            {/* <Link href="/notice" className="box">
                 <BellIcon />
-            </Link>
+            </Link> */}
             <DarkModeToggle className="dark-mode-toggle" />
             <MyDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
             <Hamburger

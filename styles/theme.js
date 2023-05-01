@@ -14,17 +14,42 @@ const theme = extendTheme({
     styles: {
         global: (props) => ({
             body: {
-                bg: mode("#111111", "#eeeeee"),
+                backgroundColor: mode("#FFFFFF", "#0F0F0F")(props),
+                color: mode("gray.900", "gray.50")(props),
             },
         }),
     },
     colors: {
-        // Darkmode:
+        darkmode: {
+            bg: "#0F0F0F",
+            color: "#E8EAEC",
+            footer: "#ced4da9a",
+        },
+        lightmode: {
+            bg: "#FFFFFF",
+            color: "#1B1642",
+            footer: "#222222",
+        },
+        myblack: {
+            100: "#282828",
+            200: "#24292e",
+        },
     },
 });
 
 export default theme;
 
-const darkMode = {};
-// const titleColor = useColorModeValue("#154532", "#fff");
-// const titleBg = useColorModeValue("#c4f1ca", "none");
+export const lightMode = {
+    bg: "#FFFFFF",
+    color: "#1B1642",
+    footerColor: "#575A7B",
+    highlight: "#01bda1",
+    badge: "#c1eadf",
+};
+export const darkMode = {
+    bg: "#0F0F0F",
+    color: "#E8EAEC",
+    footerColor: "#ced4da9a",
+    highlight: "#ef5a9a",
+    badge: "#FC719F",
+};
