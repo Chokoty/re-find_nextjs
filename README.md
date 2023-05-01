@@ -4,7 +4,7 @@
 
 이세돌 팬아트 출처 찾기 프로젝트, Re:FIND 공식 홈페이지 리포지터리입니다.
 
-[![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+[왁물원 소개글](https://cafe.naver.com/steamindiegame/9859159)
 
 ## 소개
 
@@ -51,4 +51,4 @@ Next.js 앱을 배포하는 가장 쉬운 방법은 [Vercel 플랫폼](https://v
 
 오탈자 수정, 기타 수정 모두 환영합니다! 단, 보안에 관련된 수정인 경우에는 ---으로 알려주시길 바랍니다.
 
-해당 README 내용 중 일부는 [감람스톤 레포지토리](https://github.com/gamramstone-dev/gamramstone-upload)의 README 내용 일부를 돚거하여 작성되었습니다.
+해당 README 내용 중 일부는 [감람스톤 리포지토리](https://github.com/gamramstone-dev/gamramstone-upload)의 README 내용 일부를 돚거하여 작성되었습니다.
