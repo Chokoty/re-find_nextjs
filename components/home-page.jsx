@@ -46,7 +46,7 @@ const HomePage = ({ counter, today_counter }) => {
     const isDark = colorMode === "dark";
     const bgColor = useColorModeValue("#eeeeee", "#000000");
     const highlightColor = useColorModeValue("#01bda1", "#ef5a9a");
-    const badge = useColorModeValue("#ef5a9a", "#01bda1");
+    const badge = useColorModeValue("#c1eadf", "#FC719F");
 
     const fetchOriginalUrl = async () => {
         try {
@@ -99,11 +99,6 @@ const HomePage = ({ counter, today_counter }) => {
             console.log(err);
         }
     };
-
-    //컴포넌트 변화시 counter fetch
-    // useEffect(() => {
-    //     if (files.length > 0) fetchCounter();
-    // }, [data]);
 
     useEffect(() => {
         if (files.length > 0) {
@@ -162,11 +157,7 @@ const HomePage = ({ counter, today_counter }) => {
                 <div className={`counter ${isDark ? "" : "light"}`}>
                     <CountUp end={counterNow === 0 ? counter : counterNow} />
                     &nbsp;
-                    <Badge
-                        style={{ backgroundColor: badge }}
-                        // colorScheme="green"
-                        fontSize="1em"
-                    >
+                    <Badge style={{ backgroundColor: badge }} fontSize="1em">
                         +
                         <CountUp
                             end={
