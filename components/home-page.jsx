@@ -33,7 +33,7 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 
-const HomePage = ({ counter, today_counter }) => {
+const HomePage = ({ counter, today_counter, last_update_info }) => {
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
     const [search, setSearch] = useState(false); // 검색 여부
@@ -47,6 +47,7 @@ const HomePage = ({ counter, today_counter }) => {
     const loadingRef = useRef(null);
     const [searchTime, setSearchTime] = useState(0);
     const toast = useToast();
+    const last_update = last_update_info.split(", ");
     // const statuses = ["success", "error", "warning", "info"];
 
     // Theme
@@ -121,9 +122,10 @@ const HomePage = ({ counter, today_counter }) => {
         }
     };
 
-    // useEffect(() => {
-    //     fetchAuthorProfile("10933229");
-    // }, []);
+    useEffect(() => {
+        // fetchAuthorProfile("10933229");
+        console.log(last_update_info);
+    }, []);
 
     // 1분마다 counter 업데이트
     const fetchCounter = async () => {
@@ -237,6 +239,51 @@ const HomePage = ({ counter, today_counter }) => {
                 </Link>
                 <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             </div>
+            <div
+                style={{
+                    marginTop: "3em",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <Text fontSize="1em">
+                    마지막 업데이트 시각 {last_update[0]}
+                </Text>
+                <Text fontSize="1em">
+                    마지막 업데이트 게시글
+                    <Link
+                        color="#01bda1"
+                        className="link"
+                        href={
+                            "https://cafe.naver.com/steamindiegame/" +
+                            last_update[1]
+                        }
+                        isExternal
+                    >
+                        https://cafe.naver.com/steamindiegame/
+                        {last_update[1]} <ExternalLinkIcon mx="2px" />
+                    </Link>
+                </Text>
+                {/* <ul>
+                    <li>
+                        <Text fontSize="1em">
+                            ㅇㅇ 게시판 업데이트 (1123개/1200개)
+                        </Text>
+                    </li>
+                    <li>
+                        <Text fontSize="1em">
+                            ㅇㅇ 게시판 업데이트 (1123개/1200개)
+                        </Text>
+                    </li>
+                    <li>
+                        <Text fontSize="1em">
+                            ㅇㅇ 게시판 업데이트 (1123개/1200개)
+                        </Text>
+                    </li>
+                </ul> */}
+            </div>
             {files.length === 0 && (
                 <UploadImages getDataFromChild={getDataFromChild} />
             )}
@@ -269,7 +316,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                 // _expanded={{ bg: "#ef5a9a", color: "white" }}
                                                 >
                                                     <Box
-                                                        as="b"
+                                                        fontWeight="bold"
                                                         flex="1"
                                                         textAlign="center"
                                                     >
@@ -293,7 +340,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                         color: color,
                                                     }}
                                                 >
-                                                    <Text as="b">
+                                                    <Text fontWeight="bold">
                                                         다음과 같은 경우에
                                                         검색결과가 나오지 않을
                                                         수 있습니다!
@@ -304,7 +351,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                         color="#01bda1"
                                                     >
                                                         <ListItem>
-                                                            <Text as="b">
+                                                            <Text fontWeight="bold">
                                                                 원본 팬아트에서
                                                                 변형을 가한 경우
                                                                 찾기 어렵습니다.{" "}
@@ -316,7 +363,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                             </Text>
                                                         </ListItem>
                                                         <ListItem fontSize="md">
-                                                            <Text as="b">
+                                                            <Text fontWeight="bold">
                                                                 왁물원에 새로
                                                                 올라온 팬아트가
                                                                 반영되기까지
@@ -327,7 +374,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                             </Text>
                                                         </ListItem>
                                                         <ListItem>
-                                                            <Text as="b">
+                                                            <Text fontWeight="bold">
                                                                 현재 상단에
                                                                 명시된 게시판에
                                                                 올라온 것만 찾을
@@ -341,7 +388,7 @@ const HomePage = ({ counter, today_counter }) => {
 
                                                         <ListItem>
                                                             {" "}
-                                                            <Text as="b">
+                                                            <Text fontWeight="bold">
                                                                 게시글이
                                                                 존재하는
                                                                 이미지여도 못
@@ -352,7 +399,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                     </UnorderedList>
 
                                                     <Text
-                                                        as="b"
+                                                        fontWeight="bold"
                                                         alignItems="center"
                                                     >
                                                         구글 이미지 검색을
@@ -361,7 +408,7 @@ const HomePage = ({ counter, today_counter }) => {
                                                         뒤, 그걸로 검색하면 간혹
                                                         찾을 수 있습니다. &nbsp;
                                                         <Link
-                                                            as="b"
+                                                            fontWeight="bold"
                                                             color="#ef5a9a"
                                                             href="https://www.google.co.kr/imghp?hl=ko"
                                                             isExternal
@@ -487,12 +534,12 @@ const HomePage = ({ counter, today_counter }) => {
                                         className="link"
                                         href={
                                             "https://cafe.naver.com/steamindiegame/" +
-                                            data
+                                            data.id[0]
                                         }
                                         isExternal
                                     >
                                         https://cafe.naver.com/steamindiegame/
-                                        {data.id[0]}{" "}
+                                        {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
                                     </Link>
 
