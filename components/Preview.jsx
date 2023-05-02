@@ -14,10 +14,9 @@ const Preview = ({ files }) => {
     const img = {
         display: "flex",
         height: "100%",
-        // width: "90%",
-        // margin: "auto",
         borderRadius: "1rem",
     };
+
     return (
         <div style={previewContainer} className="preview">
             <Image

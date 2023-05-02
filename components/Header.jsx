@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import Link from "next/link";
 import MyDrawer from "./MyDrawer";
 import DarkModeToggle from "./DarkModeToggle";
 import { lightMode, darkMode } from "@/styles/theme";
 
 import { useColorModeValue } from "@chakra-ui/react";
-import { Niconne } from "@next/font/google";
 import { Sling as Hamburger } from "hamburger-react";
-import { BellIcon } from "@chakra-ui/icons";
+// import { Niconne } from "@next/font/google";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -18,13 +17,9 @@ export const Header = () => {
     const toggleDrawer = () => {
         setIsOpen((prevState) => !prevState);
     };
-    const btnRef = React.useRef();
 
     return (
         <header style={{ backgroundColor: bgColor, color: color }}>
-            {/* <Link href="/notice" className="box">
-                <BellIcon />
-            </Link> */}
             <DarkModeToggle className="dark-mode-toggle" />
             <MyDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
             <Hamburger

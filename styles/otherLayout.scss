@@ -1,0 +1,34 @@
+.body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+    // text-align: center;
+    .title {
+        margin-bottom: 48px;
+        .content {
+            text-decoration: none;
+        }
+        .title-main {
+            font-size: $title-main-size/2;
+
+            .highlight {
+                color: #ef5a9a;
+            }
+        }
+    }
+}
+
+.about-content {
+    text-align: center;
+    .page-title {
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    p {
+        margin-bottom: 50px;
+    }
+    ul {
+        list-style: none;
+    }
+}

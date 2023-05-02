@@ -1,7 +1,12 @@
 import React from "react";
+import AboutPage from "@/components/about-page";
 
-const Search = () => {
-    return <div>about</div>;
+const about = () => {
+    return (
+        <>
+            <AboutPage />
+        </>
+    );
 };
 
-export default Search;
+export default about;

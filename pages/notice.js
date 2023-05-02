@@ -1,7 +1,11 @@
 import React from "react";
-
+import NoticePage from "../components/notice-page";
 const notice = () => {
-    return <div>notice</div>;
+    return (
+        <>
+            <NoticePage />
+        </>
+    );
 };
 
 export default notice;

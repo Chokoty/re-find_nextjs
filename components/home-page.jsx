@@ -1,26 +1,24 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
+import Title from "./Title";
 import UploadImages from "./UploadImages";
 import Preview from "./Preview";
 import CountUp from "react-countup";
+import UpdateBoard from "./UpdateBoard";
 import AuthorProfileCard from "./AuthorProfileCard";
 import { lightMode, darkMode } from "@/styles/theme";
-
 import {
     Accordion,
     AccordionItem,
     AccordionButton,
     AccordionPanel,
     AccordionIcon,
-} from "@chakra-ui/react";
-import {
     Text,
     Spinner,
     Box,
     Badge,
     Button,
-    Collapse,
     Heading,
     Link,
     useColorMode,
@@ -29,6 +27,8 @@ import {
     UnorderedList,
     ListItem,
     useToast,
+    Card,
+    CardBody,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Image from "next/image";
@@ -197,95 +197,79 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
-            {/* <AuthorProfileCard
-                authorName={"ㄹㅇㄴㄹㅇㄴㄹ"}
-                authorUrl={"ㄴ아ㅣㄹㅇ너리안렁ㄴㄹ"}
-                authorProfUrl={null}
-            /> */}
-            {counter === null ? (
-                <div className="counter">
-                    현재 서버와의 연결이 불안정합니다.
-                </div>
-            ) : (
-                <div className={`counter ${isDark ? "" : "light"}`}>
-                    <CountUp end={counterNow === 0 ? counter : counterNow} />
-                    &nbsp;
-                    <Badge style={{ backgroundColor: badge }} fontSize="1em">
-                        +
+            <div className="counter">
+                {counter === null ? (
+                    "현재 서버와의 연결이 불안정합니다."
+                ) : (
+                    <>
                         <CountUp
-                            end={
-                                counterTodayNow === 0
-                                    ? today_counter
-                                    : counterTodayNow
-                            }
-                            duration={5}
+                            end={counterNow === 0 ? counter : counterNow}
                         />
-                    </Badge>
-                    &nbsp; 개의 출처를 찾았습니다.
-                </div>
-            )}
-
-            <div className="title">
-                <Link href="/" className="content">
-                    <Heading className="title-main">
-                        <span
-                            // className="highlight"
-                            style={{ color: highlightColor }}
+                        &nbsp;
+                        <Badge
+                            style={{ backgroundColor: badge }}
+                            fontSize="1em"
                         >
-                            RE:{" "}
-                        </span>{" "}
-                        FIND
-                    </Heading>
-                </Link>
-                <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
+                            +
+                            <CountUp
+                                end={
+                                    counterTodayNow === 0
+                                        ? today_counter
+                                        : counterTodayNow
+                                }
+                                duration={5}
+                            />
+                        </Badge>
+                        &nbsp; 개의 출처를 찾았습니다.
+                    </>
+                )}
             </div>
-            <div
-                style={{
-                    marginTop: "3em",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}
-            >
-                <Text fontSize="1em">
-                    마지막 업데이트 시각 {last_update[0]}
-                </Text>
-                <Text fontSize="1em">
-                    마지막 업데이트 게시글
-                    <Link
-                        color="#01bda1"
-                        className="link"
-                        href={
-                            "https://cafe.naver.com/steamindiegame/" +
-                            last_update[1]
-                        }
-                        isExternal
-                    >
-                        https://cafe.naver.com/steamindiegame/
-                        {last_update[1]} <ExternalLinkIcon mx="2px" />
-                    </Link>
-                </Text>
-                {/* <ul>
-                    <li>
-                        <Text fontSize="1em">
-                            ㅇㅇ 게시판 업데이트 (1123개/1200개)
-                        </Text>
-                    </li>
-                    <li>
-                        <Text fontSize="1em">
-                            ㅇㅇ 게시판 업데이트 (1123개/1200개)
-                        </Text>
-                    </li>
-                    <li>
-                        <Text fontSize="1em">
-                            ㅇㅇ 게시판 업데이트 (1123개/1200개)
-                        </Text>
-                    </li>
-                </ul> */}
-            </div>
+            <Title />
+            <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
+
             {files.length === 0 && (
-                <UploadImages getDataFromChild={getDataFromChild} />
+                <>
+                    <UploadImages getDataFromChild={getDataFromChild} />
+                    <div
+                        className="update-info"
+                        style={{
+                            marginTop: "3em",
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <Card width="90%">
+                            <CardBody>
+                                <Heading
+                                    as="h1"
+                                    size="md"
+                                    textTransform="uppercase"
+                                >
+                                    마지막 업데이트 게시글
+                                </Heading>
+                                <Text fontSize="1em">{last_update[0]}</Text>
+                                <Text fontSize="1em">
+                                    <Link
+                                        color="#01bda1"
+                                        className="link"
+                                        href={
+                                            "https://cafe.naver.com/steamindiegame/" +
+                                            last_update[1]
+                                        }
+                                        isExternal
+                                    >
+                                        https://cafe.naver.com/steamindiegame/
+                                        {last_update[1]}{" "}
+                                        <ExternalLinkIcon mx="2px" />
+                                    </Link>
+                                </Text>
+                            </CardBody>
+                        </Card>
+                        <UpdateBoard />
+                    </div>
+                </>
             )}
             {files.length !== 0 && (
                 <div className="result-area">
@@ -422,110 +406,6 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                                             </AccordionPanel>
                                         </AccordionItem>
                                     </Accordion>
-                                    {/* <Box>
-                                        <Button
-                                            colorScheme="blue"
-                                            variant="outline"
-                                            onClick={onToggle}
-                                            className="notFoundText"
-                                        >
-                                            이미지 출처를 찾지 못했습니다.
-                                        </Button>
-                                        <Button
-                                            colorScheme="blue"
-                                            variant="outline"
-                                            onClick={onToggle}
-                                            className="notFoundText"
-                                        >
-                                            더보기
-                                        </Button>
-                                    </Box>
-
-                                    <Collapse
-                                        in={isOpen}
-                                        animateOpacity
-                                        className="description"
-                                    >
-                                        <Box
-                                            p="40px"
-                                            color="white"
-                                            m="auto"
-                                            mt="4"
-                                            rounded="md"
-                                            shadow="md"
-                                            border="2px"
-                                            borderColor="#01bda1"
-                                            style={{
-                                                color: color,
-                                            }}
-                                        >
-                                            <Text as="b">
-                                                다음과 같은 경우에 검색결과가
-                                                나오지 않을 수 있습니다:
-                                            </Text>
-                                            <UnorderedList
-                                                spacing={2}
-                                                // color="#005666"
-                                                color="#01bda1"
-                                            >
-                                                <ListItem>
-                                                    <Text as="b">
-                                                        원본 팬아트에서 변형을
-                                                        가한 경우 찾기
-                                                        어렵습니다. <br />
-                                                        (일부 잘라낸 이미지,
-                                                        크기 변형, 배경 투명화
-                                                        등)
-                                                    </Text>
-                                                </ListItem>
-                                                <ListItem fontSize="md">
-                                                    <Text as="b">
-                                                        왁물원에 새로 올라온
-                                                        팬아트가 반영되기까지
-                                                        시간이 좀 걸릴 수
-                                                        있습니다.(길면 하루
-                                                        정도)
-                                                    </Text>
-                                                </ListItem>
-                                                <ListItem>
-                                                    <Text as="b">
-                                                        현재 상단에 명시된
-                                                        게시판에 올라온 것만
-                                                        찾을 수 있습니다. (자유
-                                                        게시판이나 웹툰 게시판에
-                                                        올라온 것은 찾을 수
-                                                        없습니다.)
-                                                    </Text>
-                                                </ListItem>
-
-                                                <ListItem>
-                                                    {" "}
-                                                    <Text as="b">
-                                                        게시글이 존재하는
-                                                        이미지여도 못 찾는
-                                                        모시깽이가 가끔
-                                                        있습니다.
-                                                    </Text>
-                                                </ListItem>
-                                            </UnorderedList>
-
-                                            <Text as="b" alignItems="center">
-                                                구글 이미지 검색을 활용하여 다른
-                                                곳에 업로드된 이미지를 찾은 뒤,
-                                                그걸로 검색하면 간혹 찾을 수
-                                                있습니다. &nbsp;
-                                                <Link
-                                                    as="b"
-                                                    color="#ef5a9a"
-                                                    href="https://www.google.co.kr/imghp?hl=ko"
-                                                    isExternal
-                                                >
-                                                    구글 이미지 검색하러가기
-                                                    <ExternalLinkIcon mx="2px" />
-                                                </Link>
-                                            </Text>
-                                        </Box>
-                                    </Collapse> */}
                                 </div>
                             ) : (
                                 <div className="found">
@@ -553,10 +433,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                             )}
                         </div>
                     )}
-
-                    {loading ? (
-                        ""
-                    ) : (
+                    {!loading && (
                         <Button onClick={resetFiles} colorScheme="blue">
                             다른 이미지 검색
                         </Button>

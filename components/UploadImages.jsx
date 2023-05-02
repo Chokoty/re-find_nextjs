@@ -8,7 +8,6 @@ const UploadImages = ({ getDataFromChild }) => {
         const images = files.filter((file) => file.type.startsWith("image/"));
         console.log(images);
     }, []);
-
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         accept: {
             "image/*": [],
@@ -40,7 +39,6 @@ const UploadImages = ({ getDataFromChild }) => {
                         <p>이미지를 여기에 드롭하세요!</p>
                     ) : (
                         <p>
-                            {" "}
                             이미지를 여기로 드래그하거나 화면을 클릭하여
                             파일을&nbsp;
                             <span className="underline">업로드</span>하세요.

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { FaTwitter, FaYoutube } from "react-icons/fa";
+import { Button, Image, background } from "@chakra-ui/react";
 import { InfoIcon, BellIcon } from "@chakra-ui/icons";
-import { MdOutlineContactSupport } from "react-icons/md";
-import { Button, Image } from "@chakra-ui/react";
+import { FaTwitter, FaYoutube } from "react-icons/fa";
+import { BiSupport } from "react-icons/bi";
+import { AiFillExperiment } from "react-icons/ai";
 const MyDrawer = ({ isOpen, toggleDrawer }) => {
     return (
         <div className={`my-drawer ${isOpen ? "open" : ""}`}>
@@ -27,8 +28,29 @@ const MyDrawer = ({ isOpen, toggleDrawer }) => {
                     <li>
                         <Link href="/support" legacyBehavior>
                             <a className="list-item">
-                                <MdOutlineContactSupport className="icon" />
+                                <BiSupport className="icon" />
                                 Support
+                            </a>
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            href="https://cafe.naver.com/steamindiegame/9524252"
+                            legacyBehavior
+                        >
+                            <a
+                                className="list-item"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <AiFillExperiment
+                                    className="icon"
+                                    style={{
+                                        width: "20px",
+                                        height: "20px",
+                                    }}
+                                />
+                                (beta)이세돌 팬아트를 키워드로 찾아주는 AI
                             </a>
                         </Link>
                     </li>

@@ -3,7 +3,7 @@ import MainLayout from "../components/layout/main-layout";
 import { Chakra } from "../styles/Chakra";
 import { Analytics } from "@vercel/analytics/react";
 
-import "@/styles/globals.css";
+// import "@/styles/globals.css";
 import "../styles/general.scss";
 // import { CSSReset } from "@chakra-ui/react";
 

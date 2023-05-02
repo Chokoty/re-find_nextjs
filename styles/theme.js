@@ -34,6 +34,10 @@ const theme = extendTheme({
             100: "#282828",
             200: "#24292e",
         },
+        mainColor: {
+            100: "#01bda1",
+            200: "#ef5a9a",
+        },
     },
 });
 

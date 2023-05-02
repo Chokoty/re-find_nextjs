@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text, Link, Image, Button } from "@chakra-ui/react";
+import { Text, Image, Button } from "@chakra-ui/react";
 
 const AuthorProfileCard = ({ authorName, authorUrl, authorProfUrl }) => {
     return (
