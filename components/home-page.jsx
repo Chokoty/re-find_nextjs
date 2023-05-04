@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import { useStore } from "zustand";
 
 import Title from "./Title";
 import UploadImages from "./UploadImages";
@@ -34,6 +35,8 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 
 const HomePage = ({ counter, today_counter, last_update_info }) => {
+    // const bear = useStore((state) => state.bears);
+
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
     const [search, setSearch] = useState(false); // 검색 여부
@@ -58,6 +61,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
         lightMode.highlight,
         darkMode.highlight
     );
+
     const badge = useColorModeValue(lightMode.badge, darkMode.badge);
 
     const fetchOriginalUrl = async () => {
@@ -127,7 +131,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
         console.log(last_update_info);
     }, []);
 
-    // 1분마다 counter 업데이트
+    // 1분마다 counter 업데이트?
     const fetchCounter = async () => {
         try {
             const counter = await fetch(
@@ -168,17 +172,18 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
         }
     }, [files]);
 
-    useEffect(() => {
-        if (loadingRef.current) {
-            loadingRef.current.focus();
-            // scroll to
-            loadingRef.current.scrollIntoView({
-                behavior: "smooth",
-                block: "start",
-            });
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (loadingRef.current) {
+    //         loadingRef.current.focus();
+    //         // scroll to
+    //         loadingRef.current.scrollIntoView({
+    //             behavior: "smooth",
+    //             block: "start",
+    //         });
+    //     }
+    // }, []);
 
+    // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {
         setFiles(data);
     };
@@ -189,7 +194,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
         setData(null);
         setSearch(false);
         onToggle();
-        fetchCounter();
+        // fetchCounter();
     };
 
     return (
@@ -252,7 +257,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                                 <Text fontSize="1em">{last_update[0]}</Text>
                                 <Text fontSize="1em">
                                     <Link
-                                        color="#01bda1"
+                                        color={highlightColor}
                                         className="link"
                                         href={
                                             "https://cafe.naver.com/steamindiegame/" +
@@ -303,6 +308,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                                                         fontWeight="bold"
                                                         flex="1"
                                                         textAlign="center"
+                                                        color={"#F00"}
                                                     >
                                                         이미지 출처를 찾지
                                                         못했습니다.
@@ -319,7 +325,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                                                     rounded="md"
                                                     shadow="md"
                                                     border="2px"
-                                                    borderColor="#01bda1"
+                                                    borderColor={highlightColor}
                                                     style={{
                                                         color: color,
                                                     }}
@@ -332,7 +338,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                                                     <UnorderedList
                                                         spacing={2}
                                                         // color="#005666"
-                                                        color="#01bda1"
+                                                        color={highlightColor}
                                                     >
                                                         <ListItem>
                                                             <Text fontWeight="bold">
@@ -393,7 +399,9 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                                                         찾을 수 있습니다. &nbsp;
                                                         <Link
                                                             fontWeight="bold"
-                                                            color="#ef5a9a"
+                                                            color={
+                                                                highlightColor
+                                                            }
                                                             href="https://www.google.co.kr/imghp?hl=ko"
                                                             isExternal
                                                         >

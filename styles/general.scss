@@ -1,5 +1,6 @@
 @import "./_mixins.scss";
 @import "./home.scss";
+// @import "./support.scss";
 @import "./otherLayout.scss";
 
 * {
@@ -51,19 +52,19 @@ header {
         top: 58px;
         right: -300px;
         transition: right 0.3s ease;
-        color: #fff;
-        background-color: black;
+        color: #000;
+        background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-
+        border-radius: 1rem 0 1rem 0;
         ul {
             list-style: none;
-            padding: 0;
+            padding: 24px;
             margin: 0;
             li {
-                padding: 10px 20px;
-                border-bottom: 1px solid #333;
+                // border-bottom: 1px solid #333;
                 &:hover {
-                    background-color: #ef5a9a;
+                    // background-color: #ef5a9a;
+                    color: #ef5a9a;
                 }
             }
         }
@@ -87,6 +88,7 @@ header {
         display: flex;
         justify-content: space-around;
         flex-direction: column;
+
         // height: 100%;
 
         .list-item {

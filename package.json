@@ -32,7 +32,8 @@
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.8.0",
-    "react-modern-drawer": "^1.2.0"
+    "react-modern-drawer": "^1.2.0",
+    "zustand": "^4.3.7"
   },
   "devDependencies": {
     "sass": "^1.60.0"

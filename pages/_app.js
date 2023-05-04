@@ -3,9 +3,7 @@ import MainLayout from "../components/layout/main-layout";
 import { Chakra } from "../styles/Chakra";
 import { Analytics } from "@vercel/analytics/react";
 
-// import "@/styles/globals.css";
 import "../styles/general.scss";
-// import { CSSReset } from "@chakra-ui/react";
 
 export default function App({ Component, pageProps }) {
     return (
@@ -233,7 +231,6 @@ export default function App({ Component, pageProps }) {
             </Head>
             <Chakra cookies={pageProps.cookies}>
                 <MainLayout>
-                    {/* <CSSReset /> */}
                     <Component {...pageProps} />
                 </MainLayout>
             </Chakra>

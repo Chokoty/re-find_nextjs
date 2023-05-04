@@ -1,7 +1,8 @@
 import React, { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { SlCloudUpload } from "react-icons/sl";
-
+import { lightMode, darkMode } from "@/styles/theme";
+import { useColorModeValue } from "@chakra-ui/react";
 const UploadImages = ({ getDataFromChild }) => {
     const acceptedFiles = useCallback((files) => {
         // 이미지 파일만 받기 위해서는 files 배열에서 type이 image인 것만 필터링합니다.
@@ -24,9 +25,18 @@ const UploadImages = ({ getDataFromChild }) => {
             );
         },
     });
+    const highlightColor = useColorModeValue(
+        lightMode.highlight,
+        darkMode.highlight
+    );
 
     return (
-        <div className={`uploader ${isDragActive ? "active" : ""}`}>
+        <div
+            className={`uploader ${
+                // 01bda1 - 라이트, ef5a9a - 다크
+                isDragActive ? "active" : ""
+            } ${highlightColor === "#01bda1" ? "light" : "dark"}`}
+        >
             <div
                 {...getRootProps({
                     className: "dropzone",
@@ -41,7 +51,15 @@ const UploadImages = ({ getDataFromChild }) => {
                         <p>
                             이미지를 여기로 드래그하거나 화면을 클릭하여
                             파일을&nbsp;
-                            <span className="underline">업로드</span>하세요.
+                            <span
+                                className="underline"
+                                style={{
+                                    color: highlightColor,
+                                }}
+                            >
+                                업로드
+                            </span>
+                            하세요.
                         </p>
                     )}
                 </div>
