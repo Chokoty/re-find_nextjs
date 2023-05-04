@@ -126,10 +126,10 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
         }
     };
 
-    useEffect(() => {
-        // fetchAuthorProfile("10933229");
-        console.log(last_update_info);
-    }, []);
+    // useEffect(() => {
+    //     fetchAuthorProfile("10933229");
+    //     console.log(last_update_info);
+    // }, []);
 
     // 1분마다 counter 업데이트?
     const fetchCounter = async () => {

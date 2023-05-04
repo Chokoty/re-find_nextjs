@@ -8,7 +8,7 @@ const getAuthorProfile = async (req, res) => {
     const response = await axios.get(url, { responseType: "arraybuffer" });
     const data = iconv.decode(response.data, "EUC-KR").toString();
     const $ = cheerio.load(data);
-    // console.log($.html());
+    console.log("!!!!!!" + $("div#app"));
     const author_name = $(".article_writer").find(".user").text();
     const author_url = $(".article_writer").find("a").attr("href");
     const author_prof_url = $(".article_writer")

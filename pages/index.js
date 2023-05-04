@@ -1,8 +1,8 @@
 import HomePage from "../components/home-page";
-import { Inter } from "@next/font/google";
 import axios from "axios";
 
-const inter = Inter({ subsets: ["latin"] });
+// import { Inter } from "@next/font/google";
+// const inter = Inter({ subsets: ["latin"] });
 
 export default function Home({ counter, today_counter, last_update_info }) {
     return (
@@ -18,18 +18,29 @@ export default function Home({ counter, today_counter, last_update_info }) {
 
 export async function getServerSideProps() {
     try {
-        const counter = await axios
+        const counter = axios
             .get("https://isd-fanart.reruru.com/counter")
             .then((res) => res.data);
-        const today_counter = await axios
+        const today_counter = axios
             .get("https://re-find.reruru.com/today_counter")
             .then((res) => res.data);
-        const last_update_info = await axios
+        const last_update_info = axios
             .get("https://re-find.reruru.com/last_update_info")
             .then((res) => res.data);
 
+        const ret = await Promise.all([
+            // wow - 병렬로 요청해서 페이지 로딩 줄임!
+            counter,
+            today_counter,
+            last_update_info,
+        ]);
+
         return {
-            props: { counter, today_counter, last_update_info },
+            props: {
+                counter: ret[0],
+                today_counter: ret[1],
+                last_update_info: ret[2],
+            },
         };
     } catch (error) {
         console.log("Error fetching data :", error);
