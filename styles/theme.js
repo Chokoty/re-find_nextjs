@@ -17,6 +17,10 @@ const theme = extendTheme({
                 backgroundColor: mode("#FFFFFF", "#0F0F0F")(props),
                 color: mode("gray.900", "gray.50")(props),
             },
+            "::selection": {
+                background: "blue.500",
+                color: "white",
+            },
         }),
     },
     colors: {

@@ -12,18 +12,23 @@ body {
         Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
         sans-serif !important;
     background: $background-color; // !important;
+    // padding-top: 58px;
     color: #fff; //!important;
-    ::selection {
-        background: #ef5a9a; // #154532; // #01bda1; //#c4f1ca;
-    }
+    // ::selection {
+    //     background: #ef5a9a; // #154532; // #01bda1; //#c4f1ca;
+    // }
 }
 header {
     display: flex;
     height: 58px;
-    // background: $header-color;
     justify-content: flex-end;
     align-items: center;
     padding: 0 20px;
+    // fixed
+    // position: fixed;
+    // top: 0;
+    // left: 0;
+    // width: 100%;
 
     .box {
         width: 48px;
@@ -143,7 +148,7 @@ footer {
     display: flex;
     justify-content: center;
     height: 40px;
-    position: relative;
+    // position: relative;
     font-size: 16px;
     padding: 32px;
     // color: #ced4da9a !important; // #767676;

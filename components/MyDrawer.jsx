@@ -80,14 +80,14 @@ const MyDrawer = ({ isOpen, toggleDrawer }) => {
                 </ul>
                 <div className="menu-footer">
                     <Button
+                        href="https://twitter.com/rerurureruru"
+                        as="a"
+                        target="_blank"
                         width="32px"
                         mr="2"
                         p="0"
-                        href="https://twitter.com/rerurureruru"
                         colorScheme="twitter"
                         bg="#1DA1F2"
-                        as="a"
-                        target="_blank"
                     >
                         <FaTwitter />
                     </Button>

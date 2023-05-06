@@ -3,7 +3,6 @@ import Link from "next/link";
 import MyDrawer from "./MyDrawer";
 import DarkModeToggle from "./DarkModeToggle";
 import { lightMode, darkMode } from "@/styles/theme";
-
 import { useColorModeValue } from "@chakra-ui/react";
 import { Sling as Hamburger } from "hamburger-react";
 // import { Niconne } from "@next/font/google";

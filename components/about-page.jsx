@@ -1,8 +1,35 @@
 import React from "react";
 import OtherLayout from "./layout/other-layout";
+import AuthorProfileCard from "./AuthorProfileCard";
+
 import { Heading, Link } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
+
+import { lightMode, darkMode } from "@/styles/theme";
+
+const developers = [
+    {
+        authorName: "레루루",
+        authorUrl:
+            "https://cafe.naver.com/ca-fe/cafes/27842958/members/N8dX1e0GCf7CmHWtLoksOA",
+        authorProfUrl: "reruru.png",
+        contribute: "검색엔진 개발",
+    },
+    {
+        authorName: "초코넛밀크티",
+        authorUrl:
+            "https://cafe.naver.com/ca-fe/cafes/27842958/members/fZ8VSlTngMBcoxspZWPPDw",
+        authorProfUrl:
+            "https://blogpfthumb-phinf.pstatic.net/20180310_25/choko0816_15206501648577IUJq_JPEG/IMG_0785.JPG?type=f260_260",
+        contribute: "디자인 개발",
+    },
+];
 
 const AboutPage = () => {
+    const highlightColor = useColorModeValue(
+        lightMode.highlight,
+        darkMode.highlight
+    );
     return (
         <OtherLayout title="About">
             <div className="about-content">
@@ -13,12 +40,12 @@ const AboutPage = () => {
                     m="0 auto"
                     noOfLines={1}
                 >
-                    왁물원 서비스 소개 게시글
+                    서비스 소개 왁물원 게시글
                 </Heading>
                 <ul>
                     <li>
                         <Link
-                            color="#01bda1"
+                            color={highlightColor}
                             className="link"
                             href={
                                 "https://cafe.naver.com/steamindiegame/9859159"
@@ -28,18 +55,6 @@ const AboutPage = () => {
                             [뉴사이트소개] RE : FIND (이세돌 팬아트 출처 찾기)
                         </Link>
                     </li>
-                    {/* <li>
-                        <Link
-                            color="#01bda1"
-                            className="link"
-                            href={
-                                "https://cafe.naver.com/steamindiegame/9312063"
-                            }
-                            isExternal
-                        >
-                            [자유] 이세돌 팬아트 검색기(원본 찾기) 베타버전
-                        </Link>
-                    </li> */}
                 </ul>
                 <Heading
                     className="page-title"
@@ -50,10 +65,18 @@ const AboutPage = () => {
                 >
                     디벨로퍼
                 </Heading>
-                <ul>
-                    <li>레루루(검색엔진)</li>
-                    <li>초코넛밀크티(프론트엔드)</li>
-                </ul>
+
+                <div className="developers">
+                    {developers.map((item, index) => (
+                        <AuthorProfileCard
+                            key={index}
+                            authorName={item.authorName}
+                            authorUrl={item.authorUrl}
+                            authorProfUrl={item.authorProfUrl}
+                            contribute={item.contribute}
+                        />
+                    ))}
+                </div>
             </div>
         </OtherLayout>
     );
