@@ -70,7 +70,12 @@ header {
                 // border-bottom: 1px solid #333;
                 &:hover {
                     // background-color: #ef5a9a;
-                    color: #ef5a9a;
+                    // color: #ef5a9a;
+                    font-weight: bold;
+                }
+                &:active {
+                    color: #aaaaaa;
+                    font-weight: normal;
                 }
             }
         }
