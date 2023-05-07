@@ -27,7 +27,12 @@ const NoticeBanner = () => {
             width="100%"
             borderColor={highlightColor}
         >
-            <Text whiteSpace="nowrap" textOverflow="ellipsis" overflow="hidden">
+            <Text
+                whiteSpace="nowrap"
+                textOverflow="ellipsis"
+                overflow="hidden"
+                width="80%"
+            >
                 <Badge variant="outline" colorScheme="pink" fontSize="1em">
                     업데이트 공지
                 </Badge>
@@ -42,7 +47,7 @@ const NoticeBanner = () => {
                         }}
                     >
                         {lastUpdateLog.date} &nbsp;{" "}
-                        {lastUpdateLog.content.slice(0, 50)}...
+                        {lastUpdateLog.content.slice(0, 50)}
                     </a>
                 </Link>
             </Text>
