@@ -7,6 +7,7 @@ import { useColorModeValue } from "@chakra-ui/react";
 import { Sling as Hamburger } from "hamburger-react";
 // import { Niconne } from "@next/font/google";
 import { useStore } from "../store/store";
+import NoticeBanner from "./NoticeBanner";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -22,17 +23,20 @@ export const Header = () => {
     };
 
     return (
-        <header style={{ backgroundColor: bgColor, color: color }}>
-            {/* {count} */}
-            <DarkModeToggle className="dark-mode-toggle" />
-            <MyDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
-            <Hamburger
-                className="hamburger"
-                label="펼치기" // An ARIA label to improve accessibility.
-                size={20}
-                toggled={isOpen}
-                toggle={setIsOpen}
-            />
-        </header>
+        <>
+            <NoticeBanner />
+            <header style={{ backgroundColor: bgColor, color: color }}>
+                {/* {count} */}
+                <DarkModeToggle className="dark-mode-toggle" />
+                <MyDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
+                <Hamburger
+                    className="hamburger"
+                    label="펼치기" // An ARIA label to improve accessibility.
+                    size={20}
+                    toggled={isOpen}
+                    toggle={setIsOpen}
+                />
+            </header>
+        </>
     );
 };
