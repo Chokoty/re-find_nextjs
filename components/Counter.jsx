@@ -9,11 +9,11 @@ const Counter = ({ counter, counterLoading }) => {
     const badge = useColorModeValue(lightMode.badge, darkMode.badge);
     return (
         <div className="counter">
-            {counter === null ? (
-                "현재 서버와의 연결이 불안정합니다."
-            ) : (
-                <>
-                    <Skeleton isLoaded={!counterLoading}>
+            <Skeleton isLoaded={!counterLoading}>
+                {counter === null ? (
+                    "현재 서버와의 연결이 불안정합니다."
+                ) : (
+                    <>
                         <CountUp
                             end={
                                 counter.total_counter
@@ -22,9 +22,7 @@ const Counter = ({ counter, counterLoading }) => {
                                 //     : counterNow
                             }
                         />
-                    </Skeleton>
-                    &nbsp;
-                    <Skeleton isLoaded={!counterLoading}>
+                        &nbsp;
                         <Badge
                             style={{ backgroundColor: badge }}
                             fontSize="1em"
@@ -40,10 +38,10 @@ const Counter = ({ counter, counterLoading }) => {
                                 duration={5}
                             />
                         </Badge>
-                    </Skeleton>
-                    &nbsp; 개의 출처를 찾았습니다.
-                </>
-            )}
+                        &nbsp; 개의 출처를 찾았습니다.
+                    </>
+                )}
+            </Skeleton>
         </div>
     );
 };
