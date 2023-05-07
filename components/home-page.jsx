@@ -165,7 +165,6 @@ const HomePage = ({ last_update_info }) => {
 
     // useEffect(() => {
     //     fetchAuthorProfile("10933229");
-    //     console.log(last_update_info);
     // }, []);
 
     // counter 가져오기
@@ -203,6 +202,7 @@ const HomePage = ({ last_update_info }) => {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
+            {/* <AuthorProfileCard /> */}
             <Counter counter={counter} counterLoading={counterLoading} />
 
             <Title />
@@ -228,13 +228,15 @@ const HomePage = ({ last_update_info }) => {
                             textTransform="uppercase"
                             color={color}
                         >
-                            최신 업데이트 현황
+                            게시판 업데이트 현황
                         </Heading>
                         {last_update_info.map((update, index) => (
                             <UpdateCard key={index} update={update} />
                         ))}
-
-                        <UpdateBoard last_update_info={last_update_info} />
+                        <Text whiteSpace="normal">
+                            현재 명시된 게시판에서만 찾을 수 있습니다.
+                        </Text>
+                        {/* <UpdateBoard last_update_info={last_update_info} /> */}
                     </div>
                 </>
             )}

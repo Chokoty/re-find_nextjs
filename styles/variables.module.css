@@ -1,0 +1,14 @@
+@charset "UTF-8";
+.title {
+  color: #ff0000;
+}
+.title a {
+  background-color: green;
+}
+
+/*브라우저 사이즈767px이하일때*/
+@media (min-width: 335px) and (max-width: 757px) {
+  .title {
+    color: blue;
+  }
+}/*# sourceMappingURL=variables.module.css.map */

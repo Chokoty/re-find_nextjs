@@ -69,7 +69,7 @@ const NoticePage = () => {
                     display="flex"
                     flexDirection="column"
                     alignItems="center"
-                    width="80%"
+                    width="100%"
                     margin="0 auto"
                 >
                     {updateLog
