@@ -10,7 +10,7 @@ import {
     CardFooter,
 } from "@chakra-ui/react";
 
-import TMI from "../data/TMI";
+import TMI from "../data/tmi";
 import updateLog from "../data/updateLog";
 
 const NoticePage = () => {
