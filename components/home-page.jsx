@@ -219,7 +219,7 @@ const HomePage = ({ last_update_info }) => {
                             flexDirection: "column",
                             alignItems: "center",
                             justifyContent: "center",
-                            gap: "2em",
+                            gap: "1em",
                         }}
                     >
                         <Heading
