@@ -444,4 +444,14 @@ footer {
 
 .author-profile-card {
   background-color: #ef5a9a;
+}
+
+.notice_banner {
+  background-color: #ef5a9a;
+}
+.notice_banner .notice_banner_link:hover {
+  text-decoration: underline;
+}
+.notice_banner .notice_banner_link:active {
+  text-decoration: underline;
 }/*# sourceMappingURL=general.css.map */

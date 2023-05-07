@@ -1,22 +1,32 @@
 import React from "react";
 import { Text, Box, Button, Image } from "@chakra-ui/react";
 import OtherLayout from "./layout/other-layout";
+import AuthorProfileCard from "./AuthorProfileCard";
 
 import { lightMode, darkMode } from "@/styles/theme";
 import { useColorModeValue } from "@chakra-ui/react";
 import { BsChatDots } from "react-icons/bs";
+
+// const data = [
+//     {
+//         imgUrl: "bugFind.png",
+//         imgAlt: "버그 아이콘",
+//         title: "버그 제보",
+//         url: "https://docs.google.com/forms/d/e/1FAIpQLScK_i8O9QnhfZswreRX7VYROWzG3Kte6bVxjf28VSK0Fcu23g/viewform",
+//     },
+//     {
+//         imgUrl: "",
+//         imgAlt: "",
+//         title: "기타 문의",
+//         url: "https://docs.google.com/forms/d/e/1FAIpQLSf0WGZnnlZahRLoinXe1n0GmPCdryKXEFlPznqyLrsjBKpnZw/viewform",
+//     },
+// ];
 const SupportPage = () => {
     const color = useColorModeValue(lightMode.color, darkMode.color);
     return (
         <OtherLayout title="Support">
-            <Box
-                display="flex"
-                justifyContent="space-around"
-                gap="20px"
-                height="360px"
-                mt="50px"
-            >
-                <Box>
+            <div className="toLink">
+                <Box className="area">
                     <Button
                         href="https://docs.google.com/forms/d/e/1FAIpQLScK_i8O9QnhfZswreRX7VYROWzG3Kte6bVxjf28VSK0Fcu23g/viewform"
                         as="a"
@@ -44,7 +54,7 @@ const SupportPage = () => {
                         버그 제보
                     </Text>
                 </Box>
-                <Box>
+                <Box className="area">
                     <Button
                         href="https://docs.google.com/forms/d/e/1FAIpQLSf0WGZnnlZahRLoinXe1n0GmPCdryKXEFlPznqyLrsjBKpnZw/viewform"
                         as="a"
@@ -64,7 +74,7 @@ const SupportPage = () => {
                         기타 문의
                     </Text>
                 </Box>
-            </Box>
+            </div>
         </OtherLayout>
     );
 };
