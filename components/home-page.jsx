@@ -5,13 +5,11 @@ import { useStore } from "zustand";
 import Title from "./Title";
 import UploadImages from "./UploadImages";
 import Preview from "./Preview";
-import CountUp from "react-countup";
 import UpdateBoard from "./UpdateBoard";
 import UpdateCard from "./UpdateCard";
 
 import AuthorProfileCard from "./AuthorProfileCard";
 import { lightMode, darkMode } from "@/styles/theme";
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 
 import {
     Accordion,
@@ -22,7 +20,6 @@ import {
     Text,
     Spinner,
     Box,
-    Badge,
     Button,
     Heading,
     Link,
@@ -32,8 +29,6 @@ import {
     UnorderedList,
     ListItem,
     useToast,
-    Card,
-    CardBody,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Counter from "./Counter";
@@ -48,9 +43,6 @@ const HomePage = ({ last_update_info }) => {
 
     const [counter, setCounter] = useState(null);
     const [counterLoading, setCounterLoading] = useState(true);
-
-    // const [counterNow, setCounterNow] = useState(0);
-    // const [counterTodayNow, setCounterTodayNow] = useState(0);
 
     const { isOpen, onToggle } = useDisclosure();
     const loadingRef = useRef(null);
@@ -183,12 +175,11 @@ const HomePage = ({ last_update_info }) => {
             const counter = await fetch(
                 "https://isd-fanart.reruru.com/counter"
             ).then((res) => res.json());
-            console.log(counter);
+            // console.log(counter);
             setCounter(counter);
             setCounterLoading(false);
-            // setCounterNow(counter.total_counter);
-            // setCounterTodayNow(counter.today_counter);
         } catch (err) {
+            setCounterLoading(false);
             console.log(err);
         }
     };
@@ -213,11 +204,7 @@ const HomePage = ({ last_update_info }) => {
             style={{ backgroundColor: bgColor, color: color }}
         >
             <Counter counter={counter} counterLoading={counterLoading} />
-            {/* <Counter
-                counter={counter}
-                counterNow={counterNow}
-                counterTodayNow={counterTodayNow}
-            /> */}
+
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
 
@@ -241,7 +228,7 @@ const HomePage = ({ last_update_info }) => {
                             textTransform="uppercase"
                             color={color}
                         >
-                            최근 업데이트 현황
+                            최신 업데이트 현황
                         </Heading>
                         {last_update_info.map((update, index) => (
                             <UpdateCard key={index} update={update} />
