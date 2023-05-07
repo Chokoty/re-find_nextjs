@@ -163,9 +163,9 @@ const HomePage = ({ last_update_info }) => {
         }
     };
 
-    // useEffect(() => {
-    //     fetchAuthorProfile("10933229");
-    // }, []);
+    useEffect(() => {
+        fetchAuthorProfile("10933229");
+    }, []);
 
     // counter 가져오기
     const fetchCounter = async () => {
@@ -219,7 +219,7 @@ const HomePage = ({ last_update_info }) => {
                             flexDirection: "column",
                             alignItems: "center",
                             justifyContent: "center",
-                            gap: "1em",
+                            gap: "2em",
                         }}
                     >
                         <Heading

@@ -18,7 +18,7 @@ const SupportPage = () => {
             >
                 <Box>
                     <Button
-                        href="#"
+                        href="https://docs.google.com/forms/d/e/1FAIpQLScK_i8O9QnhfZswreRX7VYROWzG3Kte6bVxjf28VSK0Fcu23g/viewform"
                         as="a"
                         target="_blank"
                         boxShadow="md"
@@ -46,7 +46,7 @@ const SupportPage = () => {
                 </Box>
                 <Box>
                     <Button
-                        href="#"
+                        href="https://docs.google.com/forms/d/e/1FAIpQLSf0WGZnnlZahRLoinXe1n0GmPCdryKXEFlPznqyLrsjBKpnZw/viewform"
                         as="a"
                         target="_blank"
                         boxShadow="md"
