@@ -32,6 +32,7 @@ const NoticeBanner = () => {
                 textOverflow="ellipsis"
                 overflow="hidden"
                 width="80%"
+                textAlign="center"
             >
                 <Badge variant="outline" colorScheme="pink" fontSize="1em">
                     업데이트 공지
