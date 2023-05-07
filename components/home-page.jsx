@@ -5,7 +5,7 @@ import { useStore } from "zustand";
 import Title from "./Title";
 import UploadImages from "./UploadImages";
 import Preview from "./Preview";
-import UpdateBoard from "./UpdateBoard";
+import UpdateBoard from "./history/UpdateBoard";
 import UpdateCard from "./UpdateCard";
 
 import AuthorProfileCard from "./AuthorProfileCard";
@@ -163,9 +163,9 @@ const HomePage = ({ last_update_info }) => {
         }
     };
 
-    useEffect(() => {
-        fetchAuthorProfile("10933229");
-    }, []);
+    // useEffect(() => {
+    //     fetchAuthorProfile("10933229");
+    // }, []);
 
     // counter 가져오기
     const fetchCounter = async () => {
@@ -215,16 +215,20 @@ const HomePage = ({ last_update_info }) => {
                         className="update-info"
                         style={{
                             marginTop: "3em",
-                            display: "flex",
-                            flexDirection: "column",
+                            display: "grid",
+                            // display: "flex", -> ios14 아래 지원 안됨
+                            // flexDirection: "column",
+                            // justifyContent: "center",
                             alignItems: "center",
-                            justifyContent: "center",
+                            placeItems: "center",
+                            gridGap: "1em",
                             gap: "1em",
                         }}
                     >
                         <Heading
                             as="h1"
                             size="md"
+                            mb="20px"
                             textTransform="uppercase"
                             color={color}
                         >

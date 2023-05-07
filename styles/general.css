@@ -19,7 +19,7 @@
   margin-bottom: 10px;
   /*브라우저 사이즈767px이하일때*/
 }
-@media (min-width: 335px) and (max-width: 757px) {
+@media (min-width: 335px) and (max-width: 767px) {
   .home_body .counter {
     font-size: 14.5454545455px;
   }
@@ -44,12 +44,12 @@
   /*브라우저 사이즈1023px이하일때*/
   /*브라우저 사이즈767px이하일때*/
 }
-@media (min-width: 758px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .home_body .title .title-main {
     font-size: 100px;
   }
 }
-@media (min-width: 335px) and (max-width: 757px) {
+@media (min-width: 335px) and (max-width: 767px) {
   .home_body .title .title-main {
     font-size: 80px;
   }
@@ -62,18 +62,19 @@
   /*브라우저 사이즈1023px이하일때*/
   /*브라우저 사이즈767px이하일때*/
 }
-@media (min-width: 758px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .home_body .title-sub {
     font-size: 33.3333333333px;
   }
 }
-@media (min-width: 335px) and (max-width: 757px) {
+@media (min-width: 335px) and (max-width: 767px) {
   .home_body .title-sub {
     font-size: 26.6666666667px;
   }
 }
 .home_body .uploader {
   width: 50%;
+  max-width: 550px;
   height: 250px;
   margin: 80px 0px 60px 0px;
   padding: 5px;
@@ -87,13 +88,13 @@
   /*브라우저 사이즈1023px이하일때*/
   /*브라우저 사이즈767px이하일때*/
 }
-@media (min-width: 758px) and (max-width: 1023px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .home_body .uploader {
     width: 60%;
     min-width: 500px;
   }
 }
-@media (min-width: 335px) and (max-width: 757px) {
+@media (min-width: 335px) and (max-width: 767px) {
   .home_body .uploader {
     width: 80%;
     max-width: 360px;
@@ -164,7 +165,7 @@
 .home_body .preview {
   /*브라우저 사이즈767px이하일때*/
 }
-@media (min-width: 335px) and (max-width: 757px) {
+@media (min-width: 335px) and (max-width: 767px) {
   .home_body .preview {
     width: 90%;
     max-width: 360px;
@@ -208,7 +209,7 @@
   margin-left: auto;
   padding-left: 20px;
 }
-@media (min-width: 335px) and (max-width: 757px) {
+@media (min-width: 335px) and (max-width: 767px) {
   .home_body .result-area .result .notFound .description {
     width: 90%;
     max-width: 360px;
@@ -230,10 +231,11 @@
 }
 
 .update-info {
-  width: 60%;
+  width: 50%;
+  max-width: 550px;
   /*브라우저 사이즈767px이하일때*/
 }
-@media (min-width: 335px) and (max-width: 757px) {
+@media (min-width: 335px) and (max-width: 767px) {
   .update-info {
     width: 90%;
     max-width: 360px;
@@ -279,7 +281,7 @@
   margin: 0 auto;
   padding: 0;
 }
-@media (min-width: 335px) and (max-width: 757px) {
+@media (min-width: 335px) and (max-width: 767px) {
   .about-content {
     width: 90%;
     max-width: 360px;
@@ -327,7 +329,7 @@ header .my-drawer {
   width: 260px;
   height: 420px;
   position: fixed;
-  top: 58px;
+  top: 108px;
   right: -300px;
   transition: right 0.3s ease;
   color: #000;
