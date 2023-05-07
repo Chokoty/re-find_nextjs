@@ -49,5 +49,44 @@
 }
 
 .notice-content {
-    // text-align: center;
+    margin: 0 auto;
+
+    .toLink {
+        background-color: #ef5a9a;
+        // display: flex;
+        // flex-wrap: wrap;
+        // gap: 20px;
+        // justify-content: center;
+        // align-items: center;
+        // margin: 0 auto;
+        // padding: 0;
+    }
+    @include mobile {
+        width: 90%;
+        max-width: 360px;
+    }
+}
+
+.layout {
+    width: 60%;
+    .toLink {
+        display: flex;
+        // grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: column;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .area {
+        max-width: 240px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    @include mobile {
+        width: 90%;
+        max-width: 360px;
+    }
 }

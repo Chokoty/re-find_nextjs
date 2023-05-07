@@ -16,6 +16,7 @@ const NoticeBanner = () => {
 
     return (
         <Box
+            className="notice_banner"
             display="grid"
             placeItems="center"
             alignItems="center"
@@ -27,31 +28,28 @@ const NoticeBanner = () => {
             width="100%"
             borderColor={highlightColor}
         >
-            <Text
+            <Box
                 whiteSpace="nowrap"
                 textOverflow="ellipsis"
                 overflow="hidden"
                 width="80%"
                 textAlign="center"
             >
-                <Badge variant="outline" colorScheme="pink" fontSize="1em">
+                <Badge
+                    variant="outline"
+                    colorScheme="pink"
+                    fontSize="1em"
+                    mr="5px"
+                >
                     업데이트 공지
                 </Badge>
-                &nbsp;{" "}
-                <Link href="/notice" legacyBehavior>
-                    <a
-                        style={{
-                            color,
-                            textDecoration: "none",
-                            paddingLeft: "0.25rem",
-                            paddingRight: "0.25rem",
-                        }}
-                    >
-                        {lastUpdateLog.date} &nbsp;{" "}
-                        {lastUpdateLog.content.slice(0, 50)}
-                    </a>
+                &nbsp;
+                <Link href="/notice" className="notice_banner_link">
+                    {lastUpdateLog.date +
+                        " - " +
+                        lastUpdateLog.content.slice(0, 50)}
                 </Link>
-            </Text>
+            </Box>
         </Box>
     );
 };

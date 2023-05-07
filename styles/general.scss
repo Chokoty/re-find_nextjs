@@ -18,6 +18,7 @@ body {
     //     background: #ef5a9a; // #154532; // #01bda1; //#c4f1ca;
     // }
 }
+
 header {
     display: flex;
     height: 58px;
@@ -69,7 +70,12 @@ header {
                 // border-bottom: 1px solid #333;
                 &:hover {
                     // background-color: #ef5a9a;
-                    color: #ef5a9a;
+                    // color: #ef5a9a;
+                    font-weight: bold;
+                }
+                &:active {
+                    color: #aaaaaa;
+                    font-weight: normal;
                 }
             }
         }
@@ -188,4 +194,17 @@ footer {
 
 .author-profile-card {
     background-color: #ef5a9a;
+}
+
+.notice_banner {
+    background-color: #ef5a9a;
+
+    .notice_banner_link {
+        &:hover {
+            text-decoration: underline;
+        }
+        &:active {
+            text-decoration: underline;
+        }
+    }
 }
