@@ -68,6 +68,7 @@
 
     .uploader {
         width: 50%;
+        max-width: 550px;
         height: 250px;
         margin: 80px 0px 60px 0px;
         padding: 5px;
@@ -247,7 +248,8 @@
 }
 
 .update-info {
-    width: 60%;
+    width: 50%;
+    max-width: 550px;
     @include mobile {
         width: 90%;
         max-width: 360px;
