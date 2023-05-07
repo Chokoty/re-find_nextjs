@@ -11,6 +11,8 @@ import UpdateCard from "./UpdateCard";
 
 import AuthorProfileCard from "./AuthorProfileCard";
 import { lightMode, darkMode } from "@/styles/theme";
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
+
 import {
     Accordion,
     AccordionItem,
@@ -34,19 +36,21 @@ import {
     CardBody,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
-import Image from "next/image";
+import Counter from "./Counter";
 
-const HomePage = ({ counter, last_update_info }) => {
+const HomePage = ({ last_update_info }) => {
     // const bear = useStore((state) => state.bears);
-
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
     const [search, setSearch] = useState(false); // 검색 여부
     const [loading, setLoading] = useState(false);
     const { colorMode, toggleColorMode } = useColorMode();
 
-    const [counterNow, setCounterNow] = useState(0);
-    const [counterTodayNow, setCounterTodayNow] = useState(0);
+    const [counter, setCounter] = useState(null);
+    const [counterLoading, setCounterLoading] = useState(true);
+
+    // const [counterNow, setCounterNow] = useState(0);
+    // const [counterTodayNow, setCounterTodayNow] = useState(0);
 
     const { isOpen, onToggle } = useDisclosure();
     const loadingRef = useRef(null);
@@ -66,6 +70,35 @@ const HomePage = ({ counter, last_update_info }) => {
 
     const badge = useColorModeValue(lightMode.badge, darkMode.badge);
 
+    useEffect(() => {
+        fetchCounter();
+    }, []);
+
+    // 검색시간 토스트
+    useEffect(() => {
+        if (files.length > 0) {
+            toast({
+                title: `Searching Time: ${searchTime / 1000}s`,
+                status: `${data === null ? "error" : "success"}`,
+                isClosable: true,
+            });
+        }
+    }, [data, searchTime]);
+
+    // 이미지 검색 상태 토스트
+    useEffect(() => {
+        if (files.length > 0 && counter === null) {
+            toast({
+                title: `현재 이미지 검색을 이용할 수 없습니다.`,
+                status: `error`,
+                isClosable: true,
+            });
+        }
+        if (files.length > 0 && counter !== null) {
+            fetchOriginalUrl();
+        }
+    }, [files]);
+
     const fetchOriginalUrl = async () => {
         try {
             setLoading(true); // 검색중
@@ -82,8 +115,8 @@ const HomePage = ({ counter, last_update_info }) => {
                 const searchTime = endTime - startTime; // ms
                 setSearchTime(searchTime); // 차이값 저장
 
-                console.log(response.data);
-                console.log(response.data.id);
+                // console.log(response.data);
+                // console.log(response.data.id);
                 // console.log(response.data);
                 if (response.data.id.length === 0) {
                     setData(null);
@@ -143,52 +176,22 @@ const HomePage = ({ counter, last_update_info }) => {
     //     console.log(last_update_info);
     // }, []);
 
-    // 1분마다 counter 업데이트?
+    // counter 가져오기
     const fetchCounter = async () => {
         try {
+            setCounterLoading(true);
             const counter = await fetch(
                 "https://isd-fanart.reruru.com/counter"
             ).then((res) => res.json());
-            setCounterNow(counter.total_counter);
-            setCounterTodayNow(counter.today_counter);
+            console.log(counter);
+            setCounter(counter);
+            setCounterLoading(false);
+            // setCounterNow(counter.total_counter);
+            // setCounterTodayNow(counter.today_counter);
         } catch (err) {
             console.log(err);
         }
     };
-
-    useEffect(() => {
-        if (files.length > 0) {
-            toast({
-                title: `Searching Time: ${searchTime / 1000}s`,
-                status: `${data === null ? "error" : "success"}`,
-                isClosable: true,
-            });
-        }
-    }, [data, searchTime]);
-
-    useEffect(() => {
-        if (files.length > 0 && counter === null) {
-            toast({
-                title: `현재 이미지 검색을 이용할 수 없습니다.`,
-                status: `error`,
-                isClosable: true,
-            });
-        }
-        if (files.length > 0 && counter !== null) {
-            fetchOriginalUrl();
-        }
-    }, [files]);
-
-    // useEffect(() => {
-    //     if (loadingRef.current) {
-    //         loadingRef.current.focus();
-    //         // scroll to
-    //         loadingRef.current.scrollIntoView({
-    //             behavior: "smooth",
-    //             block: "start",
-    //         });
-    //     }
-    // }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {
@@ -201,7 +204,7 @@ const HomePage = ({ counter, last_update_info }) => {
         setData(null);
         setSearch(false);
         onToggle();
-        // fetchCounter();
+        fetchCounter();
     };
 
     return (
@@ -209,37 +212,12 @@ const HomePage = ({ counter, last_update_info }) => {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
-            <div className="counter">
-                {counter === null ? (
-                    "현재 서버와의 연결이 불안정합니다."
-                ) : (
-                    <>
-                        <CountUp
-                            end={
-                                counterNow === 0
-                                    ? counter.total_counter
-                                    : counterNow
-                            }
-                        />
-                        &nbsp;
-                        <Badge
-                            style={{ backgroundColor: badge }}
-                            fontSize="1em"
-                        >
-                            +
-                            <CountUp
-                                end={
-                                    counterTodayNow === 0
-                                        ? counter.today_counter
-                                        : counterTodayNow
-                                }
-                                duration={5}
-                            />
-                        </Badge>
-                        &nbsp; 개의 출처를 찾았습니다.
-                    </>
-                )}
-            </div>
+            <Counter counter={counter} counterLoading={counterLoading} />
+            {/* <Counter
+                counter={counter}
+                counterNow={counterNow}
+                counterTodayNow={counterTodayNow}
+            /> */}
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
 
