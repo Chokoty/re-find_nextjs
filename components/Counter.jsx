@@ -24,7 +24,7 @@ const Counter = ({ counter, counterLoading }) => {
                         />
                     </Skeleton>
                     &nbsp;
-                    <Skeleton isLoaded={!loading}>
+                    <Skeleton isLoaded={!counterLoading}>
                         <Badge
                             style={{ backgroundColor: badge }}
                             fontSize="1em"
