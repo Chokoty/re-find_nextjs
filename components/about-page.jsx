@@ -6,6 +6,7 @@ import { Heading, Link } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 
 import { lightMode, darkMode } from "@/styles/theme";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const developers = [
     {
@@ -53,6 +54,7 @@ const AboutPage = () => {
                             isExternal
                         >
                             [뉴사이트소개] RE : FIND (이세돌 팬아트 출처 찾기)
+                            <ExternalLinkIcon mx="2px" />
                         </Link>
                     </li>
                 </ul>

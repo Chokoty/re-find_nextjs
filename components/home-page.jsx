@@ -7,6 +7,8 @@ import UploadImages from "./UploadImages";
 import Preview from "./Preview";
 import CountUp from "react-countup";
 import UpdateBoard from "./UpdateBoard";
+import UpdateCard from "./UpdateCard";
+
 import AuthorProfileCard from "./AuthorProfileCard";
 import { lightMode, darkMode } from "@/styles/theme";
 import {
@@ -34,7 +36,7 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Image from "next/image";
 
-const HomePage = ({ counter, today_counter, last_update_info }) => {
+const HomePage = ({ counter, last_update_info }) => {
     // const bear = useStore((state) => state.bears);
 
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
@@ -50,7 +52,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
     const loadingRef = useRef(null);
     const [searchTime, setSearchTime] = useState(0);
     const toast = useToast();
-    const last_update = last_update_info.split(", ");
+
     // const statuses = ["success", "error", "warning", "info"];
 
     // Theme
@@ -104,6 +106,16 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                     isClosable: true,
                 });
                 // 500 에러 처리 코드 작성
+            } else if (error.code == "ERR_NETWORK") {
+                console.log("Network Error: ", error.code);
+                setData(null);
+                setLoading(false); //  검색 완료
+                setSearch(true); // 재검색을 방지
+                toast({
+                    title: `${error.code}`,
+                    status: `error`,
+                    isClosable: true,
+                });
             } else {
                 console.log(error);
             }
@@ -137,13 +149,8 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
             const counter = await fetch(
                 "https://isd-fanart.reruru.com/counter"
             ).then((res) => res.json());
-            const today_counter = await fetch(
-                "https://re-find.reruru.com/today_counter"
-            ).then((res) => res.json());
-            setCounterNow(counter);
-            setCounterTodayNow(today_counter);
-            // console.log(counter);
-            // console.log(today_counter);
+            setCounterNow(counter.total_counter);
+            setCounterTodayNow(counter.today_counter);
         } catch (err) {
             console.log(err);
         }
@@ -208,7 +215,11 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                 ) : (
                     <>
                         <CountUp
-                            end={counterNow === 0 ? counter : counterNow}
+                            end={
+                                counterNow === 0
+                                    ? counter.total_counter
+                                    : counterNow
+                            }
                         />
                         &nbsp;
                         <Badge
@@ -219,7 +230,7 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                             <CountUp
                                 end={
                                     counterTodayNow === 0
-                                        ? today_counter
+                                        ? counter.today_counter
                                         : counterTodayNow
                                 }
                                 duration={5}
@@ -243,36 +254,22 @@ const HomePage = ({ counter, today_counter, last_update_info }) => {
                             flexDirection: "column",
                             alignItems: "center",
                             justifyContent: "center",
+                            gap: "1em",
                         }}
                     >
-                        <Card width="90%">
-                            <CardBody>
-                                <Heading
-                                    as="h1"
-                                    size="md"
-                                    textTransform="uppercase"
-                                >
-                                    마지막 업데이트 게시글
-                                </Heading>
-                                <Text fontSize="1em">{last_update[0]}</Text>
-                                <Text fontSize="1em">
-                                    <Link
-                                        color={highlightColor}
-                                        className="link"
-                                        href={
-                                            "https://cafe.naver.com/steamindiegame/" +
-                                            last_update[1]
-                                        }
-                                        isExternal
-                                    >
-                                        https://cafe.naver.com/steamindiegame/
-                                        {last_update[1]}{" "}
-                                        <ExternalLinkIcon mx="2px" />
-                                    </Link>
-                                </Text>
-                            </CardBody>
-                        </Card>
-                        <UpdateBoard />
+                        <Heading
+                            as="h1"
+                            size="md"
+                            textTransform="uppercase"
+                            color={color}
+                        >
+                            최근 업데이트 현황
+                        </Heading>
+                        {last_update_info.map((update, index) => (
+                            <UpdateCard key={index} update={update} />
+                        ))}
+
+                        <UpdateBoard last_update_info={last_update_info} />
                     </div>
                 </>
             )}

@@ -14,9 +14,30 @@ import {
     useColorModeValue,
     Text,
 } from "@chakra-ui/react";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
+
 import { lightMode, darkMode } from "@/styles/theme";
 
-const UpdateBoard = () => {
+const date = [
+    {
+        board: "이세돌 팬아트 게시판",
+        link: "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=344%26search.boardtype=I",
+    },
+    {
+        board: "통합 BEST 팬아트 게시판",
+        link: "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=551%26search.boardtype=I",
+    },
+    {
+        board: "금손 일러레의 방",
+        link: "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=552%26search.boardtype=L",
+    },
+    {
+        board: "왁타버스 불법 AI 팬아트",
+        link: "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=604%26search.boardtype=I",
+    },
+];
+
+const UpdateBoard = ({ data }) => {
     const color = useColorModeValue(lightMode.color, darkMode.color);
     const highlightColor = useColorModeValue(
         lightMode.highlight,
@@ -51,66 +72,22 @@ const UpdateBoard = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        <Tr>
-                            <Td textAlign="center">
-                                <Link
-                                    color={highlightColor}
-                                    className="link"
-                                    href={
-                                        "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=344%26search.boardtype=I"
-                                    }
-                                    isExternal
-                                >
-                                    이세돌 팬아트 게시판
-                                </Link>
-                            </Td>
-                            {/* <Td isNumeric>0000</Td> */}
-                        </Tr>
-                        <Tr>
-                            <Td textAlign="center">
-                                <Link
-                                    color={highlightColor}
-                                    className="link"
-                                    href={
-                                        "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=551%26search.boardtype=I"
-                                    }
-                                    isExternal
-                                >
-                                    통합 BEST 팬아트 게시판
-                                </Link>
-                            </Td>
-                            {/* <Td isNumeric>0000</Td> */}
-                        </Tr>
-                        <Tr>
-                            <Td textAlign="center">
-                                <Link
-                                    color={highlightColor}
-                                    className="link"
-                                    href={
-                                        "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=552%26search.boardtype=L"
-                                    }
-                                    isExternal
-                                >
-                                    금손 일러레의 방
-                                </Link>
-                            </Td>
-                            {/* <Td isNumeric>0000</Td> */}
-                        </Tr>
-                        <Tr>
-                            <Td textAlign="center">
-                                <Link
-                                    color={highlightColor}
-                                    className="link"
-                                    href={
-                                        "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=604%26search.boardtype=I"
-                                    }
-                                    isExternal
-                                >
-                                    왁타버스 불법 AI 팬아트
-                                </Link>
-                            </Td>
-                            {/* <Td isNumeric>0000</Td> */}
-                        </Tr>
+                        {date.map((item, key) => (
+                            <Tr key={key}>
+                                <Td textAlign="center">
+                                    <Link
+                                        color={highlightColor}
+                                        className="link"
+                                        href={item.link}
+                                        isExternal
+                                    >
+                                        {item.board}
+                                        <ExternalLinkIcon mx="2px" />
+                                    </Link>
+                                </Td>
+                                {/* <Td isNumeric>{last_update_info[0].date}</Td> */}
+                            </Tr>
+                        ))}
                     </Tbody>
                 </Table>
             </TableContainer>
