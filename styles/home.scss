@@ -248,8 +248,8 @@
 }
 
 .update-info {
-    width: 50%;
-    max-width: 550px;
+    width: 60%;
+    max-width: 550px; //
     @include mobile {
         width: 90%;
         max-width: 360px;
