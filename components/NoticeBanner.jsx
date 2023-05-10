@@ -43,7 +43,7 @@ const NoticeBanner = () => {
                 >
                     업데이트 공지
                 </Badge>
-                &nbsp;
+
                 <Link href="/notice" className="notice_banner_link">
                     {lastUpdateLog.date +
                         " - " +

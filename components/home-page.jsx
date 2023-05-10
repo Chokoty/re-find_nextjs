@@ -45,10 +45,34 @@ const HomePage = ({ last_update_info }) => {
     const [counterLoading, setCounterLoading] = useState(true);
 
     const { isOpen, onToggle } = useDisclosure();
-    const loadingRef = useRef(null);
     const [searchTime, setSearchTime] = useState(0);
     const toast = useToast();
+    const targetRef = useRef(null);
+    const loadingRef = useRef(null);
 
+    const handleClick = () => {
+        const headerHeight = 108;
+        const targetElement = targetRef.current;
+        const topPosition = targetElement.offsetTop - headerHeight;
+
+        window.scrollTo({
+            top: topPosition,
+            behavior: "smooth", // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
+        });
+    };
+
+    // const handleClickSearching = () => {
+    //     const targetElement = loadingRef.current;
+    //     const topPosition =
+    //         targetElement.offsetTop +
+    //         targetElement.offsetHeight -
+    //         window.innerHeight;
+
+    //     window.scrollTo({
+    //         top: topPosition,
+    //         behavior: "auto", // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
+    //     });
+    // };
     // const statuses = ["success", "error", "warning", "info"];
 
     // Theme
@@ -79,6 +103,8 @@ const HomePage = ({ last_update_info }) => {
 
     // 이미지 검색 상태 토스트
     useEffect(() => {
+        if (files.length > 0) handleClickSearching();
+
         if (files.length > 0 && counter === null) {
             toast({
                 title: `현재 이미지 검색을 이용할 수 없습니다.`,
@@ -91,6 +117,7 @@ const HomePage = ({ last_update_info }) => {
         }
     }, [files]);
 
+    // 이미지 검색하기
     const fetchOriginalUrl = async () => {
         try {
             setLoading(true); // 검색중
@@ -190,6 +217,7 @@ const HomePage = ({ last_update_info }) => {
 
     // files 을 [] 로 초기화
     const resetFiles = () => {
+        handleClick();
         setFiles([]);
         setData(null);
         setSearch(false);
@@ -199,10 +227,12 @@ const HomePage = ({ last_update_info }) => {
 
     return (
         <div
+            ref={targetRef}
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
             {/* <AuthorProfileCard /> */}
+            {/* <button onClick={handleClickSearching}>스크롤 이동</button> */}
             <Counter counter={counter} counterLoading={counterLoading} />
 
             <Title />
@@ -248,7 +278,7 @@ const HomePage = ({ last_update_info }) => {
                 <div className="result-area">
                     <Preview files={files} />
                     {loading ? (
-                        <div className="loading" ref={loadingRef}>
+                        <div className="loading">
                             <div>검색중</div>
                             &nbsp;
                             <Spinner size="sm" />
@@ -416,6 +446,7 @@ const HomePage = ({ last_update_info }) => {
                     )}
                 </div>
             )}
+            {/* <div className="loadingTarget" ref={loadingRef}></div> */}
         </div>
     );
 };
