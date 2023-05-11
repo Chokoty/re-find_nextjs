@@ -53,7 +53,6 @@ const ScrollAnimation = ({ targetRef, topPosition }) => {
 };
 
 const HomePage = ({ last_update_info }) => {
-    console.log(last_update_info);
     // const bear = useStore((state) => state.bears);
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
@@ -264,7 +263,7 @@ const HomePage = ({ last_update_info }) => {
             // const counter = await fetch(
             //     "https://isd-fanart.reruru.com/counter"
             // ).then((res) => res.json());
-            console.log(counter);
+            // console.log(counter);
             setCounter(counter);
             setCounterLoading(false);
         } catch (err) {
@@ -493,7 +492,7 @@ const HomePage = ({ last_update_info }) => {
                                         }
                                         isExternal
                                     >
-                                        {author.title}
+                                        {author?.title}
                                         <ExternalLinkIcon mx="2px" />
                                     </Link>
                                     {/* <Link
