@@ -53,6 +53,7 @@ const ScrollAnimation = ({ targetRef, topPosition }) => {
 };
 
 const HomePage = ({ last_update_info }) => {
+    console.log(last_update_info);
     // const bear = useStore((state) => state.bears);
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
@@ -123,7 +124,7 @@ const HomePage = ({ last_update_info }) => {
 
     // 이미지 검색 상태 토스트
     useEffect(() => {
-        if (files.length > 0) handleClickSearching();
+        // if (files.length > 0) handleClickSearching();
 
         if (files.length > 0 && counter === null) {
             toast({
@@ -211,8 +212,43 @@ const HomePage = ({ last_update_info }) => {
         }
     };
 
+    // const fetchTitles = async () => {
+    //     try {
+    //         const response1 = axios.get(" /api/getAuthorProfile", {
+    //             params: {
+    //                 postId: last_update_info[0].id,
+    //             },
+    //         });
+    //         const response2 = axios.get("/api/getAuthorProfile", {
+    //             params: {
+    //                 postId: last_update_info[1].id,
+    //             },
+    //         });
+    //         const response3 = axios.get("/api/getAuthorProfile", {
+    //             params: {
+    //                 postId: last_update_info[2].id,
+    //             },
+    //         });
+    //         const response4 = axios.get("/api/getAuthorProfile", {
+    //             params: {
+    //                 postId: last_update_info[3].id,
+    //             },
+    //         });
+
+    //         const ret = await Promise.all([
+    //             response1.data,
+    //             response2.data,
+    //             response3.data,
+    //             response4.data,
+    //         ]);
+    //         console.log(ret);
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
+
     // useEffect(() => {
-    //     fetchAuthorProfile("10607853");
+    //     fetchTitles();
     //     // fetchAuthorProfile("10933229");
     // }, []);
 

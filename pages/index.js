@@ -1,9 +1,6 @@
 import HomePage from "../components/home-page";
 import axios from "axios";
 
-// import { Inter } from "@next/font/google";
-// const inter = Inter({ subsets: ["latin"] });
-
 export default function Home({ last_update_info }) {
     return (
         <>

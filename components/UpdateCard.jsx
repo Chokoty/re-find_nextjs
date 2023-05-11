@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
     Card,
     CardBody,
@@ -13,10 +13,31 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import data from "../data/board.js";
 
 const UpdateCard = ({ update }) => {
+    const [author, setAuthor] = useState(null);
     const highlightColor = useColorModeValue(
         lightMode.highlight,
         darkMode.highlight
     );
+
+    // 작가 프로필 가져오기
+    const fetchAuthorProfile = async (postId) => {
+        try {
+            const response = await axios.get("/api/getAuthorProfile", {
+                params: {
+                    postId: postId,
+                },
+            });
+            const data = response.data;
+            console.log(data);
+            setAuthor(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchAuthorProfile(update.id);
+    }, []);
 
     return (
         <Card width="100%">
@@ -46,7 +67,8 @@ const UpdateCard = ({ update }) => {
                         }
                         isExternal
                     >
-                        {update.id} <ExternalLinkIcon mx="2px" />
+                        {update.id}
+                        {author?.title} <ExternalLinkIcon mx="2px" />
                     </Link>
                 </Text>
             </CardBody>
