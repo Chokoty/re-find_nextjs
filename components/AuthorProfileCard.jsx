@@ -3,12 +3,7 @@ import { Text, Image, Button, Highlight } from "@chakra-ui/react";
 import { lightMode, darkMode } from "@/styles/theme";
 import { Heading, useColorModeValue } from "@chakra-ui/react";
 
-const AuthorProfileCard = ({
-    authorName,
-    authorUrl,
-    authorProfUrl,
-    contribute,
-}) => {
+const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     const color = useColorModeValue(lightMode.color, darkMode.color);
     const highlightColor = useColorModeValue(
         lightMode.highlight,
@@ -16,7 +11,7 @@ const AuthorProfileCard = ({
     );
     return (
         <Button
-            href={authorUrl === "" ? "#" : authorUrl}
+            href={writerURL === "" ? "#" : writerURL}
             as="a"
             target="_blank"
             color={"#f5f5f5"}
@@ -33,24 +28,26 @@ const AuthorProfileCard = ({
             justifyContent="center"
         >
             <Image
-                src={authorProfUrl || ""}
+                src={profURL || ""}
                 alt="작가님 프로필"
                 width={120}
                 height={120}
                 mx="auto"
                 my={4}
                 borderRadius="full"
+                unoptimized={true}
             />
+
             <Text
                 fontSize="md"
                 textAlign="center"
                 mb="12px"
                 color={highlightColor}
             >
-                {authorName || "작가님 이름"}
+                {nickname || "작가님 이름"}
             </Text>
             <Text fontSize="md" textAlign="center" color={color}>
-                {contribute || ""}
+                {board || ""}
             </Text>
         </Button>
     );

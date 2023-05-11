@@ -33,6 +33,11 @@ const updateLog = [
         date: "2023.05.04",
         content: "RE:FIND를 리뉴얼 하였습니다. 많은 이용 부탁드립니다! 킹아!",
     },
+    {
+        id: 7,
+        date: "2023.05.12",
+        content: "작가님들 프로필 사진을 추가하였습니다.",
+    },
 ];
 
 export default updateLog;

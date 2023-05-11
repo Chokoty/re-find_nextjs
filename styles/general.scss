@@ -197,14 +197,18 @@ footer {
 }
 
 .notice_banner {
+    padding: 0 2px;
     background-color: #ef5a9a;
+    text-decoration: underline;
 
     .notice_banner_link {
         &:hover {
-            text-decoration: underline;
+            font-weight: bold;
+            // text-decoration: underline;
         }
         &:active {
-            text-decoration: underline;
+            font-weight: bold;
+            // text-decoration: underline;
         }
     }
 }

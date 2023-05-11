@@ -19,7 +19,7 @@ const UpdateCard = ({ update }) => {
     );
 
     return (
-        <Card width="90%">
+        <Card width="100%">
             <CardBody>
                 <Heading as="h1" size="md" textTransform="uppercase" mb="8px">
                     <Link

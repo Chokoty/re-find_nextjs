@@ -11,6 +11,7 @@ import UpdateCard from "./UpdateCard";
 import AuthorProfileCard from "./AuthorProfileCard";
 import { lightMode, darkMode } from "@/styles/theme";
 
+import { motion } from "framer-motion";
 import {
     Accordion,
     AccordionItem,
@@ -33,6 +34,24 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Counter from "./Counter";
 
+const ScrollAnimation = ({ targetRef, topPosition }) => {
+    return (
+        <motion
+            defaultStyle={{ scrollTop: 0 }}
+            style={{ scrollTop: spring(topPosition) }}
+        >
+            {({ scrollTop }) => (
+                <div
+                    ref={targetRef}
+                    style={{ position: "relative", top: scrollTop }}
+                >
+                    {/* 스크롤 애니메이션을 적용할 요소 내용 */}
+                </div>
+            )}
+        </motion>
+    );
+};
+
 const HomePage = ({ last_update_info }) => {
     // const bear = useStore((state) => state.bears);
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
@@ -42,13 +61,38 @@ const HomePage = ({ last_update_info }) => {
     const { colorMode, toggleColorMode } = useColorMode();
 
     const [counter, setCounter] = useState(null);
+    const [author, setAuthor] = useState(null);
     const [counterLoading, setCounterLoading] = useState(true);
 
     const { isOpen, onToggle } = useDisclosure();
-    const loadingRef = useRef(null);
     const [searchTime, setSearchTime] = useState(0);
     const toast = useToast();
+    const targetRef = useRef(null);
+    const loadingRef = useRef(null);
 
+    const handleClick = () => {
+        const headerHeight = 108;
+        const targetElement = targetRef.current;
+        const topPosition = targetElement.offsetTop - headerHeight;
+
+        window.scrollTo({
+            top: topPosition,
+            behavior: "smooth", // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
+        });
+    };
+
+    // const handleClickSearching = () => {
+    //     const targetElement = loadingRef.current;
+    //     const topPosition =
+    //         targetElement.offsetTop +
+    //         targetElement.offsetHeight -
+    //         window.innerHeight;
+
+    //     window.scrollTo({
+    //         top: topPosition,
+    //         behavior: "auto", // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
+    //     });
+    // };
     // const statuses = ["success", "error", "warning", "info"];
 
     // Theme
@@ -79,6 +123,8 @@ const HomePage = ({ last_update_info }) => {
 
     // 이미지 검색 상태 토스트
     useEffect(() => {
+        if (files.length > 0) handleClickSearching();
+
         if (files.length > 0 && counter === null) {
             toast({
                 title: `현재 이미지 검색을 이용할 수 없습니다.`,
@@ -91,6 +137,7 @@ const HomePage = ({ last_update_info }) => {
         }
     }, [files]);
 
+    // 이미지 검색하기
     const fetchOriginalUrl = async () => {
         try {
             setLoading(true); // 검색중
@@ -115,6 +162,7 @@ const HomePage = ({ last_update_info }) => {
                 } else {
                     // setData(response.data.id[0]);
                     setData(response.data);
+                    fetchAuthorProfile(response.data.id[0]);
                 }
             }
             setLoading(false); //  검색 완료
@@ -157,24 +205,30 @@ const HomePage = ({ last_update_info }) => {
             });
             const data = response.data;
             console.log(data);
-            // setContent(data.content);
+            setAuthor(data);
         } catch (error) {
             console.error(error);
         }
     };
 
     // useEffect(() => {
-    //     fetchAuthorProfile("10933229");
+    //     fetchAuthorProfile("10607853");
+    //     // fetchAuthorProfile("10933229");
     // }, []);
 
-    // counter 가져오기
+    // counter 가져오기 -> axis로 바꾸기
     const fetchCounter = async () => {
         try {
             setCounterLoading(true);
-            const counter = await fetch(
+            const response = await axios.get(
                 "https://isd-fanart.reruru.com/counter"
-            ).then((res) => res.json());
-            // console.log(counter);
+            );
+            const counter = response.data;
+
+            // const counter = await fetch(
+            //     "https://isd-fanart.reruru.com/counter"
+            // ).then((res) => res.json());
+            console.log(counter);
             setCounter(counter);
             setCounterLoading(false);
         } catch (err) {
@@ -190,6 +244,7 @@ const HomePage = ({ last_update_info }) => {
 
     // files 을 [] 로 초기화
     const resetFiles = () => {
+        handleClick();
         setFiles([]);
         setData(null);
         setSearch(false);
@@ -199,10 +254,17 @@ const HomePage = ({ last_update_info }) => {
 
     return (
         <div
+            ref={targetRef}
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
-            {/* <AuthorProfileCard /> */}
+            {/* <AuthorProfileCard
+                writerURL={author?.writerURL}
+                profURL={author?.profURL}
+                nickname={author?.nickname}
+                board={author?.board}
+            /> */}
+            {/* <button onClick={handleClickSearching}>스크롤 이동</button> */}
             <Counter counter={counter} counterLoading={counterLoading} />
 
             <Title />
@@ -248,7 +310,7 @@ const HomePage = ({ last_update_info }) => {
                 <div className="result-area">
                     <Preview files={files} />
                     {loading ? (
-                        <div className="loading" ref={loadingRef}>
+                        <div className="loading">
                             <div>검색중</div>
                             &nbsp;
                             <Spinner size="sm" />
@@ -385,7 +447,20 @@ const HomePage = ({ last_update_info }) => {
                                 </div>
                             ) : (
                                 <div className="found">
+                                    <Text>{author?.board}</Text>
                                     <Link
+                                        color="#01bda1"
+                                        className="link"
+                                        href={
+                                            "https://cafe.naver.com/steamindiegame/" +
+                                            data.id[0]
+                                        }
+                                        isExternal
+                                    >
+                                        {author.title}
+                                        <ExternalLinkIcon mx="2px" />
+                                    </Link>
+                                    {/* <Link
                                         color="#01bda1"
                                         className="link"
                                         href={
@@ -397,14 +472,14 @@ const HomePage = ({ last_update_info }) => {
                                         https://cafe.naver.com/steamindiegame/
                                         {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
-                                    </Link>
+                                    </Link> */}
 
-                                    {/* <AuthorProfileCard
-                                        authorName={data.author_name}
-                                        authorUrl={data.author_url}
-                                        authorProfUrl={data.author_prof_url}
-                                    /> */}
-                                    {/* <p>게시판: </p> */}
+                                    <AuthorProfileCard
+                                        writerURL={author?.writerURL}
+                                        profURL={author?.profURL}
+                                        nickname={author?.nickname}
+                                        board={author?.board}
+                                    />
                                 </div>
                             )}
                         </div>
@@ -416,6 +491,7 @@ const HomePage = ({ last_update_info }) => {
                     )}
                 </div>
             )}
+            {/* <div className="loadingTarget" ref={loadingRef}></div> */}
         </div>
     );
 };
