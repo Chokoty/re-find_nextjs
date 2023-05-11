@@ -207,7 +207,7 @@ const HomePage = ({ last_update_info }) => {
                 },
             });
             const data = response.data;
-            console.log(data);
+            // console.log(data);
             setAuthor(data);
         } catch (error) {
             console.error(error);
@@ -488,6 +488,7 @@ const HomePage = ({ last_update_info }) => {
                             ) : (
                                 <div className="found">
                                     <Link
+                                        mb="20px"
                                         color="#01bda1"
                                         className="link"
                                         href={
@@ -500,10 +501,13 @@ const HomePage = ({ last_update_info }) => {
                                         {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
                                     </Link>
-                                    <Skeleton isLoaded={!loading2}>
+                                    <Skeleton
+                                        isLoaded={!loading2}
+                                        mt="20px"
+                                        mb="20px"
+                                    >
                                         <Text>{author?.board}</Text>
                                         <Link
-                                            mb="20px"
                                             color="#01bda1"
                                             className="link"
                                             href={
@@ -515,7 +519,8 @@ const HomePage = ({ last_update_info }) => {
                                             {author?.title}
                                             <ExternalLinkIcon mx="2px" />
                                         </Link>
-
+                                    </Skeleton>
+                                    <Skeleton isLoaded={!loading2}>
                                         <AuthorProfileCard
                                             writerURL={author?.writerURL}
                                             profURL={author?.profURL}
