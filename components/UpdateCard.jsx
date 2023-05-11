@@ -19,26 +19,6 @@ const UpdateCard = ({ update }) => {
         darkMode.highlight
     );
 
-    // 작가 프로필 가져오기
-    const fetchAuthorProfile = async (postId) => {
-        try {
-            const response = await axios.get("/api/getAuthorProfile", {
-                params: {
-                    postId: postId,
-                },
-            });
-            const data = response.data;
-            console.log(data);
-            setAuthor(data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    useEffect(() => {
-        fetchAuthorProfile(update.id);
-    }, []);
-
     return (
         <Card width="100%">
             <CardBody>
@@ -68,7 +48,7 @@ const UpdateCard = ({ update }) => {
                         isExternal
                     >
                         {update.id}
-                        {author?.title} <ExternalLinkIcon mx="2px" />
+                        <ExternalLinkIcon mx="2px" />
                     </Link>
                 </Text>
             </CardBody>
