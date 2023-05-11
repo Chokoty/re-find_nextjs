@@ -19,7 +19,7 @@
     "cheerio": "^1.0.0-rc.12",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
-    "framer-motion": "^10.12.4",
+    "framer-motion": "^10.12.10",
     "hamburger-react": "^2.5.0",
     "iconv-lite": "^0.6.3",
     "jsdom": "^21.1.2",
@@ -35,6 +35,7 @@
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.8.0",
     "react-modern-drawer": "^1.2.0",
+    "request": "^2.88.2",
     "zustand": "^4.3.7"
   },
   "devDependencies": {

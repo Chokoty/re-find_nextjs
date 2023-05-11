@@ -11,6 +11,7 @@ import UpdateCard from "./UpdateCard";
 import AuthorProfileCard from "./AuthorProfileCard";
 import { lightMode, darkMode } from "@/styles/theme";
 
+import { motion } from "framer-motion";
 import {
     Accordion,
     AccordionItem,
@@ -33,6 +34,24 @@ import {
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Counter from "./Counter";
 
+const ScrollAnimation = ({ targetRef, topPosition }) => {
+    return (
+        <motion
+            defaultStyle={{ scrollTop: 0 }}
+            style={{ scrollTop: spring(topPosition) }}
+        >
+            {({ scrollTop }) => (
+                <div
+                    ref={targetRef}
+                    style={{ position: "relative", top: scrollTop }}
+                >
+                    {/* 스크롤 애니메이션을 적용할 요소 내용 */}
+                </div>
+            )}
+        </motion>
+    );
+};
+
 const HomePage = ({ last_update_info }) => {
     // const bear = useStore((state) => state.bears);
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
@@ -42,6 +61,7 @@ const HomePage = ({ last_update_info }) => {
     const { colorMode, toggleColorMode } = useColorMode();
 
     const [counter, setCounter] = useState(null);
+    const [author, setAuthor] = useState(null);
     const [counterLoading, setCounterLoading] = useState(true);
 
     const { isOpen, onToggle } = useDisclosure();
@@ -142,6 +162,7 @@ const HomePage = ({ last_update_info }) => {
                 } else {
                     // setData(response.data.id[0]);
                     setData(response.data);
+                    fetchAuthorProfile(response.data.id[0]);
                 }
             }
             setLoading(false); //  검색 완료
@@ -184,24 +205,30 @@ const HomePage = ({ last_update_info }) => {
             });
             const data = response.data;
             console.log(data);
-            // setContent(data.content);
+            setAuthor(data);
         } catch (error) {
             console.error(error);
         }
     };
 
     // useEffect(() => {
-    //     fetchAuthorProfile("10933229");
+    //     fetchAuthorProfile("10607853");
+    //     // fetchAuthorProfile("10933229");
     // }, []);
 
-    // counter 가져오기
+    // counter 가져오기 -> axis로 바꾸기
     const fetchCounter = async () => {
         try {
             setCounterLoading(true);
-            const counter = await fetch(
+            const response = await axios.get(
                 "https://isd-fanart.reruru.com/counter"
-            ).then((res) => res.json());
-            // console.log(counter);
+            );
+            const counter = response.data;
+
+            // const counter = await fetch(
+            //     "https://isd-fanart.reruru.com/counter"
+            // ).then((res) => res.json());
+            console.log(counter);
             setCounter(counter);
             setCounterLoading(false);
         } catch (err) {
@@ -231,7 +258,12 @@ const HomePage = ({ last_update_info }) => {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
-            {/* <AuthorProfileCard /> */}
+            {/* <AuthorProfileCard
+                writerURL={author?.writerURL}
+                profURL={author?.profURL}
+                nickname={author?.nickname}
+                board={author?.board}
+            /> */}
             {/* <button onClick={handleClickSearching}>스크롤 이동</button> */}
             <Counter counter={counter} counterLoading={counterLoading} />
 
@@ -415,7 +447,20 @@ const HomePage = ({ last_update_info }) => {
                                 </div>
                             ) : (
                                 <div className="found">
+                                    <Text>{author?.board}</Text>
                                     <Link
+                                        color="#01bda1"
+                                        className="link"
+                                        href={
+                                            "https://cafe.naver.com/steamindiegame/" +
+                                            data.id[0]
+                                        }
+                                        isExternal
+                                    >
+                                        {author.title}
+                                        <ExternalLinkIcon mx="2px" />
+                                    </Link>
+                                    {/* <Link
                                         color="#01bda1"
                                         className="link"
                                         href={
@@ -427,14 +472,14 @@ const HomePage = ({ last_update_info }) => {
                                         https://cafe.naver.com/steamindiegame/
                                         {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
-                                    </Link>
+                                    </Link> */}
 
-                                    {/* <AuthorProfileCard
-                                        authorName={data.author_name}
-                                        authorUrl={data.author_url}
-                                        authorProfUrl={data.author_prof_url}
-                                    /> */}
-                                    {/* <p>게시판: </p> */}
+                                    <AuthorProfileCard
+                                        writerURL={author?.writerURL}
+                                        profURL={author?.profURL}
+                                        nickname={author?.nickname}
+                                        board={author?.board}
+                                    />
                                 </div>
                             )}
                         </div>
