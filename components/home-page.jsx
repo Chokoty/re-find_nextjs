@@ -10,6 +10,7 @@ import UpdateCard from "./UpdateCard";
 
 import AuthorProfileCard from "./AuthorProfileCard";
 import { lightMode, darkMode } from "@/styles/theme";
+import { Skeleton } from "@chakra-ui/react";
 
 import { motion } from "framer-motion";
 import {
@@ -58,6 +59,7 @@ const HomePage = ({ last_update_info }) => {
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
     const [search, setSearch] = useState(false); // 검색 여부
     const [loading, setLoading] = useState(false);
+    const [loading2, setLoading2] = useState(false);
     const { colorMode, toggleColorMode } = useColorMode();
 
     const [counter, setCounter] = useState(null);
@@ -198,6 +200,7 @@ const HomePage = ({ last_update_info }) => {
     // 작가 프로필 가져오기
     const fetchAuthorProfile = async (postId) => {
         try {
+            setLoading2(true); // 검색중
             const response = await axios.get("/api/getAuthorProfile", {
                 params: {
                     postId: postId,
@@ -209,6 +212,7 @@ const HomePage = ({ last_update_info }) => {
         } catch (error) {
             console.error(error);
         }
+        setLoading2(false); //  검색 완료
     };
 
     // const fetchTitles = async () => {
@@ -285,6 +289,7 @@ const HomePage = ({ last_update_info }) => {
         setSearch(false);
         onToggle();
         fetchCounter();
+        setAuthor(null);
     };
 
     return (
@@ -482,20 +487,7 @@ const HomePage = ({ last_update_info }) => {
                                 </div>
                             ) : (
                                 <div className="found">
-                                    <Text>{author?.board}</Text>
                                     <Link
-                                        color="#01bda1"
-                                        className="link"
-                                        href={
-                                            "https://cafe.naver.com/steamindiegame/" +
-                                            data.id[0]
-                                        }
-                                        isExternal
-                                    >
-                                        {author?.title}
-                                        <ExternalLinkIcon mx="2px" />
-                                    </Link>
-                                    {/* <Link
                                         color="#01bda1"
                                         className="link"
                                         href={
@@ -507,14 +499,30 @@ const HomePage = ({ last_update_info }) => {
                                         https://cafe.naver.com/steamindiegame/
                                         {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
-                                    </Link> */}
+                                    </Link>
+                                    <Skeleton isLoaded={!loading2}>
+                                        <Text>{author?.board}</Text>
+                                        <Link
+                                            mb="20px"
+                                            color="#01bda1"
+                                            className="link"
+                                            href={
+                                                "https://cafe.naver.com/steamindiegame/" +
+                                                data.id[0]
+                                            }
+                                            isExternal
+                                        >
+                                            {author?.title}
+                                            <ExternalLinkIcon mx="2px" />
+                                        </Link>
 
-                                    <AuthorProfileCard
-                                        writerURL={author?.writerURL}
-                                        profURL={author?.profURL}
-                                        nickname={author?.nickname}
-                                        board={author?.board}
-                                    />
+                                        <AuthorProfileCard
+                                            writerURL={author?.writerURL}
+                                            profURL={author?.profURL}
+                                            nickname={author?.nickname}
+                                            board={author?.board}
+                                        />
+                                    </Skeleton>
                                 </div>
                             )}
                         </div>
