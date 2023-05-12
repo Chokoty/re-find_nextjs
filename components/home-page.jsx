@@ -298,7 +298,9 @@ const HomePage = ({ last_update_info }) => {
                                 <div className="found">
                                     {author === null && (
                                         <Link
+                                            fontSize="xl"
                                             mb="20px"
+                                            textAlign="center"
                                             // color="#01bda1"
                                             color={highlightColor}
                                             className="link"
@@ -319,8 +321,17 @@ const HomePage = ({ last_update_info }) => {
                                         mt="20px"
                                         mb="20px"
                                     >
-                                        <Text>{author?.board}</Text>
+                                        <Text
+                                            fontSize="xl"
+                                            mb="20px"
+                                            textAlign="center"
+                                        >
+                                            {author?.board}
+                                        </Text>
                                         <Link
+                                            fontSize="xl"
+                                            mb="20px"
+                                            textAlign="center"
                                             // color="#01bda1"
                                             color={highlightColor}
                                             className="link"
