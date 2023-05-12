@@ -193,11 +193,15 @@ const HomePage = ({ last_update_info }) => {
     const fetchAuthorProfile = async (postId) => {
         try {
             setLoading2(true); // 검색중
+            const startTime = new Date().getTime(); // 시작시간 기록
             const response = await axios.get("/api/getAuthorProfile", {
                 params: {
                     postId: postId,
                 },
             });
+            const endTime = new Date().getTime(); // 종료시간 기록
+            // console.log(`Profile search time: ${endTime - startTime}ms`); // 차이값 출력
+
             const data = response.data;
             // console.log(data);
             setAuthor(data);
@@ -207,9 +211,9 @@ const HomePage = ({ last_update_info }) => {
         setLoading2(false); //  검색 완료
     };
 
-    // useEffect(() => {
-    //     fetchAuthorProfile("10933229");
-    // }, []);
+    useEffect(() => {
+        fetchAuthorProfile("11172739");
+    }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {
@@ -233,12 +237,17 @@ const HomePage = ({ last_update_info }) => {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
+            {" "}
+            <AuthorProfileCard
+                writerURL={author?.writerURL}
+                profURL={author?.profURL}
+                nickname={author?.nickname}
+                board={author?.uploadText}
+            />
             {/* <button onClick={handleClickSearching}>스크롤 이동</button> */}
             <Counter counter={counter} counterLoading={counterLoading} />
-
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
-
             {files.length === 0 && (
                 <>
                     <UploadImages getDataFromChild={getDataFromChild} />
@@ -294,20 +303,24 @@ const HomePage = ({ last_update_info }) => {
                                 </div>
                             ) : (
                                 <div className="found">
-                                    <Link
-                                        mb="20px"
-                                        color="#01bda1"
-                                        className="link"
-                                        href={
-                                            "https://cafe.naver.com/steamindiegame/" +
-                                            data.id[0]
-                                        }
-                                        isExternal
-                                    >
-                                        https://cafe.naver.com/steamindiegame/
-                                        {data.id[0]}
-                                        <ExternalLinkIcon mx="2px" />
-                                    </Link>
+                                    {author === null && (
+                                        <Link
+                                            mb="20px"
+                                            // color="#01bda1"
+                                            color={highlightColor}
+                                            className="link"
+                                            href={
+                                                "https://cafe.naver.com/steamindiegame/" +
+                                                data.id[0]
+                                            }
+                                            isExternal
+                                        >
+                                            https://cafe.naver.com/steamindiegame/
+                                            {data.id[0]}
+                                            <ExternalLinkIcon mx="2px" />
+                                        </Link>
+                                    )}
+
                                     <Skeleton
                                         isLoaded={!loading2}
                                         mt="20px"
@@ -315,7 +328,8 @@ const HomePage = ({ last_update_info }) => {
                                     >
                                         <Text>{author?.board}</Text>
                                         <Link
-                                            color="#01bda1"
+                                            // color="#01bda1"
+                                            color={highlightColor}
                                             className="link"
                                             href={
                                                 "https://cafe.naver.com/steamindiegame/" +
@@ -332,7 +346,7 @@ const HomePage = ({ last_update_info }) => {
                                             writerURL={author?.writerURL}
                                             profURL={author?.profURL}
                                             nickname={author?.nickname}
-                                            board={author?.memberLevelName}
+                                            board={author?.uploadText}
                                         />
                                     </Skeleton>
                                 </div>
