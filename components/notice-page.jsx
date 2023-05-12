@@ -1,5 +1,5 @@
 import React from "react";
-import OtherLayout from "./layout/other-layout";
+
 import {
     Box,
     Heading,
@@ -10,8 +10,10 @@ import {
     CardFooter,
 } from "@chakra-ui/react";
 
-import TMI from "../data/tmi";
+import OtherLayout from "./layout/other-layout";
+
 import updateLog from "../data/updateLog";
+import TMI from "../data/tmi";
 
 const NoticePage = () => {
     return (

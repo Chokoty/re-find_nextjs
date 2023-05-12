@@ -5,7 +5,6 @@ const developers = [
             "https://cafe.naver.com/ca-fe/cafes/27842958/members/N8dX1e0GCf7CmHWtLoksOA",
         profURL:
             "https://cafeptthumb-phinf.pstatic.net/MjAyMjEwMThfMjU3/MDAxNjY2MDI3MTE1NDM4.GcNku002LAjEqDaeMgW1sMX1uu07_FfxHIGkCLHcLoog.7Ex7jOQ6n4b9mSGJF4nPop-nVgwoXXGJupH_tQKSgCgg.PNG/frame_19_delay-0.04s.png?type=s3",
-        // profURL: "reruru.png",
         contribute: "검색엔진 개발",
     },
     {

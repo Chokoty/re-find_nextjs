@@ -1,5 +1,7 @@
 import { useColorModeValue } from "@chakra-ui/react";
+
 import { lightMode, darkMode } from "@/styles/theme";
+
 export const Footer = () => {
     const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
     const color = useColorModeValue(

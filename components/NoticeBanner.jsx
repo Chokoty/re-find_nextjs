@@ -1,9 +1,10 @@
 import React from "react";
-import updateLog from "../data/updateLog";
-import { Badge, Text, Box, useColorModeValue } from "@chakra-ui/react";
 import Link from "next/link";
 
+import { Badge, Box, useColorModeValue } from "@chakra-ui/react";
+
 import { lightMode, darkMode } from "@/styles/theme";
+import updateLog from "../data/updateLog";
 // import Ticker from "nice-react-ticker";
 
 const NoticeBanner = () => {

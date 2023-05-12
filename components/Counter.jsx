@@ -1,12 +1,13 @@
 import React from "react";
-import { useColorModeValue } from "@chakra-ui/react";
-import { Badge } from "@chakra-ui/react";
-import CountUp from "react-countup";
+
+import { Badge, Skeleton, useColorModeValue } from "@chakra-ui/react";
+
 import { lightMode, darkMode } from "@/styles/theme";
-import { Skeleton } from "@chakra-ui/react";
+import CountUp from "react-countup";
 
 const Counter = ({ counter, counterLoading }) => {
     const badge = useColorModeValue(lightMode.badge, darkMode.badge);
+
     return (
         <div className="counter">
             <Skeleton isLoaded={!counterLoading} display="flex">
