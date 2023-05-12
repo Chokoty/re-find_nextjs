@@ -21,6 +21,7 @@ const getAuthorProfile = async (req, res) => {
             title: data.result.article.subject,
             board: outputString,
             nickname: data.result.article.writer.nick,
+            memberLevelName: data.result.article.writer.memberLevelName,
             memberKey: data.result.article.writer.memberKey,
             writerURL: `https://cafe.naver.com/ca-fe/cafes/27842958/members/${data.result.article.writer.memberKey}`,
             profURL: data.result.article.writer.image.url,

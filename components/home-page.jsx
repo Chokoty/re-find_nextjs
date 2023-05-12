@@ -34,6 +34,7 @@ import {
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import Counter from "./Counter";
+import Image from "next/image";
 
 const ScrollAnimation = ({ targetRef, topPosition }) => {
     return (
@@ -215,44 +216,22 @@ const HomePage = ({ last_update_info }) => {
         setLoading2(false); //  검색 완료
     };
 
-    // const fetchTitles = async () => {
-    //     try {
-    //         const response1 = axios.get(" /api/getAuthorProfile", {
-    //             params: {
-    //                 postId: last_update_info[0].id,
-    //             },
-    //         });
-    //         const response2 = axios.get("/api/getAuthorProfile", {
-    //             params: {
-    //                 postId: last_update_info[1].id,
-    //             },
-    //         });
-    //         const response3 = axios.get("/api/getAuthorProfile", {
-    //             params: {
-    //                 postId: last_update_info[2].id,
-    //             },
-    //         });
-    //         const response4 = axios.get("/api/getAuthorProfile", {
-    //             params: {
-    //                 postId: last_update_info[3].id,
-    //             },
-    //         });
-
-    //         const ret = await Promise.all([
-    //             response1.data,
-    //             response2.data,
-    //             response3.data,
-    //             response4.data,
-    //         ]);
-    //         console.log(ret);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
-
+    // 프로필 이미지 가져오기
+    const fetchThumbImg = async (url) => {
+        try {
+            const response = await axios.get("/api/getThumbImg", {
+                params: {
+                    postId: url,
+                },
+            });
+            const data = response.data;
+            console.log(data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
     // useEffect(() => {
-    //     fetchTitles();
-    //     // fetchAuthorProfile("10933229");
+    //     fetchAuthorProfile("10933229");
     // }, []);
 
     // counter 가져오기 -> axis로 바꾸기
@@ -298,7 +277,16 @@ const HomePage = ({ last_update_info }) => {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
-            {/* <AuthorProfileCard
+            {/* <Image
+                src={author?.profURL || ""}
+                alt="작가님 프로필"
+                width={120}
+                height={120}
+                mx="auto"
+                my={4}
+                borderRadius="full"
+            />
+            <AuthorProfileCard
                 writerURL={author?.writerURL}
                 profURL={author?.profURL}
                 nickname={author?.nickname}
@@ -525,7 +513,7 @@ const HomePage = ({ last_update_info }) => {
                                             writerURL={author?.writerURL}
                                             profURL={author?.profURL}
                                             nickname={author?.nickname}
-                                            board={author?.board}
+                                            board={author?.memberLevelName}
                                         />
                                     </Skeleton>
                                 </div>

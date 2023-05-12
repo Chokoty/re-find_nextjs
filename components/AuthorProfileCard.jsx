@@ -1,7 +1,8 @@
 import React from "react";
-import { Text, Image, Button, Highlight } from "@chakra-ui/react";
+import { Text, Button, Highlight } from "@chakra-ui/react";
 import { lightMode, darkMode } from "@/styles/theme";
 import { Heading, useColorModeValue } from "@chakra-ui/react";
+import Image from "next/image";
 
 const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -20,22 +21,27 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
             borderWidth="1px"
             borderRadius="lg"
             overflow="hidden"
-            p={1}
-            width="240px"
-            height="240px"
+            p="10px"
+            width="200px"
+            height="200px"
             display="flex"
             flexDirection="column"
             justifyContent="center"
+            gap="10px"
+            // _hover={{
+            //     background: highlightColor,
+            //     color: color,
+            // }}
         >
             <Image
                 src={profURL || ""}
                 alt="작가님 프로필"
-                width={120}
-                height={120}
+                width={100}
+                height={100}
                 mx="auto"
                 my={4}
                 borderRadius="full"
-                unoptimized={true}
+                style={{ borderRadius: "80%" }}
             />
 
             <Text
