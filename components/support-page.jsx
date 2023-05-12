@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, Box, Button, Image } from "@chakra-ui/react";
-import OtherLayout from "./layout/other-layout";
-import AuthorProfileCard from "./AuthorProfileCard";
 
-import { lightMode, darkMode } from "@/styles/theme";
 import { useColorModeValue } from "@chakra-ui/react";
 import { BsChatDots } from "react-icons/bs";
+
+import { lightMode, darkMode } from "@/styles/theme";
+import OtherLayout from "./layout/other-layout";
+// import AuthorProfileCard from "./AuthorProfileCard";
 
 // const data = [
 //     {
@@ -34,8 +35,8 @@ const SupportPage = () => {
                         boxShadow="md"
                         borderWidth="1px"
                         borderRadius="lg"
-                        width="240px"
-                        height="240px"
+                        width="200px"
+                        height="200px"
                         display="flex"
                         flexDirection="column"
                         justifyContent="center"
@@ -62,8 +63,8 @@ const SupportPage = () => {
                         boxShadow="md"
                         borderWidth="1px"
                         borderRadius="lg"
-                        width="240px"
-                        height="240px"
+                        width="200px"
+                        height="200px"
                         display="flex"
                         flexDirection="column"
                         justifyContent="center"

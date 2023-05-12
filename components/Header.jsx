@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import Link from "next/link";
-import MyDrawer from "./MyDrawer";
-import DarkModeToggle from "./DarkModeToggle";
-import { lightMode, darkMode } from "@/styles/theme";
+import React from "react";
+
 import { useColorModeValue } from "@chakra-ui/react";
-import { Sling as Hamburger } from "hamburger-react";
-// import { Niconne } from "@next/font/google";
-import { useStore } from "../store/store";
+import { lightMode, darkMode } from "@/styles/theme";
+
+import DarkModeToggle from "./DarkModeToggle";
+import MyDrawer from "./MyDrawer";
 import NoticeBanner from "./NoticeBanner";
+import { Sling as Hamburger } from "hamburger-react";
+
+import { useStore } from "../store/store";
 
 export const Header = () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    // const bgColor = useColorModeValue("lightMode.bg", "darkMode.bg");
     const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
     const color = useColorModeValue(lightMode.color, darkMode.color);
 
@@ -26,7 +26,6 @@ export const Header = () => {
         <>
             <NoticeBanner />
             <header style={{ backgroundColor: bgColor, color: color }}>
-                {/* {count} */}
                 <DarkModeToggle className="dark-mode-toggle" />
                 <MyDrawer isOpen={isOpen} toggleDrawer={toggleDrawer} />
                 <Hamburger

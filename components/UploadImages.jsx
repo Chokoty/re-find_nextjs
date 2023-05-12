@@ -1,14 +1,18 @@
 import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
-import { SlCloudUpload } from "react-icons/sl";
-import { lightMode, darkMode } from "@/styles/theme";
+
 import { useColorModeValue } from "@chakra-ui/react";
+import { SlCloudUpload } from "react-icons/sl";
+import { useDropzone } from "react-dropzone";
+
+import { lightMode, darkMode } from "@/styles/theme";
+
 const UploadImages = ({ getDataFromChild }) => {
     const acceptedFiles = useCallback((files) => {
         // 이미지 파일만 받기 위해서는 files 배열에서 type이 image인 것만 필터링합니다.
         const images = files.filter((file) => file.type.startsWith("image/"));
         console.log(images);
     }, []);
+
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         accept: {
             "image/*": [],
@@ -25,6 +29,7 @@ const UploadImages = ({ getDataFromChild }) => {
             );
         },
     });
+
     const highlightColor = useColorModeValue(
         lightMode.highlight,
         darkMode.highlight

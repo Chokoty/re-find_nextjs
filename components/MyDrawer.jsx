@@ -1,21 +1,12 @@
 import Link from "next/link";
+
 import { Button, Image } from "@chakra-ui/react";
 import { InfoIcon, BellIcon } from "@chakra-ui/icons";
 import { FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { AiFillExperiment, AiFillHome } from "react-icons/ai";
 
-import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
-} from "@chakra-ui/react";
-
-import { useStore } from "../store/store";
+// import { useStore } from "../store/store";
 
 const MyDrawer = ({ isOpen, toggleDrawer }) => {
     // const { darkMode } = useStore((state) => state);

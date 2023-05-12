@@ -4,10 +4,9 @@ import AuthorProfileCard from "./AuthorProfileCard";
 
 import { Heading, Link } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
-
-import { lightMode, darkMode } from "@/styles/theme";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
+import { lightMode, darkMode } from "@/styles/theme";
 import developers from "../data/developers";
 
 const AboutPage = () => {

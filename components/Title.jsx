@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import { lightMode, darkMode } from "@/styles/theme";
+
 import { Heading, useColorModeValue } from "@chakra-ui/react";
+
+import { lightMode, darkMode } from "@/styles/theme";
 
 const Title = () => {
     const highlightColor = useColorModeValue(

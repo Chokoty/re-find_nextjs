@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
     Card,
     CardBody,
@@ -7,13 +7,12 @@ import {
     Link,
     useColorModeValue,
 } from "@chakra-ui/react";
-import { lightMode, darkMode } from "@/styles/theme";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
+import { lightMode, darkMode } from "@/styles/theme";
 import data from "../data/board.js";
 
 const UpdateCard = ({ update }) => {
-    const [author, setAuthor] = useState(null);
     const highlightColor = useColorModeValue(
         lightMode.highlight,
         darkMode.highlight

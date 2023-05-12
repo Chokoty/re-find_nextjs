@@ -1,8 +1,10 @@
 import React from "react";
-import { Text, Button, Highlight } from "@chakra-ui/react";
-import { lightMode, darkMode } from "@/styles/theme";
-import { Heading, useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
+
+import { Text, Button, Highlight } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
+
+import { lightMode, darkMode } from "@/styles/theme";
 
 const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     const color = useColorModeValue(lightMode.color, darkMode.color);
