@@ -12,6 +12,40 @@ const getAuthorProfile = async (req, res) => {
         const temp = data.result.article.menu.name;
         const outputString = temp.replace(/&#\d+;/g, "").trim(); // 이모지 제거
 
+        const writeDate = data.result.article.writeDate; // UNIX 시간
+        const currentDate = new Date(); // 현재 날짜와 시간
+
+        const date = new Date(writeDate);
+        // console.log(date);
+
+        // 업로드 시간 차이 계산 (밀리초 단위)
+        const timeDifference = currentDate.getTime() - writeDate;
+
+        // 시간 차이를 일(day) 단위로 변환
+        const daysDifference = Math.floor(
+            timeDifference / (1000 * 60 * 60 * 24)
+        );
+        // 시간 차이를 시간 단위로 변환
+        const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
+        let uploadText = "";
+
+        if (daysDifference >= 365) {
+            const yearsDifference = Math.floor(daysDifference / 365);
+            uploadText = `게시글 업로드  ${yearsDifference}년 전`;
+            // console.log(`업로드된 지 ${yearsDifference}년 전`);
+        } else if (daysDifference >= 30) {
+            const monthsDifference = Math.floor(daysDifference / 30);
+            uploadText = `게시글 업로드 ${monthsDifference}달 전`;
+            // console.log(`업로드된 지 ${monthsDifference}달 전`);
+        } else if (daysDifference > 0) {
+            uploadText = `게시글 업로드 ${daysDifference}일 전`;
+            // console.log(`업로드된 지 ${daysDifference}일 전`);
+        } else {
+            uploadText = `게시글 업로드 ${hoursDifference}시간 전`;
+            // console.log(`업로드된 지 ${hoursDifference}시간 전`);
+        }
+        // console.log(uploadText);
+
         const writer = {
             id: data.result.article.writer.id,
             title: data.result.article.subject,
@@ -21,6 +55,7 @@ const getAuthorProfile = async (req, res) => {
             memberKey: data.result.article.writer.memberKey,
             writerURL: `https://cafe.naver.com/ca-fe/cafes/27842958/members/${data.result.article.writer.memberKey}`,
             profURL: data.result.article.writer.image.url,
+            uploadText: uploadText,
         };
         // console.log(writer);
         // const writerJSON = JSON.stringify(writer);
