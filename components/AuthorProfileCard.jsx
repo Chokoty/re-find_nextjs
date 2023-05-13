@@ -8,9 +8,14 @@ import { lightMode, darkMode } from "@/styles/theme";
 
 const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     const color = useColorModeValue(lightMode.color, darkMode.color);
+    const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
     const highlightColor = useColorModeValue(
         lightMode.highlight,
         darkMode.highlight
+    );
+    const highlightColor2 = useColorModeValue(
+        lightMode.highlight2,
+        darkMode.highlight2
     );
     return (
         <Button
@@ -24,8 +29,8 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
             borderRadius="lg"
             overflow="hidden"
             p="10px"
-            width="200px"
-            height="200px"
+            width="240px"
+            height="240px"
             display="flex"
             flexDirection="column"
             justifyContent="center"
@@ -54,7 +59,16 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
             >
                 {nickname || "작가님 이름"}
             </Text>
-            <Text fontSize="md" textAlign="center" color={color}>
+
+            <Text
+                fontSize="md"
+                textAlign="center"
+                color={color2}
+                px="2"
+                py="1"
+                rounded="full"
+                bg={highlightColor2}
+            >
                 {board || ""}
             </Text>
         </Button>
