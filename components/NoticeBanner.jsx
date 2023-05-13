@@ -1,7 +1,7 @@
 import React from "react";
-import Link from "next/link";
+import NextLink from "next/link";
 
-import { Badge, Box, useColorModeValue } from "@chakra-ui/react";
+import { Link, Badge, Box, useColorModeValue } from "@chakra-ui/react";
 
 import { lightMode, darkMode } from "@/styles/theme";
 import updateLog from "../data/updateLog";
@@ -44,12 +44,23 @@ const NoticeBanner = () => {
                 >
                     업데이트 공지
                 </Badge>
-
-                <Link href="/notice" className="notice_banner_link">
-                    {lastUpdateLog.date +
-                        " - " +
-                        lastUpdateLog.content.slice(0, 50)}
-                </Link>
+                {lastUpdateLog?.directLink == null ? (
+                    <NextLink href="/notice" className="notice_banner_link">
+                        {lastUpdateLog.date +
+                            " - " +
+                            lastUpdateLog.content.slice(0, 50)}
+                    </NextLink>
+                ) : (
+                    <Link
+                        isExternal
+                        href={lastUpdateLog.directLink}
+                        className="notice_banner_link"
+                    >
+                        {lastUpdateLog.date +
+                            " - " +
+                            lastUpdateLog.content.slice(0, 50)}
+                    </Link>
+                )}
             </Box>
         </Box>
     );

@@ -8,18 +8,28 @@ import {
     CardHeader,
     CardBody,
     CardFooter,
+    Link,
+    useColorModeValue,
 } from "@chakra-ui/react";
 
 import OtherLayout from "./layout/other-layout";
 
+import { lightMode, darkMode } from "@/styles/theme";
 import updateLog from "../data/updateLog";
 import TMI from "../data/tmi";
 
 const NoticePage = () => {
+    const highlightColor = useColorModeValue(
+        lightMode.highlight,
+        darkMode.highlight
+    );
     return (
         <OtherLayout title="Notice">
             <div className="notice-content">
-                <Heading size="lg"> 업데이트 내용</Heading>
+                <Heading size="lg" mb="20px">
+                    {" "}
+                    업데이트 내용
+                </Heading>
 
                 <Box
                     display="flex"
@@ -51,6 +61,17 @@ const NoticePage = () => {
                                 <CardBody p="10px" textAlign="left">
                                     <Text>{item.content}</Text>
                                 </CardBody>
+                                <CardFooter textAlign="left" fontSize="sm">
+                                    {item.directLink && (
+                                        <Link
+                                            href={item.directLink}
+                                            isExternal
+                                            color={highlightColor}
+                                        >
+                                            추가 링크
+                                        </Link>
+                                    )}
+                                </CardFooter>
                             </Card>
                         ))}
                 </Box>
