@@ -31,6 +31,11 @@ const UpdateCard = ({ update }) => {
                         }
                         isExternal
                     >
+                        {
+                            data.find((item) => item.board === update.board)
+                                ?.state
+                        }
+                        &nbsp;
                         {update.board}
                         <ExternalLinkIcon mx="2px" />
                     </Link>
