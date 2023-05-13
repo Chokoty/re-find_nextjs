@@ -20,7 +20,7 @@ const data = [
     {
         board: "왁타버스 불법 AI 팬아트",
         link: "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/menus/604",
-
+        state: "-관-",
         // link: "https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=604%26search.boardtype=I",
     },
 ];
