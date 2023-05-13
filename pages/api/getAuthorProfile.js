@@ -31,17 +31,17 @@ const getAuthorProfile = async (req, res) => {
 
         if (daysDifference >= 365) {
             const yearsDifference = Math.floor(daysDifference / 365);
-            uploadText = `게시글 업로드  ${yearsDifference}년 전`;
+            uploadText = `${yearsDifference}년 전 업로드`;
             // console.log(`업로드된 지 ${yearsDifference}년 전`);
         } else if (daysDifference >= 30) {
             const monthsDifference = Math.floor(daysDifference / 30);
-            uploadText = `게시글 업로드 ${monthsDifference}달 전`;
+            uploadText = `${monthsDifference}달 전 업로드`;
             // console.log(`업로드된 지 ${monthsDifference}달 전`);
         } else if (daysDifference > 0) {
-            uploadText = `게시글 업로드 ${daysDifference}일 전`;
+            uploadText = `${daysDifference}일 전 업로드`;
             // console.log(`업로드된 지 ${daysDifference}일 전`);
         } else {
-            uploadText = `게시글 업로드 ${hoursDifference}시간 전`;
+            uploadText = `${hoursDifference}시간 전 업로드`;
             // console.log(`업로드된 지 ${hoursDifference}시간 전`);
         }
         // console.log(uploadText);
