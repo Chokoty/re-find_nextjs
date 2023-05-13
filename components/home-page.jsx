@@ -237,6 +237,12 @@ const HomePage = ({ last_update_info }) => {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
+            <AuthorProfileCard
+                writerURL={author?.writerURL}
+                profURL={author?.profURL}
+                nickname={author?.nickname}
+                board={author?.uploadText}
+            />
             {/* <button onClick={handleClickSearching}>스크롤 이동</button> */}
             <Counter counter={counter} counterLoading={counterLoading} />
             <Title />

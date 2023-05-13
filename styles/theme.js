@@ -50,14 +50,18 @@ export default theme;
 export const lightMode = {
     bg: "#FFFFFF",
     color: "#1B1642",
+    color2: "#E8EAEC",
     footerColor: "#575A7B",
     highlight: "#01bda1",
     badge: "#c1eadf",
+    highlight2: "#008080",
 };
 export const darkMode = {
     bg: "#0F0F0F",
     color: "#E8EAEC",
+    color2: "#1B1642",
     footerColor: "#ced4da9a",
     highlight: "#ef5a9a",
     badge: "#FC719F",
+    highlight2: "#FED6D7",
 };
