@@ -2,6 +2,7 @@
 const path = require("path");
 const withPlugins = require("next-compose-plugins");
 const withPWA = require("next-pwa");
+const isProduction = process.env.NODE_ENV === "production";
 
 const nextConfig = {
     reactStrictMode: true,
@@ -39,6 +40,8 @@ module.exports = withPlugins(
             {
                 pwa: {
                     dest: "public",
+                    disable: !isProduction,
+                    runtimeCaching: [],
                 },
             },
         ],

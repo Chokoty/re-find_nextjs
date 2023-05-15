@@ -115,7 +115,7 @@ const MyDrawer = ({ isOpen, toggleDrawer }) => {
                         width="32px"
                         p="0"
                         mr="2"
-                        href="https://github.com/Chokoty/re-find_nextjs"
+                        href="https://github.com/re-find-WAKTAVERSE"
                         bg="#eee"
                         as="a"
                         target="_blank"
