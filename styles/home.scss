@@ -234,12 +234,15 @@
                 align-items: center;
                 text-align: center;
 
-                margin: auto;
+                margin: 0 auto;
                 margin-bottom: 20px;
 
                 width: 100%;
                 .link {
                     word-break: break-all;
+                    width: 100%;
+                }
+                @include mobile {
                     width: 90%;
                 }
             }

@@ -17,6 +17,7 @@ body {
     // ::selection {
     //     background: #ef5a9a; // #154532; // #01bda1; //#c4f1ca;
     // }
+    overflow-x: hidden;
 }
 
 header {
@@ -54,7 +55,6 @@ header {
         z-index: 4;
         width: 260px;
         height: 420px;
-        // position: fixed;
         position: absolute;
         top: 108px; //58px;;
         right: -300px;
@@ -63,6 +63,10 @@ header {
         background-color: #fff;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         border-radius: 1rem 0 1rem 0;
+        overflow-x: hidden; /* 추가: 내용이 넘칠 경우 스크롤바 숨김 */
+        // opacity: 0;
+        // visibility: hidden;
+        // position: fixed;
         ul {
             list-style: none;
             padding: 24px;
@@ -84,6 +88,9 @@ header {
 
     .my-drawer.open {
         right: 0;
+        // position: absolute;
+        // opacity: 1;
+        // visibility: visible;
     }
     .toggle-button {
         margin: 10px;
