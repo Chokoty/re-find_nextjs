@@ -45,7 +45,7 @@ const NoticeBanner = () => {
                 >
                     업데이트 공지
                 </Badge>
-                {lastUpdateLog?.directLink == null ? (
+                {lastUpdateLog?.directLink == "" ? (
                     <NextLink href="/notice" className="notice_banner_link">
                         {lastUpdateLog.date +
                             " - " +
