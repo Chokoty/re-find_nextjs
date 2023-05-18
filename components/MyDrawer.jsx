@@ -1,3 +1,4 @@
+import React, { forwardRef } from "react";
 import Link from "next/link";
 
 import { Button, Image } from "@chakra-ui/react";
@@ -6,13 +7,11 @@ import { FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { AiFillExperiment, AiFillHome } from "react-icons/ai";
 
-// import { useStore } from "../store/store";
-
-const MyDrawer = ({ isOpen, toggleDrawer }) => {
+const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
     // const { darkMode } = useStore((state) => state);
 
     return (
-        <div className={`my-drawer ${isOpen ? "open" : ""}`}>
+        <div className={`my-drawer ${isOpen ? "open" : ""}`} ref={ref}>
             <div className="drawer-content">
                 <ul>
                     <li>
@@ -139,6 +138,6 @@ const MyDrawer = ({ isOpen, toggleDrawer }) => {
             </div>
         </div>
     );
-};
-
+});
+MyDrawer.displayName = "MyDrawer";
 export default MyDrawer;

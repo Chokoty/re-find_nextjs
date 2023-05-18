@@ -54,7 +54,8 @@ header {
         z-index: 4;
         width: 260px;
         height: 420px;
-        position: fixed;
+        // position: fixed;
+        position: absolute;
         top: 108px; //58px;;
         right: -300px;
         transition: right 0.3s ease;
@@ -202,6 +203,7 @@ footer {
     text-decoration: underline;
 
     .notice_banner_link {
+        text-wrap: balance;
         &:hover {
             font-weight: bold;
             // text-decoration: underline;

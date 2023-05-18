@@ -52,6 +52,13 @@ const updateLog = [
         content: "RE:FIND를 리뉴얼 했습니다!!",
         directLink: "https://cafe.naver.com/steamindiegame/11182337",
     },
+    {
+        id: 9,
+        date: "2023.05.19",
+        content:
+            "메뉴기능 버그를 수정하였습니다. 이제 다른 페이지로 이동하거나 다른 곳을 누르면 자동으로 닫힙니다.",
+        directLink: "",
+    },
 ];
 
 export default updateLog;

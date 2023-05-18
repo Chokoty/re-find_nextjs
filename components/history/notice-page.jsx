@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
     Box,
@@ -12,17 +12,25 @@ import {
     useColorModeValue,
 } from "@chakra-ui/react";
 
-import OtherLayout from "./layout/other-layout";
+import OtherLayout from "../layout/other-layout";
 
 import { lightMode, darkMode } from "@/styles/theme";
-import updateLog from "../data/updateLog";
-import TMI from "../data/tmi";
+import updateLog from "../../data/updateLog";
+import TMI from "../../data/tmi";
+import { useStore } from "../../store/store";
 
 const NoticePage = () => {
+    const setIsOpen = useStore((state) => state.setIsOpen);
+
     const highlightColor = useColorModeValue(
         lightMode.highlight,
         darkMode.highlight
     );
+
+    useEffect(() => {
+        setIsOpen(false);
+    }, []);
+
     return (
         <OtherLayout title="Notice">
             <div className="notice-content">
@@ -37,6 +45,7 @@ const NoticePage = () => {
                     alignItems="center"
                     width="100%"
                     margin="0 auto"
+                    maxW="540px"
                 >
                     {updateLog
                         .slice()
@@ -44,7 +53,7 @@ const NoticePage = () => {
                         .map((item, index) => (
                             <Card
                                 key={index}
-                                width="80%"
+                                width="100%"
                                 size="sm"
                                 m="2"
                                 boxShadow="xl"

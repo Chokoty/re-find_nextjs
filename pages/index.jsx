@@ -1,3 +1,6 @@
+// import HomePage from "../components/home-page";
+// import axios from "axios";
+
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
@@ -17,13 +20,13 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 import { lightMode, darkMode } from "@/styles/theme";
 
-import Title from "./Title";
-import Counter from "./Counter";
-import UploadImages from "./UploadImages";
-import Preview from "./Preview";
-import UpdateCard from "./UpdateCard";
-import AuthorProfileCard from "./AuthorProfileCard";
-import Description from "./Description";
+import Title from "../components/Title";
+import Counter from "../components/Counter";
+import UploadImages from "../components/UploadImages";
+import Preview from "../components/Preview";
+import UpdateCard from "../components/UpdateCard";
+import AuthorProfileCard from "../components/AuthorProfileCard";
+import Description from "../components/Description";
 
 import { useStore } from "../store/store";
 
@@ -47,7 +50,7 @@ const ScrollAnimation = ({ targetRef, topPosition }) => {
     );
 };
 
-const HomePage = ({ last_update_info }) => {
+export default function Home({ last_update_info }) {
     const setIsOpen = useStore((state) => state.setIsOpen);
 
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
@@ -233,8 +236,10 @@ const HomePage = ({ last_update_info }) => {
         fetchCounter();
         setAuthor(null);
     };
-
     return (
+        // <>
+        //     <HomePage last_update_info={last_update_info} />
+        // </>
         <div
             ref={targetRef}
             className="home_body"
@@ -372,6 +377,39 @@ const HomePage = ({ last_update_info }) => {
             {/* <div className="loadingTarget" ref={loadingRef}></div> */}
         </div>
     );
-};
+}
 
-export default HomePage;
+export async function getServerSideProps() {
+    try {
+        // const counter = axios
+        //     .get("https://isd-fanart.reruru.com/counter")
+        //     .then((res) => res.data);
+        const last_update_info = axios
+            .get("https://re-find.reruru.com/last_update_info")
+            .then((res) => res.data);
+
+        const ret = await Promise.all([
+            // wow - 병렬로 요청해서 페이지 로딩 줄임!
+            // counter,
+            last_update_info,
+        ]);
+
+        return {
+            props: {
+                // counter: ret[0],
+                // last_update_info: ret[1],
+                last_update_info: ret[0],
+            },
+        };
+    } catch (error) {
+        console.log("Error fetching data :", error);
+
+        // Return an alternate value if the fetch fails
+        return {
+            props: {
+                // counter: null,
+                last_update_info: null,
+            },
+        };
+    }
+}

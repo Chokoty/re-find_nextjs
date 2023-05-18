@@ -35,6 +35,7 @@ const NoticeBanner = () => {
                 overflow="hidden"
                 width="80%"
                 textAlign="center"
+                maxW="600px"
             >
                 <Badge
                     variant="outline"
