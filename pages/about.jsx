@@ -1,6 +1,6 @@
-import React from "react";
-import OtherLayout from "./layout/other-layout";
-import AuthorProfileCard from "./AuthorProfileCard";
+import React, { useEffect } from "react";
+import OtherLayout from "./../components/layout/other-layout";
+import AuthorProfileCard from "./../components/AuthorProfileCard";
 
 import { Heading, Link } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
@@ -8,12 +8,20 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 import { lightMode, darkMode } from "@/styles/theme";
 import developers from "../data/developers";
+import { useStore } from "../store/store";
 
-const AboutPage = () => {
+const About = () => {
+    const setIsOpen = useStore((state) => state.setIsOpen);
+
     const highlightColor = useColorModeValue(
         lightMode.highlight,
         darkMode.highlight
     );
+
+    useEffect(() => {
+        setIsOpen(false);
+    }, []);
+
     return (
         <OtherLayout title="About">
             <div className="about-content">
@@ -67,4 +75,4 @@ const AboutPage = () => {
     );
 };
 
-export default AboutPage;
+export default About;

@@ -1,16 +1,11 @@
-import Head from "next/head";
-import MainLayout from "../components/layout/main-layout";
-import { Chakra } from "../styles/Chakra";
-import { Analytics } from "@vercel/analytics/react";
+import { ColorModeScript } from "@chakra-ui/react";
+import { Html, Head, Main, NextScript } from "next/document";
+import theme from "../styles/theme";
 
-import "../styles/general.scss";
-
-export default function App({ Component, pageProps }) {
+export default function Document() {
     return (
-        <>
+        <Html lang="en">
             <Head>
-                <title>RE:FIND</title>
-
                 <meta
                     name="description"
                     content="이세계 아이돌 팬아트 출처 찾기"
@@ -229,22 +224,13 @@ export default function App({ Component, pageProps }) {
                     href="splash_screens/8.3__iPad_Mini_portrait.png"
                 />
             </Head>
-            <Chakra cookies={pageProps.cookies}>
-                <MainLayout>
-                    <Component {...pageProps} />
-                </MainLayout>
-            </Chakra>
-            <Analytics />
-        </>
+            <body>
+                <ColorModeScript
+                    initialColorMode={theme.config.initialColorMode}
+                />
+                <Main />
+                <NextScript />
+            </body>
+        </Html>
     );
 }
-
-// App.getInitialProps = ({ req }) => {
-//     return {
-//         // first time users will not have any cookies and you may not return
-//         // undefined here, hence ?? is necessary
-//         cookies: req?.headers?.cookie ?? "",
-//     };
-// };
-
-export { getServerSideProps } from "../styles/Chakra";
