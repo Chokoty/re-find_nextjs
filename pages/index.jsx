@@ -306,25 +306,25 @@ export default function Home({ last_update_info }) {
                                 </div>
                             ) : (
                                 <div className="found">
-                                    {author === null && (
-                                        <Link
-                                            fontSize="xl"
-                                            mb="20px"
-                                            textAlign="center"
-                                            // color="#01bda1"
-                                            color={highlightColor}
-                                            className="link"
-                                            href={
-                                                "https://cafe.naver.com/steamindiegame/" +
-                                                data.id[0]
-                                            }
-                                            isExternal
-                                        >
-                                            https://cafe.naver.com/steamindiegame/
-                                            {data.id[0]}
-                                            <ExternalLinkIcon mx="2px" />
-                                        </Link>
-                                    )}
+                                    {/* {author === null && ( */}
+                                    <Link
+                                        fontSize="xl"
+                                        mb="20px"
+                                        textAlign="center"
+                                        // color="#01bda1"
+                                        color={highlightColor}
+                                        className="link"
+                                        href={
+                                            "https://cafe.naver.com/steamindiegame/" +
+                                            data.id[0]
+                                        }
+                                        isExternal
+                                    >
+                                        https://cafe.naver.com/steamindiegame/
+                                        {data.id[0]}
+                                        <ExternalLinkIcon mx="2px" />
+                                    </Link>
+                                    {/* )} */}
 
                                     <Skeleton
                                         isLoaded={!loading2}
