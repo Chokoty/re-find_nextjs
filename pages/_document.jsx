@@ -7,10 +7,6 @@ export default function Document() {
         <Html lang="en">
             <Head>
                 <meta
-                    name="naver-site-verification"
-                    content="fe77def632c6d20806ec76c2ee97545a3224816b"
-                />
-                <meta
                     name="description"
                     content="이세계 아이돌 팬아트 출처 찾기"
                 />
@@ -226,6 +222,14 @@ export default function Document() {
                     rel="apple-touch-startup-image"
                     media="screen and (device-width: 744px) and (device-height: 1133px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"
                     href="splash_screens/8.3__iPad_Mini_portrait.png"
+                />
+                <meta
+                    name="naver-site-verification"
+                    content="fe77def632c6d20806ec76c2ee97545a3224816b"
+                />
+                <meta
+                    name="google-site-verification"
+                    content="xo7IP4pdgNkjrosUl1ty9CMguaCJKDdOSzzwO6O1ibU"
                 />
             </Head>
             <body>
