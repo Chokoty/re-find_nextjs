@@ -7,6 +7,10 @@ export default function Document() {
         <Html lang="en">
             <Head>
                 <meta
+                    name="naver-site-verification"
+                    content="fe77def632c6d20806ec76c2ee97545a3224816b"
+                />
+                <meta
                     name="description"
                     content="이세계 아이돌 팬아트 출처 찾기"
                 />
