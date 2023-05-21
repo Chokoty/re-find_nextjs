@@ -214,7 +214,7 @@ export default function Home({ last_update_info }) {
 
     // 프로필 테스트용
     useEffect(() => {
-        fetchAuthorProfile("11251877");
+        fetchAuthorProfile("11251877"); //11251877 //10851152
     }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
