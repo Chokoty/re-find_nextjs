@@ -212,8 +212,9 @@ export default function Home({ last_update_info }) {
         setLoading2(false); //  검색 완료
     };
 
+    // 프로필 테스트용
     useEffect(() => {
-        fetchAuthorProfile("11172739");
+        fetchAuthorProfile("11251877");
     }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
