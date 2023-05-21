@@ -11,7 +11,6 @@ const getAuthorProfile = async (req, res) => {
         const response = await axios.get(url);
         const data = response.data.result;
 
-        console.log(data);
         const temp = data.result.article.menu.name;
         const outputString = temp.replace(/&#\d+;/g, "").trim(); // 이모지 제거
 
@@ -66,22 +65,10 @@ const getAuthorProfile = async (req, res) => {
         res.status(200).json(writer);
     } catch (error) {
         if (error.response && error.response.status === 401) {
-            const writer = {
-                id: null,
-                title: null,
-                board: "카페회원 전용 게시글입니다",
-                nickname: "작가님이름은",
-                memberLevelName: null,
-                memberKey: null,
-                writerURL: "",
-                profURL: "",
-                uploadText: "링크를 통해 확인해주세요",
-            };
             // 401 Unauthorized 에러 처리
-            // res.status(401).json({ error: "Unauthorized" });
-            res.status(200).json({ writer });
+            res.status(401).json({ error: "Unauthorized" });
         } else {
-            console.log("Error fetching data:", error);
+            // console.log("Error fetching data:", error);
             res.status(500).json({ error: "Internal Server Error" });
         }
     }
