@@ -207,15 +207,25 @@ export default function Home({ last_update_info }) {
             console.log(data);
             setAuthor(data);
         } catch (error) {
-            console.error(error);
+            // console.error(error);
+
+            if (error.response && error.response.status === 401) {
+                // 401 Unauthorized 에러 처리
+                console.log("Unauthorized");
+                const data = response.data;
+                console.log(data);
+                setAuthor(data);
+            } else {
+                console.error(error);
+            }
         }
         setLoading2(false); //  검색 완료
     };
 
     // 프로필 테스트용
-    useEffect(() => {
-        fetchAuthorProfile("11251877"); //11251877 //10851152
-    }, []);
+    // useEffect(() => {
+    //     fetchAuthorProfile("11251877"); //11251877 //10851152
+    // }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {

@@ -67,8 +67,12 @@ const getAuthorProfile = async (req, res) => {
     } catch (error) {
         if (error.response && error.response.status === 401) {
             const writer = {
-                title: "카페회원 전용 게시글입니다",
+                id: null,
+                title: null,
+                board: "카페회원 전용 게시글입니다",
                 nickname: "작가님이름은",
+                memberLevelName: null,
+                memberKey: null,
                 writerURL: "",
                 profURL: "",
                 uploadText: "링크를 통해 확인해주세요",
