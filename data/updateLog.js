@@ -59,6 +59,13 @@ const updateLog = [
             "메뉴기능 버그를 수정하였습니다. 이제 다른 페이지로 이동하거나 다른 곳을 누르면 자동으로 닫힙니다.",
         directLink: "",
     },
+    {
+        id: 9,
+        date: "2023.05.21",
+        content:
+            "우왁굳 팬아트 게시판이 추가 되었습니다! 왁두 검색이 가능합니다. 아직 작가프로필 오류가 있어 수정중입니다.",
+        directLink: "",
+    },
 ];
 
 export default updateLog;
