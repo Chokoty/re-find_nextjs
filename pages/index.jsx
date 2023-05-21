@@ -1,6 +1,3 @@
-// import HomePage from "../components/home-page";
-// import axios from "axios";
-
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
@@ -29,8 +26,6 @@ import AuthorProfileCard from "../components/AuthorProfileCard";
 import Description from "../components/Description";
 
 import { useStore } from "../store/store";
-
-// import { motion } from "framer-motion";
 
 const ScrollAnimation = ({ targetRef, topPosition }) => {
     return (
@@ -178,7 +173,7 @@ export default function Home({ last_update_info }) {
         }
     };
 
-    // counter 가져오기 -> axis로 바꾸기
+    // counter 가져오기
     const fetchCounter = async () => {
         try {
             setCounterLoading(true);
@@ -209,7 +204,7 @@ export default function Home({ last_update_info }) {
             // console.log(`Profile search time: ${endTime - startTime}ms`); // 차이값 출력
 
             const data = response.data;
-            // console.log(data);
+            console.log(data);
             setAuthor(data);
         } catch (error) {
             console.error(error);
