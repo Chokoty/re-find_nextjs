@@ -345,7 +345,7 @@ export default function Home({ last_update_info }) {
                                             mb="20px"
                                             textAlign="center"
                                         >
-                                            {author?.board |
+                                            {author?.board ||
                                                 "카페 멤버에게만 공개된 게시글 입니다."}
                                         </Text>
                                         <Link

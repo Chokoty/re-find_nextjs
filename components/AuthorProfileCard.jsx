@@ -47,7 +47,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
                 mb="12px"
                 color={highlightColor}
             >
-                {nickname || "작가님 이름은"}
+                {nickname || "작가님 프로필은"}
             </Text>
             <Text
                 fontSize="md"
