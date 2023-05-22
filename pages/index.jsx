@@ -220,9 +220,9 @@ export default function Home({ last_update_info }) {
     };
 
     // 프로필 테스트용
-    useEffect(() => {
-        fetchAuthorProfile("11251877"); //11251877 //10851152
-    }, []);
+    // useEffect(() => {
+    //     fetchAuthorProfile("11251877"); //11251877 //10851152
+    // }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {
@@ -239,6 +239,7 @@ export default function Home({ last_update_info }) {
         fetchCounter();
         setAuthor(null);
     };
+
     return (
         // <>
         //     <HomePage last_update_info={last_update_info} />
@@ -248,15 +249,6 @@ export default function Home({ last_update_info }) {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
-            {/* <h1>{count}</h1> */}
-            {/* <button onClick={increaseCount}>count up</button> */}
-            {/* <button onClick={handleClickSearching}>스크롤 이동</button> */}
-            {/* <AuthorProfileCard
-                writerURL={author?.writerURL}
-                profURL={author?.profURL}
-                nickname={author?.nickname}
-                board={author?.uploadText}
-            /> */}
             <Counter counter={counter} counterLoading={counterLoading} />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
@@ -345,8 +337,7 @@ export default function Home({ last_update_info }) {
                                             mb="20px"
                                             textAlign="center"
                                         >
-                                            {author?.board ||
-                                                "카페 멤버에게만 공개된 게시글 입니다."}
+                                            {author?.board || ""}
                                         </Text>
                                         <Link
                                             fontSize="xl"
@@ -361,7 +352,8 @@ export default function Home({ last_update_info }) {
                                             }
                                             isExternal
                                         >
-                                            {author?.title}
+                                            {author?.title ||
+                                                "카페 멤버에게만 공개된 게시글 입니다."}
                                             <ExternalLinkIcon mx="2px" />
                                         </Link>
                                     </Skeleton>
@@ -384,7 +376,6 @@ export default function Home({ last_update_info }) {
                     )}
                 </div>
             )}
-            {/* <div className="loadingTarget" ref={loadingRef}></div> */}
         </div>
     );
 }
