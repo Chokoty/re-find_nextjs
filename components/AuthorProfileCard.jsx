@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 
-import { Text, Button, Highlight } from "@chakra-ui/react";
+import { Avatar, Text, Button, Highlight } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 
 import { lightMode, darkMode } from "@/styles/theme";
@@ -40,26 +40,15 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
             //     color: color,
             // }}
         >
-            <Image
-                src={profURL || ""}
-                alt="작가님 프로필"
-                width={100}
-                height={100}
-                mx="auto"
-                my={4}
-                borderRadius="full"
-                style={{ borderRadius: "80%" }}
-            />
-
+            <Avatar size="xl" name={nickname} src={profURL || ""} />
             <Text
                 fontSize="md"
                 textAlign="center"
                 mb="12px"
                 color={highlightColor}
             >
-                {nickname || "작가님 이름"}
+                {nickname || "작가님 프로필은"}
             </Text>
-
             <Text
                 fontSize="md"
                 textAlign="center"
@@ -69,7 +58,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
                 rounded="full"
                 bg={highlightColor2}
             >
-                {board || ""}
+                {board || "카페에서 확인해주세요"}
             </Text>
         </Button>
     );

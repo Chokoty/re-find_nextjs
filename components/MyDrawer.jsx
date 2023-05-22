@@ -78,6 +78,7 @@ const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
                         p="0"
                         colorScheme="twitter"
                         bg="#1DA1F2"
+                        shadow="md"
                     >
                         <FaTwitter />
                     </Button>
@@ -87,14 +88,17 @@ const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
                         mr="2"
                         href="https://cafe.naver.com/steamindiegame"
                         colorScheme="green"
-                        bg="#03CF35"
+                        // bg="#03CF35"
+                        bg="#FFFFFF"
                         as="a"
                         target="_blank"
+                        shadow="md"
                     >
                         <Image
-                            boxSize="30px"
+                            boxSize="20px"
                             objectFit="cover"
-                            src="naver-cafe-logo.png"
+                            // src="naver-cafe-logo.png"
+                            src="naver-cafe-logo2.gif"
                             alt="naver-cafe-logo"
                         />
                     </Button>
@@ -107,6 +111,7 @@ const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
                         bg="#FF0000"
                         as="a"
                         target="_blank"
+                        shadow="md"
                     >
                         <FaYoutube color="white" />
                     </Button>
@@ -118,6 +123,7 @@ const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
                         bg="#eee"
                         as="a"
                         target="_blank"
+                        shadow="md"
                     >
                         <svg
                             aria-hidden="true"

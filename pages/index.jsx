@@ -1,6 +1,3 @@
-// import HomePage from "../components/home-page";
-// import axios from "axios";
-
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
@@ -29,8 +26,6 @@ import AuthorProfileCard from "../components/AuthorProfileCard";
 import Description from "../components/Description";
 
 import { useStore } from "../store/store";
-
-// import { motion } from "framer-motion";
 
 const ScrollAnimation = ({ targetRef, topPosition }) => {
     return (
@@ -140,7 +135,7 @@ export default function Home({ last_update_info }) {
                 const searchTime = endTime - startTime; // ms
                 setSearchTime(searchTime); // 차이값 저장
 
-                // console.log(response.data);
+                console.log(response.data);
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
@@ -178,7 +173,7 @@ export default function Home({ last_update_info }) {
         }
     };
 
-    // counter 가져오기 -> axis로 바꾸기
+    // counter 가져오기
     const fetchCounter = async () => {
         try {
             setCounterLoading(true);
@@ -209,17 +204,25 @@ export default function Home({ last_update_info }) {
             // console.log(`Profile search time: ${endTime - startTime}ms`); // 차이값 출력
 
             const data = response.data;
-            // console.log(data);
+            console.log(data);
             setAuthor(data);
         } catch (error) {
-            console.error(error);
+            if (error.response && error.response.status === 401) {
+                // 401 Unauthorized 에러 처리
+                console.log("Unauthorized");
+                // const data = {};
+                // setAuthor(data);
+            } else {
+                console.error(error);
+            }
         }
         setLoading2(false); //  검색 완료
     };
 
-    useEffect(() => {
-        fetchAuthorProfile("11172739");
-    }, []);
+    // 프로필 테스트용
+    // useEffect(() => {
+    //     fetchAuthorProfile("11251877"); //11251877 //10851152
+    // }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {
@@ -236,6 +239,7 @@ export default function Home({ last_update_info }) {
         fetchCounter();
         setAuthor(null);
     };
+
     return (
         // <>
         //     <HomePage last_update_info={last_update_info} />
@@ -245,9 +249,6 @@ export default function Home({ last_update_info }) {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
-            {/* <h1>{count}</h1> */}
-            {/* <button onClick={increaseCount}>count up</button> */}
-            {/* <button onClick={handleClickSearching}>스크롤 이동</button> */}
             <Counter counter={counter} counterLoading={counterLoading} />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
@@ -336,7 +337,7 @@ export default function Home({ last_update_info }) {
                                             mb="20px"
                                             textAlign="center"
                                         >
-                                            {author?.board}
+                                            {author?.board || ""}
                                         </Text>
                                         <Link
                                             fontSize="xl"
@@ -351,7 +352,8 @@ export default function Home({ last_update_info }) {
                                             }
                                             isExternal
                                         >
-                                            {author?.title}
+                                            {author?.title ||
+                                                "카페 멤버에게만 공개된 게시글 입니다."}
                                             <ExternalLinkIcon mx="2px" />
                                         </Link>
                                     </Skeleton>
@@ -374,7 +376,6 @@ export default function Home({ last_update_info }) {
                     )}
                 </div>
             )}
-            {/* <div className="loadingTarget" ref={loadingRef}></div> */}
         </div>
     );
 }
