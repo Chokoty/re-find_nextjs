@@ -207,23 +207,11 @@ export default function Home({ last_update_info }) {
             console.log(data);
             setAuthor(data);
         } catch (error) {
-            // console.error(error);
-
             if (error.response && error.response.status === 401) {
                 // 401 Unauthorized 에러 처리
                 console.log("Unauthorized");
-                const data = {
-                    id: null,
-                    title: null,
-                    board: "카페회원 전용 게시글입니다",
-                    nickname: "작가님이름은",
-                    memberLevelName: null,
-                    memberKey: null,
-                    writerURL: "",
-                    profURL: "",
-                    uploadText: "링크를 통해 확인해주세요",
-                };
-                setAuthor(data);
+                // const data = {};
+                // setAuthor(data);
             } else {
                 console.error(error);
             }
@@ -232,9 +220,9 @@ export default function Home({ last_update_info }) {
     };
 
     // 프로필 테스트용
-    // useEffect(() => {
-    //     fetchAuthorProfile("11251877"); //11251877 //10851152
-    // }, []);
+    useEffect(() => {
+        fetchAuthorProfile("11251877"); //11251877 //10851152
+    }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {
@@ -263,6 +251,12 @@ export default function Home({ last_update_info }) {
             {/* <h1>{count}</h1> */}
             {/* <button onClick={increaseCount}>count up</button> */}
             {/* <button onClick={handleClickSearching}>스크롤 이동</button> */}
+            {/* <AuthorProfileCard
+                writerURL={author?.writerURL}
+                profURL={author?.profURL}
+                nickname={author?.nickname}
+                board={author?.uploadText}
+            /> */}
             <Counter counter={counter} counterLoading={counterLoading} />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
@@ -351,7 +345,8 @@ export default function Home({ last_update_info }) {
                                             mb="20px"
                                             textAlign="center"
                                         >
-                                            {author?.board}
+                                            {author?.board |
+                                                "카페 멤버에게만 공개된 게시글 입니다."}
                                         </Text>
                                         <Link
                                             fontSize="xl"
