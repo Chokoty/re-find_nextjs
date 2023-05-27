@@ -6,20 +6,22 @@ const getAuthorProfile = async (req, res) => {
     // 모르면 header를 도끼로 대가리!
     // const url = `https://apis.naver.com/cafe-web/cafe-articleapi/v2.1/cafes/steamindiegame/articles/${postId}?useCafeId=false`;
     const url = `https://apis.naver.com/cafe-web/cafe-articleapi/v2.1/cafes/steamindiegame/articles/${postId}?useCafeId=false&buid=7d2dd467-2e63-4364-bff9-4ac7210c5635`;
-
     try {
         const response = await axios.get(url);
-        const data = response.data.result;
+        const dataResult = response.data.result;
 
-        const temp = data.result.article.menu.name;
+        const errorCode = dataResult?.errorCode;
+        console.log(errorCode);
+        // if (errorCode === "0004" || errorCode === "4001") {
+        //     throw new Error(dataResult.reason);
+        // }
+
+        const temp = dataResult.article.menu.name;
         const outputString = temp.replace(/&#\d+;/g, "").trim(); // 이모지 제거
 
-        const writeDate = data.result.article.writeDate; // UNIX 시간
+        const writeDate = dataResult.article.writeDate; // UNIX 시간
         const currentDate = new Date(); // 현재 날짜와 시간
-
         const date = new Date(writeDate);
-        // console.log(date);
-
         // 업로드 시간 차이 계산 (밀리초 단위)
         const timeDifference = currentDate.getTime() - writeDate;
 
@@ -49,14 +51,14 @@ const getAuthorProfile = async (req, res) => {
         // console.log(uploadText);
 
         const writer = {
-            id: data.result.article.writer.id,
-            title: data.result.article.subject,
+            id: dataResult.article.writer.id,
+            title: dataResult.article.subject,
             board: outputString,
-            nickname: data.result.article.writer.nick,
-            memberLevelName: data.result.article.writer.memberLevelName,
-            memberKey: data.result.article.writer.memberKey,
-            writerURL: `https://cafe.naver.com/ca-fe/cafes/27842958/members/${data.result.article.writer.memberKey}`,
-            profURL: data.result.article.writer.image.url,
+            nickname: dataResult.article.writer.nick,
+            memberLevelName: dataResult.article.writer.memberLevelName,
+            memberKey: dataResult.article.writer.memberKey,
+            writerURL: `https://cafe.naver.com/ca-fe/cafes/27842958/members/${dataResult.article.writer.memberKey}`,
+            profURL: dataResult.article.writer.image.url,
             uploadText: uploadText,
         };
         // console.log(writer);
@@ -64,9 +66,13 @@ const getAuthorProfile = async (req, res) => {
         // console.log(writerJSON);
         res.status(200).json(writer);
     } catch (error) {
+        // console.log(error);
         if (error.response && error.response.status === 401) {
             // 401 Unauthorized 에러 처리
             res.status(401).json({ error: "Unauthorized" });
+        } else if (error.response && error.response.status === 404) {
+            // 404 Not Found 에러 처리
+            res.status(404).json({ error: "Not Found" });
         } else {
             // console.log("Error fetching data:", error);
             res.status(500).json({ error: "Internal Server Error" });

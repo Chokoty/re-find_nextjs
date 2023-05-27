@@ -212,6 +212,13 @@ export default function Home({ last_update_info }) {
                 console.log("Unauthorized");
                 // const data = {};
                 // setAuthor(data);
+            } else if (error.response && error.response.status === 404) {
+                // 404 Not Found 에러 처리
+                console.log("Not Found");
+                const data = {
+                    title: "삭제되었거나 없는 게시글입니다.",
+                };
+                setAuthor(data);
             } else {
                 console.error(error);
             }
@@ -220,9 +227,11 @@ export default function Home({ last_update_info }) {
     };
 
     // 프로필 테스트용
-    // useEffect(() => {
-    //     fetchAuthorProfile("11251877"); //11251877 //10851152
-    // }, []);
+    useEffect(() => {
+        // fetchAuthorProfile("10851152");
+        // fetchAuthorProfile("11251877"); // 0004 로그인 필요 401에러
+        fetchAuthorProfile("10532685"); // 4003 게시글이 존재하지 않습니다 404에러 // 삭제되었거나 없는 게시글입니다.
+    }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {
