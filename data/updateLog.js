@@ -73,6 +73,13 @@ const updateLog = [
             "작가 프로필 오류를 수정하였습니다. 삭제된 게시글의 작가님 프로필 정보를 보여주도록 추가하였습니다.",
         directLink: "",
     },
+    {
+        id: 11,
+        date: "2023.05.30",
+        content:
+            "서버에 일시적인 문제가 생겨서 일부 이미지가 검색이 되지 않습니다. 최대한 서둘러서 복구하겠습니다.",
+        directLink: "",
+    },
 ];
 
 export default updateLog;
