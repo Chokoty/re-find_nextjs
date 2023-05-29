@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, use } from "react";
 import axios from "axios";
 
 import {
@@ -152,7 +152,7 @@ export default function Home({ last_update_info }) {
                 setLoading(false); //  검색 완료
                 setSearch(true); // 재검색을 방지
                 toast({
-                    title: `현재 서버 점검중 입니다. 잠시 후 다시 시도해주세요.`,
+                    title: `현재 서버와 연결이 원활하지 않습니다. 잠시 후 다시 시도해주세요.`,
                     status: `error`,
                     isClosable: true,
                 });
@@ -212,6 +212,7 @@ export default function Home({ last_update_info }) {
                 console.log("Unauthorized");
                 const data = {
                     profURL: "NULL",
+                    title: "카페 멤버에게만 공개된 게시글 입니다.",
                 };
                 setAuthor(data);
             } else if (error.response && error.response.status === 404) {
@@ -219,9 +220,10 @@ export default function Home({ last_update_info }) {
                 console.log("Not Found");
                 const data = {
                     // 삭제된 게시글 작성자 정보는 보여줄 수 있음
-                    writerURL: data.author_profile,
-                    nickname: data.author_nickname,
+                    profURL: "NULL",
                     title: "삭제되었거나 없는 게시글입니다.",
+                    // writerURL: data.author_profile,
+                    // nickname: data.author_nickname,
                 };
                 setAuthor(data);
             } else {
@@ -231,8 +233,27 @@ export default function Home({ last_update_info }) {
         setLoading2(false); //  검색 완료
     };
 
+    // useEffect(() => {
+    //     if (author === null) return;
+    //     if (author?.title === "카페 멤버에게만 공개된 게시글 입니다.")
+    //         setAuthor({
+    //             profURL: "NULL",
+    //             title: "카페 멤버에게만 공개된 게시글 입니다.",
+    //             writerURL: data.author_profile,
+    //             nickname: data.author_nickname,
+    //         });
+    //     else if (author?.title === "삭제되었거나 없는 게시글입니다.")
+    //         setAuthor({
+    //             profURL: "NULL",
+    //             title: "삭제되었거나 없는 게시글입니다.",
+    //             writerURL: data.author_profile,
+    //             nickname: data.author_nickname,
+    //         });
+    // }, [author]);
+
     // 프로필 테스트용
     useEffect(() => {
+        // fetchAuthorProfile("11379038");
         // fetchAuthorProfile("11379754");
         // fetchAuthorProfile("11251877"); // 0004 로그인 필요 401에러
         // fetchAuthorProfile("10532685"); // 4003 게시글이 존재하지 않습니다 404에러 // 삭제되었거나 없는 게시글입니다.
@@ -363,16 +384,21 @@ export default function Home({ last_update_info }) {
                                             }
                                             isExternal
                                         >
-                                            {author?.title ||
-                                                "카페 멤버에게만 공개된 게시글 입니다."}
+                                            {author?.title}
                                             <ExternalLinkIcon mx="2px" />
                                         </Link>
                                     </Skeleton>
                                     <Skeleton isLoaded={!loading2}>
                                         <AuthorProfileCard
-                                            writerURL={author?.writerURL}
+                                            writerURL={
+                                                author?.writerURL ||
+                                                data.author_profile
+                                            }
                                             profURL={author?.profURL}
-                                            nickname={author?.nickname}
+                                            nickname={
+                                                author?.nickname ||
+                                                data.author_nickname
+                                            }
                                             board={author?.uploadText}
                                         />
                                     </Skeleton>
