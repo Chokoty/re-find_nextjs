@@ -218,7 +218,9 @@ export default function Home({ last_update_info }) {
                 // 404 Not Found 에러 처리
                 console.log("Not Found");
                 const data = {
-                    profURL: "NULL",
+                    // 삭제된 게시글 작성자 정보는 보여줄 수 있음
+                    writerURL: data.author_profile,
+                    nickname: data.author_nickname,
                     title: "삭제되었거나 없는 게시글입니다.",
                 };
                 setAuthor(data);
