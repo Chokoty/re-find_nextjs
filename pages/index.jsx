@@ -234,6 +234,7 @@ export default function Home({ last_update_info }) {
 
     // 프로필 테스트용
     useEffect(() => {
+        fetchAuthorProfile("11379038");
         // fetchAuthorProfile("11379754");
         // fetchAuthorProfile("11251877"); // 0004 로그인 필요 401에러
         // fetchAuthorProfile("10532685"); // 4003 게시글이 존재하지 않습니다 404에러 // 삭제되었거나 없는 게시글입니다.
@@ -261,6 +262,12 @@ export default function Home({ last_update_info }) {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
+            <AuthorProfileCard
+                writerURL={author?.writerURL}
+                profURL={author?.profURL}
+                nickname={author?.nickname}
+                board={author?.uploadText}
+            />
             <Counter counter={counter} counterLoading={counterLoading} />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
