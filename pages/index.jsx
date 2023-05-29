@@ -135,7 +135,7 @@ export default function Home({ last_update_info }) {
                 const searchTime = endTime - startTime; // ms
                 setSearchTime(searchTime); // 차이값 저장
 
-                // console.log(response.data);
+                console.log(response.data);
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
