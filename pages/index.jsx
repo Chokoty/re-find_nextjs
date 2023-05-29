@@ -234,6 +234,7 @@ export default function Home({ last_update_info }) {
     };
 
     useEffect(() => {
+        if (author === null) return;
         if (author?.title === "카페 멤버에게만 공개된 게시글 입니다.")
             setAuthor({
                 profURL: "NULL",
