@@ -135,7 +135,7 @@ export default function Home({ last_update_info }) {
                 const searchTime = endTime - startTime; // ms
                 setSearchTime(searchTime); // 차이값 저장
 
-                console.log(response.data);
+                // console.log(response.data);
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
@@ -204,18 +204,21 @@ export default function Home({ last_update_info }) {
             // console.log(`Profile search time: ${endTime - startTime}ms`); // 차이값 출력
 
             const data = response.data;
-            console.log(data);
+            // console.log(data);
             setAuthor(data);
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 // 401 Unauthorized 에러 처리
                 console.log("Unauthorized");
-                // const data = {};
-                // setAuthor(data);
+                const data = {
+                    profURL: "NULL",
+                };
+                setAuthor(data);
             } else if (error.response && error.response.status === 404) {
                 // 404 Not Found 에러 처리
                 console.log("Not Found");
                 const data = {
+                    profURL: "NULL",
                     title: "삭제되었거나 없는 게시글입니다.",
                 };
                 setAuthor(data);
@@ -228,9 +231,9 @@ export default function Home({ last_update_info }) {
 
     // 프로필 테스트용
     useEffect(() => {
-        // fetchAuthorProfile("10851152");
+        // fetchAuthorProfile("11379754");
         // fetchAuthorProfile("11251877"); // 0004 로그인 필요 401에러
-        fetchAuthorProfile("10532685"); // 4003 게시글이 존재하지 않습니다 404에러 // 삭제되었거나 없는 게시글입니다.
+        // fetchAuthorProfile("10532685"); // 4003 게시글이 존재하지 않습니다 404에러 // 삭제되었거나 없는 게시글입니다.
     }, []);
 
     // 자식 컴포넌트로부터 데이터 받기
@@ -250,9 +253,6 @@ export default function Home({ last_update_info }) {
     };
 
     return (
-        // <>
-        //     <HomePage last_update_info={last_update_info} />
-        // </>
         <div
             ref={targetRef}
             className="home_body"
