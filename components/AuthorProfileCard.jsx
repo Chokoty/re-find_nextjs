@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 import { Avatar, Text, Button, Highlight } from "@chakra-ui/react";
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 
 import { lightMode, darkMode } from "@/styles/theme";
@@ -40,7 +41,28 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
             //     color: color,
             // }}
         >
-            <Avatar size="xl" name={nickname} src={profURL || ""} />
+            {profURL === "NULL" ? (
+                <Avatar size="xl" name={nickname} src={profURL || ""} />
+            ) : (
+                <div
+                    style={{
+                        borderRadius: "50%",
+                        overflow: "hidden",
+                        width: 96,
+                        height: 96,
+                    }}
+                >
+                    <Image
+                        src={profURL}
+                        alt={nickname}
+                        width={100}
+                        height={100}
+                        quality={100}
+                    />
+                </div>
+            )}
+
+            {/* <Avatar size="xl" name={nickname} src={profURL || ""} /> */}
             <Text
                 fontSize="md"
                 textAlign="center"
