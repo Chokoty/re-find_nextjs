@@ -66,6 +66,13 @@ const updateLog = [
             "우왁굳 팬아트 게시판이 추가 되었습니다! 왁두 검색이 가능합니다. 아직 작가프로필 오류가 있어 수정중입니다.",
         directLink: "",
     },
+    {
+        id: 10,
+        date: "2023.05.30",
+        content:
+            "작가 프로필 오류를 수정하였습니다. 삭제된 게시글의 작가님 프로필 정보를 보여주도록 추가하였습니다.",
+        directLink: "",
+    },
 ];
 
 export default updateLog;
