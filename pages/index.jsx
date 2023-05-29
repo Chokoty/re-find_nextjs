@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, use } from "react";
 import axios from "axios";
 
 import {
@@ -212,6 +212,7 @@ export default function Home({ last_update_info }) {
                 console.log("Unauthorized");
                 const data = {
                     profURL: "NULL",
+                    title: "카페 멤버에게만 공개된 게시글 입니다.",
                 };
                 setAuthor(data);
             } else if (error.response && error.response.status === 404) {
@@ -220,9 +221,9 @@ export default function Home({ last_update_info }) {
                 const data = {
                     // 삭제된 게시글 작성자 정보는 보여줄 수 있음
                     profURL: "NULL",
+                    title: "삭제되었거나 없는 게시글입니다.",
                     // writerURL: data.author_profile,
                     // nickname: data.author_nickname,
-                    title: "삭제되었거나 없는 게시글입니다.",
                 };
                 setAuthor(data);
             } else {
@@ -231,6 +232,23 @@ export default function Home({ last_update_info }) {
         }
         setLoading2(false); //  검색 완료
     };
+
+    useEffect(() => {
+        if (author?.title === "카페 멤버에게만 공개된 게시글 입니다.")
+            setAuthor({
+                profURL: "NULL",
+                title: "카페 멤버에게만 공개된 게시글 입니다.",
+                writerURL: data.author_profile,
+                nickname: data.author_nickname,
+            });
+        else if (author?.title === "삭제되었거나 없는 게시글입니다.")
+            setAuthor({
+                profURL: "NULL",
+                title: "삭제되었거나 없는 게시글입니다.",
+                writerURL: data.author_profile,
+                nickname: data.author_nickname,
+            });
+    }, [author]);
 
     // 프로필 테스트용
     useEffect(() => {
@@ -262,12 +280,6 @@ export default function Home({ last_update_info }) {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
-            <AuthorProfileCard
-                writerURL={author?.writerURL}
-                profURL={author?.profURL}
-                nickname={author?.nickname}
-                board={author?.uploadText}
-            />
             <Counter counter={counter} counterLoading={counterLoading} />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
@@ -371,8 +383,7 @@ export default function Home({ last_update_info }) {
                                             }
                                             isExternal
                                         >
-                                            {author?.title ||
-                                                "카페 멤버에게만 공개된 게시글 입니다."}
+                                            {author?.title}
                                             <ExternalLinkIcon mx="2px" />
                                         </Link>
                                     </Skeleton>
