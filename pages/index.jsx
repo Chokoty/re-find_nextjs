@@ -392,12 +392,12 @@ export default function Home({ last_update_info }) {
                                         <AuthorProfileCard
                                             writerURL={
                                                 author?.writerURL ||
-                                                data.author_profile
+                                                data?.author_profile
                                             }
                                             profURL={author?.profURL}
                                             nickname={
                                                 author?.nickname ||
-                                                data.author_nickname
+                                                data?.author_nickname
                                             }
                                             board={author?.uploadText}
                                         />
