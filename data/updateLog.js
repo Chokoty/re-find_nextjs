@@ -80,6 +80,12 @@ const updateLog = [
             "서버에 일시적인 문제가 생겨서 일부 이미지가 검색이 되지 않습니다. 최대한 빠르게 복구하겠습니다.",
         directLink: "",
     },
+    {
+        id: 12,
+        date: "2023.05.30",
+        content: "일부 게시판 이미지 검색이 안되는 오류를 해결하였습니다!",
+        directLink: "",
+    },
 ];
 
 export default updateLog;
