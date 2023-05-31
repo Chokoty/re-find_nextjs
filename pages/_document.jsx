@@ -231,6 +231,11 @@ export default function Document() {
                     name="google-site-verification"
                     content="xo7IP4pdgNkjrosUl1ty9CMguaCJKDdOSzzwO6O1ibU"
                 />
+                <script
+                    defer
+                    data-domain="re-find.xyz"
+                    src="https://plausible.io/js/script.js"
+                ></script>
             </Head>
             <body>
                 <ColorModeScript
