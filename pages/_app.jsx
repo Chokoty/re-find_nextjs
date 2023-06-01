@@ -2,12 +2,13 @@ import Head from "next/head";
 import MainLayout from "../components/layout/main-layout";
 import { Chakra } from "../styles/Chakra";
 import { Analytics } from "@vercel/analytics/react";
+import PlausibleProvider from "next-plausible";
 
 import "../styles/general.scss";
 
 export default function App({ Component, pageProps }) {
     return (
-        <>
+        <PlausibleProvider domain="https://re-find.xyz/">
             <Head>
                 <title>RE:FIND</title>
             </Head>
@@ -17,7 +18,7 @@ export default function App({ Component, pageProps }) {
                 </MainLayout>
             </Chakra>
             <Analytics />
-        </>
+        </PlausibleProvider>
     );
 }
 
