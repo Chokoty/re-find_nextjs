@@ -22,7 +22,7 @@ export default function Document() {
                 <meta property="og:type" content="website" />
                 <meta
                     property="og:image"
-                    content="https://re-find.xyz/android-chrome-192x192.png"
+                    content="https://raw.githubusercontent.com/Chokoty/re-find_nextjs/main/public/android-chrome-192x192.png"
                 />
                 <meta
                     property="og:description"
