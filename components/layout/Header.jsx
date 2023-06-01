@@ -43,7 +43,10 @@ export const Header = () => {
                 console.log("a");
                 return; // Return early if the clicked element is an <a> tag
             }
-            if (myDrawerRef.current && myDrawerRef.current !== e.target) {
+            if (
+                myDrawerRef.current &&
+                !myDrawerRef.current.contains(e.target)
+            ) {
                 // console.log("other");
                 setIsOpen(false);
             }
