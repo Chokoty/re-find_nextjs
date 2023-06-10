@@ -86,6 +86,13 @@ const updateLog = [
         content: "일부 게시판 이미지 검색이 안되는 오류를 해결하였습니다!",
         directLink: "",
     },
+    {
+        id: 12,
+        date: "2023.06.10",
+        content:
+            "고멤 팬아트 게시판이 추가 되었습니다! 고멤팬아트도 검색이 가능합니다. 킹아!",
+        directLink: "",
+    },
 ];
 
 export default updateLog;
