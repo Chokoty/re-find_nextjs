@@ -146,8 +146,10 @@ export default function Home({ last_update_info }) {
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
+                    // console.log(response.data);
                     setData(response.data);
-                    console.log(response.data);
+                    if (response.data.total_counter == 19949) setCongrat(true);
+
                     fetchAuthorProfile(response.data.id[0]);
                 }
             }
