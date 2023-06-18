@@ -54,7 +54,7 @@ const EventModal = () => {
                         <ModalBody>
                             <Text>축하드립니다</Text>
                             <Text>
-                                팬아트 검색을 이용하신 2만번 째 이파리로
+                                팬아트 검색을 이용하신 2만 번째 이파리로
                                 당첨되셨습니다!!!
                             </Text>
                             <Divider orientation="horizontal" m="2" />

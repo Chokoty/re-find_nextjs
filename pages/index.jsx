@@ -148,7 +148,7 @@ export default function Home({ last_update_info }) {
                 } else {
                     // console.log(response.data);
                     setData(response.data);
-                    if (response.data.total_counter == 19949) setCongrat(true);
+                    if (response.data.total_counter == 20000) setCongrat(true);
 
                     fetchAuthorProfile(response.data.id[0]);
                 }
