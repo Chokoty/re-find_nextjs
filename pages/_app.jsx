@@ -2,7 +2,7 @@ import Head from "next/head";
 import MainLayout from "../components/layout/main-layout";
 import { Chakra } from "../styles/Chakra";
 import { Analytics } from "@vercel/analytics/react";
-import PlausibleProvider from "next-plausible";
+// import PlausibleProvider from "next-plausible";
 import Script from "next/script";
 import * as gtag from "../lib/gtag";
 import { useRouter } from "next/router";
@@ -26,7 +26,8 @@ export default function App({ Component, pageProps }) {
     }, [router.events]);
 
     return (
-        <PlausibleProvider domain="https://re-find.xyz/">
+        <>
+            {/* <PlausibleProvider domain="https://re-find.xyz/"> */}
             <Head>
                 <title>RE:FIND</title>
             </Head>
@@ -55,7 +56,8 @@ export default function App({ Component, pageProps }) {
                 </MainLayout>
             </Chakra>
             <Analytics />
-        </PlausibleProvider>
+            {/* </PlausibleProvider> */}
+        </>
     );
 }
 

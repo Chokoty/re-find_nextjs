@@ -24,8 +24,11 @@ import Preview from "../components/Preview";
 import UpdateCard from "../components/UpdateCard";
 import AuthorProfileCard from "../components/AuthorProfileCard";
 import Description from "../components/Description";
-
+import EventModal from "@/components/EventModal";
 import { useStore } from "../store/store";
+
+// import useWindowSize from "react-use/lib/useWindowSize";
+// import Confetti from "react-confetti";
 
 const ScrollAnimation = ({ targetRef, topPosition }) => {
     return (
@@ -46,7 +49,11 @@ const ScrollAnimation = ({ targetRef, topPosition }) => {
 };
 
 export default function Home({ last_update_info }) {
+    // const { width, height } = useWindowSize();
     const setIsOpen = useStore((state) => state.setIsOpen);
+
+    //temp
+    const [congrat, setCongrat] = useState(false); // 파일 업로드를 위한 상태
 
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
@@ -139,7 +146,10 @@ export default function Home({ last_update_info }) {
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
+                    // console.log(response.data);
                     setData(response.data);
+                    if (response.data.total_counter == 20000) setCongrat(true);
+
                     fetchAuthorProfile(response.data.id[0]);
                 }
             }
@@ -181,7 +191,6 @@ export default function Home({ last_update_info }) {
                 "https://isd-fanart.reruru.com/counter"
             );
             const counter = response.data;
-
             setCounter(counter);
             setCounterLoading(false);
         } catch (err) {
@@ -281,6 +290,8 @@ export default function Home({ last_update_info }) {
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
         >
+            {/* <Confetti width={2000} height={2000} /> */}
+            {congrat && <EventModal />}
             <Counter counter={counter} counterLoading={counterLoading} />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>

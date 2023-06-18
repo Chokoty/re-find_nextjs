@@ -221,17 +221,23 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin: auto;
+  margin: 0 auto;
   margin-bottom: 20px;
   width: 100%;
+  /*브라우저 사이즈767px이하일때*/
 }
 .home_body .result-area .result .found .link {
   word-break: break-all;
-  width: 90%;
+  width: 100%;
+}
+@media (min-width: 335px) and (max-width: 767px) {
+  .home_body .result-area .result .found {
+    width: 90%;
+  }
 }
 
 .update-info {
-  width: 50%;
+  width: 60%;
   max-width: 550px;
   /*브라우저 사이즈767px이하일때*/
 }
@@ -288,15 +294,60 @@
   }
 }
 
+.notice-content {
+  margin: 0 auto;
+  /*브라우저 사이즈767px이하일때*/
+}
+.notice-content .toLink {
+  background-color: #ef5a9a;
+}
+@media (min-width: 335px) and (max-width: 767px) {
+  .notice-content {
+    width: 100%;
+    max-width: 360px;
+  }
+}
+
+.layout {
+  width: 60%;
+  /*브라우저 사이즈767px이하일때*/
+}
+.layout .toLink {
+  display: flex;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.layout .area {
+  max-width: 240px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 335px) and (max-width: 767px) {
+  .layout {
+    width: 90%;
+    max-width: 360px;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
+}
+
+html {
+  overflow-x: hidden;
 }
 
 body {
   font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
   background: #000000;
   color: #fff;
+  overflow-x: hidden;
 }
 
 header {
@@ -328,7 +379,7 @@ header .my-drawer {
   z-index: 4;
   width: 260px;
   height: 420px;
-  position: fixed;
+  position: absolute;
   top: 108px;
   right: -300px;
   transition: right 0.3s ease;
@@ -336,6 +387,7 @@ header .my-drawer {
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 1rem 0 1rem 0;
+  overflow-x: hidden; /* 추가: 내용이 넘칠 경우 스크롤바 숨김 */
 }
 header .my-drawer ul {
   list-style: none;
@@ -343,7 +395,11 @@ header .my-drawer ul {
   margin: 0;
 }
 header .my-drawer ul li:hover {
-  color: #ef5a9a;
+  font-weight: bold;
+}
+header .my-drawer ul li:active {
+  color: #aaaaaa;
+  font-weight: normal;
 }
 header .my-drawer.open {
   right: 0;
@@ -447,11 +503,21 @@ footer {
 }
 
 .notice_banner {
+  padding: 0 2px;
   background-color: #ef5a9a;
+  text-decoration: underline;
+}
+.notice_banner .notice_banner_link {
+  text-wrap: balance;
 }
 .notice_banner .notice_banner_link:hover {
-  text-decoration: underline;
+  font-weight: bold;
 }
 .notice_banner .notice_banner_link:active {
-  text-decoration: underline;
+  font-weight: bold;
+}
+
+.hidden-text {
+  color: #01bda1;
+  background-color: #01bda1;
 }/*# sourceMappingURL=general.css.map */
