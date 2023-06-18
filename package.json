@@ -30,11 +30,13 @@
     "puppeteer": "^20.1.1",
     "react": "18.2.0",
     "react-burger-menu": "^3.0.9",
+    "react-confetti": "^6.1.0",
     "react-countup": "^6.4.2",
     "react-dom": "18.2.0",
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.8.0",
     "react-modern-drawer": "^1.2.0",
+    "react-use": "^17.4.0",
     "request": "^2.88.2",
     "zustand": "^4.3.7"
   },
