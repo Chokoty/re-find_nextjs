@@ -181,7 +181,6 @@ export default function Home({ last_update_info }) {
                 "https://isd-fanart.reruru.com/counter"
             );
             const counter = response.data;
-
             setCounter(counter);
             setCounterLoading(false);
         } catch (err) {
