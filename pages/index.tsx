@@ -27,29 +27,7 @@ import Description from "../components/Description";
 import EventModal from "@/components/EventModal";
 import { useStore } from "../store/store";
 
-// import useWindowSize from "react-use/lib/useWindowSize";
-// import Confetti from "react-confetti";
-
-// const ScrollAnimation = ({ targetRef, topPosition }) => {
-//     return (
-//         <motion
-//             defaultStyle={{ scrollTop: 0 }}
-//             style={{ scrollTop: spring(topPosition) }}
-//         >
-//             {({ scrollTop }) => (
-//                 <div
-//                     ref={targetRef}
-//                     style={{ position: "relative", top: scrollTop }}
-//                 >
-//                     {/* 스크롤 애니메이션을 적용할 요소 내용 */}
-//                 </div>
-//             )}
-//         </motion>
-//     );
-// };
-
 export default function Home({ last_update_info }) {
-    // const { width, height } = useWindowSize();
     const setIsOpen = useStore((state) => state.setIsOpen);
 
     //temp
@@ -71,7 +49,6 @@ export default function Home({ last_update_info }) {
 
     const toast = useToast();
     const targetRef = useRef(null);
-    // const loadingRef = useRef(null);
 
     const handleClick = () => {
         const headerHeight = 108;
@@ -96,7 +73,7 @@ export default function Home({ last_update_info }) {
 
     // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
     useEffect(() => {
-        fetchCounter();
+        // fetchCounter();
         setIsOpen(false);
     }, []);
 
@@ -113,16 +90,17 @@ export default function Home({ last_update_info }) {
 
     // 이미지 검색 상태 토스트
     useEffect(() => {
-        if (files.length > 0 && counter === null) {
-            toast({
-                title: `현재 이미지 검색을 이용할 수 없습니다.`,
-                status: `error`,
-                isClosable: true,
-            });
-        }
-        if (files.length > 0 && counter !== null) {
-            fetchOriginalUrl();
-        }
+        // if (files.length > 0 && counter === null) {
+        //     toast({
+        //         title: `현재 이미지 검색을 이용할 수 없습니다.`,
+        //         status: `error`,
+        //         isClosable: true,
+        //     });
+        // }
+        // if (files.length > 0 && counter !== null) {
+        //     fetchOriginalUrl();
+        // }
+        if (files.length > 0) fetchOriginalUrl();
     }, [files]);
 
     // 이미지 검색하기
@@ -180,22 +158,6 @@ export default function Home({ last_update_info }) {
             } else {
                 console.log(error);
             }
-        }
-    };
-
-    // counter 가져오기
-    const fetchCounter = async () => {
-        try {
-            setCounterLoading(true);
-            const response = await axios.get(
-                "https://isd-fanart.reruru.com/counter"
-            );
-            const counter = response.data;
-            setCounter(counter);
-            setCounterLoading(false);
-        } catch (err) {
-            setCounterLoading(false);
-            console.log(err);
         }
     };
 
@@ -280,7 +242,7 @@ export default function Home({ last_update_info }) {
         setData(null);
         setSearch(false);
         onToggle();
-        fetchCounter();
+        // fetchCounter();
         setAuthor(null);
     };
 
@@ -292,7 +254,7 @@ export default function Home({ last_update_info }) {
         >
             {/* <Confetti width={2000} height={2000} /> */}
             {congrat && <EventModal />}
-            <Counter counter={counter} counterLoading={counterLoading} />
+            <Counter />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             {files.length === 0 && (
