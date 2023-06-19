@@ -1,14 +1,16 @@
+import { useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import Script from "next/script";
+
 import MainLayout from "../components/layout/main-layout";
 import { Chakra } from "../styles/Chakra";
-import { Analytics } from "@vercel/analytics/react";
-// import PlausibleProvider from "next-plausible";
-import Script from "next/script";
-import * as gtag from "../lib/gtag";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-
 import "../styles/general.scss";
+
+// analytics
+import * as gtag from "../lib/gtag";
+import { Analytics } from "@vercel/analytics/react";
+import PlausibleProvider from "next-plausible";
 
 export default function App({ Component, pageProps }) {
     const router = useRouter();
@@ -26,8 +28,7 @@ export default function App({ Component, pageProps }) {
     }, [router.events]);
 
     return (
-        <>
-            {/* <PlausibleProvider domain="https://re-find.xyz/"> */}
+        <PlausibleProvider domain="https://re-find.xyz/">
             <Head>
                 <title>RE:FIND</title>
             </Head>
@@ -56,17 +57,8 @@ export default function App({ Component, pageProps }) {
                 </MainLayout>
             </Chakra>
             <Analytics />
-            {/* </PlausibleProvider> */}
-        </>
+        </PlausibleProvider>
     );
 }
-
-// App.getInitialProps = ({ req }) => {
-//     return {
-//         // first time users will not have any cookies and you may not return
-//         // undefined here, hence ?? is necessary
-//         cookies: req?.headers?.cookie ?? "",
-//     };
-// };
 
 export { getServerSideProps } from "../styles/Chakra";

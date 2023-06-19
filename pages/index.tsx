@@ -30,23 +30,23 @@ import { useStore } from "../store/store";
 // import useWindowSize from "react-use/lib/useWindowSize";
 // import Confetti from "react-confetti";
 
-const ScrollAnimation = ({ targetRef, topPosition }) => {
-    return (
-        <motion
-            defaultStyle={{ scrollTop: 0 }}
-            style={{ scrollTop: spring(topPosition) }}
-        >
-            {({ scrollTop }) => (
-                <div
-                    ref={targetRef}
-                    style={{ position: "relative", top: scrollTop }}
-                >
-                    {/* 스크롤 애니메이션을 적용할 요소 내용 */}
-                </div>
-            )}
-        </motion>
-    );
-};
+// const ScrollAnimation = ({ targetRef, topPosition }) => {
+//     return (
+//         <motion
+//             defaultStyle={{ scrollTop: 0 }}
+//             style={{ scrollTop: spring(topPosition) }}
+//         >
+//             {({ scrollTop }) => (
+//                 <div
+//                     ref={targetRef}
+//                     style={{ position: "relative", top: scrollTop }}
+//                 >
+//                     {/* 스크롤 애니메이션을 적용할 요소 내용 */}
+//                 </div>
+//             )}
+//         </motion>
+//     );
+// };
 
 export default function Home({ last_update_info }) {
     // const { width, height } = useWindowSize();
