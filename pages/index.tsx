@@ -24,32 +24,12 @@ import Preview from "../components/Preview";
 import UpdateCard from "../components/UpdateCard";
 import AuthorProfileCard from "../components/AuthorProfileCard";
 import Description from "../components/Description";
-import EventModal from "@/components/EventModal";
+import EventModal from "../components/events/EventModal";
+import MelonVoteModal from "../components/events/MelonVoteModal";
+
 import { useStore } from "../store/store";
 
-// import useWindowSize from "react-use/lib/useWindowSize";
-// import Confetti from "react-confetti";
-
-const ScrollAnimation = ({ targetRef, topPosition }) => {
-    return (
-        <motion
-            defaultStyle={{ scrollTop: 0 }}
-            style={{ scrollTop: spring(topPosition) }}
-        >
-            {({ scrollTop }) => (
-                <div
-                    ref={targetRef}
-                    style={{ position: "relative", top: scrollTop }}
-                >
-                    {/* 스크롤 애니메이션을 적용할 요소 내용 */}
-                </div>
-            )}
-        </motion>
-    );
-};
-
 export default function Home({ last_update_info }) {
-    // const { width, height } = useWindowSize();
     const setIsOpen = useStore((state) => state.setIsOpen);
 
     //temp
@@ -57,6 +37,7 @@ export default function Home({ last_update_info }) {
 
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
+    const [ids, setIds] = useState([]); // 게시글 여러 개
     const [search, setSearch] = useState(false); // 검색 여부
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
@@ -71,7 +52,6 @@ export default function Home({ last_update_info }) {
 
     const toast = useToast();
     const targetRef = useRef(null);
-    // const loadingRef = useRef(null);
 
     const handleClick = () => {
         const headerHeight = 108;
@@ -96,7 +76,7 @@ export default function Home({ last_update_info }) {
 
     // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
     useEffect(() => {
-        fetchCounter();
+        // fetchCounter();
         setIsOpen(false);
     }, []);
 
@@ -113,16 +93,17 @@ export default function Home({ last_update_info }) {
 
     // 이미지 검색 상태 토스트
     useEffect(() => {
-        if (files.length > 0 && counter === null) {
-            toast({
-                title: `현재 이미지 검색을 이용할 수 없습니다.`,
-                status: `error`,
-                isClosable: true,
-            });
-        }
-        if (files.length > 0 && counter !== null) {
-            fetchOriginalUrl();
-        }
+        // if (files.length > 0 && counter === null) {
+        //     toast({
+        //         title: `현재 이미지 검색을 이용할 수 없습니다.`,
+        //         status: `error`,
+        //         isClosable: true,
+        //     });
+        // }
+        // if (files.length > 0 && counter !== null) {
+        //     fetchOriginalUrl();
+        // }
+        if (files.length > 0) fetchOriginalUrl();
     }, [files]);
 
     // 이미지 검색하기
@@ -148,6 +129,8 @@ export default function Home({ last_update_info }) {
                 } else {
                     // console.log(response.data);
                     setData(response.data);
+                    setIds(response.data.id);
+
                     if (response.data.total_counter == 20000) setCongrat(true);
 
                     fetchAuthorProfile(response.data.id[0]);
@@ -180,22 +163,6 @@ export default function Home({ last_update_info }) {
             } else {
                 console.log(error);
             }
-        }
-    };
-
-    // counter 가져오기
-    const fetchCounter = async () => {
-        try {
-            setCounterLoading(true);
-            const response = await axios.get(
-                "https://isd-fanart.reruru.com/counter"
-            );
-            const counter = response.data;
-            setCounter(counter);
-            setCounterLoading(false);
-        } catch (err) {
-            setCounterLoading(false);
-            console.log(err);
         }
     };
 
@@ -280,7 +247,7 @@ export default function Home({ last_update_info }) {
         setData(null);
         setSearch(false);
         onToggle();
-        fetchCounter();
+        // fetchCounter();
         setAuthor(null);
     };
 
@@ -292,9 +259,12 @@ export default function Home({ last_update_info }) {
         >
             {/* <Confetti width={2000} height={2000} /> */}
             {congrat && <EventModal />}
-            <Counter counter={counter} counterLoading={counterLoading} />
+            <Counter />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
+            <br />
+            <MelonVoteModal />
+
             {files.length === 0 && (
                 <>
                     <UploadImages getDataFromChild={getDataFromChild} />
@@ -351,7 +321,7 @@ export default function Home({ last_update_info }) {
                             ) : (
                                 <div className="found">
                                     {/* {author === null && ( */}
-                                    <Link
+                                    {/* <Link
                                         fontSize="xl"
                                         mb="20px"
                                         textAlign="center"
@@ -367,7 +337,29 @@ export default function Home({ last_update_info }) {
                                         https://cafe.naver.com/steamindiegame/
                                         {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
-                                    </Link>
+                                    </Link> */}
+
+                                    {ids.map((item, index) => (
+                                        <Link
+                                            key={index}
+                                            fontSize="xl"
+                                            mb="20px"
+                                            textAlign="center"
+                                            // color="#01bda1"
+                                            color={highlightColor}
+                                            className="link"
+                                            href={
+                                                "https://cafe.naver.com/steamindiegame/" +
+                                                item
+                                            }
+                                            isExternal
+                                        >
+                                            https://cafe.naver.com/steamindiegame/
+                                            {item}
+                                            <ExternalLinkIcon mx="2px" />
+                                        </Link>
+                                    ))}
+
                                     {/* )} */}
 
                                     <Skeleton
@@ -391,7 +383,7 @@ export default function Home({ last_update_info }) {
                                             className="link"
                                             href={
                                                 "https://cafe.naver.com/steamindiegame/" +
-                                                data.id[0]
+                                                data?.id[0]
                                             }
                                             isExternal
                                         >

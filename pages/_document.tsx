@@ -12,7 +12,7 @@ export default function Document() {
                 />
                 <meta
                     name="keywords"
-                    content="이세계, 아이돌, 팬아트, 출처, 찾기, 왁타버스, 왁물원
+                    content="왁타버스, 이세계, 아이돌, 팬아트, 출처, 찾기, 왁물원
                 "
                 />
                 <meta name="author" content="레루루 & 초코넛밀크티" />

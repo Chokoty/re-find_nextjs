@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
-const withPlugins = require("next-compose-plugins");
+const nextComposePlugins = require("next-compose-plugins");
+const { withPlugins } = nextComposePlugins.extend(() => ({}));
 const withPWA = require("next-pwa");
 const isProduction = process.env.NODE_ENV === "production";
 

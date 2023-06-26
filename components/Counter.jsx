@@ -1,12 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Badge, Skeleton, useColorModeValue } from "@chakra-ui/react";
 
 import { lightMode, darkMode } from "@/styles/theme";
 import CountUp from "react-countup";
+import axios from "axios";
 
-const Counter = ({ counter, counterLoading }) => {
+const Counter = () => {
+    const [counter, setCounter] = useState(null);
+    const [counterLoading, setCounterLoading] = useState(false);
     const badge = useColorModeValue(lightMode.badge, darkMode.badge);
+
+    // counter 가져오기
+    const fetchCounter = async () => {
+        try {
+            setCounterLoading(true);
+            const response = await axios.get(
+                "https://isd-fanart.reruru.com/counter"
+            );
+            const counter = response.data;
+            setCounter(counter);
+            setCounterLoading(false);
+        } catch (err) {
+            setCounterLoading(false);
+            console.log(err);
+        }
+    };
+
+    useEffect(() => {
+        fetchCounter();
+    }, []);
 
     return (
         <div className="counter">

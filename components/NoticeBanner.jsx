@@ -52,15 +52,20 @@ const NoticeBanner = () => {
                             lastUpdateLog.content.slice(0, 50)}
                     </NextLink>
                 ) : (
-                    <Link
-                        isExternal
-                        href={lastUpdateLog.directLink}
-                        className="notice_banner_link"
-                    >
+                    <NextLink href="/notice" className="notice_banner_link">
                         {lastUpdateLog.date +
                             " - " +
                             lastUpdateLog.content.slice(0, 50)}
-                    </Link>
+                    </NextLink>
+                    //      <Link
+                    //      isExternal
+                    //      href={lastUpdateLog.directLink}
+                    //      className="notice_banner_link"
+                    //  >
+                    //      {lastUpdateLog.date +
+                    //          " - " +
+                    //          lastUpdateLog.content.slice(0, 50)}
+                    //  </Link>
                 )}
             </Box>
         </Box>

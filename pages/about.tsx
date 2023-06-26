@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import OtherLayout from "./../components/layout/other-layout";
-import AuthorProfileCard from "./../components/AuthorProfileCard";
+import OtherLayout from "../components/layout/other-layout";
+import AuthorProfileCard from "../components/AuthorProfileCard";
 
 import { Heading, Link } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
