@@ -342,9 +342,9 @@ export default function Home({ last_update_info }) {
                                         <ExternalLinkIcon mx="2px" />
                                     </Link> */}
 
-                                    {data.id.map((idElement, index) => {
+                                    {data?.id.map((item, index) => {
                                         <Link
-                                            key={idElement}
+                                            key={index}
                                             fontSize="xl"
                                             mb="20px"
                                             textAlign="center"
@@ -353,12 +353,12 @@ export default function Home({ last_update_info }) {
                                             className="link"
                                             href={
                                                 "https://cafe.naver.com/steamindiegame/" +
-                                                idElement
+                                                item
                                             }
                                             isExternal
                                         >
                                             https://cafe.naver.com/steamindiegame/
-                                            {idElement}
+                                            {item}
                                             <ExternalLinkIcon mx="2px" />
                                         </Link>;
                                     })}
@@ -385,7 +385,7 @@ export default function Home({ last_update_info }) {
                                             className="link"
                                             href={
                                                 "https://cafe.naver.com/steamindiegame/" +
-                                                data.id[0]
+                                                data?.id[0]
                                             }
                                             isExternal
                                         >
