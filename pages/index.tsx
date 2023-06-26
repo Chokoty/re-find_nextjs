@@ -318,7 +318,7 @@ export default function Home({ last_update_info }) {
                             ) : (
                                 <div className="found">
                                     {/* {author === null && ( */}
-                                    <Link
+                                    {/* <Link
                                         fontSize="xl"
                                         mb="20px"
                                         textAlign="center"
@@ -334,7 +334,27 @@ export default function Home({ last_update_info }) {
                                         https://cafe.naver.com/steamindiegame/
                                         {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
-                                    </Link>
+                                    </Link> */}
+                                    {data.id.map((idElement, index) => {
+                                        <Link
+                                            key={idElement}
+                                            fontSize="xl"
+                                            mb="20px"
+                                            textAlign="center"
+                                            // color="#01bda1"
+                                            color={highlightColor}
+                                            className="link"
+                                            href={
+                                                "https://cafe.naver.com/steamindiegame/" +
+                                                idElement
+                                            }
+                                            isExternal
+                                        >
+                                            https://cafe.naver.com/steamindiegame/
+                                            {idElement}
+                                            <ExternalLinkIcon mx="2px" />
+                                        </Link>;
+                                    })}
                                     {/* )} */}
 
                                     <Skeleton
