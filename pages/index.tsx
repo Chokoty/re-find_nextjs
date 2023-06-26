@@ -74,7 +74,7 @@ export default function Home({ last_update_info }) {
     );
 
     useEffect(() => {
-        data.id.map((item, index) => {
+        data?.id.map((item, index) => {
             console.log(item);
         });
     }, [data]);
