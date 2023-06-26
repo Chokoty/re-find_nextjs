@@ -96,7 +96,7 @@ const updateLog = [
     {
         id: 14,
         date: "2023.06.26",
-        content: "멜론 주간인기상 많이 많이 투표해 주세요!!! ",
+        content: "멜론 주간 인기상 많이 많이 투표해 주세요!!! ",
         directLink: "https://cafe.naver.com/steamindiegame/11801772",
     },
 ];
