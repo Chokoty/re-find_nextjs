@@ -37,6 +37,7 @@ export default function Home({ last_update_info }) {
 
     const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
+    const [ids, setIds] = useState([]); // 게시글 여러 개
     const [search, setSearch] = useState(false); // 검색 여부
     const [loading, setLoading] = useState(false);
     const [loading2, setLoading2] = useState(false);
@@ -134,6 +135,8 @@ export default function Home({ last_update_info }) {
                 } else {
                     // console.log(response.data);
                     setData(response.data);
+                    setIds(response.data.id);
+
                     if (response.data.total_counter == 20000) setCongrat(true);
 
                     fetchAuthorProfile(response.data.id[0]);
@@ -342,7 +345,7 @@ export default function Home({ last_update_info }) {
                                         <ExternalLinkIcon mx="2px" />
                                     </Link>
 
-                                    {data?.id?.map((item, index) => {
+                                    {ids.map((item, index) => (
                                         <Link
                                             key={index}
                                             fontSize="xl"
@@ -360,8 +363,9 @@ export default function Home({ last_update_info }) {
                                             https://cafe.naver.com/steamindiegame/
                                             {item}
                                             <ExternalLinkIcon mx="2px" />
-                                        </Link>;
-                                    })}
+                                        </Link>
+                                    ))}
+
                                     {/* )} */}
 
                                     <Skeleton
