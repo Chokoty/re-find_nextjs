@@ -74,12 +74,6 @@ export default function Home({ last_update_info }) {
         darkMode.highlight
     );
 
-    useEffect(() => {
-        data?.id.map((item, index) => {
-            console.log(item);
-        });
-    }, [data]);
-
     // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
     useEffect(() => {
         // fetchCounter();
@@ -129,7 +123,7 @@ export default function Home({ last_update_info }) {
                 const searchTime = endTime - startTime; // ms
                 setSearchTime(searchTime); // 차이값 저장
 
-                console.log(response.data);
+                // console.log(response.data);
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
