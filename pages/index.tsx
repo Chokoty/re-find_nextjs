@@ -73,6 +73,12 @@ export default function Home({ last_update_info }) {
         darkMode.highlight
     );
 
+    useEffect(() => {
+        data.id.map((item, index) => {
+            console.log(item);
+        });
+    }, [data]);
+
     // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
     useEffect(() => {
         // fetchCounter();
@@ -335,6 +341,7 @@ export default function Home({ last_update_info }) {
                                         {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
                                     </Link> */}
+
                                     {data.id.map((idElement, index) => {
                                         <Link
                                             key={idElement}
