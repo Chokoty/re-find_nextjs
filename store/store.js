@@ -6,10 +6,17 @@ const store = (set) => ({
     increaseCount: () => set((state) => ({ count: state.count + 1 })),
     isOpen: false,
     setIsOpen: (value) => set({ isOpen: value }),
-    // setIsOpen: () => set((state) => ({ setIsOpen: !state.isOpen })),
 });
 
 export const useStore = create(devtools(store));
+
+//Event
+const eventStore = (set) => ({
+    isMelonVoteModalOpen: true,
+    setIsMelonVoteModalOpen: (value) => set({ isMelonVoteModalOpen: value }),
+});
+
+export const useEventStore = create(devtools(eventStore));
 
 //Theme
 // const useThemeStore = create((set) => ({
@@ -20,4 +27,4 @@ export const useStore = create(devtools(store));
 //         })),
 // }));
 
-// export useThemeStore
+// export create(useThemeStore)

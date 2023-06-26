@@ -87,11 +87,17 @@ const updateLog = [
         directLink: "",
     },
     {
-        id: 12,
+        id: 13,
         date: "2023.06.10",
         content:
             "고멤 팬아트 게시판이 추가 되었습니다! 고멤팬아트도 검색이 가능합니다. 킹아!",
         directLink: "",
+    },
+    {
+        id: 14,
+        date: "2023.06.26",
+        content: "멜론 주간인기상 많이 많이 투표해 주세요!!! ",
+        directLink: "https://cafe.naver.com/steamindiegame/11801772",
     },
 ];
 

@@ -24,7 +24,9 @@ import Preview from "../components/Preview";
 import UpdateCard from "../components/UpdateCard";
 import AuthorProfileCard from "../components/AuthorProfileCard";
 import Description from "../components/Description";
-import EventModal from "@/components/EventModal";
+import EventModal from "../components/events/EventModal";
+import MelonVoteModal from "../components/events/MelonVoteModal";
+
 import { useStore } from "../store/store";
 
 export default function Home({ last_update_info }) {
@@ -257,6 +259,9 @@ export default function Home({ last_update_info }) {
             <Counter />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
+            <br />
+            <MelonVoteModal />
+
             {files.length === 0 && (
                 <>
                     <UploadImages getDataFromChild={getDataFromChild} />

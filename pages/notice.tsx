@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 
 import OtherLayout from "../components/layout/other-layout";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 import { lightMode, darkMode } from "@/styles/theme";
 import updateLog from "../data/updateLog";
@@ -77,7 +78,8 @@ const Notice = () => {
                                             isExternal
                                             color={highlightColor}
                                         >
-                                            추가 링크
+                                            관련 링크
+                                            <ExternalLinkIcon mx="2px" />
                                         </Link>
                                     )}
                                 </CardFooter>
