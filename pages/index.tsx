@@ -324,7 +324,7 @@ export default function Home({ last_update_info }) {
                             ) : (
                                 <div className="found">
                                     {/* {author === null && ( */}
-                                    {/* <Link
+                                    <Link
                                         fontSize="xl"
                                         mb="20px"
                                         textAlign="center"
@@ -340,9 +340,9 @@ export default function Home({ last_update_info }) {
                                         https://cafe.naver.com/steamindiegame/
                                         {data.id[0]}
                                         <ExternalLinkIcon mx="2px" />
-                                    </Link> */}
+                                    </Link>
 
-                                    {data?.id.map((item, index) => {
+                                    {data?.id?.map((item, index) => {
                                         <Link
                                             key={index}
                                             fontSize="xl"
