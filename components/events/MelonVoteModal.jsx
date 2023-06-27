@@ -128,16 +128,27 @@ const MelonVoteModal = () => {
                             <br />
                             (이용권 없어도 투표 가능) ​
                         </Text>
+                        <br />
+
                         <Link
                             color={highlightColor}
-                            href=" https://www.melon.com/melonaward/weekAward.htm"
+                            href="https://into.melon.com/2023_weekaward"
                             isExternal
                         >
-                            https://www.melon.com/melonaward/weekAward.htm
+                            https://into.melon.com/2023_weekaward
                             <ExternalLinkIcon mx="2px" />
                         </Link>
                         <br />
                         <br />
+                        {/* <Text>모바일 앱 링크</Text>
+                        <Link
+                            color={highlightColor}
+                            href=" https://cafe.naver.com/steamindiegame/11802869"
+                            isExternal
+                        >
+                            https://cafe.naver.com/steamindiegame/11802869
+                            <ExternalLinkIcon mx="2px" />
+                        </Link>
                         <Divider />
                         <br />
                         <Text>모바일 앱으로 들어가는 방법</Text>
@@ -148,7 +159,7 @@ const MelonVoteModal = () => {
                         >
                             https://cafe.naver.com/steamindiegame/11802869
                             <ExternalLinkIcon mx="2px" />
-                        </Link>
+                        </Link> */}
                         <Text></Text>
                     </ModalBody>
 
