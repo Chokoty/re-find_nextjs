@@ -1,22 +1,22 @@
 import { useEffect } from "react";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import Script from "next/script";
+import Head from "next/head";
 
 import MainLayout from "../components/layout/main-layout";
 import { Chakra } from "../styles/Chakra";
 import "../styles/general.scss";
 
 // analytics
-import * as gtag from "../lib/gtag";
 import { Analytics } from "@vercel/analytics/react";
 import PlausibleProvider from "next-plausible";
+import * as gtag from "../lib/gtag";
 
 export default function App({ Component, pageProps }) {
     const router = useRouter();
 
     useEffect(() => {
-        const handleRouteChange = (url) => {
+        const handleRouteChange = (url: URL) => {
             gtag.pageview(url);
         };
         router.events.on("routeChangeComplete", handleRouteChange);
