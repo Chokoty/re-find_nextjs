@@ -129,7 +129,7 @@ export default function Home({ last_update_info }) {
                 } else {
                     // console.log(response.data);
                     setData(response.data);
-                    setIds(response.data.id);
+                    setIds(response.data.id.slice(0, 15)); // 10~15개 제한
 
                     if (response.data.total_counter == 20000) setCongrat(true);
 
