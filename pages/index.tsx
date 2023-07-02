@@ -3,7 +3,6 @@ import axios from "axios";
 
 import {
     Text,
-    Spinner,
     Skeleton,
     Button,
     Heading,
@@ -18,14 +17,15 @@ import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { lightMode, darkMode } from "@/styles/theme";
 
 import Title from "../components/Title";
-import Counter from "../components/Counter";
-import UploadImages from "../components/UploadImages";
+import Loading from "../components/Loading";
 import Preview from "../components/Preview";
-import UpdateCard from "../components/UpdateCard";
-import AuthorProfileCard from "../components/AuthorProfileCard";
-import Description from "../components/Description";
+import Counter from "../components/Counter";
 import EventModal from "../components/events/EventModal";
+import UpdateBoard from "../components/UpdateBoard";
+import Description from "../components/Description";
+import UploadImages from "../components/UploadImages";
 import MelonVoteModal from "../components/events/MelonVoteModal";
+import AuthorProfileCard from "../components/AuthorProfileCard";
 
 import { useStore } from "../store/store";
 
@@ -253,62 +253,34 @@ export default function Home({ last_update_info }) {
 
     return (
         <div
-            ref={targetRef}
             className="home_body"
             style={{ backgroundColor: bgColor, color: color }}
+            ref={targetRef}
         >
-            {/* <Confetti width={2000} height={2000} /> */}
             {congrat && <EventModal />}
+            {/*상단 타이틀 */}
             <Counter />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             <br />
             <MelonVoteModal />
-
+            {/*상단 타이틀 */}
+            {/*검색 전 */}
             {files.length === 0 && (
                 <>
                     <UploadImages getDataFromChild={getDataFromChild} />
-                    <div
-                        className="update-info"
-                        style={{
-                            marginTop: "3em",
-                            display: "grid",
-                            // display: "flex", -> ios14 아래 지원 안됨
-                            // flexDirection: "column",
-                            // justifyContent: "center",
-                            alignItems: "center",
-                            placeItems: "center",
-                            gridGap: "1em",
-                            gap: "1em",
-                        }}
-                    >
-                        <Heading
-                            as="h1"
-                            size="md"
-                            mb="20px"
-                            textTransform="uppercase"
-                            color={color}
-                        >
-                            게시판 업데이트 현황
-                        </Heading>
-                        {last_update_info.map((update, index) => (
-                            <UpdateCard key={index} update={update} />
-                        ))}
-                        <Text whiteSpace="normal">
-                            현재 명시된 게시판에서만 찾을 수 있습니다.
-                        </Text>
-                    </div>
+                    <UpdateBoard
+                        last_update_info={last_update_info}
+                        color={color}
+                    />
                 </>
             )}
+            {/*검색 후 */}
             {files.length !== 0 && (
                 <div className="result-area">
                     <Preview files={files} />
                     {loading ? (
-                        <div className="loading">
-                            <div>검색중</div>
-                            &nbsp;
-                            <Spinner size="sm" />
-                        </div>
+                        <Loading />
                     ) : (
                         <div className="result">
                             <Text fontSize="xl" mb="20px" textAlign="center">
@@ -320,25 +292,6 @@ export default function Home({ last_update_info }) {
                                 </div>
                             ) : (
                                 <div className="found">
-                                    {/* {author === null && ( */}
-                                    {/* <Link
-                                        fontSize="xl"
-                                        mb="20px"
-                                        textAlign="center"
-                                        // color="#01bda1"
-                                        color={highlightColor}
-                                        className="link"
-                                        href={
-                                            "https://cafe.naver.com/steamindiegame/" +
-                                            data.id[0]
-                                        }
-                                        isExternal
-                                    >
-                                        https://cafe.naver.com/steamindiegame/
-                                        {data.id[0]}
-                                        <ExternalLinkIcon mx="2px" />
-                                    </Link> */}
-
                                     {ids.map((item, index) => (
                                         <Link
                                             key={index}
@@ -359,8 +312,6 @@ export default function Home({ last_update_info }) {
                                             <ExternalLinkIcon mx="2px" />
                                         </Link>
                                     ))}
-
-                                    {/* )} */}
 
                                     <Skeleton
                                         isLoaded={!loading2}
