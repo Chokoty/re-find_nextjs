@@ -193,6 +193,9 @@
             align-items: center;
         }
         .result {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
             .notFound {
                 display: flex;
