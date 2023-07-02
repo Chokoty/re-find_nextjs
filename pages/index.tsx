@@ -24,7 +24,7 @@ import EventModal from "../components/events/EventModal";
 import UpdateBoard from "../components/UpdateBoard";
 import Description from "../components/Description";
 import UploadImages from "../components/UploadImages";
-import MelonVoteModal from "../components/events/MelonVoteModal";
+// import MelonVoteModal from "../components/events/MelonVoteModal";
 import AuthorProfileCard from "../components/AuthorProfileCard";
 
 import { useStore } from "../store/store";
@@ -263,7 +263,7 @@ export default function Home({ last_update_info }) {
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             <br />
-            <MelonVoteModal />
+            {/* <MelonVoteModal /> */}
             {/*상단 타이틀 */}
             {/*검색 전 */}
             {uploadedfiles.length === 0 && (
