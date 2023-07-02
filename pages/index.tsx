@@ -35,7 +35,7 @@ export default function Home({ last_update_info }) {
     //temp
     const [congrat, setCongrat] = useState(false); // 파일 업로드를 위한 상태
 
-    const [files, setFiles] = useState([]); // 파일 업로드를 위한 상태
+    const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드를 위한 상태
     const [data, setData] = useState(null); // fetch 를 통해 받아온 데이터를 저장할 상태
     const [ids, setIds] = useState([]); // 게시글 여러 개
     const [search, setSearch] = useState(false); // 검색 여부
@@ -82,7 +82,7 @@ export default function Home({ last_update_info }) {
 
     // 검색시간 토스트
     useEffect(() => {
-        if (files.length > 0) {
+        if (uploadedfiles.length > 0) {
             toast({
                 title: `Searching Time: ${searchTime / 1000}s`,
                 status: `${data === null ? "error" : "success"}`,
@@ -103,15 +103,15 @@ export default function Home({ last_update_info }) {
         // if (files.length > 0 && counter !== null) {
         //     fetchOriginalUrl();
         // }
-        if (files.length > 0) fetchOriginalUrl();
-    }, [files]);
+        if (uploadedfiles.length > 0) fetchOriginalUrl();
+    }, [uploadedfiles]);
 
     // 이미지 검색하기
     const fetchOriginalUrl = async () => {
         try {
             setLoading(true); // 검색중
             const body = new FormData();
-            body.append("file", files[0]);
+            body.append("file", uploadedfiles[0]);
             if (!search) {
                 const startTime = new Date().getTime(); // 시작시간 기록
                 const response = await axios.post(
@@ -237,13 +237,13 @@ export default function Home({ last_update_info }) {
 
     // 자식 컴포넌트로부터 데이터 받기
     const getDataFromChild = (data) => {
-        setFiles(data);
+        setUploadedFiles(data);
     };
 
     // files 을 [] 로 초기화
     const resetFiles = () => {
         handleClick();
-        setFiles([]);
+        setUploadedFiles([]);
         setData(null);
         setSearch(false);
         onToggle();
@@ -266,7 +266,7 @@ export default function Home({ last_update_info }) {
             <MelonVoteModal />
             {/*상단 타이틀 */}
             {/*검색 전 */}
-            {files.length === 0 && (
+            {uploadedfiles.length === 0 && (
                 <>
                     <UploadImages getDataFromChild={getDataFromChild} />
                     <UpdateBoard
@@ -276,12 +276,11 @@ export default function Home({ last_update_info }) {
                 </>
             )}
             {/*검색 후 */}
-            {files.length !== 0 && (
+            {uploadedfiles.length !== 0 && (
                 <div className="result-area">
-                    <Preview files={files} />
-                    {loading ? (
-                        <Loading />
-                    ) : (
+                    <Preview files={uploadedfiles} />
+                    {loading && <Loading />}
+                    {!loading && (
                         <div className="result">
                             <Text fontSize="xl" mb="20px" textAlign="center">
                                 검색시간: {searchTime / 1000}s
@@ -358,12 +357,14 @@ export default function Home({ last_update_info }) {
                                     </Skeleton>
                                 </div>
                             )}
+                            <Button
+                                onClick={resetFiles}
+                                colorScheme="blue"
+                                w={140}
+                            >
+                                다른 이미지 검색
+                            </Button>
                         </div>
-                    )}
-                    {!loading && (
-                        <Button onClick={resetFiles} colorScheme="blue">
-                            다른 이미지 검색
-                        </Button>
                     )}
                 </div>
             )}
