@@ -264,7 +264,6 @@ export default function Home({ last_update_info }) {
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             <br />
             {/* <MelonVoteModal /> */}
-            {/*상단 타이틀 */}
             {/*검색 전 */}
             {uploadedfiles.length === 0 && (
                 <>

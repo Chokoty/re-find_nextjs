@@ -96,13 +96,19 @@ const updateLog = [
     {
         id: 14,
         date: "2023.06.26",
-        content: "멜론 주간 인기상 많이 많이 투표해 주세요!!! ",
+        content: "멜론 주간 인기상 많이 많이 투표해 주세요!!!",
         directLink: "https://cafe.naver.com/steamindiegame/11801772",
     },
     {
         id: 15,
         date: "2023.07.03",
-        content: "멜론 주간 인기상 최종 2위!!! 킹아!!! ",
+        content: "멜론 주간 인기상 투표 최종 2위!!! 킹아!!!",
+        directLink: "",
+    },
+    {
+        id: 16,
+        date: "2023.07.03",
+        content: "멜론 주간 인기상 음원점수 합산 최종 5위!!!",
         directLink: "",
     },
 ];
