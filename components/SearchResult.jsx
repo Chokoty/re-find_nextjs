@@ -1,11 +1,25 @@
 import React from "react";
-import { Text, Skeleton, Link, Button } from "@chakra-ui/react";
+import {
+    Text,
+    Skeleton,
+    Link,
+    Button,
+    useColorMode,
+    useColorModeValue,
+} from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+
+import { lightMode, darkMode } from "@/styles/theme";
 
 import AuthorProfileCard from "../components/AuthorProfileCard";
 import Description from "../components/Description";
 
 const SearchResult = (searchTime, data, ids, loading2, author, resetFiles) => {
+    const highlightColor = useColorModeValue(
+        lightMode.highlight,
+        darkMode.highlight
+    );
+
     return (
         <div className="result">
             <Text fontSize="xl" mb="20px" textAlign="center">
