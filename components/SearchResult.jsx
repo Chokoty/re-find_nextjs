@@ -17,7 +17,7 @@ const SearchResult = (searchTime, data, ids, loading2, author, resetFiles) => {
                 </div>
             ) : (
                 <div className="found">
-                    {ids.map((item, index) => (
+                    {ids?.map((item, index) => (
                         <Link
                             key={index}
                             fontSize="xl"
