@@ -26,6 +26,7 @@ import Description from "../components/Description";
 import UploadImages from "../components/UploadImages";
 // import MelonVoteModal from "../components/events/MelonVoteModal";
 import AuthorProfileCard from "../components/AuthorProfileCard";
+import SearchResult from "../components/SearchResult";
 
 import { useStore } from "../store/store";
 
@@ -257,14 +258,14 @@ export default function Home({ last_update_info }) {
             style={{ backgroundColor: bgColor, color: color }}
             ref={targetRef}
         >
-            {congrat && <EventModal />}
             {/*상단 타이틀 */}
+            {/* {congrat && <EventModal />} */}
             <Counter />
             <Title />
             <p className="title-sub">이세계 아이돌 팬아트 출처 찾기</p>
             <br />
             {/* <MelonVoteModal /> */}
-            {/*상단 타이틀 */}
+
             {/*검색 전 */}
             {uploadedfiles.length === 0 && (
                 <>
@@ -275,96 +276,106 @@ export default function Home({ last_update_info }) {
                     />
                 </>
             )}
+
             {/*검색 후 */}
             {uploadedfiles.length !== 0 && (
                 <div className="result-area">
                     <Preview files={uploadedfiles} />
                     {loading && <Loading />}
                     {!loading && (
-                        <div className="result">
-                            <Text fontSize="xl" mb="20px" textAlign="center">
-                                검색시간: {searchTime / 1000}s
-                            </Text>
-                            {data === null ? (
-                                <div className="notFound">
-                                    <Description />
-                                </div>
-                            ) : (
-                                <div className="found">
-                                    {ids.map((item, index) => (
-                                        <Link
-                                            key={index}
-                                            fontSize="xl"
-                                            mb="20px"
-                                            textAlign="center"
-                                            // color="#01bda1"
-                                            color={highlightColor}
-                                            className="link"
-                                            href={
-                                                "https://cafe.naver.com/steamindiegame/" +
-                                                item
-                                            }
-                                            isExternal
-                                        >
-                                            https://cafe.naver.com/steamindiegame/
-                                            {item}
-                                            <ExternalLinkIcon mx="2px" />
-                                        </Link>
-                                    ))}
+                        <SearchResult
+                            searchTime={searchTime}
+                            data={data}
+                            ids={ids}
+                            loading2={loading2}
+                            author={author}
+                            resetFiles={resetFiles}
+                        />
+                        // <div className="result">
+                        //     <Text fontSize="xl" mb="20px" textAlign="center">
+                        //         검색시간: {searchTime / 1000}s
+                        //     </Text>
+                        //
+                        //     {data === null ? (
+                        //         <div className="notFound">
+                        //             <Description />
+                        //         </div>
+                        //     ) : (
+                        //         <div className="found">
+                        //             {ids.map((item, index) => (
+                        //                 <Link
+                        //                     key={index}
+                        //                     fontSize="xl"
+                        //                     mb="20px"
+                        //                     textAlign="center"
+                        //                     // color="#01bda1"
+                        //                     color={highlightColor}
+                        //                     className="link"
+                        //                     href={
+                        //                         "https://cafe.naver.com/steamindiegame/" +
+                        //                         item
+                        //                     }
+                        //                     isExternal
+                        //                 >
+                        //                     https://cafe.naver.com/steamindiegame/
+                        //                     {item}
+                        //                     <ExternalLinkIcon mx="2px" />
+                        //                 </Link>
+                        //             ))}
 
-                                    <Skeleton
-                                        isLoaded={!loading2}
-                                        mt="20px"
-                                        mb="20px"
-                                    >
-                                        <Text
-                                            fontSize="xl"
-                                            mb="20px"
-                                            textAlign="center"
-                                        >
-                                            {author?.board || ""}
-                                        </Text>
-                                        <Link
-                                            fontSize="xl"
-                                            mb="20px"
-                                            textAlign="center"
-                                            // color="#01bda1"
-                                            color={highlightColor}
-                                            className="link"
-                                            href={
-                                                "https://cafe.naver.com/steamindiegame/" +
-                                                data?.id[0]
-                                            }
-                                            isExternal
-                                        >
-                                            {author?.title}
-                                            <ExternalLinkIcon mx="2px" />
-                                        </Link>
-                                    </Skeleton>
-                                    <Skeleton isLoaded={!loading2}>
-                                        <AuthorProfileCard
-                                            writerURL={
-                                                author?.writerURL ||
-                                                data?.author_profile
-                                            }
-                                            profURL={author?.profURL}
-                                            nickname={
-                                                author?.nickname ||
-                                                data?.author_nickname
-                                            }
-                                            board={author?.uploadText}
-                                        />
-                                    </Skeleton>
-                                </div>
-                            )}
-                            <Button
-                                onClick={resetFiles}
-                                colorScheme="blue"
-                                w={140}
-                            >
-                                다른 이미지 검색
-                            </Button>
-                        </div>
+                        //             <Skeleton
+                        //                 isLoaded={!loading2}
+                        //                 mt="20px"
+                        //                 mb="20px"
+                        //             >
+                        //                 <Text
+                        //                     fontSize="xl"
+                        //                     mb="20px"
+                        //                     textAlign="center"
+                        //                 >
+                        //                     {author?.board || ""}
+                        //                 </Text>
+                        //                 <Link
+                        //                     fontSize="xl"
+                        //                     mb="20px"
+                        //                     textAlign="center"
+                        //                     // color="#01bda1"
+                        //                     color={highlightColor}
+                        //                     className="link"
+                        //                     href={
+                        //                         "https://cafe.naver.com/steamindiegame/" +
+                        //                         data?.id[0]
+                        //                     }
+                        //                     isExternal
+                        //                 >
+                        //                     {author?.title}
+                        //                     <ExternalLinkIcon mx="2px" />
+                        //                 </Link>
+                        //             </Skeleton>
+                        //             <Skeleton isLoaded={!loading2}>
+                        //                 <AuthorProfileCard
+                        //                     writerURL={
+                        //                         author?.writerURL ||
+                        //                         data?.author_profile
+                        //                     }
+                        //                     profURL={author?.profURL}
+                        //                     nickname={
+                        //                         author?.nickname ||
+                        //                         data?.author_nickname
+                        //                     }
+                        //                     board={author?.uploadText}
+                        //                 />
+                        //             </Skeleton>
+                        //         </div>
+                        //     )}
+                        //     <Button
+                        //         onClick={resetFiles}
+                        //         colorScheme="blue"
+                        //         w={140}
+                        //     >
+                        //         다른 이미지 검색
+                        //     </Button>
+                        // </div>
                     )}
                 </div>
             )}
