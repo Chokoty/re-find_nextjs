@@ -20,7 +20,7 @@ import SearchResult from "../components/SearchResult";
 
 // import EventModal from "../components/events/EventModal";
 // import MelonVoteModal from "../components/events/MelonVoteModal";
-import Description from "../components/Description";
+// import Description from "../components/Description";
 // import AuthorProfileCard from "../components/AuthorProfileCard";
 
 import { useStore } from "../store/store";
@@ -247,11 +247,13 @@ export default function Home({ last_update_info }) {
             ref={targetRef}
         >
             {/*상단 타이틀 */}
-            {/* {congrat && <EventModal />} */}
             <Counter data={data} />
             <Title />
             <p className="title-sub">왁타버스 팬아트 출처 찾기</p>
             <br />
+
+            {/*이벤트 */}
+            {/* {congrat && <EventModal />} */}
             {/* <MelonVoteModal /> */}
 
             {/*업로드 전 */}
@@ -280,93 +282,6 @@ export default function Home({ last_update_info }) {
                             resetFiles={resetFiles}
                         />
                     )}
-                    {/* {!isSearchingData && (
-                        <div className="result">
-                            <Text fontSize="xl" mb="20px" textAlign="center">
-                                검색시간: {searchTime / 1000}s
-                            </Text>
-
-                            {data === null ? (
-                                <div className="notFound">
-                                    <Description />
-                                </div>
-                            ) : (
-                                <div className="found">
-                                    {ids.map((item, index) => (
-                                        <Link
-                                            key={index}
-                                            fontSize="xl"
-                                            mb="20px"
-                                            textAlign="center"
-                                            // color="#01bda1"
-                                            color={highlightColor}
-                                            className="link"
-                                            href={
-                                                "https://cafe.naver.com/steamindiegame/" +
-                                                item
-                                            }
-                                            isExternal
-                                        >
-                                            https://cafe.naver.com/steamindiegame/
-                                            {item}
-                                            <ExternalLinkIcon mx="2px" />
-                                        </Link>
-                                    ))}
-
-                                    <Skeleton
-                                        isLoaded={!isSearchingAuthor}
-                                        mt="20px"
-                                        mb="20px"
-                                    >
-                                        <Text
-                                            fontSize="xl"
-                                            mb="20px"
-                                            textAlign="center"
-                                        >
-                                            {author?.board || ""}
-                                        </Text>
-                                        <Link
-                                            fontSize="xl"
-                                            mb="20px"
-                                            textAlign="center"
-                                            // color="#01bda1"
-                                            color={highlightColor}
-                                            className="link"
-                                            href={
-                                                "https://cafe.naver.com/steamindiegame/" +
-                                                data?.id[0]
-                                            }
-                                            isExternal
-                                        >
-                                            {author?.title}
-                                            <ExternalLinkIcon mx="2px" />
-                                        </Link>
-                                    </Skeleton>
-                                    <Skeleton isLoaded={!isSearchingAuthor}>
-                                        <AuthorProfileCard
-                                            writerURL={
-                                                author?.writerURL ||
-                                                data?.author_profile
-                                            }
-                                            profURL={author?.profURL}
-                                            nickname={
-                                                author?.nickname ||
-                                                data?.author_nickname
-                                            }
-                                            board={author?.uploadText}
-                                        />
-                                    </Skeleton>
-                                </div>
-                            )}
-                            <Button
-                                onClick={resetFiles}
-                                colorScheme="blue"
-                                w={140}
-                            >
-                                다른 이미지 검색
-                            </Button>
-                        </div>
-                    )} */}
                 </div>
             )}
         </div>
