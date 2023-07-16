@@ -26,7 +26,7 @@ const UpdateBoard = ({ last_update_info, color }) => {
                 textTransform="uppercase"
                 color={color}
             >
-                각 게시판이 현재 아래 게시글까지 반영되었어요!
+                현재 아래 게시글까지 반영되었어요!
             </Heading>
             {last_update_info.map((update, index) => (
                 <UpdateCard key={index} update={update} />
