@@ -111,6 +111,13 @@ const updateLog = [
         content: "멜론 주간 인기상 음원점수 합산 최종 5위!!!",
         directLink: "",
     },
+    {
+        id: 17,
+        date: "2023.07.17",
+        content:
+            "(이세돌 -> 왁타버스) 팬아트 출처찾기로 확장되었습니다(왁굳형, 이세돌, 고멤, 고멤아카데미 팬아트 검색이 가능합니다!!!",
+        directLink: "",
+    },
 ];
 
 export default updateLog;

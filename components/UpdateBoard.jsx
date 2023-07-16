@@ -26,13 +26,13 @@ const UpdateBoard = ({ last_update_info, color }) => {
                 textTransform="uppercase"
                 color={color}
             >
-                게시판 업데이트 현황
+                각 게시판이 현재 아래 게시글까지 반영되었어요!
             </Heading>
             {last_update_info.map((update, index) => (
                 <UpdateCard key={index} update={update} />
             ))}
             <Text whiteSpace="normal">
-                현재 명시된 게시판에서만 찾을 수 있습니다.
+                명시된 게시판에 있는 원본만 찾을 수 있습니다.
             </Text>
         </div>
     );
