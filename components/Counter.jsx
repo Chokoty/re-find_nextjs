@@ -6,7 +6,7 @@ import { lightMode, darkMode } from "@/styles/theme";
 import CountUp from "react-countup";
 import axios from "axios";
 
-const Counter = () => {
+const Counter = ({ data }) => {
     const [counter, setCounter] = useState(null);
     const [counterLoading, setCounterLoading] = useState(false);
     const badge = useColorModeValue(lightMode.badge, darkMode.badge);
@@ -29,8 +29,9 @@ const Counter = () => {
     };
 
     useEffect(() => {
+        console.log("!!!");
         fetchCounter();
-    }, []);
+    }, [data]);
 
     return (
         <div className="counter">

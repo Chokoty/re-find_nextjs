@@ -20,7 +20,7 @@ import SearchResult from "../components/SearchResult";
 
 // import EventModal from "../components/events/EventModal";
 // import MelonVoteModal from "../components/events/MelonVoteModal";
-// import Description from "../components/Description";
+import Description from "../components/Description";
 // import AuthorProfileCard from "../components/AuthorProfileCard";
 
 import { useStore } from "../store/store";
@@ -248,7 +248,7 @@ export default function Home({ last_update_info }) {
         >
             {/*상단 타이틀 */}
             {/* {congrat && <EventModal />} */}
-            <Counter />
+            <Counter data={data} />
             <Title />
             <p className="title-sub">왁타버스 팬아트 출처 찾기</p>
             <br />
