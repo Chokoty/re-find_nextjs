@@ -19,6 +19,7 @@ const Counter = () => {
                 "https://isd-fanart.reruru.com/counter"
             );
             const counter = response.data;
+            console.log(counter);
             setCounter(counter);
             setCounterLoading(false);
         } catch (err) {

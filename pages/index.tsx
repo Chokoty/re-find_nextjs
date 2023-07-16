@@ -2,17 +2,11 @@ import React, { useState, useEffect, useRef, use } from "react";
 import axios from "axios";
 
 import {
-    Text,
-    Skeleton,
-    Button,
-    Heading,
-    Link,
     useColorMode,
     useColorModeValue,
     useDisclosure,
     useToast,
 } from "@chakra-ui/react";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 import { lightMode, darkMode } from "@/styles/theme";
 
@@ -20,13 +14,14 @@ import Title from "../components/Title";
 import Loading from "../components/Loading";
 import Preview from "../components/Preview";
 import Counter from "../components/Counter";
-import EventModal from "../components/events/EventModal";
 import UpdateBoard from "../components/UpdateBoard";
-import Description from "../components/Description";
 import UploadImages from "../components/UploadImages";
-// import MelonVoteModal from "../components/events/MelonVoteModal";
-import AuthorProfileCard from "../components/AuthorProfileCard";
 import SearchResult from "../components/SearchResult";
+
+// import EventModal from "../components/events/EventModal";
+// import MelonVoteModal from "../components/events/MelonVoteModal";
+// import Description from "../components/Description";
+// import AuthorProfileCard from "../components/AuthorProfileCard";
 
 import { useStore } from "../store/store";
 
