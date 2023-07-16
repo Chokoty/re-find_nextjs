@@ -15,7 +15,8 @@ const Title = () => {
         <div className="title">
             <Link href="/" className="content">
                 <Heading className="title-main">
-                    <span style={{ color: highlightColor }}>RE:</span>
+                    <span style={{ color: highlightColor }}>RE</span>
+                    <div style={{ color: highlightColor }}>:</div>
                     FIND
                 </Heading>
             </Link>
