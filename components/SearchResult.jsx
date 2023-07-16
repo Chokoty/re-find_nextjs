@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
     Text,
     Skeleton,
@@ -14,11 +14,22 @@ import { lightMode, darkMode } from "@/styles/theme";
 import AuthorProfileCard from "../components/AuthorProfileCard";
 import Description from "../components/Description";
 
-const SearchResult = (searchTime, data, ids, loading2, author, resetFiles) => {
+const SearchResult = ({
+    searchTime,
+    data,
+    ids,
+    isSearchingAuthor,
+    author,
+    resetFiles,
+}) => {
     const highlightColor = useColorModeValue(
         lightMode.highlight,
         darkMode.highlight
     );
+
+    useEffect(() => {
+        console.log(data);
+    }, []);
 
     return (
         <div className="result">
@@ -51,7 +62,7 @@ const SearchResult = (searchTime, data, ids, loading2, author, resetFiles) => {
                         </Link>
                     ))}
 
-                    <Skeleton isLoaded={!loading2} mt="20px" mb="20px">
+                    <Skeleton isLoaded={!isSearchingAuthor} mt="20px" mb="20px">
                         <Text fontSize="xl" mb="20px" textAlign="center">
                             {author?.board || ""}
                         </Text>
@@ -64,7 +75,7 @@ const SearchResult = (searchTime, data, ids, loading2, author, resetFiles) => {
                             className="link"
                             href={
                                 "https://cafe.naver.com/steamindiegame/" +
-                                data?.id[0]
+                                data?.id?.[0]
                             }
                             isExternal
                         >
@@ -72,7 +83,7 @@ const SearchResult = (searchTime, data, ids, loading2, author, resetFiles) => {
                             <ExternalLinkIcon mx="2px" />
                         </Link>
                     </Skeleton>
-                    <Skeleton isLoaded={!loading2}>
+                    <Skeleton isLoaded={!isSearchingAuthor}>
                         <AuthorProfileCard
                             writerURL={
                                 author?.writerURL || data?.author_profile
