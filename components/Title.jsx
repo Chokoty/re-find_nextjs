@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Heading, useColorModeValue } from "@chakra-ui/react";
 
 import { lightMode, darkMode } from "@/styles/theme";
+import Image from "next/image";
 
 const Title = () => {
     const highlightColor = useColorModeValue(
@@ -18,6 +19,13 @@ const Title = () => {
                     <span style={{ color: highlightColor }}>RE:</span>
                     FIND
                 </Heading>
+                {/* <Image
+                    src="/refind-title.png"
+                    alt="refind-title"
+                    class="logo-img"
+                    width={400}
+                    height={100}
+                /> */}
             </Link>
         </div>
     );

@@ -55,14 +55,49 @@
             }
         }
     }
-    .title-sub {
-        font-size: $title-sub-size;
 
+    .sub-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .bg-crop {
+            position: relative;
+            width: $title-img-width; // 자를 사이즈를 명시해준다.
+            height: $title-img-height;
+            overflow: hidden;
+            // border: 1px solid #695030;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(105, 80, 48, 0.2);
+
+            .bg-wakdoo {
+                position: absolute; // 포지션을 주고,
+                // top: 100; // 보이기 원하는 위치를 지정
+                // left: 0;
+                max-height: initial;
+                margin-top: -35%;
+                width: 480px; // 오리지널 사이즈
+                // height: 703px;
+            }
+
+            @include tablet {
+                width: $title-img-width / 1.2;
+                height: $title-img-height / 1.2;
+            }
+            @include mobile {
+                width: $title-img-width / 1.8; //1.5;
+                height: $title-img-height / 1.8;
+            }
+        }
+    }
+    .title-text {
+        font-size: $title-sub-size;
+        font-weight: 700;
         @include tablet {
             font-size: $title-sub-size / 1.2;
         }
         @include mobile {
-            font-size: $title-sub-size / 1.5;
+            font-size: $title-sub-size / 1.5; //1.5;
         }
     }
 

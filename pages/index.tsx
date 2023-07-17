@@ -11,6 +11,7 @@ import {
 import { lightMode, darkMode } from "@/styles/theme";
 
 import Title from "../components/Title";
+import SubTitle from "../components/SubTitle";
 import Loading from "../components/Loading";
 import Preview from "../components/Preview";
 import Counter from "../components/Counter";
@@ -249,7 +250,8 @@ export default function Home({ last_update_info }) {
             {/*상단 타이틀 */}
             <Counter data={data} />
             <Title />
-            <p className="title-sub">왁타버스 팬아트 출처 찾기</p>
+            <SubTitle />
+
             <br />
 
             {/*이벤트 */}
@@ -290,11 +292,12 @@ export default function Home({ last_update_info }) {
 
 export async function getServerSideProps() {
     try {
+        const timeout = 5000; // 5초
         // const counter = axios
         //     .get("https://isd-fanart.reruru.com/counter")
         //     .then((res) => res.data);
         const last_update_info = axios
-            .get("https://re-find.reruru.com/last_update_info")
+            .get("https://re-find.reruru.com/last_update_info", { timeout })
             .then((res) => res.data);
 
         const ret = await Promise.all([
