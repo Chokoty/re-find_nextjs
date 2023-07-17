@@ -45,30 +45,30 @@ const NoticeBanner = () => {
                 >
                     업데이트
                 </Badge>
-                <div>
-                    {lastUpdateLog?.directLink == "" ? (
-                        <NextLink href="/notice" className="notice_banner_link">
-                            {lastUpdateLog.date +
-                                " - " +
-                                lastUpdateLog.content.slice(0, 40)}
-                        </NextLink>
-                    ) : (
-                        <NextLink href="/notice" className="notice_banner_link">
-                            {lastUpdateLog.date +
-                                " - " +
-                                lastUpdateLog.content.slice(0, 40)}
-                        </NextLink>
-                        //      <Link
-                        //      isExternal
-                        //      href={lastUpdateLog.directLink}
-                        //      className="notice_banner_link"
-                        //  >
-                        //      {lastUpdateLog.date +
-                        //          " - " +
-                        //          lastUpdateLog.content.slice(0, 50)}
-                        //  </Link>
-                    )}
-                </div>
+                {/* <div> */}
+                {lastUpdateLog?.directLink == "" ? (
+                    <NextLink href="/notice" className="notice_banner_link">
+                        {lastUpdateLog.date +
+                            " - " +
+                            lastUpdateLog.content.slice(0, 40)}
+                    </NextLink>
+                ) : (
+                    <NextLink href="/notice" className="notice_banner_link">
+                        {lastUpdateLog.date +
+                            " - " +
+                            lastUpdateLog.content.slice(0, 40)}
+                    </NextLink>
+                    //      <Link
+                    //      isExternal
+                    //      href={lastUpdateLog.directLink}
+                    //      className="notice_banner_link"
+                    //  >
+                    //      {lastUpdateLog.date +
+                    //          " - " +
+                    //          lastUpdateLog.content.slice(0, 50)}
+                    //  </Link>
+                )}
+                {/* </div> */}
             </Box>
         </Box>
     );
