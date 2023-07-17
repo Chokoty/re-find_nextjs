@@ -212,9 +212,26 @@ footer {
     padding: 0 2px;
     background-color: #ef5a9a;
     text-decoration: underline;
-
+    .moving-div {
+        position: relative;
+        animation: moveBanner 10s linear infinite;
+        @keyframes moveBanner {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(-100%);
+            }
+        }
+    }
     .notice_banner_link {
-        text-wrap: balance;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // text-wrap: balance;
+        word-break: break-all;
+        white-space: nowrap;
+        width: 100px;
+        height: 20px;
         &:hover {
             font-weight: bold;
             // text-decoration: underline;
