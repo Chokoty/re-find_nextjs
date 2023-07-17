@@ -29,7 +29,6 @@ const Counter = ({ data }) => {
     };
 
     useEffect(() => {
-        console.log("!!!");
         fetchCounter();
     }, [data]);
 

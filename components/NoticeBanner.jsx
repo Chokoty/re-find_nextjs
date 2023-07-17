@@ -5,7 +5,6 @@ import { Link, Badge, Box, useColorModeValue } from "@chakra-ui/react";
 
 import { lightMode, darkMode } from "@/styles/theme";
 import updateLog from "../data/updateLog";
-// import Ticker from "nice-react-ticker";
 
 const NoticeBanner = () => {
     const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -36,6 +35,7 @@ const NoticeBanner = () => {
                 width="80%"
                 textAlign="center"
                 maxW="600px"
+                display="flex"
             >
                 <Badge
                     variant="outline"
@@ -43,19 +43,20 @@ const NoticeBanner = () => {
                     fontSize="1em"
                     mr="5px"
                 >
-                    업데이트 공지
+                    업데이트
                 </Badge>
+                {/* <div> */}
                 {lastUpdateLog?.directLink == "" ? (
                     <NextLink href="/notice" className="notice_banner_link">
                         {lastUpdateLog.date +
                             " - " +
-                            lastUpdateLog.content.slice(0, 50)}
+                            lastUpdateLog.content.slice(0, 40)}
                     </NextLink>
                 ) : (
                     <NextLink href="/notice" className="notice_banner_link">
                         {lastUpdateLog.date +
                             " - " +
-                            lastUpdateLog.content.slice(0, 50)}
+                            lastUpdateLog.content.slice(0, 40)}
                     </NextLink>
                     //      <Link
                     //      isExternal
@@ -67,6 +68,7 @@ const NoticeBanner = () => {
                     //          lastUpdateLog.content.slice(0, 50)}
                     //  </Link>
                 )}
+                {/* </div> */}
             </Box>
         </Box>
     );

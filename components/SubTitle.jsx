@@ -21,10 +21,10 @@ const SubTitle = () => {
                 <Image
                     src="/real-wakgood.jpg"
                     alt="실사왁굳"
-                    class="bg-wakdoo"
+                    className="bg-wakdoo"
                     width={100}
                     height={100}
-                    placeholder="blur"
+                    // placeholder="blur"
                 />
             </div>
             <p className="title-text">출처 찾기</p>
