@@ -292,7 +292,7 @@ export default function Home({ last_update_info }) {
 
 export async function getServerSideProps() {
     try {
-        const timeout = 5000; // 5초
+        const timeout = 3000; // 3초
         // const counter = axios
         //     .get("https://isd-fanart.reruru.com/counter")
         //     .then((res) => res.data);
