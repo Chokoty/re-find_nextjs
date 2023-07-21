@@ -14,11 +14,13 @@ const Counter = ({ data }) => {
     // counter 가져오기
     const fetchCounter = async () => {
         try {
+            const timeout = 2000; // 2초
             setCounterLoading(true);
             const response = await axios.get(
-                "https://isd-fanart.reruru.com/counter"
+                "https://isd-fanart.reruru.com/counter",
+                { timeout }
             );
-            const counter = response.data;
+            const counter = response?.data;
             console.log(counter);
             setCounter(counter);
             setCounterLoading(false);
