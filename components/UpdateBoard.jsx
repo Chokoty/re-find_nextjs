@@ -28,7 +28,7 @@ const UpdateBoard = ({ last_update_info, color }) => {
             >
                 현재 아래 게시글까지 반영되었어요!
             </Heading>
-            {last_update_info.map((update, index) => (
+            {last_update_info?.map((update, index) => (
                 <UpdateCard key={index} update={update} />
             ))}
             <Text whiteSpace="normal">
