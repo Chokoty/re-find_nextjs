@@ -109,7 +109,8 @@ export default function Home({ last_update_info }) {
         // if (files.length > 0 && counter !== null) {
         //     fetchOriginalUrl();
         // }
-        if (uploadedfiles.length > 0) fetchOriginalUrl();
+        if (uploadedfiles === null) fetchOriginalUrl();
+        // if (uploadedfiles.length > 0) fetchOriginalUrl();
     }, [uploadedfiles]);
 
     // 이미지 검색하기
