@@ -19,7 +19,7 @@ const UploadImages = ({ getDataFromChild }) => {
             // maxSize: 1048576, // 1MB
         },
         onDrop: (acceptedFiles) => {
-            // console.log(acceptedFiles);
+            console.log(acceptedFiles);
             getDataFromChild(
                 acceptedFiles.map((file) =>
                     Object.assign(file, {
