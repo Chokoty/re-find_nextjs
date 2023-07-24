@@ -19,12 +19,12 @@ import UpdateBoard from "../components/UpdateBoard";
 import UploadImages from "../components/UploadImages";
 import SearchResult from "../components/SearchResult";
 
+import { useStore } from "../store/store";
+
 // import EventModal from "../components/events/EventModal";
 // import MelonVoteModal from "../components/events/MelonVoteModal";
 // import Description from "../components/Description";
 // import AuthorProfileCard from "../components/AuthorProfileCard";
-
-import { useStore } from "../store/store";
 
 export default function Home({ last_update_info }) {
     const setIsOpen = useStore((state) => state.setIsOpen);
@@ -75,7 +75,6 @@ export default function Home({ last_update_info }) {
         setIsOpen(false);
         // fetchCounter();
         // testProfile();
-        console.log(last_update_info);
     }, []);
 
     // 검색시간 토스트
@@ -88,30 +87,28 @@ export default function Home({ last_update_info }) {
             });
         }
     }, [data, searchTime]);
-    // useEffect(() => {
-    //     if (uploadedfiles.length > 0) {
-    //         toast({
-    //             title: `Searching Time: ${searchTime / 1000}s`,
-    //             status: `${data === null ? "error" : "success"}`,
-    //             isClosable: true,
-    //         });
-    //     }
-    // }, [data, searchTime]);
+    useEffect(() => {
+        if (uploadedfiles.length > 0) {
+            toast({
+                title: `Searching Time: ${searchTime / 1000}s`,
+                status: `${data === null ? "error" : "success"}`,
+                isClosable: true,
+            });
+        }
+    }, [data, searchTime]);
 
     // 이미지 검색 상태 토스트
     useEffect(() => {
-        // if (files.length > 0 && counter === null) {
+        // if (uploadedfiles.length > 0 && counter === null) {
         //     toast({
         //         title: `현재 이미지 검색을 이용할 수 없습니다.`,
         //         status: `error`,
         //         isClosable: true,
         //     });
         // }
-        // if (files.length > 0 && counter !== null) {
-        //     fetchOriginalUrl();
-        // }
-        if (uploadedfiles === null) fetchOriginalUrl();
-        // if (uploadedfiles.length > 0) fetchOriginalUrl();
+        if (uploadedfiles.length > 0) {
+            fetchOriginalUrl();
+        }
     }, [uploadedfiles]);
 
     // 이미지 검색하기
