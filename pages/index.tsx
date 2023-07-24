@@ -99,13 +99,13 @@ export default function Home({ last_update_info }) {
 
     // 이미지 검색 상태 토스트
     useEffect(() => {
-        if (uploadedfiles.length > 0 && counter === null) {
-            toast({
-                title: `현재 이미지 검색을 이용할 수 없습니다.`,
-                status: `error`,
-                isClosable: true,
-            });
-        }
+        // if (uploadedfiles.length > 0 && counter === null) {
+        //     toast({
+        //         title: `현재 이미지 검색을 이용할 수 없습니다.`,
+        //         status: `error`,
+        //         isClosable: true,
+        //     });
+        // }
         if (uploadedfiles.length > 0) {
             fetchOriginalUrl();
         }
