@@ -75,6 +75,7 @@ export default function Home({ last_update_info }) {
         setIsOpen(false);
         // fetchCounter();
         // testProfile();
+        console.log(last_update_info);
     }, []);
 
     // 검색시간 토스트
