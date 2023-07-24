@@ -80,7 +80,7 @@ export default function Home({ last_update_info }) {
 
     // 검색시간 토스트
     useEffect(() => {
-        if (uploadedfiles.length > 0) {
+        if (uploadedfiles === null) {
             toast({
                 title: `Searching Time: ${searchTime / 1000}s`,
                 status: `${data === null ? "error" : "success"}`,
@@ -88,6 +88,15 @@ export default function Home({ last_update_info }) {
             });
         }
     }, [data, searchTime]);
+    // useEffect(() => {
+    //     if (uploadedfiles.length > 0) {
+    //         toast({
+    //             title: `Searching Time: ${searchTime / 1000}s`,
+    //             status: `${data === null ? "error" : "success"}`,
+    //             isClosable: true,
+    //         });
+    //     }
+    // }, [data, searchTime]);
 
     // 이미지 검색 상태 토스트
     useEffect(() => {
@@ -101,7 +110,8 @@ export default function Home({ last_update_info }) {
         // if (files.length > 0 && counter !== null) {
         //     fetchOriginalUrl();
         // }
-        if (uploadedfiles.length > 0) fetchOriginalUrl();
+        if (uploadedfiles === null) fetchOriginalUrl();
+        // if (uploadedfiles.length > 0) fetchOriginalUrl();
     }, [uploadedfiles]);
 
     // 이미지 검색하기
