@@ -106,7 +106,7 @@ export default function Home({ last_update_info }) {
                 isClosable: true,
             });
         }
-        if (uploadedfiles.length > 0 && counter !== null) {
+        if (uploadedfiles.length > 0) {
             fetchOriginalUrl();
         }
     }, [uploadedfiles]);
