@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Card,
     CardBody,
@@ -18,6 +18,23 @@ const UpdateCard = ({ update }) => {
         darkMode.highlight
     );
 
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
+    const url = isMobile
+        ? data.find((item) => item.board === update.board)?.mlink
+        : data.find((item) => item.board === update.board)?.link;
+
     return (
         <Card width="100%">
             <CardBody>
@@ -25,10 +42,7 @@ const UpdateCard = ({ update }) => {
                     <Link
                         color={highlightColor}
                         className="link"
-                        href={
-                            data.find((item) => item.board === update.board)
-                                ?.link
-                        }
+                        href={url}
                         isExternal
                     >
                         {
