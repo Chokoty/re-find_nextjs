@@ -18,7 +18,7 @@ const UpdateCard = ({ update }) => {
         darkMode.highlight
     );
 
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
