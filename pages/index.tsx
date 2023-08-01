@@ -18,6 +18,7 @@ import Counter from "../components/Counter";
 import UpdateBoard from "../components/UpdateBoard";
 import UploadImages from "../components/UploadImages";
 import SearchResult from "../components/SearchResult";
+import RandomFanart from "../components/RandomFanart";
 
 import { useStore } from "../store/store";
 
@@ -261,7 +262,7 @@ export default function Home({ last_update_info }) {
             <SubTitle />
 
             <br />
-
+            <RandomFanart />
             {/*이벤트 */}
             {/* {congrat && <EventModal />} */}
             {/* <MelonVoteModal /> */}
