@@ -7,7 +7,8 @@ const RandomFanart = () => {
     const [fanart, setFanart] = useState(null);
 
     useEffect(() => {
-        // fetchRandomFanart();
+        console.log("RandomFanart");
+        fetchRandomFanart();
     }, []);
 
     const fetchRandomFanart = async () => {
@@ -18,18 +19,8 @@ const RandomFanart = () => {
         } catch (error) {
             if (error.response && error.response.status === 500) {
                 console.log("Server Error: ", error.response.status);
-                toast({
-                    title: `현재 서버와 연결이 원활하지 않습니다. 잠시 후 다시 시도해주세요.`,
-                    status: `error`,
-                    isClosable: true,
-                });
             } else if (error.code == "ERR_NETWORK") {
                 console.log("Network Error: ", error.code);
-                toast({
-                    title: `${error.code}`,
-                    status: `error`,
-                    isClosable: true,
-                });
             } else {
                 console.log(error);
             }

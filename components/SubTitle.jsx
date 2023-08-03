@@ -14,6 +14,12 @@ const SubTitle = () => {
 
     return (
         <div className="sub-title">
+            {/* <p className="title-text" style={{ color: "#01bda1" }}>
+                왁타버스
+            </p>
+            <p className="title-text" style={{ color: "#ef5a9a" }}>
+                팬아트
+            </p> */}
             <p className="title-text" style={{ color: highlightColor }}>
                 왁타버스 팬아트
             </p>
