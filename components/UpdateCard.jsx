@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from "react";
+import NextImage from "next/image";
+
 import {
     Card,
     CardBody,
     Heading,
     Text,
     Link,
+    Image,
+    Flex,
+    Square,
     useColorModeValue,
+    Center,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
@@ -19,8 +25,37 @@ const UpdateCard = ({ update }) => {
     );
 
     const [isMobile, setIsMobile] = useState(true);
+    const [uploadTime, setUploadTime] = useState("");
+
 
     useEffect(() => {
+        console.log(update);
+
+        const now = new Date();
+        const uploadedDate = new Date(update.date);
+        const timeDifference = now.getTime() - uploadedDate.getTime();
+
+        const secondsDifference = Math.floor(timeDifference / 1000);
+        const minutesDifference = Math.floor(secondsDifference / 60);
+        const hoursDifference = Math.floor(minutesDifference / 60);
+        const daysDifference = Math.floor(hoursDifference / 24);
+        const monthsDifference = Math.floor(daysDifference / 30);
+        const yearsDifference = Math.floor(daysDifference / 365);
+
+        let uploadText = "";
+
+        if (monthsDifference >= 1) {
+            uploadText = `${monthsDifference}달 전`;
+        } else if (daysDifference >= 1) {
+            uploadText = `${daysDifference}일 전 `;
+        } else if (hoursDifference >= 1) {
+            uploadText = `${hoursDifference}시간 전 `;
+        } else if (minutesDifference >= 1) {
+            uploadText = `${minutesDifference}분 전 `;
+        }
+        // console.log(uploadText);
+        setUploadTime(uploadText);
+
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768);
         };
@@ -36,7 +71,32 @@ const UpdateCard = ({ update }) => {
         : data.find((item) => item.board === update.board)?.link;
 
     return (
-        <Card width="100%">
+        <Card
+            width="100%"
+            style={{
+                height: "100px",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                placeItems: "center",
+                paddingLeft: "10px",
+            }}
+        >
+            <NextImage
+                width={100}
+                height={100}
+                style={{
+                    borderRadius: "0.5rem",
+                    objectFit: "cover",
+                    width: "80px",
+                    height: "80px",
+                }}
+                src={update.info.img_url}
+                alt={update.info.title}
+                // fallbackSrc="https://via.placeholder.com/80"
+            />
+
             <CardBody>
                 <Heading as="h1" size="md" textTransform="uppercase" mb="8px">
                     <Link
@@ -49,12 +109,11 @@ const UpdateCard = ({ update }) => {
                             data.find((item) => item.board === update.board)
                                 ?.state
                         }
-                        &nbsp;
+
                         {update.board}
                         <ExternalLinkIcon mx="2px" />
                     </Link>
                 </Heading>
-                <Text fontSize="1em">{update.date}</Text>
                 <Text fontSize="1em">
                     게시글 id:
                     <Link
@@ -69,6 +128,7 @@ const UpdateCard = ({ update }) => {
                         <ExternalLinkIcon mx="2px" />
                     </Link>
                 </Text>
+                <Text fontSize="1em">{uploadTime}</Text>
             </CardBody>
         </Card>
     );

@@ -125,6 +125,13 @@ const updateLog = [
             "서버 오류로 인해 사이트가 일시적으로 접속이 안되는 현상이 있었습니다. 현재는 복구되었습니다.",
         directLink: "",
     },
+    {
+        id: 19,
+        date: "2023.08.03",
+        content:
+            "카페 공지사항, 이세돌 작업후기, 고멤 작업후기 게시판에 있는 이미지도 검색이 가능합니다.",
+        directLink: "",
+    },
 ];
 
 export default updateLog;
