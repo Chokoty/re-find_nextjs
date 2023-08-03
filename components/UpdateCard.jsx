@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import NextImage from "next/image";
+
 import {
     Card,
     CardBody,
@@ -50,7 +52,7 @@ const UpdateCard = ({ update }) => {
         } else if (minutesDifference >= 1) {
             uploadText = `${minutesDifference}분 전 `;
         }
-        console.log(uploadText);
+        // console.log(uploadText);
         setUploadTime(uploadText);
 
         const handleResize = () => {
@@ -80,15 +82,18 @@ const UpdateCard = ({ update }) => {
                 paddingLeft: "10px",
             }}
         >
-            <Image
+            <NextImage
+                width={100}
+                height={100}
                 style={{
                     borderRadius: "0.5rem",
+                    objectFit: "cover",
+                    width: "80px",
+                    height: "80px",
                 }}
-                objectFit="cover"
-                maxW={{ base: "100%", sm: "200px" }}
                 src={update.info.img_url}
                 alt={update.info.title}
-                fallbackSrc="https://via.placeholder.com/80"
+                // fallbackSrc="https://via.placeholder.com/80"
             />
 
             <CardBody>

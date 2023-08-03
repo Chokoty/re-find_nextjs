@@ -21,7 +21,7 @@ const Counter = ({ data }) => {
                 { timeout }
             );
             const counter = response?.data;
-            console.log(counter);
+            // console.log(counter);
             setCounter(counter);
             setCounterLoading(false);
         } catch (err) {

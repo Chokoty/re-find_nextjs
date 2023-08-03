@@ -14,6 +14,12 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
+                hostname: "dthumb-phinf.pstatic.net",
+                port: "",
+                pathname: "/**",
+            },
+            {
+                protocol: "https",
                 hostname: "cafeptthumb-phinf.pstatic.net",
                 port: "",
                 pathname: "/**",
