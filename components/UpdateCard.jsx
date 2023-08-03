@@ -24,8 +24,9 @@ const UpdateCard = ({ update }) => {
         darkMode.highlight
     );
 
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(true);
     const [uploadTime, setUploadTime] = useState("");
+
 
     useEffect(() => {
         console.log(update);
