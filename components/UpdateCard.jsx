@@ -91,7 +91,12 @@ const UpdateCard = ({ update }) => {
                     width: "80px",
                     height: "80px",
                 }}
-                src={update.info.img_url}
+                src={
+                    data.find((item) => item.board === update.board)?.state ===
+                    "-관-"
+                        ? "/close.jpeg"
+                        : update.info.img_url
+                }
                 alt={update.info.title}
                 // fallbackSrc="https://via.placeholder.com/80"
             />
@@ -104,10 +109,10 @@ const UpdateCard = ({ update }) => {
                         href={url}
                         isExternal
                     >
-                        {
+                        {/* {
                             data.find((item) => item.board === update.board)
                                 ?.state
-                        }
+                        } */}
 
                         {update.board}
                         <ExternalLinkIcon mx="2px" />
