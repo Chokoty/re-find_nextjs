@@ -6,17 +6,16 @@ import axios from "axios";
 import { Text, Link, Button } from "@chakra-ui/react";
 import { FaDice } from "react-icons/fa";
 
-const RandomFanart = ({ fanart }) => {
+const RandomFanart = () => {
     const [isMobile, setIsMobile] = useState(true);
 
     const [fanart2, setFanart2] = useState(null);
     const [imgUrl, setImgUrl] = useState(null);
 
     useEffect(() => {
-        console.log("RandomFanart");
-        console.log(fanart);
-        setFanart2(fanart);
-        // fetchRandomFanart();
+        // console.log(fanart);
+        // setFanart2(fanart);
+        fetchRandomFanart();
 
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768);
