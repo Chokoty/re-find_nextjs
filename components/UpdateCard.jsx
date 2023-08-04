@@ -27,9 +27,8 @@ const UpdateCard = ({ update }) => {
     const [isMobile, setIsMobile] = useState(true);
     const [uploadTime, setUploadTime] = useState("");
 
-
     useEffect(() => {
-        console.log(update);
+        // console.log(update);
 
         const now = new Date();
         const uploadedDate = new Date(update.date);

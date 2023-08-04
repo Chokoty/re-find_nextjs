@@ -27,7 +27,7 @@ import { useStore } from "../store/store";
 // import Description from "../components/Description";
 // import AuthorProfileCard from "../components/AuthorProfileCard";
 
-export default function Home({ last_update_info }) {
+export default function Home({ last_update_info, random_fanart }) {
     const setIsOpen = useStore((state) => state.setIsOpen);
     const targetRef = useRef(null);
     const toast = useToast();
@@ -76,6 +76,7 @@ export default function Home({ last_update_info }) {
         setIsOpen(false);
         // fetchCounter();
         // testProfile();
+        // console.log(random_fanart);
     }, []);
 
     // 검색시간 토스트
@@ -262,7 +263,7 @@ export default function Home({ last_update_info }) {
             <SubTitle />
 
             <br />
-            <RandomFanart />
+            <RandomFanart fanart={random_fanart} />
             {/*이벤트 */}
             {/* {congrat && <EventModal />} */}
             {/* <MelonVoteModal /> */}
@@ -308,11 +309,15 @@ export async function getServerSideProps() {
         const last_update_info = axios
             .get("http://search.reruru.com:65432/last_update_info", { timeout })
             .then((res) => res.data);
+        const random_fanart = axios
+            .get("http://search.reruru.com:65432/rand", { timeout })
+            .then((res) => res.data);
 
         const ret = await Promise.all([
             // wow - 병렬로 요청해서 페이지 로딩 줄임!
             // counter,
             last_update_info,
+            random_fanart,
         ]);
 
         return {
@@ -320,6 +325,7 @@ export async function getServerSideProps() {
                 // counter: ret[0],
                 // last_update_info: ret[1],
                 last_update_info: ret[0],
+                random_fanart: ret[1],
             },
         };
     } catch (error) {
@@ -330,6 +336,7 @@ export async function getServerSideProps() {
             props: {
                 // counter: null,
                 last_update_info: null,
+                random_fanart: null,
             },
         };
     }

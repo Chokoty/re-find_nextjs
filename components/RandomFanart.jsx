@@ -1,20 +1,43 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import NextLink from "next/link";
 import axios from "axios";
 import { Link, Image } from "@chakra-ui/react";
 
-const RandomFanart = () => {
-    const [fanart, setFanart] = useState(null);
+const RandomFanart = ({ fanart }) => {
+    const [isMobile, setIsMobile] = useState(true);
+
+    const [fanart2, setFanart2] = useState(null);
+    const [imgUrl, setImgUrl] = useState(null);
 
     useEffect(() => {
         console.log("RandomFanart");
-        fetchRandomFanart();
+        console.log(fanart);
+        // fetchRandomFanart();
+
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        window.addEventListener("resize", handleResize);
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+
+        setImgUrl(fanart?.img_url);
     }, []);
+
+    useEffect(() => {
+        console.log(fanart2);
+    }, [fanart2]);
+    const url = isMobile
+        ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
+          fanart?.id +
+          "?fromList=true&menuId=344&tc=cafe_article_list"
+        : "https://cafe.naver.com/steamindiegame/" + fanart?.id;
 
     const fetchRandomFanart = async () => {
         try {
             const res = await axios.get("http://search.reruru.com:65432/rand");
-            console.log(res.data);
             setFanart(res.data);
         } catch (error) {
             if (error.response && error.response.status === 500) {
@@ -38,18 +61,14 @@ const RandomFanart = () => {
         display: "flex",
         height: "100%",
         borderRadius: "1rem",
+        objectFit: "cover",
+        width: "80%",
     };
 
     return (
         <div style={previewContainer} className="random-fanart">
             {fanart && (
-                <NextLink
-                    href={
-                        "https://cafe.naver.com/steamindiegame/11327255" +
-                        fanart?.id
-                    }
-                    passHref
-                >
+                <Link href={url} passHref isExternal>
                     <Image
                         style={img}
                         width={475}
@@ -57,7 +76,7 @@ const RandomFanart = () => {
                         src={fanart?.img_url}
                         alt="Description of the image"
                     />
-                </NextLink>
+                </Link>
             )}
         </div>
     );
