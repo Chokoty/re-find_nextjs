@@ -10,7 +10,6 @@ const RandomFanart = () => {
     const [isMobile, setIsMobile] = useState(true);
     const [fanart, setFanart] = useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
-    const [isLoaded, setIsLoaded] = React.useState(true);
     const [url, setUrl] = useState(null);
     const [imgData, setImgData] = useState(null);
     // const [isClient, setIsClient] = useState(false);
@@ -39,12 +38,13 @@ const RandomFanart = () => {
     //     : "https://cafe.naver.com/steamindiegame/" + fanart2?.id;
     const handleLoad = async () => {
         await new Promise((r) => setTimeout(r, 1000));
-        setIsLoaded(true);
+        // setIsLoaded(true);
+        setIsLoading(false);
     };
 
     const fetchRandomFanart = async () => {
         try {
-            setIsLoaded(false);
+            setIsLoading(true);
             const res = await axios.get("https://rerurureruru.com:8443/rand");
             setFanart(res.data);
             const url = isMobile
@@ -67,7 +67,7 @@ const RandomFanart = () => {
         }
         // 0.5초 대기
         // await new Promise((r) => setTimeout(r, 500));
-        setIsLoading(false);
+        // setIsLoading(false);
     };
 
     const previewContainer = {
@@ -115,7 +115,7 @@ const RandomFanart = () => {
                             // )}`}
                             src={fanart?.img_url}
                             alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
-                            // onLoad={handleLoad}
+                            onLoad={handleLoad}
                         />
                         <Text>랜덤 팬아트 게시글 id: {fanart?.id}</Text>
                     </Link>

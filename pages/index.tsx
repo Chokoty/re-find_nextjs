@@ -256,12 +256,11 @@ export default function Home({ last_update_info }) {
         >
             {/*상단 타이틀 */}
             <Counter data={data} />
-            <Title />
+            <Title onTitleClick={resetFiles} />
             <SubTitle />
 
             <br />
-            <RandomFanart />
-            {/* <RandomFanart fanart={random_fanart} /> */}
+
             {/*이벤트 */}
             {/* {congrat && <EventModal />} */}
             {/* <MelonVoteModal /> */}
@@ -269,6 +268,8 @@ export default function Home({ last_update_info }) {
             {/*업로드 전 */}
             {uploadedfiles.length === 0 && (
                 <>
+                    <RandomFanart />
+                    {/* <RandomFanart fanart={random_fanart} /> */}
                     <UploadImages getDataFromChild={getDataFromChild} />
                     <UpdateBoard
                         last_update_info={last_update_info}
