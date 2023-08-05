@@ -101,10 +101,8 @@ const RandomFanart = () => {
                             alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
                             onLoad={handleLoad}
                         />
-                        <Text>
-                            작가님 닉네임: {fanart?.nickname}, 랜덤 팬아트 id:{" "}
-                            {fanart?.id}
-                        </Text>
+                        <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+                        <Text>작가 nickname: {fanart?.nickname}</Text>
                     </Link>
                 )}
             </Skeleton>
