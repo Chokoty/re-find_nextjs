@@ -28,6 +28,7 @@ export default function Document() {
                     property="og:description"
                     content="이세계 아이돌 팬아트 출처 찾기"
                 />
+                <meta name="referrer" content="no-referrer" />
                 <link rel="manifest" href="/manifest.json" />
                 <link
                     rel="icon"

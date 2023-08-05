@@ -18,13 +18,12 @@ import Counter from "../components/Counter";
 import UpdateBoard from "../components/UpdateBoard";
 import UploadImages from "../components/UploadImages";
 import SearchResult from "../components/SearchResult";
+import RandomFanart from "../components/RandomFanart";
 
 import { useStore } from "../store/store";
 
 // import EventModal from "../components/events/EventModal";
 // import MelonVoteModal from "../components/events/MelonVoteModal";
-// import Description from "../components/Description";
-// import AuthorProfileCard from "../components/AuthorProfileCard";
 
 export default function Home({ last_update_info }) {
     const setIsOpen = useStore((state) => state.setIsOpen);
@@ -257,7 +256,7 @@ export default function Home({ last_update_info }) {
         >
             {/*상단 타이틀 */}
             <Counter data={data} />
-            <Title />
+            <Title onTitleClick={resetFiles} />
             <SubTitle />
 
             <br />
@@ -269,6 +268,8 @@ export default function Home({ last_update_info }) {
             {/*업로드 전 */}
             {uploadedfiles.length === 0 && (
                 <>
+                    <RandomFanart />
+                    {/* <RandomFanart fanart={random_fanart} /> */}
                     <UploadImages getDataFromChild={getDataFromChild} />
                     <UpdateBoard
                         last_update_info={last_update_info}
@@ -307,11 +308,15 @@ export async function getServerSideProps() {
         const last_update_info = axios
             .get("http://search.reruru.com:8443/last_update_info", { timeout })
             .then((res) => res.data);
+        // const random_fanart = axios
+        //     .get("https://rerurureruru.com:8443/rand", { timeout })
+        //     .then((res) => res.data);
 
         const ret = await Promise.all([
             // wow - 병렬로 요청해서 페이지 로딩 줄임!
             // counter,
             last_update_info,
+            // random_fanart,
         ]);
 
         return {
@@ -319,6 +324,7 @@ export async function getServerSideProps() {
                 // counter: ret[0],
                 // last_update_info: ret[1],
                 last_update_info: ret[0],
+                // random_fanart: ret[1],
             },
         };
     } catch (error) {
@@ -329,6 +335,7 @@ export async function getServerSideProps() {
             props: {
                 // counter: null,
                 last_update_info: null,
+                // random_fanart: null,
             },
         };
     }

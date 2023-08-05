@@ -29,6 +29,7 @@ const Preview = ({ files }) => {
                 onLoad={() => {
                     URL.revokeObjectURL(file.preview);
                 }}
+                unoptimized
             />
         </div>
     );

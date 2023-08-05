@@ -18,7 +18,7 @@ const OtherLayout = ({ children, title }) => {
                 mb="48px"
                 boxShadow="md"
             >
-                <Title />
+                <Title onTitleClick={null} />
             </Button>
             <Heading
                 className="page-title"

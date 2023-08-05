@@ -6,14 +6,18 @@ import { Heading, useColorModeValue } from "@chakra-ui/react";
 import { lightMode, darkMode } from "@/styles/theme";
 import Image from "next/image";
 
-const Title = () => {
+const Title = ({ onTitleClick }) => {
     const highlightColor = useColorModeValue(
         lightMode.highlight,
         darkMode.highlight
     );
 
+    const handleTitleClick = () => {
+        window.location.href = "/";
+    };
+
     return (
-        <div className="title">
+        <div className="title" onClick={onTitleClick}>
             <Link href="/" className="content">
                 <Heading className="title-main">
                     <span style={{ color: highlightColor }}>RE:</span>
@@ -25,6 +29,7 @@ const Title = () => {
                     class="logo-img"
                     width={400}
                     height={100}
+                    unoptimized
                 /> */}
             </Link>
         </div>

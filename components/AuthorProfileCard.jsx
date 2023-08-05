@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 
 import { Avatar, Text, Button, Highlight } from "@chakra-ui/react";
-import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 import { useColorModeValue } from "@chakra-ui/react";
 
 import { lightMode, darkMode } from "@/styles/theme";
@@ -59,6 +58,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
                         // width={96}
                         // height={96}
                         fill="object-fit"
+                        unoptimized
                     />
                 </div>
             )}
