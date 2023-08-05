@@ -49,6 +49,9 @@
             @include mobile {
                 font-size: $title-main-size / 1.5;
             }
+            @include small {
+                font-size: $title-main-size / 2;
+            }
 
             .highlight {
                 color: #ef5a9a;
@@ -88,6 +91,10 @@
                 width: $title-img-width / 1.8; //1.5;
                 height: $title-img-height / 1.8;
             }
+            @include small {
+                width: $title-img-width / 2;
+                height: $title-img-height / 2;
+            }
         }
     }
     .title-text {
@@ -98,6 +105,9 @@
         }
         @include mobile {
             font-size: $title-sub-size / 1.5; //1.5;
+        }
+        @include small {
+            font-size: $title-sub-size / 2;
         }
     }
 
@@ -122,6 +132,10 @@
         @include mobile {
             width: 80%;
             max-width: 360px;
+        }
+        @include small {
+            width: 90%;
+            max-width: 300px;
         }
 
         .dropzone {
@@ -294,5 +308,9 @@
     @include mobile {
         width: 90%;
         max-width: 360px;
+    }
+    @include small {
+        width: 90%;
+        max-width: 300px;
     }
 }
