@@ -122,7 +122,7 @@ const RandomFanart = () => {
                 <Skeleton isLoaded={!isLoading}>
                     {fanart && (
                         <Link
-                            href={url2 + urlId}
+                            href={url2 + fanart?.id}
                             passHref
                             isExternal
                             style={linkDiv}
