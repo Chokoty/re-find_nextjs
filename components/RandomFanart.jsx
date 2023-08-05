@@ -64,7 +64,7 @@ const RandomFanart = () => {
         }
         // 0.5초 대기
         // await new Promise((r) => setTimeout(r, 500));
-        // setIsLoading(false);
+        setIsLoading(false);
     };
 
     const previewContainer = {
@@ -107,7 +107,7 @@ const RandomFanart = () => {
                             height={475}
                             src={fanart?.img_url}
                             alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
-                            onLoad={handleLoad}
+                            // onLoad={handleLoad}
                             unoptimized
                         />
                         <Text>랜덤 팬아트 게시글 id: {fanart?.id}</Text>
