@@ -58,6 +58,8 @@ const UpdateCard = ({ update }) => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768);
         };
+        // 컴포넌트가 마운트될 때 화면 크기 체크
+        handleResize();
 
         window.addEventListener("resize", handleResize);
         return () => {
