@@ -71,6 +71,10 @@ const UpdateCard = ({ update }) => {
         ? data.find((item) => item.board === update.board)?.mlink
         : data.find((item) => item.board === update.board)?.link;
 
+    const url2 = isMobile
+        ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/"
+        : "https://cafe.naver.com/steamindiegame/";
+
     return (
         <Card
             width="100%"
@@ -126,9 +130,7 @@ const UpdateCard = ({ update }) => {
                     <Link
                         color={highlightColor}
                         className="link"
-                        href={
-                            "https://cafe.naver.com/steamindiegame/" + update.id
-                        }
+                        href={url2 + update.id}
                         isExternal
                     >
                         {update.id}
