@@ -105,16 +105,17 @@ const RandomFanart = () => {
                 {fanart && (
                     <Link href={url} passHref isExternal style={linkDiv}>
                         <NextImage
+                            unoptimized
+                            referrerpolicy="no-referrer"
                             style={img}
                             width={475}
                             height={475}
-                            src={`/api/getImage?imgUrl=${encodeURIComponent(
-                                fanart?.imgUrl
-                            )}`}
-                            // src={fanart?.img_url}
+                            // src={`/api/getImage?imgUrl=${encodeURIComponent(
+                            //     fanart?.imgUrl
+                            // )}`}
+                            src={fanart?.img_url}
                             alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
                             // onLoad={handleLoad}
-                            unoptimized
                         />
                         <Text>랜덤 팬아트 게시글 id: {fanart?.id}</Text>
                     </Link>
