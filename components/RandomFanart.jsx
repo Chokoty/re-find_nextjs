@@ -38,7 +38,7 @@ const RandomFanart = () => {
     //       "?fromList=true&menuId=344&tc=cafe_article_list"
     //     : "https://cafe.naver.com/steamindiegame/" + fanart2?.id;
     const handleLoad = async () => {
-        await new Promise((r) => setTimeout(r, 500));
+        await new Promise((r) => setTimeout(r, 700));
         setIsLoaded(true);
     };
 
