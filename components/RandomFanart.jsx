@@ -114,7 +114,7 @@ const RandomFanart = () => {
                 onClick={fetchRandomFanart}
             >
                 <FaDice boxSize={12} />
-                &nbsp; 팬아트 랜덤 가챠
+                &nbsp; 팬아트 랜덤가챠
             </Button>
         </div>
     );
