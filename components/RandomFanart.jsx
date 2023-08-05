@@ -41,7 +41,7 @@ const RandomFanart = () => {
     const fetchRandomFanart = async () => {
         try {
             const res = await axios.get("https://rerurureruru.com:8443/rand");
-            setFanart(res.data);
+            setFanart2(res.data);
         } catch (error) {
             if (error.response && error.response.status === 500) {
                 console.log("Server Error: ", error.response.status);
