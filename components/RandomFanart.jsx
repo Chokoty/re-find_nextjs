@@ -10,7 +10,7 @@ const RandomFanart = () => {
     const [isMobile, setIsMobile] = useState(true);
     const [fanart, setFanart] = useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
-    const [imgUrl, setImgUrl] = useState(null);
+    const [url, setUrl] = useState(null);
 
     // const [isClient, setIsClient] = useState(false);
 
