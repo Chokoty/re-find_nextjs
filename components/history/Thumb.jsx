@@ -47,6 +47,7 @@ const Thumb = ({ files }) => {
                         onLoad={() => {
                             URL.revokeObjectURL(file.preview);
                         }}
+                        unoptimized
                     />
                 </div>
             </div>

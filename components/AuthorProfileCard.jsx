@@ -58,6 +58,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
                         // width={96}
                         // height={96}
                         fill="object-fit"
+                        unoptimized
                     />
                 </div>
             )}

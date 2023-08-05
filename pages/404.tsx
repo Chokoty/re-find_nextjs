@@ -22,6 +22,7 @@ export default function Custom404() {
                 alt="404-박쥐단"
                 width={400}
                 height={400}
+                unoptimized
             />
         </div>
     );

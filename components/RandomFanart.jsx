@@ -12,7 +12,7 @@ const RandomFanart = () => {
     const [isLoading, setIsLoading] = React.useState(false);
     const [isLoaded, setIsLoaded] = React.useState(true);
     const [url, setUrl] = useState(null);
-
+    const [imgData, setImgData] = useState(null);
     // const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
@@ -53,6 +53,9 @@ const RandomFanart = () => {
                   "?fromList=true&menuId=344&tc=cafe_article_list"
                 : "https://cafe.naver.com/steamindiegame/" + res.data?.id;
             setUrl(url);
+
+            // const imgRes = await axios.get(`/api/getImage?imgUrl=${imgUrl}`);
+            // setImgData(imgRes.data);
         } catch (error) {
             if (error.response && error.response.status === 500) {
                 console.log("Server Error: ", error.response.status);
@@ -105,7 +108,10 @@ const RandomFanart = () => {
                             style={img}
                             width={475}
                             height={475}
-                            src={fanart?.img_url}
+                            src={`/api/getImage?imgUrl=${encodeURIComponent(
+                                fanart?.imgUrl
+                            )}`}
+                            // src={fanart?.img_url}
                             alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
                             // onLoad={handleLoad}
                             unoptimized

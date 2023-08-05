@@ -25,6 +25,7 @@ const Title = () => {
                     class="logo-img"
                     width={400}
                     height={100}
+                    unoptimized
                 /> */}
             </Link>
         </div>
