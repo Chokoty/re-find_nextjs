@@ -101,13 +101,14 @@ const RandomFanart = () => {
             <Skeleton isLoaded={isLoaded}>
                 {fanart && (
                     <Link href={url} passHref isExternal style={linkDiv}>
-                        <img
+                        <NextImage
                             style={img}
                             width={475}
                             height={475}
                             src={fanart?.img_url}
                             alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
                             onLoad={handleLoad}
+                            unoptimized
                         />
                         <Text>랜덤 팬아트 게시글 id: {fanart?.id}</Text>
                     </Link>
