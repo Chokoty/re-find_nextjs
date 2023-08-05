@@ -3,18 +3,18 @@ import NextLink from "next/link";
 import NextImage from "next/image";
 
 import axios from "axios";
-import { Text, Link, Button } from "@chakra-ui/react";
+import { Text, Link, Button, Skeleton } from "@chakra-ui/react";
 import { FaDice } from "react-icons/fa";
 
 const RandomFanart = () => {
     const [isMobile, setIsMobile] = useState(true);
-
-    const [fanart2, setFanart2] = useState(null);
+    const [fanart, setFanart] = useState(null);
+    const [isLoading, setIsLoading] = React.useState(false);
     const [imgUrl, setImgUrl] = useState(null);
 
+    // const [isClient, setIsClient] = useState(false);
+
     useEffect(() => {
-        // console.log(fanart);
-        // setFanart2(fanart);
         fetchRandomFanart();
 
         const handleResize = () => {
@@ -25,23 +25,29 @@ const RandomFanart = () => {
         return () => {
             window.removeEventListener("resize", handleResize);
         };
-
-        setImgUrl(fanart?.img_url);
     }, []);
 
     useEffect(() => {
-        console.log(fanart2);
-    }, [fanart2]);
-    const url = isMobile
-        ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
-          fanart2?.id +
-          "?fromList=true&menuId=344&tc=cafe_article_list"
-        : "https://cafe.naver.com/steamindiegame/" + fanart2?.id;
+        console.log(fanart);
+    }, [fanart]);
+
+    // const url2 = isMobile
+    //     ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
+    //       fanart2?.id +
+    //       "?fromList=true&menuId=344&tc=cafe_article_list"
+    //     : "https://cafe.naver.com/steamindiegame/" + fanart2?.id;
 
     const fetchRandomFanart = async () => {
         try {
+            setIsLoading(true);
             const res = await axios.get("https://rerurureruru.com:8443/rand");
             setFanart2(res.data);
+            const url = isMobile
+                ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
+                  fanart?.id +
+                  "?fromList=true&menuId=344&tc=cafe_article_list"
+                : "https://cafe.naver.com/steamindiegame/" + fanart?.id;
+            setUrl(url);
         } catch (error) {
             if (error.response && error.response.status === 500) {
                 console.log("Server Error: ", error.response.status);
@@ -51,12 +57,14 @@ const RandomFanart = () => {
                 console.log(error);
             }
         }
+        setIsLoading(false);
     };
 
     const previewContainer = {
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "center",
+        alignItems: "center",
         flexWrap: "wrap",
         marginTop: 16,
         marginBottom: 30,
@@ -83,19 +91,34 @@ const RandomFanart = () => {
 
     return (
         <div style={previewContainer} className="random-fanart">
-            {fanart2 && (
-                <Link href={url} passHref isExternal style={linkDiv}>
-                    <NextImage
-                        style={img}
-                        width={475}
-                        height={475}
-                        src={fanart2?.img_url}
-                        alt="Description of the image"
-                    />
-                    <Text>랜덤 팬아트 게시글 id: {fanart2?.id}</Text>
-                </Link>
-            )}
+            <Skeleton isLoaded={!isLoading}>
+                {fanart && (
+                    <Link href={url} passHref isExternal style={linkDiv}>
+                        <NextImage
+                            style={img}
+                            width={475}
+                            height={475}
+                            src={fanart?.img_url}
+                            alt="Description of the image"
+                        />
+                        <Text>랜덤 팬아트 게시글 id: {fanart?.id}</Text>
+                    </Link>
+                )}
+                {/* {isClient === true && (
+                    <Link href={url2} passHref isExternal style={linkDiv}>
+                        <NextImage
+                            style={img}
+                            width={475}
+                            height={475}
+                            src={fanart2?.img_url}
+                            alt="Description of the image"
+                        />
+                        <Text>랜덤 팬아트 게시글 id: {fanart2?.id}</Text>
+                    </Link>
+                )} */}
+            </Skeleton>
             <Button
+                w="120px"
                 colorScheme="yellow"
                 size="md"
                 mt="1.5rem"

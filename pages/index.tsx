@@ -24,8 +24,6 @@ import { useStore } from "../store/store";
 
 // import EventModal from "../components/events/EventModal";
 // import MelonVoteModal from "../components/events/MelonVoteModal";
-// import Description from "../components/Description";
-// import AuthorProfileCard from "../components/AuthorProfileCard";
 
 export default function Home({ last_update_info }) {
     const setIsOpen = useStore((state) => state.setIsOpen);
@@ -76,7 +74,6 @@ export default function Home({ last_update_info }) {
         setIsOpen(false);
         // fetchCounter();
         // testProfile();
-        // console.log(random_fanart);
     }, []);
 
     // 검색시간 토스트
@@ -311,7 +308,7 @@ export async function getServerSideProps() {
             .get("http://search.reruru.com:8443/last_update_info", { timeout })
             .then((res) => res.data);
         // const random_fanart = axios
-        //     .get("http://search.reruru.com:65432/rand", { timeout })
+        //     .get("https://rerurureruru.com:8443/rand", { timeout })
         //     .then((res) => res.data);
 
         const ret = await Promise.all([
