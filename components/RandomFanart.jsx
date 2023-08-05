@@ -57,6 +57,8 @@ const RandomFanart = () => {
                 console.log(error);
             }
         }
+        // 0.5초 대기
+        await new Promise((r) => setTimeout(r, 500));
         setIsLoading(false);
     };
 
