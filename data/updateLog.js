@@ -132,6 +132,12 @@ const updateLog = [
             "카페 공지사항, 이세돌 작업후기, 고멤 작업후기 게시판에 있는 이미지도 검색이 가능합니다.",
         directLink: "",
     },
+    {
+        id: 20,
+        date: "2023.08.05",
+        content: "팬아트 랜덤 뽑기 기능이 추가되었습니다. 킹애!",
+        directLink: "",
+    },
 ];
 
 export default updateLog;

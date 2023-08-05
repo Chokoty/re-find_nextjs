@@ -11,8 +11,6 @@ const RandomFanart = () => {
     const [fanart, setFanart] = useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
     const [url, setUrl] = useState(null);
-    const [imgData, setImgData] = useState(null);
-    // const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
         fetchRandomFanart();
@@ -31,14 +29,8 @@ const RandomFanart = () => {
         console.log(fanart);
     }, [fanart]);
 
-    // const url2 = isMobile
-    //     ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
-    //       fanart2?.id +
-    //       "?fromList=true&menuId=344&tc=cafe_article_list"
-    //     : "https://cafe.naver.com/steamindiegame/" + fanart2?.id;
     const handleLoad = async () => {
         await new Promise((r) => setTimeout(r, 1000));
-        // setIsLoaded(true);
         setIsLoading(false);
     };
 
@@ -53,9 +45,6 @@ const RandomFanart = () => {
                   "?fromList=true&menuId=344&tc=cafe_article_list"
                 : "https://cafe.naver.com/steamindiegame/" + res.data?.id;
             setUrl(url);
-
-            // const imgRes = await axios.get(`/api/getImage?imgUrl=${imgUrl}`);
-            // setImgData(imgRes.data);
         } catch (error) {
             if (error.response && error.response.status === 500) {
                 console.log("Server Error: ", error.response.status);
@@ -96,7 +85,6 @@ const RandomFanart = () => {
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        // height: "50%",
     };
 
     return (
@@ -106,32 +94,16 @@ const RandomFanart = () => {
                     <Link href={url} passHref isExternal style={linkDiv}>
                         <NextImage
                             unoptimized
-                            // referrerpolicy="no-referrer"
                             style={img}
                             width={475}
                             height={475}
-                            // src={`/api/getImage?imgUrl=${encodeURIComponent(
-                            //     fanart?.imgUrl
-                            // )}`}
                             src={fanart?.img_url}
                             alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
                             onLoad={handleLoad}
                         />
-                        <Text>랜덤 팬아트 게시글 id: {fanart?.id}</Text>
+                        <Text>랜덤 팬아트 id: {fanart?.id}</Text>
                     </Link>
                 )}
-                {/* {isClient === true && (
-                    <Link href={url2} passHref isExternal style={linkDiv}>
-                        <NextImage
-                            style={img}
-                            width={475}
-                            height={475}
-                            src={fanart2?.img_url}
-                            alt="Description of the image"
-                        />
-                        <Text>랜덤 팬아트 게시글 id: {fanart2?.id}</Text>
-                    </Link>
-                )} */}
             </Skeleton>
             <Button
                 w="160px"
@@ -141,7 +113,7 @@ const RandomFanart = () => {
                 onClick={fetchRandomFanart}
             >
                 <FaDice boxSize={12} />
-                &nbsp; 랜덤 팬아트
+                &nbsp; 팬아트 랜덤뽑기
             </Button>
         </div>
     );
