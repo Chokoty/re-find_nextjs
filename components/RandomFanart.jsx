@@ -102,6 +102,7 @@ const RandomFanart = () => {
                             onLoad={handleLoad}
                         />
                         <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+                        <Text>작가 nickname: {fanart?.nickname}</Text>
                     </Link>
                 )}
             </Skeleton>
@@ -113,7 +114,7 @@ const RandomFanart = () => {
                 onClick={fetchRandomFanart}
             >
                 <FaDice boxSize={12} />
-                &nbsp; 팬아트 랜덤뽑기
+                &nbsp; 팬아트 랜덤가챠
             </Button>
         </div>
     );

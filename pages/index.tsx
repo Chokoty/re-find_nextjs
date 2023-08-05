@@ -269,7 +269,6 @@ export default function Home({ last_update_info }) {
             {uploadedfiles.length === 0 && (
                 <>
                     <RandomFanart />
-                    {/* <RandomFanart fanart={random_fanart} /> */}
                     <UploadImages getDataFromChild={getDataFromChild} />
                     <UpdateBoard
                         last_update_info={last_update_info}
