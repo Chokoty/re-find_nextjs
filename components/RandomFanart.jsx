@@ -101,12 +101,12 @@ const RandomFanart = () => {
 
     return (
         <div style={previewContainer} className="random-fanart">
-            <Skeleton isLoaded={isLoaded}>
+            <Skeleton isLoaded={!isLoaded}>
                 {fanart && (
                     <Link href={url} passHref isExternal style={linkDiv}>
                         <NextImage
                             unoptimized
-                            referrerpolicy="no-referrer"
+                            // referrerpolicy="no-referrer"
                             style={img}
                             width={475}
                             height={475}
