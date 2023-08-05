@@ -38,14 +38,15 @@ const RandomFanart = () => {
     //       "?fromList=true&menuId=344&tc=cafe_article_list"
     //     : "https://cafe.naver.com/steamindiegame/" + fanart2?.id;
     const handleLoad = async () => {
-        await new Promise((r) => setTimeout(r, 1700));
+        setIsLoaded(false);
+        await new Promise((r) => setTimeout(r, 1000));
         setIsLoaded(true);
     };
 
     const fetchRandomFanart = async () => {
         try {
             // setIsLoading(true);
-            setIsLoaded(false);
+            // setIsLoaded(false);
             const res = await axios.get("https://rerurureruru.com:8443/rand");
             setFanart(res.data);
             const url = isMobile
