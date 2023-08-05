@@ -65,14 +65,11 @@ const RandomFanart = () => {
         // setIsLoading(false);
     };
 
-    useEffect(() => {
-        const url2 = isMobile
-            ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
-              urlId +
-              "?fromList=true&menuId=344&tc=cafe_article_list"
-            : "https://cafe.naver.com/steamindiegame/" + urlId;
-        setUrl(url2);
-    }, [urlId]);
+    const url2 = isMobile
+        ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
+          urlId +
+          "?fromList=true&menuId=344&tc=cafe_article_list"
+        : "https://cafe.naver.com/steamindiegame/" + urlId;
 
     const previewContainer = {
         display: "flex",
@@ -123,7 +120,7 @@ const RandomFanart = () => {
             {isvisible && (
                 <Skeleton isLoaded={!isLoading}>
                     {fanart && (
-                        <Link href={url} passHref isExternal style={linkDiv}>
+                        <Link href={url2} passHref isExternal style={linkDiv}>
                             <NextImage
                                 unoptimized
                                 style={img}
