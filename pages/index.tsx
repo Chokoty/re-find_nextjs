@@ -268,9 +268,8 @@ export default function Home({ last_update_info }) {
             {/*업로드 전 */}
             {uploadedfiles.length === 0 && (
                 <>
-                    <RandomFanart />
-                    {/* <RandomFanart fanart={random_fanart} /> */}
                     <UploadImages getDataFromChild={getDataFromChild} />
+                    <RandomFanart />
                     <UpdateBoard
                         last_update_info={last_update_info}
                         color={color}
