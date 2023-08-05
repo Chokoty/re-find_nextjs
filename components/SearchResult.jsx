@@ -27,9 +27,9 @@ const SearchResult = ({
         darkMode.highlight
     );
 
-    useEffect(() => {
-        console.log(data);
-    }, []);
+    // useEffect(() => {
+    //     console.log(data);
+    // }, []);
 
     return (
         <div className="result">

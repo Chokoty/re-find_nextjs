@@ -25,9 +25,9 @@ const RandomFanart = () => {
         };
     }, []);
 
-    useEffect(() => {
-        console.log(fanart);
-    }, [fanart]);
+    // useEffect(() => {
+    //     console.log(fanart);
+    // }, [fanart]);
 
     const handleLoad = async () => {
         await new Promise((r) => setTimeout(r, 1000));

@@ -10,7 +10,7 @@ const UploadImages = ({ getDataFromChild }) => {
     const acceptedFiles = useCallback((files) => {
         // 이미지 파일만 받기 위해서는 files 배열에서 type이 image인 것만 필터링합니다.
         const images = files.filter((file) => file.type.startsWith("image/"));
-        console.log(images);
+        // console.log(images);
     }, []);
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
@@ -19,7 +19,7 @@ const UploadImages = ({ getDataFromChild }) => {
             // maxSize: 1048576, // 1MB
         },
         onDrop: (acceptedFiles) => {
-            console.log(acceptedFiles);
+            // console.log(acceptedFiles);
             getDataFromChild(
                 acceptedFiles.map((file) =>
                     Object.assign(file, {
