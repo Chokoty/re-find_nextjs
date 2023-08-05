@@ -37,6 +37,10 @@ const RandomFanart = () => {
     //       fanart2?.id +
     //       "?fromList=true&menuId=344&tc=cafe_article_list"
     //     : "https://cafe.naver.com/steamindiegame/" + fanart2?.id;
+    const handleLoad = async () => {
+        await new Promise((r) => setTimeout(r, 500));
+        setIsLoaded(true);
+    };
 
     const fetchRandomFanart = async () => {
         try {
@@ -60,7 +64,7 @@ const RandomFanart = () => {
             }
         }
         // 0.5초 대기
-        await new Promise((r) => setTimeout(r, 500));
+        // await new Promise((r) => setTimeout(r, 500));
         // setIsLoading(false);
     };
 
@@ -104,7 +108,7 @@ const RandomFanart = () => {
                             height={475}
                             src={fanart?.img_url}
                             alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
-                            onLoad={() => setIsLoaded(true)}
+                            onLoad={handleLoad}
                         />
                         <Text>랜덤 팬아트 게시글 id: {fanart?.id}</Text>
                     </Link>
