@@ -44,9 +44,9 @@ const RandomFanart = () => {
             setFanart(res.data);
             const url = isMobile
                 ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
-                  fanart?.id +
+                  res.data?.id +
                   "?fromList=true&menuId=344&tc=cafe_article_list"
-                : "https://cafe.naver.com/steamindiegame/" + fanart?.id;
+                : "https://cafe.naver.com/steamindiegame/" + res.data?.id;
             setUrl(url);
         } catch (error) {
             if (error.response && error.response.status === 500) {
