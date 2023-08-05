@@ -1,5 +1,11 @@
 @import "./variables";
 
+@mixin small {
+    /*브라우저 사이즈370px이하일때*/
+    @media (min-width: #{$breakpoint-mobile-small}) and (max-width: #{$breakpoint-mobile - 1px}) {
+        @content;
+    }
+}
 @mixin mobile {
     /*브라우저 사이즈767px이하일때*/
     @media (min-width: #{$breakpoint-mobile}) and (max-width: #{$breakpoint-tablet - 1px}) {
