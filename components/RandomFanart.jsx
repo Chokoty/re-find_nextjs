@@ -40,7 +40,7 @@ const RandomFanart = () => {
 
     const fetchRandomFanart = async () => {
         try {
-            const res = await axios.get("http://search.reruru.com:65432/rand");
+            const res = await axios.get("https://rerurureruru.com:8443/rand");
             setFanart(res.data);
         } catch (error) {
             if (error.response && error.response.status === 500) {
