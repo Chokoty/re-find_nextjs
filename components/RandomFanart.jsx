@@ -10,6 +10,7 @@ const RandomFanart = () => {
     const [isMobile, setIsMobile] = useState(true);
     const [fanart, setFanart] = useState(null);
     const [isLoading, setIsLoading] = React.useState(false);
+    const [isLoaded, setIsLoaded] = React.useState(true);
     const [url, setUrl] = useState(null);
 
     // const [isClient, setIsClient] = useState(false);
@@ -39,7 +40,8 @@ const RandomFanart = () => {
 
     const fetchRandomFanart = async () => {
         try {
-            setIsLoading(true);
+            // setIsLoading(true);
+            setIsLoaded(false);
             const res = await axios.get("https://rerurureruru.com:8443/rand");
             setFanart(res.data);
             const url = isMobile
@@ -59,7 +61,7 @@ const RandomFanart = () => {
         }
         // 0.5초 대기
         await new Promise((r) => setTimeout(r, 500));
-        setIsLoading(false);
+        // setIsLoading(false);
     };
 
     const previewContainer = {
@@ -93,7 +95,7 @@ const RandomFanart = () => {
 
     return (
         <div style={previewContainer} className="random-fanart">
-            <Skeleton isLoaded={!isLoading}>
+            <Skeleton isLoaded={isLoaded}>
                 {fanart && (
                     <Link href={url} passHref isExternal style={linkDiv}>
                         <NextImage
@@ -101,7 +103,8 @@ const RandomFanart = () => {
                             width={475}
                             height={475}
                             src={fanart?.img_url}
-                            alt="Description of the image"
+                            alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
+                            onLoad={() => setIsLoaded(true)}
                         />
                         <Text>랜덤 팬아트 게시글 id: {fanart?.id}</Text>
                     </Link>
