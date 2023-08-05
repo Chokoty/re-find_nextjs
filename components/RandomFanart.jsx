@@ -41,7 +41,7 @@ const RandomFanart = () => {
         try {
             setIsLoading(true);
             const res = await axios.get("https://rerurureruru.com:8443/rand");
-            setFanart2(res.data);
+            setFanart(res.data);
             const url = isMobile
                 ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
                   fanart?.id +
