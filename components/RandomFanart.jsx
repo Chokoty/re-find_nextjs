@@ -102,7 +102,7 @@ const RandomFanart = () => {
                             onLoad={handleLoad}
                         />
                         <Text>랜덤 팬아트 id: {fanart?.id}</Text>
-                        <Text>작가 nickname: {fanart?.nickname}</Text>
+                        <Text>작가: {fanart?.nickname}</Text>
                     </Link>
                 )}
             </Skeleton>
