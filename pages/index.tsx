@@ -305,7 +305,7 @@ export async function getServerSideProps() {
         //     .get("https://isd-fanart.reruru.com/counter")
         //     .then((res) => res.data);
         const last_update_info = axios
-            .get("http://search.reruru.com:65432/last_update_info", { timeout })
+            .get("http://search.reruru.com:8443/last_update_info", { timeout })
             .then((res) => res.data);
 
         const ret = await Promise.all([
