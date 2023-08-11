@@ -145,6 +145,7 @@ const RandomFanart = () => {
                 </Skeleton>
             )}
             <Button
+                className="random-fanart__button"
                 w="160px"
                 colorScheme="yellow"
                 size="md"
