@@ -1,5 +1,6 @@
 import { ColorModeScript } from "@chakra-ui/react";
 import { Html, Head, Main, NextScript } from "next/document";
+import Script from "next/script";
 import theme from "../styles/theme";
 
 export default function Document() {
@@ -234,7 +235,7 @@ export default function Document() {
                     data-domain="re-find.xyz"
                     src="https://plausible.io/js/script.js"
                 ></script>
-                <script id="google-tag-manager" strategy="afterInteractive">
+                <Script id="google-tag-manager" strategy="afterInteractive">
                     {`
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -242,7 +243,7 @@ export default function Document() {
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer', '
     GTM-WFK6LGVJ');`}
-                </script>
+                </Script>
             </Head>
             <body>
                 <ColorModeScript
