@@ -235,7 +235,7 @@ export default function Document() {
                     data-domain="re-find.xyz"
                     src="https://plausible.io/js/script.js"
                 ></script>
-                <Script
+                {/* <Script
                     id="google-tag-manager"
                     strategy="afterInteractive"
                     dangerouslySetInnerHTML={{
@@ -245,7 +245,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-WFK6LGVJ');`,
                     }}
-                />
+                /> */}
             </Head>
             <body>
                 <ColorModeScript
