@@ -101,7 +101,7 @@ const UpdateCard = ({ update }) => {
                 src={
                     data.find((item) => item.board === update.board)?.state ===
                     "-관-"
-                        ? "/close.jpeg"
+                        ? "static/images/icons/close.jpeg"
                         : update.info.img_url
                 }
                 alt={update.info.title}

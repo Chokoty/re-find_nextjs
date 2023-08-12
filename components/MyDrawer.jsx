@@ -6,6 +6,7 @@ import { InfoIcon, BellIcon } from "@chakra-ui/icons";
 import { FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { AiFillExperiment, AiFillHome } from "react-icons/ai";
+import styled from "styled-components";
 
 const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
     // const { darkMode } = useStore((state) => state);
@@ -97,8 +98,7 @@ const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
                         <Image
                             boxSize="20px"
                             objectFit="cover"
-                            // src="naver-cafe-logo.png"
-                            src="naver-cafe-logo2.gif"
+                            src="static/icons/naver-cafe-logo2.gif"
                             alt="naver-cafe-logo"
                         />
                     </Button>
@@ -125,6 +125,12 @@ const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
                         target="_blank"
                         shadow="md"
                     >
+                        {/* <Image
+                            boxSize="20px"
+                            objectFit="cover"
+                            src="static/icons/github.svg"
+                            alt="github-logo"
+                        /> */}
                         <svg
                             aria-hidden="true"
                             className="octicon octicon-mark-github"
@@ -147,3 +153,12 @@ const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
 });
 MyDrawer.displayName = "MyDrawer";
 export default MyDrawer;
+
+const GithubIcon = styled.div`
+    width: 36px;
+    height: 36px;
+
+    background-image: url("/static/icons/search-icon.svg");
+    background-position: center;
+    background-size: contain;
+`;

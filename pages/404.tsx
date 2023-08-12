@@ -18,7 +18,7 @@ export default function Custom404() {
             </Heading>
 
             <Image
-                src="/404-박쥐단.gif"
+                src="static/images/404/404-박쥐단.gif"
                 alt="404-박쥐단"
                 width={400}
                 height={400}

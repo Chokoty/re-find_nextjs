@@ -13,7 +13,7 @@ const data = [
     {
         title: "버그 제보",
         imgAlt: "버그 아이콘",
-        imgUrl: "bugFind.png",
+        imgUrl: "static/images/icons/bugFind.png",
         url: "https://docs.google.com/forms/d/e/1FAIpQLScK_i8O9QnhfZswreRX7VYROWzG3Kte6bVxjf28VSK0Fcu23g/viewform",
     },
     {
