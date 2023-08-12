@@ -2,7 +2,7 @@
 
 # RE:FIND
 
-이세돌 팬아트 출처 찾기 프로젝트, RE:FIND 공식 홈페이지 리포지터리입니다.
+왁타버스 팬아트 출처 찾기 프로젝트, RE:FIND 공식 홈페이지 리포지터리입니다.
 
 [왁물원 소개글](https://cafe.naver.com/steamindiegame/9859159)
 
