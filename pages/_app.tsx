@@ -1,16 +1,16 @@
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import Script from "next/script";
-import Head from "next/head";
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
+import Head from 'next/head';
 
-import MainLayout from "../components/layout/main-layout";
-import { Chakra } from "../styles/Chakra";
-import "../styles/general.scss";
+import MainLayout from '../components/layout/main-layout';
+import { Chakra } from '../styles/Chakra';
+import '../styles/general.scss';
 
 // analytics
-import { Analytics } from "@vercel/analytics/react";
-import PlausibleProvider from "next-plausible";
-import * as gtag from "../lib/gtag";
+// import { Analytics } from "@vercel/analytics/react";
+import PlausibleProvider from 'next-plausible';
+import * as gtag from '../lib/gtag';
 
 export default function App({ Component, pageProps }) {
     const router = useRouter();
@@ -19,11 +19,11 @@ export default function App({ Component, pageProps }) {
         const handleRouteChange = (url: URL) => {
             gtag.pageview(url);
         };
-        router.events.on("routeChangeComplete", handleRouteChange);
-        router.events.on("hashChangeComplete", handleRouteChange);
+        router.events.on('routeChangeComplete', handleRouteChange);
+        router.events.on('hashChangeComplete', handleRouteChange);
         return () => {
-            router.events.off("routeChangeComplete", handleRouteChange);
-            router.events.off("hashChangeComplete", handleRouteChange);
+            router.events.off('routeChangeComplete', handleRouteChange);
+            router.events.off('hashChangeComplete', handleRouteChange);
         };
     }, [router.events]);
 
@@ -70,4 +70,4 @@ export default function App({ Component, pageProps }) {
     );
 }
 
-export { getServerSideProps } from "../styles/Chakra";
+export { getServerSideProps } from '../styles/Chakra';

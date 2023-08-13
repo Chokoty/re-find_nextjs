@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 import {
     Box,
@@ -10,15 +10,15 @@ import {
     CardFooter,
     Link,
     useColorModeValue,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import OtherLayout from "../components/layout/other-layout";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import OtherLayout from '../components/layout/other-layout';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
-import { lightMode, darkMode } from "@/styles/theme";
-import updateLog from "../data/updateLog";
-import TMI from "../data/tmi";
-import { useStore } from "../store/store";
+import { lightMode, darkMode } from '@/styles/theme';
+import updateLog from '../data/updateLog';
+import TMI from '../data/tmi';
+import { useStore } from '../store/store';
 
 const Notice = () => {
     const setIsOpen = useStore((state) => state.setIsOpen);
@@ -36,7 +36,7 @@ const Notice = () => {
         <OtherLayout title="Notice">
             <div className="notice-content">
                 <Heading size="lg" mb="20px">
-                    {" "}
+                    {' '}
                     업데이트 내용
                 </Heading>
 
