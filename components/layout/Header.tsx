@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 
-import { useColorModeValue } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import { lightMode, darkMode } from '@/styles/theme';
 
 import DarkModeToggle from '../DarkModeToggle';
@@ -66,13 +66,14 @@ export const Header = () => {
           toggleDrawer={toggleDrawer}
           ref={myDrawerRef}
         />
-        <Hamburger
-          className="hamburger"
-          label="펼치기" // An ARIA label to improve accessibility.
-          size={20}
-          toggled={isOpen}
-          toggle={toggleDrawer}
-        />
+        <Box className="hamburger">
+          <Hamburger
+            label="펼치기" // An ARIA label to improve accessibility.
+            size={20}
+            toggled={isOpen}
+            toggle={toggleDrawer}
+          />
+        </Box>
       </header>
     </>
   );
