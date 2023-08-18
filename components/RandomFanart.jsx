@@ -21,7 +21,7 @@ import {
   Spacer,
   Heading,
 } from "@chakra-ui/react";
-import { FaDice } from "react-icons/fa";
+import { FaArrowDown, FaDice } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 
 const setLocalStorage = (key, value) => {
@@ -49,6 +49,8 @@ const RandomFanart = () => {
   const [fanart, setFanart] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [url, setUrl] = useState(null);
+  const [urlId, setUrlId] = useState(null);
+  const [isvisible, setIsvisible] = useState(false);
   const [checkboxValues, setCheckboxValues] = useState({
     isd: true,
     wak: true,
@@ -61,12 +63,13 @@ const RandomFanart = () => {
     if (savedCheckboxValues) {
       setCheckboxValues(savedCheckboxValues);
     }
-
     fetchRandomFanart();
 
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
+    // 컴포넌트가 마운트될 때 화면 크기 체크
+    handleResize();
 
     window.addEventListener("resize", handleResize);
     return () => {
@@ -74,9 +77,18 @@ const RandomFanart = () => {
     };
   }, []);
 
+  // useEffect(() => {
+  //     console.log(fanart);
+  // }, [fanart]);
+
   const handleLoad = async () => {
     await new Promise((r) => setTimeout(r, 1000));
     setIsLoading(false);
+  };
+
+  const showRandomFanart = () => {
+    if (!isvisible) setIsvisible(true);
+    fetchRandomFanart();
   };
 
   const fetchRandomFanart = async () => {
@@ -90,12 +102,13 @@ const RandomFanart = () => {
       );
       // const res = await axios.get("https://rerurureruru.com:8443/rand");
       setFanart(res.data);
-      const url = isMobile
-        ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
-          res.data?.id +
-          "?fromList=true&menuId=344&tc=cafe_article_list"
-        : "https://cafe.naver.com/steamindiegame/" + res.data?.id;
-      setUrl(url);
+      setUrl(urlId);
+
+      // const url = isMobile
+      //     ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
+      //       res.data?.id +
+      //       "?fromList=true&menuId=344&tc=cafe_article_list"
+      //     : "https://cafe.naver.com/steamindiegame/" + res.data?.id;
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log("Server Error: ", error.response.status);
@@ -120,6 +133,12 @@ const RandomFanart = () => {
     // 로컬 스토리지에 체크박스 값 저장하기
     setLocalStorage("checkboxValues", updatedCheckboxValues);
   };
+  const url2 = isMobile
+    ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/"
+    : //  +urlId +
+      //   "?fromList=true&menuId=344&tc=cafe_article_list"
+      "https://cafe.naver.com/steamindiegame/";
+  // + urlId;
 
   const previewContainer = {
     display: "flex",
@@ -149,25 +168,43 @@ const RandomFanart = () => {
     width: "100%",
   };
 
+  const guide = {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "end",
+    alignItems: "center",
+    height: "100px",
+  };
+
   return (
     <div style={previewContainer} className="random-fanart">
-      <Skeleton isLoaded={!isLoading}>
-        {fanart && (
-          <Link href={url} passHref isExternal style={linkDiv}>
-            <NextImage
-              unoptimized
-              style={img}
-              width={475}
-              height={475}
-              src={fanart?.img_url}
-              alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
-              onLoad={handleLoad}
-            />
-            <Text>랜덤 팬아트 id: {fanart?.id}</Text>
-            <Text>작가: {fanart?.nickname}</Text>
-          </Link>
-        )}
-      </Skeleton>
+      {!isvisible && (
+        <div className="random-fanart__guide" style={guide}>
+          <Text fontSize="xl" fontWeight="bold" mb="1rem">
+            아래 버튼을 누르면 랜덤 팬아트가 나와요!
+          </Text>
+          <FaArrowDown boxSize={12} />
+        </div>
+      )}
+      {isvisible && (
+        <Skeleton isLoaded={!isLoading}>
+          {fanart && (
+            <Link href={url2 + fanart?.id} passHref isExternal style={linkDiv}>
+              <NextImage
+                unoptimized
+                style={img}
+                width={475}
+                height={475}
+                src={fanart?.img_url}
+                alt={"랜덤 팬아트 게시글 id: " + fanart?.id}
+                onLoad={handleLoad}
+              />
+              <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+              <Text>작가: {fanart?.nickname}</Text>
+            </Link>
+          )}
+        </Skeleton>
+      )}
       <Flex gap="2">
         <Popover placement="bottom">
           <PopoverTrigger>
@@ -221,11 +258,12 @@ const RandomFanart = () => {
         </Popover>
         <Spacer />
         <Button
+          className="random-fanart__button"
           w="160px"
           colorScheme="yellow"
           size="md"
           mt="1.5rem"
-          onClick={fetchRandomFanart}
+          onClick={showRandomFanart}
         >
           <FaDice boxSize={12} />
           &nbsp; 팬아트 랜덤가챠

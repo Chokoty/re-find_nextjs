@@ -58,6 +58,8 @@ const UpdateCard = ({ update }) => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768);
         };
+        // 컴포넌트가 마운트될 때 화면 크기 체크
+        handleResize();
 
         window.addEventListener("resize", handleResize);
         return () => {
@@ -68,6 +70,10 @@ const UpdateCard = ({ update }) => {
     const url = isMobile
         ? data.find((item) => item.board === update.board)?.mlink
         : data.find((item) => item.board === update.board)?.link;
+
+    const url2 = isMobile
+        ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/"
+        : "https://cafe.naver.com/steamindiegame/";
 
     return (
         <Card
@@ -124,9 +130,7 @@ const UpdateCard = ({ update }) => {
                     <Link
                         color={highlightColor}
                         className="link"
-                        href={
-                            "https://cafe.naver.com/steamindiegame/" + update.id
-                        }
+                        href={url2 + update.id}
                         isExternal
                     >
                         {update.id}

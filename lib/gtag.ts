@@ -1,5 +1,6 @@
 // .env 파일에서 NEXT_PUBLIC_GA_ID 값을 가져옴
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID;
+export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 export const pageview = (url: URL) => {
