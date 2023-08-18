@@ -129,6 +129,16 @@ const RandomFanart = () => {
       ...checkboxValues,
       [e.target.name]: e.target.checked,
     };
+
+
+  // 체크된 체크박스의 개수를 확인
+  const checkedCount = Object.values(updatedCheckboxValues).filter(Boolean).length;
+
+  // 체크된 체크박스가 하나만 남았고, 사용자가 그 체크박스의 체크를 해제하려고 할 때
+  if (checkedCount === 0 && !e.target.checked) {
+    return; // 체크 해제를 방지하고 함수를 종료
+  }
+
     setCheckboxValues(updatedCheckboxValues);
 
     // 로컬 스토리지에 체크박스 값 저장하기
