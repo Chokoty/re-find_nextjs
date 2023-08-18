@@ -45,7 +45,7 @@ const getLocalStorage = (key) => {
 };
 
 const RandomFanart = () => {
-  const [isMobile, setIsMobile] = useState(true);
+   const [isMobile, setIsMobile] = useState(true);
   const [fanart, setFanart] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [url, setUrl] = useState(null);
