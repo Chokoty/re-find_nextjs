@@ -132,7 +132,7 @@ export default function Home({ last_update_info }) {
                 if (response.data.id.length === 0) {
                     setData(null);
                 } else {
-                    // console.log(response.data); // >>>테스트용
+                    console.log(response.data); // >>>테스트용
                     setData(response.data);
                     setIds(response.data.id.slice(0, 15)); // 검색결과 10~15개 제한
                     fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기

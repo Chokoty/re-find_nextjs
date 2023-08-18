@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import {
-    Text,
-    Skeleton,
-    Link,
-    Button,
-    useColorMode,
-    useColorModeValue,
+  Text,
+  Skeleton,
+  Link,
+  Button,
+  useColorMode,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
@@ -33,7 +33,10 @@ const SearchResult = ({
 
     return (
         <div className="result">
-            <Text fontSize="xl" mb="20px" textAlign="center">
+           <Button onClick={resetFiles} size='lg' colorScheme="blue" w={140}>
+                    다른 이미지 검색
+                      </Button>
+            <Text fontSize="xl" m="20px" textAlign="center">
                 검색시간: {searchTime / 1000}s
             </Text>
             {data === null ? (
@@ -61,6 +64,7 @@ const SearchResult = ({
                             <ExternalLinkIcon mx="2px" />
                         </Link>
                     ))}
+                    
 
                     <Skeleton isLoaded={!isSearchingAuthor} mt="20px" mb="20px">
                         <Text fontSize="xl" mb="20px" textAlign="center">
@@ -95,9 +99,7 @@ const SearchResult = ({
                     </Skeleton>
                 </div>
             )}
-            <Button onClick={resetFiles} colorScheme="blue" w={140}>
-                다른 이미지 검색
-            </Button>
+           
         </div>
     );
 };

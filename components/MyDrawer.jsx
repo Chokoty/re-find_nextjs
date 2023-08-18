@@ -1,12 +1,11 @@
 import React, { forwardRef } from "react";
 import Link from "next/link";
 
-import { Button, Image } from "@chakra-ui/react";
+import {Box, Button, Image } from "@chakra-ui/react";
 import { InfoIcon, BellIcon } from "@chakra-ui/icons";
 import { FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiSupport } from "react-icons/bi";
 import { AiFillExperiment, AiFillHome } from "react-icons/ai";
-import styled from "styled-components";
 
 const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
     // const { darkMode } = useStore((state) => state);
@@ -154,11 +153,13 @@ const MyDrawer = forwardRef(({ isOpen, toggleDrawer }, ref) => {
 MyDrawer.displayName = "MyDrawer";
 export default MyDrawer;
 
-const GithubIcon = styled.div`
-    width: 36px;
-    height: 36px;
 
-    background-image: url("/static/icons/search-icon.svg");
-    background-position: center;
-    background-size: contain;
-`;
+const GithubIcon = () => (
+  <Box
+    width="36px"
+    height="36px"
+    backgroundImage="url('/static/icons/search-icon.svg')"
+    backgroundPosition="center"
+    backgroundSize="contain"
+  />
+);

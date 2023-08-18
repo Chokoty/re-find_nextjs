@@ -212,6 +212,7 @@ const RandomFanart = () => {
             <Button
               w="40px"
               colorScheme="green"
+              variant='outline'
               size="md"
               mt="1.5rem"
               p="0"

@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }) {
     return (
         <PlausibleProvider domain="https://re-find.xyz/">
             <Head>
-                <title>RE:FIND</title>
+                <title>리파인드 | RE:FIND</title>
             </Head>
             <Chakra cookies={pageProps.cookies}>
                 <MainLayout>

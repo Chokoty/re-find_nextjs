@@ -138,6 +138,19 @@ const updateLog = [
         content: "팬아트 랜덤 뽑기 기능이 추가되었습니다. 킹애!",
         directLink: "",
     },
+    {
+        id: 21,
+        date: "2023.08.18",
+        content: "팬아트 랜덤 뽑기 게시판 포함/제외 기능을 추가했습니다.",
+        directLink: "",
+    },
+    {
+      id: 22,
+      date: "2023.08.18",
+      content: "최고다 이세돌!!! 이세돌 3집 명전 3관왕 두개재ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ",
+      directLink: "",
+
+  },
 ];
 
 export default updateLog;
