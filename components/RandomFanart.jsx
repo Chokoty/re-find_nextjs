@@ -97,6 +97,7 @@ const RandomFanart = () => {
       let queryParams = Object.keys(checkboxValues)
         .filter((key) => checkboxValues[key])
         .join("&");
+      console.log(queryParams);
       const res = await axios.get(
         `http://search.reruru.com:8443/rand?${queryParams}`
       );
