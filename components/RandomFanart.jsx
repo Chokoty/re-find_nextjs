@@ -24,6 +24,26 @@ import {
 import { FaDice } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
 
+const setLocalStorage = (key, value) => {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {
+    document.cookie = `${key}=${JSON.stringify(value)}; path=/`;
+  }
+};
+
+const getLocalStorage = (key) => {
+  try {
+    return JSON.parse(localStorage.getItem(key));
+  } catch (e) {
+    const cookie = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith(key))
+      ?.split("=")[1];
+    return cookie ? JSON.parse(cookie) : null;
+  }
+};
+
 const RandomFanart = () => {
   const [isMobile, setIsMobile] = useState(true);
   const [fanart, setFanart] = useState(null);
@@ -36,6 +56,12 @@ const RandomFanart = () => {
   });
 
   useEffect(() => {
+    // 로컬 스토리지에서 체크박스 값 불러오기
+    const savedCheckboxValues = getLocalStorage("checkboxValues");
+    if (savedCheckboxValues) {
+      setCheckboxValues(savedCheckboxValues);
+    }
+
     fetchRandomFanart();
 
     const handleResize = () => {
@@ -85,10 +111,14 @@ const RandomFanart = () => {
   };
 
   const handleCheckboxChange = (e) => {
-    setCheckboxValues({
+    const updatedCheckboxValues = {
       ...checkboxValues,
       [e.target.name]: e.target.checked,
-    });
+    };
+    setCheckboxValues(updatedCheckboxValues);
+
+    // 로컬 스토리지에 체크박스 값 저장하기
+    setLocalStorage("checkboxValues", updatedCheckboxValues);
   };
 
   const previewContainer = {
