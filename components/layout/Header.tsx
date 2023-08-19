@@ -9,6 +9,7 @@ import NoticeBanner from '../NoticeBanner';
 import { Sling as Hamburger } from 'hamburger-react';
 
 import { useStore } from '../../store/store';
+import { useThemeStore } from '../../store/themeStore';
 
 export const Header = () => {
   // useStore
@@ -17,12 +18,17 @@ export const Header = () => {
     state.isOpen,
     state.setIsOpen,
   ]);
-  // const [isObserver, setIsObserver] = useState(null);
+
+  // const { theme, colors, toggleTheme } = useThemeStore();
 
   const myDrawerRef = useRef(null);
+
+  // const [isObserver, setIsObserver] = useState(null);
   // const [isOpen, setIsOpen] = React.useState(false);
+
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+
   // useEffect(() => {
   //     setIsObserver(myDrawerRef);
   // }, [myDrawerRef]);
@@ -57,9 +63,11 @@ export const Header = () => {
   };
 
   return (
-    <>
+    // <Box bg={colors[theme].bg} color={colors[theme].color}>
+    <Box>
       <NoticeBanner />
       <header style={{ backgroundColor: bgColor, color: color }}>
+        {/* <header> */}
         <DarkModeToggle className="dark-mode-toggle" />
         <MyDrawer
           isOpen={isOpen}
@@ -75,6 +83,6 @@ export const Header = () => {
           />
         </Box>
       </header>
-    </>
+    </Box>
   );
 };
