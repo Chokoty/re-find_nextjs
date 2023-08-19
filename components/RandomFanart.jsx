@@ -20,6 +20,7 @@ import {
   Heading,
   Box,
   useColorModeValue,
+  useBreakpointValue,
   Card,
 } from '@chakra-ui/react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
@@ -60,6 +61,7 @@ const RandomFanart = () => {
   });
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+  const direction = useBreakpointValue({ base: 'column', md: 'row' });
 
   useEffect(() => {
     // 로컬 스토리지에서 체크박스 값 불러오기
@@ -188,9 +190,29 @@ const RandomFanart = () => {
       <div style={previewContainer} className="random-fanart">
         {!isvisible && (
           <div className="random-fanart__guide" style={guide}>
-            <Text fontSize="xl" fontWeight="bold" mb="1rem">
-              아래 버튼을 누르면 랜덤 팬아트가 나와요!
-            </Text>
+            <Flex
+              direction={direction}
+              alignItems="center"
+              justifyContent="center"
+              wrap="wrap"
+            >
+              <Text
+                fontSize="xl"
+                fontWeight="bold"
+                mb={direction === 'row' ? '1rem' : '0'}
+                mr={direction === 'row' ? '0.3rem' : '0'}
+              >
+                아래 버튼을 누르면
+              </Text>
+              <Text
+                fontSize="xl"
+                fontWeight="bold"
+                mb="1rem"
+                mr={direction === 'row' ? '1rem' : '0'}
+              >
+                랜덤 팬아트가 나와요!
+              </Text>
+            </Flex>
             <FaArrowDown boxSize={12} />
           </div>
         )}
@@ -228,12 +250,11 @@ const RandomFanart = () => {
                 size="md"
                 mt="1.5rem"
                 p="0"
-                onClick={fetchRandomFanart}
               >
                 <IoSettingsSharp boxSize={30} />
               </Button>
             </PopoverTrigger>
-            <PopoverContent w="300px" p="0.5rem">
+            <PopoverContent w="320px" p="0.5rem">
               <PopoverArrow />
               <PopoverCloseButton />
               <PopoverBody>
