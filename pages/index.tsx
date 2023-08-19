@@ -121,7 +121,8 @@ export default function Home({ last_update_info }) {
         // 재검색 방지
         const startTime = new Date().getTime(); // 시작시간 기록
         const response = await axios.post(
-          'https://isd-fanart.reruru.com/receive',
+          ' https://re-find.reruru.com/receive',
+          // 'https://isd-fanart.reruru.com/receive',
           body
         );
         const endTime = new Date().getTime(); // 종료시간 기록
@@ -302,7 +303,8 @@ export async function getServerSideProps() {
     //     .get("https://isd-fanart.reruru.com/counter")
     //     .then((res) => res.data);
     const last_update_info = axios
-      .get('http://search.reruru.com:8443/last_update_info', { timeout })
+      .get('https://re-find.reruru.com/last_update_info', { timeout })
+      // .get('http://search.reruru.com:8443/last_update_info', { timeout })
       .then((res) => res.data);
     // const random_fanart = axios
     //     .get("https://rerurureruru.com:8443/rand", { timeout })

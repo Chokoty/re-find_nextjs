@@ -17,7 +17,8 @@ const Counter = ({ data }) => {
       const timeout = 2000; // 2초
       setCounterLoading(true);
       const response = await axios.get(
-        'https://isd-fanart.reruru.com/counter',
+        'https://re-find.reruru.com/counter',
+        // 'https://isd-fanart.reruru.com/counter',
         { timeout }
       );
       const counter = response?.data;
