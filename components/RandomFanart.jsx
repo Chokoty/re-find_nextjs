@@ -157,7 +157,6 @@ const RandomFanart = () => {
     maxHeight: '400px',
     borderRadius: '1rem',
     objectFit: 'cover',
-    width: '80%',
     width: '100%',
     boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.2)',
     marginBottom: '0.5rem',
