@@ -1,7 +1,5 @@
 import React, { use, useEffect, useState } from 'react';
-import NextLink from 'next/link';
 import NextImage from 'next/image';
-
 import axios from 'axios';
 import {
   Text,
@@ -63,8 +61,6 @@ const RandomFanart = () => {
     if (savedCheckboxValues) {
       setCheckboxValues(savedCheckboxValues);
     }
-    fetchRandomFanart();
-
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -76,10 +72,6 @@ const RandomFanart = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  // useEffect(() => {
-  //     console.log(fanart);
-  // }, [fanart]);
 
   const handleLoad = async () => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -97,20 +89,12 @@ const RandomFanart = () => {
       let queryParams = Object.keys(checkboxValues)
         .filter((key) => checkboxValues[key])
         .join('&');
-      console.log(queryParams);
       const res = await axios.get(
         `https://re-find.reruru.com/rand?${queryParams}`
         // `http://search.reruru.com:8443/rand?${queryParams}`
       );
-      // const res = await axios.get("https://rerurureruru.com:8443/rand");
       setFanart(res.data);
       setUrl(urlId);
-
-      // const url = isMobile
-      //     ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
-      //       res.data?.id +
-      //       "?fromList=true&menuId=344&tc=cafe_article_list"
-      //     : "https://cafe.naver.com/steamindiegame/" + res.data?.id;
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
@@ -148,10 +132,7 @@ const RandomFanart = () => {
   };
   const url2 = isMobile
     ? 'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/'
-    : //  +urlId +
-      //   "?fromList=true&menuId=344&tc=cafe_article_list"
-      'https://cafe.naver.com/steamindiegame/';
-  // + urlId;
+    : 'https://cafe.naver.com/steamindiegame/';
 
   const previewContainer = {
     display: 'flex',
@@ -161,6 +142,7 @@ const RandomFanart = () => {
     flexWrap: 'wrap',
     marginTop: 16,
     marginBottom: 30,
+    backgroundColor: '#fee',
   };
   const img = {
     display: 'flex',
