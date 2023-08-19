@@ -33,7 +33,7 @@ const SearchResult = ({
 
   return (
     <div className="result">
-      <Button onClick={resetFiles} size="lg" colorScheme="blue" w={140}>
+      <Button onClick={resetFiles} size="lg" colorScheme="blue" w={200}>
         다른 이미지 검색
       </Button>
       <Text fontSize="xl" m="20px" textAlign="center">
