@@ -137,6 +137,12 @@ const updateLog = [
     content:
       '최고다 이세돌!!! 이세돌 3집 명전 3관왕 두개재ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ',
   },
+  {
+    id: 23,
+    date: '2023.08.19',
+    content: '명전3관왕 킹애ㅐㅐㅐ!!! 스밍 계속 두개재ㅐㅐㅐㅐㅐㅐ',
+    directLink: 'https://isegye.live/',
+  },
 ];
 
 export default updateLog;
