@@ -148,8 +148,8 @@ const RandomFanart = () => {
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    marginTop: 16,
-    marginBottom: 30,
+    // marginTop: 16,
+    // marginBottom: 30,
   };
   const img = {
     display: 'flex',
