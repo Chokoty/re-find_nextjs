@@ -294,7 +294,7 @@ const RandomFanart = () => {
           <Spacer />
           <Button
             className="random-fanart__button"
-            w="160px"
+            w="200px"
             colorScheme="yellow"
             size="md"
             mt="1.5rem"

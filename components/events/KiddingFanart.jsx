@@ -187,8 +187,12 @@ const KiddingFanart = () => {
                     alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
                     onLoad={handleLoad}
                   />
-                  <Text>제목: {fanart?.title.slice(0, 20)}</Text>
-                  <Text>작가: {fanart?.nickname}</Text>
+                  <Text color="#1B1642" as="b">
+                    제목: {fanart?.title.slice(0, 20)}
+                  </Text>
+                  <Text color="#1B1642" as="b">
+                    작가: {fanart?.nickname}
+                  </Text>
                 </Link>
               )}
             </Skeleton>
@@ -197,7 +201,7 @@ const KiddingFanart = () => {
         <Flex gap="2">
           <Button
             className="random-fanart__button"
-            w="160px"
+            w="200px"
             // backgroundColor="#FFFAE8"
             // backgroundColor="#FE78BB"
             backgroundColor="#FE78BB"
