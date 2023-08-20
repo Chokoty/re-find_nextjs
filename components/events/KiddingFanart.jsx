@@ -205,6 +205,7 @@ const KiddingFanart = () => {
             // backgroundColor="#FFFAE8"
             // backgroundColor="#FE78BB"
             backgroundColor="#FE78BB"
+            _hover={{ bg: '#e94396' }}
             color="#FFF"
             size="md"
             mt="1.5rem"
