@@ -24,6 +24,7 @@ import { useStore } from '../store/store';
 
 // import EventModal from "../components/events/EventModal";
 // import MelonVoteModal from "../components/events/MelonVoteModal";
+import KiddingFanart from '../components/events/KiddingFanart';
 
 export default function Home({ last_update_info }) {
   const setIsOpen = useStore((state) => state.setIsOpen);
@@ -269,6 +270,7 @@ export default function Home({ last_update_info }) {
       {/*업로드 전 */}
       {uploadedfiles.length === 0 && (
         <>
+          <KiddingFanart />
           <RandomFanart />
           <UploadImages getDataFromChild={getDataFromChild} />
           <UpdateBoard last_update_info={last_update_info} color={color} />
