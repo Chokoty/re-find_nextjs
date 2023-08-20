@@ -187,8 +187,10 @@ const KiddingFanart = () => {
                     alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
                     onLoad={handleLoad}
                   />
-                  <Text>제목: {fanart?.title.slice(0, 20)}</Text>
-                  <Text>작가: {fanart?.nickname}</Text>
+                  <Text color="#1B1642">
+                    제목: {fanart?.title.slice(0, 20)}
+                  </Text>
+                  <Text color="#1B1642">작가: {fanart?.nickname}</Text>
                 </Link>
               )}
             </Skeleton>
