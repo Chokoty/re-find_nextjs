@@ -44,6 +44,7 @@ const KiddingFanart = () => {
     };
     // 컴포넌트가 마운트될 때 화면 크기 체크
     handleResize();
+    fetchRandomFanart();
 
     window.addEventListener('resize', handleResize);
     return () => {
@@ -65,7 +66,7 @@ const KiddingFanart = () => {
     try {
       setIsLoading(true);
       const res = await axios.get(`https://re-find.reruru.com/third_album`);
-      console.log(res.data);
+      // console.log(res.data);
       setFanart(res.data);
       setUrl(urlId);
     } catch (error) {
@@ -89,8 +90,9 @@ const KiddingFanart = () => {
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    marginTop: 16,
-    marginBottom: 30,
+    border: '1.5px solid #FE78BB',
+    borderRadius: '0.2rem',
+    padding: '1.5rem',
   };
   const img = {
     display: 'flex',
@@ -121,8 +123,8 @@ const KiddingFanart = () => {
 
   return (
     <Box
-      bg={color2}
-      p="2rem"
+      bg="#FFFAE8"
+      p="0.5rem"
       w="90%"
       maxW="540px"
       // borderWidth="1px"
@@ -159,13 +161,19 @@ const KiddingFanart = () => {
         )}
         {isvisible && (
           <Box>
-            <Text fontSize="xl" fontWeight="bold" mb="1rem">
-              3집 Kidding 팬아트
+            <Text
+              fontSize="xl"
+              fontWeight="bold"
+              mb="1rem"
+              align="center"
+              color="#000"
+            >
+              3집 Kidding 특집 팬아트
             </Text>
             <Skeleton isLoaded={!isLoading}>
               {fanart && (
                 <Link
-                  href={url2 + fanart?.id}
+                  href={url2 + fanart?.url.split('/').pop()}
                   passHref
                   isExternal
                   style={linkDiv}
@@ -179,7 +187,7 @@ const KiddingFanart = () => {
                     alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
                     onLoad={handleLoad}
                   />
-                  <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+                  <Text>제목: {fanart?.title.slice(0, 10)}</Text>
                   <Text>작가: {fanart?.nickname}</Text>
                 </Link>
               )}
@@ -190,7 +198,10 @@ const KiddingFanart = () => {
           <Button
             className="random-fanart__button"
             w="160px"
-            colorScheme="yellow"
+            // backgroundColor="#FFFAE8"
+            // backgroundColor="#FE78BB"
+            backgroundColor="#FE78BB"
+            color="#FFF"
             size="md"
             mt="1.5rem"
             onClick={showRandomFanart}

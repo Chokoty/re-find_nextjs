@@ -271,8 +271,8 @@ export default function Home({ last_update_info }) {
       {uploadedfiles.length === 0 && (
         <>
           <KiddingFanart />
-          <RandomFanart />
           <UploadImages getDataFromChild={getDataFromChild} />
+          <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} color={color} />
         </>
       )}
