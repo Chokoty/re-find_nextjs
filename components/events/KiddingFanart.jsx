@@ -27,24 +27,6 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { lightMode, darkMode } from '@/styles/theme';
 
-const fetchRandomFanartPrerender = async () => {
-  try {
-    setIsLoading(true);
-    const res = await axios.get(`https://re-find.reruru.com/third_album`);
-    // console.log(res.data);
-    setFanart(res.data);
-    setUrl(urlId);
-  } catch (error) {
-    if (error.response && error.response.status === 500) {
-      console.log('Server Error: ', error.response.status);
-    } else if (error.code == 'ERR_NETWORK') {
-      console.log('Network Error: ', error.code);
-    } else {
-      console.log(error);
-    }
-  }
-};
-
 const KiddingFanart = ({ initialFanart }) => {
   const [isMobile, setIsMobile] = useState(true);
   const [fanart, setFanart] = useState(null);
@@ -235,6 +217,22 @@ const KiddingFanart = ({ initialFanart }) => {
       </div>
     </Box>
   );
+};
+
+const fetchRandomFanartPrerender = async () => {
+  try {
+    const res = await axios.get(`https://re-find.reruru.com/third_album`);
+    return res.data; // 데이터를 직접 반환합니다.
+  } catch (error) {
+    if (error.response && error.response.status === 500) {
+      console.log('Server Error: ', error.response.status);
+    } else if (error.code == 'ERR_NETWORK') {
+      console.log('Network Error: ', error.code);
+    } else {
+      console.log(error);
+    }
+    return null; // 오류가 발생한 경우 null을 반환합니다.
+  }
 };
 
 export async function getServerSideProps() {
