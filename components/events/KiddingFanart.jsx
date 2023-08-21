@@ -27,7 +27,25 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { lightMode, darkMode } from '@/styles/theme';
 
-const KiddingFanart = () => {
+const fetchRandomFanart = async () => {
+  try {
+    setIsLoading(true);
+    const res = await axios.get(`https://re-find.reruru.com/third_album`);
+    // console.log(res.data);
+    setFanart(res.data);
+    setUrl(urlId);
+  } catch (error) {
+    if (error.response && error.response.status === 500) {
+      console.log('Server Error: ', error.response.status);
+    } else if (error.code == 'ERR_NETWORK') {
+      console.log('Network Error: ', error.code);
+    } else {
+      console.log(error);
+    }
+  }
+};
+
+const KiddingFanart = ({ initialFanart }) => {
   const [isMobile, setIsMobile] = useState(true);
   const [fanart, setFanart] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -44,7 +62,8 @@ const KiddingFanart = () => {
     };
     // 컴포넌트가 마운트될 때 화면 크기 체크
     handleResize();
-    fetchRandomFanart();
+    // fetchRandomFanart();
+    setFanart(initialFanart);
 
     window.addEventListener('resize', handleResize);
     return () => {
@@ -60,24 +79,6 @@ const KiddingFanart = () => {
   const showRandomFanart = () => {
     if (!isvisible) setIsvisible(true);
     fetchRandomFanart();
-  };
-
-  const fetchRandomFanart = async () => {
-    try {
-      setIsLoading(true);
-      const res = await axios.get(`https://re-find.reruru.com/third_album`);
-      // console.log(res.data);
-      setFanart(res.data);
-      setUrl(urlId);
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        console.log('Server Error: ', error.response.status);
-      } else if (error.code == 'ERR_NETWORK') {
-        console.log('Network Error: ', error.code);
-      } else {
-        console.log(error);
-      }
-    }
   };
 
   const url2 = isMobile
@@ -202,8 +203,6 @@ const KiddingFanart = () => {
           <Button
             className="random-fanart__button"
             w="200px"
-            // backgroundColor="#FFFAE8"
-            // backgroundColor="#FE78BB"
             backgroundColor="#FE78BB"
             _hover={{ bg: '#e94396' }}
             color="#FFF"
@@ -219,5 +218,14 @@ const KiddingFanart = () => {
     </Box>
   );
 };
+
+export async function getServerSideProps() {
+  const initialFanart = await fetchRandomFanart();
+  return {
+    props: {
+      initialFanart,
+    },
+  };
+}
 
 export default KiddingFanart;

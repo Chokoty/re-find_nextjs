@@ -46,6 +46,7 @@ export default function Home({ last_update_info }) {
   const [isSearchingAuthor, setIsSearchingAuthor] = useState(false);
 
   const [author, setAuthor] = useState(null);
+  const [author2, setAuthor2] = useState(null);
   const [searchTime, setSearchTime] = useState(0);
 
   // Theme
@@ -135,6 +136,7 @@ export default function Home({ last_update_info }) {
           setData(null);
         } else {
           console.log(response.data); // >>>테스트용
+          setAuthor2(response.data.author);
           setData(response.data);
           setIds(response.data.id.slice(0, 15)); // 검색결과 10~15개 제한
           fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
@@ -270,7 +272,7 @@ export default function Home({ last_update_info }) {
       {/*업로드 전 */}
       {uploadedfiles.length === 0 && (
         <>
-          <KiddingFanart />
+          <KiddingFanart initialFanart={undefined} />
           <UploadImages getDataFromChild={getDataFromChild} />
           <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} color={color} />
