@@ -214,19 +214,21 @@ const fetchRandomFanartPrerender = async () => {
     const res = await axios.get(`https://re-find.reruru.com/third_album`);
     return res.data; // 데이터를 직접 반환합니다.
   } catch (error) {
-    if (error.response && error.response.status === 500) {
-      console.log('Server Error: ', error.response.status);
-    } else if (error.code == 'ERR_NETWORK') {
-      console.log('Network Error: ', error.code);
-    } else {
-      console.log(error);
-    }
+    console.error('Error fetching fanart:', error); // 오류 메시지 출력
     return null; // 오류가 발생한 경우 null을 반환합니다.
   }
 };
 
 export async function getServerSideProps() {
   const initialFanart = await fetchRandomFanartPrerender();
+  if (!initialFanart) {
+    console.error('Failed to fetch initial fanart.'); // 오류 메시지 출력
+    return {
+      props: {
+        initialFanart: {}, // 기본 값을 설정합니다.
+      },
+    };
+  }
   return {
     props: {
       initialFanart: initialFanart,
