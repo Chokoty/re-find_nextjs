@@ -6,18 +6,7 @@ import {
   Link,
   Button,
   Skeleton,
-  Stack,
-  Checkbox,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
   Flex,
-  Spacer,
-  Heading,
   Box,
   useColorModeValue,
   useBreakpointValue,
@@ -37,7 +26,7 @@ const KiddingFanart = ({ initialFanart }) => {
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
-
+  console.log(initialFanart);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -45,6 +34,7 @@ const KiddingFanart = ({ initialFanart }) => {
     // 컴포넌트가 마운트될 때 화면 크기 체크
     handleResize();
     // fetchRandomFanart();
+    console.log(initialFanart);
     setFanart(initialFanart);
 
     window.addEventListener('resize', handleResize);
@@ -239,7 +229,7 @@ export async function getServerSideProps() {
   const initialFanart = await fetchRandomFanartPrerender();
   return {
     props: {
-      initialFanart,
+      initialFanart: initialFanart,
     },
   };
 }
