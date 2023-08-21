@@ -209,31 +209,22 @@ const KiddingFanart = ({ initialFanart }) => {
   );
 };
 
-const fetchRandomFanartPrerender = async () => {
-  try {
-    const res = await axios.get(`https://re-find.reruru.com/third_album`);
-    return res.data; // 데이터를 직접 반환합니다.
-  } catch (error) {
-    console.error('Error fetching fanart:', error); // 오류 메시지 출력
-    return null; // 오류가 발생한 경우 null을 반환합니다.
-  }
-};
-
-export async function getServerSideProps() {
-  const initialFanart = await fetchRandomFanartPrerender();
-  if (!initialFanart) {
-    console.error('Failed to fetch initial fanart.'); // 오류 메시지 출력
-    return {
-      props: {
-        initialFanart: {}, // 기본 값을 설정합니다.
-      },
-    };
-  }
-  return {
-    props: {
-      initialFanart: initialFanart,
-    },
-  };
-}
+// 컴포넌트에서는 못쓴다.
+// export async function getServerSideProps() {
+//   const initialFanart = await fetchRandomFanartPrerender();
+//   if (!initialFanart) {
+//     console.error('Failed to fetch initial fanart.'); // 오류 메시지 출력
+//     return {
+//       props: {
+//         initialFanart: {}, // 기본 값을 설정합니다.
+//       },
+//     };
+//   }
+//   return {
+//     props: {
+//       initialFanart: initialFanart,
+//     },
+//   };
+// }
 
 export default KiddingFanart;
