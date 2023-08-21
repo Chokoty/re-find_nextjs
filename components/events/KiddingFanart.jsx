@@ -27,7 +27,7 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { lightMode, darkMode } from '@/styles/theme';
 
-const fetchRandomFanart = async () => {
+const fetchRandomFanartPrerender = async () => {
   try {
     setIsLoading(true);
     const res = await axios.get(`https://re-find.reruru.com/third_album`);
@@ -70,6 +70,24 @@ const KiddingFanart = ({ initialFanart }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const fetchRandomFanart = async () => {
+    try {
+      setIsLoading(true);
+      const res = await axios.get(`https://re-find.reruru.com/third_album`);
+      // console.log(res.data);
+      setFanart(res.data);
+      setUrl(urlId);
+    } catch (error) {
+      if (error.response && error.response.status === 500) {
+        console.log('Server Error: ', error.response.status);
+      } else if (error.code == 'ERR_NETWORK') {
+        console.log('Network Error: ', error.code);
+      } else {
+        console.log(error);
+      }
+    }
+  };
 
   const handleLoad = async () => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -220,7 +238,7 @@ const KiddingFanart = ({ initialFanart }) => {
 };
 
 export async function getServerSideProps() {
-  const initialFanart = await fetchRandomFanart();
+  const initialFanart = await fetchRandomFanartPrerender();
   return {
     props: {
       initialFanart,

@@ -23,7 +23,7 @@ import RandomFanart from '../components/RandomFanart';
 import { useStore } from '../store/store';
 
 // import EventModal from "../components/events/EventModal";
-// import MelonVoteModal from "../components/events/MelonVoteModal";
+import MelonVoteModal from '../components/events/MelonVoteModal';
 import KiddingFanart from '../components/events/KiddingFanart';
 
 export default function Home({ last_update_info }) {
@@ -267,7 +267,7 @@ export default function Home({ last_update_info }) {
 
       {/*이벤트 */}
       {/* {congrat && <EventModal />} */}
-      {/* <MelonVoteModal /> */}
+      <MelonVoteModal />
 
       {/*업로드 전 */}
       {uploadedfiles.length === 0 && (
