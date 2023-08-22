@@ -6,18 +6,7 @@ import {
   Link,
   Button,
   Skeleton,
-  Stack,
-  Checkbox,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
   Flex,
-  Spacer,
-  Heading,
   Box,
   useColorModeValue,
   useBreakpointValue,
@@ -27,7 +16,7 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { lightMode, darkMode } from '@/styles/theme';
 
-const KiddingFanart = () => {
+const KiddingFanart = ({ initialFanart }) => {
   const [isMobile, setIsMobile] = useState(true);
   const [fanart, setFanart] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -37,30 +26,21 @@ const KiddingFanart = () => {
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
     // 컴포넌트가 마운트될 때 화면 크기 체크
     handleResize();
-    fetchRandomFanart();
+    // fetchRandomFanart();
+    // console.log(initialFanart);
+    setFanart(initialFanart);
 
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
-  const handleLoad = async () => {
-    await new Promise((r) => setTimeout(r, 1000));
-    setIsLoading(false);
-  };
-
-  const showRandomFanart = () => {
-    if (!isvisible) setIsvisible(true);
-    fetchRandomFanart();
-  };
 
   const fetchRandomFanart = async () => {
     try {
@@ -78,6 +58,16 @@ const KiddingFanart = () => {
         console.log(error);
       }
     }
+  };
+
+  const handleLoad = async () => {
+    await new Promise((r) => setTimeout(r, 1000));
+    setIsLoading(false);
+  };
+
+  const showRandomFanart = () => {
+    if (!isvisible) setIsvisible(true);
+    fetchRandomFanart();
   };
 
   const url2 = isMobile
@@ -202,8 +192,6 @@ const KiddingFanart = () => {
           <Button
             className="random-fanart__button"
             w="200px"
-            // backgroundColor="#FFFAE8"
-            // backgroundColor="#FE78BB"
             backgroundColor="#FE78BB"
             _hover={{ bg: '#e94396' }}
             color="#FFF"

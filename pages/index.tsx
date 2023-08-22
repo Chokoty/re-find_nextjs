@@ -23,10 +23,10 @@ import RandomFanart from '../components/RandomFanart';
 import { useStore } from '../store/store';
 
 // import EventModal from "../components/events/EventModal";
-// import MelonVoteModal from "../components/events/MelonVoteModal";
+import MelonVoteModal from '../components/events/MelonVoteModal';
 import KiddingFanart from '../components/events/KiddingFanart';
 
-export default function Home({ last_update_info }) {
+export default function Home({ last_update_info, initialFanart }) {
   const setIsOpen = useStore((state) => state.setIsOpen);
   const targetRef = useRef(null);
   const toast = useToast();
@@ -46,6 +46,7 @@ export default function Home({ last_update_info }) {
   const [isSearchingAuthor, setIsSearchingAuthor] = useState(false);
 
   const [author, setAuthor] = useState(null);
+  const [author2, setAuthor2] = useState(null);
   const [searchTime, setSearchTime] = useState(0);
 
   // Theme
@@ -135,6 +136,7 @@ export default function Home({ last_update_info }) {
           setData(null);
         } else {
           console.log(response.data); // >>>테스트용
+          setAuthor2(response.data.author);
           setData(response.data);
           setIds(response.data.id.slice(0, 15)); // 검색결과 10~15개 제한
           fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
@@ -265,12 +267,12 @@ export default function Home({ last_update_info }) {
 
       {/*이벤트 */}
       {/* {congrat && <EventModal />} */}
-      {/* <MelonVoteModal /> */}
+      <MelonVoteModal />
 
       {/*업로드 전 */}
       {uploadedfiles.length === 0 && (
         <>
-          <KiddingFanart />
+          <KiddingFanart initialFanart={initialFanart} />
           <UploadImages getDataFromChild={getDataFromChild} />
           <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} color={color} />
@@ -298,6 +300,16 @@ export default function Home({ last_update_info }) {
   );
 }
 
+const fetchRandomFanartPrerender = async () => {
+  try {
+    const res = await axios.get(`https://re-find.reruru.com/third_album`);
+    return res.data; // 데이터를 직접 반환합니다.
+  } catch (error) {
+    console.error('Error fetching fanart:', error); // 오류 메시지 출력
+    return null; // 오류가 발생한 경우 null을 반환합니다.
+  }
+};
+
 export async function getServerSideProps() {
   try {
     const timeout = 2000; // 3초
@@ -306,8 +318,11 @@ export async function getServerSideProps() {
     //     .then((res) => res.data);
     const last_update_info = axios
       .get('https://re-find.reruru.com/last_update_info', { timeout })
-      // .get('http://search.reruru.com:8443/last_update_info', { timeout })
       .then((res) => res.data);
+    const initialFanart = axios
+      .get(`https://re-find.reruru.com/third_album`)
+      .then((res) => res.data);
+
     // const random_fanart = axios
     //     .get("https://rerurureruru.com:8443/rand", { timeout })
     //     .then((res) => res.data);
@@ -316,6 +331,7 @@ export async function getServerSideProps() {
       // wow - 병렬로 요청해서 페이지 로딩 줄임!
       // counter,
       last_update_info,
+      initialFanart,
       // random_fanart,
     ]);
 
@@ -323,8 +339,9 @@ export async function getServerSideProps() {
       props: {
         // counter: ret[0],
         // last_update_info: ret[1],
-        last_update_info: ret[0],
         // random_fanart: ret[1],
+        last_update_info: ret[0],
+        initialFanart: ret[1],
       },
     };
   } catch (error) {
@@ -335,6 +352,7 @@ export async function getServerSideProps() {
       props: {
         // counter: null,
         last_update_info: null,
+        initialFanart: null,
         // random_fanart: null,
       },
     };
