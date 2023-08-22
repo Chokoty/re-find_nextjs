@@ -26,7 +26,6 @@ const KiddingFanart = ({ initialFanart }) => {
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
-  console.log(initialFanart);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -34,7 +33,7 @@ const KiddingFanart = ({ initialFanart }) => {
     // 컴포넌트가 마운트될 때 화면 크기 체크
     handleResize();
     // fetchRandomFanart();
-    console.log(initialFanart);
+    // console.log(initialFanart);
     setFanart(initialFanart);
 
     window.addEventListener('resize', handleResize);
@@ -208,23 +207,5 @@ const KiddingFanart = ({ initialFanart }) => {
     </Box>
   );
 };
-
-// 컴포넌트에서는 못쓴다.
-// export async function getServerSideProps() {
-//   const initialFanart = await fetchRandomFanartPrerender();
-//   if (!initialFanart) {
-//     console.error('Failed to fetch initial fanart.'); // 오류 메시지 출력
-//     return {
-//       props: {
-//         initialFanart: {}, // 기본 값을 설정합니다.
-//       },
-//     };
-//   }
-//   return {
-//     props: {
-//       initialFanart: initialFanart,
-//     },
-//   };
-// }
 
 export default KiddingFanart;
