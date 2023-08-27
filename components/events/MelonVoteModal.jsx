@@ -75,8 +75,8 @@ const MelonVoteModal = () => {
       localStorage.getItem('isOpen') || getCookie('isOpen') || 'true'; // 기본값 'true' 추가
     console.log('modalState', modalState);
     if (modalState !== 'false') {
-      handleOpenModal();
-      setCookie('isOpened', 'true', 1); // 쿠키 설정, 유효 기간 1일
+      // handleOpenModal();
+      handleCloseModal();
       // setCookie('isModalAlreadyOpened', 'true', 1); // 쿠키 설정, 유효 기간 1일
     }
     // console.log('isModalAlreadyOpened', isModalAlreadyOpened);
@@ -111,10 +111,17 @@ const MelonVoteModal = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Button colorScheme="green" onClick={handleOpenModal} w="260px">
+      <Link href="https://www.melon.com/melonaward/weekAward.htm" isExternal>
+        <Button colorScheme="green" w="260px">
+          <LuVote size="1.2rem" />
+          <Text ml="0.5rem">멜론 주간인기상 투표하기</Text>
+        </Button>
+      </Link>
+
+      {/* <Button colorScheme="green" onClick={handleOpenModal} w="260px">
         <LuVote size="1.2rem" />
         <Text ml="0.5rem">멜론 주간인기상 투표하기</Text>
-      </Button>
+      </Button> */}
       <Modal
         isCentered
         isOpen={isOpen}
