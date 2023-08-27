@@ -11,7 +11,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import { lightMode, darkMode } from '@/styles/theme';
 
-import AuthorProfileCard from '../components/AuthorProfileCard';
+import AuthorProfileCard2 from '../components/AuthorProfileCard2';
 import Description from '../components/Description';
 
 const SearchResult = ({
@@ -82,7 +82,7 @@ const SearchResult = ({
             </Link>
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
-            <AuthorProfileCard
+            <AuthorProfileCard2
               writerURL={author?.writerURL || data?.author_profile}
               profURL={author?.profURL}
               nickname={author?.nickname || data?.author_nickname}

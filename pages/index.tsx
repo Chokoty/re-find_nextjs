@@ -25,6 +25,7 @@ import { useStore } from '../store/store';
 // import EventModal from "../components/events/EventModal";
 // import MelonVoteModal from "../components/events/MelonVoteModal";
 import KiddingFanart from '../components/events/KiddingFanart';
+import AuthorProfileCard2 from '@/components/AuthorProfileCard2';
 
 export default function Home({ last_update_info }) {
   const setIsOpen = useStore((state) => state.setIsOpen);
@@ -123,7 +124,6 @@ export default function Home({ last_update_info }) {
         const startTime = new Date().getTime(); // 시작시간 기록
         const response = await axios.post(
           ' https://re-find.reruru.com/receive',
-          // 'https://isd-fanart.reruru.com/receive',
           body
         );
         const endTime = new Date().getTime(); // 종료시간 기록
@@ -138,6 +138,7 @@ export default function Home({ last_update_info }) {
           setData(response.data);
           setIds(response.data.id.slice(0, 15)); // 검색결과 10~15개 제한
           fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
+          // setAuthor(response.data.author); // 작가 프로필 가져오기
 
           // if (response.data.total_counter == 20000) setCongrat(true); // 20000번째 검색시 축하메시지
         }
@@ -209,28 +210,9 @@ export default function Home({ last_update_info }) {
     setIsSearchingAuthor(false); //  검색 완료
   };
 
-  // useEffect(() => {
-  //     if (author === null) return;
-  //     if (author?.title === "카페 멤버에게만 공개된 게시글 입니다.")
-  //         setAuthor({
-  //             profURL: "NULL",
-  //             title: "카페 멤버에게만 공개된 게시글 입니다.",
-  //             writerURL: data.author_profile,
-  //             nickname: data.author_nickname,
-  //         });
-  //     else if (author?.title === "삭제되었거나 없는 게시글입니다.")
-  //         setAuthor({
-  //             profURL: "NULL",
-  //             title: "삭제되었거나 없는 게시글입니다.",
-  //             writerURL: data.author_profile,
-  //             nickname: data.author_nickname,
-  //         });
-  // }, [author]);
-
   // 프로필 테스트용
   const testProfile = () => {
     fetchAuthorProfile('11379038');
-    // fetchAuthorProfile("11379754");
     // fetchAuthorProfile("11251877"); // 0004 로그인 필요 401에러
     // fetchAuthorProfile("10532685"); // 4003 게시글이 존재하지 않습니다 404에러 // 삭제되었거나 없는 게시글입니다.
   };
@@ -263,6 +245,12 @@ export default function Home({ last_update_info }) {
 
       <br />
 
+      <AuthorProfileCard2
+        writerURL="111"
+        profURL="123"
+        nickname="ㅇㅇㅇ"
+        board={'이세돌┃팬아트'}
+      />
       {/*이벤트 */}
       {/* {congrat && <EventModal />} */}
       {/* <MelonVoteModal /> */}
