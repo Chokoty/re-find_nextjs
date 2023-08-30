@@ -13,7 +13,7 @@ import { lightMode, darkMode } from '@/styles/theme';
 
 import AuthorProfileCard from '../components/AuthorProfileCard';
 import Description from '../components/Description';
-import { useUploadTimeDifference } from '@/hooks/useUploadTimeDiff';
+import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
 
 const SearchResult = ({
   searchTime,
@@ -23,7 +23,7 @@ const SearchResult = ({
   author,
   resetFiles,
 }) => {
-  const uploadTimeDiff = useUploadTimeDifference(data?.upload_date);
+  const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight

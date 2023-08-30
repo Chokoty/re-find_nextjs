@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useUploadTimeDifference(writeDate: number): string {
+export function useUploadTimeDiff(writeDate: number): string {
   const [uploadText, setUploadText] = useState('');
 
   useEffect(() => {
