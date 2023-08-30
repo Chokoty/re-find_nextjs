@@ -13,6 +13,7 @@ import { lightMode, darkMode } from '@/styles/theme';
 
 import AuthorProfileCard from '../components/AuthorProfileCard';
 import Description from '../components/Description';
+import { useUploadTimeDifference } from './useUploadTimeDifference';
 
 const SearchResult = ({
   searchTime,
@@ -22,6 +23,7 @@ const SearchResult = ({
   author,
   resetFiles,
 }) => {
+  const uploadTimeDiff = useUploadTimeDifference(data?.upload_date);
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -30,6 +32,7 @@ const SearchResult = ({
   useEffect(() => {
     console.log(data);
     console.log(author);
+    console.log(uploadTimeDiff);
   }, []);
 
   return (
@@ -85,16 +88,16 @@ const SearchResult = ({
             </Link>
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
-            {/* <AuthorProfileCard
-              writerURL={author?.writerURL || data?.author_profile}
+            <AuthorProfileCard
+              writerURL={'/artists/' + author?.author_nickname}
               profURL={author?.author_prof_url}
-              nickname={author?.nickname || data?.author_nickname}
-              board={author?.uploadText}
+              nickname={author?.author_nickname}
+              board={uploadTimeDiff}
               // writerURL={author?.writerURL || data?.author_profile}
               // profURL={author?.profURL}
               // nickname={author?.nickname || data?.author_nickname}
               // board={author?.uploadText}
-            /> */}
+            />
           </Skeleton>
         </div>
       )}
