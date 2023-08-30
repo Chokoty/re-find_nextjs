@@ -126,7 +126,8 @@ const HomePage = ({ last_update_info }) => {
       if (!search) {
         const startTime = new Date().getTime(); // 시작시간 기록
         const response = await axios.post(
-          'https://isd-fanart.reruru.com/receive',
+          'https://re-find.reruru.com/receive',
+          // 'https://isd-fanart.reruru.com/receive',
           body
         );
         const endTime = new Date().getTime(); // 종료시간 기록
@@ -176,7 +177,8 @@ const HomePage = ({ last_update_info }) => {
   const fetchCounter = async () => {
     try {
       setCounterLoading(true);
-      const response = await axios.get('https://isd-fanart.reruru.com/counter');
+      const response = await axios.get('https://re-find.reruru.com/counter');
+      // const response = await axios.get('https://isd-fanart.reruru.com/counter');
       const counter = response.data;
 
       setCounter(counter);
