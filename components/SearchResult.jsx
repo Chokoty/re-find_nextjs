@@ -27,9 +27,10 @@ const SearchResult = ({
     darkMode.highlight
   );
 
-  // useEffect(() => {
-  //     console.log(data);
-  // }, []);
+  useEffect(() => {
+    console.log(data);
+    console.log(author);
+  }, []);
 
   return (
     <div className="result">
@@ -84,7 +85,7 @@ const SearchResult = ({
             </Link>
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
-            <AuthorProfileCard
+            {/* <AuthorProfileCard
               writerURL={author?.writerURL || data?.author_profile}
               profURL={author?.author_prof_url}
               nickname={author?.nickname || data?.author_nickname}
@@ -93,7 +94,7 @@ const SearchResult = ({
               // profURL={author?.profURL}
               // nickname={author?.nickname || data?.author_nickname}
               // board={author?.uploadText}
-            />
+            /> */}
           </Skeleton>
         </div>
       )}
