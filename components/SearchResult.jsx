@@ -13,7 +13,7 @@ import { lightMode, darkMode } from '@/styles/theme';
 
 import AuthorProfileCard from '../components/AuthorProfileCard';
 import Description from '../components/Description';
-import { useUploadTimeDifference } from './useUploadTimeDifference';
+import { useUploadTimeDifference } from '@/hooks/useUploadTimeDiff';
 
 const SearchResult = ({
   searchTime,
