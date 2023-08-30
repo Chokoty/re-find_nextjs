@@ -65,7 +65,8 @@ const SearchResult = ({
 
           <Skeleton isLoaded={!isSearchingAuthor} mt="20px" mb="20px">
             <Text fontSize="xl" mb="20px" textAlign="center">
-              {author?.board || ''}
+              {/* {author?.board || ''} */}
+              {data?.board || ''}
             </Text>
             <Link
               fontSize="xl"
@@ -77,16 +78,21 @@ const SearchResult = ({
               href={'https://cafe.naver.com/steamindiegame/' + data?.id?.[0]}
               isExternal
             >
-              {author?.title}
+              {/* {author?.title} */}
+              {data?.title}
               <ExternalLinkIcon mx="2px" />
             </Link>
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
             <AuthorProfileCard
               writerURL={author?.writerURL || data?.author_profile}
-              profURL={author?.profURL}
+              profURL={author?.author_prof_url}
               nickname={author?.nickname || data?.author_nickname}
               board={author?.uploadText}
+              // writerURL={author?.writerURL || data?.author_profile}
+              // profURL={author?.profURL}
+              // nickname={author?.nickname || data?.author_nickname}
+              // board={author?.uploadText}
             />
           </Skeleton>
         </div>

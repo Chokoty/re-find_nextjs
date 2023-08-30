@@ -135,7 +135,7 @@ export default function Home({ last_update_info }) {
           console.log(response.data); // >>>테스트용
           setData(response.data);
           setIds(response.data.id.slice(0, 15)); // 검색결과 10~15개 제한
-          fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
+          // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
 
           // if (response.data.total_counter == 20000) setCongrat(true); // 20000번째 검색시 축하메시지
         }
@@ -285,7 +285,8 @@ export default function Home({ last_update_info }) {
               data={data}
               ids={ids}
               isSearchingAuthor={isSearchingAuthor}
-              author={author}
+              author={data.author}
+              // author={author}
               resetFiles={resetFiles}
             />
           )}

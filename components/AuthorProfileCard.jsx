@@ -17,6 +17,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     lightMode.highlight2,
     darkMode.highlight2
   );
+
   return (
     <Button
       href={writerURL === '' ? '#' : writerURL}
@@ -35,10 +36,6 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
       flexDirection="column"
       justifyContent="center"
       gap="10px"
-      // _hover={{
-      //     background: highlightColor,
-      //     color: color,
-      // }}
     >
       {profURL === 'NULL' ? (
         <Avatar size="xl" name={nickname} src={profURL || ''} />
@@ -52,14 +49,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
             height: 96,
           }}
         >
-          <Image
-            src={profURL}
-            alt={nickname}
-            // width={96}
-            // height={96}
-            fill="object-fit"
-            unoptimized
-          />
+          <Image src={profURL} alt={nickname} fill="object-fit" unoptimized />
         </div>
       )}
 
