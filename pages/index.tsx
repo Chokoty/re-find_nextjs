@@ -284,7 +284,7 @@ export default function Home({ last_update_info, initialFanart }) {
         <div className="result-area">
           <Preview files={uploadedfiles} />
           {isSearchingData && <Loading />}
-          {!isSearchingData && (
+          {/* {!isSearchingData && (
             <SearchResult
               searchTime={searchTime}
               data={data}
@@ -294,7 +294,7 @@ export default function Home({ last_update_info, initialFanart }) {
               // author={author}
               resetFiles={resetFiles}
             />
-          )}
+          )} */}
         </div>
       )}
     </div>
