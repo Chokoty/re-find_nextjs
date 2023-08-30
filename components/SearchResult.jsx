@@ -29,12 +29,6 @@ const SearchResult = ({
     darkMode.highlight
   );
 
-  useEffect(() => {
-    console.log(data);
-    console.log(author);
-    console.log(uploadTimeDiff);
-  }, []);
-
   return (
     <div className="result">
       <Button onClick={resetFiles} size="lg" colorScheme="blue" w={200}>

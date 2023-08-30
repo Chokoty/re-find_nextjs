@@ -17,6 +17,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import { lightMode, darkMode } from '@/styles/theme';
 import data from '../data/board.ts';
+import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
 
 const UpdateCard = ({ update }) => {
   const highlightColor = useColorModeValue(
@@ -26,34 +27,36 @@ const UpdateCard = ({ update }) => {
 
   const [isMobile, setIsMobile] = useState(true);
   const [uploadTime, setUploadTime] = useState('');
+  const uploadTimeDiff = useUploadTimeDiff(update.date);
 
   useEffect(() => {
-    // console.log(update);
+    console.log(update);
+    console.log(uploadTimeDiff);
 
-    const now = new Date();
-    const uploadedDate = new Date(update.date);
-    const timeDifference = now.getTime() - uploadedDate.getTime();
+    // const now = new Date();
+    // const uploadedDate = new Date(update.date);
+    // const timeDifference = now.getTime() - uploadedDate.getTime();
 
-    const secondsDifference = Math.floor(timeDifference / 1000);
-    const minutesDifference = Math.floor(secondsDifference / 60);
-    const hoursDifference = Math.floor(minutesDifference / 60);
-    const daysDifference = Math.floor(hoursDifference / 24);
-    const monthsDifference = Math.floor(daysDifference / 30);
-    const yearsDifference = Math.floor(daysDifference / 365);
+    // const secondsDifference = Math.floor(timeDifference / 1000);
+    // const minutesDifference = Math.floor(secondsDifference / 60);
+    // const hoursDifference = Math.floor(minutesDifference / 60);
+    // const daysDifference = Math.floor(hoursDifference / 24);
+    // const monthsDifference = Math.floor(daysDifference / 30);
+    // const yearsDifference = Math.floor(daysDifference / 365);
 
-    let uploadText = '';
+    // let uploadText = '';
 
-    if (monthsDifference >= 1) {
-      uploadText = `${monthsDifference}달 전`;
-    } else if (daysDifference >= 1) {
-      uploadText = `${daysDifference}일 전 `;
-    } else if (hoursDifference >= 1) {
-      uploadText = `${hoursDifference}시간 전 `;
-    } else if (minutesDifference >= 1) {
-      uploadText = `${minutesDifference}분 전 `;
-    }
+    // if (monthsDifference >= 1) {
+    //   uploadText = `${monthsDifference}달 전`;
+    // } else if (daysDifference >= 1) {
+    //   uploadText = `${daysDifference}일 전 `;
+    // } else if (hoursDifference >= 1) {
+    //   uploadText = `${hoursDifference}시간 전 `;
+    // } else if (minutesDifference >= 1) {
+    //   uploadText = `${minutesDifference}분 전 `;
+    // }
     // console.log(uploadText);
-    setUploadTime(uploadText);
+    setUploadTime(uploadTimeDiff);
 
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
