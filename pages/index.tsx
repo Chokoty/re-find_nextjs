@@ -124,7 +124,6 @@ export default function Home({ last_update_info, initialFanart }) {
         const startTime = new Date().getTime(); // 시작시간 기록
         const response = await axios.post(
           ' https://re-find.reruru.com/receive',
-          // 'https://isd-fanart.reruru.com/receive',
           body
         );
         const endTime = new Date().getTime(); // 종료시간 기록
@@ -290,7 +289,7 @@ export default function Home({ last_update_info, initialFanart }) {
               data={data}
               ids={ids}
               isSearchingAuthor={isSearchingAuthor}
-              author={data.author}
+              author={author2}
               // author={author}
               resetFiles={resetFiles}
             />
