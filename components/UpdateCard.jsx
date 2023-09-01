@@ -111,7 +111,7 @@ const UpdateCard = ({ update }) => {
             <ExternalLinkIcon mx="2px" />
           </Link>
         </Text>
-        <Text fontSize="1em">{uploadTimeDiff} 업로드</Text>
+        <Text fontSize="1em">{uploadTimeDiff}</Text>
       </CardBody>
     </Card>
   );
