@@ -13,6 +13,7 @@ import { lightMode, darkMode } from '@/styles/theme';
 
 import AuthorProfileCard from '../components/AuthorProfileCard';
 import Description from '../components/Description';
+import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
 
 const SearchResult = ({
   searchTime,
@@ -22,14 +23,11 @@ const SearchResult = ({
   author,
   resetFiles,
 }) => {
+  const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
   );
-
-  // useEffect(() => {
-  //     console.log(data);
-  // }, []);
 
   return (
     <div className="result">
@@ -65,7 +63,8 @@ const SearchResult = ({
 
           <Skeleton isLoaded={!isSearchingAuthor} mt="20px" mb="20px">
             <Text fontSize="xl" mb="20px" textAlign="center">
-              {author?.board || ''}
+              {/* {author?.board || ''} */}
+              {data?.board || ''}
             </Text>
             <Link
               fontSize="xl"
@@ -77,16 +76,21 @@ const SearchResult = ({
               href={'https://cafe.naver.com/steamindiegame/' + data?.id?.[0]}
               isExternal
             >
-              {author?.title}
+              {/* {author?.title} */}
+              {data?.title}
               <ExternalLinkIcon mx="2px" />
             </Link>
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
             <AuthorProfileCard
-              writerURL={author?.writerURL || data?.author_profile}
-              profURL={author?.profURL}
-              nickname={author?.nickname || data?.author_nickname}
-              board={author?.uploadText}
+              writerURL={'/artists/' + author?.author_nickname}
+              profURL={author?.author_prof_url}
+              nickname={author?.author_nickname}
+              board={uploadTimeDiff}
+              // writerURL={author?.writerURL || data?.author_profile}
+              // profURL={author?.profURL}
+              // nickname={author?.nickname || data?.author_nickname}
+              // board={author?.uploadText}
             />
           </Skeleton>
         </div>

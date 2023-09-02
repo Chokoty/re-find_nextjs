@@ -1,5 +1,7 @@
 import React, { use, useEffect, useState } from 'react';
+import NextLink from 'next/link';
 import NextImage from 'next/image';
+
 import axios from 'axios';
 import {
   Text,
@@ -18,14 +20,9 @@ import {
   Flex,
   Spacer,
   Heading,
-  Box,
-  useColorModeValue,
-  useBreakpointValue,
-  Card,
 } from '@chakra-ui/react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
-import { lightMode, darkMode } from '@/styles/theme';
 
 const setLocalStorage = (key, value) => {
   try {
@@ -60,15 +57,14 @@ const RandomFanart = () => {
     gomem: true,
   });
 
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-  const direction = useBreakpointValue({ base: 'column', md: 'row' });
-
   useEffect(() => {
     // 로컬 스토리지에서 체크박스 값 불러오기
     const savedCheckboxValues = getLocalStorage('checkboxValues');
     if (savedCheckboxValues) {
       setCheckboxValues(savedCheckboxValues);
     }
+    fetchRandomFanart();
+
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -80,6 +76,10 @@ const RandomFanart = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  // useEffect(() => {
+  //     console.log(fanart);
+  // }, [fanart]);
 
   const handleLoad = async () => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -97,12 +97,19 @@ const RandomFanart = () => {
       let queryParams = Object.keys(checkboxValues)
         .filter((key) => checkboxValues[key])
         .join('&');
+      // console.log(queryParams);
       const res = await axios.get(
         `https://re-find.reruru.com/rand?${queryParams}`
-        // `http://search.reruru.com:8443/rand?${queryParams}`
       );
+      // const res = await axios.get("https://rerurureruru.com:8443/rand");
       setFanart(res.data);
       setUrl(urlId);
+
+      // const url = isMobile
+      //     ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
+      //       res.data?.id +
+      //       "?fromList=true&menuId=344&tc=cafe_article_list"
+      //     : "https://cafe.naver.com/steamindiegame/" + res.data?.id;
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
@@ -140,7 +147,10 @@ const RandomFanart = () => {
   };
   const url2 = isMobile
     ? 'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/'
-    : 'https://cafe.naver.com/steamindiegame/';
+    : //  +urlId +
+      //   "?fromList=true&menuId=344&tc=cafe_article_list"
+      'https://cafe.naver.com/steamindiegame/';
+  // + urlId;
 
   const previewContainer = {
     display: 'flex',
@@ -148,8 +158,8 @@ const RandomFanart = () => {
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    // marginTop: 16,
-    // marginBottom: 30,
+    marginTop: 16,
+    marginBottom: 30,
   };
   const img = {
     display: 'flex',
@@ -157,7 +167,7 @@ const RandomFanart = () => {
     maxHeight: '400px',
     borderRadius: '1rem',
     objectFit: 'cover',
-    width: '100%',
+    width: '80%',
     boxShadow: '0 0 10px 0 rgba(0, 0, 0, 0.2)',
     marginBottom: '0.5rem',
   };
@@ -179,133 +189,100 @@ const RandomFanart = () => {
   };
 
   return (
-    <Box
-      bg={color2}
-      p="2rem"
-      w="90%"
-      maxW="540px"
-      // borderWidth="1px"
-      borderRadius="lg"
-    >
-      <div style={previewContainer} className="random-fanart">
-        {!isvisible && (
-          <div className="random-fanart__guide" style={guide}>
-            <Flex
-              direction={direction}
-              alignItems="center"
-              justifyContent="center"
-              wrap="wrap"
+    <div style={previewContainer} className="random-fanart">
+      {!isvisible && (
+        <div className="random-fanart__guide" style={guide}>
+          <Text fontSize="xl" fontWeight="bold" mb="1rem">
+            아래 버튼을 누르면 랜덤 팬아트가 나와요!
+          </Text>
+          <FaArrowDown boxsize={12} />
+        </div>
+      )}
+      {isvisible && (
+        <Skeleton isLoaded={!isLoading}>
+          {fanart && (
+            <Link href={url2 + fanart?.id} passHref isExternal style={linkDiv}>
+              <NextImage
+                unoptimized
+                style={img}
+                width={475}
+                height={475}
+                src={fanart?.img_url}
+                alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
+                onLoad={handleLoad}
+              />
+              <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+              <Text>작가: {fanart?.nickname}</Text>
+            </Link>
+          )}
+        </Skeleton>
+      )}
+      <Flex gap="2">
+        <Popover placement="bottom">
+          <PopoverTrigger>
+            <Button
+              w="40px"
+              colorScheme="green"
+              variant="outline"
+              size="md"
+              mt="1.5rem"
+              p="0"
+              onClick={fetchRandomFanart}
             >
-              <Text
-                fontSize="xl"
-                fontWeight="bold"
-                mb={direction === 'row' ? '1rem' : '0'}
-                mr={direction === 'row' ? '0.3rem' : '0'}
-              >
-                아래 버튼을 누르면
-              </Text>
-              <Text
-                fontSize="xl"
-                fontWeight="bold"
-                mb="1rem"
-                mr={direction === 'row' ? '1rem' : '0'}
-              >
-                랜덤 팬아트가 나와요!
-              </Text>
-            </Flex>
-            <FaArrowDown boxSize={12} />
-          </div>
-        )}
-        {isvisible && (
-          <Skeleton isLoaded={!isLoading}>
-            {fanart && (
-              <Link
-                href={url2 + fanart?.id}
-                passHref
-                isExternal
-                style={linkDiv}
-              >
-                <NextImage
-                  unoptimized
-                  style={img}
-                  width={475}
-                  height={475}
-                  src={fanart?.img_url}
-                  alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
-                  onLoad={handleLoad}
-                />
-                <Text>랜덤 팬아트 id: {fanart?.id}</Text>
-                <Text>작가: {fanart?.nickname}</Text>
-              </Link>
-            )}
-          </Skeleton>
-        )}
-        <Flex gap="2">
-          <Popover placement="bottom">
-            <PopoverTrigger>
-              <Button
-                w="40px"
-                colorScheme="green"
-                variant="outline"
-                size="md"
-                mt="1.5rem"
-                p="0"
-              >
-                <IoSettingsSharp boxSize={30} />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent w="320px" p="0.5rem">
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverBody>
-                <Heading as="h5" size="sm">
-                  랜덤가챠 게시판 포함/제외하기
-                </Heading>
-                <Stack spacing={3} direction="row" mt="0.5rem">
-                  <Checkbox
-                    name="isd"
-                    isChecked={checkboxValues.isd}
-                    onChange={handleCheckboxChange}
-                  >
-                    이세돌
-                  </Checkbox>
-                  <Checkbox
-                    name="wak"
-                    isChecked={checkboxValues.wak}
-                    onChange={handleCheckboxChange}
-                  >
-                    우왁굳
-                  </Checkbox>
-                  <Checkbox
-                    name="gomem"
-                    isChecked={checkboxValues.gomem}
-                    onChange={handleCheckboxChange}
-                  >
-                    고멤/고카
-                  </Checkbox>
-                </Stack>
-              </PopoverBody>
-              <PopoverFooter>
-                간혹 제외한 게시판에서의 팬아트가 뽑힐 수 있습니다 (짝! 그래서
-                재밌는 거에요~)
-              </PopoverFooter>
-            </PopoverContent>
-          </Popover>
-          <Spacer />
-          <Button
-            className="random-fanart__button"
-            w="200px"
-            colorScheme="yellow"
-            size="md"
-            mt="1.5rem"
-            onClick={showRandomFanart}
-          >
-            <FaDice boxSize={12} />
-            &nbsp; 팬아트 랜덤가챠
-          </Button>
-        </Flex>
-      </div>
-    </Box>
+              <IoSettingsSharp boxSize={30} />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent w="300px" p="0.5rem">
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverBody>
+              <Heading as="h5" size="sm">
+                랜덤가챠 게시판 포함/제외하기
+              </Heading>
+              <Stack spacing={3} direction="row" mt="0.5rem">
+                <Checkbox
+                  name="isd"
+                  isChecked={checkboxValues.isd}
+                  onChange={handleCheckboxChange}
+                >
+                  이세돌
+                </Checkbox>
+                <Checkbox
+                  name="wak"
+                  isChecked={checkboxValues.wak}
+                  onChange={handleCheckboxChange}
+                >
+                  우왁굳
+                </Checkbox>
+                <Checkbox
+                  name="gomem"
+                  isChecked={checkboxValues.gomem}
+                  onChange={handleCheckboxChange}
+                >
+                  고멤/고카
+                </Checkbox>
+              </Stack>
+            </PopoverBody>
+            <PopoverFooter>
+              간혹 제외한 게시판에서의 팬아트가 뽑힐 수 있습니다 (짝! 그래서
+              재밌는 거에요~)
+            </PopoverFooter>
+          </PopoverContent>
+        </Popover>
+        <Spacer />
+        <Button
+          className="random-fanart__button"
+          w="160px"
+          colorScheme="yellow"
+          size="md"
+          mt="1.5rem"
+          onClick={showRandomFanart}
+        >
+          <FaDice boxsize={12} />
+          &nbsp; 팬아트 랜덤가챠
+        </Button>
+      </Flex>
+    </div>
   );
 };
 

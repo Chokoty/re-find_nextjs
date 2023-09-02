@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, use } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import {
@@ -73,6 +73,7 @@ export default function Home({ last_update_info, initialFanart }) {
 
   // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
   useEffect(() => {
+    // console.log(last_update_info);
     setIsOpen(false);
     // fetchCounter();
     // testProfile();
@@ -123,8 +124,7 @@ export default function Home({ last_update_info, initialFanart }) {
         // 재검색 방지
         const startTime = new Date().getTime(); // 시작시간 기록
         const response = await axios.post(
-          ' https://re-find.reruru.com/receive',
-          // 'https://isd-fanart.reruru.com/receive',
+          'https://re-find.reruru.com/receive',
           body
         );
         const endTime = new Date().getTime(); // 종료시간 기록
@@ -135,11 +135,11 @@ export default function Home({ last_update_info, initialFanart }) {
         if (response.data.id.length === 0) {
           setData(null);
         } else {
-          console.log(response.data); // >>>테스트용
+          // console.log(response.data); // >>>테스트용
           setAuthor2(response.data.author);
           setData(response.data);
           setIds(response.data.id.slice(0, 15)); // 검색결과 10~15개 제한
-          fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
+          // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
 
           // if (response.data.total_counter == 20000) setCongrat(true); // 20000번째 검색시 축하메시지
         }
@@ -290,7 +290,8 @@ export default function Home({ last_update_info, initialFanart }) {
               data={data}
               ids={ids}
               isSearchingAuthor={isSearchingAuthor}
-              author={author}
+              author={author2}
+              // author={author}
               resetFiles={resetFiles}
             />
           )}
