@@ -135,7 +135,7 @@ export default function Home({ last_update_info, initialFanart }) {
         if (response.data.id.length === 0) {
           setData(null);
         } else {
-          // console.log(response.data); // >>>테스트용
+          console.log(response.data); // >>>테스트용
           setAuthor2(response.data.author);
           setData(response.data);
           setIds(response.data.id.slice(0, 15)); // 검색결과 10~15개 제한
