@@ -73,7 +73,7 @@ const MelonVoteModal = () => {
     // const isModalAlreadyOpened = getCookie('isModalAlreadyOpened');
     const modalState =
       localStorage.getItem('isOpen') || getCookie('isOpen') || 'true'; // 기본값 'true' 추가
-    console.log('modalState', modalState);
+    // console.log('modalState', modalState);
     if (modalState !== 'false') {
       // handleOpenModal();
       handleCloseModal();

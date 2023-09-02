@@ -73,7 +73,7 @@ export default function Home({ last_update_info, initialFanart }) {
 
   // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
   useEffect(() => {
-    console.log(last_update_info);
+    // console.log(last_update_info);
     setIsOpen(false);
     // fetchCounter();
     // testProfile();
@@ -124,7 +124,7 @@ export default function Home({ last_update_info, initialFanart }) {
         // 재검색 방지
         const startTime = new Date().getTime(); // 시작시간 기록
         const response = await axios.post(
-          ' https://re-find.reruru.com/receive',
+          'https://re-find.reruru.com/receive',
           body
         );
         const endTime = new Date().getTime(); // 종료시간 기록
