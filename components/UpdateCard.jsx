@@ -7,53 +7,39 @@ import {
   Heading,
   Text,
   Link,
-  Image,
-  Flex,
-  Square,
   useColorModeValue,
-  Center,
 } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import { lightMode, darkMode } from '@/styles/theme';
-import data from '../data/board.ts';
+import boardData from '../data/board.ts';
 import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
+import { useResponsiveLink } from '../hook/useResponsiveLink';
 
+const links = {
+  article_mobileLink:
+    'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/',
+  article_pcLink: 'https://cafe.naver.com/steamindiegame/',
+  menu_mobileLink: 'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/menus/',
+  menu_pcLink:
+    'https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=',
+};
 const UpdateCard = ({ update }) => {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
   );
 
-  const [isMobile, setIsMobile] = useState(true);
-  const [uploadTime, setUploadTime] = useState('');
   const uploadTimeDiff = useUploadTimeDiff(update.date);
+  const articke_link =
+    useResponsiveLink(links.article_mobileLink, links.article_pcLink, 0) +
+    update.id;
+  const menu_link =
+    useResponsiveLink(links.menu_mobileLink, links.menu_pcLink, 1) +
+    boardData.find((item) => item.board === update.board)?.id;
 
-  useEffect(() => {
-    // console.log(update.date);
-    // console.log(uploadTimeDiff);
-
-    setUploadTime(uploadTimeDiff);
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    // 컴포넌트가 마운트될 때 화면 크기 체크
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const url = isMobile
-    ? data.find((item) => item.board === update.board)?.mlink
-    : data.find((item) => item.board === update.board)?.link;
-
-  const url2 = isMobile
-    ? 'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/'
-    : 'https://cafe.naver.com/steamindiegame/';
+  console.log(articke_link);
+  console.log(menu_link);
 
   return (
     <Card
@@ -79,22 +65,23 @@ const UpdateCard = ({ update }) => {
           height: '80px',
         }}
         src={
-          data.find((item) => item.board === update.board)?.state === '-관-'
+          boardData.find((item) => item.board === update.board)?.state ===
+          '-관-'
             ? 'static/images/icons/close.jpeg'
             : update.info.img_url
         }
         alt={update.info.title}
-        // fallbackSrc="https://via.placeholder.com/80"
+        fallbackSrc="https://via.placeholder.com/80"
       />
 
       <CardBody>
         <Heading as="h1" size="md" textTransform="uppercase" mb="8px">
-          <Link color={highlightColor} className="link" href={url} isExternal>
-            {/* {
-                            data.find((item) => item.board === update.board)
-                                ?.state
-                        } */}
-
+          <Link
+            color={highlightColor}
+            className="link"
+            href={menu_link}
+            isExternal
+          >
             {update.board}
             <ExternalLinkIcon mx="2px" />
           </Link>
@@ -104,7 +91,7 @@ const UpdateCard = ({ update }) => {
           <Link
             color={highlightColor}
             className="link"
-            href={url2 + update.id}
+            href={articke_link}
             isExternal
           >
             {update.id}
