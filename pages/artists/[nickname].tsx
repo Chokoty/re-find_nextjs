@@ -174,7 +174,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         <Avatar
           w="120px"
           h="120px"
-          name="Dan Abrahmov"
+          name={profile?.author_name}
           src={profile?.author_prof_url}
           m="0.5rem 0"
         />
