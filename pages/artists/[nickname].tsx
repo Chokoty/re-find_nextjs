@@ -10,12 +10,13 @@ import {
   Flex,
   Link,
   SimpleGrid,
-  Wrap,
   Center,
-  WrapItem,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import Image from 'next/image';
+import { useResponsiveLink } from '../../hook/useResponsiveLink';
+import { links } from '../../data/links';
+
 const data = [
   {
     id: 12435043,
@@ -140,15 +141,24 @@ const data = [
   },
 ];
 
-const Artist = ({ artistData }) => {
+const Artist = ({ artist_name2info, artist_artworks }) => {
   const router = useRouter();
   const { nickname } = router.query;
 
-  const [profile, setProfile] = useState(artistData?.author);
-  const [artworks, setArtworks] = useState(artistData?.artworks);
-
-  console.log(profile);
-  console.log(artworks);
+  const [profile, setProfile] = useState(artist_name2info);
+  const [artworks, setArtworks] = useState(artist_artworks);
+  const member_link = useResponsiveLink(
+    profile?.author_url.split('/').pop(),
+    links.mobile.member,
+    links.pc.member,
+    0
+  );
+  const article_link = useResponsiveLink(
+    '',
+    links.mobile.article,
+    links.pc.article,
+    0
+  );
 
   return (
     <Box
@@ -158,8 +168,7 @@ const Artist = ({ artistData }) => {
       width="100%"
       margin="0 auto"
       w="100%"
-      // maxW="750px"
-      mb="32px"
+      mb="2rem"
     >
       <Flex flexDirection="column" alignItems="center" width="656px" pt="10px">
         <Avatar
@@ -167,7 +176,7 @@ const Artist = ({ artistData }) => {
           h="120px"
           name="Dan Abrahmov"
           src={profile?.author_prof_url}
-          m="8px 0"
+          m="0.5rem 0"
         />
         <Text fontSize="4xl" fontWeight="bold" m="8px 0">
           {nickname}
@@ -176,7 +185,7 @@ const Artist = ({ artistData }) => {
           <Box as="button">
             <Text fontWeight="600">작품 수 {artworks?.length}개</Text>
           </Box>
-          <Text fontSize="14px" fontWeight="400" p="0 4px">
+          {/* <Text fontSize="14px" fontWeight="400" p="0 4px">
             ·
           </Text>
           <Box as="button">
@@ -187,7 +196,7 @@ const Artist = ({ artistData }) => {
           </Text>
           <Box as="button">
             <Text fontWeight="600">팔로잉 13명</Text>
-          </Box>
+          </Box> */}
         </Flex>
         <Flex
           flexDirection="row"
@@ -203,7 +212,7 @@ const Artist = ({ artistData }) => {
             m="0 20px"
             h="48px"
             onClick={() => {
-              window.open(profile?.author_url, '_blank');
+              window.open(member_link, '_blank');
             }}
           >
             왁물원
@@ -245,7 +254,7 @@ const Artist = ({ artistData }) => {
           alignItems="center"
           placeItems="center"
         >
-          {artworks.map((artwork) => (
+          {artworks?.map((artwork) => (
             <Box
               key={artwork.id}
               m="8px"
@@ -256,7 +265,14 @@ const Artist = ({ artistData }) => {
               overflow="hidden"
               flexWrap="wrap"
             >
-              <Link href={artwork.url === '' ? '#' : artwork.url} isExternal>
+              <Link
+                href={
+                  artwork.url === ''
+                    ? '#'
+                    : article_link + artwork.url.split('/').pop()
+                }
+                isExternal
+              >
                 <Image
                   alt={artwork.title}
                   width={300}
@@ -283,25 +299,28 @@ export async function getServerSideProps(context) {
   const { nickname } = context.query;
 
   try {
-    // Axios를 사용하여 데이터 가져오기
-    const response = await axios.get(
-      `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
-    );
+    const artist_name2info = await axios
+      .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
+      .then((res) => res.data);
+    const artist_artworks = await axios
+      .get(
+        `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
+      )
+      .then((res) => res.data);
 
-    const artistData = response.data;
-    console.log(artistData);
+    console.log(artist_name2info);
+    console.log(artist_artworks);
+    const ret = await Promise.all([artist_name2info, artist_artworks]);
+
     return {
       props: {
-        artistData,
+        artist_name2info: ret[0],
+        artist_artworks: ret[1],
       },
     };
   } catch (error) {
     console.error('Error fetching data:', error);
-    // return {
-    //   props: {
-    //     artistData: null, // 오류 처리를 위한 기본값 설정
-    //   },
-    // };
+
     return {
       notFound: true, // Next.js에서 제공하는 notFound 속성을 사용하여 페이지를 404로 표시
     };
