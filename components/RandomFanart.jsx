@@ -227,7 +227,6 @@ const RandomFanart = () => {
               size="md"
               mt="1.5rem"
               p="0"
-              onClick={fetchRandomFanart}
             >
               <IoSettingsSharp boxSize={30} />
             </Button>
