@@ -83,14 +83,11 @@ const SearchResult = ({
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
             <AuthorProfileCard
-              writerURL={'/artists/' + author?.author_nickname}
               profURL={author?.author_prof_url}
               nickname={author?.author_nickname}
               board={uploadTimeDiff}
-              // writerURL={author?.writerURL || data?.author_profile}
-              // profURL={author?.profURL}
-              // nickname={author?.nickname || data?.author_nickname}
-              // board={author?.uploadText}
+              // writerURL={author?.author_url}
+              writerURL={'/artists/' + author?.author_nickname}
             />
           </Skeleton>
         </div>
