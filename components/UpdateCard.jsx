@@ -13,17 +13,10 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import { lightMode, darkMode } from '@/styles/theme';
 import boardData from '../data/board.ts';
+import { links } from '../data/links';
 import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 
-const links = {
-  article_mobileLink:
-    'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/',
-  article_pcLink: 'https://cafe.naver.com/steamindiegame/',
-  menu_mobileLink: 'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/menus/',
-  menu_pcLink:
-    'https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=',
-};
 const UpdateCard = ({ update }) => {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
@@ -31,15 +24,18 @@ const UpdateCard = ({ update }) => {
   );
 
   const uploadTimeDiff = useUploadTimeDiff(update.date);
-  const articke_link =
-    useResponsiveLink(links.article_mobileLink, links.article_pcLink, 0) +
-    update.id;
-  const menu_link =
-    useResponsiveLink(links.menu_mobileLink, links.menu_pcLink, 1) +
-    boardData.find((item) => item.board === update.board)?.id;
-
-  console.log(articke_link);
-  console.log(menu_link);
+  const articke_link = useResponsiveLink(
+    update.id,
+    links.mobile.article,
+    links.pc.article,
+    0
+  );
+  const menu_link = useResponsiveLink(
+    boardData.find((item) => item.board === update.board)?.id,
+    links.mobile.menu,
+    links.pc.menu,
+    1
+  );
 
   return (
     <Card

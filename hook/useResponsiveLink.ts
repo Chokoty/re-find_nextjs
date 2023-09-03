@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 export const useResponsiveLink = (
+  id: string,
   mobileLink: string,
   pcLink: string,
   boardtype: number
@@ -26,8 +27,10 @@ export const useResponsiveLink = (
   }, []);
 
   // 모바일 또는 PC 링크 반환
+  if (id === '') return isMobile ? mobileLink : pcLink;
+
   if (boardtype === 1) {
-    return isMobile ? mobileLink : pcLink + '%26search.boardtype=I';
+    return isMobile ? mobileLink + id : pcLink + id + '%26search.boardtype=I';
   }
-  return isMobile ? mobileLink : pcLink;
+  return isMobile ? mobileLink + id : pcLink + id;
 };

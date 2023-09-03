@@ -10,12 +10,13 @@ import {
   Flex,
   Link,
   SimpleGrid,
-  Wrap,
   Center,
-  WrapItem,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import Image from 'next/image';
+import { useResponsiveLink } from '../../hook/useResponsiveLink';
+import { links } from '../../data/links';
+
 const data = [
   {
     id: 12435043,
@@ -146,9 +147,18 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
   const [profile, setProfile] = useState(artist_name2info);
   const [artworks, setArtworks] = useState(artist_artworks);
-
-  console.log(profile);
-  console.log(artworks);
+  const member_link = useResponsiveLink(
+    profile?.author_url.split('/').pop(),
+    links.mobile.member,
+    links.pc.member,
+    0
+  );
+  const article_link = useResponsiveLink(
+    '',
+    links.mobile.article,
+    links.pc.article,
+    0
+  );
 
   return (
     <Box
@@ -202,7 +212,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
             m="0 20px"
             h="48px"
             onClick={() => {
-              window.open(profile?.author_url, '_blank');
+              window.open(member_link, '_blank');
             }}
           >
             왁물원
@@ -255,7 +265,14 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
               overflow="hidden"
               flexWrap="wrap"
             >
-              <Link href={artwork.url === '' ? '#' : artwork.url} isExternal>
+              <Link
+                href={
+                  artwork.url === ''
+                    ? '#'
+                    : article_link + artwork.url.split('/').pop()
+                }
+                isExternal
+              >
                 <Image
                   alt={artwork.title}
                   width={300}
