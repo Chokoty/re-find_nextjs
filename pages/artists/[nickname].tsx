@@ -16,130 +16,6 @@ import axios from 'axios';
 import Image from 'next/image';
 import { useResponsiveLink } from '../../hook/useResponsiveLink';
 
-const data = [
-  {
-    id: 12435043,
-    url: 'https://cafe.naver.com/steamindiegame/12435043',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MTRfMjcg/MDAxNjkxOTk4NzI3NzA3.ubvsiQNjjG7cF6VHqpUkWxFqYIdCB88Tb37xwvUu1RIg.S6KXi0ojB7PELe8RbXdglPXylovRzBtGAe4RHh_UFLwg.PNG/%EB%AC%B4%EC%A0%9C1560.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '2인 이상',
-    title: '삘 받아서 만들었어요',
-    date: '2023.08.14. 16:42',
-    deleted: false,
-  },
-  {
-    id: 12411007,
-    url: 'https://cafe.naver.com/steamindiegame/12411007',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MTJfMTk5/MDAxNjkxODM3Mzg4NDk4.nQF-iEYdlf7HQW8ALvDHVxE11j7cKk9zhCXngw2V4DIg.JxRmf6shp8pGYVB0_Y5rJ56k3beS3kPWJXKJpfKg0MIg.PNG/%EB%AC%B4%EC%A0%9C1543.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '비챤',
-    title: '챤님',
-    date: '2023.08.12. 19:53',
-    deleted: false,
-  },
-  {
-    id: 12258199,
-    url: 'https://cafe.naver.com/steamindiegame/12258199',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA3MzFfMTI1/MDAxNjkwNzY2MjY1NTcy.18JXB3EqyPFetryGW88rcD-5LYtuSVy2_0czIKpOsz0g.BaeCozrOw77vyz7SWLQ5i4cUlReUogZod6DFZznKyNUg.PNG/%EB%AC%B4%EC%A0%9C1385.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '비챤',
-    title: '점점 실력이 진화하는 글',
-    date: '2023.07.31. 10:19',
-    deleted: false,
-  },
-  {
-    id: 12199696,
-    url: 'https://cafe.naver.com/steamindiegame/12199696',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA3MjZfNjUg/MDAxNjkwMzY2ODQxNzEw.NWc_oq4eEOuKh-TpnOeslPdYryuZIYTjK8Rq3JoBlsog.8L31EI8DWN_6izwJIM59MBAPFNQJ5fyvFt4tz0LtK_cg.PNG/%EB%AC%B4%EC%A0%9C1496.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '비챤',
-    title: '꽃 요정 챤님 +(체색 완료)',
-    date: '2023.07.26. 18:47',
-    deleted: false,
-  },
-  {
-    id: 12248392,
-    url: 'https://cafe.naver.com/steamindiegame/12248392',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA3MzBfNjgg/MDAxNjkwNjg5MDc0MTY4.ek1zqiwDSL2HCLqxWstnEN3fwSfZwN54WxSjRxHLFA4g.pz-TNE6G4nBLKAixjIvluKk3GEO84rn41y_VjMrYt4sg.PNG/%EB%AC%B4%EC%A0%9C1459_%281%29.png',
-    board: '우왁굳 팬아트',
-    category: '합성짤',
-    title: '제가 본 팬치들',
-    date: '2023.07.30. 12:53',
-    deleted: false,
-  },
-  {
-    id: 12076089,
-    url: 'https://cafe.naver.com/steamindiegame/12076089',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA3MThfMjQ2/MDAxNjg5Njc5ODMwNzA3.9bEnHLivpkPhw0Lh5z7mwwwao--RNIDea86TCiPT7scg.wuMH-lqhRjXTe6rn2d4WzbpD9hoRnQpkrIabQs5T9Nwg.PNG/%EB%AC%B4%EC%A0%9C1436.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '비챤',
-    title: '비차장',
-    date: '2023.07.18. 20:30',
-    deleted: false,
-  },
-  {
-    id: 12690454,
-    url: 'https://cafe.naver.com/steamindiegame/12690454',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MzBfMjE3/MDAxNjkzMzg2OTYzOTE0.zJEMNxs-8s-xBQoGzjVzRGzY3xMbW3dZwW9tQFRR7kkg.9mAIVXCRP4leBIcGupMgs3jZcj2VTOHQDFCkGOOIQxgg.JPEG/20230830_181455.jpg',
-    board: '🎨 이세돌┃팬아트',
-    category: '비챤',
-    title: '숙제하다 갑자기 키딩 낙서 (진짜 낙서임)',
-    date: '2023.08.30. 18:16',
-    deleted: false,
-  },
-  {
-    id: 12687975,
-    url: 'https://cafe.naver.com/steamindiegame/12687975',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MzBfODcg/MDAxNjkzMzY3NDkwMTYw.zx25IYs7uP65l3m8fCHOxFOadgjU3G95ibau3SF3QE4g.t7WE-idAN_iF1N9r78AxMGzdLwCH3KjLFXLXGqxVJJ8g.PNG/%EB%AC%B4%EC%A0%9C1597.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '2인 이상',
-    title: '즐거운 낙서',
-    date: '2023.08.30. 12:53',
-    deleted: false,
-  },
-  {
-    id: 12666440,
-    url: 'https://cafe.naver.com/steamindiegame/12666440',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MjhfNTYg/MDAxNjkzMjEwNzA0OTg5.gSquV7knheYdJ3P9LEQL4nLCzdo8hxYMcFLOwppWMWQg.FksNK35n-XMyLa681szCF2XQSA_i0KkWvd4MWzvoIDkg.PNG/%EB%AC%B4%EC%A0%9C1592.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '아이네',
-    title: '낙서',
-    date: '2023.08.28. 17:21',
-    deleted: false,
-  },
-  {
-    id: 12633610,
-    url: 'https://cafe.naver.com/steamindiegame/12633610',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MjZfMTIg/MDAxNjkzMDI5MTgyOTY1.dVmCJvrpk_ZzRz92VdE6vjDI-m5875BrR9M9MPpSAaEg.uTmU5Wu-mltTXkV77Jpx0qYgAuAhJWLG9kExerKd4sYg.PNG/%EB%AC%B4%EC%A0%9C1575.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '비챤',
-    title: '키딩',
-    date: '2023.08.26. 14:53',
-    deleted: false,
-  },
-  {
-    id: 12633689,
-    url: 'https://cafe.naver.com/steamindiegame/12633689',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MjZfMjg2/MDAxNjkzMDI5MzQ3MDYw.bTJiMuqW-LHZAlaOFwt5PrFt1bkDO8rKkIerBFphGp8g.rut5oiFHervUSK7f-JJ6yWuGicjRykLFDgFrCZVY0fsg.PNG/%EB%AC%B4%EC%A0%9C1506.png',
-    board: '🎨 이세돌┃팬아트',
-    category: '2인 이상',
-    title: '하찮은 이세돌 그림',
-    date: '2023.08.26. 15:00',
-    deleted: false,
-  },
-];
-
 const Artist = ({ artist_name2info, artist_artworks }) => {
   const router = useRouter();
   const { nickname } = router.query;
@@ -243,9 +119,11 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           w="96%"
           minChildWidth="252px"
           m="0 2rem"
+          spacing="0.5rem"
           justifyContent="center"
           alignItems="center"
           placeItems="center"
+          p="1rem"
         >
           {artworks?.map((artwork) => (
             <Box
@@ -272,6 +150,8 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
                   height={300}
                   style={{
                     objectFit: 'cover',
+                    objectPosition: 'center top',
+                    // objectPosition: 'center -50px',
                     width: '100%',
                     height: '100%',
                   }}
