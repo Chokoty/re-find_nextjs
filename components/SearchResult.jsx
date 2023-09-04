@@ -57,7 +57,7 @@ const SearchResult = ({
               href={article_link + item}
               isExternal
             >
-              {article_link + item}
+              게시글id: {item}
               <ExternalLinkIcon mx="2px" />
             </Link>
           ))}
