@@ -54,7 +54,7 @@ const SearchResult = ({
               // color="#01bda1"
               color={highlightColor}
               className="link"
-              href={'https://cafe.naver.com/steamindiegame/' + item}
+              href={article_link + item}
               isExternal
             >
               {article_link + item}
