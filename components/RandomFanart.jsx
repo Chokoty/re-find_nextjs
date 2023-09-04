@@ -23,6 +23,7 @@ import {
 } from '@chakra-ui/react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
+import { useResponsiveLink } from '../hook/useResponsiveLink';
 
 const setLocalStorage = (key, value) => {
   try {
@@ -45,17 +46,16 @@ const getLocalStorage = (key) => {
 };
 
 const RandomFanart = () => {
-  const [isMobile, setIsMobile] = useState(true);
   const [fanart, setFanart] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [url, setUrl] = useState(null);
-  const [urlId, setUrlId] = useState(null);
   const [isvisible, setIsvisible] = useState(false);
   const [checkboxValues, setCheckboxValues] = useState({
     isd: true,
     wak: true,
     gomem: true,
   });
+
+  const article_link = useResponsiveLink(fanart?.id, 'article');
 
   useEffect(() => {
     // 로컬 스토리지에서 체크박스 값 불러오기
@@ -64,22 +64,7 @@ const RandomFanart = () => {
       setCheckboxValues(savedCheckboxValues);
     }
     fetchRandomFanart();
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    // 컴포넌트가 마운트될 때 화면 크기 체크
-    handleResize();
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
   }, []);
-
-  // useEffect(() => {
-  //     console.log(fanart);
-  // }, [fanart]);
 
   const handleLoad = async () => {
     await new Promise((r) => setTimeout(r, 1000));
@@ -97,19 +82,10 @@ const RandomFanart = () => {
       let queryParams = Object.keys(checkboxValues)
         .filter((key) => checkboxValues[key])
         .join('&');
-      // console.log(queryParams);
       const res = await axios.get(
         `https://re-find.reruru.com/rand?${queryParams}`
       );
-      // const res = await axios.get("https://rerurureruru.com:8443/rand");
       setFanart(res.data);
-      setUrl(urlId);
-
-      // const url = isMobile
-      //     ? "https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/" +
-      //       res.data?.id +
-      //       "?fromList=true&menuId=344&tc=cafe_article_list"
-      //     : "https://cafe.naver.com/steamindiegame/" + res.data?.id;
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
@@ -145,12 +121,6 @@ const RandomFanart = () => {
     // 로컬 스토리지에 체크박스 값 저장하기
     setLocalStorage('checkboxValues', updatedCheckboxValues);
   };
-  const url2 = isMobile
-    ? 'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/'
-    : //  +urlId +
-      //   "?fromList=true&menuId=344&tc=cafe_article_list"
-      'https://cafe.naver.com/steamindiegame/';
-  // + urlId;
 
   const previewContainer = {
     display: 'flex',
@@ -201,7 +171,7 @@ const RandomFanart = () => {
       {isvisible && (
         <Skeleton isLoaded={!isLoading}>
           {fanart && (
-            <Link href={url2 + fanart?.id} passHref isExternal style={linkDiv}>
+            <Link href={article_link} passHref isExternal style={linkDiv}>
               <NextImage
                 unoptimized
                 style={img}

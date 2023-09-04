@@ -13,7 +13,6 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import { lightMode, darkMode } from '@/styles/theme';
 import boardData from '../data/board.ts';
-import { links } from '../data/links';
 import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 
@@ -23,18 +22,11 @@ const UpdateCard = ({ update }) => {
     darkMode.highlight
   );
 
-  const uploadTimeDiff = useUploadTimeDiff(update.date);
-  const articke_link = useResponsiveLink(
-    update.id,
-    links.mobile.article,
-    links.pc.article,
-    0
-  );
+  const uploadTimeDiff = useUploadTimeDiff(update?.date);
+  const article_link = useResponsiveLink(update?.id, 'article');
   const menu_link = useResponsiveLink(
     boardData.find((item) => item.board === update.board)?.id,
-    links.mobile.menu,
-    links.pc.menu,
-    1
+    'menu'
   );
 
   return (
@@ -87,7 +79,7 @@ const UpdateCard = ({ update }) => {
           <Link
             color={highlightColor}
             className="link"
-            href={articke_link}
+            href={article_link}
             isExternal
           >
             {update.id}

@@ -14,6 +14,7 @@ import { lightMode, darkMode } from '@/styles/theme';
 import AuthorProfileCard from '../components/AuthorProfileCard';
 import Description from '../components/Description';
 import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
+import { useResponsiveLink } from '../hook/useResponsiveLink';
 
 const SearchResult = ({
   searchTime,
@@ -23,11 +24,12 @@ const SearchResult = ({
   author,
   resetFiles,
 }) => {
-  const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
   );
+  const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
+  const article_link = useResponsiveLink('', 'article');
 
   return (
     <div className="result">
@@ -52,11 +54,10 @@ const SearchResult = ({
               // color="#01bda1"
               color={highlightColor}
               className="link"
-              href={'https://cafe.naver.com/steamindiegame/' + item}
+              href={article_link + item}
               isExternal
             >
-              https://cafe.naver.com/steamindiegame/
-              {item}
+              게시글id: {item}
               <ExternalLinkIcon mx="2px" />
             </Link>
           ))}
@@ -73,7 +74,7 @@ const SearchResult = ({
               // color="#01bda1"
               color={highlightColor}
               className="link"
-              href={'https://cafe.naver.com/steamindiegame/' + data?.id?.[0]}
+              href={article_link + data?.id?.[0]}
               isExternal
             >
               {/* {author?.title} */}

@@ -15,7 +15,6 @@ import {
 import axios from 'axios';
 import Image from 'next/image';
 import { useResponsiveLink } from '../../hook/useResponsiveLink';
-import { links } from '../../data/links';
 
 const data = [
   {
@@ -149,16 +148,10 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   const [artworks, setArtworks] = useState(artist_artworks);
   const member_link = useResponsiveLink(
     profile?.author_url.split('/').pop(),
-    links.mobile.member,
-    links.pc.member,
-    0
+    'member'
   );
-  const article_link = useResponsiveLink(
-    '',
-    links.mobile.article,
-    links.pc.article,
-    0
-  );
+  const article_link = useResponsiveLink('', 'article');
+  // console.log(profile?.author_prof_url);
 
   return (
     <Box
@@ -174,7 +167,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         <Avatar
           w="120px"
           h="120px"
-          name={profile?.author_name}
+          name={profile?.author_nickname}
           src={profile?.author_prof_url}
           m="0.5rem 0"
         />

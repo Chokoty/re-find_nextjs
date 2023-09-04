@@ -5,6 +5,7 @@ import { Avatar, Text, Button, Highlight } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
+import { useResponsiveLink } from '../hook/useResponsiveLink';
 
 const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -18,9 +19,11 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     darkMode.highlight2
   );
 
+  const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
+
   return (
     <Button
-      href={writerURL === '' ? '#' : writerURL}
+      href={writerURL === '' ? '#' : member_link}
       as="a"
       target="_blank"
       color={'#f5f5f5'}
