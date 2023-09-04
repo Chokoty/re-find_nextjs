@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
-
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import Image from 'next/image';
+import { Flex, Button, Box, useColorModeValue } from '@chakra-ui/react';
 import { lightMode, darkMode } from '@/styles/theme';
-
+import Link from 'next/link';
 import DarkModeToggle from '../DarkModeToggle';
 import MyDrawer from '../MyDrawer';
 import NoticeBanner from '../NoticeBanner';
@@ -66,22 +66,46 @@ export const Header = () => {
     // <Box bg={colors[theme].bg} color={colors[theme].color}>
     <Box>
       <NoticeBanner />
-      <header style={{ backgroundColor: bgColor, color: color }}>
+      <header
+        style={{
+          backgroundColor: bgColor,
+          color: color,
+          // position: 'sticky',
+          // top: 0,
+          // zIndex: 1,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         {/* <header> */}
-        <DarkModeToggle className="dark-mode-toggle" />
-        <MyDrawer
-          isOpen={isOpen}
-          toggleDrawer={toggleDrawer}
-          ref={myDrawerRef}
-        />
-        <Box className="hamburger">
-          <Hamburger
-            label="펼치기" // An ARIA label to improve accessibility.
-            size={20}
-            toggled={isOpen}
-            toggle={toggleDrawer}
+        <Button w="3rem" h="3rem" p="0.5rem" variant="ghost" borderRadius="50%">
+          <Link href="/">
+            <Image
+              alt="logo"
+              width={40}
+              height={40}
+              src="/android-chrome-512x512.png"
+              unoptimized
+            />
+          </Link>
+        </Button>
+        <Flex>
+          <DarkModeToggle className="dark-mode-toggle" />
+          <MyDrawer
+            isOpen={isOpen}
+            toggleDrawer={toggleDrawer}
+            ref={myDrawerRef}
           />
-        </Box>
+          <Box className="hamburger">
+            <Hamburger
+              label="펼치기" // An ARIA label to improve accessibility.
+              size={24}
+              toggled={isOpen}
+              toggle={toggleDrawer}
+            />
+          </Box>
+        </Flex>
       </header>
     </Box>
   );

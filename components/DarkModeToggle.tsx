@@ -31,10 +31,21 @@ const DarkModeToggle: React.FC<DarkModeToggleProps> = ({
     <IconButton
       onClick={toggleColorMode}
       bg="none"
-      _hover={{ bg: '#none' }}
-      // variant={'ghost'}
+      // _hover={{ bg: '#none' }}
+      variant={'ghost'}
+      borderRadius="50%"
       aria-label="Toggle dark mode"
-      icon={<Icon />}
+      icon={
+        <Icon
+          style={{
+            width: '1.5rem',
+            height: '1.5rem',
+          }}
+        />
+      }
+      w="3rem"
+      h="3rem"
+      p="0.5rem"
     />
   );
 };
