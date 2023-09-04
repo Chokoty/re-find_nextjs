@@ -37,6 +37,6 @@ export const useResponsiveLink = (
       ? links.mobile.menu + id
       : links.pc.menu + id + '%26search.boardtype=I';
   } else if (type === 'member') {
-    return isMobile ? links.mobile.member : links.pc.member;
+    return isMobile ? links.mobile.member + id : links.pc.member + id;
   }
 };

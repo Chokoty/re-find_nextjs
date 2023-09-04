@@ -19,6 +19,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     darkMode.highlight2
   );
   console.log('writerURL', writerURL);
+  console.log('writerURL', writerURL.split('/').pop());
   const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
   console.log('member_link', member_link);
   return (
