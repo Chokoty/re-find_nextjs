@@ -57,7 +57,7 @@ const SearchResult = ({
               href={article_link + item}
               isExternal
             >
-              {article_link + item}}
+              {article_link + item}
               <ExternalLinkIcon mx="2px" />
             </Link>
           ))}
