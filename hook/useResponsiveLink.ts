@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { links } from '../data/links';
 
 export const useResponsiveLink = (
   id: string,
-  mobileLink: string,
-  pcLink: string,
-  boardtype: number
+  type: string
+  // mobileLink: string,
+  // pcLink: string,
+  // boardtype: number
 ): string => {
   const [isMobile, setIsMobile] = useState<boolean>(true);
 
@@ -27,10 +29,14 @@ export const useResponsiveLink = (
   }, []);
 
   // 모바일 또는 PC 링크 반환
-  if (id === '') return isMobile ? mobileLink : pcLink;
-
-  if (boardtype === 1) {
-    return isMobile ? mobileLink + id : pcLink + id + '%26search.boardtype=I';
+  if (type === 'article') {
+    if (id === '') return isMobile ? links.mobile.article : links.pc.article;
+    return isMobile ? links.mobile.article + id : links.pc.article + id;
+  } else if (type === 'menu') {
+    return isMobile
+      ? links.mobile.menu + id
+      : links.pc.menu + id + '%26search.boardtype=I';
+  } else if (type === 'member') {
+    return isMobile ? links.mobile.member : links.pc.member;
   }
-  return isMobile ? mobileLink + id : pcLink + id;
 };

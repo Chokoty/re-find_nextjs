@@ -15,31 +15,23 @@ import {
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { lightMode, darkMode } from '@/styles/theme';
+import { useResponsiveLink } from '../../hook/useResponsiveLink';
 
 const KiddingFanart = ({ initialFanart }) => {
-  const [isMobile, setIsMobile] = useState(true);
   const [fanart, setFanart] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  const [url, setUrl] = useState(null);
-  const [urlId, setUrlId] = useState(null);
   const [isvisible, setIsvisible] = useState(true);
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    // 컴포넌트가 마운트될 때 화면 크기 체크
-    handleResize();
-    // fetchRandomFanart();
-    // console.log(initialFanart);
-    setFanart(initialFanart);
 
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+  const article_link = useResponsiveLink(
+    fanart?.url.split('/').pop(),
+    'article'
+  );
+
+  useEffect(() => {
+    setFanart(initialFanart);
   }, []);
 
   const fetchRandomFanart = async () => {
@@ -48,7 +40,6 @@ const KiddingFanart = ({ initialFanart }) => {
       const res = await axios.get(`https://re-find.reruru.com/third_album`);
       // console.log(res.data);
       setFanart(res.data);
-      setUrl(urlId);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
@@ -69,10 +60,6 @@ const KiddingFanart = ({ initialFanart }) => {
     if (!isvisible) setIsvisible(true);
     fetchRandomFanart();
   };
-
-  const url2 = isMobile
-    ? 'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/articles/'
-    : 'https://cafe.naver.com/steamindiegame/';
 
   const previewContainer = {
     display: 'flex',
@@ -112,14 +99,7 @@ const KiddingFanart = ({ initialFanart }) => {
   };
 
   return (
-    <Box
-      bg="#FFFAE8"
-      p="0.5rem"
-      w="90%"
-      maxW="540px"
-      // borderWidth="1px"
-      borderRadius="lg"
-    >
+    <Box bg="#FFFAE8" p="0.5rem" w="90%" maxW="540px" borderRadius="lg">
       <div style={previewContainer} className="random-fanart">
         {!isvisible && (
           <div className="random-fanart__guide" style={guide}>
@@ -162,12 +142,7 @@ const KiddingFanart = ({ initialFanart }) => {
             </Text>
             <Skeleton isLoaded={!isLoading}>
               {fanart && (
-                <Link
-                  href={url2 + fanart?.url.split('/').pop()}
-                  passHref
-                  isExternal
-                  style={linkDiv}
-                >
+                <Link href={article_link} passHref isExternal style={linkDiv}>
                   <NextImage
                     unoptimized
                     style={img}
