@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
   Text,
@@ -22,12 +22,53 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
   const [profile, setProfile] = useState(artist_name2info);
   const [artworks, setArtworks] = useState(artist_artworks);
+  const [page, setPage] = useState(1); // Current page number
+  const [hasMoreData, setHasMoreData] = useState(true); // Whether there is more data to load
+
   const member_link = useResponsiveLink(
     profile?.author_url.split('/').pop(),
     'member'
   );
   const article_link = useResponsiveLink('', 'article');
   // console.log(profile?.author_prof_url);
+
+  // Function to load more data when scrolling to the bottom
+  const loadMoreData = async () => {
+    if (!hasMoreData) return; // No more data to load
+
+    try {
+      const nextPage = page + 1;
+      const response = await axios.get(
+        `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
+      );
+
+      if (response.data.length === 0) {
+        setHasMoreData(false); // No more data to load
+      } else {
+        setArtworks([...artworks, ...response.data]);
+        setPage(nextPage);
+      }
+    } catch (error) {
+      console.error('Error fetching more data:', error);
+    }
+  };
+
+  useEffect(() => {
+    // Add an event listener to detect scrolling to the bottom of the page
+    window.addEventListener('scroll', () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.scrollHeight - 100
+      ) {
+        loadMoreData();
+      }
+    });
+
+    return () => {
+      // Remove the event listener when the component unmounts
+      window.removeEventListener('scroll', loadMoreData);
+    };
+  }, [page, hasMoreData]);
 
   return (
     <Box
