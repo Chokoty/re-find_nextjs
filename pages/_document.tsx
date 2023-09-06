@@ -23,7 +23,7 @@ export default function Document() {
         />
         <meta
           property="og:description"
-          content="왁타버스,이세계아이돌 팬아트 출처 찾기"
+          content="왁타버스 이세계아이돌 팬아트 출처 찾기"
         />
         <meta name="referrer" content="no-referrer" />
         <link rel="manifest" href="/manifest.json" />
