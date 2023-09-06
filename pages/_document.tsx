@@ -6,10 +6,10 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head>
-        <meta name="description" content="이세계 아이돌 팬아트 출처 찾기" />
+        <meta name="description" content="왁타버스 팬아트 출처 찾기" />
         <meta
           name="keywords"
-          content="왁타버스, 이세계, 아이돌, 팬아트, 출처, 찾기, 왁물원
+          content="왁타버스, 우왁굳, 고멤/교멤, 이세계아이돌, 팬아트, 출처, 찾기, 왁물원
                 "
         />
         <meta name="author" content="레루루 & 초코넛밀크티" />
@@ -23,7 +23,7 @@ export default function Document() {
         />
         <meta
           property="og:description"
-          content="이세계 아이돌 팬아트 출처 찾기"
+          content="이세계아이돌 팬아트 출처 찾기"
         />
         <meta name="referrer" content="no-referrer" />
         <link rel="manifest" href="/manifest.json" />
