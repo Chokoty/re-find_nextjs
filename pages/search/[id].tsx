@@ -8,3 +8,5 @@ const Search = () => {
 
   return <div>Search {id}</div>;
 };
+
+export default Search;
