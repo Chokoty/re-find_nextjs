@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
-
+import Head from 'next/head';
 import {
   Text,
   Box,
@@ -107,44 +107,67 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   }, [page, hasMoreData]);
 
   return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      width="100%"
-      margin="0 auto"
-      w="100%"
-      mb="2rem"
-    >
-      <Flex flexDirection="column" alignItems="center" width="656px" pt="10px">
-        <Avatar
-          w="120px"
-          h="120px"
-          name={profile?.author_nickname}
-          src={profile?.author_prof_url}
-          m="0.5rem 0"
+    <>
+      <Head>
+        <title>{profile?.author_nickname} - RE:FIND</title>
+        <meta
+          property="og:title"
+          content={profile?.author_nickname + '- Profile | RE:FIND '}
         />
-        <Text fontSize="4xl" fontWeight="bold" m="8px 0" pl="2rem">
-          {nickname}
-          <Tooltip label="프로필 공유">
-            <Button
-              w="3rem"
-              h="3rem"
-              variant="ghost"
-              borderRadius="full"
-              p="0"
-              onClick={handleCopyLink}
-            >
-              <ImLink />
-            </Button>
-          </Tooltip>
-        </Text>
+        <meta
+          property="og:description"
+          content="리파인드 - 왁타버스 이세계아이돌 팬아트 출처 찾기"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={profile?.author_prof_url} />
+        <meta
+          property="og:url"
+          content={`https://re-find.xyz/artists/${profile?.author_nickname}`}
+        />
+      </Head>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        width="100%"
+        margin="0 auto"
+        w="100%"
+        mb="2rem"
+      >
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          width="656px"
+          pt="10px"
+        >
+          <Avatar
+            w="120px"
+            h="120px"
+            name={profile?.author_nickname}
+            src={profile?.author_prof_url}
+            m="0.5rem 0"
+          />
+          <Text fontSize="4xl" fontWeight="bold" m="8px 0" pl="2rem">
+            {nickname}
+            <Tooltip label="프로필 공유">
+              <Button
+                w="3rem"
+                h="3rem"
+                variant="ghost"
+                borderRadius="full"
+                p="0"
+                onClick={handleCopyLink}
+              >
+                <ImLink />
+              </Button>
+            </Tooltip>
+          </Text>
 
-        <Flex flexDirection="row" alignItems="center" m="8px 0">
-          <Box as="button">
-            <Text fontWeight="600">작품 수 {profile?.num_artworks}개</Text>
-          </Box>
-          {/* <Text fontSize="14px" fontWeight="400" p="0 4px">
+          <Flex flexDirection="row" alignItems="center" m="8px 0">
+            <Box as="button">
+              <Text fontWeight="600">작품 수 {profile?.num_artworks}개</Text>
+            </Box>
+            {/* <Text fontSize="14px" fontWeight="400" p="0 4px">
             ·
           </Text>
           <Box as="button">
@@ -156,82 +179,85 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           <Box as="button">
             <Text fontWeight="600">팔로잉 13명</Text>
           </Box> */}
+          </Flex>
+          <Flex
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+            w="100%"
+            ml="2rem"
+            m="8px 0"
+          >
+            <Button
+              colorScheme="gray"
+              borderRadius="full"
+              m="0 0.5rem"
+              h="48px"
+              onClick={() => {
+                window.open(member_link, '_blank');
+              }}
+            >
+              왁물원
+            </Button>
+            <Button
+              colorScheme="green"
+              borderRadius="full"
+              m="0 0.5rem"
+              h="48px"
+              onClick={() => {
+                alert('아직 기능 구현중입니다.');
+              }}
+            >
+              팔로우
+            </Button>
+          </Flex>
         </Flex>
         <Flex
           flexDirection="row"
           alignItems="center"
           justifyContent="center"
-          w="100%"
-          ml="2rem"
-          m="8px 0"
+          h="60px"
+          mt="2rem"
+          mb="1rem"
+          gap="0.5rem"
         >
           <Button
-            colorScheme="gray"
-            borderRadius="full"
-            m="0 0.5rem"
-            h="48px"
-            onClick={() => {
-              window.open(member_link, '_blank');
-            }}
+            variant={activeView === 'masonryView' ? 'solid' : 'ghost'}
+            onClick={() => handleViewChange('masonryView')}
           >
-            왁물원
+            <MdOutlineDashboard size="24px" />
           </Button>
           <Button
-            colorScheme="green"
-            borderRadius="full"
-            m="0 0.5rem"
-            h="48px"
-            onClick={() => {
-              alert('아직 기능 구현중입니다.');
-            }}
+            variant={activeView === 'gridView' ? 'solid' : 'ghost'}
+            onClick={() => handleViewChange('gridView')}
           >
-            팔로우
+            <MdOutlineGridView size="24px" />
+          </Button>
+          <Button
+            variant={activeView === 'listView' ? 'solid' : 'ghost'}
+            onClick={() => handleViewChange('listView')}
+          >
+            <MdOutlineViewDay size="24px" />
           </Button>
         </Flex>
-      </Flex>
-      <Flex
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="center"
-        h="60px"
-        mt="2rem"
-        mb="1rem"
-        gap="0.5rem"
-      >
-        <Button
-          variant={activeView === 'masonryView' ? 'solid' : 'ghost'}
-          onClick={() => handleViewChange('masonryView')}
-        >
-          <MdOutlineDashboard size="24px" />
-        </Button>
-        <Button
-          variant={activeView === 'gridView' ? 'solid' : 'ghost'}
-          onClick={() => handleViewChange('gridView')}
-        >
-          <MdOutlineGridView size="24px" />
-        </Button>
-        <Button
-          variant={activeView === 'listView' ? 'solid' : 'ghost'}
-          onClick={() => handleViewChange('listView')}
-        >
-          <MdOutlineViewDay size="24px" />
-        </Button>
-      </Flex>
 
-      {artworks?.length === 0 && (
-        <Center>
-          <Text>아직 업로드한 작품이 없네요!</Text>
-        </Center>
-      )}
+        {artworks?.length === 0 && (
+          <Center>
+            <Text>아직 업로드한 작품이 없네요!</Text>
+          </Center>
+        )}
 
-      {artworks?.length !== 0 && (
-        <Box w="100%">
-          {activeView === 'masonryView' && <MansonryView artworks={artworks} />}
-          {activeView === 'gridView' && <SimpleView artworks={artworks} />}
-          {activeView === 'listView' && <ListView artworks={artworks} />}
-        </Box>
-      )}
-    </Box>
+        {artworks?.length !== 0 && (
+          <Box w="100%">
+            {activeView === 'masonryView' && (
+              <MansonryView artworks={artworks} />
+            )}
+            {activeView === 'gridView' && <SimpleView artworks={artworks} />}
+            {activeView === 'listView' && <ListView artworks={artworks} />}
+          </Box>
+        )}
+      </Box>
+    </>
   );
 };
 export default Artist;
