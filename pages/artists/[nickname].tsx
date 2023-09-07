@@ -44,7 +44,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   // console.log(profile?.author_prof_url);
 
   const handleCopyLink = () => {
-    const linkToCopy = `https://re-find.xyz/${profile?.author_nickname}`;
+    const linkToCopy = `https://re-find.xyz/artists/${profile?.author_nickname}`;
     // 복사하려는 링크를 여기에 입력하세요.
 
     navigator.clipboard.writeText(linkToCopy).then(() => {
@@ -84,6 +84,10 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
       setHasMoreData(false); // No more data to load
     }
   };
+  useEffect(() => {
+    // 페이지 로딩 시 window.resize 이벤트를 강제로 발생시킵니다.
+    window.dispatchEvent(new Event('resize'));
+  }, []);
 
   useEffect(() => {
     // Add an event listener to detect scrolling to the bottom of the page
