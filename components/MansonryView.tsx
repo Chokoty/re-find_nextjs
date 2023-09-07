@@ -36,33 +36,6 @@ const MasonryView = ({ artworks }) => {
       window.removeEventListener('resize', handleResize);
     };
   }, [artworks]);
-  // useEffect(() => {
-  //   const calculateColumns = () => {
-  //     const containerWidth = containerRef.current.offsetWidth;
-  //     return Math.floor(containerWidth / 236);
-  //   };
-
-  //   // const instance = Bricks({
-  //   //   container: containerRef.current,
-  //   //   packed: 'data-packed',
-  //   //   sizes: [
-  //   //     { columns: 2, gutter: 10 },
-  //   //     { mq: '768px', columns: 3, gutter: 16 },
-  //   //     { mq: '1024px', columns: 4, gutter: 16 },
-  //   //   ],
-  //   // });
-  //   const instance = Bricks({
-  //     container: containerRef.current,
-  //     packed: 'data-packed',
-  //     sizes: [{ columns: calculateColumns(), gutter: 16 }],
-  //   });
-
-  //   instance.resize(true).pack();
-
-  //   return () => {
-  //     instance.resize(false);
-  //   };
-  // }, [artworks]);
 
   return (
     <Box ref={containerRef} w="100%" mx="auto">

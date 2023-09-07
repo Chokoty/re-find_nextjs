@@ -143,6 +143,12 @@ const updateLog = [
     content: '명전3관왕 킹애ㅐㅐㅐ!!! 스밍 계속 두개재ㅐㅐㅐㅐㅐㅐ',
     directLink: 'https://isegye.live/',
   },
+  {
+    id: 24,
+    date: '2023.09.06',
+    content: '왁타버스 컨텐츠를 한 곳에서, 왁스플로러 정식 런칭',
+    directLink: 'https://cafe.naver.com/steamindiegame/12764344',
+  },
 ];
 
 export default updateLog;
