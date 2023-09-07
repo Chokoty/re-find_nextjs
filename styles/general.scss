@@ -2,6 +2,7 @@
 @import './home.scss';
 // @import "./support.scss";
 @import './otherLayout.scss';
+@import './masonryLayout.scss';
 
 * {
   margin: 0;
@@ -73,7 +74,7 @@ header {
     // position: fixed;
     ul {
       list-style: none;
-      padding: 24px;
+      padding: 16px;
       margin: 0;
       li {
         // border-bottom: 1px solid #333;

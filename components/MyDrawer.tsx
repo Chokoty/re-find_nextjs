@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import Link from 'next/link';
+import NextImage from 'next/image';
 
 import { Box, Button, Image } from '@chakra-ui/react';
 import { InfoIcon, BellIcon } from '@chakra-ui/icons';
@@ -67,9 +68,37 @@ const MyDrawer = React.forwardRef(
                     style={{
                       width: '20px',
                       height: '20px',
+                      padding: '0',
+                      marginRight: '0.5rem',
                     }}
                   />
-                  (beta)이세돌 팬아트를 키워드로 찾아주는 AI
+                  <p
+                    style={{
+                      marginLeft: '0.5rem',
+                    }}
+                  >
+                    (beta)이세돌 팬아트를 키워드로 찾아주는 AI
+                  </p>
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="https://waktaver.se/" legacyBehavior>
+                <a
+                  className="list-item"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <NextImage
+                    src="/static/icons/waksplorer-logo.png"
+                    width={20}
+                    height={20}
+                    alt="waksplorer-logo"
+                    style={{
+                      marginRight: '0.5rem',
+                    }}
+                  />
+                  왁스플로러 바로가기
                 </a>
               </Link>
             </li>
