@@ -1,18 +1,28 @@
+import 'normalize.css';
+import '../styles/general.scss';
+
+import { NextComponentType } from 'next';
+import { AppContext, AppInitialProps, AppProps } from 'next/app';
+import Script from 'next/script';
+
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
 import Head from 'next/head';
 
 import MainLayout from '../components/layout/main-layout';
 import { Chakra } from '../styles/Chakra';
-import '../styles/general.scss';
 
 // analytics
 // import { Analytics } from "@vercel/analytics/react";
-import PlausibleProvider from 'next-plausible';
+// import PlausibleProvider from 'next-plausible';
 import * as gtag from '../lib/gtag';
 
-export default function App({ Component, pageProps }) {
+interface MyAppProps extends AppProps {}
+
+const App: NextComponentType<AppContext, AppInitialProps, MyAppProps> = ({
+  Component,
+  pageProps,
+}: MyAppProps) => {
   const router = useRouter();
 
   useEffect(() => {
@@ -28,7 +38,8 @@ export default function App({ Component, pageProps }) {
   }, [router.events]);
 
   return (
-    <PlausibleProvider domain="https://re-find.xyz/">
+    <>
+      {/* <PlausibleProvider domain="https://re-find.xyz/"> */}
       <Head>
         <title>리파인드 | RE:FIND</title>
       </Head>
@@ -66,8 +77,11 @@ export default function App({ Component, pageProps }) {
         </MainLayout>
       </Chakra>
       {/* <Analytics /> */}
-    </PlausibleProvider>
+      {/* </PlausibleProvider> */}
+    </>
   );
-}
+};
+
+export default App;
 
 export { getServerSideProps } from '../styles/Chakra';
