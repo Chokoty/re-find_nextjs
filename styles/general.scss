@@ -7,8 +7,8 @@
 @import './masonryLayout.scss';
 
 * {
-  // margin: 0;
-  // padding: 0;
+  margin: 0;
+  padding: 0;
 }
 html {
   // 사파리적용
@@ -21,7 +21,7 @@ body {
   background: $background-color;
   // padding-top: 58px;
   // color: #fff; //!important;
-  // overflow-x: hidden;
+  overflow-x: hidden; // my-drawer 숨기기용!
 }
 
 header {

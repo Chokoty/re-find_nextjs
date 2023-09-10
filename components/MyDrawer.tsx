@@ -18,7 +18,7 @@ const MyDrawer = React.forwardRef(
     // const { darkMode } = useStore((state) => state);
 
     return (
-      <div className={`my-drawer ${props.isOpen ? 'open' : ''}`} ref={ref}>
+      <Box className={`my-drawer ${props.isOpen ? 'open' : ''}`} ref={ref}>
         <div className="drawer-content">
           <ul>
             <li>
@@ -182,7 +182,7 @@ const MyDrawer = React.forwardRef(
             </Button>
           </div>
         </div>
-      </div>
+      </Box>
     );
   }
 );
