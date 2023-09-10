@@ -11,13 +11,11 @@ const SimpleView = ({ artworks }) => {
   return (
     <SimpleGrid
       w="96%"
-      minChildWidth="252px"
-      m="0 2rem"
+      minChildWidth={['150px', '252px']} // 모바일에서는 150px, 그 외에서는 252px
       spacing="0.5rem"
       justifyContent="center"
       alignItems="center"
       placeItems="center"
-      p="1rem"
     >
       {artworks?.map(
         (artwork) =>
@@ -37,14 +35,14 @@ const SimpleView = ({ artworks }) => {
               <Box
                 key={artwork.id}
                 m="8px"
-                w="252px"
-                h="236px"
+                w={['150px', '252px']} // 모바일에서는 150px, 그 외에서는 252px
+                h={['150px', '236px']}
                 alignItems="center"
                 overflow="hidden"
                 flexWrap="wrap"
               >
                 <Box
-                  h="157px"
+                  h={['100px', '157px']}
                   borderRadius="1rem"
                   //  border="2px solid #000"
                   position="relative"
@@ -61,7 +59,11 @@ const SimpleView = ({ artworks }) => {
                       height: '100%',
                       borderRadius: '1rem',
                     }}
-                    src={artwork.img_url}
+                    src={
+                      artwork.img_url === ''
+                        ? 'http://via.placeholder.com/252x157'
+                        : artwork.img_url
+                    }
                     unoptimized
                   />
                   <Box
@@ -78,12 +80,17 @@ const SimpleView = ({ artworks }) => {
                   />
                 </Box>
                 <Box p="0.5rem">
-                  <Text fontSize="xl" fontWeight="600">
-                    {artwork.title.length > 15
-                      ? `${artwork.title.slice(0, 15)}...`
-                      : artwork.title}
+                  <Text
+                    fontSize={['sm', 'xl']}
+                    fontWeight="600"
+                    whiteSpace="nowrap"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    maxWidth="100%"
+                  >
+                    {artwork.title}
                   </Text>
-                  <Text fontSize="sm">{artwork.board}</Text>
+                  <Text fontSize={['xs', 'sm']}>{artwork.board}</Text>
                   {/* <Text fontSize="sm">
                     {artwork.date.split(' ')[0].slice(0, -1)}
                   </Text> */}

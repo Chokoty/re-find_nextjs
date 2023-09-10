@@ -35,6 +35,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   const [artworks, setArtworks] = useState(artist_artworks);
   const [page, setPage] = useState(1); // Current page number
   const [hasMoreData, setHasMoreData] = useState(true); // Whether there is more data to load
+  const [isDeletedVisible, setIsDeletedVisible] = useState(true);
 
   const member_link = useResponsiveLink(
     profile?.author_url.split('/').pop(),
@@ -56,6 +57,10 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         isClosable: true,
       });
     });
+  };
+
+  const handleShowDeleted = () => {
+    setIsDeletedVisible(!isDeletedVisible);
   };
 
   const handleViewChange = (view) => {
@@ -240,7 +245,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
             <MdOutlineViewDay size="24px" />
           </Button>
         </Flex>
-
+        <Button onClick={handleShowDeleted}>삭제보이기/숨기기</Button>
         {artworks?.length === 0 && (
           <Center>
             <Text>아직 업로드한 작품이 없네요!</Text>
@@ -250,7 +255,10 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         {artworks?.length !== 0 && (
           <Box w="100%">
             {activeView === 'masonryView' && (
-              <MansonryView artworks={artworks} />
+              <MansonryView
+                artworks={artworks}
+                isDeletedVisible={isDeletedVisible}
+              />
             )}
             {activeView === 'gridView' && <SimpleView artworks={artworks} />}
             {activeView === 'listView' && <ListView artworks={artworks} />}

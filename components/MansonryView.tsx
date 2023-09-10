@@ -1,112 +1,221 @@
 import React, { useEffect, useRef } from 'react';
 import NextImage from 'next/image';
-import { Text, Box, Link } from '@chakra-ui/react';
-import Bricks from 'bricks.js';
+import { Text, Box, Link, useBreakpointValue } from '@chakra-ui/react';
 
+import Bricks from 'bricks.js';
+import imagesLoaded from 'imagesloaded';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 
-const MasonryView = ({ artworks }) => {
+const MasonryView = ({ artworks, isDeletedVisible }) => {
   const article_link = useResponsiveLink('', 'article');
   const containerRef = useRef(null);
+  const widthValue = useBreakpointValue({ base: '150px', sm: '236px' });
+
+  console.log(artworks);
 
   useEffect(() => {
-    const instance = Bricks({
-      container: containerRef.current,
-      packed: 'data-packed',
-      sizes: [
-        { columns: 2, gutter: 16 },
-        { mq: '756px', columns: 3, gutter: 16 }, // 252*3 +4
-        { mq: '1008px', columns: 4, gutter: 16 }, // 252*4=1008
-        { mq: '1260px', columns: 5, gutter: 16 }, // 252*5=1260
-        { mq: '1528px', columns: 6, gutter: 16 }, // 252*6=1512
-        { mq: '1792px', columns: 7, gutter: 16 }, // 252*7=1764
-      ],
-    });
+    window.onload = () => {
+      // Bricks.js 초기화 코드
+    };
+  }, []);
 
-    const handleResize = () => {
+  useEffect(() => {
+    // 이미지 로딩 완료를 확인
+    imagesLoaded(containerRef.current, function () {
+      const instance = Bricks({
+        container: containerRef.current,
+        packed: 'data-packed',
+        sizes: [
+          { columns: 2, gutter: 8 },
+          { mq: '756px', columns: 3, gutter: 16 }, // 252*3 +4
+          { mq: '1008px', columns: 4, gutter: 16 }, // 252*4=1008
+          { mq: '1260px', columns: 5, gutter: 16 }, // 252*5=1260
+          { mq: '1528px', columns: 6, gutter: 16 }, // 252*6=1512
+          { mq: '1792px', columns: 7, gutter: 16 }, // 252*7=1764
+        ],
+      });
+
+      const handleResize = () => {
+        instance.resize(true).pack();
+      };
+
+      window.addEventListener('resize', handleResize);
+
       instance.resize(true).pack();
-    };
 
-    window.addEventListener('resize', handleResize);
-
-    instance.resize(true).pack();
-
-    return () => {
-      instance.resize(false);
-      window.removeEventListener('resize', handleResize);
-    };
+      return () => {
+        instance.resize(false);
+        window.removeEventListener('resize', handleResize);
+      };
+    });
+    // 화면 크기를 강제로 조절하는 코드
+    setTimeout(() => {
+      window.innerWidth += 1;
+      window.dispatchEvent(new Event('resize'));
+      window.innerWidth -= 1;
+      window.dispatchEvent(new Event('resize'));
+    }, 0);
   }, [artworks]);
 
   return (
     <Box ref={containerRef} w="100%" mx="auto">
-      {artworks.map((artwork) =>
-        !artwork.deleted ? (
-          <Box
-            w="236px"
-            // borderRadius="xl"
-            pb="16px"
-            display="inline-block"
-            key={artwork.id}
-            // position="relative"
-            // _hover={{ filter: 'brightness(70%)' }}
-          >
-            <Link
-              href={
-                artwork.url === ''
-                  ? '#'
-                  : article_link + artwork.url.split('/').pop()
-              }
-              isExternal
-              position="relative"
-              target="_blank"
-              rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+      {isDeletedVisible &&
+        artworks.map(
+          (artwork) => (
+            <Box
+              w={['150px', '236px']}
+              pb="16px"
+              display="inline-block"
+              key={artwork.id}
+              // _hover={{ filter: 'brightness(70%)' }}
             >
-              <NextImage
-                alt={artwork.title}
-                width={236}
-                height={236}
-                style={{
-                  objectFit: 'cover',
-                  objectPosition: 'center top',
-                  width: '100%',
-                  height: '100%',
-                  borderRadius: '1rem',
-                }}
-                src={artwork.img_url}
-                unoptimized
-              />
-              <Box
-                position="absolute"
-                top={0}
-                right={0}
-                bottom={0}
-                left={0}
-                borderRadius="1rem"
-                _hover={{
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)', // 검은색의 30% 투명도
-                }}
-                zIndex={1}
-              />
-            </Link>
-            <Link
-              href={
-                artwork.url === ''
-                  ? '#'
-                  : article_link + artwork.url.split('/').pop()
-              }
-              isExternal
-              _hover={{ textDecoration: 'none' }}
-              target="_blank"
-              rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+              <Link
+                href={
+                  artwork.url === ''
+                    ? '#'
+                    : article_link + artwork.url.split('/').pop()
+                }
+                isExternal
+                position="relative"
+                target="_blank"
+                rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+              >
+                <Box width={widthValue} overflow="hidden" borderRadius="1rem">
+                  <NextImage
+                    alt={artwork.title}
+                    width={236}
+                    height={236}
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '1rem',
+                      filter: artwork.deleted ? 'blur(6px)' : 'none', // 블러 처리
+                    }}
+                    src={
+                      artwork.img_url === ''
+                        ? 'http://via.placeholder.com/236x236'
+                        : artwork.img_url
+                    }
+                    unoptimized
+                  />
+                </Box>
+                <Box
+                  position="absolute"
+                  top={0}
+                  right={0}
+                  bottom={0}
+                  left={0}
+                  borderRadius="1rem"
+                  _hover={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.3)', // 검은색의 30% 투명도
+                  }}
+                  zIndex={1}
+                />
+              </Link>
+              <Link
+                href={
+                  artwork.url === ''
+                    ? '#'
+                    : article_link + artwork.url.split('/').pop()
+                }
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+                target="_blank"
+                rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+              >
+                <Text
+                  fontWeight={500}
+                  p="0.5rem 0"
+                  // pt="0.5rem" pb="1rem"
+                >
+                  {artwork.title}
+                  {/* {artwork.title} - {artwork.date.split(' ')[0].slice(0, -1)} */}
+                </Text>
+              </Link>
+            </Box>
+          )
+          // !artwork.deleted ? (
+          // ) : null
+        )}
+      {!isDeletedVisible &&
+        artworks.map((artwork) =>
+          !artwork.deleted ? (
+            <Box
+              w={['150px', '236px']}
+              pb="16px"
+              display="inline-block"
+              key={artwork.id}
+              // _hover={{ filter: 'brightness(70%)' }}
             >
-              <Text fontWeight={500} pt="0.5rem" pb="1rem">
-                {artwork.title}
-                {/* {artwork.title} - {artwork.date.split(' ')[0].slice(0, -1)} */}
-              </Text>
-            </Link>
-          </Box>
-        ) : null
-      )}
+              <Link
+                href={
+                  artwork.url === ''
+                    ? '#'
+                    : article_link + artwork.url.split('/').pop()
+                }
+                isExternal
+                position="relative"
+                target="_blank"
+                rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+              >
+                <Box width={widthValue}>
+                  <NextImage
+                    alt={artwork.title}
+                    width={236}
+                    height={236}
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      width: '100%',
+                      height: '100%',
+                      borderRadius: '1rem',
+                    }}
+                    src={
+                      artwork.img_url === ''
+                        ? 'http://via.placeholder.com/236x236'
+                        : artwork.img_url
+                    }
+                    unoptimized
+                  />
+                </Box>
+                <Box
+                  position="absolute"
+                  top={0}
+                  right={0}
+                  bottom={0}
+                  left={0}
+                  borderRadius="1rem"
+                  _hover={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.3)', // 검은색의 30% 투명도
+                  }}
+                  zIndex={1}
+                />
+              </Link>
+              <Link
+                href={
+                  artwork.url === ''
+                    ? '#'
+                    : article_link + artwork.url.split('/').pop()
+                }
+                isExternal
+                _hover={{ textDecoration: 'none' }}
+                target="_blank"
+                rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+              >
+                <Text
+                  fontWeight={500}
+                  p="0.5rem 0"
+                  // pt="0.5rem" pb="1rem"
+                >
+                  {artwork.title}
+                  {/* {artwork.title} - {artwork.date.split(' ')[0].slice(0, -1)} */}
+                </Text>
+              </Link>
+            </Box>
+          ) : null
+        )}
     </Box>
   );
 };
