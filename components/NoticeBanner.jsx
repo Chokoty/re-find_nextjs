@@ -27,6 +27,8 @@ const NoticeBanner = () => {
       color={color}
       width="100%"
       borderColor={highlightColor}
+      position="absolute"
+      top="0"
     >
       <Box
         whiteSpace="nowrap"

@@ -10,6 +10,7 @@ import { Sling as Hamburger } from 'hamburger-react';
 
 import { useStore } from '../../store/store';
 import { useThemeStore } from '../../store/themeStore';
+import { useShowShadow } from '../../hook/useShowShadow';
 
 export const Header = () => {
   // useStore
@@ -19,15 +20,18 @@ export const Header = () => {
     state.setIsOpen,
   ]);
 
-  // const { theme, colors, toggleTheme } = useThemeStore();
-
   const myDrawerRef = useRef(null);
-
-  // const [isObserver, setIsObserver] = useState(null);
-  // const [isOpen, setIsOpen] = React.useState(false);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+
+  const boxShadowLight =
+    '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
+  const boxShadowDark =
+    '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
+
+  const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
+  const showShadow = useShowShadow(50);
 
   // useEffect(() => {
   //     setIsObserver(myDrawerRef);
@@ -63,16 +67,21 @@ export const Header = () => {
   };
 
   return (
-    // <Box bg={colors[theme].bg} color={colors[theme].color}>
-    <Box>
+    <Box
+      position="sticky"
+      pt="50px "
+      top="-50px"
+      zIndex="1000"
+      boxShadow={showShadow ? boxShadow : 'none'}
+    >
       <NoticeBanner />
-      <header
+
+      <Flex
+        as="header"
         style={{
           backgroundColor: bgColor,
           color: color,
-          // position: 'sticky',
-          // top: 0,
-          // zIndex: 1,
+          padding: '0.5rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -106,7 +115,7 @@ export const Header = () => {
             />
           </Box>
         </Flex>
-      </header>
+      </Flex>
     </Box>
   );
 };

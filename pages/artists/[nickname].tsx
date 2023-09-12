@@ -1,70 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import axios from 'axios';
 import Head from 'next/head';
-import {
-  Text,
-  Box,
-  Avatar,
-  Button,
-  Flex,
-  Center,
-  Tooltip,
-  useToast,
-} from '@chakra-ui/react';
-import { ImLink } from 'react-icons/im';
-import {
-  MdOutlineDashboard,
-  MdOutlineViewDay,
-  MdOutlineGridView,
-} from 'react-icons/md';
+import axios from 'axios';
 
-import { useResponsiveLink } from '../../hook/useResponsiveLink';
+import { useRouter } from 'next/router';
+import { Text, Box, Flex, Center } from '@chakra-ui/react';
+
+import AuthorProfileHead from '@/components/AuthorProfileHead';
+import ViewSelectBar from '@/components/ViewSelectBar';
 import MansonryView from '../../components/MansonryView';
 import SimpleView from '../../components/SimpleView';
-import ListView from '../../components/ListView';
+// import ListView from '../../components/ListView';
 
 const Artist = ({ artist_name2info, artist_artworks }) => {
   const router = useRouter();
-  const toast = useToast();
-
   const { nickname } = router.query;
-  const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
 
   const [profile, setProfile] = useState(artist_name2info);
   const [artworks, setArtworks] = useState(artist_artworks);
+
   const [page, setPage] = useState(1); // Current page number
   const [hasMoreData, setHasMoreData] = useState(true); // Whether there is more data to load
+
+  // 뷰 선택 메뉴
+  const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
+  const [selectedMenu, setSelectedMenu] = useState('최신순'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(true);
 
-  const member_link = useResponsiveLink(
-    profile?.author_url.split('/').pop(),
-    'member'
-  );
-  const article_link = useResponsiveLink('', 'article');
-  // console.log(profile?.author_prof_url);
+  const handleMenuItemClick = (menuText: string) => {
+    setSelectedMenu(menuText);
+  };
 
-  const handleCopyLink = () => {
-    const linkToCopy = `https://re-find.xyz/artists/${profile?.author_nickname}`;
-    // 복사하려는 링크를 여기에 입력하세요.
-
-    navigator.clipboard.writeText(linkToCopy).then(() => {
-      toast({
-        title: '프로필 링크 복사됨',
-        description: '링크가 클립보드에 복사되었습니다.',
-        // status: 'success',
-        duration: 3000,
-        isClosable: true,
-      });
-    });
+  const handleViewChange = (view: string) => {
+    setActiveView(view);
   };
 
   const handleShowDeleted = () => {
     setIsDeletedVisible(!isDeletedVisible);
-  };
-
-  const handleViewChange = (view) => {
-    setActiveView(view);
+    window.dispatchEvent(new Event('resize'));
   };
 
   // Function to load more data when scrolling to the bottom
@@ -89,6 +61,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
       setHasMoreData(false); // No more data to load
     }
   };
+
   useEffect(() => {
     // 페이지 로딩 시 window.resize 이벤트를 강제로 발생시킵니다.
     window.dispatchEvent(new Event('resize'));
@@ -139,113 +112,16 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         w="100%"
         mb="2rem"
       >
-        <Flex
-          flexDirection="column"
-          alignItems="center"
-          width="656px"
-          pt="10px"
-        >
-          <Avatar
-            w="120px"
-            h="120px"
-            name={profile?.author_nickname}
-            src={profile?.author_prof_url}
-            m="0.5rem 0"
-          />
-          <Text fontSize="4xl" fontWeight="bold" m="8px 0" pl="2rem">
-            {nickname}
-            <Tooltip label="프로필 공유">
-              <Button
-                w="3rem"
-                h="3rem"
-                variant="ghost"
-                borderRadius="full"
-                p="0"
-                onClick={handleCopyLink}
-              >
-                <ImLink />
-              </Button>
-            </Tooltip>
-          </Text>
+        <AuthorProfileHead nickname={nickname} profile={profile} />
+        <ViewSelectBar
+          activeView={activeView}
+          onViewChange={handleViewChange}
+          selectedMenu={selectedMenu}
+          onMenuItemClick={handleMenuItemClick}
+          isDeletedVisible={isDeletedVisible}
+          handleShowDeleted={handleShowDeleted}
+        />
 
-          <Flex flexDirection="row" alignItems="center" m="8px 0">
-            <Box as="button">
-              <Text fontWeight="600">작품 수 {profile?.num_artworks}개</Text>
-            </Box>
-            {/* <Text fontSize="14px" fontWeight="400" p="0 4px">
-            ·
-          </Text>
-          <Box as="button">
-            <Text fontWeight="600">팔로워 120명</Text>
-          </Box>
-          <Text fontSize="14px" fontWeight="400" p="0 4px">
-            ·
-          </Text>
-          <Box as="button">
-            <Text fontWeight="600">팔로잉 13명</Text>
-          </Box> */}
-          </Flex>
-          <Flex
-            flexDirection="row"
-            alignItems="center"
-            justifyContent="center"
-            w="100%"
-            ml="2rem"
-            m="8px 0"
-          >
-            <Button
-              colorScheme="gray"
-              borderRadius="full"
-              m="0 0.5rem"
-              h="48px"
-              onClick={() => {
-                window.open(member_link, '_blank');
-              }}
-            >
-              왁물원
-            </Button>
-            <Button
-              colorScheme="green"
-              borderRadius="full"
-              m="0 0.5rem"
-              h="48px"
-              onClick={() => {
-                alert('아직 기능 구현중입니다.');
-              }}
-            >
-              팔로우
-            </Button>
-          </Flex>
-        </Flex>
-        <Flex
-          flexDirection="row"
-          alignItems="center"
-          justifyContent="center"
-          h="60px"
-          mt="2rem"
-          mb="1rem"
-          gap="0.5rem"
-        >
-          <Button
-            variant={activeView === 'masonryView' ? 'solid' : 'ghost'}
-            onClick={() => handleViewChange('masonryView')}
-          >
-            <MdOutlineDashboard size="24px" />
-          </Button>
-          <Button
-            variant={activeView === 'gridView' ? 'solid' : 'ghost'}
-            onClick={() => handleViewChange('gridView')}
-          >
-            <MdOutlineGridView size="24px" />
-          </Button>
-          <Button
-            variant={activeView === 'listView' ? 'solid' : 'ghost'}
-            onClick={() => handleViewChange('listView')}
-          >
-            <MdOutlineViewDay size="24px" />
-          </Button>
-        </Flex>
-        <Button onClick={handleShowDeleted}>삭제보이기/숨기기</Button>
         {artworks?.length === 0 && (
           <Center>
             <Text>아직 업로드한 작품이 없네요!</Text>
@@ -261,7 +137,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
               />
             )}
             {activeView === 'gridView' && <SimpleView artworks={artworks} />}
-            {activeView === 'listView' && <ListView artworks={artworks} />}
+            {/* {activeView === 'listView' && <ListView artworks={artworks} />} */}
           </Box>
         )}
       </Box>
@@ -283,8 +159,8 @@ export async function getServerSideProps(context) {
       )
       .then((res) => res.data);
 
-    console.log(artist_name2info);
-    console.log(artist_artworks);
+    // console.log(artist_name2info);
+    // console.log(artist_artworks);
     const ret = await Promise.all([artist_name2info, artist_artworks]);
 
     return {
