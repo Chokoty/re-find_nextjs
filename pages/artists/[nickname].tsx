@@ -25,7 +25,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
   const [selectedMenu, setSelectedMenu] = useState('최신순'); // 초기 상태 설정
-  const [isDeletedVisible, setIsDeletedVisible] = useState(true);
+  const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
   const handleMenuItemClick = (menuText: string) => {
     setSelectedMenu(menuText);
@@ -47,9 +47,14 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
         try {
           const nextPage = page + 1;
-          const response = await axios.get(
-            `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
-          );
+          const response = await axios
+            .get(
+              `/api/getArtistArtworks?nickname=${nickname}&type=like&page=${nextPage}`
+            )
+            .then((res) => res.data);
+          // const response = await axios.get(
+          //   `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
+          // );
 
           if (response.data.length === 0) {
             console.log(':::' + response.data);
@@ -186,9 +191,10 @@ export async function getServerSideProps(context) {
       .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
       .then((res) => res.data);
     const artist_artworks = await axios
-      .get(
-        `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
-      )
+      .get(`/api/getArtistArtworks?nickname=${nickname}&type=like&page=1`)
+      // .get(
+      //   `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
+      // )
       .then((res) => res.data);
 
     // console.log(artist_name2info);

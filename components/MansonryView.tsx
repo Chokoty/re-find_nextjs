@@ -96,6 +96,8 @@ const MasonryView = ({ artworks, isDeletedVisible }) => {
                     src={
                       artwork.img_url === ''
                         ? 'http://via.placeholder.com/236x236'
+                        : artwork.deleted
+                        ? `/api/blurImage?url=${artwork.img_url}`
                         : artwork.img_url
                     }
                     unoptimized
