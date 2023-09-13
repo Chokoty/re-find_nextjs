@@ -10,7 +10,7 @@ import ViewSelectBar from '@/components/ViewSelectBar';
 import MansonryView from '../../components/MansonryView';
 import SimpleView from '../../components/SimpleView';
 // import ListView from '../../components/ListView';
-//
+
 const Artist = ({ artist_name2info, artist_artworks }) => {
   const router = useRouter();
   const { nickname } = router.query;
@@ -47,14 +47,15 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
         try {
           const nextPage = page + 1;
+          // const response = await axios
+          //   .get(
+          //     `/api/getArtistArtworks?nickname=${nickname}&type=like&page=${nextPage}`
+          //   )
           const response = await axios
             .get(
-              `/api/getArtistArtworks?nickname=${nickname}&type=like&page=${nextPage}`
+              `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
             )
             .then((res) => res.data);
-          // const response = await axios.get(
-          //   `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
-          // );
 
           if (response.data.length === 0) {
             console.log(':::' + response.data);
@@ -191,14 +192,15 @@ export async function getServerSideProps(context) {
       .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
       .then((res) => res.data);
     const artist_artworks = await axios
-      .get(`/api/getArtistArtworks?nickname=${nickname}&type=like&page=1`)
-      // .get(
-      //   `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
-      // )
+      // .get(`/api/getArtistArtworks?nickname=${nickname}&type=like&page=1`)
+      .get(
+        `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
+      )
       .then((res) => res.data);
 
     // console.log(artist_name2info);
     // console.log(artist_artworks);
+    // const ret = await Promise.all([artist_name2info]);
     const ret = await Promise.all([artist_name2info, artist_artworks]);
 
     return {

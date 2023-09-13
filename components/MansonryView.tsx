@@ -55,7 +55,7 @@ const MasonryView = ({ artworks, isDeletedVisible }) => {
       window.innerWidth -= 1;
       window.dispatchEvent(new Event('resize'));
     }, 0);
-  }, [artworks]);
+  }, [artworks, isDeletedVisible]);
 
   return (
     <Box ref={containerRef} w="100%" mx="auto">
@@ -142,7 +142,7 @@ const MasonryView = ({ artworks, isDeletedVisible }) => {
           // ) : null
         )}
       {!isDeletedVisible &&
-        artworks.map((artwork) =>
+        artworks?.map((artwork) =>
           !artwork.deleted ? (
             <Box
               w={['150px', '236px']}
