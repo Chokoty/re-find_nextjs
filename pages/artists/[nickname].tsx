@@ -20,6 +20,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
   const [page, setPage] = useState(1); // Current page number
   const [hasMoreData, setHasMoreData] = useState(true); // Whether there is more data to load
+  const [isLoading, setIsLoading] = useState(false);
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
@@ -36,12 +37,16 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
   const handleShowDeleted = () => {
     setIsDeletedVisible(!isDeletedVisible);
-    window.dispatchEvent(new Event('resize'));
   };
+
+  useEffect(() => {
+    console.log(page);
+  }, [page]);
 
   // Function to load more data when scrolling to the bottom
   const loadMoreData = async () => {
-    if (!hasMoreData) return; // No more data to load
+    if (!hasMoreData || isLoading) return; // No more data to load or already loading
+    setIsLoading(true); // Set loading state to true
 
     try {
       const nextPage = page + 1;
@@ -52,6 +57,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
       if (response.data.length === 0) {
         setHasMoreData(false); // No more data to load
       } else {
+        console.log('!!!' + page);
         console.log(response.data);
         setArtworks([...artworks, ...response.data]);
         setPage(nextPage);
@@ -59,16 +65,16 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
     } catch (error) {
       console.error('Error fetching more data:', error);
       setHasMoreData(false); // No more data to load
+    } finally {
+      setIsLoading(false); // Set loading state to false regardless of success or failure
     }
   };
 
   useEffect(() => {
-    // 페이지 로딩 시 window.resize 이벤트를 강제로 발생시킵니다.
     window.dispatchEvent(new Event('resize'));
-  }, []);
+  }, [isDeletedVisible]);
 
   useEffect(() => {
-    // Add an event listener to detect scrolling to the bottom of the page
     window.addEventListener('scroll', () => {
       if (
         window.innerHeight + window.scrollY >=
@@ -82,7 +88,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
       // Remove the event listener when the component unmounts
       window.removeEventListener('scroll', loadMoreData);
     };
-  }, [page, hasMoreData]);
+  }, [page, hasMoreData, isLoading]);
 
   return (
     <>

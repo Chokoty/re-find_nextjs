@@ -31,7 +31,7 @@ export const Header = () => {
     '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
 
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
-  const showShadow = useShowShadow(50);
+  const showShadow = useShowShadow(50, 50 + 310);
 
   // useEffect(() => {
   //     setIsObserver(myDrawerRef);
@@ -71,8 +71,9 @@ export const Header = () => {
       position="sticky"
       pt="50px "
       top="-50px"
-      zIndex="1000"
+      zIndex="100"
       boxShadow={showShadow ? boxShadow : 'none'}
+      // overflow="hidden"
     >
       <NoticeBanner />
 
@@ -87,7 +88,6 @@ export const Header = () => {
           alignItems: 'center',
         }}
       >
-        {/* <header> */}
         <Button w="3rem" h="3rem" p="0.5rem" variant="ghost" borderRadius="50%">
           <Link href="/">
             <Image
@@ -99,7 +99,7 @@ export const Header = () => {
             />
           </Link>
         </Button>
-        <Flex>
+        <Flex overflow="hidden">
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer
             isOpen={isOpen}
