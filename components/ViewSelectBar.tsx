@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Text,
@@ -15,6 +15,8 @@ import {
   MenuItem,
   useMediaQuery,
   useColorModeValue,
+  PopoverCloseButton,
+  useDisclosure,
 } from '@chakra-ui/react';
 import {
   MdOutlineDashboard,
@@ -26,6 +28,7 @@ import {
 
 import { useShowShadow } from '../hook/useShowShadow';
 import { lightMode, darkMode } from '@/styles/theme';
+import { on } from 'events';
 
 interface ViewSelectBarProps {
   selectedMenu: string;
@@ -42,6 +45,18 @@ const ViewSelectBar = ({
   handleShowDeleted,
 }) => {
   const [isSmallerThan370] = useMediaQuery('(max-width: 400px)');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handlePopoverOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handlePopoverClose = () => {
+    setIsOpen(false);
+    handleShowDeleted();
+  };
+
+  const { onClose } = useDisclosure();
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -117,7 +132,7 @@ const ViewSelectBar = ({
           <MdOutlineGridView size="24px" />
         </Button>
       </Box>
-      <Popover>
+      <Popover onClose={onClose}>
         <PopoverTrigger>
           <Box
             w={isSmallerThan370 ? '40px' : '120px'}
@@ -155,7 +170,9 @@ const ViewSelectBar = ({
               w="100%"
               variant="ghost"
               textAlign="left"
-              onClick={handleShowDeleted}
+              onClick={() => {
+                handleShowDeleted();
+              }}
             >
               <Text w="100%" textAlign="left">
                 삭제된 게시글 {isDeletedVisible ? '숨기기' : '보이기'}

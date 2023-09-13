@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
 
 import { useRouter } from 'next/router';
-import { Text, Box, Flex, Center } from '@chakra-ui/react';
+import { Text, Box, Flex, Center, useColorModeValue } from '@chakra-ui/react';
 
+import { lightMode, darkMode } from '@/styles/theme';
 import AuthorProfileHead from '@/components/AuthorProfileHead';
 import ViewSelectBar from '@/components/ViewSelectBar';
 import MansonryView from '../../components/MansonryView';
 import SimpleView from '../../components/SimpleView';
 // import ListView from '../../components/ListView';
+
+import HashLoader from 'react-spinners/HashLoader';
 
 const Artist = ({ artist_name2info, artist_artworks }) => {
   const router = useRouter();
@@ -20,12 +23,16 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
   const [page, setPage] = useState(1); // Current page number
   const [hasMoreData, setHasMoreData] = useState(true); // Whether there is more data to load
-  const [isLoading, setIsLoading] = useState(false);
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
   const [selectedMenu, setSelectedMenu] = useState('최신순'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
+
+  // react-spinners
+  let [loading, setLoading] = useState(false);
+  let [loading2, setLoading2] = useState(false);
+  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
   const handleMenuItemClick = (menuText: string) => {
     setSelectedMenu(menuText);
@@ -39,11 +46,15 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
     setIsDeletedVisible(!isDeletedVisible);
   };
 
+  const handleLoading = (Loading) => {
+    setLoading2(Loading);
+  };
+
   useEffect(() => {
     console.log(page);
     const loadMoreData = async () => {
-      while (hasMoreData && !isLoading) {
-        setIsLoading(true); // Set loading state to true
+      while (hasMoreData && !loading) {
+        setLoading(true); // Set loading state to true
 
         try {
           const nextPage = page + 1;
@@ -68,7 +79,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           console.error('Error fetching more data:', error);
           setHasMoreData(false); // No more data to load
         } finally {
-          setIsLoading(false); // Set loading state to false regardless of success or failure
+          setLoading(false); // Set loading state to false regardless of success or failure
         }
       }
     };
@@ -149,6 +160,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         margin="0 auto"
         w="100%"
         mb="2rem"
+        position="relative"
       >
         <AuthorProfileHead nickname={nickname} profile={profile} />
         <ViewSelectBar
@@ -159,22 +171,54 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
         />
-
         {artworks?.length === 0 && (
           <Center>
             <Text>아직 업로드한 작품이 없네요!</Text>
           </Center>
         )}
-
+        {loading2 && (
+          <Box>
+            <Box
+              w="100vw"
+              h="100vh"
+              position="fixed"
+              display="flex"
+              top={0}
+              left={0}
+              justifyContent="center"
+              alignItems="center"
+              zIndex={160}
+            >
+              <HashLoader color="#01BFA2" />
+            </Box>
+            <Box
+              w="100%"
+              h="100%"
+              position="absolute"
+              top={0}
+              right={0}
+              backgroundColor={bgColor}
+              zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
+            ></Box>
+          </Box>
+        )}
         {artworks?.length !== 0 && (
           <Box w="100%">
             {activeView === 'masonryView' && (
               <MansonryView
+                loading={loading2}
                 artworks={artworks}
                 isDeletedVisible={isDeletedVisible}
+                handleLoading={handleLoading}
               />
             )}
-            {activeView === 'gridView' && <SimpleView artworks={artworks} />}
+            {activeView === 'gridView' && (
+              <SimpleView
+                artworks={artworks}
+                isDeletedVisible={isDeletedVisible}
+                handleLoading={handleLoading}
+              />
+            )}
             {/* {activeView === 'listView' && <ListView artworks={artworks} />} */}
           </Box>
         )}

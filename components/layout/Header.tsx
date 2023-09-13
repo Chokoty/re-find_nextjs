@@ -71,7 +71,7 @@ export const Header = () => {
       position="sticky"
       pt="50px "
       top="-50px"
-      zIndex="100"
+      zIndex="200"
       boxShadow={showShadow ? boxShadow : 'none'}
       // overflow="hidden"
     >
