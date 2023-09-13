@@ -42,33 +42,31 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   useEffect(() => {
     console.log(page);
     const loadMoreData = async () => {
+      while (hasMoreData && !isLoading) {
+        setIsLoading(true); // Set loading state to true
 
-    while (hasMoreData && !isLoading) {
-      setIsLoading(true); // Set loading state to true
+        try {
+          const nextPage = page + 1;
+          const response = await axios.get(
+            `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
+          );
 
-      try {
-        const nextPage = page + 1;
-        const response = await axios.get(
-          `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
-        );
-
-        if (response.data.length === 0) {
-          console.log(':::' + response.data);
+          if (response.data.length === 0) {
+            console.log(':::' + response.data);
+            setHasMoreData(false); // No more data to load
+          } else {
+            setArtworks([...artworks, ...response.data]);
+            setPage(nextPage);
+          }
+        } catch (error) {
+          console.error('Error fetching more data:', error);
           setHasMoreData(false); // No more data to load
-        } else {
-          setArtworks([...artworks, ...response.data]);
-          setPage(nextPage);
+        } finally {
+          setIsLoading(false); // Set loading state to false regardless of success or failure
         }
-      } catch (error) {
-        console.error('Error fetching more data:', error);
-        setHasMoreData(false); // No more data to load
-      } finally {
-        setIsLoading(false); // Set loading state to false regardless of success or failure
       }
-    }
-  }
+    };
     loadMoreData();
-
   }, []);
 
   // Function to load more data when scrolling to the bottom
@@ -98,25 +96,25 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   //   }
   // };
 
-  useEffect(() => {
-    window.dispatchEvent(new Event('resize'));
-  }, [isDeletedVisible]);
-
   // useEffect(() => {
-  //   window.addEventListener('scroll', () => {
-  //     if (
-  //       window.innerHeight + window.scrollY >=
-  //       document.body.scrollHeight - 100
-  //     ) {
-  //       loadMoreData();
-  //     }
-  //   });
+  //   window.dispatchEvent(new Event('resize'));
+  // }, [isDeletedVisible]);
 
-    return () => {
-      // Remove the event listener when the component unmounts
-      window.removeEventListener('scroll', loadMoreData);
-    };
-  }, [page, hasMoreData, isLoading]);
+  // // useEffect(() => {
+  // //   window.addEventListener('scroll', () => {
+  // //     if (
+  // //       window.innerHeight + window.scrollY >=
+  // //       document.body.scrollHeight - 100
+  // //     ) {
+  // //       loadMoreData();
+  // //     }
+  // //   });
+
+  //   return () => {
+  //     // Remove the event listener when the component unmounts
+  //     window.removeEventListener('scroll', loadMoreData);
+  //   };
+  // }, [page, hasMoreData, isLoading]);
 
   return (
     <>
