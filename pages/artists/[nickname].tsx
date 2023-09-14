@@ -11,7 +11,7 @@ import ViewSelectBar from '@/components/ViewSelectBar';
 import MansonryView from '../../components/MansonryView';
 import SimpleView from '../../components/SimpleView';
 // import ListView from '../../components/ListView';
-
+//
 import HashLoader from 'react-spinners/HashLoader';
 
 const Artist = ({ artist_name2info, artist_artworks }) => {
