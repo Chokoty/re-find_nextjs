@@ -44,7 +44,7 @@ const ViewSelectBar = ({
   isDeletedVisible,
   handleShowDeleted,
 }) => {
-  const [isSmallerThan370] = useMediaQuery('(max-width: 400px)');
+  const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   const [isOpen, setIsOpen] = useState(false);
 
   const handlePopoverOpen = () => {
@@ -73,12 +73,12 @@ const ViewSelectBar = ({
     <Flex // 뷰 선택 버튼
       flexDirection="row"
       alignItems="center"
-      justifyContent="space-between"
+      justifyContent="center"
       h="60px"
       // mt="2rem"
       p="0.5rem 1rem"
       mb="1rem"
-      gap="0.5rem"
+      gap="2rem"
       position="sticky"
       top="64px"
       zIndex="90"
@@ -92,7 +92,7 @@ const ViewSelectBar = ({
       <Box
         w={isSmallerThan370 ? '40px' : '120px'}
         display="flex"
-        justifyContent="flex-start"
+        justifyContent="flex-end"
       >
         <Menu>
           <MenuButton
@@ -137,7 +137,7 @@ const ViewSelectBar = ({
           <Box
             w={isSmallerThan370 ? '40px' : '120px'}
             display="flex"
-            justifyContent="flex-end"
+            justifyContent="flex-start"
           >
             <Button
               w="2.5rem"

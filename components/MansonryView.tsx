@@ -14,7 +14,7 @@ const MasonryView = ({
 }) => {
   const article_link = useResponsiveLink('', 'article');
   const containerRef = useRef(null);
-  const widthValue = useBreakpointValue({ base: '150px', sm: '236px' });
+  const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
 
   useEffect(() => {
     window.onload = () => {
@@ -71,7 +71,7 @@ const MasonryView = ({
       {isDeletedVisible &&
         artworks.map((artwork) => (
           <Box
-            w={['150px', '236px']}
+            w={['180px', '236px']}
             pb="16px"
             display="inline-block"
             key={artwork.id}
@@ -145,7 +145,7 @@ const MasonryView = ({
         artworks?.map((artwork) =>
           !artwork.deleted ? (
             <Box
-              w={['150px', '236px']}
+              w={['180px', '236px']}
               pb="16px"
               display="inline-block"
               key={artwork.id}
