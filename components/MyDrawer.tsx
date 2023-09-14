@@ -1,12 +1,12 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import NextImage from 'next/image';
 
-import { Box, Button, Image } from '@chakra-ui/react';
-import { InfoIcon, BellIcon } from '@chakra-ui/icons';
-import { FaTwitter, FaYoutube } from 'react-icons/fa';
-import { BiSupport } from 'react-icons/bi';
+import { Box, Button, Image, Collapse } from '@chakra-ui/react';
 import { AiFillExperiment, AiFillHome } from 'react-icons/ai';
+import { FaTwitter, FaYoutube } from 'react-icons/fa';
+import { InfoIcon, BellIcon } from '@chakra-ui/icons';
+import { BiSupport } from 'react-icons/bi';
 
 type MyDrawerProps = {
   isOpen: boolean;
@@ -15,151 +15,206 @@ type MyDrawerProps = {
 
 const MyDrawer = React.forwardRef(
   (props: MyDrawerProps, ref: React.Ref<any>) => {
-    // const { darkMode } = useStore((state) => state);
-
     return (
-      <Box className={`my-drawer ${props.isOpen ? 'open' : ''}`} ref={ref}>
-        <div className="drawer-content">
-          <ul>
-            <li>
-              <Link href="/" legacyBehavior>
-                <a className="list-item">
-                  <AiFillHome className="icon" />
-                  Home
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/notice" legacyBehavior>
-                <a className="list-item">
-                  <BellIcon className="icon" />
-                  Notice
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/about" legacyBehavior>
-                <a className="list-item">
-                  <InfoIcon className="icon" />
-                  About
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="/support" legacyBehavior>
-                <a className="list-item">
-                  <BiSupport className="icon" />
-                  Support
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="https://cafe.naver.com/steamindiegame/9524252"
-                legacyBehavior
-              >
-                <a
-                  className="list-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
+      <Collapse in={props.isOpen} animateOpacity>
+        <Box
+          className={`my-drawer ${props.isOpen ? 'open' : ''}`}
+          ref={ref}
+          w="260px"
+          h="420px"
+          position="absolute"
+          top={props.isOpen ? '108px' : '-420px'}
+          right="0"
+          visibility={props.isOpen ? 'visible' : 'hidden'}
+          color="#000"
+          backgroundColor="#fff"
+          boxShadow="0 0 10px rgba(0, 0, 0, 0.2)"
+          borderRadius="1rem"
+          sx={{
+            ul: {
+              listStyle: 'none',
+              padding: '16px',
+              margin: '0',
+              li: {
+                '&:hover': {
+                  fontWeight: 'bold',
+                },
+                '&:active': {
+                  color: '#aaaaaa',
+                  fontWeight: 'normal',
+                },
+              },
+            },
+          }}
+        >
+          <Box
+            className="drawer-content"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-around"
+            sx={{
+              '.list-item': {
+                display: 'flex',
+                justifyContent: 'left',
+                alignItems: 'center',
+                padding: '5px 10px',
+                marginRight: '20px',
+                '.icon': {
+                  marginRight: '10px',
+                },
+              },
+            }}
+          >
+            <ul>
+              <li>
+                <Link href="/" legacyBehavior>
+                  <a className="list-item">
+                    <AiFillHome className="icon" />
+                    Home
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/notice" legacyBehavior>
+                  <a className="list-item">
+                    <BellIcon className="icon" />
+                    Notice
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" legacyBehavior>
+                  <a className="list-item">
+                    <InfoIcon className="icon" />
+                    About
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/support" legacyBehavior>
+                  <a className="list-item">
+                    <BiSupport className="icon" />
+                    Support
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="https://cafe.naver.com/steamindiegame/9524252"
+                  legacyBehavior
                 >
-                  <AiFillExperiment
-                    className="icon"
-                    style={{
-                      width: '20px',
-                      height: '20px',
-                      padding: '0',
-                      marginRight: '0.5rem',
-                    }}
-                  />
-                  <p
-                    style={{
-                      marginLeft: '0.5rem',
-                    }}
+                  <a
+                    className="list-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    (beta)이세돌 팬아트를 키워드로 찾아주는 AI
-                  </p>
-                </a>
-              </Link>
-            </li>
-            <li>
-              <Link href="https://waktaver.se/" legacyBehavior>
-                <a
-                  className="list-item"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <NextImage
-                    src="/static/icons/waksplorer-logo.png"
-                    width={20}
-                    height={20}
-                    alt="waksplorer-logo"
-                    style={{
-                      marginRight: '0.5rem',
-                    }}
-                  />
-                  왁스플로러 바로가기
-                </a>
-              </Link>
-            </li>
-          </ul>
-          <div className="menu-footer">
-            <Button
-              href="https://twitter.com/rerurureruru"
-              as="a"
-              target="_blank"
-              width="32px"
-              mr="2"
-              p="0"
-              colorScheme="twitter"
-              bg="#1DA1F2"
-              shadow="md"
+                    <AiFillExperiment
+                      className="icon"
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        padding: '0',
+                        marginRight: '0.5rem',
+                      }}
+                    />
+                    <p
+                      style={{
+                        marginLeft: '0.5rem',
+                      }}
+                    >
+                      (beta)이세돌 팬아트를 키워드로 찾아주는 AI
+                    </p>
+                  </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="https://waktaver.se/" legacyBehavior>
+                  <a
+                    className="list-item"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <NextImage
+                      src="/static/icons/waksplorer-logo.png"
+                      width={20}
+                      height={20}
+                      alt="waksplorer-logo"
+                      style={{
+                        marginRight: '0.5rem',
+                      }}
+                    />
+                    왁스플로러 바로가기
+                  </a>
+                </Link>
+              </li>
+            </ul>
+            <Box
+              className="menu-footer"
+              position="absolute"
+              bottom="20px"
+              width="100%"
+              padding="10px 0"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              flexDirection="row"
             >
-              <FaTwitter />
-            </Button>
-            <Button
-              width="32px"
-              p="0"
-              mr="2"
-              href="https://cafe.naver.com/steamindiegame"
-              colorScheme="green"
-              // bg="#03CF35"
-              bg="#FFFFFF"
-              as="a"
-              target="_blank"
-              shadow="md"
-            >
-              <Image
-                boxSize="20px"
-                objectFit="cover"
-                src="static/icons/naver-cafe-logo2.gif"
-                alt="naver-cafe-logo"
-              />
-            </Button>
-            <Button
-              width="32px"
-              p="0"
-              mr="2"
-              href="https://www.youtube.com/@waktaverse"
-              colorScheme="red"
-              bg="#FF0000"
-              as="a"
-              target="_blank"
-              shadow="md"
-            >
-              <FaYoutube color="white" />
-            </Button>
-            <Button
-              width="32px"
-              p="0"
-              mr="2"
-              href="https://github.com/re-find-WAKTAVERSE"
-              bg="#eee"
-              as="a"
-              target="_blank"
-              shadow="md"
-            >
-              {/* <Image
+              <Button
+                href="https://twitter.com/rerurureruru"
+                as="a"
+                target="_blank"
+                width="32px"
+                mr="2"
+                p="0"
+                colorScheme="twitter"
+                bg="#1DA1F2"
+                shadow="md"
+              >
+                <FaTwitter />
+              </Button>
+              <Button
+                width="32px"
+                p="0"
+                mr="2"
+                href="https://cafe.naver.com/steamindiegame"
+                colorScheme="green"
+                // bg="#03CF35"
+                bg="#FFFFFF"
+                as="a"
+                target="_blank"
+                shadow="md"
+              >
+                <Image
+                  boxSize="20px"
+                  objectFit="cover"
+                  src="static/icons/naver-cafe-logo2.gif"
+                  alt="naver-cafe-logo"
+                />
+              </Button>
+              <Button
+                width="32px"
+                p="0"
+                mr="2"
+                href="https://www.youtube.com/@waktaverse"
+                colorScheme="red"
+                bg="#FF0000"
+                as="a"
+                target="_blank"
+                shadow="md"
+              >
+                <FaYoutube color="white" />
+              </Button>
+              <Button
+                width="32px"
+                p="0"
+                mr="2"
+                href="https://github.com/re-find-WAKTAVERSE"
+                bg="#eee"
+                as="a"
+                target="_blank"
+                shadow="md"
+              >
+                {/* <Image
                             boxSize="20px"
                             objectFit="cover"
                             src="static/icons/github.svg"
@@ -182,11 +237,12 @@ const MyDrawer = React.forwardRef(
             </Button>
           </div>
         </div>
-      </Box>
+      </div>
     );
   }
 );
 MyDrawer.displayName = 'MyDrawer';
+
 export default MyDrawer;
 
 const GithubIcon = () => (
