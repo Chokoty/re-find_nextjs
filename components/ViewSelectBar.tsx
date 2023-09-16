@@ -150,22 +150,17 @@ const ViewSelectBar = ({
             </Button>
           </Box>
         </PopoverTrigger>
-        <PopoverContent w="180px">
+        <PopoverContent w="200px">
           <PopoverBody
             display="flex"
             flexDirection="column"
             alignItems="flex-start"
             justifyContent="center"
+            p="0.5rem"
           >
-            <Text p="0.5rem" fontSize="sm">
+            <Text p="0.5rem 1rem" fontSize="sm">
               뷰 옵션
             </Text>
-
-            {/* <Button colorScheme="gray" w="100%" variant="ghost">
-          <Text w="100%" textAlign="left">
-            Button
-          </Text>
-        </Button> */}
             <Button
               w="100%"
               variant="ghost"
@@ -175,7 +170,7 @@ const ViewSelectBar = ({
               }}
             >
               <Text w="100%" textAlign="left">
-                삭제된 게시글 {isDeletedVisible ? '숨기기' : '보이기'}
+                삭제된 게시글 {isDeletedVisible ? '가리기' : '보이기'}
               </Text>
             </Button>
           </PopoverBody>

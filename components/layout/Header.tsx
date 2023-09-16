@@ -31,7 +31,8 @@ export const Header = () => {
     '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
 
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
-  const showShadow = useShowShadow(50, 50 + 310);
+  const showShadow = useShowShadow(50, 0);
+  // const showShadow = useShowShadow(50, 50 + 310);
 
   // useEffect(() => {
   //     setIsObserver(myDrawerRef);

@@ -20,6 +20,11 @@ const MasonryView = ({
     window.onload = () => {
       // Bricks.js 초기화 코드
     };
+    handleLoading(true);
+    // 1초 지연
+    setTimeout(() => {
+      handleLoading(false);
+    }, 1200);
   }, []);
 
   useEffect(() => {
