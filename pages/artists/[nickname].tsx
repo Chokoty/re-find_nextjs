@@ -19,7 +19,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const { nickname } = router.query;
 
   const [profile, setProfile] = useState(artist_name2info);
-  const [artworks, setArtworks] = useState(artist_artworks_data.list);
+  const [artworks, setArtworks] = useState(artist_artworks_data?.list);
 
   const [page, setPage] = useState(1); // Current page number
   const [hasMoreData, setHasMoreData] = useState(true); // Whether there is more data to load
