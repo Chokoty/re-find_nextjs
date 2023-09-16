@@ -152,15 +152,16 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           content={`https://re-find.xyz/artists/${profile?.author_nickname}`}
         />
       </Head>
+
       <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
-        width="100%"
         margin="0 auto"
         w="100%"
         mb="2rem"
         position="relative"
+        overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
         <AuthorProfileHead nickname={nickname} profile={profile} />
         <ViewSelectBar
@@ -219,7 +220,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
                 handleLoading={handleLoading}
               />
             )}
-            {/* {activeView === 'listView' && <ListView artworks={artworks} />} */}
+            {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
           </Box>
         )}
       </Box>
