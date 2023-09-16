@@ -50,41 +50,43 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
     setLoading2(Loading);
   };
 
+  const loadMoreData = async () => {
+    while (hasMoreData && !loading) {
+      setLoading(true); // Set loading state to true
+
+      try {
+        const nextPage = page + 1;
+        const response = await axios
+          .get(
+            `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${nextPage}`
+          )
+          .then((res) => res.data);
+
+        if (response.lastPage === true) {
+          setHasMoreData(false);
+        }
+        setArtworks([...artworks, ...response.data]);
+        setPage(nextPage);
+        console.log(response);
+
+        // if (response.data.length === 0) {
+        //   console.log(':::' + response.data);
+        //   setHasMoreData(false); // No more data to load
+        // } else {
+        //   setArtworks([...artworks, ...response.data]);
+        //   setPage(nextPage);
+        // }
+      } catch (error) {
+        console.error('Error fetching more data:', error);
+        setHasMoreData(false); // No more data to load
+      } finally {
+        setLoading(false); // Set loading state to false regardless of success or failure
+      }
+    }
+  };
+
   useEffect(() => {
     console.log(page);
-    const loadMoreData = async () => {
-      while (hasMoreData && !loading) {
-        setLoading(true); // Set loading state to true
-
-        try {
-          // const nextPage = page + 1;
-          // const response = await axios
-          //   .get(
-          //     `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${nextPage}`
-          //   )
-          //   .then((res) => res.data);
-          // if (nextPage === 10) setHasMoreData(false); // No more data to load
-          // else {
-          //   console.log('!!!' + page);
-          //   console.log(response);
-          //   // setArtworks([...artworks, ...response]);
-          //   // setPage(nextPage);
-          // }
-          // if (response.data.length === 0) {
-          //   console.log(':::' + response.data);
-          //   setHasMoreData(false); // No more data to load
-          // } else {
-          //   setArtworks([...artworks, ...response.data]);
-          //   setPage(nextPage);
-          // }
-        } catch (error) {
-          console.error('Error fetching more data:', error);
-          setHasMoreData(false); // No more data to load
-        } finally {
-          setLoading(false); // Set loading state to false regardless of success or failure
-        }
-      }
-    };
     loadMoreData();
   }, []);
 
