@@ -164,14 +164,6 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         // overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
         <AuthorProfileHead nickname={nickname} profile={profile} />
-        <ViewSelectBar
-          activeView={activeView}
-          onViewChange={handleViewChange}
-          selectedMenu={selectedMenu}
-          onMenuItemClick={handleMenuItemClick}
-          isDeletedVisible={isDeletedVisible}
-          handleShowDeleted={handleShowDeleted}
-        />
       </Box>
     </>
   );
