@@ -46,11 +46,11 @@ const ViewSelectBar = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { id: 'last', label: '최신순' },
-    { id: 'upload', label: '업로드순' },
     { id: 'like', label: '좋아요순' },
     { id: 'view', label: '조회수순' },
     { id: 'comment', label: '댓글순' },
+    { id: 'last', label: '최신순' },
+    { id: 'upload', label: '업로드순' },
   ];
 
   const selectedLabel = menuItems.find(

@@ -57,20 +57,19 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         setLoading(true); // Set loading state to true
 
         try {
-          const nextPage = page + 1;
-          const response = await axios
-            .get(
-              `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${nextPage}`
-            )
-            .then((res) => res.data);
-
-          if (nextPage === 10) setHasMoreData(false); // No more data to load
-          else {
-            console.log('!!!' + page);
-            console.log(response);
-            setArtworks([...artworks, ...response]);
-            setPage(nextPage);
-          }
+          // const nextPage = page + 1;
+          // const response = await axios
+          //   .get(
+          //     `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${nextPage}`
+          //   )
+          //   .then((res) => res.data);
+          // if (nextPage === 10) setHasMoreData(false); // No more data to load
+          // else {
+          //   console.log('!!!' + page);
+          //   console.log(response);
+          //   // setArtworks([...artworks, ...response]);
+          //   // setPage(nextPage);
+          // }
           // if (response.data.length === 0) {
           //   console.log(':::' + response.data);
           //   setHasMoreData(false); // No more data to load
