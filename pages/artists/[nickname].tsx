@@ -158,12 +158,72 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         flexDirection="column"
         alignItems="center"
         margin="0 auto"
-        w="100%"
+        // w="100%"
         mb="2rem"
-        position="relative"
+        // position="relative"
         // overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
         <AuthorProfileHead nickname={nickname} profile={profile} />
+        <ViewSelectBar
+          activeView={activeView}
+          onViewChange={handleViewChange}
+          selectedMenu={selectedMenu}
+          onMenuItemClick={handleMenuItemClick}
+          isDeletedVisible={isDeletedVisible}
+          handleShowDeleted={handleShowDeleted}
+        />
+
+        {artworks?.length === 0 && (
+          <Center>
+            <Text>아직 업로드한 작품이 없네요!</Text>
+          </Center>
+        )}
+        {loading2 && (
+          <Box>
+            <Box
+              w="100vw"
+              h="100vh"
+              position="fixed"
+              display="flex"
+              top={0}
+              left={0}
+              justifyContent="center"
+              alignItems="center"
+              zIndex={160}
+            >
+              <HashLoader color="#01BFA2" />
+            </Box>
+            <Box
+              w="100%"
+              h="100%"
+              position="absolute"
+              top={0}
+              right={0}
+              backgroundColor={bgColor}
+              zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
+            ></Box>
+          </Box>
+        )}
+        {artworks?.length !== 0 && (
+          <Box w="100%">
+            {activeView === 'masonryView' && (
+              <MansonryView
+                loading={loading2}
+                artworks={artworks}
+                isDeletedVisible={isDeletedVisible}
+                handleLoading={handleLoading}
+              />
+            )}
+            {activeView === 'gridView' && (
+              <SimpleView
+                artworks={artworks}
+                isDeletedVisible={isDeletedVisible}
+                handleLoading={handleLoading}
+              />
+            )}
+            {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+          </Box>
+        )}
       </Box>
     </>
   );
