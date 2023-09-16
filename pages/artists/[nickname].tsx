@@ -134,7 +134,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   // }, [page, hasMoreData, isLoading]);
 
   return (
-    <>
+    <Box w="100%">
       <Head>
         <title>{profile?.author_nickname} - RE:FIND</title>
         <meta
@@ -225,7 +225,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           </Box>
         )}
       </Box>
-    </>
+    </Box>
   );
 };
 export default Artist;
