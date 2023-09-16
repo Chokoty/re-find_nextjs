@@ -14,12 +14,12 @@ import SimpleView from '../../components/SimpleView';
 //
 import HashLoader from 'react-spinners/HashLoader';
 
-const Artist = ({ artist_name2info, artist_artworks }) => {
+const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const router = useRouter();
   const { nickname } = router.query;
 
   const [profile, setProfile] = useState(artist_name2info);
-  const [artworks, setArtworks] = useState(artist_artworks);
+  const [artworks, setArtworks] = useState(artist_artworks_data.list);
 
   const [page, setPage] = useState(1); // Current page number
   const [hasMoreData, setHasMoreData] = useState(true); // Whether there is more data to load
@@ -242,7 +242,7 @@ export async function getServerSideProps(context) {
     const artist_name2info = await axios
       .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
       .then((res) => res.data);
-    const artist_artworks = await axios
+    const artist_artworks_data = await axios
       // .get(`/api/getArtistArtworks?nickname=${nickname}&type=like&page=1`)
       .get(
         `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
@@ -252,12 +252,12 @@ export async function getServerSideProps(context) {
     // console.log(artist_name2info);
     // console.log(artist_artworks);
     // const ret = await Promise.all([artist_name2info]);
-    const ret = await Promise.all([artist_name2info, artist_artworks]);
+    const ret = await Promise.all([artist_name2info, artist_artworks_data]);
 
     return {
       props: {
         artist_name2info: ret[0],
-        artist_artworks: ret[1],
+        artist_artworks_data: ret[1],
       },
     };
   } catch (error) {
