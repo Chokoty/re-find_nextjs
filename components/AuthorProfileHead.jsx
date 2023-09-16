@@ -118,7 +118,7 @@ const AuthorProfileHead = ({ nickname, profile }) => {
             alert('아직 기능 구현중입니다.');
           }}
         >
-          팔로우
+          + 구독
         </Button>
       </Flex>
     </Flex>

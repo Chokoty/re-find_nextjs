@@ -44,7 +44,7 @@ const ViewSelectBar = ({
   isDeletedVisible,
   handleShowDeleted,
 }) => {
-  const [isSmallerThan370] = useMediaQuery('(max-width: 400px)');
+  const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   const [isOpen, setIsOpen] = useState(false);
 
   const handlePopoverOpen = () => {
@@ -73,12 +73,12 @@ const ViewSelectBar = ({
     <Flex // 뷰 선택 버튼
       flexDirection="row"
       alignItems="center"
-      justifyContent="space-between"
-      h="60px"
+      justifyContent="center"
+      // h="60px"
       // mt="2rem"
       p="0.5rem 1rem"
       mb="1rem"
-      gap="0.5rem"
+      gap="2rem"
       position="sticky"
       top="64px"
       zIndex="90"
@@ -92,7 +92,7 @@ const ViewSelectBar = ({
       <Box
         w={isSmallerThan370 ? '40px' : '120px'}
         display="flex"
-        justifyContent="flex-start"
+        justifyContent="flex-end"
       >
         <Menu>
           <MenuButton
@@ -137,7 +137,7 @@ const ViewSelectBar = ({
           <Box
             w={isSmallerThan370 ? '40px' : '120px'}
             display="flex"
-            justifyContent="flex-end"
+            justifyContent="flex-start"
           >
             <Button
               w="2.5rem"
@@ -150,22 +150,17 @@ const ViewSelectBar = ({
             </Button>
           </Box>
         </PopoverTrigger>
-        <PopoverContent w="180px">
+        <PopoverContent w="200px">
           <PopoverBody
             display="flex"
             flexDirection="column"
             alignItems="flex-start"
             justifyContent="center"
+            p="0.5rem"
           >
-            <Text p="0.5rem" fontSize="sm">
+            <Text p="0.5rem 1rem" fontSize="sm">
               뷰 옵션
             </Text>
-
-            {/* <Button colorScheme="gray" w="100%" variant="ghost">
-          <Text w="100%" textAlign="left">
-            Button
-          </Text>
-        </Button> */}
             <Button
               w="100%"
               variant="ghost"
@@ -175,7 +170,7 @@ const ViewSelectBar = ({
               }}
             >
               <Text w="100%" textAlign="left">
-                삭제된 게시글 {isDeletedVisible ? '숨기기' : '보이기'}
+                삭제된 게시글 {isDeletedVisible ? '가리기' : '보이기'}
               </Text>
             </Button>
           </PopoverBody>
