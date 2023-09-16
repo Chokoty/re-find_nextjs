@@ -26,7 +26,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
-  const [selectedMenu, setSelectedMenu] = useState('최신순'); // 초기 상태 설정
+  const [sortType, setSortType] = useState('like'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
   // react-spinners
@@ -35,7 +35,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
   const handleMenuItemClick = (menuText: string) => {
-    setSelectedMenu(menuText);
+    setSortType(menuText);
   };
 
   const handleViewChange = (view: string) => {
@@ -58,23 +58,26 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
 
         try {
           const nextPage = page + 1;
-          // const response = await axios
-          //   .get(
-          //     `/api/getArtistArtworks?nickname=${nickname}&type=like&page=${nextPage}`
-          //   )
           const response = await axios
             .get(
-              `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
+              `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${nextPage}`
             )
             .then((res) => res.data);
 
-          if (response.data.length === 0) {
-            console.log(':::' + response.data);
-            setHasMoreData(false); // No more data to load
-          } else {
-            setArtworks([...artworks, ...response.data]);
+          if (nextPage === 10) setHasMoreData(false); // No more data to load
+          else {
+            console.log('!!!' + page);
+            console.log(response);
+            setArtworks([...artworks, ...response]);
             setPage(nextPage);
           }
+          // if (response.data.length === 0) {
+          //   console.log(':::' + response.data);
+          //   setHasMoreData(false); // No more data to load
+          // } else {
+          //   setArtworks([...artworks, ...response.data]);
+          //   setPage(nextPage);
+          // }
         } catch (error) {
           console.error('Error fetching more data:', error);
           setHasMoreData(false); // No more data to load
@@ -165,7 +168,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
         <ViewSelectBar
           activeView={activeView}
           onViewChange={handleViewChange}
-          selectedMenu={selectedMenu}
+          selectedMenu={sortType}
           onMenuItemClick={handleMenuItemClick}
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}

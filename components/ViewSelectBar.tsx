@@ -15,7 +15,6 @@ import {
   MenuItem,
   useMediaQuery,
   useColorModeValue,
-  PopoverCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
 import {
@@ -28,7 +27,6 @@ import {
 
 import { useShowShadow } from '../hook/useShowShadow';
 import { lightMode, darkMode } from '@/styles/theme';
-import { on } from 'events';
 
 interface ViewSelectBarProps {
   selectedMenu: string;
@@ -46,6 +44,18 @@ const ViewSelectBar = ({
 }) => {
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   const [isOpen, setIsOpen] = useState(false);
+
+  const menuItems = [
+    { id: 'last', label: '최신순' },
+    { id: 'upload', label: '업로드순' },
+    { id: 'like', label: '좋아요순' },
+    { id: 'view', label: '조회수순' },
+    { id: 'comment', label: '댓글순' },
+  ];
+
+  const selectedLabel = menuItems.find(
+    (item) => item.id === selectedMenu
+  )?.label;
 
   const handlePopoverOpen = () => {
     setIsOpen(true);
@@ -100,21 +110,14 @@ const ViewSelectBar = ({
             as={Button}
             rightIcon={<MdOutlineKeyboardArrowDown />}
           >
-            {!isSmallerThan370 && selectedMenu}
+            {!isSmallerThan370 && selectedLabel}
           </MenuButton>
           <MenuList>
-            <MenuItem onClick={() => onMenuItemClick('최신순')}>
-              최신순
-            </MenuItem>
-            <MenuItem onClick={() => onMenuItemClick('업로드순')}>
-              업로드순
-            </MenuItem>
-            <MenuItem onClick={() => onMenuItemClick('좋아요순')}>
-              좋아요순
-            </MenuItem>
-            <MenuItem onClick={() => onMenuItemClick('조회수순')}>
-              조회수순
-            </MenuItem>
+            {menuItems.map((item) => (
+              <MenuItem key={item.id} onClick={() => onMenuItemClick(item.id)}>
+                {item.label}
+              </MenuItem>
+            ))}
           </MenuList>
         </Menu>
       </Box>
