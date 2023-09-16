@@ -134,7 +134,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
   // }, [page, hasMoreData, isLoading]);
 
   return (
-    <>
+    <Box>
       <Head>
         <title>{profile?.author_nickname} - RE:FIND</title>
         <meta
@@ -152,15 +152,14 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           content={`https://re-find.xyz/artists/${profile?.author_nickname}`}
         />
       </Head>
-
       <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
         margin="0 auto"
-        w="100%"
         mb="2rem"
-        position="relative"
+        // position="relative"
+        // overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
         <AuthorProfileHead nickname={nickname} profile={profile} />
         <ViewSelectBar
@@ -171,6 +170,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
         />
+
         {artworks?.length === 0 && (
           <Center>
             <Text>아직 업로드한 작품이 없네요!</Text>
@@ -226,7 +226,7 @@ const Artist = ({ artist_name2info, artist_artworks }) => {
           </Box>
         )}
       </Box>
-    </>
+    </Box>
   );
 };
 export default Artist;

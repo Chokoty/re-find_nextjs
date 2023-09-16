@@ -42,7 +42,8 @@ const AuthorProfileHead = ({ nickname, profile }) => {
     <Flex // 상단 프로필 정보
       flexDirection="column"
       alignItems="center"
-      width="656px"
+      // width="656px" - 모바일 버그 주범....
+      maxW="656px"
       pt="10px"
     >
       <Avatar
