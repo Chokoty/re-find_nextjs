@@ -92,8 +92,8 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
-      if (page === 0) setArtworks([...response.data]);
-      else setArtworks([...artworks, ...response.data]);
+      if (page === 0) setArtworks([...response.list]);
+      else setArtworks([...artworks, ...response.list]);
 
       console.log(response.list);
     } catch (error) {
