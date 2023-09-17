@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, use } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
 
@@ -72,7 +72,8 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
     }, 2000);
   };
 
-  const getItems = useCallback(async () => {
+  // const getItems = useCallback(async () => {
+  const getItems = async () => {
     if (isLastPage) return;
     console.log('getItems');
 
@@ -102,12 +103,13 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  }, [page, sortType]);
+  };
+  // }, [page, sortType]);
 
   // `getItems` 가 바뀔 때 마다 함수 실행
-  useEffect(() => {
-    getItems();
-  }, [getItems]);
+  // useEffect(() => {
+  //   getItems();
+  // }, [getItems]);
 
   useEffect(() => {
     // sortType이 바뀔 때마다 artworks를 다시 불러옴
@@ -118,7 +120,13 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
 
     setPage(0);
     setIsLastPage(false);
+    getItems();
   }, [sortType, isInitialRender]);
+
+  useEffect(() => {
+    // page가 바뀔 때마다 artworks를 다시 불러옴
+    getItems();
+  }, [page]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
@@ -128,9 +136,6 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
       setPage((prevState) => prevState + 1);
     }
   }, [inView, isLastPage]);
-
-  // useEffect(() => {
-  // }, []);
 
   return (
     <Box>

@@ -1,6 +1,14 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Flex, Button, Box, useColorModeValue } from '@chakra-ui/react';
+import {
+  InputGroup,
+  Input,
+  InputLeftElement,
+  Flex,
+  Button,
+  Box,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { lightMode, darkMode } from '@/styles/theme';
 import Link from 'next/link';
 import DarkModeToggle from '../DarkModeToggle';
@@ -12,6 +20,8 @@ import { useStore } from '../../store/store';
 import { useThemeStore } from '../../store/themeStore';
 import { useShowShadow } from '../../hook/useShowShadow';
 
+import Title from '../Title';
+import { FaSearch } from 'react-icons/fa';
 export const Header = () => {
   // useStore
   // const count = useStore((state) => state.count);
@@ -24,6 +34,7 @@ export const Header = () => {
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+  const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
   const boxShadowLight =
     '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
@@ -83,7 +94,7 @@ export const Header = () => {
         style={{
           backgroundColor: bgColor,
           color: color,
-          padding: '0.5rem',
+          padding: '1rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -100,6 +111,47 @@ export const Header = () => {
             />
           </Link>
         </Button>
+        {/* <Button w="3rem" h="3rem" p="0.5rem" variant="ghost">
+          <Link href="/">
+            <Title onTitleClick={null} />
+          </Link>
+        </Button> */}
+        <Box display="flex" justifyContent="center" m="0 1rem" w="70%">
+          <InputGroup m="0 1rem">
+            <InputLeftElement
+              pointerEvents="none"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              padding="0.5rem"
+            >
+              {/* <Image
+                alt="logo"
+                width={20}
+                height={20}
+                src="/android-chrome-512x512.png"
+                unoptimized
+              /> */}
+              <FaSearch
+                style={{
+                  marginTop: '0.3rem',
+                  width: '1.2rem',
+                  height: '1.2rem',
+                  color: color,
+                }}
+              />
+            </InputLeftElement>
+            <Input
+              type="tel"
+              placeholder="검색"
+              h="3rem"
+              borderRadius="3rem"
+              border="none"
+              bg={searchBgColor}
+              alignItems="center"
+            />
+          </InputGroup>
+        </Box>
         <Flex overflow="hidden">
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer
