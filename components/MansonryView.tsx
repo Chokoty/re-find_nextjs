@@ -9,7 +9,7 @@ import { useResponsiveLink } from '../hook/useResponsiveLink';
 const MasonryView = ({
   artworks,
   isDeletedVisible,
-  loading,
+  // loadingImage,
   handleLoading,
 }) => {
   const article_link = useResponsiveLink('', 'article');

@@ -43,7 +43,7 @@ const AuthorProfileHead = ({ nickname, profile }) => {
       flexDirection="column"
       alignItems="center"
       // width="656px" - 모바일 버그 주범....
-      maxW="656px"
+      // maxW="656px"
       pt="10px"
     >
       <Avatar

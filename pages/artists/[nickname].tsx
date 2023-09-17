@@ -27,7 +27,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
     threshold: 0,
   });
   const [page, setPage] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(false);
+  const [isLastPage, setIsLastPage] = useState(artist_artworks_data?.lastPage);
 
   // 뷰 선택 메뉴
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -73,9 +73,14 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   };
 
   const getItems = useCallback(async () => {
+    if (isLastPage) return;
     console.log('getItems');
 
+    if (loadingData) return;
+
     setLoadingData(true);
+    console.log('loading...');
+
     try {
       const response = await axios
         .get(
@@ -92,11 +97,17 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
       else setArtworks([...artworks, ...response.list]);
     } catch (error) {
       console.error('Error fetching more data:', error);
+      setIsLastPage(true);
       return true; // Assume it's the last page if there's an error
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
   }, [page, sortType]);
+
+  // `getItems` 가 바뀔 때 마다 함수 실행
+  useEffect(() => {
+    getItems();
+  }, [getItems]);
 
   useEffect(() => {
     // sortType이 바뀔 때마다 artworks를 다시 불러옴
@@ -106,23 +117,20 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
     }
 
     setPage(0);
-    console.log('page: ', page);
     setIsLastPage(false);
-    // getItems();
-  }, [sortType]);
-
-  // `getItems` 가 바뀔 때 마다 함수 실행
-  useEffect(() => {
-    if (!isLastPage) getItems();
-  }, [getItems]);
+  }, [sortType, isInitialRender]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView) console.log('inView: ', inView);
-    if (inView && !loadingData) {
+    console.log('isLastPage: ', isLastPage);
+    if (inView && !isLastPage) {
       setPage((prevState) => prevState + 1);
     }
-  }, [inView, loadingData]);
+  }, [inView, isLastPage]);
+
+  // useEffect(() => {
+  // }, []);
 
   return (
     <Box>
@@ -178,8 +186,8 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
                 <Box
                   w="100vw"
                   h="100vh"
-                  position="absolute"
-                  // position="fixed"
+                  // position="absolute"
+                  position="fixed"
                   display="flex"
                   top={0}
                   left={0}
@@ -212,9 +220,9 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
               >
                 {activeView === 'masonryView' && (
                   <MansonryView
-                    loading={loadingImage}
                     artworks={artworks}
                     isDeletedVisible={isDeletedVisible}
+                    // loadingImage={loadingImage}
                     handleLoading={handleLoading}
                   />
                 )}
