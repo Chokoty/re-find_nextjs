@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
 
@@ -26,10 +26,11 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const { ref, inView } = useInView({
     threshold: 0,
   });
-  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
 
   // 뷰 선택 메뉴
+  const [isInitialRender, setIsInitialRender] = useState(true);
   const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
   const [sortType, setSortType] = useState('like'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
@@ -40,54 +41,25 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
   // 정렬 선택하기
-  const handleMenuItemClick = (menuText: string) => {
+  const handleMenuItemClick = useCallback((menuText: string) => {
     setSortType(menuText);
     // 다시 불러오기
-  };
+  }, []);
 
   // 뷰 선택하기
-  const handleViewChange = (view: string) => {
+  const handleViewChange = useCallback((view: string) => {
     setActiveView(view);
-  };
+  }, []);
 
   // 삭제된 게시글 보이기
-  const handleShowDeleted = () => {
-    setIsDeletedVisible(!isDeletedVisible);
-  };
+  const handleShowDeleted = useCallback(() => {
+    setIsDeletedVisible((prev) => !prev);
+  }, []);
 
   // 이미지 로딩
-  const handleLoading = (Loading) => {
+  const handleLoading = useCallback((Loading) => {
     setLoadingImage(Loading);
-  };
-
-  const loadNextPage = async () => {
-    if (isLastPage) {
-      console.log('마지막 페이지입니다.');
-      return;
-    }
-    if (loadingData) return;
-
-    setLoadingData(true); // Set loading state to true
-    try {
-      const response = await axios
-        .get(
-          `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${currentPage}`
-        )
-        .then((res) => res.data);
-
-      if (response.lastPage === true) {
-        setIsLastPage(true);
-      }
-      setArtworks([...artworks, ...response.data]);
-      setCurrentPage(currentPage + 1);
-      console.log(response);
-    } catch (error) {
-      console.error('Error fetching more data:', error);
-      return true; // Assume it's the last page if there's an error
-    } finally {
-      setLoadingData(false); // Set loading state to false regardless of success or failure
-    }
-  };
+  }, []);
 
   const loadMoreData = async () => {
     if (loadingData) return;
@@ -100,12 +72,67 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
     }, 2000);
   };
 
+  const getItems = useCallback(async () => {
+    if (isLastPage) {
+      console.log('마지막 페이지입니다.');
+      return;
+    }
+    if (loadingData) return;
+
+    setLoadingData(true);
+    try {
+      const response = await axios
+        .get(
+          `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`
+        )
+        .then((res) => res.data);
+
+      if (response.lastPage === true) {
+        setIsLastPage(true);
+      }
+      if (page === 0) setArtworks([...response.data]);
+      else setArtworks([...artworks, ...response.data]);
+
+      console.log(response.list);
+    } catch (error) {
+      console.error('Error fetching more data:', error);
+      return true; // Assume it's the last page if there's an error
+    } finally {
+      setLoadingData(false); // Set loading state to false regardless of success or failure
+    }
+  }, [page]);
+
+  useEffect(() => {
+    // sortType이 바뀔 때마다 artworks를 다시 불러옴
+    if (isInitialRender) {
+      setIsInitialRender(false);
+      return;
+    }
+
+    console.log(sortType);
+    setPage(0);
+    setIsLastPage(false);
+    getItems();
+  }, [sortType]);
+
   useEffect(() => {
     if (inView && !isLastPage && !loadingData) {
       // loadMoreData();
-      loadNextPage();
+      getItems();
     }
   }, [inView]);
+
+  // `getItems` 가 바뀔 때 마다 함수 실행
+  useEffect(() => {
+    getItems();
+  }, [getItems]);
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loadingData) {
+      setPage((prevState) => prevState + 1);
+    }
+  }, [inView, loadingData]);
 
   useEffect(() => {
     // console.log(artist_artworks_data.list);
