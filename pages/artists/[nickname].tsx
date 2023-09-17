@@ -89,13 +89,13 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
         )
         .then((res) => res.data);
 
+      console.log(response.lastPage);
+      console.log(response.list);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
       if (page === 0) setArtworks([...response.list]);
       else setArtworks([...artworks, ...response.list]);
-
-      console.log(response.list);
     } catch (error) {
       console.error('Error fetching more data:', error);
       return true; // Assume it's the last page if there's an error
@@ -119,19 +119,15 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
 
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
-    getItems();
+    if (!isLastPage) getItems();
   }, [getItems]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView && !isLastPage && !loadingData) {
+    if (inView && !loadingData) {
       setPage((prevState) => prevState + 1);
     }
   }, [inView, loadingData]);
-
-  useEffect(() => {
-    // console.log(artist_artworks_data.list);
-  }, []);
 
   return (
     <Box>
@@ -208,11 +204,11 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
                 ></Box>
               </Box>
             )}
-            {artworks?.length === 0 && (
+            {/* {artworks?.length === 0 && (
               <Center>
                 <Text>아직 업로드한 작품이 없네요!</Text>
               </Center>
-            )}
+            )} */}
             {artworks?.length !== 0 && (
               <Box
                 w="100%"
