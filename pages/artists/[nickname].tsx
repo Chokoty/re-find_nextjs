@@ -98,7 +98,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
     } catch (error) {
       console.error('Error fetching more data:', error);
       setIsLastPage(true);
-      return true; // Assume it's the last page if there's an error
+      // return true; // Assume it's the last page if there's an error
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
