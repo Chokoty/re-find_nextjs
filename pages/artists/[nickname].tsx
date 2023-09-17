@@ -13,6 +13,7 @@ import SimpleView from '../../components/SimpleView';
 // import ListView from '../../components/ListView';
 //
 import HashLoader from 'react-spinners/HashLoader';
+import { useInView } from 'react-intersection-observer';
 
 const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const router = useRouter();
@@ -21,8 +22,12 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const [profile, setProfile] = useState(artist_name2info);
   const [artworks, setArtworks] = useState(artist_artworks_data?.list);
 
-  const [page, setPage] = useState(1); // Current page number
-  const [hasMoreData, setHasMoreData] = useState(true); // Whether there is more data to load
+  // infinite scroll
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLastPage, setIsLastPage] = useState(false);
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
@@ -30,112 +35,81 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
   // react-spinners
-  let [loading, setLoading] = useState(false);
-  let [loading2, setLoading2] = useState(false);
+  let [loadingData, setLoadingData] = useState(false);
+  let [loadingImage, setLoadingImage] = useState(true);
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
+  // 정렬 선택하기
   const handleMenuItemClick = (menuText: string) => {
     setSortType(menuText);
+    // 다시 불러오기
   };
 
+  // 뷰 선택하기
   const handleViewChange = (view: string) => {
     setActiveView(view);
   };
 
+  // 삭제된 게시글 보이기
   const handleShowDeleted = () => {
     setIsDeletedVisible(!isDeletedVisible);
   };
 
+  // 이미지 로딩
   const handleLoading = (Loading) => {
-    setLoading2(Loading);
+    setLoadingImage(Loading);
   };
 
-  const loadMoreData = async () => {
-    while (hasMoreData && !loading) {
-      setLoading(true); // Set loading state to true
+  const loadNextPage = async () => {
+    if (isLastPage) {
+      console.log('마지막 페이지입니다.');
+      return;
+    }
+    if (loadingData) return;
 
-      try {
-        const nextPage = page + 1;
-        const response = await axios
-          .get(
-            `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${nextPage}`
-          )
-          .then((res) => res.data);
+    setLoadingData(true); // Set loading state to true
+    try {
+      const response = await axios
+        .get(
+          `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${currentPage}`
+        )
+        .then((res) => res.data);
 
-        if (response.lastPage === true) {
-          setHasMoreData(false);
-        }
-        setArtworks([...artworks, ...response.data]);
-        setPage(nextPage);
-        console.log(response);
-
-        // if (response.data.length === 0) {
-        //   console.log(':::' + response.data);
-        //   setHasMoreData(false); // No more data to load
-        // } else {
-        //   setArtworks([...artworks, ...response.data]);
-        //   setPage(nextPage);
-        // }
-      } catch (error) {
-        console.error('Error fetching more data:', error);
-        setHasMoreData(false); // No more data to load
-      } finally {
-        setLoading(false); // Set loading state to false regardless of success or failure
+      if (response.lastPage === true) {
+        setIsLastPage(true);
       }
+      setArtworks([...artworks, ...response.data]);
+      setCurrentPage(currentPage + 1);
+      console.log(response);
+    } catch (error) {
+      console.error('Error fetching more data:', error);
+      return true; // Assume it's the last page if there's an error
+    } finally {
+      setLoadingData(false); // Set loading state to false regardless of success or failure
     }
   };
 
+  const loadMoreData = async () => {
+    if (loadingData) return;
+
+    setLoadingData(true);
+    console.log('loadMoreData');
+    // 2초 뒤 setLoadingData(false);
+    setTimeout(() => {
+      setLoadingData(false);
+    }, 2000);
+  };
+
   useEffect(() => {
-    console.log(page);
-    loadMoreData();
+    if (inView && !isLastPage && !loadingData) {
+      // loadMoreData();
+      loadNextPage();
+    }
+  }, [inView]);
+
+  useEffect(() => {
+    // console.log(artist_artworks_data.list);
   }, []);
-
-  // Function to load more data when scrolling to the bottom
-  // const loadMoreData = async () => {
-  //   if (!hasMoreData || isLoading) return; // No more data to load or already loading
-  //   setIsLoading(true); // Set loading state to true
-
-  //   try {
-  //     const nextPage = page + 1;
-  //     const response = await axios.get(
-  //       `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=${nextPage}`
-  //     );
-
-  //     if (response.data.length === 0) {
-  //       setHasMoreData(false); // No more data to load
-  //     } else {
-  //       console.log('!!!' + page);
-  //       console.log(response.data);
-  //       setArtworks([...artworks, ...response.data]);
-  //       setPage(nextPage);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error fetching more data:', error);
-  //     setHasMoreData(false); // No more data to load
-  //   } finally {
-  //     setIsLoading(false); // Set loading state to false regardless of success or failure
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   window.dispatchEvent(new Event('resize'));
-  // }, [isDeletedVisible]);
-
-  // // useEffect(() => {
-  // //   window.addEventListener('scroll', () => {
-  // //     if (
-  // //       window.innerHeight + window.scrollY >=
-  // //       document.body.scrollHeight - 100
-  // //     ) {
-  // //       loadMoreData();
-  // //     }
-  // //   });
-
-  //   return () => {
-  //     // Remove the event listener when the component unmounts
-  //     window.removeEventListener('scroll', loadMoreData);
-  //   };
-  // }, [page, hasMoreData, isLoading]);
 
   return (
     <Box>
@@ -174,65 +148,87 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
         />
-
-        {artworks?.length === 0 && (
-          <Center>
-            <Text>아직 업로드한 작품이 없네요!</Text>
-          </Center>
-        )}
-        {loading2 && (
-          <Box>
-            <Box
-              w="100vw"
-              h="100vh"
-              position="fixed"
-              display="flex"
-              top={0}
-              left={0}
-              justifyContent="center"
-              alignItems="center"
-              zIndex={160}
-            >
-              <HashLoader color="#01BFA2" />
-            </Box>
-            <Box
-              w="100%"
-              h="100%"
-              position="absolute"
-              top={0}
-              right={0}
-              backgroundColor={bgColor}
-              zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
-            ></Box>
-          </Box>
-        )}
-        {artworks?.length !== 0 && (
+        {!artworks && (
           <Box
             w="100%"
-            overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
           >
-            {activeView === 'masonryView' && (
-              <MansonryView
-                loading={loading2}
-                artworks={artworks}
-                isDeletedVisible={isDeletedVisible}
-                handleLoading={handleLoading}
-              />
-            )}
-            {activeView === 'gridView' && (
-              <SimpleView
-                artworks={artworks}
-                isDeletedVisible={isDeletedVisible}
-                handleLoading={handleLoading}
-              />
-            )}
-            {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+            <HashLoader color="#01BFA2" />
           </Box>
+        )}
+        {artworks && (
+          <>
+            {loadingImage && (
+              <Box>
+                <Box
+                  w="100vw"
+                  h="100vh"
+                  position="fixed"
+                  display="flex"
+                  top={0}
+                  left={0}
+                  justifyContent="center"
+                  alignItems="center"
+                  zIndex={160}
+                >
+                  <HashLoader color="#01BFA2" />
+                </Box>
+                <Box
+                  w="100%"
+                  h="100%"
+                  position="absolute"
+                  top={0}
+                  right={0}
+                  backgroundColor={bgColor}
+                  zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
+                ></Box>
+              </Box>
+            )}
+            {artworks?.length === 0 && (
+              <Center>
+                <Text>아직 업로드한 작품이 없네요!</Text>
+              </Center>
+            )}
+            {artworks?.length !== 0 && (
+              <Box
+                w="100%"
+                overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+              >
+                {activeView === 'masonryView' && (
+                  <MansonryView
+                    loading={loadingImage}
+                    artworks={artworks}
+                    isDeletedVisible={isDeletedVisible}
+                    handleLoading={handleLoading}
+                  />
+                )}
+                {activeView === 'gridView' && (
+                  <SimpleView
+                    artworks={artworks}
+                    isDeletedVisible={isDeletedVisible}
+                    handleLoading={handleLoading}
+                  />
+                )}
+                {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+              </Box>
+            )}
+            {/* Observer를 위한 div */}
+            <Box ref={ref}>
+              {loadingData && (
+                <Box display="flex" justifyContent="center" alignItems="center">
+                  <HashLoader color="#01BFA2" />
+                </Box>
+              )}
+            </Box>
+          </>
         )}
       </Box>
     </Box>
   );
 };
+
 export default Artist;
 
 export async function getServerSideProps(context) {
@@ -248,10 +244,8 @@ export async function getServerSideProps(context) {
         `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
       )
       .then((res) => res.data);
-
     // console.log(artist_name2info);
     // console.log(artist_artworks);
-    // const ret = await Promise.all([artist_name2info]);
     const ret = await Promise.all([artist_name2info, artist_artworks_data]);
 
     return {
