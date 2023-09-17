@@ -75,12 +75,6 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const getItems = useCallback(async () => {
     console.log('getItems');
 
-    // if (isLastPage) {
-    //   console.log('마지막 페이지입니다.');
-    //   return;
-    // }
-    // if (loadingData) return;
-
     setLoadingData(true);
     try {
       const response = await axios
@@ -124,6 +118,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView) console.log('inView: ', inView);
     if (inView && !loadingData) {
       setPage((prevState) => prevState + 1);
     }
@@ -179,11 +174,12 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
         {artworks && (
           <>
             {loadingImage && (
-              <Box>
+              <Box position="relative">
                 <Box
                   w="100vw"
                   h="100vh"
-                  position="fixed"
+                  position="absolute"
+                  // position="fixed"
                   display="flex"
                   top={0}
                   left={0}
