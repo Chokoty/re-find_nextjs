@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NextImage from 'next/image';
-import { Text, Box, Link, useBreakpointValue } from '@chakra-ui/react';
+import { Button, Text, Box, Link, useBreakpointValue } from '@chakra-ui/react';
 
 import Bricks from 'bricks.js';
 import imagesLoaded from 'imagesloaded';
@@ -15,6 +15,21 @@ const MasonryView = ({
   const article_link = useResponsiveLink('', 'article');
   const containerRef = useRef(null);
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
+
+  const [showButton, setShowButton] = useState(
+    Array(artworks?.length).fill(false)
+  ); // 각 이미지에 대한 버튼 표시 여부를 배열로 관리
+
+  const [hoveredIndices, setHoveredIndices] = useState([]);
+  const [clickedIndex, setClickedIndex] = useState(null);
+
+  const handleMouseEnter = (index) => {
+    setHoveredIndices((prev) => [...prev, index]);
+  };
+
+  const handleMouseLeave = (index) => {
+    setHoveredIndices((prev) => prev.filter((i) => i !== index));
+  };
 
   useEffect(() => {
     window.onload = () => {
@@ -69,16 +84,20 @@ const MasonryView = ({
     setTimeout(() => {
       handleLoading(false);
     }, 1200);
-  }, [artworks, isDeletedVisible]);
+  }, [
+    // artworks,
+    isDeletedVisible,
+  ]);
 
   return (
     <Box ref={containerRef} w="100%" mx="auto" position="relative">
       {isDeletedVisible &&
-        artworks.map((artwork) => (
+        artworks.map((artwork, index) => (
           <Box
             w={['180px', '236px']}
             pb="16px"
             display="inline-block"
+            position="relative"
             key={artwork.id}
             // _hover={{ filter: 'brightness(70%)' }}
           >
@@ -93,7 +112,12 @@ const MasonryView = ({
               target="_blank"
               rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
             >
-              <Box width={widthValue} overflow="hidden" borderRadius="1rem">
+              <Box
+                width={widthValue}
+                overflow="hidden"
+                borderRadius="1rem"
+                position="relative"
+              >
                 <NextImage
                   alt={artwork.title}
                   width={236}

@@ -18,19 +18,10 @@ const ListView = ({ artworks }) => {
   console.log(artworks);
 
   const [hoveredIndices, setHoveredIndices] = useState([]);
-  const [clickedIndices, setClickedIndices] = useState([]);
+  // const [clickedIndices, setClickedIndices] = useState([]);
   const [clickedIndex, setClickedIndex] = useState(null);
 
   const handleButtonClick = (index) => {
-    // setClickedIndices((prevIndices) => {
-    //   if (prevIndices.includes(index)) {
-    //     // 이미 클릭된 버튼의 인덱스를 배열에서 제거
-    //     return prevIndices.filter((i) => i !== index);
-    //   } else {
-    //     // 클릭되지 않은 버튼의 인덱스를 배열에 추가
-    //     return [...prevIndices, index];
-    //   }
-    // });
     if (clickedIndex === index) {
       // 이미 클릭된 버튼을 다시 클릭하면 null로 설정하여 끕니다.
       setClickedIndex(null);

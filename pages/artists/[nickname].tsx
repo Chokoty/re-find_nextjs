@@ -98,7 +98,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
     } catch (error) {
       console.error('Error fetching more data:', error);
       setIsLastPage(true);
-      return true; // Assume it's the last page if there's an error
+      // return true; // Assume it's the last page if there's an error ??? 이게 문제?
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
@@ -106,6 +106,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
 
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
+    getItems();
     getItems();
   }, [getItems]);
 
@@ -115,10 +116,11 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
       setIsInitialRender(false);
       return;
     }
+    console.log('sortType: ', sortType);
 
     setPage(0);
     setIsLastPage(false);
-  }, [sortType, isInitialRender]);
+  }, [sortType]);
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
@@ -128,9 +130,6 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
       setPage((prevState) => prevState + 1);
     }
   }, [inView, isLastPage]);
-
-  // useEffect(() => {
-  // }, []);
 
   return (
     <Box>
@@ -180,13 +179,20 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
           </Box>
         )}
         {artworks && (
-          <>
+          <Box w="100%">
             {loadingImage && (
-              <Box position="relative">
+              <Box
+                w="100%"
+                h="100%"
+                backgroundColor={bgColor}
+                //  position="relative"
+              >
                 <Box
+                  // position="absolute"
+                  // w="100%"
+                  // h="100%"
                   w="100vw"
                   h="100vh"
-                  // position="absolute"
                   position="fixed"
                   display="flex"
                   top={0}
@@ -194,10 +200,11 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
                   justifyContent="center"
                   alignItems="center"
                   zIndex={160}
+                  backgroundColor={bgColor}
                 >
                   <HashLoader color="#01BFA2" />
                 </Box>
-                <Box
+                {/* <Box
                   w="100%"
                   h="100%"
                   position="absolute"
@@ -205,18 +212,20 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
                   right={0}
                   backgroundColor={bgColor}
                   zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
-                ></Box>
+                ></Box> */}
               </Box>
             )}
             {/* {artworks?.length === 0 && (
               <Center>
                 <Text>아직 업로드한 작품이 없네요!</Text>
               </Center>
-            )} */}
+            )} 
+            */}
             {artworks?.length !== 0 && (
               <Box
                 w="100%"
                 overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+                position="relative"
               >
                 {activeView === 'masonryView' && (
                   <MansonryView
@@ -244,7 +253,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
                 </Box>
               )}
             </Box>
-          </>
+          </Box>
         )}
       </Box>
     </Box>
