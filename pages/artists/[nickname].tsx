@@ -73,11 +73,13 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   };
 
   const getItems = useCallback(async () => {
-    if (isLastPage) {
-      console.log('마지막 페이지입니다.');
-      return;
-    }
-    if (loadingData) return;
+    console.log('getItems');
+
+    // if (isLastPage) {
+    //   console.log('마지막 페이지입니다.');
+    //   return;
+    // }
+    // if (loadingData) return;
 
     setLoadingData(true);
     try {
@@ -100,7 +102,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  }, [page]);
+  }, [page, sortType]);
 
   useEffect(() => {
     // sortType이 바뀔 때마다 artworks를 다시 불러옴
@@ -109,18 +111,11 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
       return;
     }
 
-    console.log(sortType);
     setPage(0);
+    console.log('page: ', page);
     setIsLastPage(false);
-    getItems();
+    // getItems();
   }, [sortType]);
-
-  useEffect(() => {
-    if (inView && !isLastPage && !loadingData) {
-      // loadMoreData();
-      getItems();
-    }
-  }, [inView]);
 
   // `getItems` 가 바뀔 때 마다 함수 실행
   useEffect(() => {
@@ -129,7 +124,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
 
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView && !loadingData) {
+    if (inView && !isLastPage && !loadingData) {
       setPage((prevState) => prevState + 1);
     }
   }, [inView, loadingData]);
