@@ -115,18 +115,6 @@ const Artist = (
     }
   }, [sortType, page]);
 
-  // useEffect(() => {
-  //   // sortType이 바뀔 때마다 artworks를 다시 불러옴
-  //   if (isInitialRender) {
-  //     setIsInitialRender(false);
-  //     return;
-  //   }
-
-  //   setPage(0);
-  //   setIsLastPage(false);
-  //   getItems();
-  // }, [sortType, isInitialRender]);
-
   // const artist_artworks = useCallback(async () => {
   //   try {
   //     const response = await axios
