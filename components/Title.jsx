@@ -11,6 +11,7 @@ const Title = ({ onTitleClick }) => {
     lightMode.highlight,
     darkMode.highlight
   );
+  // const color = useColorModeValue(lightMode.color, darkMode.color);
 
   const handleTitleClick = () => {
     window.location.href = '/';
@@ -22,6 +23,7 @@ const Title = ({ onTitleClick }) => {
         <Heading className="title-main">
           <span style={{ color: highlightColor }}>RE:</span>
           FIND
+          {/* <span style={{ color: color }}>FIND</span> */}
         </Heading>
         {/* <Image
                     src="/refind-title.png"
