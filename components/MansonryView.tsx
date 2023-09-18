@@ -89,6 +89,16 @@ const MasonryView = ({
     isDeletedVisible,
   ]);
 
+  useEffect(() => {
+    // 화면 크기를 강제로 조절하는 코드
+    setTimeout(() => {
+      window.innerWidth += 0.001;
+      window.dispatchEvent(new Event('resize'));
+      window.innerWidth -= 0.001;
+      window.dispatchEvent(new Event('resize'));
+    }, 0);
+  }, [artworks]);
+
   return (
     <Box ref={containerRef} w="100%" mx="auto" position="relative">
       {isDeletedVisible &&

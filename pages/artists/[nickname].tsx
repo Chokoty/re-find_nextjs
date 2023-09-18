@@ -125,7 +125,7 @@ const Artist = ({
     }
     console.log('page: ', page);
     getArtistArtworks();
-  }, [page]);
+  }, [sortType, page]);
 
   useEffect(() => {
     // if (init) return;
@@ -141,7 +141,7 @@ const Artist = ({
       console.log(nickname);
       // getArtistInfo();
       getArtistArtworks();
-      setInit(false); // 초기 렌더링 완료
+      // setInit(false); // 초기 렌더링 완료
     }
   }, [nickname]);
 
