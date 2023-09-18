@@ -113,7 +113,7 @@ const Artist = (
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  }, [sortType, page]);
+  }, [sortType, page, nickname]);
 
   // const artist_artworks = useCallback(async () => {
   //   try {
