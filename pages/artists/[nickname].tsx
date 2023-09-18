@@ -49,6 +49,8 @@ const Artist = (
   const handleMenuItemClick = useCallback((menuText: string) => {
     setSortType(menuText);
     // 다시 불러오기
+    setPage(1);
+    setIsLastPage(false);
   }, []);
 
   // 뷰 선택하기
