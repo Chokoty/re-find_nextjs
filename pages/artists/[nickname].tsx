@@ -152,6 +152,10 @@ const Artist = (
   // };
 
   useEffect(() => {
+    if (isInitialRender) {
+      setIsInitialRender(false);
+      return;
+    }
     console.log('page: ', page);
     getArtistArtworks();
   }, [page]);
@@ -168,6 +172,7 @@ const Artist = (
     if (nickname) {
       console.log(nickname);
       artist_name2info();
+      getArtistArtworks();
     }
   }, [nickname]);
 
