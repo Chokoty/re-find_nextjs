@@ -15,16 +15,14 @@ import SimpleView from '../../components/SimpleView';
 import HashLoader from 'react-spinners/HashLoader';
 import { useInView } from 'react-intersection-observer';
 
-const Artist = (
-  {
-    // artist_name2info,
-    // artist_artworks_data
-  }
-) => {
+const Artist = ({
+  artist_name2info,
+  // artist_artworks_data
+}) => {
   const router = useRouter();
   const { nickname } = router.query;
 
-  const [profile, setProfile] = useState(null); // useState(artist_name2info);
+  const [profile, setProfile] = useState(artist_name2info); //useState(null);
   const [artworks, setArtworks] = useState([]); // useState(artist_artworks_data?.list);
 
   // infinite scroll
@@ -70,7 +68,7 @@ const Artist = (
     setLoadingImage(Loading);
   }, []);
 
-  const artist_name2info = useCallback(async () => {
+  const getArtistInfo = useCallback(async () => {
     try {
       const response = await axios
         // .get('/api/artistInfo', {
@@ -141,7 +139,7 @@ const Artist = (
   useEffect(() => {
     if (nickname) {
       console.log(nickname);
-      artist_name2info();
+      // getArtistInfo();
       getArtistArtworks();
       setInit(false); // 초기 렌더링 완료
     }
@@ -150,8 +148,8 @@ const Artist = (
   return (
     <Box>
       <Head>
-        {/* <title>{`${profile?.author_nickname} - RE:FIND`}</title> */}
-        <title>{`${nickname} - RE:FIND`}</title>
+        <title>{`${profile?.author_nickname} - RE:FIND`}</title>
+        {/* <title>{`${nickname} - RE:FIND`}</title> */}
         <meta
           property="og:title"
           content={profile?.author_nickname + '- Profile | RE:FIND '}
@@ -267,38 +265,24 @@ const Artist = (
 
 export default Artist;
 
-// export async function getServerSideProps(context) {
-//   const { nickname } = context.query;
+export async function getServerSideProps(context) {
+  const { nickname } = context.query;
 
-//   try {
-//     const artist_name2info = await axios
-//       .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
-//       .then((res) => res.data);
-//     // const artist_artworks_data = await axios
-//     //   // .get(`/api/getArtistArtworks?nickname=${nickname}&type=like&page=1`)
-//     //   .get(
-//     //     `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
-//     //   )
-//     //   .then((res) => res.data);
-//     // console.log(artist_name2info);
-//     // console.log(artist_artworks);
-//     const ret = await Promise.all([
-//       artist_name2info,
+  try {
+    const artist_name2info = await axios
+      .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
+      .then((res) => res.data);
 
-//       // artist_artworks_data
-//     ]);
+    return {
+      props: {
+        artist_name2info: artist_name2info,
+      },
+    };
+  } catch (error) {
+    console.error('Error fetching data:', error);
 
-//     return {
-//       props: {
-//         artist_name2info: ret[0],
-//         // artist_artworks_data: ret[1],
-//       },
-//     };
-//   } catch (error) {
-//     console.error('Error fetching data:', error);
-
-//     return {
-//       notFound: true, // Next.js에서 제공하는 notFound 속성을 사용하여 페이지를 404로 표시
-//     };
-//   }
-// }
+    return {
+      notFound: true, // Next.js에서 제공하는 notFound 속성을 사용하여 페이지를 404로 표시
+    };
+  }
+}
