@@ -150,7 +150,8 @@ const Artist = (
   return (
     <Box>
       <Head>
-        <title>{`${profile?.author_nickname} - RE:FIND`}</title>
+        {/* <title>{`${profile?.author_nickname} - RE:FIND`}</title> */}
+        <title>{`${nickname} - RE:FIND`}</title>
         <meta
           property="og:title"
           content={profile?.author_nickname + '- Profile | RE:FIND '}
