@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Button, Input, Text, Box } from '@chakra-ui/react';
 
 const Artists = () => {
@@ -27,7 +28,7 @@ const Artists = () => {
           size="md"
           value={nickname}
           onChange={(e) => setNickname(e.target.value)}
-          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyPress}
         />
         <Button colorScheme="blue" size="md" mt="10px" onClick={handleSearch}>
           Search

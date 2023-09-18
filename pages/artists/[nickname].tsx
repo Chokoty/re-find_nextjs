@@ -22,19 +22,27 @@ import SimpleView from '../../components/SimpleView';
 import HashLoader from 'react-spinners/HashLoader';
 import { useInView } from 'react-intersection-observer';
 
-const Artist = ({ artist_name2info, artist_artworks_data }) => {
+const Artist = (
+  {
+    // artist_name2info,
+    // artist_artworks_data
+  }
+) => {
   const router = useRouter();
   const { nickname } = router.query;
 
-  const [profile, setProfile] = useState(artist_name2info);
-  const [artworks, setArtworks] = useState(artist_artworks_data?.list);
+  const [profile, setProfile] = useState(null);
+  // const [profile, setProfile] = useState(artist_name2info);
+  const [artworks, setArtworks] = useState(null);
+  // const [artworks, setArtworks] = useState(artist_artworks_data?.list);
 
   // infinite scroll
   const { ref, inView } = useInView({
     threshold: 0,
   });
-  const [page, setPage] = useState(0);
-  const [isLastPage, setIsLastPage] = useState(artist_artworks_data?.lastPage);
+  const [page, setPage] = useState(1);
+  // const [isLastPage, setIsLastPage] = useState(artist_artworks_data?.lastPage);
+  const [isLastPage, setIsLastPage] = useState(false);
 
   // 뷰 선택 메뉴
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -67,6 +75,19 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   const handleLoading = useCallback((Loading) => {
     setLoadingImage(Loading);
   }, []);
+
+  const artist_name2info = async () => {
+    try {
+      const response = await axios
+        .get(`/api/artistInfo?nickname=${nickname}`)
+        // .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
+        .then((res) => res.data);
+      setProfile(response);
+      console.log(response);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   const loadMoreData = async () => {
     console.log('loadMoreData');
@@ -144,9 +165,19 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   //     setPage((prevState) => prevState + 1);
   //   }
   // }, [inView, isLastPage]);
+  useEffect(() => {
+    console.log(nickname);
+
+    if (nickname) {
+      artist_name2info();
+    }
+  }, [nickname]);
 
   useEffect(() => {
-    getItems();
+    // getItems();
+    console.log(nickname);
+    // artist_name2info();
+    // console.log(artworks);
   }, []);
 
   return (
@@ -271,34 +302,38 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
 
 export default Artist;
 
-export async function getServerSideProps(context) {
-  const { nickname } = context.query;
+// export async function getServerSideProps(context) {
+//   const { nickname } = context.query;
 
-  try {
-    const artist_name2info = await axios
-      .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
-      .then((res) => res.data);
-    const artist_artworks_data = await axios
-      // .get(`/api/getArtistArtworks?nickname=${nickname}&type=like&page=1`)
-      .get(
-        `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
-      )
-      .then((res) => res.data);
-    // console.log(artist_name2info);
-    // console.log(artist_artworks);
-    const ret = await Promise.all([artist_name2info, artist_artworks_data]);
+//   try {
+//     const artist_name2info = await axios
+//       .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
+//       .then((res) => res.data);
+//     // const artist_artworks_data = await axios
+//     //   // .get(`/api/getArtistArtworks?nickname=${nickname}&type=like&page=1`)
+//     //   .get(
+//     //     `https://re-find.reruru.com/author_artworks?name=${nickname}&type=like&page=1`
+//     //   )
+//     //   .then((res) => res.data);
+//     // console.log(artist_name2info);
+//     // console.log(artist_artworks);
+//     const ret = await Promise.all([
+//       artist_name2info,
 
-    return {
-      props: {
-        artist_name2info: ret[0],
-        artist_artworks_data: ret[1],
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching data:', error);
+//       // artist_artworks_data
+//     ]);
 
-    return {
-      notFound: true, // Next.js에서 제공하는 notFound 속성을 사용하여 페이지를 404로 표시
-    };
-  }
-}
+//     return {
+//       props: {
+//         artist_name2info: ret[0],
+//         // artist_artworks_data: ret[1],
+//       },
+//     };
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+
+//     return {
+//       notFound: true, // Next.js에서 제공하는 notFound 속성을 사용하여 페이지를 404로 표시
+//     };
+//   }
+// }
