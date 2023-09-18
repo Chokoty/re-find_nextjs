@@ -131,6 +131,7 @@ const Artist = (
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView) console.log('inView: ', inView);
+    if (inView && artworks.length !== 0) return;
     if (inView && !isLastPage) {
       setPage((prevState) => prevState + 1);
     }
