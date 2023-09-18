@@ -29,6 +29,7 @@ const DarkModeToggle: React.FC<DarkModeToggleProps> = ({
     // </Button>
 
     <IconButton
+      flexShrink={0}
       onClick={toggleColorMode}
       bg="none"
       // _hover={{ bg: '#none' }}

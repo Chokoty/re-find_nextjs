@@ -100,7 +100,14 @@ export const Header = () => {
           alignItems: 'center',
         }}
       >
-        <Button w="3rem" h="3rem" p="0.5rem" variant="ghost" borderRadius="50%">
+        <Button
+          w="3rem"
+          h="3rem"
+          p="0.5rem"
+          variant="ghost"
+          borderRadius="50%"
+          flexShrink={0}
+        >
           <Link href="/">
             <Image
               alt="logo"
@@ -142,7 +149,6 @@ export const Header = () => {
               />
             </InputLeftElement>
             <Input
-              type="tel"
               placeholder="검색"
               h="3rem"
               borderRadius="3rem"
@@ -152,14 +158,14 @@ export const Header = () => {
             />
           </InputGroup>
         </Box>
-        <Flex overflow="hidden">
+        <Flex>
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer
             isOpen={isOpen}
             toggleDrawer={toggleDrawer}
             ref={myDrawerRef}
           />
-          <Box className="hamburger">
+          <Box className="hamburger" w="3rem" flexShrink={0}>
             <Hamburger
               label="펼치기" // An ARIA label to improve accessibility.
               size={24}
