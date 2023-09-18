@@ -31,6 +31,7 @@ const Artist = (
   const { ref, inView } = useInView({
     threshold: 0,
   });
+  const [init, setInit] = useState(true);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
@@ -95,7 +96,7 @@ const Artist = (
     if (loadingData) return;
 
     setLoadingData(true);
-    console.log('loading...');
+    console.log('artworks loading...');
 
     try {
       const response = await axios
@@ -129,6 +130,7 @@ const Artist = (
   }, [page]);
 
   useEffect(() => {
+    if (init) return;
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView) console.log('inView: ', inView);
     if (inView && artworks.length !== 0) return;
@@ -142,10 +144,9 @@ const Artist = (
       console.log(nickname);
       artist_name2info();
       getArtistArtworks();
+      setInit(false); // 초기 렌더링 완료
     }
   }, [nickname]);
-
-  useEffect(() => {}, []);
 
   return (
     <Box>
