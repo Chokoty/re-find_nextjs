@@ -25,7 +25,10 @@ const AuthorProfileHead = ({ nickname, profile }) => {
   // console.log(profile?.author_prof_url);
 
   const handleCopyLink = () => {
-    const linkToCopy = `https://re-find.xyz/artists/${profile?.author_nickname}`;
+    // const linkToCopy = `https://re-find.xyz/artists/${profile?.author_nickname}`;
+    const linkToCopy = `https://re-find.xyz/artists/${encodeURIComponent(
+      profile?.author_nickname
+    )}`;
     // 복사하려는 링크를 여기에 입력하세요.
 
     navigator.clipboard.writeText(linkToCopy).then(() => {
