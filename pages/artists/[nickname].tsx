@@ -249,20 +249,15 @@ const Artist = (
                 )}
                 {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
                 {/* Observer를 위한 div */}
-                <Box ref={ref}>
-                  {loadingData && (
-                    <Box
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <HashLoader color="#01BFA2" />
-                    </Box>
-                  )}
-                </Box>
+                <Box ref={ref} w="100%" h="2rem"></Box>
               </Box>
             )}
           </>
+        )}
+        {loadingData && (
+          <Box display="flex" justifyContent="center" alignItems="center">
+            <HashLoader color="#01BFA2" />
+          </Box>
         )}
       </Box>
     </Box>
