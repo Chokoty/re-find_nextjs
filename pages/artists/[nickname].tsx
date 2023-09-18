@@ -3,7 +3,14 @@ import Head from 'next/head';
 import axios from 'axios';
 
 import { useRouter } from 'next/router';
-import { Text, Box, Flex, Center, useColorModeValue } from '@chakra-ui/react';
+import {
+  Text,
+  Box,
+  Flex,
+  Center,
+  useColorModeValue,
+  Button,
+} from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
 import AuthorProfileHead from '@/components/AuthorProfileHead';
@@ -62,20 +69,21 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   }, []);
 
   const loadMoreData = async () => {
-    if (loadingData) return;
-
-    setLoadingData(true);
     console.log('loadMoreData');
+    // if (isLastPage) return;
+
     // 2초 뒤 setLoadingData(false);
-    setTimeout(() => {
-      setLoadingData(false);
-    }, 2000);
+    getItems();
+    // setTimeout(() => {
+    //   setLoadingData(false);
+    // }, 2000);
+    setPage((prevState) => prevState + 1);
   };
 
   // const getItems = useCallback(async () => {
   const getItems = async () => {
-    if (isLastPage) return;
     console.log('getItems');
+    // if (isLastPage) return;
 
     if (loadingData) return;
 
@@ -111,31 +119,35 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
   //   getItems();
   // }, [getItems]);
 
-  useEffect(() => {
-    // sortType이 바뀔 때마다 artworks를 다시 불러옴
-    if (isInitialRender) {
-      setIsInitialRender(false);
-      return;
-    }
+  // useEffect(() => {
+  //   // sortType이 바뀔 때마다 artworks를 다시 불러옴
+  //   if (isInitialRender) {
+  //     setIsInitialRender(false);
+  //     return;
+  //   }
 
-    setPage(0);
-    setIsLastPage(false);
+  //   setPage(0);
+  //   setIsLastPage(false);
+  //   getItems();
+  // }, [sortType, isInitialRender]);
+
+  // useEffect(() => {
+  //   // page가 바뀔 때마다 artworks를 다시 불러옴
+  //   getItems();
+  // }, [page]);
+
+  // useEffect(() => {
+  //   // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+  //   if (inView) console.log('inView: ', inView);
+  //   console.log('isLastPage: ', isLastPage);
+  //   if (inView && !isLastPage) {
+  //     setPage((prevState) => prevState + 1);
+  //   }
+  // }, [inView, isLastPage]);
+
+  useEffect(() => {
     getItems();
-  }, [sortType, isInitialRender]);
-
-  useEffect(() => {
-    // page가 바뀔 때마다 artworks를 다시 불러옴
-    getItems();
-  }, [page]);
-
-  useEffect(() => {
-    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView) console.log('inView: ', inView);
-    console.log('isLastPage: ', isLastPage);
-    if (inView && !isLastPage) {
-      setPage((prevState) => prevState + 1);
-    }
-  }, [inView, isLastPage]);
+  }, []);
 
   return (
     <Box>
@@ -165,6 +177,7 @@ const Artist = ({ artist_name2info, artist_artworks_data }) => {
         // position="relative"
         // overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
+        <Button onClick={loadMoreData}>{page}</Button>
         <AuthorProfileHead nickname={nickname} profile={profile} />
         <ViewSelectBar
           activeView={activeView}
