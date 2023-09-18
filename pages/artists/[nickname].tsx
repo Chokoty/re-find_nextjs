@@ -25,7 +25,7 @@ const Artist = (
   const { nickname } = router.query;
 
   const [profile, setProfile] = useState(null); // useState(artist_name2info);
-  const [artworks, setArtworks] = useState(null); // useState(artist_artworks_data?.list);
+  const [artworks, setArtworks] = useState([]); // useState(artist_artworks_data?.list);
 
   // infinite scroll
   const { ref, inView } = useInView({
@@ -51,6 +51,7 @@ const Artist = (
     // 다시 불러오기
     setPage(1);
     setIsLastPage(false);
+    setArtworks([]);
   }, []);
 
   // 뷰 선택하기
