@@ -167,7 +167,11 @@ const MasonryView = ({
                 target="_blank"
                 rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
               >
-                <Box width={widthValue} backgroundColor="#F5F5F5">
+                <Box
+                  width={widthValue}
+                  borderRadius="1rem"
+                  backgroundColor="#F5F5F5"
+                >
                   <NextImage
                     alt={artwork.title}
                     width={236}

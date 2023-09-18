@@ -83,6 +83,9 @@ const Artist = (
       console.log(response);
     } catch (error) {
       console.error('Error fetching data:', error);
+      // setProfile(nickname);
+      // 404 페이지로 이동
+      router.push('/404');
     }
   }, [nickname]);
 
@@ -115,32 +118,6 @@ const Artist = (
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
   }, [sortType, page, nickname]);
-
-  // const artist_artworks = useCallback(async () => {
-  //   try {
-  //     const response = await axios
-  //       .get(
-  //         `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`
-  //       )
-  //       .then((res) => res.data);
-  //     setArtworks(response.list);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //   }
-  // }, [nickname, sortType, page]);
-
-  // const loadMoreData = async () => {
-  //   console.log('loadMoreData');
-  //   // if (isLastPage) return;
-
-  //   // 2초 뒤 setLoadingData(false);
-  //   getItems();
-  //   // setTimeout(() => {
-  //   //   setLoadingData(false);
-  //   // }, 2000);
-  //   setPage((prevState) => prevState + 1);
-  // };
 
   useEffect(() => {
     if (isInitialRender) {
@@ -194,12 +171,10 @@ const Artist = (
         alignItems="center"
         margin="0 auto"
         mb="2rem"
-        // position="relative"
-        // overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
-        {/* <Button onClick={loadMoreData}>{page}</Button> */}
         <AuthorProfileHead nickname={nickname} profile={profile} />
         <ViewSelectBar
+          artworks={artworks}
           activeView={activeView}
           onViewChange={handleViewChange}
           selectedMenu={sortType}
