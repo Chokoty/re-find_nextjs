@@ -103,7 +103,7 @@ const Artist = (
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
-      if (page === 0) setArtworks([...response.list]);
+      if (page === 1) setArtworks([...response.list]);
       else setArtworks([...artworks, ...response.list]);
     } catch (error) {
       console.error('Error fetching more data:', error);
@@ -152,16 +152,17 @@ const Artist = (
   // };
 
   useEffect(() => {
+    console.log('page: ', page);
+    getArtistArtworks();
+  }, [page]);
+
+  useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView) console.log('inView: ', inView);
     if (inView && !isLastPage) {
       setPage((prevState) => prevState + 1);
     }
   }, [inView, isLastPage]);
-
-  useEffect(() => {
-    getArtistArtworks();
-  }, [page]);
 
   useEffect(() => {
     if (nickname) {
