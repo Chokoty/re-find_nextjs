@@ -79,8 +79,12 @@ const Artist = (
   const artist_name2info = async () => {
     try {
       const response = await axios
-        .get(`/api/artistInfo?nickname=${nickname}`)
-        // .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
+        // .get('/api/artistInfo', {
+        //   params: {
+        //     nickname: nickname,
+        //   },
+        // })
+        .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
         .then((res) => res.data);
       setProfile(response);
       console.log(response);
@@ -166,9 +170,8 @@ const Artist = (
   //   }
   // }, [inView, isLastPage]);
   useEffect(() => {
-    console.log(nickname);
-
     if (nickname) {
+      console.log(nickname);
       artist_name2info();
     }
   }, [nickname]);
@@ -183,7 +186,7 @@ const Artist = (
   return (
     <Box>
       <Head>
-        <title>{profile?.author_nickname} - RE:FIND</title>
+        <title>{`${profile?.author_nickname} - RE:FIND`}</title>
         <meta
           property="og:title"
           content={profile?.author_nickname + '- Profile | RE:FIND '}
