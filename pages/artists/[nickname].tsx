@@ -174,7 +174,7 @@ const Artist = (
       >
         <AuthorProfileHead nickname={nickname} profile={profile} />
         <ViewSelectBar
-          artworks={artworks}
+          // artworks={artworks}
           activeView={activeView}
           onViewChange={handleViewChange}
           selectedMenu={sortType}
