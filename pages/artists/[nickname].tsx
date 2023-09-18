@@ -130,10 +130,9 @@ const Artist = (
   }, [page]);
 
   useEffect(() => {
-    if (init) return;
+    // if (init) return;
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView) console.log('inView: ', inView);
-    if (inView && artworks.length !== 0) return;
     if (inView && !isLastPage) {
       setPage((prevState) => prevState + 1);
     }
@@ -249,16 +248,20 @@ const Artist = (
                   />
                 )}
                 {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+                {/* Observer를 위한 div */}
+                <Box ref={ref}>
+                  {loadingData && (
+                    <Box
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                    >
+                      <HashLoader color="#01BFA2" />
+                    </Box>
+                  )}
+                </Box>
               </Box>
             )}
-            {/* Observer를 위한 div */}
-            <Box ref={ref}>
-              {loadingData && (
-                <Box display="flex" justifyContent="center" alignItems="center">
-                  <HashLoader color="#01BFA2" />
-                </Box>
-              )}
-            </Box>
           </>
         )}
       </Box>
