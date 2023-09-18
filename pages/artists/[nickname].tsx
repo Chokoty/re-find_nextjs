@@ -1,16 +1,9 @@
-import React, { useState, useEffect, useCallback, use } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import axios from 'axios';
 
 import { useRouter } from 'next/router';
-import {
-  Text,
-  Box,
-  Flex,
-  Center,
-  useColorModeValue,
-  Button,
-} from '@chakra-ui/react';
+import { Box, useColorModeValue, Button } from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
 import AuthorProfileHead from '@/components/AuthorProfileHead';
@@ -31,24 +24,21 @@ const Artist = (
   const router = useRouter();
   const { nickname } = router.query;
 
-  const [profile, setProfile] = useState(null);
-  // const [profile, setProfile] = useState(artist_name2info);
-  const [artworks, setArtworks] = useState(null);
-  // const [artworks, setArtworks] = useState(artist_artworks_data?.list);
+  const [profile, setProfile] = useState(null); // useState(artist_name2info);
+  const [artworks, setArtworks] = useState(null); // useState(artist_artworks_data?.list);
 
   // infinite scroll
   const { ref, inView } = useInView({
     threshold: 0,
   });
   const [page, setPage] = useState(1);
-  // const [isLastPage, setIsLastPage] = useState(artist_artworks_data?.lastPage);
-  const [isLastPage, setIsLastPage] = useState(false);
+  const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
   // 뷰 선택 메뉴
-  const [isInitialRender, setIsInitialRender] = useState(true);
   const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
   const [sortType, setSortType] = useState('like'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
+  const [isInitialRender, setIsInitialRender] = useState(true);
 
   // react-spinners
   let [loadingData, setLoadingData] = useState(false);
@@ -76,7 +66,7 @@ const Artist = (
     setLoadingImage(Loading);
   }, []);
 
-  const artist_name2info = async () => {
+  const artist_name2info = useCallback(async () => {
     try {
       const response = await axios
         // .get('/api/artistInfo', {
@@ -91,25 +81,11 @@ const Artist = (
     } catch (error) {
       console.error('Error fetching data:', error);
     }
-  };
+  }, [nickname]);
 
-  const loadMoreData = async () => {
-    console.log('loadMoreData');
-    // if (isLastPage) return;
-
-    // 2초 뒤 setLoadingData(false);
-    getItems();
-    // setTimeout(() => {
-    //   setLoadingData(false);
-    // }, 2000);
-    setPage((prevState) => prevState + 1);
-  };
-
-  // const getItems = useCallback(async () => {
-  const getItems = async () => {
-    console.log('getItems');
-    // if (isLastPage) return;
-
+  const getArtistArtworks = useCallback(async () => {
+    console.log('getArtistArtworks');
+    if (isLastPage) return;
     if (loadingData) return;
 
     setLoadingData(true);
@@ -132,17 +108,10 @@ const Artist = (
     } catch (error) {
       console.error('Error fetching more data:', error);
       setIsLastPage(true);
-      // return true; // Assume it's the last page if there's an error
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  };
-  // }, [page, sortType]);
-
-  // `getItems` 가 바뀔 때 마다 함수 실행
-  // useEffect(() => {
-  //   getItems();
-  // }, [getItems]);
+  }, [sortType, page]);
 
   // useEffect(() => {
   //   // sortType이 바뀔 때마다 artworks를 다시 불러옴
@@ -156,19 +125,44 @@ const Artist = (
   //   getItems();
   // }, [sortType, isInitialRender]);
 
-  // useEffect(() => {
-  //   // page가 바뀔 때마다 artworks를 다시 불러옴
-  //   getItems();
-  // }, [page]);
-
-  // useEffect(() => {
-  //   // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-  //   if (inView) console.log('inView: ', inView);
-  //   console.log('isLastPage: ', isLastPage);
-  //   if (inView && !isLastPage) {
-  //     setPage((prevState) => prevState + 1);
+  // const artist_artworks = useCallback(async () => {
+  //   try {
+  //     const response = await axios
+  //       .get(
+  //         `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`
+  //       )
+  //       .then((res) => res.data);
+  //     setArtworks(response.list);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
   //   }
-  // }, [inView, isLastPage]);
+  // }, [nickname, sortType, page]);
+
+  // const loadMoreData = async () => {
+  //   console.log('loadMoreData');
+  //   // if (isLastPage) return;
+
+  //   // 2초 뒤 setLoadingData(false);
+  //   getItems();
+  //   // setTimeout(() => {
+  //   //   setLoadingData(false);
+  //   // }, 2000);
+  //   setPage((prevState) => prevState + 1);
+  // };
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView) console.log('inView: ', inView);
+    if (inView && !isLastPage) {
+      setPage((prevState) => prevState + 1);
+    }
+  }, [inView, isLastPage]);
+
+  useEffect(() => {
+    getArtistArtworks();
+  }, [page]);
+
   useEffect(() => {
     if (nickname) {
       console.log(nickname);
@@ -176,12 +170,7 @@ const Artist = (
     }
   }, [nickname]);
 
-  useEffect(() => {
-    // getItems();
-    console.log(nickname);
-    // artist_name2info();
-    // console.log(artworks);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <Box>
@@ -211,7 +200,7 @@ const Artist = (
         // position="relative"
         // overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
-        <Button onClick={loadMoreData}>{page}</Button>
+        {/* <Button onClick={loadMoreData}>{page}</Button> */}
         <AuthorProfileHead nickname={nickname} profile={profile} />
         <ViewSelectBar
           activeView={activeView}
