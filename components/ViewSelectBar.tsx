@@ -35,6 +35,7 @@ interface ViewSelectBarProps {
 }
 
 const ViewSelectBar = ({
+  // artworks,
   activeView,
   onViewChange,
   selectedMenu,
@@ -90,7 +91,7 @@ const ViewSelectBar = ({
       mb="1rem"
       gap="2rem"
       position="sticky"
-      top="64px"
+      top="80px"
       zIndex="90"
       w="100%"
       boxShadow={showShadow ? boxShadow : 'none'}
@@ -175,6 +176,11 @@ const ViewSelectBar = ({
               <Text w="100%" textAlign="left">
                 삭제된 게시글 {isDeletedVisible ? '가리기' : '보이기'}
               </Text>
+              {/* <Text w="100%" textAlign="left">
+                삭제된 게시글(
+                {artworks?.filter((artwork) => artwork.deleted).length}){' '}
+                {isDeletedVisible ? '가리기' : '보이기'}
+              </Text> */}
             </Button>
           </PopoverBody>
         </PopoverContent>
