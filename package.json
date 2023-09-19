@@ -41,6 +41,7 @@
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.8.0",
     "react-intersection-observer": "^9.5.2",
+    "react-masonry-css": "^1.0.16",
     "react-modern-drawer": "^1.2.0",
     "react-responsive-masonry": "^2.1.7",
     "react-spinners": "^0.13.8",
