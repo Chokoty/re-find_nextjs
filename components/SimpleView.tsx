@@ -6,7 +6,7 @@ import { useResponsiveLink } from '../hook/useResponsiveLink';
 
 const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {
   const article_link = useResponsiveLink('', 'article');
-  console.log(artworks);
+  // console.log(artworks);
 
   return (
     <SimpleGrid
