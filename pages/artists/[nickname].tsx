@@ -79,7 +79,7 @@ const Artist = ({
         .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
         .then((res) => res.data);
       setProfile(response);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.error('Error fetching data:', error);
       // setProfile(nickname);
@@ -89,12 +89,12 @@ const Artist = ({
   }, [nickname]);
 
   const getArtistArtworks = useCallback(async () => {
-    console.log('getArtistArtworks');
+    // console.log('getArtistArtworks');
     if (isLastPage) return;
     if (loadingData) return;
 
     setLoadingData(true);
-    console.log('artworks loading...');
+    // console.log('artworks loading...');
 
     try {
       const response = await axios
@@ -103,8 +103,8 @@ const Artist = ({
         )
         .then((res) => res.data);
 
-      console.log(response.lastPage);
-      console.log(response.list);
+      // console.log(response.lastPage);
+      // console.log(response.list);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
@@ -123,14 +123,14 @@ const Artist = ({
       setIsInitialRender(false);
       return;
     }
-    console.log('page: ', page);
+    // console.log('page: ', page);
     getArtistArtworks();
   }, [sortType, page]);
 
   useEffect(() => {
     // if (init) return;
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView) console.log('inView: ', inView);
+    // if (inView) console.log('inView: ', inView);
     if (inView && !isLastPage) {
       setPage((prevState) => prevState + 1);
     }
@@ -138,7 +138,7 @@ const Artist = ({
 
   useEffect(() => {
     if (nickname) {
-      console.log(nickname);
+      // console.log(nickname);
       // getArtistInfo();
       getArtistArtworks();
       // setInit(false); // 초기 렌더링 완료
@@ -199,8 +199,8 @@ const Artist = ({
                 <Box
                   w="100vw"
                   h="100vh"
-                  // position="absolute"
-                  position="fixed"
+                  position="absolute"
+                  // position="fixed"
                   display="flex"
                   top={0}
                   left={0}
