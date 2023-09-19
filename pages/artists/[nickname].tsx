@@ -203,12 +203,16 @@ const Artist = ({
               <Box
                 w="100%"
                 overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+                position="relative"
               >
                 {loadingImage && (
                   <Box
-                    position="fixed"
-                    w="100vw"
-                    h="100vh"
+                    // position="fixed"
+                    // w="100vw"
+                    // h="100vh"
+                    w="100%"
+                    h="100%"
+                    position="absolute"
                     top={0}
                     left={0}
                     zIndex={150}
