@@ -80,7 +80,7 @@ const Artist = ({
         .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
         .then((res) => res.data);
       setProfile(response);
-      // console.log(response);
+      console.log(response);
     } catch (error) {
       console.error('Error fetching data:', error);
       // setProfile(nickname);
@@ -90,12 +90,12 @@ const Artist = ({
   }, [nickname]);
 
   const getArtistArtworks = useCallback(async () => {
-    // console.log('getArtistArtworks');
+    console.log('getArtistArtworks');
     if (isLastPage) return;
     if (loadingData) return;
 
     setLoadingData(true);
-    // console.log('artworks loading...');
+    console.log('artworks loading...');
 
     try {
       const response = await axios
@@ -104,8 +104,8 @@ const Artist = ({
         )
         .then((res) => res.data);
 
-      // console.log(response.lastPage);
-      // console.log(response.list);
+      console.log(response.lastPage);
+      console.log(response.list);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
@@ -124,14 +124,14 @@ const Artist = ({
       setIsInitialRender(false);
       return;
     }
-    // console.log('page: ', page);
+    console.log('page: ', page);
     getArtistArtworks();
   }, [sortType, page]);
 
   useEffect(() => {
     // if (init) return;
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    // if (inView) console.log('inView: ', inView);
+    if (inView) console.log('inView: ', inView);
     if (inView && !isLastPage) {
       setPage((prevState) => prevState + 1);
     }
@@ -139,7 +139,7 @@ const Artist = ({
 
   useEffect(() => {
     if (nickname) {
-      // console.log(nickname);
+      console.log(nickname);
       // getArtistInfo();
       getArtistArtworks();
       // setInit(false); // 초기 렌더링 완료
@@ -231,35 +231,7 @@ const Artist = ({
               <Box
                 w="100%"
                 overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-                position="relative"
               >
-                {loadingImage && (
-                  <Box
-                    // position="fixed"
-                    // w="100vw"
-                    // h="100vh"
-                    w="100%"
-                    h="100%"
-                    position="absolute"
-                    top={0}
-                    left={0}
-                    zIndex={150}
-                    backgroundColor={bgColor}
-                  >
-                    <Box
-                      position="fixed"
-                      w="100vw"
-                      h="100vh"
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                      zIndex={160}
-                    >
-                      <HashLoader color="#01BFA2" />
-                    </Box>
-                    {/* <Box w="100%" h="100%" backgroundColor={bgColor}></Box> */}
-                  </Box>
-                )}
                 {activeView === 'masonryView' && (
                   <MasonryView
                     artworks={artworks}
