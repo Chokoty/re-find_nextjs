@@ -194,33 +194,6 @@ const Artist = ({
         )}
         {artworks && (
           <>
-            {loadingImage && (
-              <Box position="relative">
-                <Box
-                  w="100vw"
-                  h="100vh"
-                  position="absolute"
-                  // position="fixed"
-                  display="flex"
-                  top={0}
-                  left={0}
-                  justifyContent="center"
-                  alignItems="center"
-                  zIndex={160}
-                >
-                  <HashLoader color="#01BFA2" />
-                </Box>
-                <Box
-                  w="100%"
-                  h="100%"
-                  position="absolute"
-                  top={0}
-                  right={0}
-                  backgroundColor={bgColor}
-                  zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
-                ></Box>
-              </Box>
-            )}
             {/* {artworks?.length === 0 && (
               <Center>
                 <Text>아직 업로드한 작품이 없네요!</Text>
@@ -231,6 +204,29 @@ const Artist = ({
                 w="100%"
                 overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
               >
+                {loadingImage && (
+                  <Box
+                    position="fixed"
+                    w="100vw"
+                    h="100vh"
+                    top={0}
+                    left={0}
+                    zIndex={150}
+                    backgroundColor={bgColor}
+                  >
+                    <Box
+                      w="100%"
+                      h="100%"
+                      display="flex"
+                      justifyContent="center"
+                      alignItems="center"
+                      zIndex={160}
+                    >
+                      <HashLoader color="#01BFA2" />
+                    </Box>
+                    {/* <Box w="100%" h="100%" backgroundColor={bgColor}></Box> */}
+                  </Box>
+                )}
                 {activeView === 'masonryView' && (
                   <MansonryView
                     artworks={artworks}
