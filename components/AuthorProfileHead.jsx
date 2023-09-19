@@ -119,7 +119,7 @@ const AuthorProfileHead = ({ nickname, profile }) => {
           m="0 0.5rem"
           h="48px"
           onClick={() => {
-            alert('아직 기능 구현중입니다.');
+            window.open(member_link, '_blank');
           }}
         >
           + 구독

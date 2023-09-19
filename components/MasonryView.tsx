@@ -1,18 +1,14 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import NextImage from 'next/image';
-import { Button, Text, Box, Link, useBreakpointValue } from '@chakra-ui/react';
+import { Text, Box, Link, useBreakpointValue } from '@chakra-ui/react';
 
 import Masonry from 'react-masonry-css';
-// import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
-// import Bricks from 'bricks.js';
-import imagesLoaded from 'imagesloaded';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 
 const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  const widthValue2 = useBreakpointValue({ base: '196px', sm: '252px' });
-  // const containerRef = useRef(null);
+  const widthValue2 = useBreakpointValue({ base: '188px', sm: '252px' });
 
   const breakpointColumnsObj = {
     default: 7,
