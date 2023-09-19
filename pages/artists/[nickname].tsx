@@ -15,7 +15,6 @@ import SimpleView from '../../components/SimpleView';
 import HashLoader from 'react-spinners/HashLoader';
 import { useInView } from 'react-intersection-observer';
 
-
 const Artist = ({
   artist_name2info,
   // artist_artworks_data
@@ -196,8 +195,6 @@ const Artist = ({
         )}
         {artworks && (
           <>
-<<<<<<< HEAD
-=======
             {/* {loadingImage && (
               <Box position="relative">
                 <Box
@@ -225,7 +222,6 @@ const Artist = ({
                 ></Box>
               </Box>
             )} */}
->>>>>>> test
             {/* {artworks?.length === 0 && (
               <Center>
                 <Text>아직 업로드한 작품이 없네요!</Text>
