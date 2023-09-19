@@ -11,6 +11,7 @@ import { useResponsiveLink } from '../hook/useResponsiveLink';
 const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
+  const widthValue2 = useBreakpointValue({ base: '196px', sm: '252px' });
   // const containerRef = useRef(null);
 
   const breakpointColumnsObj = {
@@ -58,7 +59,7 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
             padding: '0 0.5rem',
             // paddingLeft: '1rem',
             backgroundClip: 'padding-box',
-            maxW: widthValue,
+            maxW: widthValue2,
           },
         }}
       >
