@@ -8,12 +8,13 @@ import { Box, useColorModeValue, Button } from '@chakra-ui/react';
 import { lightMode, darkMode } from '@/styles/theme';
 import AuthorProfileHead from '@/components/AuthorProfileHead';
 import ViewSelectBar from '@/components/ViewSelectBar';
-import MansonryView from '../../components/MansonryView';
+import MasonryView from '../../components/MasonryView';
 import SimpleView from '../../components/SimpleView';
 // import ListView from '../../components/ListView';
 //
 import HashLoader from 'react-spinners/HashLoader';
 import { useInView } from 'react-intersection-observer';
+
 
 const Artist = ({
   artist_name2info,
@@ -23,6 +24,7 @@ const Artist = ({
   const { nickname } = router.query;
 
   const [profile, setProfile] = useState(artist_name2info); //useState(null);
+  // const [artworks, setArtworks] = useState(data.list);
   const [artworks, setArtworks] = useState([]); // useState(artist_artworks_data?.list);
 
   // infinite scroll
@@ -194,6 +196,36 @@ const Artist = ({
         )}
         {artworks && (
           <>
+<<<<<<< HEAD
+=======
+            {/* {loadingImage && (
+              <Box position="relative">
+                <Box
+                  w="100vw"
+                  h="100vh"
+                  // position="absolute"
+                  position="fixed"
+                  display="flex"
+                  top={0}
+                  left={0}
+                  justifyContent="center"
+                  alignItems="center"
+                  zIndex={160}
+                >
+                  <HashLoader color="#01BFA2" />
+                </Box>
+                <Box
+                  w="100%"
+                  h="100%"
+                  position="absolute"
+                  top={0}
+                  right={0}
+                  backgroundColor={bgColor}
+                  zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
+                ></Box>
+              </Box>
+            )} */}
+>>>>>>> test
             {/* {artworks?.length === 0 && (
               <Center>
                 <Text>아직 업로드한 작품이 없네요!</Text>
@@ -233,7 +265,7 @@ const Artist = ({
                   </Box>
                 )}
                 {activeView === 'masonryView' && (
-                  <MansonryView
+                  <MasonryView
                     artworks={artworks}
                     isDeletedVisible={isDeletedVisible}
                     // loadingImage={loadingImage}
