@@ -219,8 +219,9 @@ const Artist = ({
                     backgroundColor={bgColor}
                   >
                     <Box
-                      w="100%"
-                      h="100%"
+                      position="fixed"
+                      w="100vw"
+                      h="100vh"
                       display="flex"
                       justifyContent="center"
                       alignItems="center"
