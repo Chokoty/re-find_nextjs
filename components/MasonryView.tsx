@@ -58,7 +58,7 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
             padding: '0 0.5rem',
             // paddingLeft: '1rem',
             backgroundClip: 'padding-box',
-            maxW: widthValue,
+            maxW: widthValue + 16,
           },
         }}
       >
