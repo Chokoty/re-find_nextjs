@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { use, useEffect, useRef } from 'react';
 import NextImage from 'next/image';
 import { SimpleGrid, Text, Box, Link } from '@chakra-ui/react';
 
@@ -6,7 +6,11 @@ import { useResponsiveLink } from '../hook/useResponsiveLink';
 
 const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {
   const article_link = useResponsiveLink('', 'article');
-  console.log(artworks);
+
+  useEffect(() => {
+    console.log(artworks);
+    handleLoading(false);
+  }, [artworks]);
 
   return (
     <SimpleGrid
