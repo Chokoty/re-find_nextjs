@@ -52,10 +52,13 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
         width="auto"
         sx={{
           '.my-masonry-grid_column': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             padding: '0 0.5rem',
             // paddingLeft: '1rem',
             backgroundClip: 'padding-box',
-            width: widthValue + 16,
+            maxW: widthValue,
           },
         }}
       >
