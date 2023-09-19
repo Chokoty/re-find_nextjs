@@ -194,7 +194,7 @@ const Artist = ({
         )}
         {artworks && (
           <>
-            {loadingImage && (
+            {/* {loadingImage && (
               <Box position="relative">
                 <Box
                   w="100vw"
@@ -220,7 +220,7 @@ const Artist = ({
                   zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
                 ></Box>
               </Box>
-            )}
+            )} */}
             {/* {artworks?.length === 0 && (
               <Center>
                 <Text>아직 업로드한 작품이 없네요!</Text>
