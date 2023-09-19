@@ -8,7 +8,7 @@ import { Box, useColorModeValue, Button } from '@chakra-ui/react';
 import { lightMode, darkMode } from '@/styles/theme';
 import AuthorProfileHead from '@/components/AuthorProfileHead';
 import ViewSelectBar from '@/components/ViewSelectBar';
-import MansonryView from '../../components/MansonryView';
+import MasonryView from '../../components/MasonryView';
 import SimpleView from '../../components/SimpleView';
 // import ListView from '../../components/ListView';
 //
@@ -232,7 +232,7 @@ const Artist = ({
                 overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
               >
                 {activeView === 'masonryView' && (
-                  <MansonryView
+                  <MasonryView
                     artworks={artworks}
                     isDeletedVisible={isDeletedVisible}
                     // loadingImage={loadingImage}
