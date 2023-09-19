@@ -47,7 +47,7 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
         columnClassName="my-masonry-grid_column"
         display="flex"
         justifyContent="center"
-        margin="0 -0.5rem"
+        margin="0 0.5rem"
         // marginLeft="-1rem"
         width="auto"
         sx={{
@@ -58,7 +58,7 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
             padding: '0 0.5rem',
             // paddingLeft: '1rem',
             backgroundClip: 'padding-box',
-            maxW: widthValue + 16,
+            maxW: widthValue,
           },
         }}
       >
