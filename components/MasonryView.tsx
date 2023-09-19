@@ -40,29 +40,22 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
 
   return (
     <Box w="100%" mx="auto" position="relative">
-      {/* <ResponsiveMasonry
-        columnsCountBreakPoints={{
-          300: 2,
-          756: 3,
-          1008: 4,
-          1260: 5,
-          1528: 6,
-          1792: 7,
-        }}
-      >
-        <Masonry> */}
       <Box
         as={Masonry}
         breakpointCols={breakpointColumnsObj}
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
         display="flex"
-        marginLeft="-16px"
+        justifyContent="center"
+        margin="0 -0.5rem"
+        // marginLeft="-1rem"
         width="auto"
         sx={{
           '.my-masonry-grid_column': {
-            paddingLeft: '16px',
+            padding: '0 0.5rem',
+            // paddingLeft: '1rem',
             backgroundClip: 'padding-box',
+            width: widthValue + 16,
           },
         }}
       >
@@ -75,6 +68,7 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
               position="relative"
               key={artwork.id}
               m="0 1rem"
+              p="0 0.5rem"
               // _hover={{ filter: 'brightness(70%)' }}
             >
               <Link
@@ -228,7 +222,6 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
             ) : null
           )}
       </Box>
-      {/* </ResponsiveMasonry> */}
     </Box>
   );
 };
