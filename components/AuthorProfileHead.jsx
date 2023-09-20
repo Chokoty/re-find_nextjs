@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 import {
@@ -9,6 +9,15 @@ import {
   Flex,
   Tooltip,
   useToast,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
 } from '@chakra-ui/react';
 import { ImLink } from 'react-icons/im';
 
@@ -16,6 +25,7 @@ import { useResponsiveLink } from '../hook/useResponsiveLink';
 
 const AuthorProfileHead = ({ nickname, profile }) => {
   const toast = useToast();
+  const [isOpen, setIsOpen] = useState(false);
 
   const member_link = useResponsiveLink(
     profile?.author_url.split('/').pop(),
@@ -24,6 +34,9 @@ const AuthorProfileHead = ({ nickname, profile }) => {
   const article_link = useResponsiveLink('', 'article');
   // console.log(profile?.author_prof_url);
 
+  const handleToggle = () => {
+    setIsOpen(!isOpen);
+  };
   const handleCopyLink = () => {
     // const linkToCopy = `https://re-find.xyz/artists/${profile?.author_nickname}`;
     const linkToCopy = `https://re-find.xyz/artists/${encodeURIComponent(
@@ -49,13 +62,39 @@ const AuthorProfileHead = ({ nickname, profile }) => {
       // maxW="656px"
       pt="10px"
     >
-      <Avatar
-        w="120px"
-        h="120px"
-        name={profile?.author_nickname}
-        src={profile?.author_prof_url}
-        m="0.5rem 0"
-      />
+      <Box>
+        <Popover sOpen={isOpen} onClose={handleToggle}>
+          <PopoverTrigger>
+            <Avatar
+              w="120px"
+              h="120px"
+              name={profile?.author_nickname}
+              src={profile?.author_prof_url}
+              m="0.5rem 0"
+              onClick={handleToggle}
+              cursor="pointer"
+            />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverArrow />
+            <PopoverBody
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              p="1rem"
+            >
+              <Text fontSize="lg" fontWeight="bold" mb="0.5rem">
+                좋아요, 댓글 부탁드려요!
+              </Text>
+              <Text fontSize="md" fontWeight="light" textAlign="center">
+                작가님들에게 큰 힘이 됩니다 킹아!
+              </Text>
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </Box>
+
       <Text fontSize="4xl" fontWeight="bold" m="8px 0" pl="2rem">
         {nickname}
         <Tooltip label="프로필 공유">
