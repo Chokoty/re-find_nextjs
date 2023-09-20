@@ -144,7 +144,6 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
           borderRadius="1rem"
           zIndex={1}
           background={isFocused ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.0)'}
-          // onClick={toggleFocus}
           onClick={() => onToggleFocus(artwork.id)}
           onMouseEnter={() => onToggleFocus(artwork.id)}
 
@@ -173,23 +172,36 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
             p={['0.5rem ', '1rem 0']}
             onMouseLeave={() => onToggleFocus(null)}
           >
-            {imageHeight >= 127 && (
+            <Text
+              fontSize={['sm', 'xl']}
+              fontWeight="600"
+              whiteSpace="nowrap"
+              overflow="hidden"
+              textOverflow="ellipsis"
+              maxWidth="100%"
+            >
+              {artwork.board}
+            </Text>
+
+            {imageHeight >= 200 && (
               <>
                 <Text
                   fontSize={['sm', 'xl']}
-                  fontWeight="600"
+                  fontWeight="300"
                   whiteSpace="nowrap"
                   overflow="hidden"
                   textOverflow="ellipsis"
                   maxWidth="100%"
+                  textAlign="center"
                 >
-                  {artwork.board}
+                  {artwork.date.split(' ')[0].slice(0, -1)}
                 </Text>
                 <Flex
                   flexDir="row"
                   justifyContent="center"
                   alignItems="center"
                   textAlign="center"
+                  w="90%"
                 >
                   <Text fontSize={['sm', 'xl']} fontWeight="300">
                     조회수{' '}
@@ -215,14 +227,61 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </Text>
-                </Flex>
+                </Flex>{' '}
               </>
             )}
-            {imageHeight <= 127 && (
-              <Box>
-                <Box></Box>
-                <Box></Box>
-              </Box>
+            {imageHeight < 200 && (
+              <>
+                {imageHeight > 140 && (
+                  <Text
+                    fontSize={['xs', 'sm']}
+                    fontWeight="300"
+                    whiteSpace="nowrap"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    maxWidth="100%"
+                    textAlign="center"
+                  >
+                    {artwork.date.split(' ')[0].slice(0, -1)}
+                  </Text>
+                )}
+
+                <Flex
+                  flexDir="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  textAlign="center"
+                  w="90%"
+                >
+                  <Text fontSize={['xs', 'sm']} fontWeight="300">
+                    조
+                    {artwork.view === 0
+                      ? '0'
+                      : artwork.view
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                    &nbsp;
+                  </Text>
+                  <Text fontSize={['xs', 'sm']} fontWeight="300">
+                    좋{' '}
+                    {artwork.like === 0
+                      ? '0'
+                      : artwork.like
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                    &nbsp;
+                  </Text>
+                  <Text fontSize={['xs', 'sm']} fontWeight="300">
+                    댓{' '}
+                    {artwork.comment === 0
+                      ? '0'
+                      : artwork.comment
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                    &nbsp;
+                  </Text>
+                </Flex>
+              </>
             )}
 
             <Flex
@@ -242,16 +301,21 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
                     : article_link + artwork.url.split('/').pop()
                 }
                 isExternal
-                _hover={{ textDecoration: 'none', cursor: 'pointer' }}
+                _hover={{
+                  textDecoration: 'none',
+                  cursor: 'pointer',
+                  backgroundColor: 'green.400',
+                }}
                 target="_blank"
                 rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
                 colorScheme="green"
                 borderRadius="2rem"
                 w="60%"
                 // w={['100px', '150px']}
-                h={['2rem', '3rem']}
+                h={['1.5rem', '3rem']}
               >
-                왁물원 <HiOutlineExternalLink />
+                <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
+                <HiOutlineExternalLink />
               </Button>
             </Flex>
           </Flex>

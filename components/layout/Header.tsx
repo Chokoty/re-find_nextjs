@@ -155,6 +155,9 @@ export const Header = () => {
               border="none"
               bg={searchBgColor}
               alignItems="center"
+              onClick={() => {
+                alert('(큰 거x) 작은 거 온다?!?');
+              }}
             />
           </InputGroup>
         </Box>

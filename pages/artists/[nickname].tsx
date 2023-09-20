@@ -3,7 +3,7 @@ import Head from 'next/head';
 import axios from 'axios';
 
 import { useRouter } from 'next/router';
-import { Box, useColorModeValue, Button } from '@chakra-ui/react';
+import { Box, useColorModeValue, useToast } from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
 import AuthorProfileHead from '@/components/AuthorProfileHead';
@@ -45,8 +45,11 @@ const Artist = ({
   let [loadingImage, setLoadingImage] = useState(true);
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
+  const toast = useToast();
+
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {
+    if (menuText === sortType) return;
     setSortType(menuText);
     // 다시 불러오기
     setPage(1);
@@ -112,6 +115,18 @@ const Artist = ({
       if (page === 1) setArtworks([...response.list]);
       else setArtworks([...artworks, ...response.list]);
     } catch (error) {
+      // 500에러 예외처리
+      console.log(error.response);
+      if (error.response?.status === 500) {
+        toast({
+          title:
+            '현재 작가 프로필 쪽 서버가 점검중 입니다. 잠시 후 다시 시도해주세요.',
+          description: '500 error',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
+      }
       console.error('Error fetching more data:', error);
       setIsLastPage(true);
     } finally {
@@ -249,7 +264,7 @@ const Artist = ({
                 )}
                 {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
                 {/* Observer를 위한 div */}
-                <Box ref={ref} w="100%" h="2rem"></Box>
+                {!loadingImage && <Box ref={ref} w="100%" h="2rem"></Box>}
               </Box>
             )}
           </>
