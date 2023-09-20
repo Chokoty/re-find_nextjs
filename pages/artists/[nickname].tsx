@@ -264,7 +264,7 @@ const Artist = ({
                 )}
                 {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
                 {/* Observer를 위한 div */}
-                {!loadingImage && <Box ref={ref} w="100%" h="2rem"></Box>}
+                {<Box ref={ref} w="100%" h="2rem"></Box>}
               </Box>
             )}
           </>
