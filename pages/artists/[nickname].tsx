@@ -143,6 +143,10 @@ const Artist = ({
     }
     console.log('page: ', page);
     getArtistArtworks();
+    // 2초뒤 1번 더 호출
+    setTimeout(() => {
+      getArtistArtworks();
+    }, 2000);
   }, [sortType, page]);
 
   useEffect(() => {
