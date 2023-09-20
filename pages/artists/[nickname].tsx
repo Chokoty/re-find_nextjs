@@ -15,6 +15,8 @@ import SimpleView from '../../components/SimpleView';
 import HashLoader from 'react-spinners/HashLoader';
 import { useInView } from 'react-intersection-observer';
 
+const data = {};
+
 const Artist = ({
   artist_name2info,
   // artist_artworks_data
