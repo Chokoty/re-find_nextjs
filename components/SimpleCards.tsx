@@ -72,7 +72,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
                     ? 'http://via.placeholder.com/252x157'
                     : artwork.deleted
                     ? `/api/blurImage?url=${artwork.img_url}`
-                    : artwork.img_url
+                    : artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
                 }
                 unoptimized
               />
@@ -111,7 +111,9 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
                         width: '100%',
                         height: '100%',
                       }}
-                      src={imgUrl}
+                      src={
+                        imgUrl.replace(/w\d+/g, 'f100_100') // 썸네일 크기 100으로 가져오기 - 네이버 자체 썸네일 api
+                      }
                       unoptimized
                     />
                   </Box>

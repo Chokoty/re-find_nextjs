@@ -25,78 +25,6 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
   };
 
   return (
-    // <Box
-    //   w={widthValue}
-    //   pb="16px"
-    //   display="inline-block"
-    //   position="relative"
-    //   key={artwork.id}
-    //   m="0 1rem"
-    // >
-    //   <Link
-    //     href={
-    //       artwork.url === '' ? '#' : article_link + artwork.url.split('/').pop()
-    //     }
-    //     isExternal
-    //     position="relative"
-    //     target="_blank"
-    //     rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-    //   >
-    //     <Box
-    //       width={widthValue}
-    //       overflow="hidden"
-    //       borderRadius="1rem"
-    //       position="relative"
-    //     >
-    //       <NextImage
-    //         alt={artwork.title}
-    //         width={236}
-    //         height={236}
-    //         style={{
-    //           objectFit: 'cover',
-    //           objectPosition: 'center top',
-    //           width: '100%',
-    //           height: '100%',
-    //           borderRadius: '1rem',
-    //           filter: artwork.deleted ? 'blur(6px)' : 'none', // 블러 처리
-    //         }}
-    //         src={
-    //           artwork.img_url === ''
-    //             ? 'http://via.placeholder.com/236x236'
-    //             : artwork.deleted
-    //             ? `/api/blurImage?url=${artwork.img_url}`
-    //             : artwork.img_url
-    //         }
-    //         unoptimized
-    //       />
-    //     </Box>
-    //     <Box
-    //       position="absolute"
-    //       top={0}
-    //       right={0}
-    //       bottom={0}
-    //       left={0}
-    //       borderRadius="1rem"
-    //       _hover={{
-    //         backgroundColor: 'rgba(0, 0, 0, 0.3)', // 검은색의 30% 투명도
-    //       }}
-    //       zIndex={1}
-    //     />
-    //   </Link>
-    //   <Link
-    //     href={
-    //       artwork.url === '' ? '#' : article_link + artwork.url.split('/').pop()
-    //     }
-    //     isExternal
-    //     _hover={{ textDecoration: 'none' }}
-    //     target="_blank"
-    //     rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-    //   >
-    //     <Text fontWeight={500} p="0.5rem 0">
-    //       {artwork.title}
-    //     </Text>
-    //   </Link>
-    // </Box>
     <Box
       w={widthValue}
       pb="16px"
@@ -129,7 +57,7 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
                 ? 'http://via.placeholder.com/236x236'
                 : artwork.deleted
                 ? `/api/blurImage?url=${artwork.img_url}`
-                : artwork.img_url
+                : artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
             }
             unoptimized
             onLoad={handleImageLoad}
