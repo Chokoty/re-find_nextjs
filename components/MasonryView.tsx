@@ -6,7 +6,12 @@ import Masonry from 'react-masonry-css';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 import MasonryCard from './MasonryCard';
 
-const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
+const MasonryView = ({
+  nickname,
+  artworks,
+  isDeletedVisible,
+  handleLoading,
+}) => {
   const [focusedArtworkId, setFocusedArtworkId] = useState(null);
 
   const article_link = useResponsiveLink('', 'article');
@@ -74,6 +79,7 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
           artworks.map((artwork, index) => (
             <MasonryCard
               key={index}
+              nickname={nickname}
               artwork={artwork}
               isFocused={artwork.id === focusedArtworkId}
               onToggleFocus={handleToggleFocus}
@@ -84,6 +90,7 @@ const MasonryView = ({ artworks, isDeletedVisible, handleLoading }) => {
             !artwork.deleted ? (
               <MasonryCard
                 key={index}
+                nickname={nickname}
                 artwork={artwork}
                 isFocused={artwork.id === focusedArtworkId}
                 onToggleFocus={handleToggleFocus}

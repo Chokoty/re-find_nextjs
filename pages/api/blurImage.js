@@ -8,7 +8,7 @@ const blurImage = async (req, res) => {
     const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
     const imageBuffer = response.data;
 
-    const blurredImage = await sharp(imageBuffer).blur(6).toBuffer();
+    const blurredImage = await sharp(imageBuffer).blur(4).toBuffer();
     res.setHeader('Content-Type', 'image/jpeg');
     res.send(blurredImage);
   } catch (error) {

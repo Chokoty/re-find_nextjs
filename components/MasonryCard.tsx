@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 import { HiOutlineExternalLink } from 'react-icons/hi';
-const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
+const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const [imageHeight, setImageHeight] = useState(null);
@@ -53,11 +53,17 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
               filter: artwork.deleted ? 'blur(6px)' : 'none', // 블러 처리
             }}
             src={
+              // artwork.deleted
+              //   ? `/api/blurImage?url=${artwork.img_url.replace(
+              //       /\?type=w\d+$/,
+              //       '?type=w300'
+              //     )}`
+              //   : artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
               artwork.img_url === ''
                 ? 'http://via.placeholder.com/236x236'
-                : artwork.deleted
-                ? `/api/blurImage?url=${artwork.img_url}`
-                : artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
+                : // : artwork.deleted
+                  // ? `/api/blurImage?url=${artwork.img_url}`
+                  artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
             }
             unoptimized
             onLoad={handleImageLoad}
@@ -113,17 +119,34 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
 
             {imageHeight >= 200 && (
               <>
-                <Text
-                  fontSize={['sm', 'xl']}
-                  fontWeight="300"
-                  whiteSpace="nowrap"
-                  overflow="hidden"
-                  textOverflow="ellipsis"
-                  maxWidth="100%"
-                  textAlign="center"
+                <Flex
+                  flexDir="column"
+                  justifyContent="center"
+                  alignItems="center"
                 >
-                  {artwork.date.split(' ')[0].slice(0, -1)}
-                </Text>
+                  <Text
+                    fontSize={['sm', 'xl']}
+                    fontWeight="300"
+                    whiteSpace="nowrap"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    maxWidth="100%"
+                    textAlign="center"
+                  >
+                    {nickname}
+                  </Text>
+                  <Text
+                    fontSize={['sm', 'xl']}
+                    fontWeight="300"
+                    whiteSpace="nowrap"
+                    overflow="hidden"
+                    textOverflow="ellipsis"
+                    maxWidth="100%"
+                    textAlign="center"
+                  >
+                    {artwork.date.split(' ')[0].slice(0, -1)}
+                  </Text>
+                </Flex>
                 <Flex
                   flexDir="row"
                   justifyContent="center"
@@ -173,7 +196,6 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
                     {artwork.date.split(' ')[0].slice(0, -1)}
                   </Text>
                 )}
-
                 <Flex
                   flexDir="row"
                   justifyContent="center"
@@ -211,7 +233,6 @@ const MasonryCard = ({ artwork, isFocused, onToggleFocus }) => {
                 </Flex>
               </>
             )}
-
             <Flex
               w="100%"
               flexDir="row"
