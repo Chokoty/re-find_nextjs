@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
-
+import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
   const article_link = useResponsiveLink('', 'article');
@@ -18,6 +18,15 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
   const [imageHeight, setImageHeight] = useState(null);
   const uploadTimeDiff = useUploadTimeDiff(artwork.date);
 
+  const modifiedUrl100List1 = useModifiedImageUrl(
+    artwork?.img_url_list[1],
+    100
+  );
+  const modifiedUrl100List2 = useModifiedImageUrl(
+    artwork?.img_url_list[2],
+    100
+  );
+  const modifiedUrl300 = useModifiedImageUrl(artwork.img_url, 300);
   const handleImageLoad = (e) => {
     setImageHeight(e.target.height);
   };
@@ -72,7 +81,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
                     ? 'http://via.placeholder.com/252x157'
                     : // : artwork.deleted
                       // ? `/api/blurImage?url=${artwork.img_url}`
-                      artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
+                      modifiedUrl300 // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
                 }
                 unoptimized
               />
@@ -91,40 +100,83 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
                 ></Box>
               </Flex>
             )}
-            {artwork.img_url_list.length > 1 && (
+            {artwork.img_url_list.length == 2 && (
               <Flex flexDir="column" gap="0.2rem">
-                {artwork.img_url_list.slice(1, 3).map((imgUrl, index) => (
-                  <Box
-                    key={index}
-                    w={['61px', '76px']}
-                    h={['61px', '76px']}
-                    background="#E0E0E0"
-                  >
-                    <NextImage
-                      alt={artwork.title}
-                      width={300}
-                      height={300}
-                      style={{
-                        objectFit: 'cover',
-                        objectPosition: 'center top',
-                        // objectPosition: 'center -2rem',
-                        width: '100%',
-                        height: '100%',
-                      }}
-                      src={
-                        imgUrl.replace(/w\d+/g, 'f100_100') // 썸네일 크기 100으로 가져오기 - 네이버 자체 썸네일 api
-                      }
-                      unoptimized
-                    />
-                  </Box>
-                ))}
-                {artwork.img_url_list.length == 2 && (
-                  <Box
-                    w={['61px', '76px']}
-                    h={['61px', '76px']}
-                    background="#E0E0E0"
-                  ></Box>
-                )}
+                <Box
+                  w={['61px', '76px']}
+                  h={['61px', '76px']}
+                  background="#E0E0E0"
+                >
+                  <NextImage
+                    alt={artwork.title}
+                    width={300}
+                    height={300}
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      // objectPosition: 'center -2rem',
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    src={
+                      modifiedUrl100List1 // 썸네일 크기 100으로 가져오기 - 네이버 자체 썸네일 api
+                    }
+                    unoptimized
+                  />
+                </Box>
+                <Box
+                  w={['61px', '76px']}
+                  h={['61px', '76px']}
+                  background="#E0E0E0"
+                ></Box>
+              </Flex>
+            )}
+            {artwork.img_url_list.length >= 3 && (
+              <Flex flexDir="column" gap="0.2rem">
+                <Box
+                  w={['61px', '76px']}
+                  h={['61px', '76px']}
+                  background="#E0E0E0"
+                >
+                  <NextImage
+                    alt={artwork.title}
+                    width={300}
+                    height={300}
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      // objectPosition: 'center -2rem',
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    src={
+                      modifiedUrl100List1 // 썸네일 크기 100으로 가져오기 - 네이버 자체 썸네일 api
+                    }
+                    unoptimized
+                  />
+                </Box>
+                <Box
+                  w={['61px', '76px']}
+                  h={['61px', '76px']}
+                  background="#E0E0E0"
+                >
+                  <NextImage
+                    alt={artwork.title}
+                    width={300}
+                    height={300}
+                    style={{
+                      objectFit: 'cover',
+                      objectPosition: 'center top',
+                      // objectPosition: 'center -2rem',
+                      width: '100%',
+                      height: '100%',
+                    }}
+                    src={
+                      modifiedUrl100List2 // 썸네일 크기 100으로 가져오기 - 네이버 자체 썸네일 api
+                    }
+                    unoptimized
+                  />
+                </Box>
               </Flex>
             )}
           </Flex>

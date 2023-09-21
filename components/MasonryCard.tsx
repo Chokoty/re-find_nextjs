@@ -9,11 +9,14 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
+import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+
 import { HiOutlineExternalLink } from 'react-icons/hi';
 const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const [imageHeight, setImageHeight] = useState(null);
+  const modifiedUrl300 = useModifiedImageUrl(artwork.img_url, 300);
 
   // const [isFocused, setIsFocused] = useState(false);
 
@@ -63,7 +66,8 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 ? 'http://via.placeholder.com/236x236'
                 : // : artwork.deleted
                   // ? `/api/blurImage?url=${artwork.img_url}`
-                  artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
+                  modifiedUrl300
+              // artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
             }
             unoptimized
             onLoad={handleImageLoad}
