@@ -19,11 +19,12 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     darkMode.highlight2
   );
 
-  const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
+  // const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
 
   return (
     <Button
-      href={writerURL === '' ? '#' : member_link}
+      // href={writerURL === '' ? '#' : member_link}
+      href={writerURL}
       as="a"
       target="_blank"
       color={'#f5f5f5'}

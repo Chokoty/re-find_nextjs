@@ -5,8 +5,8 @@ import { useColorModeValue } from '@chakra-ui/react';
 import { BsChatDots } from 'react-icons/bs';
 
 import { lightMode, darkMode } from '@/styles/theme';
-import OtherLayout from '../../components/layout/other-layout';
-import { useStore } from '../../store/store';
+import OtherLayout from '../../../components/layout/other-layout';
+import { useStore } from '../../../store/store';
 // import AuthorProfileCard from "./AuthorProfileCard";
 
 const Result = () => {
@@ -20,7 +20,7 @@ const Result = () => {
 
   return (
     <OtherLayout title="Support">
-      <div className="toLink">result</div>
+      <div className="toLink">keywordresult</div>
     </OtherLayout>
   );
 };
