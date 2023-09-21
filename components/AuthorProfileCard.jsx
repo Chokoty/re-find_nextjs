@@ -22,7 +22,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
   // const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
 
   return (
-    <Link href={'/artists/' + writerURL}>
+    <Link href={'/artists/' + nickname}>
       <Button
         // href={writerURL === '' ? '#' : member_link}
         // href={'/artists/' + writerURL}
