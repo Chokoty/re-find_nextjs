@@ -149,6 +149,12 @@ const updateLog = [
     content: '왁타버스 컨텐츠를 한 곳에서, 왁스플로러 정식 런칭',
     directLink: 'https://cafe.naver.com/steamindiegame/12764344',
   },
+  {
+    id: 25,
+    date: '2023.09.22',
+    content:
+      '리파인드 작은 업데이트 - 상단 검색기능 & 작가프로필 페이지가 추가. 이제 작가님들의 팬아트를 한 번에 모아서 볼 수 있습니다. 킹아!',
+  },
 ];
 
 export default updateLog;

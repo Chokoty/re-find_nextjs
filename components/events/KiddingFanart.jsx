@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import NextImage from 'next/image';
 import axios from 'axios';
 import {
@@ -21,6 +21,7 @@ const KiddingFanart = ({ initialFanart }) => {
   const [fanart, setFanart] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
+  const [isFocused, setIsFocused] = useState(false);
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
@@ -29,6 +30,9 @@ const KiddingFanart = ({ initialFanart }) => {
     fanart?.url.split('/').pop(),
     'article'
   );
+  const toggleFocus = () => {
+    setIsFocused(!isFocused);
+  };
 
   useEffect(() => {
     setFanart(initialFanart);
@@ -142,23 +146,68 @@ const KiddingFanart = ({ initialFanart }) => {
             </Text>
             <Skeleton isLoaded={!isLoading}>
               {fanart && (
-                <Link href={article_link} passHref isExternal style={linkDiv}>
-                  <NextImage
-                    unoptimized
-                    style={img}
-                    width={475}
-                    height={475}
-                    src={fanart?.img_url}
-                    alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
-                    onLoad={handleLoad}
-                  />
-                  <Text color="#1B1642" as="b">
-                    제목: {fanart?.title.slice(0, 20)}
-                  </Text>
-                  <Text color="#1B1642" as="b">
-                    작가: {fanart?.nickname}
-                  </Text>
-                </Link>
+                <>
+                  <Box
+                    position="relative"
+                    borderRadius="1rem"
+                    overflow="hidden"
+                    w="100%"
+                    mb="1rem"
+                  >
+                    <Link
+                      href={article_link}
+                      passHref
+                      isExternal
+                      style={{
+                        linkDiv,
+                        position: 'relative',
+                      }}
+                    >
+                      <NextImage
+                        unoptimized
+                        style={img}
+                        width={475}
+                        height={475}
+                        src={fanart?.img_url}
+                        alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
+                        onLoad={handleLoad}
+                      />
+                      <Box
+                        position="absolute"
+                        top={0}
+                        right={0}
+                        bottom={0}
+                        left={0}
+                        borderRadius="1rem"
+                        zIndex={1}
+                        _hover={{
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          cursor: 'pointer',
+                        }}
+                      ></Box>{' '}
+                    </Link>
+                  </Box>
+                  <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    mb="1rem"
+                  >
+                    <Link
+                      href={'/artists/' + fanart?.nickname}
+                      passHref
+                      style={linkDiv}
+                    >
+                      <Text color="#1B1642" as="b">
+                        제목: {fanart?.title.slice(0, 20)}
+                      </Text>
+                      <Text color="#1B1642" as="b">
+                        작가: {fanart?.nickname}
+                      </Text>
+                    </Link>
+                  </Box>
+                </>
               )}
             </Skeleton>
           </Box>
