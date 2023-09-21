@@ -121,7 +121,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
               {artwork.board}
             </Text>
 
-            {imageHeight >= 200 && (
+            {imageHeight >= 212 && (
               <>
                 <Flex
                   flexDir="column"
@@ -185,7 +185,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 </Flex>{' '}
               </>
             )}
-            {imageHeight < 200 && (
+            {imageHeight < 212 && (
               <>
                 {imageHeight > 140 && (
                   <Text
@@ -265,7 +265,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 borderRadius="2rem"
                 w="60%"
                 // w={['100px', '150px']}
-                h={['1.5rem', '3rem']}
+                h={['1.5rem', '2.4rem']}
               >
                 <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
                 <HiOutlineExternalLink />
