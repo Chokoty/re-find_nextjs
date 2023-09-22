@@ -1,9 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
+import Image from 'next/image';
 import axios from 'axios';
 
 import { useRouter } from 'next/router';
-import { Box, useColorModeValue, useToast } from '@chakra-ui/react';
+import {
+  Text,
+  Center,
+  Box,
+  useColorModeValue,
+  useToast,
+} from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
 import AuthorProfileHead from '@/components/AuthorProfileHead';
@@ -49,6 +56,7 @@ const Artist = ({
 
   const toast = useToast();
 
+  // console.log(artist_name2info);
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {
     if (menuText === sortType) return;
@@ -85,7 +93,7 @@ const Artist = ({
         .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
         .then((res) => res.data);
       setProfile(response);
-      console.log(response);
+      // console.log(response);
     } catch (error) {
       console.error('Error fetching data:', error);
       // setProfile(nickname);
@@ -100,7 +108,7 @@ const Artist = ({
     if (loadingData) return;
 
     setLoadingData(true);
-    console.log('artworks loading...');
+    // console.log('artworks loading...');
 
     try {
       const response = await axios
@@ -109,8 +117,8 @@ const Artist = ({
         )
         .then((res) => res.data);
 
-      console.log(response.lastPage);
-      console.log(response.list);
+      // console.log(response.lastPage);
+      // console.log(response.list);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
@@ -172,7 +180,6 @@ const Artist = ({
     <Box>
       <Head>
         <title>{`${profile?.author_nickname} - RE:FIND`}</title>
-        {/* <title>{`${nickname} - RE:FIND`}</title> */}
         <meta
           property="og:title"
           content={profile?.author_nickname + '- Profile | RE:FIND '}
@@ -188,36 +195,62 @@ const Artist = ({
           content={`https://re-find.xyz/artists/${profile?.author_nickname}`}
         />
       </Head>
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        margin="0 auto"
-        mb="2rem"
-      >
-        <AuthorProfileHead nickname={nickname} profile={profile} />
-        <ViewSelectBar
-          // artworks={artworks}
-          activeView={activeView}
-          onViewChange={handleViewChange}
-          selectedMenu={sortType}
-          onMenuItemClick={handleMenuItemClick}
-          isDeletedVisible={isDeletedVisible}
-          handleShowDeleted={handleShowDeleted}
-        />
-        {!artworks && (
-          <Box
-            w="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <HashLoader color="#01BFA2" />
-          </Box>
-        )}
-        {artworks && (
-          <>
-            {/* {loadingImage && (
+      {profile?.author_nickname === '' && profile.num_artworks === 0 && (
+        <Center
+          w="100%"
+          h="80vh"
+          p="3rem 0"
+          display="flex"
+          flexDirection="column"
+          justifyContent="flex-start"
+          alignItems="center"
+        >
+          <Text fontSize={['2xl', '4xl']} fontWeight="600" mb="4rem">
+            {`'${nickname}' 님의 프로필`}
+          </Text>
+          <Text fontSize={['xl', '3xl']}>존재하지 않는 아이디 이거나</Text>
+          <Text fontSize={['xl', '3xl']} mb="2rem">
+            아직 업로드한 작품이 없는 것 같네요
+          </Text>
+          <Image
+            src="/static/images/original_18.png"
+            alt="이파리티콘-추워"
+            width={200}
+            height={200}
+            unoptimized
+          />
+        </Center>
+      )}
+      {profile?.author_nickname !== '' && (
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          margin="0 auto"
+          mb="2rem"
+        >
+          <AuthorProfileHead nickname={nickname} profile={profile} />
+          <ViewSelectBar
+            activeView={activeView}
+            onViewChange={handleViewChange}
+            selectedMenu={sortType}
+            onMenuItemClick={handleMenuItemClick}
+            isDeletedVisible={isDeletedVisible}
+            handleShowDeleted={handleShowDeleted}
+          />
+          {!artworks && (
+            <Box
+              w="100%"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <HashLoader color="#01BFA2" />
+            </Box>
+          )}
+          {artworks && (
+            <>
+              {/* {loadingImage && (
               <Box position="relative">
                 <Box
                   w="100vw"
@@ -244,45 +277,44 @@ const Artist = ({
                 ></Box>
               </Box>
             )} */}
-            {/* {artworks?.length === 0 && (
-              <Center>
-                <Text>아직 업로드한 작품이 없네요!</Text>
-              </Center>
+              {/* {artworks?.length === 0 && (
+             
             )} */}
-            {artworks?.length !== 0 && (
-              <Box
-                w="100%"
-                overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-              >
-                {activeView === 'masonryView' && (
-                  <MasonryView
-                    nickname={nickname}
-                    artworks={artworks}
-                    isDeletedVisible={isDeletedVisible}
-                    // loadingImage={loadingImage}
-                    handleLoading={handleLoading}
-                  />
-                )}
-                {activeView === 'gridView' && (
-                  <SimpleView
-                    artworks={artworks}
-                    isDeletedVisible={isDeletedVisible}
-                    handleLoading={handleLoading}
-                  />
-                )}
-                {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
-                {/* Observer를 위한 div */}
-                {<Box ref={ref} w="100%" h="2rem"></Box>}
-              </Box>
-            )}
-          </>
-        )}
-        {loadingData && (
-          <Box display="flex" justifyContent="center" alignItems="center">
-            <HashLoader color="#01BFA2" />
-          </Box>
-        )}
-      </Box>
+              {artworks?.length !== 0 && (
+                <Box
+                  w="100%"
+                  overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+                >
+                  {activeView === 'masonryView' && (
+                    <MasonryView
+                      nickname={nickname}
+                      artworks={artworks}
+                      isDeletedVisible={isDeletedVisible}
+                      // loadingImage={loadingImage}
+                      handleLoading={handleLoading}
+                    />
+                  )}
+                  {activeView === 'gridView' && (
+                    <SimpleView
+                      artworks={artworks}
+                      isDeletedVisible={isDeletedVisible}
+                      handleLoading={handleLoading}
+                    />
+                  )}
+                  {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+                  {/* Observer를 위한 div */}
+                  {<Box ref={ref} w="100%" h="2rem"></Box>}
+                </Box>
+              )}
+            </>
+          )}
+          {loadingData && (
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <HashLoader color="#01BFA2" />
+            </Box>
+          )}
+        </Box>
+      )}
     </Box>
   );
 };

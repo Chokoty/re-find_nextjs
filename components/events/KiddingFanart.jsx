@@ -184,6 +184,7 @@ const KiddingFanart = ({ initialFanart }) => {
                           backgroundColor: 'rgba(0, 0, 0, 0.3)',
                           cursor: 'pointer',
                         }}
+                        pointerEvents="none" // 이 줄을 추가합니다.
                       ></Box>{' '}
                     </Link>
                   </Box>

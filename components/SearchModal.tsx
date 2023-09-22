@@ -1,5 +1,4 @@
 import React from 'react';
-import { useRouter } from 'next/router';
 import {
   Modal,
   ModalOverlay,
@@ -15,16 +14,13 @@ import {
   InputLeftElement,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { FaSearch } from 'react-icons/fa';
 import { lightMode, darkMode } from '@/styles/theme';
+import { FaSearch } from 'react-icons/fa';
 
 const SearchModal = ({ isOpen, onClose }) => {
-  const router = useRouter();
-
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       const nickname = e.target.value; // 입력된 값
-      // router.push(`/artists/${nickname}`);
       window.location.href = `/artists/${nickname}`;
       onClose();
     }
@@ -46,7 +42,7 @@ const SearchModal = ({ isOpen, onClose }) => {
       onClose={onClose}
     >
       <ModalOverlay />
-      <ModalContent maxW="600px">
+      <ModalContent maxW={['100%', '70%']}>
         <ModalHeader display="flex" justifyContent="center" alignItems="center">
           <InputGroup m="0">
             <InputLeftElement
