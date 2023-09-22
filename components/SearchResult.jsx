@@ -54,10 +54,18 @@ const SearchResult = ({
               // color="#01bda1"
               color={highlightColor}
               className="link"
-              href={article_link + item}
+              href={article_link + item.id}
               isExternal
             >
-              {article_link + item}
+              {items.is_deleted === true ? (
+                <Text fontSize="xl" mb="20px" textAlign="center">
+                  삭제된 게시글입니다.
+                </Text>
+              ) : (
+                <Text fontSize="xl" mb="20px" textAlign="center">
+                  {article_link + item.id}
+                </Text>
+              )}
               <ExternalLinkIcon mx="2px" />
             </Link>
           ))}
