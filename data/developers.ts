@@ -21,6 +21,13 @@ const developers: Developer[] = [
       'https://blogpfthumb-phinf.pstatic.net/20180310_25/choko0816_15206501648577IUJq_JPEG/IMG_0785.JPG?type=f260_260',
     contribute: '디자인 개발',
   },
+  {
+    nickname: '아이김',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/h_34S-J91nEd_7rculSuyQ',
+    profURL: '',
+    contribute: '키워드검색 연구',
+  },
 ];
 
 export default developers;

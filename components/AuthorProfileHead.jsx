@@ -23,6 +23,16 @@ const AuthorProfileHead = ({ nickname, profile }) => {
   const toast = useToast();
   const [isOpen, setIsOpen] = useState(false);
 
+  // 구독 toast 버튼
+  const handleSubscribe = () => {
+    toast({
+      title: 'Alert',
+      description: '구독기능은 아직 준비중입니다.',
+      duration: 2000,
+      isClosable: true,
+    });
+  };
+
   const member_link = useResponsiveLink(
     profile?.author_url.split('/').pop(),
     'member'
@@ -157,12 +167,7 @@ const AuthorProfileHead = ({ nickname, profile }) => {
           // onClick={() => {
           //   window.open(member_link, '_blank');
           // }}
-          onClick={toast({
-            title: 'Alert',
-            description: '구독기능은 아직 준비중입니다.',
-            duration: 9000,
-            isClosable: true,
-          })}
+          onClick={handleSubscribe}
         >
           + 구독
         </Button>

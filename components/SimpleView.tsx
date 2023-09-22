@@ -15,7 +15,7 @@ const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {
 
   return (
     <Box
-      w="96%"
+      w="94%"
       m="0 auto"
       mt="1rem"
       mb="2rem"
