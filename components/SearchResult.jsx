@@ -57,7 +57,7 @@ const SearchResult = ({
               href={article_link + item.id}
               isExternal
             >
-              {items.is_deleted === true ? (
+              {item.is_deleted === true ? (
                 <Text fontSize="xl" mb="20px" textAlign="center">
                   삭제된 게시글입니다.
                 </Text>
