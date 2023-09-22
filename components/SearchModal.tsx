@@ -13,11 +13,7 @@ import {
   InputGroup,
   Input,
   InputLeftElement,
-  Flex,
-  Button,
-  Box,
   useColorModeValue,
-  useDisclosure,
 } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 import { lightMode, darkMode } from '@/styles/theme';
@@ -28,7 +24,8 @@ const SearchModal = ({ isOpen, onClose }) => {
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
       const nickname = e.target.value; // 입력된 값
-      router.push(`/artists/${nickname}`);
+      // router.push(`/artists/${nickname}`);
+      window.location.href = `/artists/${nickname}`;
       onClose();
     }
   };

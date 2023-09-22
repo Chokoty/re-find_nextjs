@@ -121,7 +121,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
               {artwork.board}
             </Text>
 
-            {imageHeight >= 200 && (
+            {imageHeight >= 212 && (
               <>
                 <Flex
                   flexDir="column"
@@ -130,7 +130,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 >
                   <Text
                     fontSize={['sm', 'xl']}
-                    fontWeight="300"
+                    fontWeight="400"
                     whiteSpace="nowrap"
                     overflow="hidden"
                     textOverflow="ellipsis"
@@ -141,7 +141,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                   </Text>
                   <Text
                     fontSize={['sm', 'xl']}
-                    fontWeight="300"
+                    fontWeight="400"
                     whiteSpace="nowrap"
                     overflow="hidden"
                     textOverflow="ellipsis"
@@ -158,7 +158,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                   textAlign="center"
                   w="90%"
                 >
-                  <Text fontSize={['sm', 'xl']} fontWeight="300">
+                  <Text fontSize={['sm', 'xl']} fontWeight="400">
                     조회수{' '}
                     {artwork.view === 0
                       ? '0'
@@ -166,7 +166,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </Text>
-                  <Text fontSize={['sm', 'xl']} fontWeight="300">
+                  <Text fontSize={['sm', 'xl']} fontWeight="400">
                     좋아요{' '}
                     {artwork.like === 0
                       ? '0'
@@ -174,7 +174,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                           .toString()
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                   </Text>
-                  <Text fontSize={['sm', 'xl']} fontWeight="300">
+                  <Text fontSize={['sm', 'xl']} fontWeight="400">
                     댓글수{' '}
                     {artwork.comment === 0
                       ? '0'
@@ -185,12 +185,12 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 </Flex>{' '}
               </>
             )}
-            {imageHeight < 200 && (
+            {imageHeight < 212 && (
               <>
                 {imageHeight > 140 && (
                   <Text
                     fontSize={['xs', 'sm']}
-                    fontWeight="300"
+                    fontWeight="400"
                     whiteSpace="nowrap"
                     overflow="hidden"
                     textOverflow="ellipsis"
@@ -207,8 +207,8 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                   textAlign="center"
                   w="90%"
                 >
-                  <Text fontSize={['xs', 'sm']} fontWeight="300">
-                    조
+                  <Text fontSize={['xs', 'sm']} fontWeight="400">
+                    조{' '}
                     {artwork.view === 0
                       ? '0'
                       : artwork.view
@@ -216,7 +216,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
                     &nbsp;
                   </Text>
-                  <Text fontSize={['xs', 'sm']} fontWeight="300">
+                  <Text fontSize={['xs', 'sm']} fontWeight="400">
                     좋{' '}
                     {artwork.like === 0
                       ? '0'
@@ -225,7 +225,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                           .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
                     &nbsp;
                   </Text>
-                  <Text fontSize={['xs', 'sm']} fontWeight="300">
+                  <Text fontSize={['xs', 'sm']} fontWeight="400">
                     댓{' '}
                     {artwork.comment === 0
                       ? '0'
@@ -265,7 +265,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 borderRadius="2rem"
                 w="60%"
                 // w={['100px', '150px']}
-                h={['1.5rem', '3rem']}
+                h={['2.5rem', '3rem']}
               >
                 <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
                 <HiOutlineExternalLink />
