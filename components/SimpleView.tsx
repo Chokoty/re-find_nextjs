@@ -15,7 +15,7 @@ const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {
 
   return (
     <Box
-      w="92%"
+      w="94%"
       m="0 auto"
       mt="1rem"
       mb="2rem"
@@ -26,7 +26,7 @@ const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {
       <SimpleGrid
         w="100%"
         minChildWidth={['180px', '236px']} // 모바일에서는 150px, 그 외에서는 252px
-        spacing="0.5rem"
+        spacing="1rem"
         justifyContent="center"
         alignItems="center"
         placeItems="center"
