@@ -15,6 +15,7 @@ import { lightMode, darkMode } from '@/styles/theme';
 import boardData from '../data/board.ts';
 import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
+import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 
 const UpdateCard = ({ update }) => {
   const highlightColor = useColorModeValue(
@@ -22,6 +23,7 @@ const UpdateCard = ({ update }) => {
     darkMode.highlight
   );
 
+  const modifiedUrl100 = useModifiedImageUrl(update?.info.img_url, 100);
   const uploadTimeDiff = useUploadTimeDiff(update?.date);
   const article_link = useResponsiveLink(update?.id, 'article');
   const menu_link = useResponsiveLink(
@@ -56,7 +58,7 @@ const UpdateCard = ({ update }) => {
           boardData.find((item) => item.board === update.board)?.state ===
           '-관-'
             ? 'static/images/icons/close.jpeg'
-            : update.info.img_url
+            : modifiedUrl100 // 썸네일 100으로 변경
         }
         alt={update.info.title}
         fallbackSrc="https://via.placeholder.com/80"

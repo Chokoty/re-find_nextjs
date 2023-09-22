@@ -267,7 +267,7 @@ export default function Home({ last_update_info, initialFanart }) {
 
       {/*이벤트 */}
       {/* {congrat && <EventModal />} */}
-      <MelonVoteModal />
+      {/* <MelonVoteModal /> */}
 
       {/*업로드 전 */}
       {uploadedfiles.length === 0 && (
@@ -301,16 +301,6 @@ export default function Home({ last_update_info, initialFanart }) {
   );
 }
 
-const fetchRandomFanartPrerender = async () => {
-  try {
-    const res = await axios.get(`https://re-find.reruru.com/third_album`);
-    return res.data; // 데이터를 직접 반환합니다.
-  } catch (error) {
-    console.error('Error fetching fanart:', error); // 오류 메시지 출력
-    return null; // 오류가 발생한 경우 null을 반환합니다.
-  }
-};
-
 export async function getServerSideProps() {
   try {
     const timeout = 2000; // 3초
@@ -323,7 +313,6 @@ export async function getServerSideProps() {
     const initialFanart = axios
       .get(`https://re-find.reruru.com/third_album`)
       .then((res) => res.data);
-
     // const random_fanart = axios
     //     .get("https://rerurureruru.com:8443/rand", { timeout })
     //     .then((res) => res.data);

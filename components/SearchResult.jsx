@@ -88,7 +88,6 @@ const SearchResult = ({
               nickname={author?.author_nickname}
               board={uploadTimeDiff}
               writerURL={author?.author_url}
-              // writerURL={'/artists/' + author?.author_nickname}
             />
           </Skeleton>
         </div>

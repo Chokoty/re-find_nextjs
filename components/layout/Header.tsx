@@ -8,12 +8,15 @@ import {
   Button,
   Box,
   useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { lightMode, darkMode } from '@/styles/theme';
 import Link from 'next/link';
 import DarkModeToggle from '../DarkModeToggle';
 import MyDrawer from '../MyDrawer';
 import NoticeBanner from '../NoticeBanner';
+import SearchModal from '../SearchModal';
+
 import { Sling as Hamburger } from 'hamburger-react';
 
 import { useStore } from '../../store/store';
@@ -25,10 +28,11 @@ import { FaSearch } from 'react-icons/fa';
 export const Header = () => {
   // useStore
   // const count = useStore((state) => state.count);
-  const [isOpen, setIsOpen] = useStore((state) => [
+  const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const myDrawerRef = useRef(null);
 
@@ -50,7 +54,7 @@ export const Header = () => {
   // }, [myDrawerRef]);
 
   useEffect(() => {
-    if (!isOpen) {
+    if (!isOpenDrawer) {
       return;
     }
     const handleClick = (e) => {
@@ -67,15 +71,15 @@ export const Header = () => {
       }
       if (myDrawerRef.current && !myDrawerRef.current.contains(e.target)) {
         // console.log("other");
-        setIsOpen(false);
+        setIsOpenDrawer(false);
       }
     };
     window.addEventListener('mousedown', handleClick);
     return () => window.removeEventListener('mousedown', handleClick);
-  }, [isOpen]);
+  }, [isOpenDrawer]);
 
   const toggleDrawer = () => {
-    setIsOpen(!isOpen);
+    setIsOpenDrawer(!isOpenDrawer);
   };
 
   return (
@@ -155,16 +159,17 @@ export const Header = () => {
               border="none"
               bg={searchBgColor}
               alignItems="center"
-              onClick={() => {
-                alert('(큰 거x) 작은 거 온다?!?');
-              }}
+              onClick={onOpen}
+              // onClick={() => {
+              //   alert('(큰 거x) 작은 거 온다?!?');
+              // }}
             />
           </InputGroup>
         </Box>
         <Flex>
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer
-            isOpen={isOpen}
+            isOpen={isOpenDrawer}
             toggleDrawer={toggleDrawer}
             ref={myDrawerRef}
           />
@@ -172,12 +177,13 @@ export const Header = () => {
             <Hamburger
               label="펼치기" // An ARIA label to improve accessibility.
               size={24}
-              toggled={isOpen}
+              toggled={isOpenDrawer}
               toggle={toggleDrawer}
             />
           </Box>
         </Flex>
       </Flex>
+      <SearchModal isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };
