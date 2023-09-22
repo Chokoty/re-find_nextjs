@@ -44,7 +44,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
     >
       <Box
         key={artwork.id}
-        // m="1rem 0.5rem"
+        m="0 0.5rem"
         mb=" 1rem"
         w={['180px', '236px']}
         h={['120px', '157px']}
