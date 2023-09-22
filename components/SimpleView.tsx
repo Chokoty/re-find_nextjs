@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Box, SimpleGrid } from '@chakra-ui/react';
 import SimpleCards from './SimpleCards';
 
-const SimpleView = ({ artworks, isDeletedVisible }) => {
+const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {
   const [focusedArtworkId, setFocusedArtworkId] = useState(null);
 
   const handleToggleFocus = (id) => {
