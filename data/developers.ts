@@ -24,7 +24,7 @@ const developers: Developer[] = [
   {
     nickname: '아이김',
     writerURL:
-      'https://cafe.naver.com/ca-fe/cafes/27842958/members/h_34S-J91nEd_7rculSuyQ',
+      'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png',
     profURL: '',
     contribute: '키워드검색 연구',
   },

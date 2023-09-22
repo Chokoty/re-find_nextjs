@@ -132,17 +132,13 @@ export default function Home({ last_update_info, initialFanart }) {
         const searchTime = endTime - startTime; // ms
         setSearchTime(searchTime); // 차이값 저장
 
-        if (response.data.ids?.length === 0) {
-          setData(null);
-        } else {
-          console.log(response.data); // >>>테스트용
-          setAuthor2(response.data.author);
-          setData(response.data);
-          setIds(response.data.ids.slice(0, 15)); // 검색결과 10~15개 제한
-          // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
+        console.log(response.data); // >>>테스트용
+        setAuthor2(response.data.author);
+        setData(response.data);
+        setIds(response.data.ids.slice(0, 15)); // 검색결과 10~15개 제한
+        // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
 
-          // if (response.data.total_counter == 20000) setCongrat(true); // 20000번째 검색시 축하메시지
-        }
+        // if (response.data.total_counter == 20000) setCongrat(true); // 20000번째 검색시 축하메시지
       }
       setIsSearchingData(false); //  검색 완료
       setHasSearchResult(true); // 재검색을 방지
