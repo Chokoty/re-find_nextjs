@@ -132,7 +132,7 @@ export default function Home({ last_update_info, initialFanart }) {
         const searchTime = endTime - startTime; // ms
         setSearchTime(searchTime); // 차이값 저장
 
-        if (response.data.ids.length === 0) {
+        if (response.data.ids?.length === 0) {
           setData(null);
         } else {
           console.log(response.data); // >>>테스트용

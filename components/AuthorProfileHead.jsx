@@ -12,12 +12,8 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
-  PopoverHeader,
   PopoverBody,
-  PopoverFooter,
   PopoverArrow,
-  PopoverCloseButton,
-  PopoverAnchor,
 } from '@chakra-ui/react';
 import { ImLink } from 'react-icons/im';
 
@@ -152,14 +148,21 @@ const AuthorProfileHead = ({ nickname, profile }) => {
         >
           왁물원
         </Button>
+
         <Button
           colorScheme="green"
           borderRadius="full"
           m="0 0.5rem"
           h="48px"
-          onClick={() => {
-            window.open(member_link, '_blank');
-          }}
+          // onClick={() => {
+          //   window.open(member_link, '_blank');
+          // }}
+          onClick={toast({
+            title: 'Alert',
+            description: '구독기능은 아직 준비중입니다.',
+            duration: 9000,
+            isClosable: true,
+          })}
         >
           + 구독
         </Button>
