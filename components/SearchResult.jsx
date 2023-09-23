@@ -82,12 +82,14 @@ const SearchResult = ({
               // color="#01bda1"
               color={highlightColor}
               className="link"
-              href={article_link + data?.id?.[0]}
+              href={article_link + ids[0].id}
               isExternal
             >
-              {/* {author?.title} */}
-              {data?.title}
-              <ExternalLinkIcon mx="2px" />
+              <Text>
+                {/* {author?.title} */}
+                {data?.title}
+                <ExternalLinkIcon mx="2px" />
+              </Text>
             </Link>
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
