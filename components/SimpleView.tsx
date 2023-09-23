@@ -24,7 +24,7 @@ const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {
       alignItems="center"
     >
       <SimpleGrid
-        w="90%"
+        w={['100%', '90%']}
         minChildWidth={['180px', '236px']} // 모바일에서는 150px, 그 외에서는 252px
         spacing="0.75rem"
         justifyContent="center"
