@@ -165,7 +165,7 @@ const ViewSelectBar = ({
             <Text p="0.5rem 1rem" fontSize="sm">
               뷰 옵션
             </Text>
-            <Button
+            {/* <Button
               w="100%"
               variant="ghost"
               textAlign="left"
@@ -176,12 +176,7 @@ const ViewSelectBar = ({
               <Text w="100%" textAlign="left">
                 삭제된 게시글 {isDeletedVisible ? '가리기' : '보이기'}
               </Text>
-              {/* <Text w="100%" textAlign="left">
-                삭제된 게시글(
-                {artworks?.filter((artwork) => artwork.deleted).length}){' '}
-                {isDeletedVisible ? '가리기' : '보이기'}
-              </Text> */}
-            </Button>
+            </Button> */}
           </PopoverBody>
         </PopoverContent>
       </Popover>
