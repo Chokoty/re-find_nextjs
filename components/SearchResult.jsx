@@ -64,9 +64,9 @@ const SearchResult = ({
               ) : (
                 <Text fontSize="xl" mb="20px" textAlign="center">
                   {article_link + item.id}
+                  <ExternalLinkIcon mx="2px" />
                 </Text>
               )}
-              <ExternalLinkIcon mx="2px" />
             </Link>
           ))}
 
@@ -86,7 +86,6 @@ const SearchResult = ({
               isExternal
             >
               <Text>
-                {/* {author?.title} */}
                 {data?.title}
                 <ExternalLinkIcon mx="2px" />
               </Text>
