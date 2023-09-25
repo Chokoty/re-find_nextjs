@@ -27,7 +27,7 @@ const UpdateCard = ({ update }) => {
   const uploadTimeDiff = useUploadTimeDiff(update?.date);
   const article_link = useResponsiveLink(update?.id, 'article');
   const menu_link = useResponsiveLink(
-    boardData.find((item) => item.board === update.board)?.id,
+    boardData.find((item) => item.board === update?.board)?.id,
     'menu'
   );
 
@@ -55,7 +55,7 @@ const UpdateCard = ({ update }) => {
           height: '80px',
         }}
         src={
-          boardData.find((item) => item.board === update.board)?.state ===
+          boardData.find((item) => item.board === update?.board)?.state ===
           '-관-'
             ? 'static/images/icons/close.jpeg'
             : modifiedUrl100 // 썸네일 100으로 변경

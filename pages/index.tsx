@@ -26,7 +26,7 @@ import { useStore } from '../store/store';
 import MelonVoteModal from '../components/events/MelonVoteModal';
 import EventFanarts from '@/components/events/EventFanarts';
 
-export default function Home({ last_update_info, initialFanart }) {
+export default function Home({ last_update_info }) {
   const setIsOpen = useStore((state) => state.setIsOpen);
   const targetRef = useRef(null);
   const toast = useToast();
@@ -268,7 +268,7 @@ export default function Home({ last_update_info, initialFanart }) {
       {/*업로드 전 */}
       {uploadedfiles.length === 0 && (
         <>
-          <EventFanarts initialFanart={initialFanart} />
+          <EventFanarts initialFanart={null} />
           <UploadImages getDataFromChild={getDataFromChild} />
           <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} color={color} />
@@ -306,9 +306,9 @@ export async function getServerSideProps() {
     const last_update_info = axios
       .get('https://re-find.reruru.com/last_update_info', { timeout })
       .then((res) => res.data);
-    const initialFanart = axios
-      .get(`https://re-find.reruru.com/isegye_festival`)
-      .then((res) => res.data);
+    // const initialFanart = axios
+    //   .get(`https://re-find.reruru.com/isegye_festival`)
+    //   .then((res) => res.data);
     // const random_fanart = axios
     //     .get("https://rerurureruru.com:8443/rand", { timeout })
     //     .then((res) => res.data);
@@ -317,7 +317,7 @@ export async function getServerSideProps() {
       // wow - 병렬로 요청해서 페이지 로딩 줄임!
       // counter,
       last_update_info,
-      initialFanart,
+      // initialFanart,
       // random_fanart,
     ]);
 
@@ -327,7 +327,7 @@ export async function getServerSideProps() {
         // last_update_info: ret[1],
         // random_fanart: ret[1],
         last_update_info: ret[0],
-        initialFanart: ret[1],
+        // initialFanart: ret[1],
       },
     };
   } catch (error) {
@@ -338,7 +338,7 @@ export async function getServerSideProps() {
       props: {
         // counter: null,
         last_update_info: null,
-        initialFanart: null,
+        // initialFanart: null,
         // random_fanart: null,
       },
     };

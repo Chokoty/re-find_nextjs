@@ -35,6 +35,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
   };
 
   useEffect(() => {
+    if (initialFanart == null) fetchRandomFanart();
     setFanart(initialFanart);
   }, []);
 
