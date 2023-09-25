@@ -45,7 +45,7 @@ const UpdateCard = ({ update }) => {
       }}
     >
       <NextImage
-        unoptimized
+        // unoptimized
         width={100}
         height={100}
         style={{

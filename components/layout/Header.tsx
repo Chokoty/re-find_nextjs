@@ -118,7 +118,7 @@ export const Header = () => {
               width={40}
               height={40}
               src="/android-chrome-512x512.png"
-              unoptimized
+              // unoptimized
             />
           </Link>
         </Button>
