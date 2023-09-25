@@ -42,7 +42,7 @@ const KiddingFanart = ({ initialFanart }) => {
     try {
       setIsLoading(true);
       const res = await axios.get(`https://re-find.reruru.com/third_album`);
-      console.log(res.data);
+      // console.log(res.data);
       setFanart(res.data);
     } catch (error) {
       if (error.response && error.response.status === 500) {
