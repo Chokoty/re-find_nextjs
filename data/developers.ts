@@ -24,10 +24,20 @@ const developers: Developer[] = [
   {
     nickname: '아이김',
     writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/h_34S-J91nEd_7rculSuyQ',
+    profURL:
       'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png',
-    profURL: '',
     contribute: '키워드검색 연구',
   },
+  {
+    nickname: '카닌',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA',
+    profURL:
+      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MDNfMTQg/MDAxNjkxMDUyMzM5NzQw.nUzXx1Bqx_AGlvVaMkWjsOfF7zmQ4U3sg7jl44Uybtog.gLnPyIW3TYn6tr35c_OEDVm-FF4RedXbH0nplr2FE1wg.JPEG/externalFile.jpg?type=s3',
+    contribute: 'QA',
+  },
 ];
+//https://m.cafe.naver.com/ca-fe/web/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA/articles
 
 export default developers;
