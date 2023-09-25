@@ -17,7 +17,7 @@ import { IoSettingsSharp } from 'react-icons/io5';
 import { lightMode, darkMode } from '@/styles/theme';
 import { useResponsiveLink } from '../../hook/useResponsiveLink';
 
-const KiddingFanart = ({ initialFanart }) => {
+const IsegyeFestivalFanart = ({ initialFanart }) => {
   const [fanart, setFanart] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
@@ -35,14 +35,13 @@ const KiddingFanart = ({ initialFanart }) => {
   };
 
   useEffect(() => {
-    if (initialFanart == null) fetchRandomFanart();
     setFanart(initialFanart);
   }, []);
 
   const fetchRandomFanart = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get(`https://re-find.reruru.com/third_album`);
+      const res = await axios.get(`https://re-find.reruru.com/isegye_festival`);
       // console.log(res.data);
       setFanart(res.data);
     } catch (error) {
@@ -105,11 +104,10 @@ const KiddingFanart = ({ initialFanart }) => {
 
   return (
     <Box
-      // bg="#FFFAE8"
       p="0.5rem"
       w="100%"
-      // minW="300px"
-      // maxW="540px"
+      //  maxW="540px"
+
       borderRadius="lg"
     >
       <div style={previewContainer} className="random-fanart">
@@ -150,7 +148,7 @@ const KiddingFanart = ({ initialFanart }) => {
               align="center"
               color="#000"
             >
-              3집 Kidding 특집 팬아트
+              이세계 페스티벌 특집 팬아트
             </Text> */}
             <Skeleton isLoaded={!isLoading}>
               {fanart && (
@@ -160,7 +158,7 @@ const KiddingFanart = ({ initialFanart }) => {
                     borderRadius="1rem"
                     overflow="hidden"
                     w="100%"
-                    // mb="1rem"
+                    mb="1rem"
                   >
                     <Link
                       href={article_link}
@@ -234,7 +232,7 @@ const KiddingFanart = ({ initialFanart }) => {
             onClick={showRandomFanart}
           >
             <FaDice boxSize={12} />
-            &nbsp; 키딩 팬아트 랜덤가챠
+            &nbsp; 이세계 페스티벌 팬아트 랜덤가챠
           </Button>
         </Flex>
       </div>
@@ -242,4 +240,4 @@ const KiddingFanart = ({ initialFanart }) => {
   );
 };
 
-export default KiddingFanart;
+export default IsegyeFestivalFanart;

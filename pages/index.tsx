@@ -6,6 +6,13 @@ import {
   useColorModeValue,
   useDisclosure,
   useToast,
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+  Text,
+  Box,
 } from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
@@ -25,6 +32,7 @@ import { useStore } from '../store/store';
 // import EventModal from "../components/events/EventModal";
 import MelonVoteModal from '../components/events/MelonVoteModal';
 import KiddingFanart from '../components/events/KiddingFanart';
+import IsegyeFestivalFanart from '../components/events/IsegyeFestivalFanart';
 
 export default function Home({ last_update_info, initialFanart }) {
   const setIsOpen = useStore((state) => state.setIsOpen);
@@ -268,7 +276,102 @@ export default function Home({ last_update_info, initialFanart }) {
       {/*업로드 전 */}
       {uploadedfiles.length === 0 && (
         <>
-          <KiddingFanart initialFanart={initialFanart} />
+          <Box
+            // w={['90%', '80%']}
+            maxW="540px"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+            // border="1.5px solid #FE78BB"
+            // borderRadius="0.2rem"
+          >
+            <Box w={['300px', '500px']}></Box>
+            <Accordion allowToggle defaultIndex={[1]} style={{ width: '100%' }}>
+              <AccordionItem mb={1}>
+                <Text>
+                  <AccordionButton
+                    border="1.5px solid #FE78BB"
+                    background="#fbd9ea"
+                  >
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="center"
+                      fontSize="xl"
+                      fontWeight="bold"
+                      color="#000"
+                    >
+                      3집 Kidding 특집 팬아트
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </Text>
+                <AccordionPanel
+                  w="100%"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  bg="#FFFAE8"
+                  pb={4}
+                  borderRadius="lg"
+                >
+                  <Box
+                    border="1.5px solid #FE78BB"
+                    borderRadius="0.2rem"
+                    padding="1.5rem"
+                    w="100%"
+                  >
+                    <KiddingFanart initialFanart={null} />
+                  </Box>
+                </AccordionPanel>
+              </AccordionItem>
+
+              <AccordionItem>
+                <Text>
+                  <AccordionButton
+                    border="1.5px solid #14532D"
+                    background="#374079"
+                    // border="1.5px solid #14532D"
+                    // background="#9BCC95"
+                  >
+                    <Box
+                      as="span"
+                      flex="1"
+                      textAlign="center"
+                      fontSize="xl"
+                      fontWeight="bold"
+                      color="#fff"
+                      _hover={{
+                        color: '#000',
+                      }}
+                    >
+                      이세계 페스티벌 특집 팬아트
+                    </Box>
+                    <AccordionIcon />
+                  </AccordionButton>
+                </Text>
+                <AccordionPanel
+                  pb={4}
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  bg="#EEECE8"
+                  borderRadius="lg"
+                >
+                  <Box
+                    border="1.5px solid #374079"
+                    borderRadius="0.2rem"
+                    padding="1.5rem"
+                    w="100%"
+                  >
+                    <IsegyeFestivalFanart initialFanart={initialFanart} />
+                  </Box>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
+          </Box>
+
           <UploadImages getDataFromChild={getDataFromChild} />
           <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} color={color} />
@@ -307,7 +410,7 @@ export async function getServerSideProps() {
       .get('https://re-find.reruru.com/last_update_info', { timeout })
       .then((res) => res.data);
     const initialFanart = axios
-      .get(`https://re-find.reruru.com/third_album`)
+      .get(`https://re-find.reruru.com/isegye_festival`)
       .then((res) => res.data);
     // const random_fanart = axios
     //     .get("https://rerurureruru.com:8443/rand", { timeout })
