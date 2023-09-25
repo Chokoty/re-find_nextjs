@@ -104,7 +104,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
 
   return (
     <Box
-      p="0.5rem"
+      // p="0.5rem"
       w="100%"
       //  maxW="540px"
 
