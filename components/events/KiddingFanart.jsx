@@ -42,7 +42,7 @@ const KiddingFanart = ({ initialFanart }) => {
     try {
       setIsLoading(true);
       const res = await axios.get(`https://re-find.reruru.com/third_album`);
-      // console.log(res.data);
+      console.log(res.data);
       setFanart(res.data);
     } catch (error) {
       if (error.response && error.response.status === 500) {
@@ -195,8 +195,9 @@ const KiddingFanart = ({ initialFanart }) => {
                     alignItems="center"
                     mb="1rem"
                   >
-                    <Link
-                      href={'/artists/' + fanart?.nickname}
+                    <Box
+                      // as="a"
+                      // href={'/artists/' + fanart?.nickname}
                       passHref
                       style={linkDiv}
                     >
@@ -206,7 +207,7 @@ const KiddingFanart = ({ initialFanart }) => {
                       <Text color="#1B1642" as="b">
                         작가: {fanart?.nickname}
                       </Text>
-                    </Link>
+                    </Box>
                   </Box>
                 </>
               )}

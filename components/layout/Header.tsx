@@ -127,7 +127,8 @@ export const Header = () => {
             <Title onTitleClick={null} />
           </Link>
         </Button> */}
-        <Box display="flex" justifyContent="center" m="0 1rem" w="70%">
+        {/* 검색기능 잠정 보류 */}
+        {/* <Box display="flex" justifyContent="center" m="0 1rem" w="70%">
           <InputGroup m="0 1rem">
             <InputLeftElement
               pointerEvents="none"
@@ -136,13 +137,6 @@ export const Header = () => {
               alignItems="center"
               padding="0.5rem"
             >
-              {/* <Image
-                alt="logo"
-                width={20}
-                height={20}
-                src="/android-chrome-512x512.png"
-                unoptimized
-              /> */}
               <FaSearch
                 style={{
                   marginTop: '0.3rem',
@@ -165,7 +159,7 @@ export const Header = () => {
               // }}
             />
           </InputGroup>
-        </Box>
+        </Box> */}
         <Flex>
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer
