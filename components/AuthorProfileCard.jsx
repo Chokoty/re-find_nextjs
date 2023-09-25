@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Avatar, Text, Button, Highlight } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { Link, Avatar, Text, Button, Highlight } from '@chakra-ui/react';
 import { useColorModeValue } from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
@@ -22,8 +22,8 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
   const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
 
   return (
-    <Link href={writerURL === '' ? '#' : member_link}>
-      {/* <Link href={'/artists/' + nickname}> */}
+    <Link href={writerURL === '' ? '#' : member_link} passHref isExternal>
+      {/* <NextLink href={'/artists/' + nickname}> */}
       <Button
         as="a"
         target="_blank"
