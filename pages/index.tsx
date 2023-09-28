@@ -94,11 +94,11 @@ export default function Home({ last_update_info }) {
     if (uploadedfiles.length > 0) {
       toast({
         title:
-          data.id.length === 0
+          data?.ids?.length === 0
             ? 'Search Failed'
             : `Searching Time: ${searchTime / 1000}s`,
 
-        status: `${data.id.length === 0 ? 'error' : 'success'}`,
+        status: `${data?.ids?.length === 0 ? 'error' : 'success'}`,
         isClosable: true,
       });
     }
