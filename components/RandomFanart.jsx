@@ -205,7 +205,7 @@ const RandomFanart = () => {
               passHref
               isExternal
               style={linkDiv}
-              pt="6rem"
+              pt="3rem"
             >
               <NextImage
                 unoptimized

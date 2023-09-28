@@ -16,6 +16,7 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { lightMode, darkMode } from '@/styles/theme';
 import { useResponsiveLink } from '../../hook/useResponsiveLink';
+import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 
 const IsegyeFestivalFanart = ({ initialFanart }) => {
   const [fanart, setFanart] = useState(null);
@@ -25,6 +26,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
+  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
 
   const article_link = useResponsiveLink(
     fanart?.url.split('/').pop(),
@@ -176,7 +178,8 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                         style={img}
                         width={475}
                         height={475}
-                        src={fanart?.img_url}
+                        src={modifiedUrl300}
+                        // src={fanart?.img_url}
                         alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
                         onLoad={handleLoad}
                       />
