@@ -7,7 +7,7 @@ import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
 
-const data = ['왁타버스', '우왁굳', '이세계아이돌', '고멤/교멤'];
+const data = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
 const SubTitle = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
