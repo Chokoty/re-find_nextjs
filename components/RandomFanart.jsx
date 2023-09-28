@@ -181,7 +181,8 @@ const RandomFanart = () => {
       // borderColor="gray.200"
       borderRadius="lg"
       // boxShadow="0 0 10px 0 rgba(0, 0, 0, 0.2)"
-      p="1rem"
+      pt="6rem"
+      pb="2rem"
     >
       {!isvisible && (
         <div className="random-fanart__guide" style={guide}>
