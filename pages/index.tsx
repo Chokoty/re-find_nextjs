@@ -80,20 +80,25 @@ export default function Home({ last_update_info }) {
   }, []);
 
   // 검색시간 토스트
-  useEffect(() => {
-    if (uploadedfiles === null) {
-      toast({
-        title: `Searching Time: ${searchTime / 1000}s`,
-        status: `${data === null ? 'error' : 'success'}`,
-        isClosable: true,
-      });
-    }
-  }, [data, searchTime]);
+  // useEffect(() => {
+  //   if (uploadedfiles === null) {
+  //     toast({
+  //       title: `Searching Time: ${searchTime / 1000}s`,
+  //       status: `${data === null ? 'error' : 'success'}`,
+  //       isClosable: true,
+  //     });
+  //   }
+  // }, [data, searchTime]);
+
   useEffect(() => {
     if (uploadedfiles.length > 0) {
       toast({
-        title: `Searching Time: ${searchTime / 1000}s`,
-        status: `${data === null ? 'error' : 'success'}`,
+        title:
+          data.id.length === 0
+            ? 'Search Failed'
+            : `Searching Time: ${searchTime / 1000}s`,
+
+        status: `${data.id.length === 0 ? 'error' : 'success'}`,
         isClosable: true,
       });
     }
