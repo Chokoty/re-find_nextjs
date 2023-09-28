@@ -43,7 +43,7 @@ const UpdateLog = ({ count }) => {
         .map((item, index) => (
           <Card
             key={index}
-            width="90%"
+            width="100%"
             size="sm"
             m="2"
             boxShadow="xl"
