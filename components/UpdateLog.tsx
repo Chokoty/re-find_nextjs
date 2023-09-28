@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import {
   Box,
   Heading,
@@ -29,14 +30,11 @@ const UpdateLog = ({ count }) => {
       display="flex"
       flexDirection="column"
       alignItems="center"
-      width="100%"
+      width="90%"
+      // width={['90%', '100%']}
       margin="0 auto"
       maxW="540px"
     >
-      <Heading size="md" mb="20px">
-        {' '}
-        업데이트 내용
-      </Heading>
       {updateLog
         .slice(count === 0 ? undefined : -count) // 배열의 마지막 count 개의 항목만 가져옵니다.
         .reverse()

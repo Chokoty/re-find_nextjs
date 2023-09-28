@@ -1,11 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
+import NextLink from 'next/link';
 
 import {
   useColorMode,
   useColorModeValue,
   useDisclosure,
   useToast,
+  Heading,
+  Flex,
+  Text,
 } from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
@@ -278,6 +282,23 @@ export default function Home({ last_update_info }) {
           <UploadImages getDataFromChild={getDataFromChild} />
           <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} />
+
+          <NextLink href="/notice" legacyBehavior>
+            <Flex
+              w="80%"
+              maxW="540px"
+              flexDir="row"
+              justifyContent="space-between"
+              alignItems="center"
+              mt="2rem"
+              mb="1rem"
+              cursor="pointer"
+            >
+              <Heading size="md">업데이트 내용</Heading>
+              <Text fontSize="md">더보기</Text>
+            </Flex>
+          </NextLink>
+
           <UpdateLog count={4} />
         </>
       )}
