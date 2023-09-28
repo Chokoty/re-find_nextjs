@@ -168,17 +168,14 @@ const MyDrawer = React.forwardRef(
                 p="0"
                 colorScheme="black"
                 bg="black"
-                // colorScheme="twitter"
-                // bg="#1DA1F2"
                 shadow="md"
               >
-                {/* <FaTwitter /> */}
-                <Image
-                  boxSize="20px"
-                  objectFit="cover"
+                <NextImage
+                  width={20}
+                  height={20}
                   src="/static/icons/twitter-x-logo.png"
-                  alt="naver-cafe-logo"
-                  filter="invert(100%)"
+                  alt="twitter-x"
+                  style={{ filter: 'invert(100%)' }}
                 />
               </Button>
               <Button
@@ -194,9 +191,9 @@ const MyDrawer = React.forwardRef(
                 target="_blank"
                 shadow="md"
               >
-                <Image
-                  boxSize="20px"
-                  objectFit="cover"
+                <NextImage
+                  width={20}
+                  height={20}
                   src="/static/icons/naver-cafe-logo2.gif"
                   alt="naver-cafe-logo"
                 />

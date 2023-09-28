@@ -26,7 +26,9 @@ import {
 } from '@chakra-ui/react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
-import { useResponsiveLink } from '../hook/useResponsiveLink';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+
 import { lightMode, darkMode } from '@/styles/theme';
 
 const setLocalStorage = (key, value) => {
@@ -181,8 +183,8 @@ const RandomFanart = () => {
       // borderColor="gray.200"
       borderRadius="lg"
       // boxShadow="0 0 10px 0 rgba(0, 0, 0, 0.2)"
-      pt="6rem"
-      pb="2rem"
+      // pt="6rem"
+      p="2rem 0"
     >
       {!isvisible && (
         <div className="random-fanart__guide" style={guide}>
@@ -201,6 +203,7 @@ const RandomFanart = () => {
               passHref
               isExternal
               style={linkDiv}
+              pt="6rem"
             >
               <NextImage
                 unoptimized
