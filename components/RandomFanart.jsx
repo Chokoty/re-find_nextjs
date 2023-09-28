@@ -65,6 +65,8 @@ const RandomFanart = () => {
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
 
+  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
+
   useEffect(() => {
     // 로컬 스토리지에서 체크박스 값 불러오기
     const savedCheckboxValues = getLocalStorage('checkboxValues');
@@ -210,7 +212,8 @@ const RandomFanart = () => {
                 style={img}
                 width={475}
                 height={475}
-                src={fanart?.img_url}
+                // src={fanart?.img_url}
+                src={modifiedUrl300}
                 alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
                 onLoad={handleLoad}
               />
