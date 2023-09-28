@@ -161,7 +161,8 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                     borderRadius="1rem"
                     overflow="hidden"
                     w="100%"
-                    mb="1rem"
+                    pt="3rem"
+                    // mb="1rem"
                   >
                     <Link
                       className="link_to_wakzoo"
