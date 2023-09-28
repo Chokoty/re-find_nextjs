@@ -33,7 +33,6 @@ const UpdateLog = ({ count }) => {
       width="90%"
       // width={['90%', '100%']}
       margin="0 auto"
-      maxW="540px"
     >
       {updateLog
         .slice(count === 0 ? undefined : -count) // 배열의 마지막 count 개의 항목만 가져옵니다.
@@ -42,6 +41,7 @@ const UpdateLog = ({ count }) => {
           <Card
             key={index}
             width="100%"
+            maxW="540px"
             size="sm"
             m="2"
             boxShadow="xl"
