@@ -73,7 +73,7 @@ export default function Home({ last_update_info }) {
 
   // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
   useEffect(() => {
-    console.log(last_update_info);
+    // console.log(last_update_info);
     setIsOpen(false);
     // fetchCounter();
     // testProfile();

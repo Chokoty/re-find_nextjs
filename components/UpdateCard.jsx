@@ -58,7 +58,7 @@ const UpdateCard = ({ update }) => {
           boardData.find((item) => item.board === update?.board)?.state ===
           '-관-'
             ? '/static/images/icons/close.jpeg'
-            : modifiedUrl100 === ' '
+            : modifiedUrl100 === ''
             ? '/static/images/icons/placeholder_80.png'
             : modifiedUrl100
 
