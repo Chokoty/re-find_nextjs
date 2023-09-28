@@ -21,10 +21,7 @@ export default function Document() {
           property="og:image"
           content="https://raw.githubusercontent.com/Chokoty/re-find_nextjs/main/public/android-chrome-192x192.png"
         />
-        <meta
-          property="og:description"
-          content="왁타버스 이세계아이돌 팬아트 출처 찾기"
-        />
+        <meta property="og:description" content="왁타버스 팬아트 출처 찾기" />
 
         <meta name="theme-color" content="#000000" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
