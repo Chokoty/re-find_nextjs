@@ -6,25 +6,30 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Box,
+  useColorModeValue,
 } from '@chakra-ui/react';
+import { lightMode, darkMode } from '@/styles/theme';
 
 import UpdateCard from './UpdateCard';
 
-const UpdateBoard = ({ last_update_info, color }) => {
+const UpdateBoard = ({ last_update_info }) => {
+  const color = useColorModeValue(lightMode.color, darkMode.color);
+
   return (
-    <div
+    <Box
       className="update-info"
-      style={{
-        marginTop: '3em',
-        display: 'grid',
-        // display: "flex", -> ios14 아래 지원 안됨
-        // flexDirection: "column",
-        // justifyContent: "center",
-        alignItems: 'center',
-        placeItems: 'center',
-        gridGap: '1em',
-        gap: '1em',
-      }}
+      mt="3em"
+      mb="6em"
+      display="grid"
+      alignItems="center"
+      placeItems="center"
+      gridGap="1em"
+      gap="1em"
+      w="100%"
+      // display: "flex", -> ios14 아래 지원 안됨
+      // flexDirection: "column",
+      // justifyContent: "center",
     >
       <Heading
         as="h1"
@@ -51,7 +56,7 @@ const UpdateBoard = ({ last_update_info, color }) => {
       <Text whiteSpace="normal">
         명시된 게시판에 있는 원본만 찾을 수 있습니다.
       </Text>
-    </div>
+    </Box>
   );
 };
 

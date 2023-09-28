@@ -7,6 +7,7 @@ import {
   Heading,
   Text,
   Link,
+  Flex,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
@@ -22,6 +23,7 @@ const UpdateCard = ({ update }) => {
     lightMode.highlight,
     darkMode.highlight
   );
+  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
 
   const modifiedUrl100 = useModifiedImageUrl(update?.info.img_url, 100);
   const uploadTimeDiff = useUploadTimeDiff(update?.date);
@@ -34,8 +36,10 @@ const UpdateCard = ({ update }) => {
   return (
     <Card
       width="100%"
+      maxW="540px"
+      background={color2}
       style={{
-        height: '100px',
+        height: '120px',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -69,18 +73,25 @@ const UpdateCard = ({ update }) => {
       />
 
       <CardBody>
-        <Heading as="h1" size="md" textTransform="uppercase" mb="8px">
-          <Link
-            color={highlightColor}
-            className="link_to_wakzoo"
-            href={menu_link}
-            isExternal
-          >
-            {update.board}
-            <ExternalLinkIcon mx="2px" />
-          </Link>
-        </Heading>
-        <Text fontSize="1em">
+        <Flex
+          flexDirection={['column', 'row']}
+          justifyContent={['center', 'space-between']}
+          alignItems={['flex-start', 'center']}
+        >
+          <Heading as="h1" fontSize={['lg', 'xl']} textTransform="uppercase">
+            <Link
+              color={highlightColor}
+              className="link_to_wakzoo"
+              href={menu_link}
+              isExternal
+            >
+              {update.board}
+              <ExternalLinkIcon mx="2px" />
+            </Link>
+          </Heading>
+          <Text fontSize={['md', 'lg']}>{uploadTimeDiff}</Text>
+        </Flex>
+        <Text fontSize={['md', 'lg']}>
           게시글 id:
           <Link
             color={highlightColor}
@@ -92,7 +103,6 @@ const UpdateCard = ({ update }) => {
             <ExternalLinkIcon mx="2px" />
           </Link>
         </Text>
-        <Text fontSize="1em">{uploadTimeDiff}</Text>
       </CardBody>
     </Card>
   );

@@ -24,7 +24,6 @@ export default function Document() {
         <meta property="og:description" content="왁타버스 팬아트 출처 찾기" />
 
         <meta name="theme-color" content="#000000" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <meta name="referrer" content="no-referrer" />
         <link rel="manifest" href="/manifest.json" />

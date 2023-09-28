@@ -21,7 +21,9 @@ export const useUploadTimeDiff = (writeDate: number): string => {
 
     let uploadTextTemp = '';
 
-    if (monthsDifference >= 1) {
+    if (yearsDifference >= 1) {
+      uploadTextTemp = `${yearsDifference}년 전`;
+    } else if (monthsDifference >= 1) {
       uploadTextTemp = `${monthsDifference}달 전`;
     } else if (daysDifference >= 1) {
       uploadTextTemp = `${daysDifference}일 전 `;

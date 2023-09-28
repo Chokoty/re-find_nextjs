@@ -7,6 +7,7 @@ import {
   Text,
   Link,
   Button,
+  Box,
   Skeleton,
   Stack,
   Checkbox,
@@ -20,10 +21,13 @@ import {
   Flex,
   Spacer,
   Heading,
+  useColorModeValue,
+  Card,
 } from '@chakra-ui/react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 import { useResponsiveLink } from '../hook/useResponsiveLink';
+import { lightMode, darkMode } from '@/styles/theme';
 
 const setLocalStorage = (key, value) => {
   try {
@@ -56,6 +60,8 @@ const RandomFanart = () => {
   });
 
   const article_link = useResponsiveLink(fanart?.id, 'article');
+
+  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
 
   useEffect(() => {
     // 로컬 스토리지에서 체크박스 값 불러오기
@@ -159,7 +165,24 @@ const RandomFanart = () => {
   };
 
   return (
-    <div style={previewContainer} className="random-fanart">
+    <Card
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      flexWrap="wrap"
+      marginTop="16px"
+      marginBottom="30px"
+      className="random-fanart"
+      background={color2}
+      w="100%"
+      maxW="540px"
+      minH="120px"
+      // borderColor="gray.200"
+      borderRadius="lg"
+      // boxShadow="0 0 10px 0 rgba(0, 0, 0, 0.2)"
+      p="1rem"
+    >
       {!isvisible && (
         <div className="random-fanart__guide" style={guide}>
           <Text fontSize="xl" fontWeight="bold" mb="1rem">
@@ -203,6 +226,7 @@ const RandomFanart = () => {
               size="md"
               mt="1.5rem"
               p="0"
+              aria-label="랜덤가챠 게시판 포함/제외하기"
             >
               <IoSettingsSharp boxSize={30} />
             </Button>
@@ -257,7 +281,7 @@ const RandomFanart = () => {
           &nbsp; 팬아트 랜덤가챠
         </Button>
       </Flex>
-    </div>
+    </Card>
   );
 };
 

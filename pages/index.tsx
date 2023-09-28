@@ -19,6 +19,7 @@ import UpdateBoard from '../components/UpdateBoard';
 import UploadImages from '../components/UploadImages';
 import SearchResult from '../components/SearchResult';
 import RandomFanart from '../components/RandomFanart';
+import UpdateLog from '../components/UpdateLog';
 
 import { useStore } from '../store/store';
 
@@ -276,7 +277,8 @@ export default function Home({ last_update_info }) {
           <EventFanarts initialFanart={null} />
           <UploadImages getDataFromChild={getDataFromChild} />
           <RandomFanart />
-          <UpdateBoard last_update_info={last_update_info} color={color} />
+          <UpdateBoard last_update_info={last_update_info} />
+          <UpdateLog count={4} />
         </>
       )}
 

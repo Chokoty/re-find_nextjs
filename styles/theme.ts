@@ -50,7 +50,7 @@ export default theme;
 export const lightMode = {
   bg: '#FFFFFF',
   color: '#1B1642',
-  color2: '#E8EAEC',
+  color2: '#FFFFFF', // '#E8EAEC',
   footerColor: '#575A7B',
   highlight: '#01bda1',
   badge: '#c1eadf',
@@ -61,7 +61,7 @@ export const darkMode = {
   color: '#E8EAEC',
   color2: '#18181B', //'#1B1642',
   footerColor: '#ced4da9a',
-  highlight: '#ef5a9a',
+  highlight: '#EF80B1',
   badge: '#FC719F',
   highlight2: '#FED6D7',
 };

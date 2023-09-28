@@ -85,13 +85,15 @@ export const Header = () => {
   return (
     <Box
       position="sticky"
-      pt="50px "
-      top="-50px"
+      pt="0"
+      top="0"
+      // pt="50px "
+      // top="-50px"
       zIndex="200"
       boxShadow={showShadow ? boxShadow : 'none'}
       // overflow="hidden"
     >
-      <NoticeBanner />
+      {/* <NoticeBanner /> */}
 
       <Flex
         as="header"

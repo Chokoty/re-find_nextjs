@@ -42,6 +42,7 @@ const App: NextComponentType<AppContext, AppInitialProps, MyAppProps> = ({
       {/* <PlausibleProvider domain="https://re-find.xyz/"> */}
       <Head>
         <title>리파인드 | RE:FIND</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <Chakra cookies={pageProps.cookies}>
         <MainLayout>
