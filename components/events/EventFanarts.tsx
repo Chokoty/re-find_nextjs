@@ -8,12 +8,19 @@ import {
   AccordionIcon,
   Text,
   Box,
+  useColorModeValue,
 } from '@chakra-ui/react';
+import { lightMode, darkMode } from '@/styles/theme';
 
 import KiddingFanart from './KiddingFanart';
 import IsegyeFestivalFanart from './IsegyeFestivalFanart';
 
 const EventFanarts = ({ initialFanart }) => {
+  const highlightColor = useColorModeValue(
+    lightMode.highlight,
+    darkMode.highlight
+  );
+
   return (
     <Box
       mt={10}
@@ -27,18 +34,36 @@ const EventFanarts = ({ initialFanart }) => {
       <Accordion allowToggle defaultIndex={[1]} style={{ width: '100%' }}>
         <AccordionItem mb={1}>
           <Text>
-            <AccordionButton border="1.5px solid #FE78BB" background="#fbd9ea">
+            <AccordionButton
+              // background="#FE78BB"
+              // background="#166938"
+              background="linear-gradient(90deg, rgba(57,155,55,1) 0%, rgba(121,197,36,1) 5%, rgba(121,197,36,1) 15%, rgba(57,155,55,1) 25%, rgba(37,98,45,1) 35%, rgba(31,50,36,1) 45%, rgba(31,50,36,1) 55%, rgba(37,98,45,1) 65%, rgba(57,155,55,1) 75%, rgba(121,197,36,1) 85%, rgba(121,197,36,1) 95%, rgba(57,155,55,1) 100%)"
+              // #166938 #8FDF2F # #15231F #ec355b
+              // border="1.5px solid #FE78BB"
+              _hover={{
+                background: '#b3e971',
+                // background: '#fbd9ea',
+              }}
+              sx={{
+                '&:hover': {
+                  '> *': {
+                    color: '#000',
+                  },
+                },
+              }}
+            >
               <Box
                 as="span"
                 flex="1"
                 textAlign="center"
                 fontSize="xl"
                 fontWeight="bold"
-                color="#000"
+                color="#ec355b"
+                // color="#FFF"
               >
-                3집 Kidding 특집 팬아트
+                Kidding 특집 팬아트
               </Box>
-              <AccordionIcon />
+              <AccordionIcon color="#ec355b" />
             </AccordionButton>
           </Text>
           <AccordionPanel
@@ -48,14 +73,11 @@ const EventFanarts = ({ initialFanart }) => {
             alignItems="center"
             bg="#FFFAE8"
             pb={4}
-            borderRadius="lg"
+            borderRadius="
+              0 0 0.2rem 0.5rem
+            "
           >
-            <Box
-              border="1.5px solid #FE78BB"
-              borderRadius="0.2rem"
-              // padding="1.5rem"
-              w="100%"
-            >
+            <Box border="1.5px solid #FE78BB" borderRadius="0.2rem" w="100%">
               <KiddingFanart initialFanart={null} />
             </Box>
           </AccordionPanel>
@@ -64,10 +86,21 @@ const EventFanarts = ({ initialFanart }) => {
         <AccordionItem>
           <Text>
             <AccordionButton
-              border="1.5px solid #14532D"
-              background="#374079"
+              // background="#374079"
+              // border="1.5px solid #374079"
               // border="1.5px solid #14532D"
               // background="#9BCC95"
+              background="linear-gradient(90deg, rgba(27,11,31,1) 3%, rgba(61,69,101,1) 10%, rgba(104,53,178,1) 15%, rgba(237,176,138,1) 18%, rgba(108,60,116,1) 20%, rgba(212,122,201,1) 25%, rgba(212,122,201,1) 75%, rgba(108,60,116,1) 80%, rgba(237,176,138,1) 82%, rgba(104,53,178,1) 85%, rgba(61,69,101,1) 90%, rgba(27,11,31,1) 97%)"
+              _hover={{
+                background: '#fbd9ea',
+              }}
+              sx={{
+                '&:hover': {
+                  '> *': {
+                    color: '#000',
+                  },
+                },
+              }}
             >
               <Box
                 as="span"
@@ -75,14 +108,11 @@ const EventFanarts = ({ initialFanart }) => {
                 textAlign="center"
                 fontSize="xl"
                 fontWeight="bold"
-                color="#fff"
-                _hover={{
-                  color: '#000',
-                }}
+                color="#fdce28"
               >
                 이세계 페스티벌 특집 팬아트
               </Box>
-              <AccordionIcon />
+              <AccordionIcon color="#fdce28" />
             </AccordionButton>
           </Text>
           <AccordionPanel
@@ -91,7 +121,9 @@ const EventFanarts = ({ initialFanart }) => {
             justifyContent="center"
             alignItems="center"
             bg="#EEECE8"
-            borderRadius="lg"
+            borderRadius="
+              0 0 0.2rem 0.5rem
+            "
           >
             <Box
               border="1.5px solid #374079"

@@ -226,8 +226,12 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
           <Button
             className="random-fanart__button-kidding"
             // w="200px"
-            backgroundColor="#FE78BB"
-            _hover={{ bg: '#e94396' }}
+            backgroundColor="#14532D"
+            // backgroundColor="#FE78BB"
+            _hover={{
+              bg: '#9BCC95',
+              // bg: '#e94396'
+            }}
             color="#FFF"
             size="md"
             mt="1.5rem"
