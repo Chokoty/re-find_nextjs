@@ -33,6 +33,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
 
   return (
     <Link
+      className="link_to_wakzoo"
       key={artwork.id}
       href={
         artwork.url === '' ? '#' : article_link + artwork.url.split('/').pop()

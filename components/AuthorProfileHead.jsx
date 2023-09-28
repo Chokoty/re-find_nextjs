@@ -148,6 +148,7 @@ const AuthorProfileHead = ({ nickname, profile }) => {
         mb="2rem"
       >
         <Button
+          className="link_to_wakzoo"
           colorScheme="gray"
           borderRadius="full"
           m="0 0.5rem"

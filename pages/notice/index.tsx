@@ -64,6 +64,7 @@ const Notice = () => {
                 <CardFooter textAlign="left" fontSize="sm">
                   {item.directLink && (
                     <Link
+                      className="link_to_wakzoo"
                       href={item.directLink}
                       isExternal
                       color={highlightColor}

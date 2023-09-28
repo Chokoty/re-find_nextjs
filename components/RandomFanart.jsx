@@ -171,7 +171,13 @@ const RandomFanart = () => {
       {isvisible && (
         <Skeleton isLoaded={!isLoading}>
           {fanart && (
-            <Link href={article_link} passHref isExternal style={linkDiv}>
+            <Link
+              className="link_to_wakzoo"
+              href={article_link}
+              passHref
+              isExternal
+              style={linkDiv}
+            >
               <NextImage
                 unoptimized
                 style={img}

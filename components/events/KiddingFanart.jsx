@@ -163,6 +163,7 @@ const KiddingFanart = ({ initialFanart }) => {
                     // mb="1rem"
                   >
                     <Link
+                      className="link_to_wakzoo"
                       href={article_link}
                       passHref
                       isExternal

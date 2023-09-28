@@ -57,7 +57,7 @@ const UpdateCard = ({ update }) => {
         src={
           boardData.find((item) => item.board === update?.board)?.state ===
           '-관-'
-            ? 'static/images/icons/close.jpeg'
+            ? '/static/images/icons/close.jpeg'
             : modifiedUrl100 // 썸네일 100으로 변경
         }
         alt={update.info.title}
@@ -68,7 +68,7 @@ const UpdateCard = ({ update }) => {
         <Heading as="h1" size="md" textTransform="uppercase" mb="8px">
           <Link
             color={highlightColor}
-            className="link"
+            className="link_to_wakzoo"
             href={menu_link}
             isExternal
           >
@@ -80,7 +80,7 @@ const UpdateCard = ({ update }) => {
           게시글 id:
           <Link
             color={highlightColor}
-            className="link"
+            className="link_to_wakzoo"
             href={article_link}
             isExternal
           >

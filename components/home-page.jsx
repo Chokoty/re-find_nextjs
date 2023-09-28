@@ -305,7 +305,7 @@ const HomePage = ({ last_update_info }) => {
                       textAlign="center"
                       // color="#01bda1"
                       color={highlightColor}
-                      className="link"
+                      className="link_to_wakzoo"
                       href={
                         'https://cafe.naver.com/steamindiegame/' + data.id[0]
                       }
@@ -327,7 +327,7 @@ const HomePage = ({ last_update_info }) => {
                       textAlign="center"
                       // color="#01bda1"
                       color={highlightColor}
-                      className="link"
+                      className="link_to_wakzoo"
                       href={
                         'https://cafe.naver.com/steamindiegame/' + data.id[0]
                       }

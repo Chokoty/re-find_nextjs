@@ -22,7 +22,12 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
   const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
 
   return (
-    <Link href={writerURL === '' ? '#' : member_link} passHref isExternal>
+    <Link
+      className="link_to_wakzoo"
+      href={writerURL === '' ? '#' : member_link}
+      passHref
+      isExternal
+    >
       {/* <NextLink href={'/artists/' + nickname}> */}
       <Button
         as="a"

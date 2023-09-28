@@ -57,6 +57,7 @@ const ListView = ({ artworks }) => {
           >
             <Link
               // key={artwork.id}
+              className="link_to_wakzoo"
               href={
                 artwork.url === ''
                   ? '#'
