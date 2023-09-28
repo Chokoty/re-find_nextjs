@@ -58,10 +58,14 @@ const UpdateCard = ({ update }) => {
           boardData.find((item) => item.board === update?.board)?.state ===
           '-관-'
             ? '/static/images/icons/close.jpeg'
-            : modifiedUrl100 // 썸네일 100으로 변경
+            : modifiedUrl100 === ' '
+            ? '/static/images/icons/placeholder_80.png'
+            : modifiedUrl100
+
+          // 썸네일 100으로 변경
         }
         alt={update.info.title}
-        fallbackSrc="https://via.placeholder.com/80"
+        // fallbackSrc="https://via.placeholder.com/80"
       />
 
       <CardBody>
