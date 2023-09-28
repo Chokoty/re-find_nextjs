@@ -93,10 +93,10 @@ const SearchResult = ({
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
             <AuthorProfileCard
+              writerURL={author?.author_url}
               profURL={author?.author_prof_url}
               nickname={author?.author_nickname}
               board={uploadTimeDiff}
-              writerURL={author?.author_url}
             />
           </Skeleton>
         </div>

@@ -58,13 +58,21 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
               height: 96,
             }}
           >
-            <Image src={profURL} alt={nickname} fill="object-fit" unoptimized />
+            <Image
+              src={
+                profURL ||
+                'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
+              }
+              alt={nickname}
+              fill="object-fit"
+              unoptimized
+            />
           </div>
         )}
 
         {/* <Avatar size="xl" name={nickname} src={profURL || ""} /> */}
         <Text fontSize="md" textAlign="center" mb="12px" color={highlightColor}>
-          {nickname || '작가님 프로필은'}
+          {nickname || '프로필은 왁물원에서'}
         </Text>
         <Text
           fontSize="md"
@@ -75,7 +83,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
           rounded="full"
           bg={highlightColor2}
         >
-          {board || '카페에서 확인해주세요'}
+          {board || '---'}
         </Text>
       </Button>
     </Link>
