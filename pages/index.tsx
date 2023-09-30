@@ -102,8 +102,13 @@ export default function Home({ last_update_info }) {
           data?.ids?.length === 0
             ? 'Search Failed'
             : `Searching Time: ${searchTime / 1000}s`,
-
-        status: `${data?.ids?.length === 0 ? 'error' : 'success'}`,
+        description:
+          data?.ids[0]?.is_deleted === true ? '아! 삭제된 게시글입니다.' : '',
+        status: `${
+          data?.ids?.length === 0 || data?.ids[0]?.is_deleted === true
+            ? 'error'
+            : 'success'
+        }`,
         isClosable: true,
       });
     }
@@ -143,6 +148,7 @@ export default function Home({ last_update_info }) {
         setSearchTime(searchTime); // 차이값 저장
 
         // console.log(response.data); // >>>테스트용
+
         setAuthor2(response.data.author);
         setData(response.data);
         setIds(response.data.ids.slice(0, 15)); // 검색결과 10~15개 제한
