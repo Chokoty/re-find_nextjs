@@ -38,7 +38,7 @@ const SearchResult = ({
       <Text fontSize="xl" m="20px" textAlign="center">
         검색시간: {searchTime / 1000}s
       </Text>
-      {ids?.length === 0 ? (
+      {ids?.length === 0  && !isSearchingAuthor ? (
         <div className="notFound">
           <Description />
         </div>

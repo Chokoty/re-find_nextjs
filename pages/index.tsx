@@ -318,7 +318,7 @@ export default function Home({ last_update_info }: HomeProps) {
       )}
 
       {/* 업로드 후 */}
-      {uploadedfiles.length !== 0 && (
+      {uploadedfiles.length !== 0 && hash !== null && (
         <div className="result-area">
           <Preview files={uploadedfiles} />
           {isSearchingData && <Loading />}
