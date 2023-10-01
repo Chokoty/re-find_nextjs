@@ -8,6 +8,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -30,6 +31,11 @@ import { darkMode, lightMode } from '@/styles/theme';
 interface HomeProps {
   last_update_info: any;
 }
+
+const DynamicUploadImages = dynamic(() => import('@/components/UploadImages'), {
+  ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
+  loading: () => <p>Loading...</p>,
+});
 
 export default function Home({ last_update_info }: HomeProps) {
   const setIsOpen = useStore((state) => state.setIsOpen);
@@ -269,7 +275,11 @@ export default function Home({ last_update_info }: HomeProps) {
       {uploadedfiles.length === 0 && (
         <>
           <EventFanarts initialFanart={null} />
-          <UploadImages
+          {/* <UploadImages
+            getDataFromChild={getDataFromChild}
+            getHashFromChild={getHashFromChild}
+          /> */}
+          <DynamicUploadImages
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           />
