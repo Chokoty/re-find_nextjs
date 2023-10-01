@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
-  Text,
-  Skeleton,
-  Link,
   Button,
-  useColorMode,
+  Link,
+  Skeleton,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import React from 'react';
 
-import { lightMode, darkMode } from '@/styles/theme';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
+import { darkMode, lightMode } from '@/styles/theme';
 
-import AuthorProfileCard from '../components/AuthorProfileCard';
-import Description from '../components/Description';
-import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
-import { useResponsiveLink } from '../hook/useResponsiveLink';
+import AuthorProfileCard from './AuthorProfileCard';
+import Description from './Description';
 
 const SearchResult = ({
   searchTime,

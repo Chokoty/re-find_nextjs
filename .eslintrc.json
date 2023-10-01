@@ -1,27 +1,84 @@
 {
-  "extends": "next/core-web-vitals"
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 11
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "react",
+    "react-hooks",
+    "simple-import-sort",
+    "import"
+    // "no-null",
+  ],
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@next/next/recommended",
+    "plugin:storybook/recommended",
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "@typescript-eslint/naming-convention": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-unused-vars": "warn", // "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "import/extensions": "off",
+    "import/first": "error",
+    "import/prefer-default-export": "off",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "import/no-unresolved": "off",
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": ["./*", "../*"]
+      }
+    ],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "arrow-body-style": "off",
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "radix": "off",
+    "consistent-return": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "curly": ["error", "multi-line", "consistent"],
+    "nonblock-statement-body-position": ["error", "beside"],
+    "no-use-before-define": "off"
+    // "no-null/no-null": 2,
+  },
+
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "globals": {
+    "React": "writable"
+  },
+  "overrides": [
+    {
+      "files": ["pages/api/*.js"],
+      "parser": "@babel/eslint-parser"
+    }
+  ],
+  "ignorePatterns": ["components/*.jsx"]
 }
-
-
-// {
-//   "root": true,
-//   "extends": [
-//       "eslint:recommended",
-//       "plugin:@typescript-eslint/recommended"
-//   ],
-//   "parser": "@typescript-eslint/parser",
-//   "parserOptions": { "project": ["./tsconfig.json"] },
-//   "plugins": [
-//       "@typescript-eslint"
-//   ],
-//   "rules": {
-//       "@typescript-eslint/strict-boolean-expressions": [
-//           2,
-//           {
-//               "allowString" : false,
-//               "allowNumber" : false
-//           }
-//       ]
-//   },
-//   "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"]
-// }

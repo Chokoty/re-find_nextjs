@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
-import NextImage from 'next/image';
 import {
-  Flex,
-  Button,
   Box,
+  Button,
+  Flex,
   Link,
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { useResponsiveLink } from '../hook/useResponsiveLink';
+import NextImage from 'next/image';
+import React, { useState } from 'react';
+import { HiOutlineExternalLink } from 'react-icons/hi';
+
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 
-import { HiOutlineExternalLink } from 'react-icons/hi';
+import { useResponsiveLink } from '../hook/useResponsiveLink';
+
 const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });

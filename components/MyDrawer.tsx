@@ -1,12 +1,11 @@
-import React from 'react';
-import Link from 'next/link';
+import { BellIcon, InfoIcon } from '@chakra-ui/icons';
+import { Box, Button, Collapse, Image } from '@chakra-ui/react';
 import NextImage from 'next/image';
-
-import { Box, Button, Image, Collapse } from '@chakra-ui/react';
+import Link from 'next/link';
+import React from 'react';
 import { AiFillExperiment, AiFillHome } from 'react-icons/ai';
-import { FaTwitter, FaYoutube } from 'react-icons/fa';
-import { InfoIcon, BellIcon } from '@chakra-ui/icons';
 import { BiSupport } from 'react-icons/bi';
+import { FaTwitter, FaYoutube } from 'react-icons/fa';
 
 type MyDrawerProps = {
   isOpen: boolean;
@@ -221,12 +220,6 @@ const MyDrawer = React.forwardRef(
                 target="_blank"
                 shadow="md"
               >
-                {/* <Image
-                            boxSize="20px"
-                            objectFit="cover"
-                            src="static/icons/github.svg"
-                            alt="github-logo"
-                        /> */}
                 <svg
                   aria-hidden="true"
                   className="octicon octicon-mark-github"

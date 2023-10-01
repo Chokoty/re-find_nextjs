@@ -1,7 +1,7 @@
 import React from 'react';
 import NextLink from 'next/link';
 
-import { Link, Badge, Box, useColorModeValue } from '@chakra-ui/react';
+import {  Badge, Box, useColorModeValue } from '@chakra-ui/react';
 
 import { lightMode, darkMode } from '@/styles/theme';
 import updateLog from '../data/updateLog';

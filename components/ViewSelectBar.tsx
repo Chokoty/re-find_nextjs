@@ -1,32 +1,32 @@
-import React, { useState } from 'react';
-
 import {
-  Text,
   Box,
   Button,
   Flex,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
   Menu,
   MenuButton,
-  MenuList,
   MenuItem,
-  useMediaQuery,
+  MenuList,
+  Popover,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  Text,
   useColorModeValue,
   useDisclosure,
+  useMediaQuery,
 } from '@chakra-ui/react';
+import React, { useState } from 'react';
 import {
+  MdMoreHoriz,
   MdOutlineDashboard,
   MdOutlineGridView,
-  MdMoreHoriz,
-  MdOutlineViewDay,
   MdOutlineKeyboardArrowDown,
+  MdOutlineViewDay,
 } from 'react-icons/md';
 
+import { darkMode, lightMode } from '@/styles/theme';
+
 import { useShowShadow } from '../hook/useShowShadow';
-import { lightMode, darkMode } from '@/styles/theme';
 
 interface ViewSelectBarProps {
   selectedMenu: string;
@@ -97,7 +97,7 @@ const ViewSelectBar = ({
       boxShadow={showShadow ? boxShadow : 'none'}
       style={{
         backgroundColor: bgColor,
-        color: color,
+        color,
       }}
     >
       <Box

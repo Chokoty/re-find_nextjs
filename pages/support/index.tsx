@@ -1,13 +1,10 @@
+import { Box, Button, Image, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
-import { Text, Box, Button, Image } from '@chakra-ui/react';
-
-import { useColorModeValue } from '@chakra-ui/react';
 import { BsChatDots } from 'react-icons/bs';
 
-import { lightMode, darkMode } from '@/styles/theme';
-import OtherLayout from '../../components/layout/other-layout';
-import { useStore } from '../../store/store';
-// import AuthorProfileCard from "./AuthorProfileCard";
+import OtherLayout from '@/components/layout/other-layout';
+import { useStore } from '@/store/store';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const data = [
   {

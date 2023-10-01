@@ -1,316 +1,316 @@
 .home_body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  padding-top: 30px;
+
+  .counter {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid #ccc;
+    margin-bottom: 10px;
+
+    @include mobile {
+      font-size: $font-size / 1.1;
+      // font-size: $font-size / 1.33333;
+    }
+  }
+  .counter.light {
+    border: 2px solid #333;
+  }
+
+  .title {
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 100%;
-    margin: 0 auto;
-    padding-top: 30px;
 
-    .counter {
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 10px 20px;
-        border-radius: 20px;
-        border: 2px solid #ccc;
-        margin-bottom: 10px;
-
-        @include mobile {
-            font-size: $font-size / 1.1;
-            // font-size: $font-size / 1.33333;
-        }
-    }
-    .counter.light {
-        border: 2px solid #333;
+    .content {
+      text-decoration: none;
+      // color: #fff;
     }
 
-    .title {
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+    .title-main {
+      display: flex;
+      text-align: center;
+      font-size: $title-main-size;
 
-        .content {
-            text-decoration: none;
-            // color: #fff;
-        }
+      @include tablet {
+        font-size: $title-main-size / 1.2; // 1.33333;
+      }
+      @include mobile {
+        font-size: $title-main-size / 1.5;
+      }
+      @include small {
+        font-size: $title-main-size / 2;
+      }
 
-        .title-main {
-            display: flex;
-            text-align: center;
-            font-size: $title-main-size;
+      .highlight {
+        color: #ef5a9a;
+      }
+    }
+  }
 
-            @include tablet {
-                font-size: $title-main-size / 1.2; // 1.33333;
-            }
-            @include mobile {
-                font-size: $title-main-size / 1.5;
-            }
-            @include small {
-                font-size: $title-main-size / 2;
-            }
+  .sub-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-            .highlight {
-                color: #ef5a9a;
-            }
-        }
+    .bg-crop {
+      position: relative;
+      width: $title-img-width; // 자를 사이즈를 명시해준다.
+      height: $title-img-height;
+      overflow: hidden;
+      // border: 1px solid #695030;
+      border-radius: 20px;
+      box-shadow: 0 2px 4px rgba(105, 80, 48, 0.2);
+
+      .bg-wakdoo {
+        position: absolute; // 포지션을 주고,
+        // top: 100; // 보이기 원하는 위치를 지정
+        // left: 0;
+        max-height: initial;
+        margin-top: -35%;
+        width: 480px; // 오리지널 사이즈
+        // height: 703px;
+      }
+
+      @include tablet {
+        width: $title-img-width / 1.2;
+        height: $title-img-height / 1.2;
+      }
+      @include mobile {
+        width: $title-img-width / 1.8; //1.5;
+        height: $title-img-height / 1.8;
+      }
+      @include small {
+        width: $title-img-width / 2;
+        height: $title-img-height / 2;
+      }
+    }
+  }
+  .title-text {
+    font-size: $title-sub-size;
+    font-weight: 700;
+    @include tablet {
+      font-size: $title-sub-size / 1.2;
+    }
+    @include mobile {
+      font-size: $title-sub-size / 1.5; //1.5;
+    }
+    @include small {
+      font-size: $title-sub-size / 2;
+    }
+  }
+
+  .uploader {
+    width: 50%;
+    max-width: 550px;
+    height: 250px;
+    margin: 80px 0px 60px 0px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    border: 4px dashed #6d6d6d;
+    border-radius: 20px;
+    cursor: pointer;
+
+    @include tablet {
+      width: 60%;
+      min-width: 500px;
+    }
+    @include mobile {
+      width: 80%;
+      max-width: 360px;
+    }
+    @include small {
+      width: 90%;
+      max-width: 300px;
     }
 
-    .sub-title {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    .dropzone {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-        .bg-crop {
-            position: relative;
-            width: $title-img-width; // 자를 사이즈를 명시해준다.
-            height: $title-img-height;
-            overflow: hidden;
-            // border: 1px solid #695030;
-            border-radius: 20px;
-            box-shadow: 0 2px 4px rgba(105, 80, 48, 0.2);
-
-            .bg-wakdoo {
-                position: absolute; // 포지션을 주고,
-                // top: 100; // 보이기 원하는 위치를 지정
-                // left: 0;
-                max-height: initial;
-                margin-top: -35%;
-                width: 480px; // 오리지널 사이즈
-                // height: 703px;
-            }
-
-            @include tablet {
-                width: $title-img-width / 1.2;
-                height: $title-img-height / 1.2;
-            }
-            @include mobile {
-                width: $title-img-width / 1.8; //1.5;
-                height: $title-img-height / 1.8;
-            }
-            @include small {
-                width: $title-img-width / 2;
-                height: $title-img-height / 2;
-            }
-        }
-    }
-    .title-text {
-        font-size: $title-sub-size;
-        font-weight: 700;
-        @include tablet {
-            font-size: $title-sub-size / 1.2;
-        }
-        @include mobile {
-            font-size: $title-sub-size / 1.5; //1.5;
-        }
-        @include small {
-            font-size: $title-sub-size / 2;
-        }
+      div {
+        margin: 20px 0;
+      }
     }
 
-    .uploader {
-        width: 50%;
-        max-width: 550px;
-        height: 250px;
-        margin: 80px 0px 60px 0px;
-        padding: 5px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-direction: column;
-        border: 4px dashed #6d6d6d;
-        border-radius: 20px;
-        cursor: pointer;
+    .logo {
+      font-size: 80px;
+      margin-top: 40px;
+      margin-bottom: 10px;
+      color: #6d6d6d;
+    }
+    div {
+      padding: 0 20px;
+    }
+    .underline {
+      color: #ef5a9a;
+      text-decoration: underline;
+    }
+  }
 
-        @include tablet {
-            width: 60%;
-            min-width: 500px;
-        }
-        @include mobile {
-            width: 80%;
-            max-width: 360px;
-        }
-        @include small {
-            width: 90%;
-            max-width: 300px;
-        }
-
-        .dropzone {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            div {
-                margin: 20px 0;
-            }
-        }
-
+  .uploader.dark {
+    &:hover {
+      border-color: #e0e0e0;
+      .dropzone {
         .logo {
-            font-size: 80px;
-            margin-top: 40px;
+          color: #e0e0e0;
+        }
+      }
+    }
+    &:active {
+      border-color: #ef5a9a;
+      .dropzone {
+        .logo {
+          color: #ef5a9a;
+        }
+      }
+    }
+  }
+  .uploader.light {
+    &:hover {
+      border-color: #000000;
+      .dropzone {
+        .logo {
+          color: #000000;
+        }
+      }
+    }
+    &:active {
+      border-color: #01bda1;
+      .dropzone {
+        .logo {
+          color: #01bda1;
+        }
+      }
+    }
+  }
+
+  .uploader.active.light {
+    border-color: #01bda1;
+    .dropzone {
+      .logo {
+        color: #01bda1;
+      }
+    }
+  }
+  .uploader.active.dark {
+    border-color: #ef5a9a;
+    .dropzone {
+      .logo {
+        color: #ef5a9a;
+      }
+    }
+  }
+  .fileView {
+    padding: 50px;
+  }
+
+  .preview {
+    @include mobile {
+      width: 90%;
+      max-width: 360px;
+    }
+  }
+
+  .result-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .loading {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+    .result {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      .notFound {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        width: 100%;
+        margin: auto;
+        margin-bottom: 20px;
+
+        .notFoundText {
+          margin-top: 20px;
+          color: #ef5a9a;
+          font-weight: 600;
+        }
+        .description {
+          width: 60%;
+          // text-align: center;
+          ul {
             margin-bottom: 10px;
-            color: #6d6d6d;
-        }
-        div {
-            padding: 0 20px;
-        }
-        .underline {
-            color: #ef5a9a;
-            text-decoration: underline;
-        }
-    }
-
-    .uploader.dark {
-        &:hover {
-            border-color: #e0e0e0;
-            .dropzone {
-                .logo {
-                    color: #e0e0e0;
-                }
+            margin-left: auto;
+            padding-left: 20px;
+            li {
+              // display: inline-block;
             }
-        }
-        &:active {
-            border-color: #ef5a9a;
-            .dropzone {
-                .logo {
-                    color: #ef5a9a;
-                }
-            }
-        }
-    }
-    .uploader.light {
-        &:hover {
-            border-color: #000000;
-            .dropzone {
-                .logo {
-                    color: #000000;
-                }
-            }
-        }
-        &:active {
-            border-color: #01bda1;
-            .dropzone {
-                .logo {
-                    color: #01bda1;
-                }
-            }
-        }
-    }
-
-    .uploader.active.light {
-        border-color: #01bda1;
-        .dropzone {
-            .logo {
-                color: #01bda1;
-            }
-        }
-    }
-    .uploader.active.dark {
-        border-color: #ef5a9a;
-        .dropzone {
-            .logo {
-                color: #ef5a9a;
-            }
-        }
-    }
-    .fileView {
-        padding: 50px;
-    }
-
-    .preview {
-        @include mobile {
+          }
+          @include mobile {
             width: 90%;
             max-width: 360px;
+          }
         }
-    }
+      }
 
-    .result-area {
+      .found {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-align: center;
 
-        .loading {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
+        margin: 0 auto;
+        margin-bottom: 20px;
+
+        width: 100%;
+        .link {
+          word-break: break-all;
+          width: 100%;
         }
-        .result {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            .notFound {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-
-                width: 100%;
-                margin: auto;
-                margin-bottom: 20px;
-
-                .notFoundText {
-                    margin-top: 20px;
-                    color: #ef5a9a;
-                    font-weight: 600;
-                }
-                .description {
-                    width: 60%;
-                    // text-align: center;
-                    ul {
-                        margin-bottom: 10px;
-                        margin-left: auto;
-                        padding-left: 20px;
-                        li {
-                            // display: inline-block;
-                        }
-                    }
-                    @include mobile {
-                        width: 90%;
-                        max-width: 360px;
-                    }
-                }
-            }
-
-            .found {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                text-align: center;
-
-                margin: 0 auto;
-                margin-bottom: 20px;
-
-                width: 100%;
-                .link {
-                    word-break: break-all;
-                    width: 100%;
-                }
-                @include mobile {
-                    width: 90%;
-                }
-            }
+        @include mobile {
+          width: 90%;
         }
+      }
     }
+  }
 }
 
 .update-info {
-    width: 60%;
-    max-width: 550px; //
-    @include mobile {
-        width: 90%;
-        max-width: 360px;
-    }
-    @include small {
-        width: 90%;
-        max-width: 300px;
-    }
+  // width: 100%;
+  // max-width: 550px; //
+  // @include mobile {
+  //   width: 90%;
+  //   max-width: 360px;
+  // }
+  // @include small {
+  //   width: 90%;
+  //   max-width: 300px;
+  // }
 }

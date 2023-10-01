@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const useShowShadow = (top: number, bottom: number): boolean => {
   const [showShadow, setShowShadow] = useState(false);
@@ -11,12 +11,10 @@ export const useShowShadow = (top: number, bottom: number): boolean => {
         } else {
           setShowShadow(false);
         }
+      } else if (window.scrollY > top && window.scrollY < bottom) {
+        setShowShadow(true);
       } else {
-        if (window.scrollY > top && window.scrollY < bottom) {
-          setShowShadow(true);
-        } else {
-          setShowShadow(false);
-        }
+        setShowShadow(false);
       }
     };
 

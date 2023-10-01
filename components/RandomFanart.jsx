@@ -1,35 +1,34 @@
-import React, { use, useEffect, useState } from 'react';
-import NextLink from 'next/link';
-import NextImage from 'next/image';
-
-import axios from 'axios';
 import {
-  Text,
-  Link,
-  Button,
   Box,
-  Skeleton,
-  Stack,
-  Checkbox,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverFooter,
-  PopoverArrow,
-  PopoverCloseButton,
-  Flex,
-  Spacer,
-  Heading,
-  useColorModeValue,
+  Button,
   Card,
+  Checkbox,
+  Flex,
+  Heading,
+  Link,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverFooter,
+  PopoverTrigger,
+  Skeleton,
+  Spacer,
+  Stack,
+  Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
+import axios from 'axios';
+import NextImage from 'next/image';
+import NextLink from 'next/link';
+import React, { use, useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 
-import { lightMode, darkMode } from '@/styles/theme';
+import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const setLocalStorage = (key, value) => {
   try {
@@ -89,7 +88,7 @@ const RandomFanart = () => {
   const fetchRandomFanart = async () => {
     try {
       setIsLoading(true);
-      let queryParams = Object.keys(checkboxValues)
+      const queryParams = Object.keys(checkboxValues)
         .filter((key) => checkboxValues[key])
         .join('&');
       const res = await axios.get(
@@ -193,7 +192,7 @@ const RandomFanart = () => {
           <Text fontSize="xl" fontWeight="bold" mb="1rem">
             아래 버튼을 누르면 랜덤 팬아트가 나와요!
           </Text>
-          <FaArrowDown boxsize={12} />
+          <FaArrowDown boxSize={12} />
         </div>
       )}
       {isvisible && (
@@ -214,7 +213,7 @@ const RandomFanart = () => {
                 height={475}
                 // src={fanart?.img_url}
                 src={modifiedUrl300}
-                alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
+                alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
                 onLoad={handleLoad}
               />
               <Text>랜덤 팬아트 id: {fanart?.id}</Text>
@@ -284,7 +283,7 @@ const RandomFanart = () => {
           mt="1.5rem"
           onClick={showRandomFanart}
         >
-          <FaDice boxsize={12} />
+          <FaDice boxSize={12} />
           &nbsp; 팬아트 랜덤가챠
         </Button>
       </Flex>

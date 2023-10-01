@@ -1,21 +1,21 @@
-import React from 'react';
-
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
   Box,
-  Heading,
-  Text,
   Card,
-  CardHeader,
   CardBody,
+  CardHeader,
   Flex,
+  Heading,
   Link,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { lightMode, darkMode } from '@/styles/theme';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import React from 'react';
 
-import updateLog from '../data/updateLog';
+import { darkMode, lightMode } from '@/styles/theme';
+
 import TMI from '../data/tmi';
+import updateLog from '../data/updateLog';
 
 const UpdateLog = ({ count }) => {
   const highlightColor = useColorModeValue(

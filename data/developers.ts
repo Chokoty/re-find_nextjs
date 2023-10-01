@@ -38,6 +38,6 @@ const developers: Developer[] = [
     contribute: 'QA',
   },
 ];
-//https://m.cafe.naver.com/ca-fe/web/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA/articles
+// https://m.cafe.naver.com/ca-fe/web/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA/articles
 
 export default developers;

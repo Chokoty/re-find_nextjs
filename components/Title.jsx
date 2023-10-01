@@ -1,10 +1,8 @@
-import React from 'react';
-import Link from 'next/link';
-
 import { Heading, useColorModeValue } from '@chakra-ui/react';
+import Link from 'next/link';
+import React from 'react';
 
-import { lightMode, darkMode } from '@/styles/theme';
-import Image from 'next/image';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const Title = ({ onTitleClick }) => {
   const highlightColor = useColorModeValue(

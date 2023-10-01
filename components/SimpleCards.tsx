@@ -1,17 +1,20 @@
-import React, { useState } from 'react';
-import NextImage from 'next/image';
 import {
-  Flex,
-  Button,
   Box,
+  Button,
+  Flex,
   Link,
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import NextImage from 'next/image';
+import React, { useState } from 'react';
+import { HiOutlineExternalLink } from 'react-icons/hi';
+
+import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
-import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { HiOutlineExternalLink } from 'react-icons/hi';
+
 const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
@@ -88,7 +91,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
                 unoptimized
               />
             </Box>
-            {artwork.img_url_list.length == 1 && (
+            {artwork.img_url_list.length === 1 && (
               <Flex flexDir="column" gap="0.2rem">
                 <Box
                   w={['61px', '76px']}
@@ -102,7 +105,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
                 ></Box>
               </Flex>
             )}
-            {artwork.img_url_list.length == 2 && (
+            {artwork.img_url_list.length === 2 && (
               <Flex flexDir="column" gap="0.2rem">
                 <Box
                   w={['61px', '76px']}
@@ -213,7 +216,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
       <Box>
         <Text fontSize={['md', 'xl']} fontWeight={600} p="0 1rem">
           {artwork.title.length > 10
-            ? artwork.title.slice(0, 10) + '...'
+            ? `${artwork.title.slice(0, 10)}...`
             : artwork.title}
         </Text>
         <Flex p="0 1rem" gap="0.5rem">

@@ -1,11 +1,16 @@
-import React, { useState, useEffect, FC } from 'react';
 import { Badge, Skeleton, useColorModeValue } from '@chakra-ui/react';
-import CountUp from 'react-countup';
 import axios from 'axios';
+import type { FC } from 'react';
+import React, { useEffect, useState } from 'react';
+import CountUp from 'react-countup';
 
-import { lightMode, darkMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/styles/theme';
 
-const Counter = ({ data }) => {
+interface CounterProps {
+  data: any;
+}
+
+const Counter: FC<CounterProps> = ({ data }) => {
   const [counter, setCounter] = useState(null);
   const [counterLoading, setCounterLoading] = useState(false);
   const badge = useColorModeValue(lightMode.badge, darkMode.badge);
@@ -18,7 +23,7 @@ const Counter = ({ data }) => {
       const response = await axios.get('https://re-find.reruru.com/counter', {
         timeout,
       });
-      const counter = response?.data;
+      setCounter(response?.data);
       // console.log(counter);
       setCounter(counter);
       setCounterLoading(false);

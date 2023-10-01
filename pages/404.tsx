@@ -1,17 +1,16 @@
+import { Box, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
-import { Text, Heading } from '@chakra-ui/react';
+
 export default function Custom404() {
   return (
-    <div
-      style={{
-        margin: '0 auto',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '80vh',
-        width: '80%',
-      }}
+    <Box
+      m="0 auto"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      height="80vh"
+      width="80%"
     >
       <Heading as="h1" size="md" mb="20px">
         404 - Page Not Found
@@ -24,6 +23,6 @@ export default function Custom404() {
         height={400}
         unoptimized
       />
-    </div>
+    </Box>
   );
 }

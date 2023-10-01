@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
-import { useStore } from '../../store/store';
 import { Heading } from '@chakra-ui/react';
-import OtherLayout from '../../components/layout/other-layout';
-import UpdateLog from '../../components/UpdateLog';
+import React, { useEffect } from 'react';
+
+import OtherLayout from '@/components/layout/other-layout';
+import UpdateLog from '@/components/UpdateLog';
+import { useStore } from '@/store/store';
 
 const Notice = () => {
   const setIsOpen = useStore((state) => state.setIsOpen);

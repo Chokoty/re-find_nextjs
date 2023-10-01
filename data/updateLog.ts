@@ -5,7 +5,7 @@ interface UpdateLog {
   directLink?: string;
 }
 
-const updateLog = [
+const updateLog: UpdateLog[] = [
   {
     id: 1,
     date: '2023.03.16',

@@ -1,9 +1,16 @@
+import { Button, Divider, Heading, useColorModeValue } from '@chakra-ui/react';
+import type { ReactNode } from 'react';
 import React from 'react';
-import Title from '@/components/Title';
-import { lightMode, darkMode } from '@/styles/theme';
-import { Button, Heading, Divider, useColorModeValue } from '@chakra-ui/react';
 
-const OtherLayout = ({ children, title }) => {
+import Title from '@/components/Title';
+import { darkMode, lightMode } from '@/styles/theme';
+
+interface OtherLayoutProps {
+  children: ReactNode;
+  title: string;
+}
+
+const OtherLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
   const bgColor = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 

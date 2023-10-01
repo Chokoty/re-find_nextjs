@@ -1,21 +1,19 @@
 import 'normalize.css';
-import '../styles/general.scss';
+import '@/styles/general.scss';
 
-import { NextComponentType } from 'next';
-import { AppContext, AppInitialProps, AppProps } from 'next/app';
-import Script from 'next/script';
-
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import type { NextComponentType } from 'next';
+import type { AppContext, AppInitialProps, AppProps } from 'next/app';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
+import Script from 'next/script';
+import { useEffect } from 'react';
 
-import MainLayout from '../components/layout/main-layout';
-import { Chakra } from '../styles/Chakra';
-
+import MainLayout from '@/components/layout/main-layout';
 // analytics
 // import { Analytics } from "@vercel/analytics/react";
 // import PlausibleProvider from 'next-plausible';
-import * as gtag from '../lib/gtag';
+import * as gtag from '@/lib/gtag';
+import { Chakra } from '@/styles/Chakra';
 
 interface MyAppProps extends AppProps {}
 

@@ -1,13 +1,30 @@
-import React from 'react';
+import {
+  Avatar,
+  Button,
+  Link,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import Image from 'next/image';
-import NextLink from 'next/link';
-import { Link, Avatar, Text, Button, Highlight } from '@chakra-ui/react';
-import { useColorModeValue } from '@chakra-ui/react';
+// import NextLink from 'next/link';
+import React from 'react';
 
-import { lightMode, darkMode } from '@/styles/theme';
-import { useResponsiveLink } from '../hook/useResponsiveLink';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { darkMode, lightMode } from '@/styles/theme';
 
-const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
+interface AuthorProfileCardProps {
+  writerURL: string;
+  profURL: string;
+  nickname: string;
+  board: string;
+}
+
+const AuthorProfileCard: React.FC<AuthorProfileCardProps> = ({
+  writerURL,
+  profURL,
+  nickname,
+  board,
+}) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const highlightColor = useColorModeValue(
@@ -25,7 +42,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
     <Link
       className="link_to_wakzoo"
       href={writerURL === '' ? '#' : member_link}
-      passHref
+      // passHref
       isExternal
     >
       {/* <NextLink href={'/artists/' + nickname}> */}
@@ -64,7 +81,7 @@ const AuthorProfileCard = ({ writerURL, profURL, nickname, board }) => {
                 'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
               }
               alt={nickname}
-              fill="object-fit"
+              fill={true}
               unoptimized
             />
           </div>

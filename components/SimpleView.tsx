@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
 import { Box, SimpleGrid } from '@chakra-ui/react';
+import React, { useState } from 'react';
+
 import SimpleCards from './SimpleCards';
 
 const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {

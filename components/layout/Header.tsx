@@ -1,30 +1,30 @@
-import React, { useRef, useEffect, useState } from 'react';
-import Image from 'next/image';
 import {
-  InputGroup,
-  Input,
-  InputLeftElement,
-  Flex,
-  Button,
   Box,
+  Button,
+  Flex,
+  // Input,
+  // InputGroup,
+  // InputLeftElement,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
-import { lightMode, darkMode } from '@/styles/theme';
-import Link from 'next/link';
-import DarkModeToggle from '../DarkModeToggle';
-import MyDrawer from '../MyDrawer';
-import NoticeBanner from '../NoticeBanner';
-import SearchModal from '../SearchModal';
-
 import { Sling as Hamburger } from 'hamburger-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import React, { useEffect, useRef } from 'react';
 
-import { useStore } from '../../store/store';
-import { useThemeStore } from '../../store/themeStore';
-import { useShowShadow } from '../../hook/useShowShadow';
+import DarkModeToggle from '@/components/DarkModeToggle';
+import MyDrawer from '@/components/MyDrawer';
+import SearchModal from '@/components/SearchModal';
+import { useShowShadow } from '@/hook/useShowShadow';
+import { useStore } from '@/store/store';
+import { darkMode, lightMode } from '@/styles/theme';
 
-import Title from '../Title';
-import { FaSearch } from 'react-icons/fa';
+// import { FaSearch } from 'react-icons/fa';
+// import { useThemeStore } from '../../store/themeStore';
+// import NoticeBanner from '../NoticeBanner';
+// import Title from '../Title';
+
 export const Header = () => {
   // useStore
   // const count = useStore((state) => state.count);
@@ -32,13 +32,13 @@ export const Header = () => {
     state.isOpen,
     state.setIsOpen,
   ]);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen, onClose } = useDisclosure();
 
   const myDrawerRef = useRef(null);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-  const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
+  // const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
   const boxShadowLight =
     '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
@@ -99,7 +99,7 @@ export const Header = () => {
         as="header"
         style={{
           backgroundColor: bgColor,
-          color: color,
+          color,
           padding: '1rem',
           display: 'flex',
           justifyContent: 'space-between',

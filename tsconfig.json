@@ -21,7 +21,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
+    "**/*.jsx",
     "**/*.tsx",
+    "pages/api/blurImage.js",
     "components/MansonryView.tsx.back"
   ],
   "exclude": ["node_modules"]

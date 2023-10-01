@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalBody,
+  Box,
   Button,
-  Divider,
-  Text,
+  Flex,
+  Heading,
   Link,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalOverlay,
+  Text,
+  useBreakpointValue,
   useColorMode,
   useColorModeValue,
-  Box,
-  Heading,
-  Spacer,
-  Flex,
-  Image,
-  useBreakpointValue,
 } from '@chakra-ui/react';
-import { useDisclosure } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { LuAlertCircle, LuVote, LuListMusic } from 'react-icons/lu';
-import { lightMode, darkMode } from '@/styles/theme';
-import { useEventStore } from '../../store/store';
+import Image from 'next/image';
+import React, { useEffect, useState } from 'react';
+// import { useDisclosure } from '@chakra-ui/react';
+// import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { LuAlertCircle, LuListMusic, LuVote } from 'react-icons/lu';
+
+import { darkMode, lightMode } from '@/styles/theme';
+// import { useEventStore } from '../../store/store';
 
 const MelonVoteModal = () => {
   const [isOpen, setIsOpen] = useState(false);

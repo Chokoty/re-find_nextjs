@@ -1,21 +1,34 @@
-import React, { useState } from 'react';
 import {
-  Heading,
-  Text,
   Alert,
+  AlertDescription,
   AlertIcon,
   AlertTitle,
-  AlertDescription,
   Box,
+  Heading,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { lightMode, darkMode } from '@/styles/theme';
+import React, { useState } from 'react';
+
+import { darkMode, lightMode } from '@/styles/theme';
 
 import UpdateCard from './UpdateCard';
 
 const UpdateBoard = ({ last_update_info }) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
+  // .update-info {
+  //   // width: 100%;
+  //   // max-width: 550px; //
+  //   // @include mobile {
+  //   //   width: 90%;
+  //   //   max-width: 360px;
+  //   // }
+  //   // @include small {
+  //   //   width: 90%;
+  //   //   max-width: 300px;
+  //   // }
+  // }
   return (
     <Box
       className="update-info"
@@ -26,7 +39,7 @@ const UpdateBoard = ({ last_update_info }) => {
       placeItems="center"
       gridGap="1em"
       gap="1em"
-      w="100%"
+      w="90%"
       // display: "flex", -> ios14 아래 지원 안됨
       // flexDirection: "column",
       // justifyContent: "center",

@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import NextImage from 'next/image';
 import {
-  Flex,
-  Text,
   Box,
-  Link,
-  useBreakpointValue,
   Button,
+  Flex,
+  Link,
+  Text,
   Tooltip,
+  useBreakpointValue,
 } from '@chakra-ui/react';
+import NextImage from 'next/image';
+import React, { useState } from 'react';
+import { TbDownload, TbPhotoSearch } from 'react-icons/tb';
 
-import { useResponsiveLink } from '../hook/useResponsiveLink';
-import { TbPhotoSearch, TbDownload } from 'react-icons/tb';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
+
 const ListView = ({ artworks }) => {
   const article_link = useResponsiveLink('', 'article');
   const isTabletOrSmaller = useBreakpointValue({ base: true, md: false });
-  console.log(artworks);
+  // console.log(artworks);
 
   const [hoveredIndices, setHoveredIndices] = useState([]);
   // const [clickedIndices, setClickedIndices] = useState([]);

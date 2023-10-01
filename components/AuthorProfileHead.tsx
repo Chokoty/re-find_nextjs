@@ -1,25 +1,32 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-
 import {
-  Text,
-  Box,
   Avatar,
+  Box,
   Button,
   Flex,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+  Text,
   Tooltip,
   useToast,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverBody,
-  PopoverArrow,
 } from '@chakra-ui/react';
+// import Image from 'next/image';
+import React, { useState } from 'react';
 import { ImLink } from 'react-icons/im';
 
-import { useResponsiveLink } from '../hook/useResponsiveLink';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
-const AuthorProfileHead = ({ nickname, profile }) => {
+interface AuthorProfileHeadProps {
+  nickname: string;
+  profile: any;
+}
+
+const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
+  nickname,
+  profile,
+}) => {
   const toast = useToast();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -69,7 +76,7 @@ const AuthorProfileHead = ({ nickname, profile }) => {
       pt="10px"
     >
       <Box>
-        <Popover sOpen={isOpen} onClose={handleToggle}>
+        <Popover isOpen={isOpen} onClose={handleToggle}>
           <PopoverTrigger>
             <Avatar
               w="120px"

@@ -1,8 +1,15 @@
+import type { ReactNode } from 'react';
 import React from 'react';
-import { Header } from './Header';
-import { Footer } from './Footer';
 
-const MainLayout = ({ children }) => {
+// eslint-disable-next-line import/no-unresolved
+import { Footer } from './Footer';
+import { Header } from './Header';
+
+interface MainLayoutProps {
+  children: ReactNode;
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <>
       <Header />

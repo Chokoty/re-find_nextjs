@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-
 import {
   Accordion,
-  AccordionItem,
   AccordionButton,
-  AccordionPanel,
   AccordionIcon,
-  Text,
+  AccordionItem,
+  AccordionPanel,
   Box,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { lightMode, darkMode } from '@/styles/theme';
+import React from 'react';
 
-import KiddingFanart from './KiddingFanart';
+import { darkMode, lightMode } from '@/styles/theme';
+
 import IsegyeFestivalFanart from './IsegyeFestivalFanart';
+import KiddingFanart from './KiddingFanart';
 
 const EventFanarts = ({ initialFanart }) => {
   const highlightColor = useColorModeValue(

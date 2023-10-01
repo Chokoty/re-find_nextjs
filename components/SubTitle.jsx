@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
+// import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
 
-import { Heading, useColorModeValue } from '@chakra-ui/react';
-import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react';
-
-import { lightMode, darkMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const data = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
 const SubTitle = () => {

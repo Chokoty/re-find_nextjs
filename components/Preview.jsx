@@ -1,5 +1,5 @@
-import React from 'react';
 import Image from 'next/image';
+import React from 'react';
 
 const Preview = ({ files }) => {
   const file = files[0];

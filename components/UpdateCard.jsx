@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import NextImage from 'next/image';
-
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
   Card,
   CardBody,
-  Heading,
-  Text,
-  Link,
   Flex,
+  Heading,
+  Link,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import NextImage from 'next/image';
+import React, { useEffect, useState } from 'react';
 
-import { lightMode, darkMode } from '@/styles/theme';
-import boardData from '../data/board.ts';
-import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
-import { useResponsiveLink } from '../hook/useResponsiveLink';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { darkMode, lightMode } from '@/styles/theme';
+
+import boardData from '../data/board.ts';
+import { useResponsiveLink } from '../hook/useResponsiveLink';
+import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
 
 const UpdateCard = ({ update }) => {
   const highlightColor = useColorModeValue(

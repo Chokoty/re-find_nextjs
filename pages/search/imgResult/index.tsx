@@ -1,10 +1,8 @@
+// import { Box, Button, Image, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
-import { Text, Box, Button, Image } from '@chakra-ui/react';
 
-import { useColorModeValue } from '@chakra-ui/react';
-import { BsChatDots } from 'react-icons/bs';
-
-import { lightMode, darkMode } from '@/styles/theme';
+// import { BsChatDots } from 'react-icons/bs';
+// import { darkMode, lightMode } from '@/styles/theme';
 import OtherLayout from '../../../components/layout/other-layout';
 import { useStore } from '../../../store/store';
 // import AuthorProfileCard from "./AuthorProfileCard";
@@ -12,7 +10,7 @@ import { useStore } from '../../../store/store';
 const Result = () => {
   const setIsOpen = useStore((state) => state.setIsOpen);
 
-  const color = useColorModeValue(lightMode.color, darkMode.color);
+  // const color = useColorModeValue(lightMode.color, darkMode.color);
 
   useEffect(() => {
     setIsOpen(false);

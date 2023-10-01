@@ -1,21 +1,22 @@
-import React from 'react';
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  Stack,
   Checkbox,
-  Text,
-  InputGroup,
   Input,
+  InputGroup,
   InputLeftElement,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  Stack,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { lightMode, darkMode } from '@/styles/theme';
+import React from 'react';
 import { FaSearch } from 'react-icons/fa';
+
+import { darkMode, lightMode } from '@/styles/theme';
 
 const SearchModal = ({ isOpen, onClose }) => {
   const handleKeyPress = (e) => {
@@ -57,7 +58,7 @@ const SearchModal = ({ isOpen, onClose }) => {
                   marginTop: '0.3rem',
                   width: '1.2rem',
                   height: '1.2rem',
-                  color: color,
+                  color,
                 }}
               />
             </InputLeftElement>

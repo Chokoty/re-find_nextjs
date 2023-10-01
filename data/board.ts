@@ -10,7 +10,7 @@ const data: Board[] = [
     id: '344',
     // mlink: 'https://m.cafe.naver.com/ca-fe/web/cafes/27842958/menus/344',
     // link: 'https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=344%26search.boardtype=I',
-    //https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=344%26search.boardtype=I
+    // https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=344%26search.boardtype=I
   },
   {
     board: '통합 BEST 팬아트',

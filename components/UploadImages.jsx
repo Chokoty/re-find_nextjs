@@ -41,14 +41,14 @@ const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
         )
       );
 
-      const hashes = [];
       // 업로드한 각 이미지에 대한 해시 생성
+      const hashes = [];
       for (const file of acceptedFiles) {
         const hash = await generateHashForImage(file);
         hashes.push(hash.toString());
       }
       // 생성된 해시 배열을 부모 컴포넌트로 전송
-      getHashFromChild(hashes);
+      getHashFromChild(hashes); 
     },
   });
 

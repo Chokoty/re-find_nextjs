@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
 import { links } from '../data/links';
 
 export const useResponsiveLink = (
@@ -32,11 +33,13 @@ export const useResponsiveLink = (
   if (type === 'article') {
     if (id === '') return isMobile ? links.mobile.article : links.pc.article;
     return isMobile ? links.mobile.article + id : links.pc.article + id;
-  } else if (type === 'menu') {
+  }
+  if (type === 'menu') {
     return isMobile
       ? links.mobile.menu + id
-      : links.pc.menu + id + '%26search.boardtype=I';
-  } else if (type === 'member') {
+      : `${links.pc.menu + id}%26search.boardtype=I`;
+  }
+  if (type === 'member') {
     return isMobile ? links.mobile.member + id : links.pc.member + id;
   }
 };

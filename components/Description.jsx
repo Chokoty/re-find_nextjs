@@ -1,23 +1,22 @@
-import React from 'react';
-import NextLink from 'next/link';
-
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
   Accordion,
-  AccordionItem,
   AccordionButton,
-  AccordionPanel,
   AccordionIcon,
-  Text,
+  AccordionItem,
+  AccordionPanel,
   Box,
   Link,
+  ListItem,
+  Text,
+  UnorderedList,
   useColorMode,
   useColorModeValue,
-  UnorderedList,
-  ListItem,
 } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import NextLink from 'next/link';
+import React from 'react';
 
-import { lightMode, darkMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const Description = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -59,7 +58,7 @@ const Description = () => {
             border="2px"
             borderColor={highlightColor}
             style={{
-              color: color,
+              color,
             }}
           >
             <Text fontWeight="bold">

@@ -1,14 +1,12 @@
-import React, { useEffect } from 'react';
-import OtherLayout from '../../components/layout/other-layout';
-import AuthorProfileCard from '../../components/AuthorProfileCard';
-
-import { Heading, Link } from '@chakra-ui/react';
-import { useColorModeValue } from '@chakra-ui/react';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Heading, Link, useColorModeValue } from '@chakra-ui/react';
+import React, { useEffect } from 'react';
 
-import { lightMode, darkMode } from '@/styles/theme';
-import developers from '../../data/developers';
-import { useStore } from '../../store/store';
+import AuthorProfileCard from '@/components/AuthorProfileCard';
+import OtherLayout from '@/components/layout/other-layout';
+import developers from '@/data/developers';
+import { useStore } from '@/store/store';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const About = () => {
   const setIsOpen = useStore((state) => state.setIsOpen);

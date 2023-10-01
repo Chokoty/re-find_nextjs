@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import NextImage from 'next/image';
-import axios from 'axios';
 import {
-  Text,
-  Link,
-  Button,
-  Skeleton,
-  Flex,
   Box,
-  useColorModeValue,
+  Button,
+  Flex,
+  Link,
+  Skeleton,
+  Text,
   useBreakpointValue,
-  Card,
+  useColorModeValue,
 } from '@chakra-ui/react';
+import axios from 'axios';
+import NextImage from 'next/image';
+import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
-import { IoSettingsSharp } from 'react-icons/io5';
-import { lightMode, darkMode } from '@/styles/theme';
-import { useResponsiveLink } from '../../hook/useResponsiveLink';
+
+// import { IoSettingsSharp } from 'react-icons/io5';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { darkMode, lightMode } from '@/styles/theme';
+
+import { useResponsiveLink } from '../../hook/useResponsiveLink';
 
 const KiddingFanart = ({ initialFanart }) => {
   const [fanart, setFanart] = useState(null);
@@ -24,7 +25,7 @@ const KiddingFanart = ({ initialFanart }) => {
   const [isvisible, setIsvisible] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
 
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+  // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
 
   const article_link = useResponsiveLink(
@@ -34,9 +35,9 @@ const KiddingFanart = ({ initialFanart }) => {
 
   const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
 
-  const toggleFocus = () => {
-    setIsFocused(!isFocused);
-  };
+  // const toggleFocus = () => {
+  //   setIsFocused(!isFocused);
+  // };
 
   useEffect(() => {
     if (initialFanart == null) fetchRandomFanart();
@@ -52,7 +53,7 @@ const KiddingFanart = ({ initialFanart }) => {
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
-      } else if (error.code == 'ERR_NETWORK') {
+      } else if (error.code === 'ERR_NETWORK') {
         console.log('Network Error: ', error.code);
       } else {
         console.log(error);
@@ -61,7 +62,13 @@ const KiddingFanart = ({ initialFanart }) => {
   };
 
   const handleLoad = async () => {
-    await new Promise((r) => setTimeout(r, 1000));
+    // await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        setIsLoading(false);
+        resolve();
+      }, 1000);
+    });
     setIsLoading(false);
   };
 
@@ -183,7 +190,7 @@ const KiddingFanart = ({ initialFanart }) => {
                         height={475}
                         src={modifiedUrl300}
                         // src={fanart?.img_url}
-                        alt={'랜덤 팬아트 게시글 id: ' + fanart?.id}
+                        alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
                         onLoad={handleLoad}
                       />
                       <Box

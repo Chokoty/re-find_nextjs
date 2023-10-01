@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { Box, Link, Text, useBreakpointValue } from '@chakra-ui/react';
 import NextImage from 'next/image';
-import { Text, Box, Link, useBreakpointValue } from '@chakra-ui/react';
-
+import React, { useState } from 'react';
 import Masonry from 'react-masonry-css';
+
 import { useResponsiveLink } from '../hook/useResponsiveLink';
 import MasonryCard from './MasonryCard';
 

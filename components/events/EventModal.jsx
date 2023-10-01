@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
-import Link from 'next/link';
-
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
   Divider,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalOverlay,
   Text,
+  useDisclosure,
 } from '@chakra-ui/react';
-import { useDisclosure } from '@chakra-ui/react';
-
-import useWindowSize from 'react-use/lib/useWindowSize';
+import Link from 'next/link';
+import React, { useState } from 'react';
+// import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
 
 const EventModal = () => {
