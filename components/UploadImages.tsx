@@ -1,10 +1,17 @@
-import React, { useCallback, useState } from 'react';
-
 import { useColorModeValue } from '@chakra-ui/react';
-import { DifferenceHashBuilder, Hash } from 'browser-image-hash';
+import dynamic from 'next/dynamic';
+import React, { useCallback, useState } from 'react';
+// import { DifferenceHashBuilder, Hash } from 'browser-image-hash';
 import { useDropzone } from 'react-dropzone';
 import { SlCloudUpload } from 'react-icons/sl';
-import { lightMode, darkMode } from '@/styles/theme';
+
+import { useImageHash } from '@/hook/useImageHash';
+import { darkMode, lightMode } from '@/styles/theme';
+
+// const DynamicImageHash = dynamic(() => import('@/components/ImageHash'), {
+//   ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
+//   loading: () => <p>Loading...</p>,
+// });
 
 const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
   const [uploadedImages, setUploadedImages] = useState([]);
@@ -14,27 +21,16 @@ const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
     const images = files.filter((file) => file.type.startsWith('image/')); // files 배열에서 type이 image인 것만 필터링합니다.
     console.log(images);
   }, []);
-
-  // 이미지 해시 생성
-  async function generateHashForImage(imageFile) {
-    console.log('generateHashForImage');
-    const builder = new DifferenceHashBuilder();
-    const objectURL = URL.createObjectURL(imageFile);
-    const imageHash = await builder.build(new URL(objectURL));
-    console.log('Generated Hash:', imageHash.toString());
-    URL.revokeObjectURL(objectURL); // 오브젝트 URL 해제
-    return imageHash;
-  }
-
+  const { generateHashForImage } = useImageHash();
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
       'image/*': [],
       // maxSize: 1048576, // 1MB
     },
-    onDrop: async (acceptedFiles) => {
-      // console.log(acceptedFiles);
+    onDrop: async (droppedFiles) => {
+      // console.log(droppedFiles);
       getDataFromChild(
-        acceptedFiles.map((file) =>
+        droppedFiles.map((file) =>
           Object.assign(file, {
             preview: URL.createObjectURL(file),
           })
@@ -42,13 +38,19 @@ const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
       );
 
       // 업로드한 각 이미지에 대한 해시 생성
-      const hashes = [];
-      for (const file of acceptedFiles) {
-        const hash = await generateHashForImage(file);
-        hashes.push(hash.toString());
-      }
+      // const hashes = [];
+      // for (const file of acceptedFiles) {
+      //   const hash = await generateHashForImage(file);
+      //   hashes.push(hash.toString());
+      // }
+      const hashes = await Promise.all(
+        droppedFiles.map(async (file) => {
+          const hash = await generateHashForImage(file);
+          return hash.toString();
+        })
+      );
       // 생성된 해시 배열을 부모 컴포넌트로 전송
-      getHashFromChild(hashes); 
+      getHashFromChild(hashes);
     },
   });
 
@@ -63,6 +65,7 @@ const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
         highlightColor === '#01bda1' ? 'light' : 'dark'
       }`}
     >
+      {/* <DynamicImageHash /> */}
       <div
         {...getRootProps({
           className: 'dropzone',

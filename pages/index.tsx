@@ -34,7 +34,7 @@ interface HomeProps {
 
 const DynamicUploadImages = dynamic(() => import('@/components/UploadImages'), {
   ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
-  loading: () => <p>Loading...</p>,
+  loading: () => <p></p>,
 });
 
 export default function Home({ last_update_info }: HomeProps) {
@@ -143,10 +143,13 @@ export default function Home({ last_update_info }: HomeProps) {
       if (!hasSearchResult) {
         // 재검색 방지
         const startTime = new Date().getTime(); // 시작시간 기록
-        const response = await axios.post(
-          'https://re-find.reruru.com/receive',
-          body
+        const response = await axios.get(
+          `https://re-find.reruru.com/receive${hash[0]}`
         );
+        // const response = await axios.post(
+        //   'https://re-find.reruru.com/receive',
+        //   body
+        // );
         const endTime = new Date().getTime(); // 종료시간 기록
         console.log(`Image search time: ${endTime - startTime}ms`); // 차이값 출력
         const diffTime = endTime - startTime; // ms
@@ -242,6 +245,7 @@ export default function Home({ last_update_info }: HomeProps) {
   };
   const getHashFromChild = (childHashData) => {
     setHash(childHashData);
+    console.log(hash);
   };
 
   // files 을 [] 로 초기화
