@@ -1,4 +1,4 @@
-import { useColorModeValue } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import React, { useCallback, useState } from 'react';
 // import { DifferenceHashBuilder, Hash } from 'browser-image-hash';
@@ -60,7 +60,7 @@ const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
   );
 
   return (
-    <div
+    <Box
       className={`uploader ${isDragActive ? 'active' : ''} ${
         highlightColor === '#01bda1' ? 'light' : 'dark'
       }`}
@@ -92,7 +92,7 @@ const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
           )}
         </div>
       </div>
-    </div>
+    </Box>
   );
 };
 

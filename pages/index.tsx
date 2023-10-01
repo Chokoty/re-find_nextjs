@@ -120,18 +120,25 @@ export default function Home({ last_update_info }: HomeProps) {
   }, [data, searchTime]);
 
   // 이미지 검색 상태 토스트
+  // useEffect(() => {
+  //   // if (uploadedfiles.length > 0 && counter === null) {
+  //   //     toast({
+  //   //         title: `현재 이미지 검색을 이용할 수 없습니다.`,
+  //   //         status: `error`,
+  //   //         isClosable: true,
+  //   //     });
+  //   // }
+  //   if (uploadedfiles.length > 0) {
+  //     fetchOriginalUrl();
+  //   }
+  // }, [uploadedfiles]);
+
   useEffect(() => {
-    // if (uploadedfiles.length > 0 && counter === null) {
-    //     toast({
-    //         title: `현재 이미지 검색을 이용할 수 없습니다.`,
-    //         status: `error`,
-    //         isClosable: true,
-    //     });
-    // }
-    if (uploadedfiles.length > 0) {
+    if (hash) {
+      console.log(hash);
       fetchOriginalUrl();
     }
-  }, [uploadedfiles]);
+  }, [hash]);
 
   // 이미지 검색하기
   const fetchOriginalUrl = async () => {
