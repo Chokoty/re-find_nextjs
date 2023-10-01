@@ -19,7 +19,7 @@ const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
   // 이미지 파일만 받기
   const acceptedFiles = useCallback((files) => {
     const images = files.filter((file) => file.type.startsWith('image/')); // files 배열에서 type이 image인 것만 필터링합니다.
-    console.log(images);
+    // console.log(images);
   }, []);
   const { generateHashForImage } = useImageHash();
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
