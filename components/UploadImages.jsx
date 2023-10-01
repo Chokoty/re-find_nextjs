@@ -1,24 +1,37 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { useColorModeValue } from '@chakra-ui/react';
-import { SlCloudUpload } from 'react-icons/sl';
+import { DifferenceHashBuilder, Hash } from 'browser-image-hash';
 import { useDropzone } from 'react-dropzone';
-
+import { SlCloudUpload } from 'react-icons/sl';
 import { lightMode, darkMode } from '@/styles/theme';
 
-const UploadImages = ({ getDataFromChild }) => {
+const UploadImages = ({ getDataFromChild, getHashFromChild }) => {
+  const [uploadedImages, setUploadedImages] = useState([]);
+
+  // 이미지 파일만 받기
   const acceptedFiles = useCallback((files) => {
-    // 이미지 파일만 받기 위해서는 files 배열에서 type이 image인 것만 필터링합니다.
-    const images = files.filter((file) => file.type.startsWith('image/'));
-    // console.log(images);
+    const images = files.filter((file) => file.type.startsWith('image/')); // files 배열에서 type이 image인 것만 필터링합니다.
+    console.log(images);
   }, []);
+
+  // 이미지 해시 생성
+  async function generateHashForImage(imageFile) {
+    console.log('generateHashForImage');
+    const builder = new DifferenceHashBuilder();
+    const objectURL = URL.createObjectURL(imageFile);
+    const imageHash = await builder.build(new URL(objectURL));
+    console.log('Generated Hash:', imageHash.toString());
+    URL.revokeObjectURL(objectURL); // 오브젝트 URL 해제
+    return imageHash;
+  }
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     accept: {
       'image/*': [],
       // maxSize: 1048576, // 1MB
     },
-    onDrop: (acceptedFiles) => {
+    onDrop: async (acceptedFiles) => {
       // console.log(acceptedFiles);
       getDataFromChild(
         acceptedFiles.map((file) =>
@@ -27,6 +40,15 @@ const UploadImages = ({ getDataFromChild }) => {
           })
         )
       );
+
+      const hashes = [];
+      // 업로드한 각 이미지에 대한 해시 생성
+      for (const file of acceptedFiles) {
+        const hash = await generateHashForImage(file);
+        hashes.push(hash.toString());
+      }
+      // 생성된 해시 배열을 부모 컴포넌트로 전송
+      getHashFromChild(hashes);
     },
   });
 
@@ -37,10 +59,9 @@ const UploadImages = ({ getDataFromChild }) => {
 
   return (
     <div
-      className={`uploader ${
-        // 01bda1 - 라이트, ef5a9a - 다크
-        isDragActive ? 'active' : ''
-      } ${highlightColor === '#01bda1' ? 'light' : 'dark'}`}
+      className={`uploader ${isDragActive ? 'active' : ''} ${
+        highlightColor === '#01bda1' ? 'light' : 'dark'
+      }`}
     >
       <div
         {...getRootProps({

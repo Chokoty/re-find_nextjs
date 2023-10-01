@@ -44,6 +44,7 @@ export default function Home({ last_update_info }) {
 
   const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드를 위한 상태
   const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
+  const [hash, setHash] = useState(null); // fetch를 통해 받아온 hash데이터를 저장할 상태
 
   const [ids, setIds] = useState([]); // 게시글 여러 개
   const [hasSearchResult, setHasSearchResult] = useState(false); // 재검색 방지
@@ -223,34 +224,18 @@ export default function Home({ last_update_info }) {
     setIsSearchingAuthor(false); //  검색 완료
   };
 
-  // useEffect(() => {
-  //     if (author === null) return;
-  //     if (author?.title === "카페 멤버에게만 공개된 게시글 입니다.")
-  //         setAuthor({
-  //             profURL: "NULL",
-  //             title: "카페 멤버에게만 공개된 게시글 입니다.",
-  //             writerURL: data.author_profile,
-  //             nickname: data.author_nickname,
-  //         });
-  //     else if (author?.title === "삭제되었거나 없는 게시글입니다.")
-  //         setAuthor({
-  //             profURL: "NULL",
-  //             title: "삭제되었거나 없는 게시글입니다.",
-  //             writerURL: data.author_profile,
-  //             nickname: data.author_nickname,
-  //         });
-  // }, [author]);
-
   // 프로필 테스트용
   const testProfile = () => {
     fetchAuthorProfile('11379038');
-    // fetchAuthorProfile("11379754");
     // fetchAuthorProfile("11251877"); // 0004 로그인 필요 401에러
     // fetchAuthorProfile("10532685"); // 4003 게시글이 존재하지 않습니다 404에러 // 삭제되었거나 없는 게시글입니다.
   };
 
   // 자식 컴포넌트로부터 데이터 받기
   const getDataFromChild = (data) => {
+    setUploadedFiles(data);
+  };
+  const getHashFromChild = (data) => {
     setUploadedFiles(data);
   };
 
@@ -285,7 +270,10 @@ export default function Home({ last_update_info }) {
       {uploadedfiles.length === 0 && (
         <>
           <EventFanarts initialFanart={null} />
-          <UploadImages getDataFromChild={getDataFromChild} />
+          <UploadImages
+            getDataFromChild={getDataFromChild}
+            getHashFromChild={getHashFromChild}
+          />
           <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} />
 
