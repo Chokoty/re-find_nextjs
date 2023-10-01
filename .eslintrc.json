@@ -74,11 +74,11 @@
   "globals": {
     "React": "writable"
   },
-  // "overrides": [
-  //   {
-  //     "files": ["pages/api/*.js"],
-  //     "parser": "@babel/eslint-parser"
-  //   }
-  // ],
+  "overrides": [
+    {
+      "files": ["pages/api/*.js"],
+      "parser": "@babel/eslint-parser"
+    }
+  ],
   "ignorePatterns": ["components/*.jsx"]
 }
