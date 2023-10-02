@@ -32,7 +32,7 @@ interface HomeProps {
   last_update_info: any;
 }
 
-const targetCount = 38351; // 이벤트 타겟 카운트
+const targetCount = 38355; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(() => import('@/components/UploadImages'), {
   ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
   loading: () => <p></p>,
