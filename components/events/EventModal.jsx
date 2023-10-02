@@ -13,7 +13,7 @@ import React, { useState } from 'react';
 // import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
 
-const EventModal = () => {
+const EventModal = ({ targetCount }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalIsOpen, setModalIsOpen] = useState(true);
 
@@ -43,13 +43,14 @@ const EventModal = () => {
                 fontWeight: 'bold',
               }}
             >
-              리파인드 누적검색량 2만돌파 기념 깜짝 이벤트
+              리파인드 누적검색량 {targetCount}만 돌파 기념 깜짝 이벤트
             </div>
             {/* <ModalCloseButton /> */}
             <ModalBody>
               <Text>축하드립니다!</Text>
               <Text>
-                팬아트 검색을 이용하신 2만 번째 이파리로 당첨되셨습니다!!!
+                팬아트 검색을 이용하신 {targetCount}만 번째 이파리로
+                당첨되셨습니다!!!
               </Text>
               <Divider orientation="horizontal" m="2" />
               <Text color="#ef5a9a">

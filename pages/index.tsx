@@ -14,7 +14,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import Counter from '@/components/Counter';
 import EventFanarts from '@/components/events/EventFanarts';
-// import EventModal from "../components/events/EventModal";
+import EventModal from '@/components/events/EventModal';
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
 import Loading from '@/components/Loading';
 import Preview from '@/components/Preview';
@@ -32,6 +32,7 @@ interface HomeProps {
   last_update_info: any;
 }
 
+const targetCount = 38351; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(() => import('@/components/UploadImages'), {
   ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
   loading: () => <p></p>,
@@ -42,9 +43,6 @@ export default function Home({ last_update_info }: HomeProps) {
   const targetRef = useRef(null);
   const toast = useToast();
   const { onToggle } = useDisclosure();
-
-  // temp
-  // const [congrat, setCongrat] = useState(false);
 
   const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드를 위한 상태
   const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
@@ -58,6 +56,9 @@ export default function Home({ last_update_info }: HomeProps) {
   const [author, setAuthor] = useState(null);
   const [author2, setAuthor2] = useState(null);
   const [searchTime, setSearchTime] = useState(0);
+
+  // event
+  const [congrat, setCongrat] = useState(false);
 
   // Theme
   // const { colorMode, toggleColorMode } = useColorMode();
@@ -162,14 +163,14 @@ export default function Home({ last_update_info }: HomeProps) {
         const diffTime = endTime - startTime; // ms
         setSearchTime(diffTime); // 차이값 저장
 
-        // console.log(response.data); // >>>테스트용
+        console.log(response.data); // >>>테스트용
 
         setAuthor2(response.data.author);
         setData(response.data);
         setIds(response.data.ids.slice(0, 15)); // 검색결과 10~15개 제한
         // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
 
-        // if (response.data.total_counter == 20000) setCongrat(true); // 20000번째 검색시 축하메시지
+        if (response.data.total_counter === targetCount) setCongrat(true); // 20000번째 검색시 축하메시지
       }
       setIsSearchingData(false); //  검색 완료
       setHasSearchResult(true); // 재검색을 방지
@@ -230,7 +231,7 @@ export default function Home({ last_update_info }: HomeProps) {
       <br />
 
       {/* 이벤트 */}
-      {/* {congrat && <EventModal />} */}
+      {congrat && <EventModal targetCount={targetCount} />}
       {/* <MelonVoteModal /> */}
 
       {/* 업로드 전 */}
