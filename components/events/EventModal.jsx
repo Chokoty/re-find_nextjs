@@ -17,6 +17,9 @@ const EventModal = ({ targetCount }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalIsOpen, setModalIsOpen] = useState(true);
 
+  const targetCountText = targetCount.toString().slice(0, 1);
+  console.log(targetCountText);
+
   const handleCloseModal = () => {
     setModalIsOpen(false);
     onClose();
@@ -43,13 +46,13 @@ const EventModal = ({ targetCount }) => {
                 fontWeight: 'bold',
               }}
             >
-              리파인드 누적검색량 {targetCount}만 돌파 기념 깜짝 이벤트
+              리파인드 누적검색량 {targetCountText}만 돌파 기념 깜짝 이벤트
             </div>
             {/* <ModalCloseButton /> */}
             <ModalBody>
               <Text>축하드립니다!</Text>
               <Text>
-                팬아트 검색을 이용하신 {targetCount}만 번째 이파리로
+                팬아트 검색을 이용하신 {targetCountText}만 번째 이파리로
                 당첨되셨습니다!!!
               </Text>
               <Divider orientation="horizontal" m="2" />
@@ -68,7 +71,9 @@ const EventModal = ({ targetCount }) => {
               </Text>
               <br />
               드래그해서 보기:{' '}
-              <span className="hidden-text">이세돌 3집 화이팅!!!</span>
+              <span className="hidden-text">
+                이세계아이돌의 이야기는 이제 시작입니다.
+              </span>
               <br />
               <br />
               메일 rerurureruru@gmail.com 또는 <br />
