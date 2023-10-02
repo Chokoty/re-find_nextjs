@@ -182,7 +182,7 @@ export default function Home({ last_update_info }: HomeProps) {
       return;
     }
 
-    if (data.total_counter === targetCount) {
+    if (data?.total_counter === targetCount) {
       setCongrat(true); // targetCount 번째 검색 시 축하메시지
       console.log('축하합니다!');
     }
