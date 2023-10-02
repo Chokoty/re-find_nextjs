@@ -150,13 +150,13 @@ export default function Home({ last_update_info }: HomeProps) {
       if (!hasSearchResult) {
         // 재검색 방지
         const startTime = new Date().getTime(); // 시작시간 기록
-        // const response = await axios.get(
-        //   `https://re-find.reruru.com/receive?dhash=${hash[0]}`
-        // );
-        const response = await axios.post(
-          'https://re-find.reruru.com/receive',
-          body
+        const response = await axios.get(
+          `https://re-find.reruru.com/receive?dhash=${hash[0]}`
         );
+        // const response = await axios.post(
+        //   'https://re-find.reruru.com/receive',
+        //   body
+        // );
         const endTime = new Date().getTime(); // 종료시간 기록
         console.log(`Image search time: ${endTime - startTime}ms`); // 차이값 출력
         const diffTime = endTime - startTime; // ms
@@ -196,55 +196,6 @@ export default function Home({ last_update_info }: HomeProps) {
       setHasSearchResult(true); // 재검색을 방지
     }
   };
-
-  // 작가 프로필 가져오기 - 자체 api
-  // const fetchAuthorProfile = async (postId) => {
-  //   try {
-  //     setIsSearchingAuthor(true); // 검색중
-  //     const startTime = new Date().getTime(); // 시작시간 기록
-  //     const response = await axios.get('/api/getAuthorProfile', {
-  //       params: {
-  //         postId,
-  //       },
-  //     });
-  //     const endTime = new Date().getTime(); // 종료시간 기록
-  //     const diffTime = endTime - startTime; // ms
-  //     console.log(`Profile search time: ${diffTime}ms`); // 차이값 출력
-  //     const authorData = response.data;
-  //     setAuthor(authorData);
-  //   } catch (error) {
-  //     if (error.response && error.response.status === 401) {
-  //       // 401 Unauthorized 에러 처리
-  //       console.log('Unauthorized');
-  //       const privateData = {
-  //         profURL: 'NULL',
-  //         title: '카페 멤버에게만 공개된 게시글 입니다.',
-  //       };
-  //       setAuthor(privateData);
-  //     } else if (error.response && error.response.status === 404) {
-  //       // 404 Not Found 에러 처리
-  //       console.log('Not Found');
-  //       const DeletedData = {
-  //         // 삭제된 게시글 작성자 정보는 보여줄 수 있음
-  //         profURL: 'NULL',
-  //         title: '삭제되었거나 없는 게시글입니다.',
-  //         // writerURL: data.author_profile,
-  //         // nickname: data.author_nickname,
-  //       };
-  //       setAuthor(DeletedData);
-  //     } else {
-  //       console.error(error);
-  //     }
-  //   }
-  //   setIsSearchingAuthor(false); //  검색 완료
-  // };
-
-  // 프로필 테스트용
-  // const testProfile = () => {
-  //   fetchAuthorProfile('11379038');
-  //   // fetchAuthorProfile("11251877"); // 0004 로그인 필요 401에러
-  //   // fetchAuthorProfile("10532685"); // 4003 게시글이 존재하지 않습니다 404에러 // 삭제되었거나 없는 게시글입니다.
-  // };
 
   // 자식 컴포넌트로부터 데이터 받기
   const getDataFromChild = (childData) => {
