@@ -59,7 +59,7 @@ export default function Home({ last_update_info }: HomeProps) {
 
   // event
   const [congrat, setCongrat] = useState(false);
-
+  const [isInitialRender, setIsInitialRender] = useState(true);
   // Theme
   // const { colorMode, toggleColorMode } = useColorMode();
   // const isDark = colorMode === 'dark';
@@ -177,6 +177,10 @@ export default function Home({ last_update_info }: HomeProps) {
   };
 
   useEffect(() => {
+    if (isInitialRender) {
+      setIsInitialRender(false);
+      return;
+    }
     setCongrat(true); // 20000번째 검색시 축하메시지
     console.log('축하합니다!');
     // if (data.total_counter === targetCount) {
