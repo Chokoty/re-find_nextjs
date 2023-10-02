@@ -161,6 +161,13 @@ const updateLog: UpdateLog[] = [
     content:
       '리파인드 작은 업데이트 - 이미지 검색속도를 대폭 개선했습니다. 이제 더 빠른 검색이 가능합니다.킹아.',
   },
+  {
+    id: 26,
+    date: '2023.10.03',
+    content:
+      '리파인드 속도가 3배 넘게 빨라졌습니다! (점검 및 업데이트 완료 안내)',
+    directLink: 'https://cafe.naver.com/steamindiegame/13179793',
+  },
 ];
 
 export default updateLog;
