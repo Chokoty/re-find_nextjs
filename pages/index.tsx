@@ -32,7 +32,7 @@ interface HomeProps {
   last_update_info: any;
 }
 
-const targetCount = 38650; // 이벤트 타겟 카운트
+const targetCount = 38655; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(() => import('@/components/UploadImages'), {
   ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
   loading: () => <p></p>,
@@ -145,10 +145,13 @@ export default function Home({ last_update_info }: HomeProps) {
         setIds(response.data.ids.slice(0, 15)); // 검색결과 10~15개 제한
         // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
 
-        // if (response.data.total_counter === targetCount) {
-        //   setCongrat(true); // 20000번째 검색시 축하메시지
-        //   console.log('축하합니다!');
-        // }
+        if (
+          response.data.total_counter === targetCount ||
+          response.data.total_counter === targetCount + 1
+        ) {
+          setCongrat(true); // 20000번째 검색시 축하메시지
+          console.log('축하합니다!');
+        }
       }
       setIsSearchingData(false); //  검색 완료
       setHasSearchResult(true); // 재검색을 방지
@@ -176,20 +179,20 @@ export default function Home({ last_update_info }: HomeProps) {
     }
   };
 
-  useEffect(() => {
-    if (isInitialRender) {
-      setIsInitialRender(false);
-      return;
-    }
+  // useEffect(() => {
+  //   if (isInitialRender) {
+  //     setIsInitialRender(false);
+  //     return;
+  //   }
 
-    if (
-      data?.total_counter === targetCount ||
-      data?.total_counter === targetCount + 1
-    ) {
-      setCongrat(true); // targetCount 번째 검색 시 축하메시지
-      console.log('축하합니다!');
-    }
-  }, [data]);
+  //   if (
+  //     data?.total_counter === targetCount ||
+  //     data?.total_counter === targetCount + 1
+  //   ) {
+  //     setCongrat(true); // targetCount 번째 검색 시 축하메시지
+  //     console.log('축하합니다!');
+  //   }
+  // }, [data]);
 
   // 자식 컴포넌트로부터 데이터 받기
   const getDataFromChild = (childData) => {
