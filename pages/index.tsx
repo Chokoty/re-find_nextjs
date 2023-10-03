@@ -84,7 +84,7 @@ export default function Home({ last_update_info }: HomeProps) {
 
   // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
   useEffect(() => {
-    // console.log(last_update_info);
+    console.log(last_update_info);
     setIsOpen(false);
     // fetchCounter();
     // testProfile();
@@ -182,7 +182,10 @@ export default function Home({ last_update_info }: HomeProps) {
       return;
     }
 
-    if (data?.total_counter === targetCount) {
+    if (
+      data?.total_counter === targetCount ||
+      data?.total_counter === targetCount + 1
+    ) {
       setCongrat(true); // targetCount 번째 검색 시 축하메시지
       console.log('축하합니다!');
     }
