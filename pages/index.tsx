@@ -138,7 +138,7 @@ export default function Home({ last_update_info }: HomeProps) {
         const diffTime = endTime - startTime; // ms
         setSearchTime(diffTime); // 차이값 저장
 
-        console.log(response.data); // >>>테스트용
+        // console.log(response.data); // >>>테스트용
 
         setAuthor2(response.data.author);
         setData(response.data);
