@@ -32,7 +32,7 @@ interface HomeProps {
   last_update_info: any;
 }
 
-const targetCount = 38659; // 이벤트 타겟 카운트
+const targetCount = 38660; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(() => import('@/components/UploadImages'), {
   ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
   loading: () => <p></p>,
@@ -186,8 +186,8 @@ export default function Home({ last_update_info }: HomeProps) {
     }
 
     if (
-      response.data.total_counter === targetCount.toString() ||
-      response.data.total_counter === (targetCount + 1).toString()
+      data?.total_counter === targetCount.toString() ||
+      data?.total_counter === (targetCount + 1).toString()
     ) {
       setCongrat(true); // targetCount 번째 검색 시 축하메시지
       console.log('축하합니다!');
