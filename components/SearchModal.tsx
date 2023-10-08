@@ -44,7 +44,7 @@ const SearchModal = ({ isOpen, onClose }) => {
     >
       <ModalOverlay zIndex={150} />
       <ModalContent
-        maxW={['100%', '61%', '66%']}
+        maxW={['100%', '61%', '68%']}
         // maxW={['100%', '66%']}
         mt={0}
         boxShadow="none"
