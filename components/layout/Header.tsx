@@ -2,9 +2,9 @@ import {
   Box,
   Button,
   Flex,
-  // Input,
-  // InputGroup,
-  // InputLeftElement,
+  Input,
+  InputGroup,
+  InputLeftElement,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -12,16 +12,15 @@ import { Sling as Hamburger } from 'hamburger-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
+import { FaSearch } from 'react-icons/fa';
 
 import DarkModeToggle from '@/components/DarkModeToggle';
 import MyDrawer from '@/components/MyDrawer';
 import SearchModal from '@/components/SearchModal';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
+// import { useThemeStore } from '@/store/themeStore';
 import { darkMode, lightMode } from '@/styles/theme';
-
-// import { FaSearch } from 'react-icons/fa';
-// import { useThemeStore } from '../../store/themeStore';
 // import NoticeBanner from '../NoticeBanner';
 // import Title from '../Title';
 
@@ -32,13 +31,13 @@ export const Header = () => {
     state.isOpen,
     state.setIsOpen,
   ]);
-  const { isOpen, onClose } = useDisclosure();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const myDrawerRef = useRef(null);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-  // const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
+  const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
   const boxShadowLight =
     '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
@@ -106,31 +105,35 @@ export const Header = () => {
           alignItems: 'center',
         }}
       >
-        <Button
-          w="3rem"
-          h="3rem"
-          p="0.5rem"
-          variant="ghost"
-          borderRadius="50%"
-          flexShrink={0}
-        >
-          <Link href="/">
-            <Image
-              alt="logo"
-              width={40}
-              height={40}
-              src="/android-chrome-512x512.png"
-              // unoptimizedㅎ
-            />
-          </Link>
-        </Button>
+        <Flex>
+          <Button
+            w="3rem"
+            h="3rem"
+            p="0.5rem"
+            variant="ghost"
+            borderRadius="50%"
+            flexShrink={0}
+          >
+            <Link href="/">
+              <Image
+                alt="logo"
+                width={40}
+                height={40}
+                src="/android-chrome-512x512.png"
+                // unoptimizedㅎ
+              />
+            </Link>
+          </Button>
+          <Box w="3rem" h="3rem"></Box>
+        </Flex>
+
         {/* <Button w="3rem" h="3rem" p="0.5rem" variant="ghost">
           <Link href="/">
             <Title onTitleClick={null} />
           </Link>
         </Button> */}
         {/* 검색기능 잠정 보류 */}
-        {/* <Box display="flex" justifyContent="center" m="0 1rem" w="70%">
+        <Box display="flex" justifyContent="center" m="0 1rem" w="70%">
           <InputGroup m="0 1rem">
             <InputLeftElement
               pointerEvents="none"
@@ -144,7 +147,7 @@ export const Header = () => {
                   marginTop: '0.3rem',
                   width: '1.2rem',
                   height: '1.2rem',
-                  color: color,
+                  color,
                 }}
               />
             </InputLeftElement>
@@ -161,7 +164,7 @@ export const Header = () => {
               // }}
             />
           </InputGroup>
-        </Box> */}
+        </Box>
         <Flex>
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer

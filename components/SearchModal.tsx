@@ -42,9 +42,21 @@ const SearchModal = ({ isOpen, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
     >
-      <ModalOverlay />
-      <ModalContent maxW={['100%', '70%']}>
-        <ModalHeader display="flex" justifyContent="center" alignItems="center">
+      <ModalOverlay zIndex={150} />
+      <ModalContent
+        maxW={['100%', '61%', '66%']}
+        // maxW={['100%', '66%']}
+        mt={0}
+        boxShadow="none"
+        borderRadius="0.5rem"
+      >
+        <ModalHeader
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          pl={0}
+          pr={0}
+        >
           <InputGroup m="0">
             <InputLeftElement
               pointerEvents="none"
