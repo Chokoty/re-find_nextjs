@@ -133,7 +133,8 @@ export const Header = () => {
           </Link>
         </Button> */}
         {/* 검색기능 잠정 보류 */}
-        <Box display="flex" justifyContent="center" m="0 1rem" w="70%">
+        {/*
+          <Box display="flex" justifyContent="center" m="0 1rem" w="70%">
           <InputGroup m="0 1rem">
             <InputLeftElement
               pointerEvents="none"
@@ -165,6 +166,8 @@ export const Header = () => {
             />
           </InputGroup>
         </Box>
+              */}
+
         <Flex>
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer
