@@ -6,6 +6,7 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
+// import { throttle } from 'lodash';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -50,6 +51,7 @@ const Artist = ({
   // infinite scroll
   const { ref, inView } = useInView({
     threshold: 0,
+    rootMargin: '400px 0px', // 상단에서 400px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
   const [init, setInit] = useState(true);
   const [page, setPage] = useState(1);
@@ -69,6 +71,7 @@ const Artist = ({
   const toast = useToast();
 
   // console.log(artist_name2info);
+
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {
     if (menuText === sortType) return;
@@ -88,6 +91,11 @@ const Artist = ({
   const handleShowDeleted = useCallback(() => {
     setIsDeletedVisible((prev) => !prev);
   }, []);
+
+  // const throttledGetArtistArtworks = useCallback(
+  //   throttle(getArtistArtworks, 1000), // 1초 동안 한 번만 요청을 보냅니다.
+  //   [sortType, page, nickname]
+  // );
 
   // 이미지 로딩
   const handleLoading = useCallback((Loading) => {
@@ -170,14 +178,16 @@ const Artist = ({
     // }, 1500);
   }, [sortType, page]);
 
+  // 무한 스크롤
   useEffect(() => {
     // if (init) return;
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView) console.log('inView: ', inView);
     if (inView && !isLastPage) {
+      // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
       setPage((prevState) => prevState + 1);
     }
-  }, [inView, isLastPage]);
+  }, [inView, isLastPage, throttledGetArtistArtworks]);
 
   useEffect(() => {
     if (nickname) {

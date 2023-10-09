@@ -54,8 +54,8 @@ const SearchModal = ({ isOpen, onClose }) => {
           display="flex"
           justifyContent="center"
           alignItems="center"
-          pl={0}
-          pr={0}
+          pl={1}
+          pr={1}
         >
           <InputGroup m="0">
             <InputLeftElement
