@@ -59,7 +59,7 @@ export const lightMode = {
 export const darkMode = {
   bg: '#0F0F0F',
   color: '#E8EAEC',
-  color2: '#18181B', //'#1B1642',
+  color2: '#18181B', // '#1B1642',
   footerColor: '#ced4da9a',
   highlight: '#EF80B1',
   badge: '#FC719F',

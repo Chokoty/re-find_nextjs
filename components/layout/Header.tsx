@@ -133,8 +133,13 @@ export const Header = () => {
           </Link>
         </Button> */}
         {/* 검색기능 잠정 보류 */}
-
-        <Box display="flex" justifyContent="center" m="0 1rem" w="70%">
+        <Box
+          display="flex"
+          justifyContent="center"
+          // m="0 1rem"
+          m="0"
+          w={['80%', '56%', '67%']}
+        >
           <InputGroup m="0 1rem">
             <InputLeftElement
               pointerEvents="none"
