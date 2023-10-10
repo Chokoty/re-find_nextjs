@@ -33,6 +33,8 @@ const SearchModal = ({ isOpen, onClose }) => {
 
   // color
   const color = useColorModeValue(lightMode.color, darkMode.color);
+  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+
   const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
   return (
@@ -44,11 +46,13 @@ const SearchModal = ({ isOpen, onClose }) => {
     >
       <ModalOverlay zIndex={150} />
       <ModalContent
-        maxW={['100%', '61%', '68%']}
+        maxW={['100%', '52%', '67%']}
         // maxW={['100%', '66%']}
         mt={0}
         boxShadow="none"
         borderRadius="0.5rem"
+        background={color2}
+        p="0 0.5rem"
       >
         <ModalHeader
           display="flex"
@@ -57,7 +61,7 @@ const SearchModal = ({ isOpen, onClose }) => {
           pl={1}
           pr={1}
         >
-          <InputGroup m="0">
+          <InputGroup m="0 ">
             <InputLeftElement
               pointerEvents="none"
               display="flex"
