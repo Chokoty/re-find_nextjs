@@ -21,8 +21,6 @@ import SimpleView from '@/components/SimpleView';
 import ViewSelectBar from '@/components/ViewSelectBar';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const data = {};
-
 const profileTest = [
   '바게트빵 옴뇸뇸',
   '징버거',
@@ -187,7 +185,7 @@ const Artist = ({
       // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
       setPage((prevState) => prevState + 1);
     }
-  }, [inView, isLastPage, throttledGetArtistArtworks]);
+  }, [inView, isLastPage]);
 
   useEffect(() => {
     if (nickname) {
