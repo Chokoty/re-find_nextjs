@@ -239,8 +239,7 @@ const RandomFanart = () => {
                         }}
                         pointerEvents="none" // 이 줄을 추가합니다.
                       ></Box>{' '}
-                  {/* <Text>랜덤 팬아트 id: {fanart?.id}</Text>
-                  <Text>작가: {fanart?.nickname}</Text> */}
+                
                 </Link>
               </Box>
               <Box
@@ -256,12 +255,8 @@ const RandomFanart = () => {
                       passHref
                       style={linkDiv}
                     >
-                      <Text color="#1B1642" as="b">
-                        제목: {fanart?.title.slice(0, 20)}
-                      </Text>
-                      <Text color="#1B1642" as="b">
-                        작가: {fanart?.nickname}
-                      </Text>
+                      <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+                      <Text>작가: {fanart?.nickname}</Text>
                     </Box>
                   </Box>
             </>
