@@ -173,6 +173,7 @@ export const Header = () => {
             />
           </InputGroup>
         </Box>
+
         <Flex>
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer

@@ -234,7 +234,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
         )}
         <Flex gap="2">
           <Button
-            className="random-fanart__button-kidding"
+            className="random-fanart-kidding"
             // w="200px"
             backgroundColor="#14532D"
             // backgroundColor="#FE78BB"
