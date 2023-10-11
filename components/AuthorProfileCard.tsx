@@ -104,7 +104,6 @@ const AuthorProfileCard: React.FC<AuthorProfileCardProps> = ({
         </Text>
       </Button>
       {/* </NextLink> */}
-      //{' '}
     </Link>
   );
 };
