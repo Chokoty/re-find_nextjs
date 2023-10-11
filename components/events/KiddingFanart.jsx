@@ -217,8 +217,8 @@ const KiddingFanart = ({ initialFanart }) => {
                     mb="1rem"
                   >
                     <Box
-                      // as="a"
-                      // href={'/artists/' + fanart?.nickname}
+                      as="a"
+                      href={`/artists/${fanart?.nickname}`}
                       passHref
                       style={linkDiv}
                     >

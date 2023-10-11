@@ -195,10 +195,10 @@ const Artist = ({
       // setInit(false); // 초기 렌더링 완료
     }
     // temp
-    if (!profileTest.includes(actualNickname)) {
-      // nickname이 profileTest 배열에 없으면 404 페이지로 리디렉션
-      router.push('/404');
-    }
+    // if (!profileTest.includes(actualNickname)) {
+    //   // nickname이 profileTest 배열에 없으면 404 페이지로 리디렉션
+    //   router.push('/404');
+    // }
   }, [nickname]);
 
   return (
