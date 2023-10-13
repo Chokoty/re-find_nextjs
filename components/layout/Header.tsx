@@ -151,6 +151,7 @@ export const Header = () => {
               <FaSearch
                 style={{
                   marginTop: '0.3rem',
+                  // marginLeft: '0.5rem',
                   width: '1.2rem',
                   height: '1.2rem',
                   color,
@@ -160,7 +161,8 @@ export const Header = () => {
             <Input
               placeholder="검색"
               h="3rem"
-              borderRadius="3rem"
+              pl="3rem"
+              borderRadius="2rem"
               border="none"
               bg={searchBgColor}
               alignItems="center"
@@ -171,6 +173,7 @@ export const Header = () => {
             />
           </InputGroup>
         </Box>
+
         <Flex>
           <DarkModeToggle className="dark-mode-toggle" />
           <MyDrawer

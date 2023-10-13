@@ -198,27 +198,68 @@ const RandomFanart = () => {
       {isvisible && (
         <Skeleton isLoaded={!isLoading}>
           {fanart && (
-            <Link
-              className="link-to-wakzoo"
-              href={article_link}
-              passHref
-              isExternal
-              style={linkDiv}
-              pt="3rem"
-            >
-              <NextImage
-                unoptimized
-                style={img}
-                width={475}
-                height={475}
-                // src={fanart?.img_url}
-                src={modifiedUrl300}
-                alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
-                onLoad={handleLoad}
-              />
-              <Text>랜덤 팬아트 id: {fanart?.id}</Text>
-              <Text>작가: {fanart?.nickname}</Text>
-            </Link>
+            <>
+              <Box
+                  position="relative"
+                  borderRadius="1rem"
+                  overflow="hidden"
+                  w="100%"
+                  pt="3rem"
+                  // mb="1rem"
+              >
+                <Link
+                  className="link-to-akzoo"
+                  href={article_link}
+                  passHref
+                  isExternal
+                  style={linkDiv}
+                  pt="3rem"
+                >
+                  <NextImage
+                    unoptimized
+                    style={img}
+                    width={475}
+                    height={475}
+                    // src={fanart?.img_url}
+                    src={modifiedUrl300}
+                    alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
+                    onLoad={handleLoad}
+                  />
+                  <Box
+                        position="absolute"
+                        top={0}
+                        right={0}
+                        bottom={0}
+                        left={0}
+                        borderRadius="1rem"
+                        zIndex={1}
+                        _hover={{
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          cursor: 'pointer',
+                        }}
+                        pointerEvents="none" // 이 줄을 추가합니다.
+                      ></Box>{' '}
+                
+                </Link>
+              </Box>
+              <Box
+                    display="flex"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    mb="1rem"
+                  >
+                    <Box
+                      as="a"
+                      href={`/artists/${fanart?.nickname}`}
+                      passHref
+                      style={linkDiv}
+                    >
+                      <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+                      <Text>작가: {fanart?.nickname}</Text>
+                    </Box>
+                  </Box>
+            </>
           )}
         </Skeleton>
       )}

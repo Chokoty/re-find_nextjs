@@ -1,19 +1,10 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Link,
-  Text,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Box, Flex, Link, Text, useBreakpointValue } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import React, { useState } from 'react';
-import { HiOutlineExternalLink } from 'react-icons/hi';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-
-import { useResponsiveLink } from '../hook/useResponsiveLink';
-import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 
 const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
   const article_link = useResponsiveLink('', 'article');
@@ -36,7 +27,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
 
   return (
     <Link
-      className="link-to-wakzoo"
+      className="link-to-wakzoo-from-profile"
       key={artwork.id}
       href={
         artwork.url === '' ? '#' : article_link + artwork.url.split('/').pop()

@@ -57,12 +57,6 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
               filter: artwork.deleted ? 'blur(6px)' : 'none', // 블러 처리
             }}
             src={
-              // artwork.deleted
-              //   ? `/api/blurImage?url=${artwork.img_url.replace(
-              //       /\?type=w\d+$/,
-              //       '?type=w300'
-              //     )}`
-              //   : artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
               artwork.img_url === ''
                 ? 'http://via.placeholder.com/236x236'
                 : modifiedUrl300
@@ -82,195 +76,203 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
           background={isFocused ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.0)'}
           onClick={() => onToggleFocus(artwork.id)}
           onMouseEnter={() => onToggleFocus(artwork.id)}
-
-          // _hover={{
-          //   backgroundColor: 'rgba(0, 0, 0, 0.3)', // 검은색의 30% 투명도
-          //   cursor: 'pointer',
-          // }}
         />
         {isFocused && (
-          <Flex
-            flexDir="column"
-            position="absolute"
-            top={0}
-            right={0}
-            bottom={0}
-            left={0}
-            borderRadius="1rem"
-            zIndex={2}
-            background="rgba(0, 0, 0, 0.3)"
-            justifyContent="space-between"
-            alignItems="center"
-            color="white"
-            fontSize="2rem"
-            fontWeight="bold"
-            cursor="pointer"
-            p={['0.5rem ', '1rem 0']}
-            onMouseLeave={() => onToggleFocus(null)}
+          <Link
+            className="link-to-wakzoo-from-profile"
+            href={
+              artwork.url === ''
+                ? '#'
+                : article_link + artwork.url.split('/').pop()
+            }
+            // passHref
+            isExternal
+            // style={{
+            //   position: 'relative',
+            // }}
           >
-            <Text
-              fontSize={['sm', 'xl']}
-              fontWeight="600"
-              whiteSpace="nowrap"
-              overflow="hidden"
-              textOverflow="ellipsis"
-              maxWidth="100%"
-            >
-              {artwork.board}
-            </Text>
-
-            {imageHeight >= 212 && (
-              <>
-                <Flex
-                  flexDir="column"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <Text
-                    fontSize={['sm', 'xl']}
-                    fontWeight="400"
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    maxWidth="100%"
-                    textAlign="center"
-                  >
-                    {nickname}
-                  </Text>
-                  <Text
-                    fontSize={['sm', 'xl']}
-                    fontWeight="400"
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    maxWidth="100%"
-                    textAlign="center"
-                  >
-                    {artwork.date.split(' ')[0].slice(0, -1)}
-                  </Text>
-                </Flex>
-                <Flex
-                  flexDir="row"
-                  justifyContent="center"
-                  alignItems="center"
-                  textAlign="center"
-                  w="90%"
-                >
-                  <Text fontSize={['sm', 'xl']} fontWeight="400">
-                    조회수{' '}
-                    {artwork.view === 0
-                      ? '0'
-                      : artwork.view
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  </Text>
-                  <Text fontSize={['sm', 'xl']} fontWeight="400">
-                    좋아요{' '}
-                    {artwork.like === 0
-                      ? '0'
-                      : artwork.like
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  </Text>
-                  <Text fontSize={['sm', 'xl']} fontWeight="400">
-                    댓글수{' '}
-                    {artwork.comment === 0
-                      ? '0'
-                      : artwork.comment
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                  </Text>
-                </Flex>{' '}
-              </>
-            )}
-            {imageHeight < 212 && (
-              <>
-                {imageHeight > 140 && (
-                  <Text
-                    fontSize={['xs', 'sm']}
-                    fontWeight="400"
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    maxWidth="100%"
-                    textAlign="center"
-                  >
-                    {artwork.date.split(' ')[0].slice(0, -1)}
-                  </Text>
-                )}
-                <Flex
-                  flexDir="row"
-                  justifyContent="center"
-                  alignItems="center"
-                  textAlign="center"
-                  w="90%"
-                >
-                  <Text fontSize={['xs', 'sm']} fontWeight="400">
-                    조{' '}
-                    {artwork.view === 0
-                      ? '0'
-                      : artwork.view
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                    &nbsp;
-                  </Text>
-                  <Text fontSize={['xs', 'sm']} fontWeight="400">
-                    좋{' '}
-                    {artwork.like === 0
-                      ? '0'
-                      : artwork.like
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                    &nbsp;
-                  </Text>
-                  <Text fontSize={['xs', 'sm']} fontWeight="400">
-                    댓{' '}
-                    {artwork.comment === 0
-                      ? '0'
-                      : artwork.comment
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                    &nbsp;
-                  </Text>
-                </Flex>
-              </>
-            )}
             <Flex
-              w="100%"
-              flexDir="row"
-              justifyContent="center"
+              flexDir="column"
+              position="absolute"
+              top={0}
+              right={0}
+              bottom={0}
+              left={0}
+              borderRadius="1rem"
+              zIndex={2}
+              background="rgba(0, 0, 0, 0.3)"
+              justifyContent="space-between"
               alignItems="center"
-              // p="0 1rem"
-              // justifyContent="flex-end"
-              // alignItems="flex-end"
+              color="white"
+              fontSize="2rem"
+              fontWeight="bold"
+              cursor="pointer"
+              p={['0.5rem ', '1rem 0']}
+              onMouseLeave={() => onToggleFocus(null)}
             >
-              <Button
-                as={Link}
-                className="link-to-wakzoo-from-profile"
-                href={
-                  artwork.url === ''
-                    ? '#'
-                    : article_link + artwork.url.split('/').pop()
-                }
-                isExternal
-                _hover={{
-                  textDecoration: 'none',
-                  cursor: 'pointer',
-                  backgroundColor: 'green.400',
-                }}
-                target="_blank"
-                rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-                colorScheme="green"
-                borderRadius="2rem"
-                w="60%"
-                // w={['100px', '150px']}
-                h={['2.5rem', '3rem']}
+              <Text
+                fontSize={['sm', 'xl']}
+                fontWeight="600"
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+                maxWidth="100%"
               >
-                <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
-                <HiOutlineExternalLink />
-              </Button>
+                {artwork.board}
+              </Text>
+              {imageHeight >= 212 && (
+                <>
+                  <Flex
+                    flexDir="column"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Text
+                      fontSize={['sm', 'xl']}
+                      fontWeight="400"
+                      whiteSpace="nowrap"
+                      overflow="hidden"
+                      textOverflow="ellipsis"
+                      maxWidth="100%"
+                      textAlign="center"
+                    >
+                      {nickname}
+                    </Text>
+                    <Text
+                      fontSize={['sm', 'xl']}
+                      fontWeight="400"
+                      whiteSpace="nowrap"
+                      overflow="hidden"
+                      textOverflow="ellipsis"
+                      maxWidth="100%"
+                      textAlign="center"
+                    >
+                      {artwork.date.split(' ')[0].slice(0, -1)}
+                    </Text>
+                  </Flex>
+                  <Flex
+                    flexDir="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                    w="90%"
+                  >
+                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                      조회수{' '}
+                      {artwork.view === 0
+                        ? '0'
+                        : artwork.view
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </Text>
+                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                      좋아요{' '}
+                      {artwork.like === 0
+                        ? '0'
+                        : artwork.like
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </Text>
+                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                      댓글수{' '}
+                      {artwork.comment === 0
+                        ? '0'
+                        : artwork.comment
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                    </Text>
+                  </Flex>{' '}
+                </>
+              )}
+              {imageHeight < 212 && (
+                <>
+                  {imageHeight > 140 && (
+                    <Text
+                      fontSize={['xs', 'sm']}
+                      fontWeight="400"
+                      whiteSpace="nowrap"
+                      overflow="hidden"
+                      textOverflow="ellipsis"
+                      maxWidth="100%"
+                      textAlign="center"
+                    >
+                      {artwork.date.split(' ')[0].slice(0, -1)}
+                    </Text>
+                  )}
+                  <Flex
+                    flexDir="row"
+                    justifyContent="center"
+                    alignItems="center"
+                    textAlign="center"
+                    w="90%"
+                  >
+                    <Text fontSize={['xs', 'sm']} fontWeight="400">
+                      조{' '}
+                      {artwork.view === 0
+                        ? '0'
+                        : artwork.view
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      &nbsp;
+                    </Text>
+                    <Text fontSize={['xs', 'sm']} fontWeight="400">
+                      좋{' '}
+                      {artwork.like === 0
+                        ? '0'
+                        : artwork.like
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      &nbsp;
+                    </Text>
+                    <Text fontSize={['xs', 'sm']} fontWeight="400">
+                      댓{' '}
+                      {artwork.comment === 0
+                        ? '0'
+                        : artwork.comment
+                            .toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
+                      &nbsp;
+                    </Text>
+                  </Flex>
+                </>
+              )}
+              <Flex
+                w="100%"
+                flexDir="row"
+                justifyContent="center"
+                alignItems="center"
+                // p="0 1rem"
+                // justifyContent="flex-end"
+                // alignItems="flex-end"
+              >
+                <Button
+                  as={Link}
+                  className="link_to_wakzoo"
+                  href={
+                    artwork.url === ''
+                      ? '#'
+                      : article_link + artwork.url.split('/').pop()
+                  }
+                  isExternal
+                  _hover={{
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    backgroundColor: 'green.400',
+                  }}
+                  target="_blank"
+                  rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+                  colorScheme="green"
+                  borderRadius="2rem"
+                  w="60%"
+                  // w={['100px', '150px']}
+                  h={['2.5rem', '3rem']}
+                >
+                  <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
+                  <HiOutlineExternalLink />
+                </Button>
+              </Flex>
             </Flex>
-          </Flex>
+          </Link>
         )}
       </Box>
       <Box>

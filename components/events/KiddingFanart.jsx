@@ -237,7 +237,7 @@ const KiddingFanart = ({ initialFanart }) => {
         )}
         <Flex gap="2">
           <Button
-            className="random-fanart__button-kidding"
+            className="random-fanart-kidding"
             // w="200px"
             backgroundColor="#FE78BB"
             _hover={{ bg: '#e94396' }}
