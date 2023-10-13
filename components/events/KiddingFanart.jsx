@@ -24,6 +24,7 @@ const KiddingFanart = ({ initialFanart }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
+  const [isBold, setIsBold] = useState(false);
 
   // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
@@ -39,6 +40,13 @@ const KiddingFanart = ({ initialFanart }) => {
   //   setIsFocused(!isFocused);
   // };
 
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsBold((prevIsBold) => !prevIsBold);
+    }, 1000); // Toggle bold every 1 second
+
+    return () => clearInterval(intervalId); // Clear interval on component unmount
+  }, []);
   useEffect(() => {
     if (initialFanart == null) fetchRandomFanart();
     setFanart(initialFanart);
@@ -222,10 +230,16 @@ const KiddingFanart = ({ initialFanart }) => {
                       passHref
                       style={linkDiv}
                     >
-                      <Text color="#1B1642" as="b">
+                      <Text
+                        color="#1B1642"
+                        fontWeight={isBold ? 'bold' : 'normal'}
+                      >
                         제목: {fanart?.title.slice(0, 20)}
                       </Text>
-                      <Text color="#1B1642" as="b">
+                      <Text
+                        color="#1B1642"
+                        fontWeight={isBold ? 'bold' : 'normal'}
+                      >
                         작가: {fanart?.nickname}
                       </Text>
                     </Box>

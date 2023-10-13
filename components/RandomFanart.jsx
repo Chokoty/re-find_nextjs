@@ -59,12 +59,21 @@ const RandomFanart = () => {
     wak: true,
     gomem: true,
   });
+  const [isBold, setIsBold] = useState(false);
 
   const article_link = useResponsiveLink(fanart?.id, 'article');
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
 
   const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setIsBold(prevIsBold => !prevIsBold);
+    }, 1000);  // Toggle bold every 1 second
+
+    return () => clearInterval(intervalId);  // Clear interval on component unmount
+  }, []);
 
   useEffect(() => {
     // 로컬 스토리지에서 체크박스 값 불러오기
@@ -254,6 +263,7 @@ const RandomFanart = () => {
                       href={`/artists/${fanart?.nickname}`}
                       passHref
                       style={linkDiv}
+                      fontWeight={isBold ? 'bold' : 'normal'}
                     >
                       <Text>랜덤 팬아트 id: {fanart?.id}</Text>
                       <Text>작가: {fanart?.nickname}</Text>

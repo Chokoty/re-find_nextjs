@@ -168,6 +168,13 @@ const updateLog: UpdateLog[] = [
       '리파인드 속도가 3배 넘게 빨라졌습니다! (점검 및 업데이트 완료 안내)',
     directLink: 'https://cafe.naver.com/steamindiegame/13179793',
   },
+  {
+    id: 27,
+    date: '2023.10.13',
+    content:
+      '작가프로필 페이지 베타 오픈(검색창에 작가명을 입력하면 작가프로필 페이지로 이동합니다.)',
+    directLink: '',
+  },
 ];
 
 export default updateLog;
