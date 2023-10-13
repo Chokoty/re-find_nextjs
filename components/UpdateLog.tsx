@@ -55,7 +55,7 @@ const UpdateLog = ({ count }) => {
                 </Heading>
                 {item.directLink && (
                   <Link
-                    className="link_to_wakzoo"
+                    className="link-to-wakzoo"
                     href={item.directLink}
                     isExternal
                     color={highlightColor}
@@ -72,7 +72,7 @@ const UpdateLog = ({ count }) => {
             {/* <CardFooter textAlign="left" fontSize="sm">
               {item.directLink && (
                 <Link
-                  className="link_to_wakzoo"
+                  className="link-to-wakzoo"
                   href={item.directLink}
                   isExternal
                   color={highlightColor}

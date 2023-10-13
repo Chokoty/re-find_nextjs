@@ -80,7 +80,7 @@ const SearchResult = ({
               textAlign="center"
               // color="#01bda1"
               color={highlightColor}
-              className="link_to_wakzoo"
+              className="link-to-wakzoo"
               href={article_link + ids[0].id}
               isExternal
             >

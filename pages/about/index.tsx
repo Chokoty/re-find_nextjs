@@ -36,7 +36,7 @@ const About = () => {
           <li>
             <Link
               color={highlightColor}
-              className="link_to_wakzoo"
+              className="link-to-wakzoo"
               href={'https://cafe.naver.com/steamindiegame/9859159'}
               isExternal
             >

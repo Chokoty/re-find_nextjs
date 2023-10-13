@@ -81,7 +81,7 @@ const UpdateCard = ({ update }) => {
           <Heading as="h1" fontSize={['lg', 'xl']} textTransform="uppercase">
             <Link
               color={highlightColor}
-              className="link_to_wakzoo"
+              className="link-to-wakzoo"
               href={menu_link}
               isExternal
             >
@@ -95,7 +95,7 @@ const UpdateCard = ({ update }) => {
           게시글 id:
           <Link
             color={highlightColor}
-            className="link_to_wakzoo"
+            className="link-to-wakzoo"
             href={article_link}
             isExternal
           >

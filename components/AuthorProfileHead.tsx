@@ -155,7 +155,7 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
         mb="2rem"
       >
         <Button
-          className="link_to_wakzoo"
+          className="link-to-wakzoo-from-profile"
           colorScheme="gray"
           borderRadius="full"
           m="0 0.5rem"

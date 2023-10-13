@@ -178,7 +178,7 @@ const MyDrawer = React.forwardRef(
                 />
               </Button>
               <Button
-                className="link_to_wakzoo"
+                className="link-to-wakzoo"
                 width="32px"
                 p="0"
                 mr="2"

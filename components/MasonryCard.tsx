@@ -11,8 +11,7 @@ import React, { useState } from 'react';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-
-import { useResponsiveLink } from '../hook/useResponsiveLink';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
   const article_link = useResponsiveLink('', 'article');
@@ -66,10 +65,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
               //   : artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
               artwork.img_url === ''
                 ? 'http://via.placeholder.com/236x236'
-                : // : artwork.deleted
-                  // ? `/api/blurImage?url=${artwork.img_url}`
-                  modifiedUrl300
-              // artwork.img_url.replace(/\?type=w\d+$/, '?type=w300') // 썸네일 크기 300으로 가져오기 - 네이버 자체 썸네일 api
+                : modifiedUrl300
             }
             unoptimized
             onLoad={handleImageLoad}
@@ -250,7 +246,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
             >
               <Button
                 as={Link}
-                className="link_to_wakzoo"
+                className="link-to-wakzoo-from-profile"
                 href={
                   artwork.url === ''
                     ? '#'

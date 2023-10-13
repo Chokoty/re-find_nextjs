@@ -199,7 +199,7 @@ const RandomFanart = () => {
         <Skeleton isLoaded={!isLoading}>
           {fanart && (
             <Link
-              className="link_to_wakzoo"
+              className="link-to-wakzoo"
               href={article_link}
               passHref
               isExternal
