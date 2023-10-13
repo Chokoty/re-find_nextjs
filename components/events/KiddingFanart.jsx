@@ -181,7 +181,7 @@ const KiddingFanart = ({ initialFanart }) => {
                     w="100%"
                     pt="3rem"
                   >
-                    {/* <Link
+                    <Link
                       className="link-to-wakzoo"
                       href={article_link}
                       passHref
@@ -190,32 +190,32 @@ const KiddingFanart = ({ initialFanart }) => {
                         linkDiv,
                         position: 'relative',
                       }}
-                    > */}
-                    <NextImage
-                      unoptimized
-                      style={img}
-                      width={475}
-                      height={475}
-                      src={modifiedUrl300}
-                      // src={fanart?.img_url}
-                      alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
-                      onLoad={handleLoad}
-                    />
-                    <Box
-                      position="absolute"
-                      top={0}
-                      right={0}
-                      bottom={0}
-                      left={0}
-                      borderRadius="1rem"
-                      zIndex={1}
-                      _hover={{
-                        backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                        cursor: 'pointer',
-                      }}
-                      pointerEvents="none" // 이 줄을 추가합니다.
-                    ></Box>{' '}
-                    {/* </Link> */}
+                    >
+                      <NextImage
+                        unoptimized
+                        style={img}
+                        width={475}
+                        height={475}
+                        src={modifiedUrl300}
+                        // src={fanart?.img_url}
+                        alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
+                        onLoad={handleLoad}
+                      />
+                      <Box
+                        position="absolute"
+                        top={0}
+                        right={0}
+                        bottom={0}
+                        left={0}
+                        borderRadius="1rem"
+                        zIndex={1}
+                        _hover={{
+                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                          cursor: 'pointer',
+                        }}
+                        pointerEvents="none" // 이 줄을 추가합니다.
+                      ></Box>{' '}
+                    </Link>
                   </Box>
                   <Box
                     display="flex"
