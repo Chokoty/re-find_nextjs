@@ -207,7 +207,8 @@ const Artist = ({
         <title>{`${profile?.author_nickname} - RE:FIND`}</title>
         <meta
           property="og:title"
-          content={`${profile?.author_nickname}- Profile | RE:FIND `}
+          content={`작가님 - Profile | RE:FIND `}
+          // content={`${profile?.author_nickname}- Profile | RE:FIND `}
         />
         <meta
           property="og:description"
