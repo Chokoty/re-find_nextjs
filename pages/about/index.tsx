@@ -2,8 +2,9 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Heading, Link, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
-import AuthorProfileCard from '@/components/AuthorProfileCard';
 import OtherLayout from '@/components/layout/other-layout';
+// import AuthorProfileCard from '@/components/AuthorProfileCard';
+import ProfileCard from '@/components/ProfileCard';
 import developers from '@/data/developers';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -57,7 +58,7 @@ const About = () => {
 
         <div className="developers">
           {developers.map((item, index) => (
-            <AuthorProfileCard
+            <ProfileCard
               key={index}
               writerURL={item.writerURL}
               profURL={item.profURL}
