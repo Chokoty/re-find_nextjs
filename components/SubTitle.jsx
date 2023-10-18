@@ -29,6 +29,15 @@ const SubTitle = () => {
       </p>
       <p className="title-text">팬아트</p>
       <div className="bg-crop">
+        {/* <Image
+          src="/쿵야굳.jpg"
+          alt="실사왁굳"
+          className="bg-wakdoo"
+          width={100}
+          height={100}
+          // unoptimized
+          // placeholder="blur"
+        /> */}
         <Image
           src="/real-wakgood.jpg"
           alt="실사왁굳"
