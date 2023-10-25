@@ -230,14 +230,14 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                       <Text
                         color="#1B1642"
                         // as="b"
-                        fontWeight={isBold ? 'bold' : 'normal'}
+                        // fontWeight={isBold ? 'bold' : 'normal'}
                       >
                         제목: {fanart?.title.slice(0, 20)}
                       </Text>
                       <Text
                         color="#1B1642"
                         // as="b"
-                        fontWeight={isBold ? 'bold' : 'normal'}
+                        // fontWeight={isBold ? 'bold' : 'normal'}
                       >
                         작가: {fanart?.nickname}
                       </Text>
