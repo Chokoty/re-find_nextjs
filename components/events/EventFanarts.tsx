@@ -31,6 +31,15 @@ const EventFanarts = ({ initialFanart }) => {
       alignItems="center"
       flexDirection="column"
     >
+      <Text
+        fontSize="xl"
+        fontWeight="bold"
+        // color={highlightColor}
+        textAlign="center"
+        mb={4}
+      >
+        특집 팬아트 랜덤 가챠
+      </Text>
       <Accordion allowToggle defaultIndex={[1]} style={{ width: '100%' }}>
         <AccordionItem mb={1}>
           <Text>
@@ -61,7 +70,7 @@ const EventFanarts = ({ initialFanart }) => {
                 color="#ec355b"
                 // color="#FFF"
               >
-                Kidding 특집 팬아트
+                Kidding
               </Box>
               <AccordionIcon color="#ec355b" />
             </AccordionButton>
@@ -110,7 +119,7 @@ const EventFanarts = ({ initialFanart }) => {
                 fontWeight="bold"
                 color="#fdce28"
               >
-                이세계 페스티벌 특집 팬아트
+                이세계 페스티벌
               </Box>
               <AccordionIcon color="#fdce28" />
             </AccordionButton>

@@ -175,6 +175,12 @@ const updateLog: UpdateLog[] = [
       '작가프로필 페이지 베타 오픈(검색창에 작가명을 입력하면 작가프로필 페이지로 이동합니다.)',
     directLink: '',
   },
+  {
+    id: 28,
+    date: '2023.10.22',
+    content: '작가프로필 페이지가 공식 오픈되었습니다!!!(형은신이야)',
+    directLink: 'https://cafe.naver.com/steamindiegame/13410477',
+  },
 ];
 
 export default updateLog;

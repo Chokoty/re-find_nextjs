@@ -216,7 +216,6 @@ export default function Home({ last_update_info }: HomeProps) {
       <Counter data={data} />
       <Title onTitleClick={resetFiles} />
       <SubTitle />
-
       <br />
 
       {/* 이벤트 */}
@@ -227,7 +226,6 @@ export default function Home({ last_update_info }: HomeProps) {
       {/* 업로드 전 */}
       {uploadedfiles.length === 0 && (
         <>
-          <EventFanarts initialFanart={null} />
           {/* <UploadImages
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
@@ -236,6 +234,7 @@ export default function Home({ last_update_info }: HomeProps) {
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           />
+          <EventFanarts initialFanart={null} />
           <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} />
 

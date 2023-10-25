@@ -19,7 +19,6 @@
 
     @include mobile {
       font-size: $font-size / 1.1;
-      // font-size: $font-size / 1.33333;
     }
   }
   .counter.light {
@@ -300,17 +299,4 @@
       }
     }
   }
-}
-
-.update-info {
-  // width: 100%;
-  // max-width: 550px; //
-  // @include mobile {
-  //   width: 90%;
-  //   max-width: 360px;
-  // }
-  // @include small {
-  //   width: 90%;
-  //   max-width: 300px;
-  // }
 }
