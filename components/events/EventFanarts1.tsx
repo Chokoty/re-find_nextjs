@@ -5,7 +5,6 @@ import {
   AccordionItem,
   AccordionPanel,
   Box,
-  Button,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -15,8 +14,6 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 import IsegyeFestivalFanart from './IsegyeFestivalFanart';
 import KiddingFanart from './KiddingFanart';
-
-const data = ['Kidding', '이세계 페스티벌', '할로윈', ''];
 
 const EventFanarts = ({ initialFanart }) => {
   const highlightColor = useColorModeValue(
@@ -43,38 +40,6 @@ const EventFanarts = ({ initialFanart }) => {
       >
         특집 팬아트 랜덤 가챠
       </Text>
-      {/* <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="row"
-        flexWrap="wrap"
-        mb={4}
-      >
-        {data.map((item, index) => (
-          <Button
-            m="0.3rem"
-            key={index}
-            border="1.5px solid #FE78BB"
-            borderRadius={8}
-            padding="1.5rem"
-            w="200px"
-            h="80px"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text
-              fontSize="xl"
-              fontWeight="bold"
-              color="#ec355b"
-              textAlign="center"
-            >
-              {item}
-            </Text>
-          </Button>
-        ))}
-      </Box> */}
-
       <Accordion allowToggle defaultIndex={[1]} style={{ width: '100%' }}>
         <AccordionItem mb={1}>
           <Text>

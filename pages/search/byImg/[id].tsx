@@ -11,7 +11,7 @@ const Search = () => {
   }, []);
 
   return (
-    <OtherLayout title="검색">
+    <OtherLayout title="이미지 검색결과">
       <div className="toLink">search</div>
     </OtherLayout>
   );

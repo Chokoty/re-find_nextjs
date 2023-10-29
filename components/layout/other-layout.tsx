@@ -17,15 +17,14 @@ const OtherLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
 
   return (
     <div className="body">
-      <NextLink href="/">
+      <NextLink href="/" legacyBehavior>
         <Button
-          variant="outline"
+          variant="ghost"
           height="80px"
           display="flex"
           alignItems="center"
           justifyContent="center"
           mb="48px"
-          boxShadow="md"
         >
           <Title onTitleClick={null} />
         </Button>
