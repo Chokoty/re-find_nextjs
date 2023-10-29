@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 
 // import { BsChatDots } from 'react-icons/bs';
 // import { darkMode, lightMode } from '@/styles/theme';
-import OtherLayout from '../../../components/layout/other-layout';
-import { useStore } from '../../../store/store';
+import OtherLayout from '@/components/layout/other-layout';
+import { useStore } from '@/store/store';
 // import AuthorProfileCard from "./AuthorProfileCard";
 
 const Result = () => {

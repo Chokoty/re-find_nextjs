@@ -246,7 +246,7 @@ export default function Home({ last_update_info }: HomeProps) {
               mb="1rem"
               cursor="pointer"
             >
-              <Heading size="md">업데이트 내용</Heading>
+              <Heading size="md">공지사항</Heading>
               <Text fontSize="md">더보기</Text>
             </Flex>
           </NextLink>

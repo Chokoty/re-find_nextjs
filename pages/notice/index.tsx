@@ -13,11 +13,11 @@ const Notice = () => {
   }, []);
 
   return (
-    <OtherLayout title="Notice">
+    <OtherLayout title="공지사항">
       <div className="notice-content">
-        <Heading size="md" mb={5}>
+        {/* <Heading size="md" mb={5}>
           업데이트 내용
-        </Heading>
+        </Heading> */}
         <UpdateLog count={0} />
       </div>
     </OtherLayout>

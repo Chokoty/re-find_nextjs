@@ -1,4 +1,5 @@
 import { Button, Divider, Heading, useColorModeValue } from '@chakra-ui/react';
+import NextLink from 'next/link';
 import type { ReactNode } from 'react';
 import React from 'react';
 
@@ -16,17 +17,19 @@ const OtherLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
 
   return (
     <div className="body">
-      <Button
-        variant="outline"
-        height="80px"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        mb="48px"
-        boxShadow="md"
-      >
-        <Title onTitleClick={null} />
-      </Button>
+      <NextLink href="/">
+        <Button
+          variant="outline"
+          height="80px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          mb="48px"
+          boxShadow="md"
+        >
+          <Title onTitleClick={null} />
+        </Button>
+      </NextLink>
       <Heading
         className="page-title"
         as="h1"
