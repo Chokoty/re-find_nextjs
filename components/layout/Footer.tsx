@@ -1,5 +1,6 @@
-import { useColorModeValue } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 
+import LinkBtns from '@/components/tools/LinkBtn';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export const Footer = () => {
@@ -8,7 +9,16 @@ export const Footer = () => {
 
   return (
     <footer style={{ backgroundColor: bgColor, color }}>
-      <p>ⓒ2023 RE: FIND ALL RIGHTS RESERVED</p>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        w="100%"
+      >
+        <LinkBtns />
+        <p>ⓒ2023 RE: FIND ALL RIGHTS RESERVED</p>
+      </Box>
     </footer>
   );
 };

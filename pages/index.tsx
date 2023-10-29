@@ -2,7 +2,6 @@ import {
   Flex,
   Heading,
   Text,
-  // useColorMode,
   useColorModeValue,
   useDisclosure,
   useToast,
@@ -10,14 +9,11 @@ import {
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
-import React, { use, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import EventFanarts from '@/components/events/EventFanarts';
 import EventModal from '@/components/events/EventModal';
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
-import SubTitle from '@/components/title/SubTitle';
-import Title from '@/components/title/Title';
-import Counter from '@/components/tools/Counter';
 import Loading from '@/components/tools/Loading';
 import Preview from '@/components/tools/Preview';
 import RandomFanart from '@/components/tools/RandomFanart';
@@ -25,6 +21,7 @@ import SearchResult from '@/components/tools/SearchResult';
 import UpdateBoard from '@/components/tools/UpdateBoard';
 import UpdateLog from '@/components/tools/UpdateLog';
 import UploadImages from '@/components/tools/UploadImages';
+import TopTitle from '@/components/TopTitle';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -216,10 +213,7 @@ export default function Home({ last_update_info }: HomeProps) {
       ref={targetRef}
     >
       {/* 상단 타이틀 */}
-      <Counter data={data} />
-      <Title onTitleClick={resetFiles} />
-      <SubTitle />
-      <br />
+      <TopTitle data={data} resetFiles={resetFiles} />
 
       {/* 이벤트 */}
       {/* {<EventModal targetCount={targetCount} />} */}
@@ -301,18 +295,18 @@ export async function getServerSideProps() {
 
     const ret = await Promise.all([
       // wow - 병렬로 요청해서 페이지 로딩 줄임!
-      // counter,
       last_update_info,
+      // counter,
       // initialFanart,
       // random_fanart,
     ]);
 
     return {
       props: {
+        last_update_info: ret[0],
         // counter: ret[0],
         // last_update_info: ret[1],
         // random_fanart: ret[1],
-        last_update_info: ret[0],
         // initialFanart: ret[1],
       },
     };
@@ -322,8 +316,8 @@ export async function getServerSideProps() {
     // Return an alternate value if the fetch fails
     return {
       props: {
-        // counter: null,
         last_update_info: null,
+        // counter: null,
         // initialFanart: null,
         // random_fanart: null,
       },

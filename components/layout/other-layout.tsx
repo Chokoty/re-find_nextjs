@@ -2,7 +2,7 @@ import { Button, Divider, Heading, useColorModeValue } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
 import React from 'react';
 
-import Title from '@/components/Title';
+import Title from '@/components/title/Title';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface OtherLayoutProps {

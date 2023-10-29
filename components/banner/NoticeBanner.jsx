@@ -1,10 +1,9 @@
-import React from 'react';
+import { Badge, Box, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import React from 'react';
 
-import {  Badge, Box, useColorModeValue } from '@chakra-ui/react';
-
-import { lightMode, darkMode } from '@/styles/theme';
-import updateLog from '../data/updateLog';
+import updateLog from '@/data/updateLog';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const NoticeBanner = () => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -43,13 +42,13 @@ const NoticeBanner = () => {
           업데이트
         </Badge>
         {/* <div> */}
-        {lastUpdateLog?.directLink == '' ? (
+        {lastUpdateLog?.directLink === '' ? (
           <NextLink href="/notice" className="notice_banner_link">
-            {lastUpdateLog.date + ' - ' + lastUpdateLog.content.slice(0, 40)}
+            {`${lastUpdateLog.date} - ${lastUpdateLog.content.slice(0, 40)}`}
           </NextLink>
         ) : (
           <NextLink href="/notice" className="notice_banner_link">
-            {lastUpdateLog.date + ' - ' + lastUpdateLog.content.slice(0, 40)}
+            {`${lastUpdateLog.date} - ${lastUpdateLog.content.slice(0, 40)}`}
           </NextLink>
           //      <Link
           //      isExternal
