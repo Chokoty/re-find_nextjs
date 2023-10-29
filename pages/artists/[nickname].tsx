@@ -6,19 +6,17 @@ import {
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
-// import { throttle } from 'lodash';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-// import ListView from '../../components/ListView';
 import HashLoader from 'react-spinners/HashLoader';
 
 import AuthorProfileHead from '@/components/tools/AuthorProfileHead';
+import ViewSelectBar from '@/components/tools/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import ViewSelectBar from '@/components/tools/ViewSelectBar';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const profileTest = [
