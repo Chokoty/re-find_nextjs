@@ -19,13 +19,13 @@ import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const profileTest = [
-  '바게트빵 옴뇸뇸',
-  '징버거',
-  '라면조리기',
-  '곶곶이',
-  '어금니브레이커',
-];
+// const profileTest = [
+//   '바게트빵 옴뇸뇸',
+//   '징버거',
+//   '라면조리기',
+//   '곶곶이',
+//   '어금니브레이커',
+// ];
 
 const Artist = ({
   artist_name2info,
@@ -49,7 +49,7 @@ const Artist = ({
     threshold: 0,
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
-  const [init, setInit] = useState(true);
+  // const [init, setInit] = useState(true);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
@@ -62,7 +62,7 @@ const Artist = ({
   // react-spinners
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
-  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  // const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
   const toast = useToast();
 
@@ -325,7 +325,7 @@ const Artist = ({
                       <SimpleView
                         artworks={artworks}
                         isDeletedVisible={isDeletedVisible}
-                        handleLoading={handleLoading}
+                        // handleLoading={handleLoading}
                       />
                     )}
                     {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}

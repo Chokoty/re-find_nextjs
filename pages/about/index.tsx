@@ -19,7 +19,7 @@ const About = () => {
 
   useEffect(() => {
     setIsOpen(false);
-  }, []);
+  }, [setIsOpen]);
 
   return (
     <OtherLayout title="About">

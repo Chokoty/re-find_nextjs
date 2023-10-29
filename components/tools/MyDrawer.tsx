@@ -1,12 +1,9 @@
 import { BellIcon, InfoIcon } from '@chakra-ui/icons';
-import { Box, Button, Collapse, Image } from '@chakra-ui/react';
-import NextImage from 'next/image';
+import { Box, Collapse } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
 import { AiFillExperiment, AiFillHome } from 'react-icons/ai';
 import { BiSupport } from 'react-icons/bi';
-
-// import LinkBtns from './LinkBtn';
 
 type MyDrawerProps = {
   isOpen: boolean;

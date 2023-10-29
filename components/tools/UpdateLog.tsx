@@ -12,10 +12,9 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
+// import TMI from '@/data/tmi';
+import updateLog from '@/data/updateLog';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import TMI from '../../data/tmi';
-import updateLog from '../../data/updateLog';
 
 const UpdateLog = ({ count }) => {
   const highlightColor = useColorModeValue(

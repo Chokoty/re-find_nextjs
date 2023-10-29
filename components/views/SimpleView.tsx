@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 
 import SimpleCards from '@/components/cards/SimpleCards';
 
-const SimpleView = ({ artworks, isDeletedVisible, handleLoading }) => {
+const SimpleView = ({ artworks, isDeletedVisible }) => {
   const [focusedArtworkId, setFocusedArtworkId] = useState(null);
 
-  const handleToggleFocus = (id) => {
+  const handleToggleFocus = (id: any) => {
     if (id === focusedArtworkId) {
       setFocusedArtworkId(null); // Deselect the artwork if it's already focused
     } else {

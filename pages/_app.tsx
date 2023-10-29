@@ -83,4 +83,4 @@ const App: NextComponentType<AppContext, AppInitialProps, MyAppProps> = ({
 
 export default App;
 
-export { getServerSideProps } from '../styles/Chakra';
+export { getServerSideProps } from '@/styles/Chakra';

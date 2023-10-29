@@ -21,8 +21,7 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import NextImage from 'next/image';
-import NextLink from 'next/link';
-import React, { use, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 
@@ -69,10 +68,10 @@ const RandomFanart = () => {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setIsBold(prevIsBold => !prevIsBold);
-    }, 1000);  // Toggle bold every 1 second
+      setIsBold((prevIsBold) => !prevIsBold);
+    }, 1000); // Toggle bold every 1 second
 
-    return () => clearInterval(intervalId);  // Clear interval on component unmount
+    return () => clearInterval(intervalId); // Clear interval on component unmount
   }, []);
 
   useEffect(() => {
@@ -85,7 +84,9 @@ const RandomFanart = () => {
   }, []);
 
   const handleLoad = async () => {
-    await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((r) => {
+      setTimeout(r, 1000);
+    });
     setIsLoading(false);
   };
 
@@ -107,7 +108,7 @@ const RandomFanart = () => {
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
-      } else if (error.code == 'ERR_NETWORK') {
+      } else if (error.code === 'ERR_NETWORK') {
         console.log('Network Error: ', error.code);
       } else {
         console.log(error);
@@ -209,12 +210,12 @@ const RandomFanart = () => {
           {fanart && (
             <>
               <Box
-                  position="relative"
-                  borderRadius="1rem"
-                  overflow="hidden"
-                  w="100%"
-                  pt="3rem"
-                  // mb="1rem"
+                position="relative"
+                borderRadius="1rem"
+                overflow="hidden"
+                w="100%"
+                pt="3rem"
+                // mb="1rem"
               >
                 <Link
                   className="link-to-akzoo"
@@ -235,40 +236,39 @@ const RandomFanart = () => {
                     onLoad={handleLoad}
                   />
                   <Box
-                        position="absolute"
-                        top={0}
-                        right={0}
-                        bottom={0}
-                        left={0}
-                        borderRadius="1rem"
-                        zIndex={1}
-                        _hover={{
-                          backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                          cursor: 'pointer',
-                        }}
-                        pointerEvents="none" // 이 줄을 추가합니다.
-                      ></Box>{' '}
-                
+                    position="absolute"
+                    top={0}
+                    right={0}
+                    bottom={0}
+                    left={0}
+                    borderRadius="1rem"
+                    zIndex={1}
+                    _hover={{
+                      backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                      cursor: 'pointer',
+                    }}
+                    pointerEvents="none" // 이 줄을 추가합니다.
+                  ></Box>{' '}
                 </Link>
               </Box>
               <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    mb="1rem"
-                  >
-                    <Box
-                      as="a"
-                      href={`/artists/${fanart?.nickname}`}
-                      passHref
-                      style={linkDiv}
-                      fontWeight={isBold ? 'bold' : 'normal'}
-                    >
-                      <Text>랜덤 팬아트 id: {fanart?.id}</Text>
-                      <Text>작가: {fanart?.nickname}</Text>
-                    </Box>
-                  </Box>
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                mb="1rem"
+              >
+                <Box
+                  as="a"
+                  href={`/artists/${fanart?.nickname}`}
+                  passHref
+                  style={linkDiv}
+                  fontWeight={isBold ? 'bold' : 'normal'}
+                >
+                  <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+                  <Text>작가: {fanart?.nickname}</Text>
+                </Box>
+              </Box>
             </>
           )}
         </Skeleton>
