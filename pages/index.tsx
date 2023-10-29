@@ -1,12 +1,12 @@
 import {
+  // Box,
+  // Button,
   Flex,
   Heading,
   Text,
   useColorModeValue,
   useDisclosure,
   useToast,
-  Box,
-  Button
 } from '@chakra-ui/react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
