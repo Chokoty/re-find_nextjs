@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 
 import OtherLayout from '@/components/layout/other-layout';
 // import AuthorProfileCard from '@/components/AuthorProfileCard';
-import ProfileCard from '@/components/ProfileCard';
+import ProfileCard from '@/components/cards/ProfileCard';
 import developers from '@/data/developers';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';

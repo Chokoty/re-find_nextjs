@@ -15,10 +15,10 @@ import { useInView } from 'react-intersection-observer';
 // import ListView from '../../components/ListView';
 import HashLoader from 'react-spinners/HashLoader';
 
-import AuthorProfileHead from '@/components/AuthorProfileHead';
-import MasonryView from '@/components/MasonryView';
-import SimpleView from '@/components/SimpleView';
-import ViewSelectBar from '@/components/ViewSelectBar';
+import AuthorProfileHead from '@/components/tools/AuthorProfileHead';
+import MasonryView from '@/components/views/MasonryView';
+import SimpleView from '@/components/views/SimpleView';
+import ViewSelectBar from '@/components/tools/ViewSelectBar';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const profileTest = [

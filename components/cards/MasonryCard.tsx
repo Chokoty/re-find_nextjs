@@ -14,16 +14,11 @@ import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
+  const [imageHeight, setImageHeight] = useState(null);
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  const [imageHeight, setImageHeight] = useState(null);
   const modifiedUrl300 = useModifiedImageUrl(artwork.img_url, 300);
 
-  // const [isFocused, setIsFocused] = useState(false);
-
-  // const toggleFocus = () => {
-  //   setIsFocused(!isFocused);
-  // };
   const handleImageLoad = (e) => {
     setImageHeight(e.target.height);
   };
@@ -85,11 +80,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 ? '#'
                 : article_link + artwork.url.split('/').pop()
             }
-            // passHref
             isExternal
-            // style={{
-            //   position: 'relative',
-            // }}
           >
             <Flex
               flexDir="column"
@@ -241,9 +232,6 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 flexDir="row"
                 justifyContent="center"
                 alignItems="center"
-                // p="0 1rem"
-                // justifyContent="flex-end"
-                // alignItems="flex-end"
               >
                 <Button
                   as={Link}
@@ -264,7 +252,6 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                   colorScheme="green"
                   borderRadius="2rem"
                   w="60%"
-                  // w={['100px', '150px']}
                   h={['2.5rem', '3rem']}
                 >
                   <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;

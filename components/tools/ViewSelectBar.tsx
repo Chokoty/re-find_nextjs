@@ -26,7 +26,7 @@ import {
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-import { useShowShadow } from '../hook/useShowShadow';
+import { useShowShadow } from '../../hook/useShowShadow';
 
 interface ViewSelectBarProps {
   selectedMenu: string;

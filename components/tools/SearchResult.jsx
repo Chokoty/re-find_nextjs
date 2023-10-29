@@ -8,12 +8,11 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
+import AuthorProfileCard from '@/components/cards/AuthorProfileCard';
+import Description from '@/components/tools/Description';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import AuthorProfileCard from './AuthorProfileCard';
-import Description from './Description';
 
 const SearchResult = ({
   searchTime,
@@ -38,7 +37,7 @@ const SearchResult = ({
       <Text fontSize="xl" m="20px" textAlign="center">
         검색시간: {searchTime / 1000}s
       </Text>
-      {ids?.length === 0  && !isSearchingAuthor ? (
+      {ids?.length === 0 && !isSearchingAuthor ? (
         <div className="notFound">
           <Description />
         </div>

@@ -2,7 +2,7 @@ import { Heading } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
 import OtherLayout from '@/components/layout/other-layout';
-import UpdateLog from '@/components/UpdateLog';
+import UpdateLog from '@/components/tools/UpdateLog';
 import { useStore } from '@/store/store';
 
 const Notice = () => {

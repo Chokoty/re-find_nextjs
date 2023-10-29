@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-
 import { Badge, Skeleton, useColorModeValue } from '@chakra-ui/react';
-
-import { lightMode, darkMode } from '@/styles/theme';
-import CountUp from 'react-countup';
 import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import CountUp from 'react-countup';
+
+import { darkMode, lightMode } from '@/styles/theme';
 
 const Counter = ({ data }) => {
   const [counter, setCounter] = useState(null);
@@ -16,13 +15,12 @@ const Counter = ({ data }) => {
     try {
       const timeout = 2000; // 2초
       setCounterLoading(true);
-      const response = await axios.get(
-        'https://re-find.reruru.com/counter',
-        { timeout }
-      );
-      const counter = response?.data;
-      // console.log(counter);
-      setCounter(counter);
+      const response = await axios.get('https://re-find.reruru.com/counter', {
+        timeout,
+      });
+      const ccounter = response?.data;
+      // console.log(ccounter);
+      setCounter(ccounter);
       setCounterLoading(false);
     } catch (err) {
       setCounterLoading(false);

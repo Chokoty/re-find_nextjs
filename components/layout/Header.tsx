@@ -14,9 +14,9 @@ import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
-import DarkModeToggle from '@/components/DarkModeToggle';
-import MyDrawer from '@/components/MyDrawer';
-import SearchModal from '@/components/SearchModal';
+import DarkModeToggle from '@/components/tools/DarkModeToggle';
+import MyDrawer from '@/components/tools/MyDrawer';
+import SearchModal from '@/components/tools/SearchModal';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 // import { useThemeStore } from '@/store/themeStore';

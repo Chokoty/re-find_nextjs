@@ -12,19 +12,19 @@ import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import React, { use, useEffect, useRef, useState } from 'react';
 
-import Counter from '@/components/Counter';
 import EventFanarts from '@/components/events/EventFanarts';
 import EventModal from '@/components/events/EventModal';
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
-import Loading from '@/components/Loading';
-import Preview from '@/components/Preview';
-import RandomFanart from '@/components/RandomFanart';
-import SearchResult from '@/components/SearchResult';
-import SubTitle from '@/components/SubTitle';
-import Title from '@/components/Title';
-import UpdateBoard from '@/components/UpdateBoard';
-import UpdateLog from '@/components/UpdateLog';
-import UploadImages from '@/components/UploadImages';
+import SubTitle from '@/components/title/SubTitle';
+import Title from '@/components/title/Title';
+import Counter from '@/components/tools/Counter';
+import Loading from '@/components/tools/Loading';
+import Preview from '@/components/tools/Preview';
+import RandomFanart from '@/components/tools/RandomFanart';
+import SearchResult from '@/components/tools/SearchResult';
+import UpdateBoard from '@/components/tools/UpdateBoard';
+import UpdateLog from '@/components/tools/UpdateLog';
+import UploadImages from '@/components/tools/UploadImages';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -33,10 +33,13 @@ interface HomeProps {
 }
 
 const targetCount = 40000; // 이벤트 타겟 카운트
-const DynamicUploadImages = dynamic(() => import('@/components/UploadImages'), {
-  ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
-  loading: () => <p></p>,
-});
+const DynamicUploadImages = dynamic(
+  () => import('@/components/tools/UploadImages'),
+  {
+    ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
+    loading: () => <p></p>,
+  }
+);
 
 export default function Home({ last_update_info }: HomeProps) {
   const setIsOpen = useStore((state) => state.setIsOpen);

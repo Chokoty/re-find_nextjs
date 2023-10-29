@@ -9,14 +9,13 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
+import boardData from '@/data/board.ts';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import boardData from '../data/board.ts';
-import { useResponsiveLink } from '../hook/useResponsiveLink';
-import { useUploadTimeDiff } from '../hook/useUploadTimeDiff';
 
 const UpdateCard = ({ update }) => {
   const highlightColor = useColorModeValue(
@@ -24,7 +23,6 @@ const UpdateCard = ({ update }) => {
     darkMode.highlight
   );
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-
   const modifiedUrl100 = useModifiedImageUrl(update?.info.img_url, 100);
   const uploadTimeDiff = useUploadTimeDiff(update?.date);
   const article_link = useResponsiveLink(update?.id, 'article');
@@ -32,6 +30,17 @@ const UpdateCard = ({ update }) => {
     boardData.find((item) => item.board === update?.board)?.id,
     'menu'
   );
+
+  function getImageSrc() {
+    const boardItem = boardData.find((item) => item.board === update?.board);
+    if (boardItem?.state === '-관-') {
+      return '/static/images/icons/close.jpeg';
+    }
+    if (modifiedUrl100 === '') {
+      return '/static/images/icons/placeholder_80.png';
+    }
+    return modifiedUrl100;
+  }
 
   return (
     <Card
@@ -58,18 +67,8 @@ const UpdateCard = ({ update }) => {
           width: '80px',
           height: '80px',
         }}
-        src={
-          boardData.find((item) => item.board === update?.board)?.state ===
-          '-관-'
-            ? '/static/images/icons/close.jpeg'
-            : modifiedUrl100 === ''
-            ? '/static/images/icons/placeholder_80.png'
-            : modifiedUrl100
-
-          // 썸네일 100으로 변경
-        }
+        src={getImageSrc()}
         alt={update.info.title}
-        // fallbackSrc="https://via.placeholder.com/80"
       />
 
       <CardBody>

@@ -2,7 +2,7 @@ import { Box, useBreakpointValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import Masonry from 'react-masonry-css';
 
-import MasonryCard from '@/components/MasonryCard';
+import MasonryCard from '@/components/cards/MasonryCard';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 const MasonryView = ({

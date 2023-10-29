@@ -1,11 +1,6 @@
-import {
-  Avatar,
-  Button,
-  Link,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Avatar, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import React from 'react';
 
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
@@ -38,13 +33,13 @@ const AuthorProfileCard: React.FC<AuthorProfileCardProps> = ({
   const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
 
   return (
-    <Link
-      className="link-to-wakzoo"
-      href={writerURL === '' ? '#' : member_link}
-      // passHref
-      isExternal
-    >
-      {/* <NextLink href={`/artists/${nickname}`}> */}
+    // <Link
+    //   className="link-to-wakzoo"
+    //   href={writerURL === '' ? '#' : member_link}
+    //   // passHref
+    //   isExternal
+    // >
+    <NextLink href={`/artists/${nickname}`}>
       <Button
         as="a"
         target="_blank"
@@ -86,7 +81,6 @@ const AuthorProfileCard: React.FC<AuthorProfileCardProps> = ({
           </div>
         )}
 
-        {/* <Avatar size="xl" name={nickname} src={profURL || ""} /> */}
         <Text fontSize="md" textAlign="center" mb="12px" color={highlightColor}>
           {nickname || '프로필은 왁물원에서'}
         </Text>
@@ -102,8 +96,8 @@ const AuthorProfileCard: React.FC<AuthorProfileCardProps> = ({
           {board || '---'}
         </Text>
       </Button>
-      {/* </NextLink> */}
-    </Link>
+    </NextLink>
+    // </Link>
   );
 };
 
