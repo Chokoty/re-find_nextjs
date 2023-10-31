@@ -23,6 +23,8 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
     setImageHeight(e.target.height);
   };
 
+  // console.log(artwork);
+
   return (
     <Box
       w={widthValue}

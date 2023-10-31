@@ -19,7 +19,7 @@ const Artist = ({ keyword_artworks }) => {
     threshold: 0,
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(2);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
   // 뷰 선택 메뉴

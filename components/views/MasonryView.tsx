@@ -27,6 +27,7 @@ const MasonryView = ({
     300: 1,
   };
 
+  // console.log(artworks);
   const handleToggleFocus = (id) => {
     if (id === focusedArtworkId) {
       setFocusedArtworkId(null); // Deselect the artwork if it's already focused
