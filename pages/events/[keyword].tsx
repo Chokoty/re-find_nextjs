@@ -134,13 +134,18 @@ const Artist = () =>
     }, [keyword]);
 
     return (
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Text as="h1">할로윈 특집 왁타버스 팬아트</Text>
+      <Box>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          m=" 3rem"
+        >
+          <Text m="0 auto" as="h1">
+            🎃 할로윈 특집 왁타버스 팬아트 🎃
+          </Text>
+        </Box>
         <ViewSelectBar
           activeView={activeView}
           onViewChange={handleViewChange}
