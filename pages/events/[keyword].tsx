@@ -142,7 +142,7 @@ const Artist = () =>
           alignItems="center"
           m=" 3rem"
         >
-          <Text m="0 auto" as="h1">
+          <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
             🎃 할로윈 특집 왁타버스 팬아트 🎃
           </Text>
         </Box>

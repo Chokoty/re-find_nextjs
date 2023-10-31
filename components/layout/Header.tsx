@@ -5,12 +5,13 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Link,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 import { Sling as Hamburger } from 'hamburger-react';
 import Image from 'next/image';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
@@ -120,7 +121,7 @@ export const Header = () => {
                 width={40}
                 height={40}
                 src="/android-chrome-512x512.png"
-                // unoptimizedㅎ
+                // unoptimized
               />
             </Link>
           </Button>
@@ -132,7 +133,6 @@ export const Header = () => {
             <Title onTitleClick={null} />
           </Link>
         </Button> */}
-        {/* 검색기능 잠정 보류 */}
         <Box
           display="flex"
           justifyContent="center"
