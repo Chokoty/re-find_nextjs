@@ -229,36 +229,6 @@ const Artist = ({
             )}
             {artworks && (
               <>
-                {/* {loadingImage && (
-                <Box position="relative">
-                  <Box
-                    w="100vw"
-                    h="100vh"
-                    // position="absolute"
-                    position="fixed"
-                    display="flex"
-                    top={0}
-                    left={0}
-                    justifyContent="center"
-                    alignItems="center"
-                    zIndex={160}
-                  >
-                    <HashLoader color="#01BFA2" />
-                  </Box>
-                  <Box
-                    w="100%"
-                    h="100%"
-                    position="absolute"
-                    top={0}
-                    right={0}
-                    backgroundColor={bgColor}
-                    zIndex={150} // 다른 컴포넌트 위에 표시되도록 z-index 설정
-                  ></Box>
-                </Box>
-              )} */}
-                {/* {artworks?.length === 0 && (
-  
-              )} */}
                 {artworks?.length !== 0 && (
                   <Box
                     w="100%"
