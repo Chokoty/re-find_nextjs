@@ -37,6 +37,14 @@ const developers: Developer[] = [
       'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MDNfMTQg/MDAxNjkxMDUyMzM5NzQw.nUzXx1Bqx_AGlvVaMkWjsOfF7zmQ4U3sg7jl44Uybtog.gLnPyIW3TYn6tr35c_OEDVm-FF4RedXbH0nplr2FE1wg.JPEG/externalFile.jpg?type=s3',
     contribute: 'QA',
   },
+  {
+    nickname: '89',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/1MItD9uVwQKvZgopAxV4Og',
+    profURL:
+      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA1MjZfMTI1/MDAxNjg1MTAwNTY2NTY2.cCitDbWemAnOtfRiNIzdVmOijuzUWXE8ZFtz5IiqL00g.Nsz762AIfFGN1OFaXrUH1OtkQszaqxp_VnZbJwSQFw4g.PNG/89.png?type=s3',
+    contribute: '배너,카드 디자인',
+  },
 ];
 // https://m.cafe.naver.com/ca-fe/web/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA/articles
 

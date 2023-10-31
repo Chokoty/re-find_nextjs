@@ -62,7 +62,7 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
         title: '프로필 링크 복사됨',
         description: '링크가 클립보드에 복사되었습니다.',
         // status: 'success',
-        duration: 3000,
+        duration: 1500,
         isClosable: true,
       });
     });

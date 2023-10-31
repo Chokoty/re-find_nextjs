@@ -53,7 +53,7 @@ const About = () => {
           m="0 auto"
           noOfLines={1}
         >
-          디벨로퍼
+          크레딧
         </Heading>
 
         <div className="developers">
