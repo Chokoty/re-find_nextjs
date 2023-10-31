@@ -18,8 +18,8 @@ const Title = ({ onTitleClick }) => {
   return (
     <div className="title" onClick={onTitleClick}>
       <Link href="/" className="content">
-        {/* <Heading className="title-main" fontFamily={'ONE-Mobile-POP'}> */}
-        <Heading className="title-main">
+        <Heading className="title-main" fontFamily={'ONE-Mobile-POP'}>
+          {/* <Heading className="title-main"> */}
           <span style={{ color: highlightColor }}>RE:</span>
           FIND
           {/* <span style={{ color: color }}>FIND</span> */}
