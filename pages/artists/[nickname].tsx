@@ -1,10 +1,4 @@
-import {
-  Box,
-  Center,
-  Text,
-  useColorModeValue,
-  useToast,
-} from '@chakra-ui/react';
+import { Box, Center, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -17,15 +11,6 @@ import AuthorProfileHead from '@/components/tools/AuthorProfileHead';
 import ViewSelectBar from '@/components/tools/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import { darkMode, lightMode } from '@/styles/theme';
-
-// const profileTest = [
-//   '바게트빵 옴뇸뇸',
-//   '징버거',
-//   '라면조리기',
-//   '곶곶이',
-//   '어금니브레이커',
-// ];
 
 const Artist = ({
   artist_name2info,
@@ -41,7 +26,6 @@ const Artist = ({
   }
 
   const [profile, setProfile] = useState(artist_name2info); // useState(null);
-  // const [artworks, setArtworks] = useState(data.list);
   const [artworks, setArtworks] = useState([]); // useState(artist_artworks_data?.list);
 
   // infinite scroll
@@ -49,7 +33,6 @@ const Artist = ({
     threshold: 0,
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
-  // const [init, setInit] = useState(true);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
@@ -62,11 +45,8 @@ const Artist = ({
   // react-spinners
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
-  // const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
   const toast = useToast();
-
-  // console.log(artist_name2info);
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {
@@ -88,11 +68,6 @@ const Artist = ({
     setIsDeletedVisible((prev) => !prev);
   }, []);
 
-  // const throttledGetArtistArtworks = useCallback(
-  //   throttle(getArtistArtworks, 1000), // 1초 동안 한 번만 요청을 보냅니다.
-  //   [sortType, page, nickname]
-  // );
-
   // 이미지 로딩
   const handleLoading = useCallback((Loading) => {
     setLoadingImage(Loading);
@@ -101,18 +76,12 @@ const Artist = ({
   const getArtistInfo = useCallback(async () => {
     try {
       const response = await axios
-        // .get('/api/artistInfo', {
-        //   params: {
-        //     nickname: nickname,
-        //   },
-        // })
         .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
         .then((res) => res.data);
       setProfile(response);
       // console.log(response);
     } catch (error) {
       console.error('Error fetching data:', error);
-      // setProfile(nickname);
       // 404 페이지로 이동
       router.push('/404');
     }
@@ -133,8 +102,6 @@ const Artist = ({
         )
         .then((res) => res.data);
 
-      // console.log(response.lastPage);
-      // console.log(response.list);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
@@ -167,16 +134,10 @@ const Artist = ({
     }
     console.log('page: ', page);
     getArtistArtworks();
-    // 2초뒤 1번 더 호출
-    // setTimeout(() => {
-    //   // setPage((prevState) => prevState + 1);
-    //   getArtistArtworks();
-    // }, 1500);
   }, [sortType, page]);
 
   // 무한 스크롤
   useEffect(() => {
-    // if (init) return;
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView) console.log('inView: ', inView);
     if (inView && !isLastPage) {
@@ -188,15 +149,8 @@ const Artist = ({
   useEffect(() => {
     if (nickname) {
       console.log(nickname);
-      // getArtistInfo();
       getArtistArtworks();
-      // setInit(false); // 초기 렌더링 완료
     }
-    // temp
-    // if (!profileTest.includes(actualNickname)) {
-    //   // nickname이 profileTest 배열에 없으면 404 페이지로 리디렉션
-    //   router.push('/404');
-    // }
   }, [nickname]);
 
   return (
@@ -219,8 +173,6 @@ const Artist = ({
           content={`https://re-find.xyz/artists/${profile?.author_nickname}`}
         />
       </Head>
-      {/* {profileTest.includes(actualNickname) && (
-      )} */}
       <>
         {profile?.author_nickname === '' && profile.num_artworks === 0 && (
           <Center

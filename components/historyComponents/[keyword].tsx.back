@@ -1,0 +1,170 @@
+// import { Box, Center, Text, useToast } from '@chakra-ui/react';
+// import axios from 'axios';
+// import Image from 'next/image';
+// import { useRouter } from 'next/router';
+// import React, { useCallback, useEffect, useState } from 'react';
+// import { useInView } from 'react-intersection-observer';
+// import HashLoader from 'react-spinners/HashLoader';
+
+// import MasonryView from '@/components/views/MasonryView';
+
+// const Artist = ({ keyword_artworks }) => {
+//   const router = useRouter();
+//   const { keyword } = router.query;
+
+//   const [artworks, setArtworks] = useState([]); // useState(artist_artworks_data?.list);
+//   const [allArtworks, setAllArtworks] = useState([keyword_artworks]);
+//   const [page, setPage] = useState(1);
+//   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
+
+//   // react-spinners
+//   const [loadingData, setLoadingData] = useState(false);
+//   const [loadingImage, setLoadingImage] = useState(true);
+
+//   const toast = useToast();
+
+//   // infinite scroll
+//   const { ref, inView } = useInView({
+//     threshold: 0,
+//     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+//   });
+
+//   useEffect(() => {
+//     console.log(keyword);
+//     console.log(keyword_artworks);
+//   }, []);
+
+//   // 이미지 로딩
+//   const handleLoading = useCallback((Loading) => {
+//     setLoadingImage(Loading);
+//   }, []);
+
+//   const getArtistArtworks = useCallback(async () => {
+//     console.log('getArtistArtworks');
+//     if (isLastPage) return;
+//     if (loadingData) return;
+
+//     setLoadingData(true);
+//     // console.log('artworks loading...');
+
+//     try {
+//       // 'allArtworks' 배열에서 새로운 작품들을 가져옵니다.
+//       const newArtworks = keyword_artworks.slice(page * 10, page * 10 + 10);
+//       console.log('newArtworks: ', newArtworks);
+//       // 현재 상태인 'artworks' 배열에 새로운 작품들을 추가합니다.
+//       setArtworks([...artworks, ...newArtworks]);
+
+//       // 'allArtworks'의 끝에 도달했는지 확인합니다.
+//       if (page * 10 + 10 >= allArtworks.length) {
+//         setIsLastPage(true);
+//       }
+//     } catch (error) {
+//       // 500에러 예외처리
+//       console.log(error.response);
+//       if (error.response?.status === 500) {
+//         toast({
+//           title:
+//             '현재 작가 프로필 쪽 서버가 점검중 입니다. 잠시 후 다시 시도해주세요.',
+//           description: '500 error',
+//           status: 'error',
+//           duration: 3000,
+//           isClosable: true,
+//         });
+//       }
+//       console.error('Error fetching more data:', error);
+//       setIsLastPage(true);
+//     } finally {
+//       setLoadingData(false); // Set loading state to false regardless of success or failure
+//     }
+//   }, [page]);
+
+//   useEffect(() => {
+//     // if (isInitialRender) {
+//     //   setIsInitialRender(false);
+//     //   return;
+//     // }
+//     console.log('page: ', page);
+//     getArtistArtworks();
+//   }, [page]);
+
+//   // 무한 스크롤
+//   useEffect(() => {
+//     // if (init) return;
+//     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+//     if (inView) console.log('inView: ', inView);
+//     if (inView && !isLastPage) {
+//       setPage((prevState) => prevState + 1);
+//     }
+//   }, [inView, isLastPage]);
+
+//   return (
+//     <Box
+//       display="flex"
+//       flexDirection="column"
+//       alignItems="center"
+//       margin="0 auto"
+//       mb="2rem"
+//     >
+//       {!artworks && (
+//         <Box
+//           w="100%"
+//           display="flex"
+//           justifyContent="center"
+//           alignItems="center"
+//         >
+//           <HashLoader color="#01BFA2" />
+//         </Box>
+//       )}
+//       {artworks && (
+//         <>
+//           {artworks?.length !== 0 && (
+//             <Box
+//               w="100%"
+//               overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+//             >
+//               <MasonryView
+//                 nickname={''}
+//                 artworks={artworks}
+//                 isDeletedVisible={false}
+//                 handleLoading={handleLoading}
+//               />
+//               {/* Observer를 위한 div */}
+//               {<Box ref={ref} w="100%" h="2rem"></Box>}
+//             </Box>
+//           )}
+//         </>
+//       )}
+//       {loadingData && (
+//         <Box display="flex" justifyContent="center" alignItems="center">
+//           <HashLoader color="#01BFA2" />
+//         </Box>
+//       )}
+//     </Box>
+//   );
+// };
+
+// export default Artist;
+
+// export async function getServerSideProps(context) {
+//   const { keyword } = context.query;
+
+//   try {
+//     const keyword_artworks = await axios
+//       .get(
+//         `https://re-find.reruru.com/search_txt?query=${keyword}&title&content`
+//       )
+//       .then((res) => res.data);
+
+//     return {
+//       props: {
+//         keyword_artworks,
+//       },
+//     };
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+
+//     return {
+//       notFound: true, // Next.js에서 제공하는 notFound 속성을 사용하여 페이지를 404로 표시
+//     };
+//   }
+// }
