@@ -40,8 +40,9 @@ const Artist = () =>
 
     // 정렬 선택하기
     const handleMenuItemClick = useCallback((menuText: string) => {
-      if (menuText === sortType) return;
+      //if (menuText === sortType) return;
       setSortType(menuText);
+      console.log(menuText);
       // 다시 불러오기
       setPage(1);
       setIsLastPage(false);
