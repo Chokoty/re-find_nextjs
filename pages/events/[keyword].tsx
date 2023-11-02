@@ -40,7 +40,7 @@ const Artist = () =>
 
     // 정렬 선택하기
     const handleMenuItemClick = useCallback((menuText: string) => {
-      if (menuText === sortType) return;
+      // if (menuText === sortType) return;
       setSortType(menuText);
       // 다시 불러오기
       setPage(1);
@@ -64,7 +64,7 @@ const Artist = () =>
     }, []);
 
     const getArtistArtworks = useCallback(async () => {
-      console.log('getArtistArtworks');
+      // console.log('getArtistArtworks');
       if (isLastPage) return;
       if (loadingData) return;
 
@@ -112,14 +112,14 @@ const Artist = () =>
         setIsInitialRender(false);
         return;
       }
-      console.log('page: ', page);
+      // console.log('page: ', page);
       getArtistArtworks();
     }, [sortType, page]);
 
     // 무한 스크롤
     useEffect(() => {
       // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-      if (inView) console.log('inView: ', inView);
+      // if (inView) console.log('inView: ', inView);
       if (inView && !isLastPage) {
         // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
         setPage((prevState) => prevState + 1);
@@ -128,7 +128,7 @@ const Artist = () =>
 
     useEffect(() => {
       if (keyword) {
-        console.log(keyword);
+        // console.log(keyword);
         getArtistArtworks();
       }
     }, [keyword]);
