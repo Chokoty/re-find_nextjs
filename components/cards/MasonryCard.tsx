@@ -28,7 +28,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
   return (
     <Box
       w={widthValue}
-      maxHeight="500px"
+      // maxHeight="500px"
       pb="16px"
       display="inline-block"
       position="relative"
@@ -38,6 +38,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
       <Box position="relative">
         <Box
           width={widthValue}
+          maxHeight="500px"
           overflow="hidden"
           borderRadius="1rem"
           position="relative"
