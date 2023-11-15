@@ -47,11 +47,11 @@ const ViewSelectBar = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { id: 'like', label: '좋아요순' },
-    { id: 'view', label: '조회수순' },
-    { id: 'comment', label: '댓글순' },
     { id: 'latest', label: '최신순' },
     { id: 'oldest', label: '업로드순' },
+    { id: 'view', label: '조회수순' },
+    { id: 'like', label: '좋아요순' },
+    { id: 'comment', label: '댓글순' },
   ];
 
   const selectedLabel = menuItems.find(
@@ -124,14 +124,14 @@ const ViewSelectBar = ({
       </Box>
       <Box>
         <Button
-          variant={activeView === 'masonryView' ? 'solid' : 'ghost'}
-          onClick={() => onViewChange('masonryView')}
+          variant={activeView === 'masonry' ? 'solid' : 'ghost'}
+          onClick={() => onViewChange('masonry')}
         >
           <MdOutlineDashboard size="24px" />
         </Button>
         <Button
-          variant={activeView === 'gridView' ? 'solid' : 'ghost'}
-          onClick={() => onViewChange('gridView')}
+          variant={activeView === 'grid' ? 'solid' : 'ghost'}
+          onClick={() => onViewChange('grid')}
         >
           <MdOutlineGridView size="24px" />
         </Button>
