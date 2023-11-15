@@ -47,8 +47,8 @@ const ViewSelectBar = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
-    { id: 'like', label: '좋아요순' },
     { id: 'view', label: '조회수순' },
+    { id: 'like', label: '좋아요순' },
     { id: 'comment', label: '댓글순' },
     { id: 'latest', label: '최신순' },
     { id: 'oldest', label: '업로드순' },

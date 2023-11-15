@@ -2,6 +2,7 @@ import { Box, Center, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -12,33 +13,33 @@ import ViewSelectBar from '@/components/tools/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 
-const Artist = ({
-  artist_name2info,
-  // artist_artworks_data
-}) => {
+const Artist = ({ artist_name2info }) => {
   const router = useRouter();
-  const { nickname } = router.query;
-  let actualNickname = '';
-  if (Array.isArray(nickname)) {
-    [actualNickname] = nickname;
-  } else {
-    actualNickname = nickname;
-  }
+  const searchParams = useSearchParams();
+  const toast = useToast();
+  // const [searchParams, setSearchParams] = useSearchParams();
 
-  const [profile, setProfile] = useState(artist_name2info); // useState(null);
-  const [artworks, setArtworks] = useState([]); // useState(artist_artworks_data?.list);
-
-  // infinite scroll
   const { ref, inView } = useInView({
+    // infinite scroll을 위한 옵저버
     threshold: 0,
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
+  // const { nickname } = router.query;
+  const nickname = router.query.nickname as string;
+  let actualNickname = '';
+  if (Array.isArray(nickname)) [actualNickname] = nickname;
+  else actualNickname = nickname;
+
+  const [profile, setProfile] = useState(artist_name2info);
+  const [artworks, setArtworks] = useState([]);
   const [page, setPage] = useState(1);
-  const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
+  const [isLastPage, setIsLastPage] = useState(false);
 
   // 뷰 선택 메뉴
-  const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState('like'); // 초기 상태 설정
+  const activeView = (searchParams.get('view') || 'masonryView') as string;
+  const sortType = (searchParams.get('sort') || 'latest') as string;
+  // const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
+  // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -46,12 +47,12 @@ const Artist = ({
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
-  const toast = useToast();
-
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {
     if (menuText === sortType) return;
-    setSortType(menuText);
+    // setSortType(menuText);
+    // setSearchParams({ sort: menuText });
+    router.push(`?view=${activeView}&sort=${menuText}`);
     // 다시 불러오기
     setPage(1);
     setIsLastPage(false);
@@ -60,7 +61,8 @@ const Artist = ({
 
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {
-    setActiveView(view);
+    // setActiveView(view);
+    router.push(`?view=${view}&sort=${sortType}`);
   }, []);
 
   // 삭제된 게시글 보이기
