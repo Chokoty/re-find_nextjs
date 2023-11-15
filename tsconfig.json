@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "downlevelIteration": true, // useSearchParams
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,

@@ -15,9 +15,9 @@ import SimpleView from '@/components/views/SimpleView';
 
 const Artist = ({ artist_name2info }) => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  // const searchParams = useSearchParams();
   const toast = useToast();
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams()[0];
 
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
