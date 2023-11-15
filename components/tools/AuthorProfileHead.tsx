@@ -51,13 +51,13 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
     setIsOpen(!isOpen);
   };
   const handleCopyLink = () => {
-    // const linkToCopy = `https://re-find.xyz/artists/${profile?.author_nickname}`;
+    // 복사하려는 링크를 여기에 입력하세요.
     const linkToCopy = `https://re-find.xyz/artists/${encodeURIComponent(
       profile?.author_nickname
     )}`;
-    // 복사하려는 링크를 여기에 입력하세요.
+    const currentUrl = window.location.href;
 
-    navigator.clipboard.writeText(linkToCopy).then(() => {
+    navigator.clipboard.writeText(currentUrl).then(() => {
       toast({
         title: '프로필 링크 복사됨',
         description: '링크가 클립보드에 복사되었습니다.',

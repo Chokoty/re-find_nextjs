@@ -36,9 +36,11 @@ const Artist = ({ artist_name2info }) => {
   const [isLastPage, setIsLastPage] = useState(false);
 
   // 뷰 선택 메뉴
-  const activeView = (searchParams.get('view') || 'masonryView') as string;
-  const sortType = (searchParams.get('sort') || 'latest') as string;
-  // const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
+  const initialActiveView = (searchParams.get('view') || 'masonry') as string;
+  const initialSortType = (searchParams.get('sort') || 'latest') as string;
+  const [activeView, setActiveView] = useState(initialActiveView); // 초기 뷰 설정
+  const [sortType, setSortType] = useState(initialSortType); // 초기 상태 설정
+  // const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -50,9 +52,8 @@ const Artist = ({ artist_name2info }) => {
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {
     if (menuText === sortType) return;
-    // setSortType(menuText);
-    // setSearchParams({ sort: menuText });
-    router.push(`?view=${activeView}&sort=${menuText}`);
+    setSortType(menuText);
+    router.push(`/artists/${nickname}?view=${activeView}&sort=${menuText}`);
     // 다시 불러오기
     setPage(1);
     setIsLastPage(false);
@@ -61,8 +62,8 @@ const Artist = ({ artist_name2info }) => {
 
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {
-    // setActiveView(view);
-    router.push(`?view=${view}&sort=${sortType}`);
+    setActiveView(view);
+    router.push(`/artists/${nickname}?view=${view}&sort=${sortType}`);
   }, []);
 
   // 삭제된 게시글 보이기
@@ -128,6 +129,10 @@ const Artist = ({ artist_name2info }) => {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
   }, [sortType, page, nickname]);
+
+  useEffect(() => {
+    router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
+  }, [activeView, sortType]);
 
   useEffect(() => {
     if (isInitialRender) {
@@ -236,7 +241,7 @@ const Artist = ({ artist_name2info }) => {
                     w="100%"
                     overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
                   >
-                    {activeView === 'masonryView' && (
+                    {activeView === 'masonry' && (
                       <MasonryView
                         nickname={nickname}
                         artworks={artworks}
@@ -245,7 +250,7 @@ const Artist = ({ artist_name2info }) => {
                         handleLoading={handleLoading}
                       />
                     )}
-                    {activeView === 'gridView' && (
+                    {activeView === 'grid' && (
                       <SimpleView
                         artworks={artworks}
                         isDeletedVisible={isDeletedVisible}
