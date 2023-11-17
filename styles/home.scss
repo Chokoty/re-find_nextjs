@@ -111,19 +111,6 @@
   }
 
   .uploader {
-    width: 50%;
-    max-width: 550px;
-    height: 250px;
-    margin: 80px 0px 60px 0px;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    border: 4px dashed #6d6d6d;
-    border-radius: 20px;
-    cursor: pointer;
-
     @include tablet {
       width: 60%;
       min-width: 500px;

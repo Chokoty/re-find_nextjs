@@ -8,7 +8,7 @@ export const Footer = () => {
   const color = useColorModeValue(lightMode.footerColor, darkMode.footerColor);
 
   return (
-    <footer style={{ backgroundColor: bgColor, color }}>
+    <footer style={{ backgroundColor: bgColor, color, paddingBottom: '5rem' }}>
       <Box
         display="flex"
         flexDirection="column"

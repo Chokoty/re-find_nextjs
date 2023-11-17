@@ -233,29 +233,9 @@ export default function Home({ last_update_info }: HomeProps) {
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           />
-          {/* <Box
-            mt={10}
-            maxW="540px"
-            w="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            flexDirection="column"
-          >
-            <Button
-              fontSize="lg"
-              fontWeight="bold"
-              textAlign="center"
-              mb={4}
-              p= "2rem"
-            >
-              할로윈 특집 팬아트 보러가기 
-            </Button>
-          </Box> */}
           <EventFanarts initialFanart={null} />
           <RandomFanart />
           <UpdateBoard last_update_info={last_update_info} />
-
           <NextLink href="/notice" legacyBehavior>
             <Flex
               w="80%"
