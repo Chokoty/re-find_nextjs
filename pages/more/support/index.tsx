@@ -2,7 +2,7 @@ import { Box, Button, Image, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 import { BsChatDots } from 'react-icons/bs';
 
-import OtherLayout from '@/components/layout/other-layout';
+import MoreLayout from '@/components/layout/more-layout';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -31,7 +31,7 @@ const Support = () => {
   }, []);
 
   return (
-    <OtherLayout title="Support">
+    <MoreLayout title="Support">
       <div className="toLink">
         {data.map((item, index) => (
           <Box className="area" key={index}>
@@ -68,7 +68,7 @@ const Support = () => {
           </Box>
         ))}
       </div>
-    </OtherLayout>
+    </MoreLayout>
   );
 };
 

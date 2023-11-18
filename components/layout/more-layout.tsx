@@ -21,7 +21,7 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
       <Divider
         className="divider"
         style={{
-          margin: '1rem auto',
+          margin: '2rem auto',
           maxWidth: '10rem',
           backgroundColor: bgColor,
           height: '5px',

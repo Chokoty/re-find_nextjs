@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import OtherLayout from '@/components/layout/other-layout';
+import SearchLayout from '@/components/layout/search-layout';
 import { useStore } from '@/store/store';
 
 const Search = () => {
@@ -11,9 +11,9 @@ const Search = () => {
   }, []);
 
   return (
-    <OtherLayout title="검색">
+    <SearchLayout title="검색">
       <div className="toLink">search</div>
-    </OtherLayout>
+    </SearchLayout>
   );
 };
 

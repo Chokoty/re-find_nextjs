@@ -1,39 +1,42 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { Heading, Link, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Heading, Link, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
-// import AuthorProfileCard from '@/components/AuthorProfileCard';
-import ProfileCard from '@/components/cards/ProfileCard';
-import OtherLayout from '@/components/layout/other-layout';
+import ProfileCard2 from '@/components/cards/ProfileCard2';
+import MoreLayout from '@/components/layout/more-layout';
 import developers from '@/data/developers';
-import { useStore } from '@/store/store';
+// import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const About = () => {
-  const setIsOpen = useStore((state) => state.setIsOpen);
+  // const setIsOpen = useStore((state) => state.setIsOpen);
 
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
   );
 
-  useEffect(() => {
-    setIsOpen(false);
-  }, [setIsOpen]);
+  // useEffect(() => {
+  //   setIsOpen(false);
+  // }, [setIsOpen]);
 
   return (
-    <OtherLayout title="About">
+    <MoreLayout title="About">
       <div className="about-content">
         <Heading
           className="page-title"
           as="h1"
           size="md"
-          m="0 auto"
+          m="3rem auto"
           noOfLines={1}
         >
           서비스 소개 왁물원 게시글
         </Heading>
-        <ul>
+        <ul
+          style={{
+            listStyle: 'none',
+          }}
+        >
           <li>
             <Link
               color={highlightColor}
@@ -50,15 +53,25 @@ const About = () => {
           className="page-title"
           as="h1"
           size="md"
-          m="0 auto"
+          m="3rem auto"
+          mt="6rem"
           noOfLines={1}
         >
           크레딧
         </Heading>
 
-        <div className="developers">
+        <Flex
+          className="developers"
+          display="flex"
+          flexWrap="wrap"
+          gap="20px"
+          justifyContent="center"
+          alignItems="center"
+          margin="0 auto"
+          p="0"
+        >
           {developers.map((item, index) => (
-            <ProfileCard
+            <ProfileCard2
               key={index}
               writerURL={item.writerURL}
               profURL={item.profURL}
@@ -66,9 +79,9 @@ const About = () => {
               board={item.contribute}
             />
           ))}
-        </div>
+        </Flex>
       </div>
-    </OtherLayout>
+    </MoreLayout>
   );
 };
 

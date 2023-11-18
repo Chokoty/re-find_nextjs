@@ -22,8 +22,10 @@ const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ className }) => {
       icon={
         <Icon
           style={{
-            width: '1.5rem',
-            height: '1.5rem',
+            width: '2rem',
+            height: '2rem',
+            // width: '1.5rem',
+            // height: '1.5rem',
           }}
         />
       }

@@ -1,16 +1,11 @@
 import {
-  // Box,
-  // Button,
-  Flex,
-  Heading,
-  Text,
+  Box,
   useColorModeValue,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import dynamic from 'next/dynamic';
-import NextLink from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import HashLoader from 'react-spinners/HashLoader';
 
@@ -22,7 +17,7 @@ import Preview from '@/components/tools/Preview';
 import RandomFanart from '@/components/tools/RandomFanart';
 import SearchResult from '@/components/tools/SearchResult';
 import UpdateBoard from '@/components/tools/UpdateBoard';
-import UpdateLog from '@/components/tools/UpdateLog';
+import UpdateLogBoard from '@/components/tools/UpdateLogBoard';
 import UploadImages from '@/components/tools/UploadImages';
 import TopTitle from '@/components/TopTitle';
 import { useStore } from '@/store/store';
@@ -59,6 +54,9 @@ export default function Home({ last_update_info }: HomeProps) {
   const [author, setAuthor] = useState(null);
   const [author2, setAuthor2] = useState(null);
   const [searchTime, setSearchTime] = useState(0);
+
+  // react-spinners
+  const [loadingData, setLoadingData] = useState(false);
 
   // event
   const [congrat, setCongrat] = useState(false);
@@ -217,10 +215,9 @@ export default function Home({ last_update_info }: HomeProps) {
     >
       {/* 상단 타이틀 */}
       <TopTitle data={data} resetFiles={resetFiles} />
-
       {/* 이벤트 */}
-      {/* {<EventModal targetCount={targetCount} />} */}
       {congrat && <EventModal targetCount={targetCount} />}
+      {/* {<EventModal targetCount={targetCount} />} */}
       {/* <MelonVoteModal /> */}
 
       {/* 업로드 전 */}
@@ -234,26 +231,20 @@ export default function Home({ last_update_info }: HomeProps) {
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           />
+
+          {/* 이벤트 */}
           <EventFanarts initialFanart={null} />
           <RandomFanart />
-          <UpdateBoard last_update_info={last_update_info} />
-          <NextLink href="/notice" legacyBehavior>
-            <Flex
-              w="80%"
-              maxW="540px"
-              flexDir="row"
-              justifyContent="space-between"
-              alignItems="center"
-              mt="2rem"
-              mb="1rem"
-              cursor="pointer"
-            >
-              <Heading size="md">공지사항</Heading>
-              <Text fontSize="md">더보기</Text>
-            </Flex>
-          </NextLink>
 
-          <UpdateLog count={4} />
+          {/* 업데이트 현황 */}
+          {/* {loadingData && (
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <HashLoader color="#01BFA2" />
+            </Box>
+          )} */}
+          <UpdateBoard last_update_info={last_update_info} />
+          {/* 공지사항 */}
+          <UpdateLogBoard width={'90%'} />
         </>
       )}
 
@@ -282,12 +273,13 @@ export default function Home({ last_update_info }: HomeProps) {
 export async function getServerSideProps() {
   try {
     const timeout = 2000; // 3초
-    // const counter = axios
-    //     .get("https://isd-fanart.reruru.com/counter")
-    //     .then((res) => res.data);
     const last_update_info = axios
       .get('https://re-find.reruru.com/last_update_info', { timeout })
       .then((res) => res.data);
+
+    // const counter = axios
+    //     .get("https://isd-fanart.reruru.com/counter")
+    //     .then((res) => res.data);
     // const initialFanart = axios
     //   .get(`https://re-find.reruru.com/isegye_festival`)
     //   .then((res) => res.data);

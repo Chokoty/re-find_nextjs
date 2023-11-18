@@ -2,10 +2,12 @@ import {
   Box,
   Button,
   Flex,
+  Heading,
   Input,
   InputGroup,
   InputLeftElement,
   Link,
+  Text,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
@@ -14,18 +16,16 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
+import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import DarkModeToggle from '@/components/tools/DarkModeToggle';
 import MyDrawer from '@/components/tools/MyDrawer';
 import SearchModal from '@/components/tools/SearchModal';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
-// import { useThemeStore } from '@/store/themeStore';
 import { darkMode, lightMode } from '@/styles/theme';
-// import NoticeBanner from '../NoticeBanner';
-// import Title from '../Title';
 
-export const Header2 = () => {
+export const SearchHeader = ({ title }) => {
   // useStore
   // const count = useStore((state) => state.count);
   const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
@@ -47,11 +47,6 @@ export const Header2 = () => {
 
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
   const showShadow = useShowShadow(50, 0);
-  // const showShadow = useShowShadow(50, 50 + 310);
-
-  // useEffect(() => {
-  //     setIsObserver(myDrawerRef);
-  // }, [myDrawerRef]);
 
   useEffect(() => {
     if (!isOpenDrawer) {
@@ -87,14 +82,14 @@ export const Header2 = () => {
       position="sticky"
       pt="0"
       top="0"
+      w="100%"
+      // h="3rem"
       // pt="50px "
       // top="-50px"
       zIndex="200"
       boxShadow={showShadow ? boxShadow : 'none'}
       // overflow="hidden"
     >
-      {/* <NoticeBanner /> */}
-
       <Flex
         as="header"
         style={{
@@ -106,7 +101,7 @@ export const Header2 = () => {
           alignItems: 'center',
         }}
       >
-        <Flex>
+        <Box w="3rem" h="3rem">
           <Button
             w="3rem"
             h="3rem"
@@ -115,83 +110,25 @@ export const Header2 = () => {
             borderRadius="50%"
             flexShrink={0}
           >
-            <Link href="/">
-              <Image
-                alt="logo"
-                width={40}
-                height={40}
-                src="/android-chrome-512x512.png"
-                // unoptimized
-              />
-            </Link>
+            <NextLink href="/more">
+              <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
+            </NextLink>
           </Button>
-          <Box w="3rem" h="3rem"></Box>
-        </Flex>
-
-        {/* <Button w="3rem" h="3rem" p="0.5rem" variant="ghost">
-          <Link href="/">
-            <Title onTitleClick={null} />
-          </Link>
-        </Button> */}
-        <Box
-          display="flex"
-          justifyContent="center"
-          // m="0 1rem"
-          m="0"
-          w={['80%', '56%', '67%']}
-        >
-          <InputGroup m="0 1rem">
-            <InputLeftElement
-              pointerEvents="none"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              padding="0.5rem"
-            >
-              <FaSearch
-                style={{
-                  marginTop: '0.3rem',
-                  // marginLeft: '0.5rem',
-                  width: '1.2rem',
-                  height: '1.2rem',
-                  color,
-                }}
-              />
-            </InputLeftElement>
-            <Input
-              placeholder="검색"
-              h="3rem"
-              pl="3rem"
-              borderRadius="2rem"
-              border="none"
-              bg={searchBgColor}
-              alignItems="center"
-              onClick={onOpen}
-              // onClick={() => {
-              //   alert('(큰 거x) 작은 거 온다?!?');
-              // }}
-            />
-          </InputGroup>
         </Box>
-
-        <Flex>
-          <DarkModeToggle className="dark-mode-toggle" />
-          <MyDrawer
-            isOpen={isOpenDrawer}
-            toggleDrawer={toggleDrawer}
-            ref={myDrawerRef}
-          />
-          <Box className="hamburger" w="3rem" flexShrink={0}>
-            <Hamburger
-              label="펼치기" // An ARIA label to improve accessibility.
-              size={24}
-              toggled={isOpenDrawer}
-              toggle={toggleDrawer}
-            />
-          </Box>
-        </Flex>
+        <Box w="6rem" h="3rem">
+          <Heading
+            as="h1"
+            size="md"
+            m="0"
+            pt="0.75rem"
+            noOfLines={1}
+            color={color}
+          >
+            {title}
+          </Heading>
+        </Box>
+        <Box w="3rem" h="3rem"></Box>
       </Flex>
-      <SearchModal isOpen={isOpen} onClose={onClose} />
     </Box>
   );
 };

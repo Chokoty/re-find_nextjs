@@ -3,8 +3,7 @@ import NextLink from 'next/link';
 import type { ReactNode } from 'react';
 import React from 'react';
 
-import { Header2 } from '@/components/layout/MobileHeader';
-import Title from '@/components/title/Title';
+import { SearchHeader } from '@/components/layout/SearchHeader';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface OtherLayoutProps {
@@ -12,27 +11,17 @@ interface OtherLayoutProps {
   title: string;
 }
 
-const OtherLayout2: React.FC<OtherLayoutProps> = ({ children, title }) => {
+const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
   const bgColor = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   return (
     <div className="body">
-      <Header2 />
-      <Heading
-        className="page-title"
-        as="h1"
-        size="lg"
-        noOfLines={1}
-        color={color}
-      >
-        {title}
-      </Heading>
+      <SearchHeader title={title} />
       <Divider
-        mt="5"
         className="divider"
         style={{
-          margin: '48px auto',
+          margin: '1rem auto',
           maxWidth: '10rem',
           backgroundColor: bgColor,
           height: '5px',
@@ -43,4 +32,4 @@ const OtherLayout2: React.FC<OtherLayoutProps> = ({ children, title }) => {
   );
 };
 
-export default OtherLayout2;
+export default MoreLayout;

@@ -25,7 +25,7 @@ import { darkMode, lightMode } from '@/styles/theme';
 // import NoticeBanner from '../NoticeBanner';
 // import Title from '../Title';
 
-export const Header = () => {
+export const NavBar = () => {
   // useStore
   // const count = useStore((state) => state.count);
   const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
@@ -85,10 +85,8 @@ export const Header = () => {
   return (
     <Box
       position="sticky"
-      pt="0"
-      top="0"
-      // pt="50px "
-      // top="-50px"
+      pt="3rem"
+      top="-3rem"
       zIndex="200"
       boxShadow={showShadow ? boxShadow : 'none'}
       // overflow="hidden"
@@ -127,12 +125,6 @@ export const Header = () => {
           </Button>
           <Box w="3rem" h="3rem"></Box>
         </Flex>
-
-        {/* <Button w="3rem" h="3rem" p="0.5rem" variant="ghost">
-          <Link href="/">
-            <Title onTitleClick={null} />
-          </Link>
-        </Button> */}
         <Box
           display="flex"
           justifyContent="center"

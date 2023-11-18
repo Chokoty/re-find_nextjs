@@ -21,52 +21,6 @@
   }
 }
 
-.about-content {
-  // text-align: center;
-  margin: 0 auto;
-  .page-title {
-    margin-top: 50px;
-    margin-bottom: 20px;
-  }
-
-  ul {
-    list-style: none;
-  }
-
-  .developers {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto;
-    padding: 0;
-  }
-  @include mobile {
-    width: 90%;
-    max-width: 360px;
-  }
-}
-
-// .notice-content {
-//     margin: 0 auto;
-
-//     .toLink {
-//         background-color: #ef5a9a;
-//         // display: flex;
-//         // flex-wrap: wrap;
-//         // gap: 20px;
-//         // justify-content: center;
-//         // align-items: center;
-//         // margin: 0 auto;
-//         // padding: 0;
-//     }
-//     @include mobile {
-//         width: 100%;
-//         max-width: 360px;
-//     }
-// }
-
 .layout {
   width: 60%;
   .toLink {

@@ -1,24 +1,15 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Link,
-  useColorModeValue,
-  useDisclosure,
-} from '@chakra-ui/react';
+import { Box, Flex, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
+import { CgMoreO } from 'react-icons/cg';
 import { FaSearch } from 'react-icons/fa';
 import { FaImage } from 'react-icons/fa6';
 import { IoPersonCircle } from 'react-icons/io5';
 import { MdHomeFilled } from 'react-icons/md';
 
-export const TabBar = () => {
-  const [tab, setTab] = useState('home'); // 현재 선택된 탭의 상태
-
-  // 버튼 색상을 결정하는 함수
+const TabBarComponent = ({ tab, setTab }) => {
   const getButtonColor = (buttonName) => {
-    return tab === buttonName ? '#FFFFFF' : '#828282'; // 선택된 탭과 버튼 이름이 같으면 하얀색, 아니면 회색
+    return tab === buttonName ? '#FFFFFF' : '#828282';
   };
 
   return (
@@ -94,18 +85,25 @@ export const TabBar = () => {
             />
           </Link>
         </NextLink>
-        <NextLink href="/profile" passHref>
+        <NextLink href="/more" passHref>
           <Link
             style={{
-              color: getButtonColor('profile'),
+              color: getButtonColor('more'),
               width: '2rem',
               height: '2rem',
             }}
-            onClick={() => setTab('profile')}
+            onClick={() => setTab('more')}
           >
-            <IoPersonCircle
+            {/* <IoPersonCircle
               style={{
-                color: getButtonColor('profile'),
+                color: getButtonColor('more'),
+                width: '2rem',
+                height: '2rem',
+              }}
+            /> */}
+            <CgMoreO
+              style={{
+                color: getButtonColor('more'),
                 width: '2rem',
                 height: '2rem',
               }}
@@ -155,3 +153,5 @@ export const TabBar = () => {
     </Box>
   );
 };
+
+export default TabBarComponent;
