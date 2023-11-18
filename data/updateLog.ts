@@ -1,6 +1,7 @@
 interface UpdateLog {
   id: number;
   date: string;
+  type?: string; // [안내] or ''
   content: string;
   directLink?: string;
 }
@@ -9,12 +10,14 @@ const updateLog: UpdateLog[] = [
   {
     id: 1,
     date: '2023.03.16',
+    type: '[안내]',
     content:
       '이제 금손 일러레의 방에 업로드 된 이미지도 검색할 수 있습니다. 비정기적으로 업데이트 됩니다.',
   },
   {
     id: 2,
     date: '2023.03.20',
+    type: '[안내]',
     content:
       'AI로 그린 팬아트 검색에 대한 수요가 있는 것 같아서 왁타버스 불법 AI 팬아트도 추가했습니다. 비정기적으로 업데이트 됩니다.',
   },
@@ -178,6 +181,7 @@ const updateLog: UpdateLog[] = [
   {
     id: 28,
     date: '2023.10.22',
+    type: '[안내]',
     content:
       '작가프로필 페이지가 정식 오픈되었습니다!!! 많은 이용 부탁드립니다. (형은신이야)',
     directLink: 'https://cafe.naver.com/steamindiegame/13410477',

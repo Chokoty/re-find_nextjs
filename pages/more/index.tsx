@@ -9,7 +9,7 @@ import developers from '@/data/developers';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const Profile = () => {
+const More = () => {
   const setIsOpen = useStore((state) => state.setIsOpen);
 
   const highlightColor = useColorModeValue(
@@ -72,4 +72,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default More;

@@ -15,7 +15,7 @@ const TopTitle = ({ data, resetFiles }) => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      mt="2rem"
+      mt="1rem"
     >
       <Banner2 />
       {/* <HalloweenBtn /> */}

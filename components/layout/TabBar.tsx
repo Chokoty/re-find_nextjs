@@ -21,8 +21,6 @@ export const TabBar = () => {
     return tab === buttonName ? '#FFFFFF' : '#828282'; // 선택된 탭과 버튼 이름이 같으면 하얀색, 아니면 회색
   };
 
-  const boxShadow = '0px -4px 4px rgba(0, 0, 0, 0.25)';
-
   return (
     <Box
       position="sticky"
@@ -40,7 +38,7 @@ export const TabBar = () => {
         alignItems="center"
         borderRadius="2rem"
         gap="2rem"
-        boxShadow={boxShadow}
+        boxShadow="dark-lg"
       >
         <NextLink href="/" passHref>
           <Link

@@ -12,6 +12,7 @@ import axios from 'axios';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
+import HashLoader from 'react-spinners/HashLoader';
 
 import EventFanarts from '@/components/events/EventFanarts';
 import EventModal from '@/components/events/EventModal';
