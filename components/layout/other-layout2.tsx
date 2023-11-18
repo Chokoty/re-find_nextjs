@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import type { ReactNode } from 'react';
 import React from 'react';
 
-import { Header2 } from '@/components/layout/MobileHeader';
+import { MobileHeader } from '@/components/layout/MobileHeader';
 import Title from '@/components/title/Title';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -18,7 +18,7 @@ const OtherLayout2: React.FC<OtherLayoutProps> = ({ children, title }) => {
 
   return (
     <div className="body">
-      <Header2 />
+      <MobileHeader />
       <Heading
         className="page-title"
         as="h1"
