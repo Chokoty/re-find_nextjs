@@ -2,7 +2,7 @@ import { Box } from '@chakra-ui/react';
 import React from 'react';
 
 import Banner2 from '@/components/Banner/Banner2';
-import HalloweenBtn from '@/components/events/HalloweenBtn';
+// import HalloweenBtn from '@/components/events/HalloweenBtn';
 import SubTitle from '@/components/title/SubTitle';
 import Title from '@/components/title/Title';
 import Counter from '@/components/tools/Counter';
