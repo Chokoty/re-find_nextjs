@@ -55,6 +55,7 @@
     "react-use": "^17.4.0",
     "sharp": "^0.32.5",
     "styled-components": "^6.0.7",
+    "swiper": "^11.0.5",
     "zustand": "^4.3.7"
   },
   "devDependencies": {

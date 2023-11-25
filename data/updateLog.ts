@@ -182,6 +182,12 @@ const updateLog: UpdateLog[] = [
       '작가프로필 페이지가 정식 오픈되었습니다!!! 많은 이용 부탁드립니다. (형은신이야)',
     directLink: 'https://cafe.naver.com/steamindiegame/13410477',
   },
+  {
+    id: 29,
+    date: '2023.11.23',
+    content: '공지멜론 MMA 2023 밀리언스 TOP10 에 키딩이 들어갔어요.',
+    directLink: 'https://cafe.naver.com/steamindiegame/13776472',
+  },
 ];
 
 export default updateLog;

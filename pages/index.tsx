@@ -15,7 +15,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import EventFanarts from '@/components/events/EventFanarts';
 import EventModal from '@/components/events/EventModal';
-// import MelonVoteModal from '@/components/events/MelonVoteModal';
 import Loading from '@/components/tools/Loading';
 import Preview from '@/components/tools/Preview';
 import RandomFanart from '@/components/tools/RandomFanart';
@@ -220,7 +219,6 @@ export default function Home({ last_update_info }: HomeProps) {
       {/* 이벤트 */}
       {/* {<EventModal targetCount={targetCount} />} */}
       {congrat && <EventModal targetCount={targetCount} />}
-      {/* <MelonVoteModal /> */}
 
       {/* 업로드 전 */}
       {uploadedfiles.length === 0 && (

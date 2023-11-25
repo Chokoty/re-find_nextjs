@@ -110,17 +110,21 @@ const MelonVoteModal = () => {
       justifyContent="center"
       alignItems="center"
     >
-      <Link href="https://www.melon.com/melonaward/weekAward.htm" isExternal>
-        <Button colorScheme="green" w="260px">
+      {/* <Link href="https://www.melon.com/mma/vote2.htm" isExternal>
+        <Button colorScheme="green">
           <LuVote size="1.2rem" />
-          <Text ml="0.5rem">멜론 주간인기상 투표하기</Text>
+          <Text ml="0.5rem">멜론 MMA2023 밀리언스 TOP10 투표 바로가기</Text>
         </Button>
-      </Link>
+      </Link> */}
 
-      {/* <Button colorScheme="green" onClick={handleOpenModal} w="260px">
+      <Heading mb="1rem" as="h2" size="md">
+        투표기간 - 11/17(목)~12/01(금) 23:59{' '}
+      </Heading>
+      <Button colorScheme="green" onClick={handleOpenModal}>
         <LuVote size="1.2rem" />
-        <Text ml="0.5rem">멜론 주간인기상 투표하기</Text>
-      </Button> */}
+        <Text ml="0.5rem">멜론 MMA2023 밀리언스 TOP10 투표하기 </Text>
+      </Button>
+
       <Modal
         isCentered
         isOpen={isOpen}
