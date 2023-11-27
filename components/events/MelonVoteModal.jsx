@@ -113,14 +113,14 @@ const MelonVoteModal = () => {
       >
         <ModalOverlay />
         <ModalContent maxW={modalWidth} backgroundColor="black">
-          <Box
+          {/* <Box
             position="absolute"
             overflow="hidden"
             w="100%"
             h="200px"
             zindex="0"
             borderRadius="0.25rem 0.25rem 0 0"
-          ></Box>
+          ></Box> */}
           <Box
             position="relative"
             p="16px 24px"
@@ -132,10 +132,10 @@ const MelonVoteModal = () => {
             <Heading
               fontSize="2xl"
               color="#FFFFFF"
-              backgroundColor="#FE78BB"
-              display="inline-block"
+              // backgroundColor="#FE78BB"
+              // display="inline-block"
             >
-              Kidding (키딩)
+              멜론 MMA2023 밀리언스 TOP10
             </Heading>
             <Text
               fontSize="sm"
@@ -143,7 +143,7 @@ const MelonVoteModal = () => {
               // backgroundColor="#FE78BB"
               // display="inline-block"
             >
-              이세계아이돌 3번째 싱글
+              투표기간 - 11/17(목)~12/01(금) 23:59
             </Text>
           </Box>
           <ModalBody>
