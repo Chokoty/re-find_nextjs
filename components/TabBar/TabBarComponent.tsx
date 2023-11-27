@@ -23,8 +23,8 @@ const TabBarComponent = ({ tab, setTab }) => {
     >
       <Flex
         background="#292929"
-        height="56px"
-        width="280px"
+        height="64px"
+        width="300px"
         justifyContent="center"
         alignItems="center"
         borderRadius="2rem"
@@ -35,16 +35,16 @@ const TabBarComponent = ({ tab, setTab }) => {
           <Link
             style={{
               color: getButtonColor('home'),
-              width: '2rem',
-              height: '2rem',
+              width: '2.5rem',
+              height: '2.5rem',
             }}
             onClick={() => setTab('home')}
           >
             <MdHomeFilled
               style={{
                 color: getButtonColor('home'),
-                width: '2rem',
-                height: '2rem',
+                width: '2.5rem',
+                height: '2.5rem',
               }}
             />
           </Link>
@@ -53,16 +53,16 @@ const TabBarComponent = ({ tab, setTab }) => {
           <Link
             style={{
               color: getButtonColor('search'),
-              width: '1.5rem',
-              height: '1.5rem',
+              width: '2.5rem',
+              height: '2.5rem',
             }}
             onClick={() => setTab('search')}
           >
             <FaSearch
               style={{
                 color: getButtonColor('search'),
-                width: '1.5rem',
-                height: '1.5rem',
+                width: '2rem',
+                height: '2rem',
               }}
             />
           </Link>
@@ -71,16 +71,16 @@ const TabBarComponent = ({ tab, setTab }) => {
           <Link
             style={{
               color: getButtonColor('artworks'),
-              width: '2rem',
-              height: '2rem',
+              width: '2.5rem',
+              height: '2.5rem',
             }}
             onClick={() => setTab('artworks')}
           >
             <FaImage
               style={{
                 color: getButtonColor('artworks'),
-                width: '2rem',
-                height: '2rem',
+                width: '2.5rem',
+                height: '2.5rem',
               }}
             />
           </Link>
@@ -89,8 +89,8 @@ const TabBarComponent = ({ tab, setTab }) => {
           <Link
             style={{
               color: getButtonColor('more'),
-              width: '2rem',
-              height: '2rem',
+              width: '2.5rem',
+              height: '2.5rem',
             }}
             onClick={() => setTab('more')}
           >
@@ -104,8 +104,8 @@ const TabBarComponent = ({ tab, setTab }) => {
             <CgMoreO
               style={{
                 color: getButtonColor('more'),
-                width: '2rem',
-                height: '2rem',
+                width: '3rem',
+                height: '3rem',
               }}
             />
           </Link>
