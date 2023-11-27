@@ -5,7 +5,18 @@ import React from 'react';
 
 const Banner2 = () => {
   return (
-    <Box mb="40px" w="94%">
+    <Box
+      w="94%"
+      h="90.7px"
+      maxW="540px"
+      maxH="110px"
+      borderRadius="lg"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      boxShadow="md"
+    >
       <Box maxW="540px" borderRadius="lg" overflow="hidden" m="0 auto">
         <NextLink href="/about">
           <NextImage

@@ -28,7 +28,8 @@ const MelonVoteModal = () => {
   const [color, setColor] = useState('#052e16'); // 초기 색상 설정
 
   // Theme
-  // const color = useColorModeValue(lightMode.color, darkMode.color);
+  const color3 = useColorModeValue(lightMode.color2, darkMode.color3);
+
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -99,28 +100,33 @@ const MelonVoteModal = () => {
 
   return (
     <Box
-      // bg="#FFFAE8"
-      p="0.5rem"
       w="90%"
+      h="100%"
       maxW="540px"
-      mb="1rem"
+      maxH="110px"
       borderRadius="lg"
       display="flex"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      background={color3}
+      boxShadow="md"
     >
-      <Link href="https://www.melon.com/melonaward/weekAward.htm" isExternal>
-        <Button colorScheme="green" w="260px">
+      <Heading as="h2" size="md" mb="1rem">
+        투표기간 - 11/17(목)~12/01(금) 23:59{' '}
+      </Heading>
+      <Link href="https://www.melon.com/mma/vote2.htm" isExternal>
+        <Button colorScheme="green">
           <LuVote size="1.2rem" />
-          <Text ml="0.5rem">멜론 주간인기상 투표하기</Text>
+          <Text ml="0.5rem">멜론 MMA2023 밀리언스 TOP10 투표 바로가기</Text>
         </Button>
       </Link>
 
-      {/* <Button colorScheme="green" onClick={handleOpenModal} w="260px">
+      {/* <Button colorScheme="green" onClick={handleOpenModal}>
         <LuVote size="1.2rem" />
-        <Text ml="0.5rem">멜론 주간인기상 투표하기</Text>
+        <Text ml="0.5rem">멜론 MMA2023 밀리언스 TOP10 투표하기 </Text>
       </Button> */}
+
       <Modal
         isCentered
         isOpen={isOpen}

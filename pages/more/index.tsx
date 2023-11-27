@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import React, { useEffect } from 'react';
+import { AiFillExperiment } from 'react-icons/ai';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
 
 import MoreLayout from '@/components/layout/more-layout';
@@ -109,6 +110,18 @@ const More = () => {
           <Text fontSize="xl">화면 스타일</Text>
         </Button>
       </Flex>
+      <Button colorScheme="purple">
+        <AiFillExperiment
+          className="icon"
+          style={{
+            width: '20px',
+            height: '20px',
+            padding: '0',
+            marginRight: '0.5rem',
+          }}
+        />
+        (beta)이세돌 팬아트를 키워드로 찾아주는 AI
+      </Button>
       <UpdateLogBoard width={'100%'} />
     </MoreLayout>
   );

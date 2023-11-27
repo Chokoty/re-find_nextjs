@@ -46,7 +46,7 @@ const SearchModal = ({ isOpen, onClose }) => {
     >
       <ModalOverlay zIndex={150} />
       <ModalContent
-        maxW={['100%', '52%', '67%']}
+        maxW={['100%', '56%', '70%']}
         // maxW={['100%', '66%']}
         mt={0}
         boxShadow="none"
@@ -67,11 +67,12 @@ const SearchModal = ({ isOpen, onClose }) => {
               display="flex"
               justifyContent="center"
               alignItems="center"
-              padding="0.5rem"
+              // padding="0.5rem"
             >
               <FaSearch
                 style={{
-                  marginTop: '0.3rem',
+                  position: 'relative',
+                  top: '0.1rem',
                   width: '1.2rem',
                   height: '1.2rem',
                   color,
@@ -80,7 +81,7 @@ const SearchModal = ({ isOpen, onClose }) => {
             </InputLeftElement>
             <Input
               placeholder="검색"
-              h="3rem"
+              h="2.5rem"
               borderRadius="3rem"
               border="none"
               bg={searchBgColor}

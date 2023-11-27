@@ -11,7 +11,6 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import EventFanarts from '@/components/events/EventFanarts';
 import EventModal from '@/components/events/EventModal';
-// import MelonVoteModal from '@/components/events/MelonVoteModal';
 import Loading from '@/components/tools/Loading';
 import Preview from '@/components/tools/Preview';
 import RandomFanart from '@/components/tools/RandomFanart';
@@ -217,8 +216,6 @@ export default function Home({ last_update_info }: HomeProps) {
       <TopTitle data={data} resetFiles={resetFiles} />
       {/* 이벤트 */}
       {congrat && <EventModal targetCount={targetCount} />}
-      {/* {<EventModal targetCount={targetCount} />} */}
-      {/* <MelonVoteModal /> */}
 
       {/* 업로드 전 */}
       {uploadedfiles.length === 0 && (

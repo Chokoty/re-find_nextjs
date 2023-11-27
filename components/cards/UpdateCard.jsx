@@ -91,15 +91,16 @@ const UpdateCard = ({ update }) => {
           <Text fontSize={['md', 'lg']}>{uploadTimeDiff}</Text>
         </Flex>
         <Text fontSize={['md', 'lg']}>
-          게시글 id:
           <Link
             color={highlightColor}
             className="link-to-wakzoo"
             href={article_link}
             isExternal
           >
-            {update.id}
-            <ExternalLinkIcon mx="2px" />
+            {update.info.nickname} |{' '}
+            {update.info.nickname.length + update.info.title.length > 14
+              ? `${update.info.title.slice(0, 14)}...`
+              : update.info.title}
           </Link>
         </Text>
       </CardBody>

@@ -17,7 +17,7 @@ const Artist = ({ artist_name2info }) => {
   const router = useRouter();
   // const searchParams = useSearchParams();
   const toast = useToast();
-  const [searchParams, setSearchParams] = useSearchParams()[0];
+  // const [searchParams, setSearchParams] = useSearchParams()[0];
 
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
@@ -36,12 +36,8 @@ const Artist = ({ artist_name2info }) => {
   const [isLastPage, setIsLastPage] = useState(false);
 
   // 뷰 선택 메뉴
-  const initialActiveView = (searchParams.get('view') || 'masonry') as string;
-  const initialSortType = (searchParams.get('sort') || 'latest') as string;
-  const [activeView, setActiveView] = useState(initialActiveView); // 초기 뷰 설정
-  const [sortType, setSortType] = useState(initialSortType); // 초기 상태 설정
-  // const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
+  const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
+  const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 

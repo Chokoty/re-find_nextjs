@@ -1,8 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import React from 'react';
 
-import Banner2 from '@/components/banner/Banner2';
-// import HalloweenBtn from '@/components/events/HalloweenBtn';
+import BannerSlider from '@/components/banner/BannerSlider';
 import SubTitle from '@/components/title/SubTitle';
 import Title from '@/components/title/Title';
 import Counter from '@/components/tools/Counter';
@@ -15,11 +14,9 @@ const TopTitle = ({ data, resetFiles }) => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      mt="1rem"
+      // mt="1rem"
     >
-      <Banner2 />
-      {/* <HalloweenBtn /> */}
-
+      <BannerSlider />
       <Counter data={data} />
       <Title onTitleClick={resetFiles} />
       <SubTitle />
