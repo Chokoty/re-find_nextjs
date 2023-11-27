@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
+import NextLink from 'next/link';
 import React from 'react';
 
 import boardData from '@/data/board.ts';
@@ -91,13 +92,21 @@ const UpdateCard = ({ update }) => {
           <Text fontSize={['md', 'lg']}>{uploadTimeDiff}</Text>
         </Flex>
         <Text fontSize={['md', 'lg']}>
+          <NextLink
+            href={`/artists/${update.info.nickname}`}
+            style={{
+              color: highlightColor,
+            }}
+          >
+            {update.info.nickname}
+          </NextLink>{' '}
+          |{' '}
           <Link
             color={highlightColor}
             className="link-to-wakzoo"
             href={article_link}
             isExternal
           >
-            {update.info.nickname} |{' '}
             {update.info.nickname.length + update.info.title.length > 14
               ? `${update.info.title.slice(0, 14)}...`
               : update.info.title}
