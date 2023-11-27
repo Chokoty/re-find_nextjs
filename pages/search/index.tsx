@@ -13,9 +13,10 @@ const Search = () => {
   const [query, setQuery] = useState('');
 
   const handleSearch = () => {
-    if (nickname) {
-      router.push(`/artists/${nickname}`);
+    if (query) {
+      // router.push(`/artists/${query}`);
     }
+    alert('준비중입니다!');
   };
   const handleKeyPress2 = (event) => {
     if (event.key === 'Enter') {
