@@ -68,9 +68,9 @@ const BannerSlider = () => {
           <SwiperSlide style={swiperSlideStyle}>
             <MelonVoteModal />
           </SwiperSlide>
-          <SwiperSlide style={swiperSlideStyle}>
+          {/* <SwiperSlide style={swiperSlideStyle}>
             <HalloweenBtn />
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </Box>
     </Box>
