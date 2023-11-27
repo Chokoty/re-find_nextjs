@@ -4,26 +4,29 @@ import {
   Flex,
   Heading,
   useColorModeValue,
+  useDisclosure,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef } from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import BackButton from '@/components/tools/BackButton';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export const MoreHeader = ({ title, isIndex }) => {
+export const ArtistHeader = ({ title }) => {
   const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const myDrawerRef = useRef(null);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+  const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
   const boxShadowLight =
     '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
@@ -38,6 +41,7 @@ export const MoreHeader = ({ title, isIndex }) => {
       return;
     }
     const handleClick = (e) => {
+      // console.log(e.target);
       if (
         e.target.className === 'hamburger-react' ||
         e.target.closest('.hamburger-react')
@@ -57,51 +61,44 @@ export const MoreHeader = ({ title, isIndex }) => {
     return () => window.removeEventListener('mousedown', handleClick);
   }, [isOpenDrawer]);
 
+  const router = useRouter(); // useRouter 훅 사용
+  const handleBack = () => {
+    router.back(); // 이전 페이지로 돌아가는 메서드
+  };
+
   const toggleDrawer = () => {
     setIsOpenDrawer(!isOpenDrawer);
   };
 
   return (
-    <Box
-      position="sticky"
-      pt="0"
-      top="0"
-      w="100%"
-      zIndex="200"
-      boxShadow={showShadow ? boxShadow : 'none'}
-    >
+    <Box>
       <Flex
         as="header"
         style={{
           backgroundColor: bgColor,
           color,
-          padding: '1rem',
+          padding: '0.5rem 1rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
         }}
       >
         <Box w="3rem" h="3rem">
-          {isIndex ? (
-            <Button
-              w="3rem"
-              h="3rem"
-              p="0.5rem"
-              variant="ghost"
-              borderRadius="50%"
-              flexShrink={0}
-            >
-              <NextLink href="/">
-                <FaArrowLeftLong
-                  style={{ width: '1.5rem', height: '1.5rem' }}
-                />
-              </NextLink>
-            </Button>
-          ) : (
-            <BackButton />
-          )}
+          <Button
+            w="3rem"
+            h="3rem"
+            p="0.5rem"
+            variant="ghost"
+            borderRadius="50%"
+            flexShrink={0}
+            // onClick={handleBack}
+          >
+            <NextLink href="/search">
+              <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
+            </NextLink>
+          </Button>
         </Box>
-        <Box w="6rem" h="3rem">
+        <Box w="16rem" h="3rem">
           <Heading
             as="h1"
             size="md"

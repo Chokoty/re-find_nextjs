@@ -8,6 +8,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
+import { ArtistHeader } from '@/components/layout/ArtistHeader';
+import { MoreHeader } from '@/components/layout/MoreHeader';
 import AuthorProfileHead from '@/components/tools/AuthorProfileHead';
 import ViewSelectBar from '@/components/tools/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
@@ -177,6 +179,7 @@ const Artist = ({ artist_name2info }) => {
         />
       </Head>
       <>
+        <ArtistHeader title="" />
         {profile?.author_nickname === '' && profile.num_artworks === 0 && (
           <Center
             w="100%"

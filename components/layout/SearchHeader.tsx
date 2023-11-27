@@ -3,31 +3,19 @@ import {
   Button,
   Flex,
   Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Link,
-  Text,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
-import { Sling as Hamburger } from 'hamburger-react';
-import Image from 'next/image';
 import NextLink from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import DarkModeToggle from '@/components/tools/DarkModeToggle';
-import MyDrawer from '@/components/tools/MyDrawer';
-import SearchModal from '@/components/tools/SearchModal';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export const SearchHeader = ({ title }) => {
-  // useStore
-  // const count = useStore((state) => state.count);
   const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
     state.isOpen,
     state.setIsOpen,
@@ -83,12 +71,8 @@ export const SearchHeader = ({ title }) => {
       pt="0"
       top="0"
       w="100%"
-      // h="3rem"
-      // pt="50px "
-      // top="-50px"
       zIndex="200"
       boxShadow={showShadow ? boxShadow : 'none'}
-      // overflow="hidden"
     >
       <Flex
         as="header"
@@ -110,12 +94,12 @@ export const SearchHeader = ({ title }) => {
             borderRadius="50%"
             flexShrink={0}
           >
-            <NextLink href="/more">
+            <NextLink href="/">
               <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
             </NextLink>
           </Button>
         </Box>
-        <Box w="6rem" h="3rem">
+        <Box w="16rem" h="3rem">
           <Heading
             as="h1"
             size="md"

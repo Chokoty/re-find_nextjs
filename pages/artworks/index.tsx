@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
 import SearchLayout from '@/components/layout/search-layout';
@@ -11,8 +12,8 @@ const Artworks = () => {
   }, []);
 
   return (
-    <SearchLayout title="팬아트">
-      <div className="toLink">search</div>
+    <SearchLayout title="팬아트 갤러리">
+      <Box h="50vh">준비중...</Box>
     </SearchLayout>
   );
 };
