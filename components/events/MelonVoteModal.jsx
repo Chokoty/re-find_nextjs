@@ -13,16 +13,15 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-// import { useDisclosure } from '@chakra-ui/react';
-// import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { LuAlertCircle, LuListMusic, LuVote } from 'react-icons/lu';
+import { LuAlertCircle, LuVote } from 'react-icons/lu';
 
+import { useCookie } from '@/hook/useCookie';
 import { darkMode, lightMode } from '@/styles/theme';
-// import { useEventStore } from '../../store/store';
 
 const MelonVoteModal = () => {
+  const { setCookie, getCookie, deleteCookie } = useCookie();
+
   const [isOpen, setIsOpen] = useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
   const [color, setColor] = useState('#052e16'); // 초기 색상 설정
@@ -38,48 +37,26 @@ const MelonVoteModal = () => {
 
   const handleCloseModal = () => {
     setIsOpen(false);
-    setCookie('isOpen', 'false', 365); // 쿠키 설정
-    localStorage.setItem('isOpen', 'false'); // localStorage 설정
-  };
-
-  const handleCloseModal2 = () => {
-    setIsOpen(false);
+    setCookie('dontShowAday', 'true', 1); // 하루 동안 모달을 보지 않음,  365 쿠키 설정
+    localStorage.setItem('dontShowAday', 'true'); // localStorage 설정
   };
 
   const handleOpenModal = () => {
     setIsOpen(true);
-    setCookie('isOpen', 'true', 365); // 쿠키 설정
-    localStorage.setItem('isOpen', 'true'); // localStorage 설정
-  };
-
-  // 하루동안 안보이게 하기
-  // 쿠키 설정 함수
-  const setCookie = (name, value, days) => {
-    const expires = new Date();
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000);
-    // expires.setTime(expires.getTime() + minutes * 60 * 1000); // 유효 기간을 분 단위로 설정
-    document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`;
-  };
-
-  // 쿠키 가져오기 함수
-  const getCookie = (name) => {
-    const cookieValue = document.cookie.match(
-      `(^|;)\\s*${name}\\s*=\\s*([^;]+)`
-    );
-    return cookieValue ? cookieValue.pop() : '';
+    setCookie('dontShowAday', 'false', 1); // 쿠키 설정
+    localStorage.setItem('dontShowAday', 'false'); // localStorage 설정
+    deleteCookie('isOpen'); // 이전 쿠키 삭제
+    localStorage.removeItem('isOpen'); // 이전 localStorage 삭제
   };
 
   useEffect(() => {
-    // const isModalAlreadyOpened = getCookie('isModalAlreadyOpened');
-    const modalState =
-      localStorage.getItem('isOpen') || getCookie('isOpen') || 'true'; // 기본값 'true' 추가
-    // console.log('modalState', modalState);
-    if (modalState !== 'false') {
-      // handleOpenModal();
-      handleCloseModal();
-      // setCookie('isModalAlreadyOpened', 'true', 1); // 쿠키 설정, 유효 기간 1일
+    const dontShowAdayCookie = getCookie('dontShowAday');
+    const dontShowAdayLocalStorage = localStorage.getItem('dontShowAday');
+
+    console.log('!!!', getCookie('dontShowAday'));
+    if (dontShowAdayCookie !== 'true' || dontShowAdayLocalStorage !== 'true') {
+      handleOpenModal();
     }
-    // console.log('isModalAlreadyOpened', isModalAlreadyOpened);
   }, []);
 
   useEffect(() => {
@@ -124,13 +101,13 @@ const MelonVoteModal = () => {
 
       {/* <Button colorScheme="green" onClick={handleOpenModal}>
         <LuVote size="1.2rem" />
-        <Text ml="0.5rem">멜론 MMA2023 밀리언스 TOP10 투표하기 </Text>
+        <Text ml="0.5rem">멜론 하기 </Text>
       </Button> */}
 
       <Modal
         isCentered
         isOpen={isOpen}
-        onClose={handleCloseModal2}
+        onClose={handleCloseModal}
         motionPreset="slideInBottom"
         size="sm"
       >
@@ -141,35 +118,9 @@ const MelonVoteModal = () => {
             overflow="hidden"
             w="100%"
             h="200px"
-            zIndex="-1"
+            zindex="0"
             borderRadius="0.25rem 0.25rem 0 0"
-          >
-            <Image
-              unoptimized
-              src="/youtube-thumb.webp"
-              alt="키딩 유튜브 썸네일"
-              width="100%"
-              height={200}
-              position="absolute"
-              top="0"
-              left="0"
-              borderRadius="0.25rem"
-              transform="scale(1.5)"
-              objectFit="cover"
-              transformOrigin="top"
-              zIndex={1}
-            />
-            <Box
-              position="absolute"
-              top="0"
-              left="0"
-              width="100%"
-              height="100%"
-              background="linear-gradient(to bottom, transparent, black)"
-              borderRadius="0.25rem 0.25rem 0 0"
-              zIndex={2}
-            />
-          </Box>
+          ></Box>
           <Box
             position="relative"
             p="16px 24px"
@@ -200,7 +151,7 @@ const MelonVoteModal = () => {
               <Text fontWeight="bold"></Text>
               <Link
                 color="white"
-                href="https://cafe.naver.com/steamindiegame/12577647"
+                href="https://cafe.naver.com/steamindiegame/13776472"
                 isExternal
                 p="10px 14px"
                 display="block"
@@ -217,22 +168,18 @@ const MelonVoteModal = () => {
                   as="span"
                   borderRadius="0.25rem"
                   color="#ffffff"
-                  // color={color}
-                  // transition="color 0.5s ease-in"
                   display="flex"
                   alignItems="center"
                 >
                   <LuAlertCircle size="1.2rem" />
                   <Text ml="0.5rem">
-                    이세계아이돌 멜론 주간인기상에
-                    <br />
-                    투표해주세요 ! (왁굳님 공지 돚거)
+                    [공지] 멜론 MMA 2023 밀리언스 TOP10 에 키딩이 들어갔어요.
                   </Text>
                 </Box>
               </Link>
               <Link
                 color="white"
-                href="https://into.melon.com/2023_weekaward"
+                href="https://www.melon.com/mma/vote2.htm"
                 isExternal
                 p="10px 14px"
                 display="block"
@@ -255,40 +202,11 @@ const MelonVoteModal = () => {
                   alignItems="center"
                 >
                   <LuVote size="1.2rem" />
-                  <Text ml="0.5rem">멜론 주간인기상 투표하기</Text>
-                </Box>
-              </Link>
-              <Link
-                color="white"
-                href="https://isegye.live/"
-                isExternal
-                p="10px 14px"
-                display="block"
-                w="100%"
-                border="1px"
-                borderRadius="0.25rem"
-                borderColor="#16A34A"
-                bg="#18181B"
-                textDecoration="none"
-                _hover={{ textDecoration: 'none' }}
-              >
-                <Box
-                  as="span"
-                  borderRadius="0.25rem"
-                  color="#ffffff"
-                  display="flex"
-                  alignItems="center"
-                >
-                  <LuListMusic size="1.2rem" />
-                  <Text ml="0.5rem">멜론 스밍하러가기</Text>
+                  <Text ml="0.5rem">멜론 MMA2023 밀리언스 TOP10 투표하기</Text>
                 </Box>
               </Link>
               <br />
-              <Text color="#FFFFFF">
-                (스밍 결제 안해도 매일 투표 가능. )
-                <br />
-                (스밍 결제시 하루 3회 가능)
-              </Text>
+
               <br />
               <Button
                 mr={3}
@@ -302,7 +220,7 @@ const MelonVoteModal = () => {
                 _hover={{ bg: 'black' }}
                 mb="2rem"
               >
-                다시 보지 않기
+                하루 동안 보지 않기
               </Button>
             </Flex>
           </ModalBody>
