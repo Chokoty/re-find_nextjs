@@ -13,7 +13,7 @@ const Artworks = () => {
 
   return (
     <SearchLayout title="팬아트 갤러리">
-      <Box h="50vh">준비중...</Box>
+      <Box h="120vh">준비중...</Box>
     </SearchLayout>
   );
 };

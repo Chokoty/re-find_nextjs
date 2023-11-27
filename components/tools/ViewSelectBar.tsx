@@ -24,6 +24,7 @@ import {
   MdOutlineViewDay,
 } from 'react-icons/md';
 
+import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import { useShowShadow } from '../../hook/useShowShadow';
@@ -43,6 +44,8 @@ const ViewSelectBar = ({
   isDeletedVisible,
   handleShowDeleted,
 }) => {
+  const isMobile = useResponsive();
+
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   const [isOpen, setIsOpen] = useState(false);
 
@@ -89,7 +92,7 @@ const ViewSelectBar = ({
       mb="1rem"
       gap="2rem"
       position="sticky"
-      top="80px"
+      top={isMobile ? '0' : '57px'}
       zIndex="90"
       w="100%"
       boxShadow={showShadow ? boxShadow : 'none'}

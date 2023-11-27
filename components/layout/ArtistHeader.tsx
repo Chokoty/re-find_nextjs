@@ -4,76 +4,20 @@ import {
   Flex,
   Heading,
   useColorModeValue,
-  useDisclosure,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export const ArtistHeader = ({ title }) => {
-  const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
-    state.isOpen,
-    state.setIsOpen,
-  ]);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const myDrawerRef = useRef(null);
-
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-  const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
-
-  const boxShadowLight =
-    '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
-  const boxShadowDark =
-    '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
-
-  const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
-  const showShadow = useShowShadow(50, 0);
-
-  useEffect(() => {
-    if (!isOpenDrawer) {
-      return;
-    }
-    const handleClick = (e) => {
-      // console.log(e.target);
-      if (
-        e.target.className === 'hamburger-react' ||
-        e.target.closest('.hamburger-react')
-      ) {
-        return;
-      }
-      if (e.target.tagName.toLowerCase() === 'a') {
-        console.log('a');
-        return; // Return early if the clicked element is an <a> tag
-      }
-      if (myDrawerRef.current && !myDrawerRef.current.contains(e.target)) {
-        // console.log("other");
-        setIsOpenDrawer(false);
-      }
-    };
-    window.addEventListener('mousedown', handleClick);
-    return () => window.removeEventListener('mousedown', handleClick);
-  }, [isOpenDrawer]);
-
-  const router = useRouter(); // useRouter 훅 사용
-  const handleBack = () => {
-    router.back(); // 이전 페이지로 돌아가는 메서드
-  };
-
-  const toggleDrawer = () => {
-    setIsOpenDrawer(!isOpenDrawer);
-  };
 
   return (
     <Box>
       <Flex
-        as="header"
         style={{
           backgroundColor: bgColor,
           color,
@@ -91,7 +35,6 @@ export const ArtistHeader = ({ title }) => {
             variant="ghost"
             borderRadius="50%"
             flexShrink={0}
-            // onClick={handleBack}
           >
             <NextLink href="/search">
               <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
