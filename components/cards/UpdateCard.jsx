@@ -14,11 +14,14 @@ import React from 'react';
 
 import boardData from '@/data/board.ts';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { useResponsive } from '@/hook/useResponsive';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const UpdateCard = ({ update }) => {
+  const isMobile = useResponsive();
+
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -55,7 +58,7 @@ const UpdateCard = ({ update }) => {
         justifyContent: 'space-between',
         alignItems: 'center',
         placeItems: 'center',
-        paddingLeft: '10px',
+        padding: '0.5rem',
       }}
     >
       <NextImage
@@ -65,53 +68,83 @@ const UpdateCard = ({ update }) => {
         style={{
           borderRadius: '0.5rem',
           objectFit: 'cover',
-          width: '80px',
-          height: '80px',
+          width: '6rem',
+          height: '6rem',
         }}
         src={getImageSrc()}
         alt={update.info.title}
       />
 
-      <CardBody>
-        <Flex
+      <CardBody
+        style={{
+          padding: '0.5rem',
+        }}
+      >
+        {/* <Flex
+          // p="0.5rem"
           flexDirection={['column', 'row']}
           justifyContent={['center', 'space-between']}
           alignItems={['flex-start', 'center']}
+        > */}
+        <Flex
+          flexDirection="column"
+          justifyContent="space-between"
+          alignItems="flex-start"
         >
-          <Heading as="h1" fontSize={['lg', 'xl']} textTransform="uppercase">
+          <Flex
+            w="100%"
+            flexDirection={['column', 'row']}
+            justifyContent="space-between"
+            alignItems={['flex-start', 'center']}
+            m="0.5rem 0 "
+          >
+            <Heading
+              as="h1"
+              fontSize={['lg', 'xl']}
+              textTransform="uppercase"
+              m="0"
+            >
+              <Link
+                color={highlightColor}
+                className="link-to-wakzoo"
+                href={menu_link}
+                isExternal
+              >
+                {update.board}
+                <ExternalLinkIcon mx="2px" />
+              </Link>
+            </Heading>
+            <Text fontSize={['md', 'lg']}>{uploadTimeDiff}</Text>
+          </Flex>
+
+          <Text fontSize={['md', 'lg']}>
+            게시글:{' '}
             <Link
               color={highlightColor}
               className="link-to-wakzoo"
-              href={menu_link}
+              href={article_link}
               isExternal
             >
-              {update.board}
-              <ExternalLinkIcon mx="2px" />
+              {update.info.title.length > (isMobile ? 12 : 22)
+                ? `${update.info.title.slice(0, isMobile ? 12 : 22)}...`
+                : update.info.title}
             </Link>
-          </Heading>
-          <Text fontSize={['md', 'lg']}>{uploadTimeDiff}</Text>
+          </Text>
+          <Text fontSize={['md', 'lg']}>
+            작성자:{' '}
+            <NextLink
+              href={`/artists/${update.info.nickname}`}
+              style={{
+                color: highlightColor,
+              }}
+            >
+              {update.info.nickname}
+            </NextLink>
+          </Text>
         </Flex>
-        <Text fontSize={['md', 'lg']}>
-          <NextLink
-            href={`/artists/${update.info.nickname}`}
-            style={{
-              color: highlightColor,
-            }}
-          >
-            {update.info.nickname}
-          </NextLink>{' '}
-          |{' '}
-          <Link
-            color={highlightColor}
-            className="link-to-wakzoo"
-            href={article_link}
-            isExternal
-          >
-            {update.info.nickname.length + update.info.title.length > 14
-              ? `${update.info.title.slice(0, 14)}...`
-              : update.info.title}
-          </Link>
-        </Text>
+
+        {/* <Text fontSize={['md', 'lg']}>{uploadTimeDiff}</Text> */}
+        {/* </Flex> */}
       </CardBody>
     </Card>
   );
