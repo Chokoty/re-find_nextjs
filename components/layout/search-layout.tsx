@@ -1,4 +1,10 @@
-import { Button, Divider, Heading, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Divider,
+  Heading,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import NextLink from 'next/link';
 import type { ReactNode } from 'react';
 import React from 'react';
@@ -16,7 +22,7 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   return (
-    <div className="body">
+    <Box className="body" h="60vh">
       <SearchHeader title={title} />
       <Divider
         className="divider"
@@ -27,8 +33,8 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
           height: '5px',
         }}
       />
-      <div className="layout">{children}</div>
-    </div>
+      <Box className="layout">{children}</Box>
+    </Box>
   );
 };
 

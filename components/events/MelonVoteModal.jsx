@@ -118,7 +118,7 @@ const MelonVoteModal = () => {
       <Link href="https://www.melon.com/mma/vote2.htm" isExternal>
         <Button colorScheme="green">
           <LuVote size="1.2rem" />
-          <Text ml="0.5rem">멜론 MMA2023 밀리언스 TOP10 투표 바로가기</Text>
+          <Text ml="0.5rem">멜론 MMA2023 밀리언스 TOP10 투표하기</Text>
         </Button>
       </Link>
 
