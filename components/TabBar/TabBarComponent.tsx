@@ -23,8 +23,9 @@ const TabBarComponent = ({ tab, setTab }) => {
     >
       <Flex
         background="#292929"
-        height="64px"
+        // p="0.5rem"
         width="300px"
+        height="60px"
         justifyContent="center"
         alignItems="center"
         borderRadius="2rem"
@@ -43,8 +44,8 @@ const TabBarComponent = ({ tab, setTab }) => {
             <MdHomeFilled
               style={{
                 color: getButtonColor('home'),
-                width: '2.5rem',
-                height: '2.5rem',
+                width: '2rem',
+                height: '2rem',
               }}
             />
           </Link>
@@ -61,8 +62,8 @@ const TabBarComponent = ({ tab, setTab }) => {
             <FaSearch
               style={{
                 color: getButtonColor('search'),
-                width: '2rem',
-                height: '2rem',
+                width: '1.8rem',
+                height: '1.8rem',
               }}
             />
           </Link>
@@ -79,8 +80,8 @@ const TabBarComponent = ({ tab, setTab }) => {
             <FaImage
               style={{
                 color: getButtonColor('artworks'),
-                width: '2.5rem',
-                height: '2.5rem',
+                width: '1.8rem',
+                height: '1.8rem',
               }}
             />
           </Link>
@@ -104,8 +105,8 @@ const TabBarComponent = ({ tab, setTab }) => {
             <CgMoreO
               style={{
                 color: getButtonColor('more'),
-                width: '2.5rem',
-                height: '2.5rem',
+                width: '2rem',
+                height: '2rem',
               }}
             />
           </Link>
