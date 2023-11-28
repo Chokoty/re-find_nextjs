@@ -51,7 +51,7 @@ const Artist = ({ artist_name2info }) => {
   const handleMenuItemClick = useCallback((menuText: string) => {
     if (menuText === sortType) return;
     setSortType(menuText);
-    router.push(`/artists/${nickname}?view=${activeView}&sort=${menuText}`);
+    // router.push(`/artists/${nickname}?view=${activeView}&sort=${menuText}`);
     // 다시 불러오기
     setPage(1);
     setIsLastPage(false);
@@ -61,7 +61,7 @@ const Artist = ({ artist_name2info }) => {
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {
     setActiveView(view);
-    router.push(`/artists/${nickname}?view=${view}&sort=${sortType}`);
+    // router.push(`/artists/${nickname}?view=${view}&sort=${sortType}`);
   }, []);
 
   // 삭제된 게시글 보이기
@@ -129,7 +129,7 @@ const Artist = ({ artist_name2info }) => {
   }, [sortType, page, nickname]);
 
   useEffect(() => {
-    router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
+    // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
   }, [activeView, sortType]);
 
   useEffect(() => {
