@@ -22,6 +22,8 @@ import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';
 
+const nicknameLength = 9;
+
 const UpdateCard = ({ update }) => {
   const isMobile = useResponsive();
 
@@ -93,7 +95,7 @@ const UpdateCard = ({ update }) => {
           flexDirection={['column-reverse', 'row']}
           alignItems={['flex-start', 'center']}
           justifyContent="space-between"
-          gap="0.5rem"
+          gap="1rem"
         >
           <Box
             display="flex"
@@ -135,8 +137,8 @@ const UpdateCard = ({ update }) => {
                 isExternal
               >
                 {update.info.title.length + update.info.nickname.length >
-                (isMobile ? 32 : 24)
-                  ? `${update.info.title.slice(0, isMobile ? 18 : 15)}...`
+                (isMobile ? nicknameLength + 17 : nicknameLength + 15)
+                  ? `${update.info.title.slice(0, isMobile ? 17 : 15)}...`
                   : update.info.title}
                 <ExternalLinkIcon mx="2px" />
               </Link>
