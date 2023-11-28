@@ -108,7 +108,7 @@ const UpdateCard = ({ update }) => {
               <Link
                 color={highlightColor}
                 className="link-to-wakzoo"
-                href={article_link}
+                href={menu_link}
                 isExternal
                 style={{
                   display: 'flex',
@@ -133,12 +133,12 @@ const UpdateCard = ({ update }) => {
               <Link
                 color={highlightColor}
                 className="link-to-wakzoo"
-                href={menu_link}
+                href={article_link}
                 isExternal
               >
                 {update.info.title.length + update.info.nickname.length >
-                (isMobile ? nicknameLength + 17 : nicknameLength + 15)
-                  ? `${update.info.title.slice(0, isMobile ? 17 : 15)}...`
+                (isMobile ? nicknameLength + 16 : nicknameLength + 15)
+                  ? `${update.info.title.slice(0, isMobile ? 16 : 15)}...`
                   : update.info.title}
                 <ExternalLinkIcon mx="2px" />
               </Link>
