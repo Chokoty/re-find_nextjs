@@ -1,5 +1,7 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
+  Badge,
+  Box,
   Card,
   CardBody,
   Flex,
@@ -11,6 +13,7 @@ import {
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
+import { MdArrowForwardIos } from 'react-icons/md';
 
 import boardData from '@/data/board.ts';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
@@ -70,34 +73,55 @@ const UpdateCard = ({ update }) => {
           objectFit: 'cover',
           width: '6rem',
           height: '6rem',
+          marginRight: '1rem',
         }}
         src={getImageSrc()}
         alt={update.info.title}
       />
-
       <CardBody
         style={{
-          padding: '0.5rem',
+          padding: '0.5rem 0',
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          alignItems: 'flex-start',
         }}
       >
-        {/* <Flex
-          // p="0.5rem"
-          flexDirection={['column', 'row']}
-          justifyContent={['center', 'space-between']}
-          alignItems={['flex-start', 'center']}
-        > */}
         <Flex
-          flexDirection="column"
+          w="100%"
+          flexDirection={['column-reverse', 'row']}
+          alignItems={['flex-start', 'center']}
           justifyContent="space-between"
-          alignItems="flex-start"
+          gap="0.5rem"
         >
-          <Flex
-            w="100%"
-            flexDirection={['column', 'row']}
+          <Box
+            display="flex"
+            flexDirection="column"
             justifyContent="space-between"
-            alignItems={['flex-start', 'center']}
-            m="0.5rem 0 "
+            alignItems="flex-start"
+            gap={['0.2rem', '1rem']}
           >
+            <Text fontSize={['md', 'lg']}>
+              <Link
+                color={highlightColor}
+                className="link-to-wakzoo"
+                href={article_link}
+                isExternal
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
+              >
+                {update.board}
+                <MdArrowForwardIos
+                  style={{
+                    marginLeft: '0.5rem',
+                    fontSize: '0.8rem',
+                  }}
+                />
+              </Link>
+            </Text>
             <Heading
               as="h1"
               fontSize={['lg', 'xl']}
@@ -110,41 +134,47 @@ const UpdateCard = ({ update }) => {
                 href={menu_link}
                 isExternal
               >
-                {update.board}
+                {update.info.title.length + update.info.nickname.length >
+                (isMobile ? 32 : 24)
+                  ? `${update.info.title.slice(0, isMobile ? 18 : 15)}...`
+                  : update.info.title}
                 <ExternalLinkIcon mx="2px" />
               </Link>
             </Heading>
-            <Text fontSize={['md', 'lg']}>{uploadTimeDiff}</Text>
-          </Flex>
-
-          <Text fontSize={['md', 'lg']}>
-            게시글:{' '}
-            <Link
-              color={highlightColor}
-              className="link-to-wakzoo"
-              href={article_link}
-              isExternal
-            >
-              {update.info.title.length > (isMobile ? 12 : 22)
-                ? `${update.info.title.slice(0, isMobile ? 12 : 22)}...`
-                : update.info.title}
-            </Link>
-          </Text>
-          <Text fontSize={['md', 'lg']}>
-            작성자:{' '}
-            <NextLink
-              href={`/artists/${update.info.nickname}`}
-              style={{
-                color: highlightColor,
-              }}
-            >
-              {update.info.nickname}
-            </NextLink>
-          </Text>
+          </Box>
+          <Box
+            display="flex"
+            flexDirection={['row-reverse', 'column']}
+            alignItems={['center', 'flex-end']}
+            gap={['0.5rem', '1rem']}
+            justifyContent="space-between"
+            h="100%"
+          >
+            <Badge variant="subtle" colorScheme="purple">
+              <Text fontSize={['sm', 'md', 'lg']}>{uploadTimeDiff}</Text>
+            </Badge>
+            <Badge>
+              <Text fontSize={['sm', 'md', 'lg']}>
+                <NextLink
+                  href={`/artists/${update.info.nickname}`}
+                  style={{
+                    color: highlightColor,
+                  }}
+                >
+                  {update.info.nickname.length > 9
+                    ? `${update.info.nickname.slice(0, 9)}...`
+                    : update.info.nickname}
+                  <ExternalLinkIcon
+                    style={{
+                      marginLeft: '0.2rem',
+                      fontSize: '0.8rem',
+                    }}
+                  />
+                </NextLink>
+              </Text>
+            </Badge>
+          </Box>
         </Flex>
-
-        {/* <Text fontSize={['md', 'lg']}>{uploadTimeDiff}</Text> */}
-        {/* </Flex> */}
       </CardBody>
     </Card>
   );
