@@ -92,7 +92,7 @@ const UpdateCard = ({ update }) => {
       >
         <Flex
           w="100%"
-          flexDirection={['column-reverse', 'row']}
+          flexDirection={['column', 'row']}
           alignItems={['flex-start', 'center']}
           justifyContent="space-between"
           gap="1rem"
@@ -135,18 +135,19 @@ const UpdateCard = ({ update }) => {
                 className="link-to-wakzoo"
                 href={article_link}
                 isExternal
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                }}
               >
-                {update.info.title.length + update.info.nickname.length >
-                (isMobile ? nicknameLength + 16 : nicknameLength + 15)
-                  ? `${update.info.title.slice(0, isMobile ? 16 : 15)}...`
-                  : update.info.title}
+                <Text noOfLines={1}>{update.info.title}</Text>
                 <ExternalLinkIcon mx="2px" />
               </Link>
             </Heading>
           </Box>
           <Box
             display="flex"
-            flexDirection={['row-reverse', 'column']}
+            flexDirection={['row', 'column']}
             alignItems={['center', 'flex-end']}
             gap={['0.5rem', '1rem']}
             justifyContent="space-between"
@@ -161,11 +162,11 @@ const UpdateCard = ({ update }) => {
                   href={`/artists/${update.info.nickname}`}
                   style={{
                     color: highlightColor,
+                    display: 'flex',
+                    alignItems: 'center',
                   }}
                 >
-                  {update.info.nickname.length > 9
-                    ? `${update.info.nickname.slice(0, 9)}...`
-                    : update.info.nickname}
+                  <Text noOfLines={1}>{update.info.nickname}</Text>
                   <ExternalLinkIcon
                     style={{
                       marginLeft: '0.2rem',
