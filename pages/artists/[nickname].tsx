@@ -2,14 +2,12 @@ import { Box, Center, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import Head from 'next/head';
 import Image from 'next/image';
-import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import { ArtistHeader } from '@/components/layout/ArtistHeader';
-import { MoreHeader } from '@/components/layout/MoreHeader';
 import AuthorProfileHead from '@/components/tools/AuthorProfileHead';
 import ViewSelectBar from '@/components/tools/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
@@ -17,8 +15,8 @@ import SimpleView from '@/components/views/SimpleView';
 
 const Artist = ({ artist_name2info }) => {
   const router = useRouter();
-  // const searchParams = useSearchParams();
   const toast = useToast();
+  // const searchParams = useSearchParams();
   // const [searchParams, setSearchParams] = useSearchParams()[0];
 
   const { ref, inView } = useInView({

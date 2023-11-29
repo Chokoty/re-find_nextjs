@@ -7,19 +7,15 @@ import {
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
-import HashLoader from 'react-spinners/HashLoader';
 
-import EventFanarts from '@/components/events/EventFanarts';
 import EventModal from '@/components/events/EventModal';
 import Loading from '@/components/tools/Loading';
 import Preview from '@/components/tools/Preview';
-import RandomFanart from '@/components/tools/RandomFanart';
 import SearchResult from '@/components/tools/SearchResult';
 import UpdateBoard from '@/components/tools/UpdateBoard';
 import UpdateLogBoard from '@/components/tools/UpdateLogBoard';
 import UploadImages from '@/components/tools/UploadImages';
 import TopTitle from '@/components/TopTitle';
-import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface HomeProps {
@@ -36,79 +32,37 @@ const DynamicUploadImages = dynamic(
 );
 
 export default function Home({ last_update_info }: HomeProps) {
-  const setIsOpen = useStore((state) => state.setIsOpen);
-  const targetRef = useRef(null);
   const toast = useToast();
+  const targetRef = useRef(null);
   const { onToggle } = useDisclosure();
 
-  const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드를 위한 상태
+  const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드
   const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
   const [hash, setHash] = useState(null); // fetch를 통해 받아온 hash데이터를 저장할 상태
-
   const [ids, setIds] = useState([]); // 게시글 여러 개
   const [hasSearchResult, setHasSearchResult] = useState(false); // 재검색 방지
   const [isSearchingData, setIsSearchingData] = useState(false);
   const [isSearchingAuthor, setIsSearchingAuthor] = useState(false);
-
   const [author, setAuthor] = useState(null);
   const [author2, setAuthor2] = useState(null);
   const [searchTime, setSearchTime] = useState(0);
 
-  // react-spinners
-  const [loadingData, setLoadingData] = useState(false);
+  // Theme
+  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  const color = useColorModeValue(lightMode.color, darkMode.color);
 
   // event
   const [congrat, setCongrat] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
-  // Theme
-  // const { colorMode, toggleColorMode } = useColorMode();
-  // const isDark = colorMode === 'dark';
-  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-  // const badge = useColorModeValue(lightMode.badge, darkMode.badge);
-  // const highlightColor = useColorModeValue(
-  //   lightMode.highlight,
-  //   darkMode.highlight
-  // );
 
-  const handleClick = () => {
-    const headerHeight = 108;
-    const targetElement = targetRef.current;
-    const topPosition = targetElement.offsetTop - headerHeight;
-
-    window.scrollTo({
-      top: topPosition,
-      behavior: 'smooth', // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
-    });
+  // 이미지 업로드, 해시값 받기
+  const getDataFromChild = (childData) => {
+    setUploadedFiles(childData);
   };
-
-  // 페이지 랜더링되면 카운터 가져오기, 서랍 닫기
-  useEffect(() => {
-    // console.log(last_update_info);
-    setIsOpen(false);
-    // fetchCounter();
-    // testProfile();
-  }, []);
-
-  useEffect(() => {
-    if (uploadedfiles.length > 0) {
-      toast({
-        title:
-          data?.ids?.length === 0
-            ? 'Search Failed'
-            : `Searching Time: ${searchTime / 1000}s`,
-        description:
-          data?.ids[0]?.is_deleted === true ? '아! 삭제된 게시글입니다.' : '',
-        status: `${
-          data?.ids?.length === 0 || data?.ids[0]?.is_deleted === true
-            ? 'error'
-            : 'success'
-        }`,
-        isClosable: true,
-      });
-    }
-  }, [data, searchTime]);
-
+  const getHashFromChild = (childHashData) => {
+    setHash(childHashData);
+    console.log(hash);
+  };
   useEffect(() => {
     if (hash) {
       // console.log(hash);
@@ -171,30 +125,49 @@ export default function Home({ last_update_info }: HomeProps) {
     }
   };
 
+  // 결과 안내 메시지
+  useEffect(() => {
+    if (uploadedfiles.length > 0) {
+      toast({
+        title:
+          data?.ids?.length === 0
+            ? 'Search Failed'
+            : `Searching Time: ${searchTime / 1000}s`,
+        description:
+          data?.ids[0]?.is_deleted === true ? '아! 삭제된 게시글입니다.' : '',
+        status: `${
+          data?.ids?.length === 0 || data?.ids[0]?.is_deleted === true
+            ? 'error'
+            : 'success'
+        }`,
+        isClosable: true,
+      });
+    }
+  }, [data, searchTime]);
+
+  const handleClick = () => {
+    const headerHeight = 108;
+    const targetElement = targetRef.current;
+    const topPosition = targetElement.offsetTop - headerHeight;
+
+    window.scrollTo({
+      top: topPosition,
+      behavior: 'smooth', // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
+    });
+  };
+
+  // 4만 이벤트
   useEffect(() => {
     if (isInitialRender) {
       setIsInitialRender(false);
       return;
     }
 
-    if (
-      data?.total_counter === targetCount.toString()
-      // ||
-      // data?.total_counter === (targetCount + 1).toString()
-    ) {
+    if (data?.total_counter === targetCount.toString()) {
       setCongrat(true); // targetCount 번째 검색 시 축하메시지
       console.log('축하합니다!');
     }
   }, [data]);
-
-  // 자식 컴포넌트로부터 데이터 받기
-  const getDataFromChild = (childData) => {
-    setUploadedFiles(childData);
-  };
-  const getHashFromChild = (childHashData) => {
-    setHash(childHashData);
-    console.log(hash);
-  };
 
   // files 을 [] 로 초기화
   const resetFiles = () => {
@@ -207,47 +180,38 @@ export default function Home({ last_update_info }: HomeProps) {
   };
 
   return (
-    <div
-      className="home_body"
-      style={{ backgroundColor: bgColor, color }}
-      ref={targetRef}
-    >
-      {/* 상단 타이틀 */}
+    <Box className="home_body" ref={targetRef} backgroundColor={bgColor}>
       <TopTitle data={data} resetFiles={resetFiles} />
-      {/* 이벤트 */}
       {congrat && <EventModal targetCount={targetCount} />}
-
       {/* 업로드 전 */}
       {uploadedfiles.length === 0 && (
-        <>
-          {/* <UploadImages
-            getDataFromChild={getDataFromChild}
-            getHashFromChild={getHashFromChild}
-          /> */}
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+        >
           <DynamicUploadImages
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           />
-
-          {/* 이벤트 */}
-          <EventFanarts initialFanart={null} />
-          <RandomFanart />
-
-          {/* 업데이트 현황 */}
-          {/* {loadingData && (
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <HashLoader color="#01BFA2" />
-            </Box>
-          )} */}
+          {/* <UploadImages
+            getDataFromChild={getDataFromChild}
+            getHashFromChild={getHashFromChild}
+          /> */}
           <UpdateBoard last_update_info={last_update_info} />
-          {/* 공지사항 */}
           <UpdateLogBoard width={'90%'} />
-        </>
+        </Box>
       )}
-
       {/* 업로드 후 */}
       {uploadedfiles.length !== 0 && hash !== null && (
-        <div className="result-area">
+        <Box
+          className="result-area"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+        >
           <Preview files={uploadedfiles} />
           {isSearchingData && <Loading />}
           {!isSearchingData && (
@@ -257,13 +221,12 @@ export default function Home({ last_update_info }: HomeProps) {
               ids={ids}
               isSearchingAuthor={isSearchingAuthor}
               author={author2}
-              // author={author}
               resetFiles={resetFiles}
             />
           )}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 }
 
@@ -273,7 +236,6 @@ export async function getServerSideProps() {
     const last_update_info = axios
       .get('https://re-find.reruru.com/last_update_info', { timeout })
       .then((res) => res.data);
-
     // const counter = axios
     //     .get("https://isd-fanart.reruru.com/counter")
     //     .then((res) => res.data);
