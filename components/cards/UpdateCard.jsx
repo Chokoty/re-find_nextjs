@@ -22,8 +22,6 @@ import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const nicknameLength = 9;
-
 const UpdateCard = ({ update }) => {
   const isMobile = useResponsive();
 

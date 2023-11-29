@@ -20,7 +20,7 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 const swiperSlideStyle = {
   // width: '508px',
-  height: '140px',
+  height: '130px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

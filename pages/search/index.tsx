@@ -47,7 +47,7 @@ const Search = () => {
       </Heading>
       <Box
         display="flex"
-        flexDirection="row"
+        flexDirection="column"
         alignItems="center"
         justifyContent="center"
         gap="1rem"
@@ -70,7 +70,7 @@ const Search = () => {
       </Heading>
       <Box
         display="flex"
-        flexDirection="row"
+        flexDirection="column"
         alignItems="center"
         justifyContent="center"
         gap="1rem"
