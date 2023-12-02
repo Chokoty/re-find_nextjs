@@ -20,19 +20,19 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
       className={`uploader ${isDragActive ? 'active' : ''} ${
         highlightColor === '#01bda1' ? 'light' : 'dark'
       }`}
-      w="50%"
-      maxW="550px"
-      h="250px"
-      mt="3rem"
-      mb="3rem"
-      p="5px"
-      display="flex"
-      justifyContent="space-between"
-      alignItems="center"
-      flexDirection="column"
-      border="4px dashed #6d6d6d"
-      borderRadius="20px"
-      cursor="pointer"
+      // w="50%"
+      // maxW="550px"
+      // h="250px"
+      // mt="3rem"
+      // mb="3rem"
+      // p="5px"
+      // display="flex"
+      // justifyContent="space-between"
+      // alignItems="center"
+      // flexDirection="column"
+      // border="4px dashed #6d6d6d"
+      // borderRadius="20px"
+      // cursor="pointer"
     >
       <Box
         {...getRootProps()}
