@@ -26,7 +26,7 @@ interface HomeProps {
   last_update_info: any;
 }
 
-const targetCount = 39643; // 40000; // 이벤트 타겟 카운트
+const targetCount = 40000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
   () => import('@/components/tools/UploadImages'),
   {
