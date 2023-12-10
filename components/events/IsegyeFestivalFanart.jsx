@@ -153,7 +153,8 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                 랜덤 팬아트가 나와요!
               </Text>
             </Flex>
-            <FaArrowDown boxSize={12} />
+            <FaArrowDown />
+            {/* <FaArrowDown boxSize={12} /> */}
           </div>
         )}
         {isvisible && (
@@ -263,7 +264,8 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
             mt="1.5rem"
             onClick={showRandomFanart}
           >
-            <FaDice boxSize={12} />
+            <FaDice />
+            {/* <FaDice boxSize={12} /> */}
             &nbsp; 이세계 페스티벌 팬아트 랜덤가챠
           </Button>
         </Flex>

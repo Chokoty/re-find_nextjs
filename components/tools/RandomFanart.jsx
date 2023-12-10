@@ -202,7 +202,8 @@ const RandomFanart = () => {
           <Text fontSize="xl" fontWeight="bold" mb="1rem">
             아래 버튼을 누르면 랜덤 팬아트가 나와요!
           </Text>
-          <FaArrowDown boxSize={12} />
+          <FaArrowDown />
+          {/* <FaArrowDown boxSize={12} /> */}
         </div>
       )}
       {isvisible && (
@@ -285,6 +286,7 @@ const RandomFanart = () => {
               p="0"
               aria-label="랜덤가챠 게시판 포함/제외하기"
             >
+              <IoSettingsSharp />
               <IoSettingsSharp boxSize={30} />
             </Button>
           </PopoverTrigger>
@@ -334,7 +336,8 @@ const RandomFanart = () => {
           mt="1.5rem"
           onClick={showRandomFanart}
         >
-          <FaDice boxSize={12} />
+          <FaDice />
+          {/* <FaDice boxSize={12} /> */}
           &nbsp; 팬아트 랜덤가챠
         </Button>
       </Flex>

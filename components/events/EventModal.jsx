@@ -46,7 +46,7 @@ const EventModal = ({ targetCount }) => {
                 fontWeight: 'bold',
               }}
             >
-              리파인드 누적검색량 {targetCountText}만 돌파 기념 깜짝 이벤트
+              리파인드 누적검색량 {targetCountText}만 돌파 기념 기습 이벤트
             </div>
             {/* <ModalCloseButton /> */}
             <ModalBody>
@@ -57,7 +57,7 @@ const EventModal = ({ targetCount }) => {
               </Text>
               <Divider orientation="horizontal" m="2" />
               <Text color="#ef5a9a">
-                이 이벤트 창은 딱 한 분에게만 보이는 페이지입니다!!
+                이 이벤트 창은 정확히 딱 한 분에게만 보이는 페이지입니다!!
               </Text>
               <Text color="#ef5a9a">
                 본 팝업창은 1회만 뜨기 때문에 실수로 새로고침하거나 닫지 않도록
@@ -71,9 +71,7 @@ const EventModal = ({ targetCount }) => {
               </Text>
               <br />
               드래그해서 보기:{' '}
-              <span className="hidden-text">
-                이세계아이돌의 이야기는 이제 시작입니다.
-              </span>
+              <span className="hidden-text">이세계아이돌 2주년 축하합니다</span>
               <br />
               <br />
               메일 rerurureruru@gmail.com 또는 <br />
@@ -85,7 +83,7 @@ const EventModal = ({ targetCount }) => {
                 개선했으면 하는 점이 있으면 같이 공유해주시면 감사하겠습니다.
               </Text>
               <Text>
-                앞으로 팬아트를 통한 새로운 컨텐츠와 소소한 이벤트를 진행해 볼
+                조만간 팬아트를 통한 새로운 컨텐츠와 소소한 이벤트를 진행해 볼
                 예정이니 많은 관심 부탁드립니다. 킹아!
               </Text>
               <Divider orientation="horizontal" m="2" />

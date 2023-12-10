@@ -14,13 +14,17 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner2 from '@/components/banner/Banner2';
+<<<<<<< HEAD
 // import HalloweenBtn from '@/components/events/HalloweenBtn';
+=======
+import HalloweenBtn from '@/components/events/HalloweenBtn';
+>>>>>>> develop
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const swiperSlideStyle = {
   // width: '508px',
-  height: '140px',
+  height: '130px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
