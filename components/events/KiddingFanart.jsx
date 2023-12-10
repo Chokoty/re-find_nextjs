@@ -157,7 +157,8 @@ const KiddingFanart = ({ initialFanart }) => {
                 랜덤 팬아트가 나와요!
               </Text>
             </Flex>
-            <FaArrowDown boxSize={12} />
+            <FaArrowDown />
+            {/* <FaArrowDown boxSize={12} /> */}
           </div>
         )}
         {isvisible && (
