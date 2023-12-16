@@ -8,6 +8,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import NextImage from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { use, useEffect, useState } from 'react';
@@ -24,7 +25,7 @@ interface User {
   isd_cnt: number;
   gomem_cnt: number;
   wak_cnt: number;
-  // prof_url: string;
+  prof_url: string;
   total_views: number;
   total_likes: number;
   total_comments: number;
@@ -38,6 +39,7 @@ const sortTypes = [
 ];
 
 const viewTypes = [
+  // { name: '전체', value: 'all' },
   { name: '금손 작가', value: 'goldhand_cnt' },
   { name: '베스트', value: 'best_cnt' },
   { name: '우왁굳', value: 'wak_cnt' },
@@ -58,8 +60,10 @@ const Artists = ({ artists_list }) => {
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
 
+  const [selectedView, setSelectedView] = useState(null);
+  // const [selectedViews, setSelectedViews] = useState({});
   const [sortCriteria, setSortCriteria] = useState({
-    field: 'total_views',
+    field: 'total_likes',
     order: 'descending', // 'ascending' 또는 'descending'
   });
 
@@ -67,6 +71,7 @@ const Artists = ({ artists_list }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+  const highlight = useColorModeValue(lightMode.highlight, darkMode.badge);
 
   const sortArtists = (_artists, { field, order }) => {
     return _artists.sort((a, b) => {
@@ -76,6 +81,18 @@ const Artists = ({ artists_list }) => {
       return b[field] - a[field];
     });
   };
+
+  const handleViewSelect = (value) => {
+    setSelectedView((prevValue) => (prevValue === value ? null : value));
+  };
+  // const handleViewSelect = (value) => {
+  //   setSelectedViews((prevViews) => ({
+  //     ...prevViews,
+  //     [value]: !prevViews[value],
+  //   }));
+
+  //   console.log(selectedViews);
+  // };
   const handleChangeSortCriteria = (field) => {
     setSortCriteria((prevState) => {
       if (prevState.field === field) {
@@ -175,6 +192,13 @@ const Artists = ({ artists_list }) => {
               <Button
                 size="md"
                 onClick={() => handleChangeSortCriteria(sortType.value)}
+                backgroundColor={
+                  sortCriteria.field === sortType.value ? highlight : bg3
+                }
+                _hover={{
+                  backgroundColor:
+                    sortCriteria.field === sortType.value ? highlight : bg3,
+                }}
               >
                 {sortType.name}
                 <svg
@@ -182,6 +206,14 @@ const Artists = ({ artists_list }) => {
                   width="24"
                   height="24"
                   viewBox="0 -960 960 960"
+                  style={{
+                    transform:
+                      sortCriteria.field === sortType.value &&
+                      sortCriteria.order === 'descending'
+                        ? 'rotate(180deg)'
+                        : 'rotate(0deg)',
+                    transition: 'transform 0.1s ease-in-out',
+                  }}
                 >
                   <path d="M480-360 280-560h400L480-360Z" fill={color}></path>
                 </svg>
@@ -211,7 +243,15 @@ const Artists = ({ artists_list }) => {
           >
             {viewTypes.map((viewType, index) => (
               <li key={index}>
-                <Button colorScheme="blue" size="md" onClick={handleSearch}>
+                <Button
+                  size="md"
+                  // onClick={() => handleViewSelect(viewType.value)}
+                  // colorScheme={selectedViews[viewType.value] ? 'blue' : 'gray'}
+                  onClick={() => handleViewSelect(viewType.value)}
+                  colorScheme={
+                    selectedView === viewType.value ? 'blue' : 'gray'
+                  }
+                >
                   {viewType.name}
                 </Button>
               </li>
@@ -257,12 +297,85 @@ const Artists = ({ artists_list }) => {
                     mt="1rem"
                     h="126px"
                     display="flex"
-                    flexDirection="column"
+                    flexDirection="row"
                     alignItems="center"
-                    justifyContent="center"
+                    justifyContent="space-between"
                     borderRadius="1rem"
                   >
-                    {artist.name}
+                    <Box
+                      display="flex"
+                      flexDirection="row"
+                      alignItems="center"
+                      gap="2rem"
+                    >
+                      <NextImage
+                        unoptimized
+                        width={100}
+                        height={100}
+                        style={{
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          width: '6rem',
+                          height: '6rem',
+                          marginRight: '1rem',
+                        }}
+                        src={artist.prof_url}
+                        alt={artist.name}
+                      />
+                      <Text fontSize="lg" fontWeight="bold">
+                        {artist.name}
+                      </Text>
+                    </Box>
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      alignItems="center"
+                      justifyContent="space-between"
+                      gap="0.5rem"
+                    >
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="flex-start"
+                      >
+                        {sortTypes.map((sortType, index2) => (
+                          <Button
+                            key={index2}
+                            colorScheme="pink"
+                            variant="outline"
+                            size="sm"
+                            mr="0.5rem"
+                            display="flex"
+                            flexDirection="column"
+                            h="3rem"
+                          >
+                            <Text fontSize="md">{sortType.name}</Text>
+                            <Text fontSize="lg"> {artist[sortType.value]}</Text>
+                          </Button>
+                        ))}
+                      </Box>
+                      <Box
+                        display="flex"
+                        flexDirection="row"
+                        justifyContent="flex-start"
+                      >
+                        {viewTypes.map((viewType, index3) => (
+                          <Button
+                            key={index3}
+                            colorScheme="blue"
+                            variant="outline"
+                            size="sm"
+                            mr="0.5rem"
+                            display="flex"
+                            flexDirection="column"
+                            h="3rem"
+                          >
+                            <Text fontSize="md">{viewType.name}</Text>
+                            <Text fontSize="lg"> {artist[viewType.value]}</Text>
+                          </Button>
+                        ))}
+                      </Box>
+                    </Box>
                   </Button>
                 </Link>
               )
@@ -270,7 +383,6 @@ const Artists = ({ artists_list }) => {
           {/* Observer를 위한 div */}
           {<Box ref={ref} w="100%" h="2rem"></Box>}
         </Box>
-        ㅊ
       </Box>
     </Box>
   );
