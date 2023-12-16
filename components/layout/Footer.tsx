@@ -17,7 +17,7 @@ export const Footer = () => {
         w="100%"
       >
         <LinkBtns />
-        <p>ⓒ2023 RE: FIND ALL RIGHTS RESERVED</p>
+        <p>Copyright ⓒ 2023 RE: FIND. All Rights Reserved.</p>
       </Box>
     </footer>
   );

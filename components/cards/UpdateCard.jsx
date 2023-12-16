@@ -29,7 +29,11 @@ const UpdateCard = ({ update }) => {
     lightMode.highlight,
     darkMode.highlight
   );
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+  const color2 = useColorModeValue(lightMode.color2, darkMode.bg2);
+  const color = useColorModeValue(lightMode.color, darkMode.color);
+
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
+
   const modifiedUrl100 = useModifiedImageUrl(update?.info.img_url, 100);
   const uploadTimeDiff = useUploadTimeDiff(update?.date);
   const article_link = useResponsiveLink(update?.id, 'article');
@@ -50,19 +54,19 @@ const UpdateCard = ({ update }) => {
   }
 
   return (
-    <Card
-      width="100%"
-      maxW="540px"
+    <Box
+      width="90%"
+      p="1.5rem 0"
+      borderRadius="0"
+      borderBottom="1px solid"
+      borderColor={bg}
       background={color2}
-      style={{
-        height: '120px',
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        placeItems: 'center',
-        padding: '0.5rem',
-      }}
+      display="flex"
+      flexDirection="row"
+      h={isMobile ? 'auto' : '144px'}
+      justifyContent="space-between"
+      alignItems="center"
+      placeItems="center"
     >
       <NextImage
         unoptimized
@@ -78,15 +82,14 @@ const UpdateCard = ({ update }) => {
         src={getImageSrc()}
         alt={update.info.title}
       />
-      <CardBody
-        style={{
-          padding: '0.5rem 0',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          alignItems: 'flex-start',
-        }}
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="space-between"
+        alignItems="flex-start"
+        h="100%"
+        w="100%"
+        p="0.5rem 0"
       >
         <Flex
           w="100%"
@@ -151,10 +154,46 @@ const UpdateCard = ({ update }) => {
             justifyContent="space-between"
             h="100%"
           >
-            <Badge variant="subtle" colorScheme="purple">
-              <Text fontSize={['sm', 'md', 'lg']}>{uploadTimeDiff}</Text>
+            <Badge
+              variant="subtle"
+              colorScheme="green"
+              w="7rem"
+              borderRadius="6px"
+              h="2rem"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Box w="1rem" h="1rem" mr="0.3rem">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </Box>
+              <Text color={color} fontSize={['sm', 'md', 'lg']}>
+                {uploadTimeDiff}
+              </Text>
             </Badge>
-            <Badge>
+            <Badge
+              variant="subtle"
+              // w="7rem"
+              p="0.5rem 1rem"
+              borderRadius="6px"
+              h="2rem"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
               <Text fontSize={['sm', 'md', 'lg']}>
                 <NextLink
                   href={`/artists/${update.info.nickname}`}
@@ -176,8 +215,8 @@ const UpdateCard = ({ update }) => {
             </Badge>
           </Box>
         </Flex>
-      </CardBody>
-    </Card>
+      </Box>
+    </Box>
   );
 };
 

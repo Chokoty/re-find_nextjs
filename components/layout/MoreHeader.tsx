@@ -23,6 +23,7 @@ export const MoreHeader = ({ title, isIndex }) => {
   const myDrawerRef = useRef(null);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   const boxShadowLight =
@@ -72,16 +73,12 @@ export const MoreHeader = ({ title, isIndex }) => {
     >
       <Flex
         as="header"
-        style={{
-          backgroundColor: bgColor,
-          color,
-          padding: '1rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
+        h="60px"
+        backgroundColor={bgColor2}
+        justifyContent="space-between"
+        alignItems="center"
       >
-        <Box w="3rem" h="3rem">
+        <Box w="3rem" h="3rem" pl="1rem">
           {isIndex ? (
             <Button
               w="3rem"

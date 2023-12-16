@@ -1,4 +1,4 @@
-import { Badge, Skeleton, useColorModeValue } from '@chakra-ui/react';
+import { Badge, Box, Skeleton, useColorModeValue } from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
@@ -33,7 +33,7 @@ const Counter = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="counter">
+    <Box className="counter" maxW="320px">
       <Skeleton isLoaded={!counterLoading} display="flex">
         {counter === null ? (
           '현재 서버와의 연결이 불안정합니다.'
@@ -49,7 +49,7 @@ const Counter = ({ data }) => {
           </>
         )}
       </Skeleton>
-    </div>
+    </Box>
   );
 };
 

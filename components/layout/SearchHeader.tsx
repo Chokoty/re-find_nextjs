@@ -71,6 +71,7 @@ export const SearchHeader = ({ title }) => {
       pt="0"
       top="0"
       w="100%"
+      h="60px"
       zIndex="200"
       boxShadow={showShadow ? boxShadow : 'none'}
     >
@@ -79,7 +80,7 @@ export const SearchHeader = ({ title }) => {
         style={{
           backgroundColor: bgColor,
           color,
-          padding: '1rem',
+          padding: '0 1rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',

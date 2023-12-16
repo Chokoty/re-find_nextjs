@@ -14,11 +14,7 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner2 from '@/components/banner/Banner2';
-<<<<<<< HEAD
 // import HalloweenBtn from '@/components/events/HalloweenBtn';
-=======
-import HalloweenBtn from '@/components/events/HalloweenBtn';
->>>>>>> develop
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -32,15 +28,11 @@ const swiperSlideStyle = {
 
 const BannerSlider = () => {
   const color = useColorModeValue(lightMode.color2, darkMode.bg);
+  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (
-    <Box
-      // pt="1.5rem"
-      pb="1rem"
-      w="100%"
-      background={color}
-    >
-      <Box maxW="540px" overflow="hidden" m="0 auto">
+    <Box m="1rem 0" pb="1rem" w="100%" background={bgColor}>
+      <Box maxW="700px" overflow="hidden" m="0 auto">
         <Swiper
           className="mySwiper"
           // navigation={true}

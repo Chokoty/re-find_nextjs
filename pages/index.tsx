@@ -49,6 +49,7 @@ export default function Home({ last_update_info }: HomeProps) {
 
   // Theme
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   // event
@@ -200,7 +201,7 @@ export default function Home({ last_update_info }: HomeProps) {
             getHashFromChild={getHashFromChild}
           /> */}
           <UpdateBoard last_update_info={last_update_info} />
-          <UpdateLogBoard width={'90%'} />
+          <UpdateLogBoard width={'100%'} />
         </Box>
       )}
       {/* 업로드 후 */}
