@@ -32,10 +32,13 @@ const DynamicUploadImages = dynamic(
   }
 );
 
-export default function Home({ last_update_info }: HomeProps) {
+export default function Home() {
+  // { last_update_info }: HomeProps
   const toast = useToast();
   const targetRef = useRef(null);
   const { onToggle } = useDisclosure();
+
+  const [lastUpdateInfo, setLastUpdateInfo] = useState(null);
 
   const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드
   const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
@@ -65,6 +68,23 @@ export default function Home({ last_update_info }: HomeProps) {
     setHash(childHashData);
     console.log(hash);
   };
+
+  useEffect(() => {
+    const fetchLastUpdateInfo = async () => {
+      try {
+        const response = await axios.get(
+          'https://re-find.reruru.com/last_update_info'
+        );
+        setLastUpdateInfo(response.data);
+      } catch (error) {
+        console.log('Error fetching last update info:', error);
+        // 오류 처리 로직
+      }
+    };
+
+    fetchLastUpdateInfo();
+  }, []);
+
   useEffect(() => {
     if (hash) {
       // console.log(hash);
@@ -202,7 +222,7 @@ export default function Home({ last_update_info }: HomeProps) {
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           /> */}
-          <UpdateBoard last_update_info={last_update_info} />
+          <UpdateBoard last_update_info={lastUpdateInfo} />
           <UpdateLogBoard width={'100%'} />
         </Box>
       )}
