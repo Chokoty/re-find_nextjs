@@ -42,6 +42,7 @@ const HeaderComponent = ({
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const color5 = useColorModeValue(lightMode.color, darkMode.color5);
   const color6 = useColorModeValue(lightMode.color, darkMode.color6);
+  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const searchBgColor = useColorModeValue(lightMode.bg3, darkMode.bg3);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
@@ -164,12 +165,23 @@ const HeaderComponent = ({
           color="gray.300"
           fontSize="1.2em"
         >
-          1
+          <span
+            style={{
+              width: '1px',
+              height: '16px',
+              marginLeft: '8px',
+              background: color7,
+              position: 'absolute',
+              top: '25%',
+              right: '10%',
+            }}
+          ></span>
         </InputLeftElement>
+
         <Input
-          placeholder="검색"
+          placeholder="키워드 검색"
           h="2.25rem"
-          pl="2.5rem"
+          pl="3rem"
           borderRadius="2rem"
           border="none"
           bg={searchBgColor}
@@ -190,7 +202,7 @@ const HeaderComponent = ({
               right: '1rem',
               width: '1.2rem',
               height: '1.2rem',
-              color,
+              color: color7,
             }}
           />
         </InputRightElement>
@@ -219,15 +231,15 @@ const HeaderComponent = ({
             mr="1rem"
             p="0"
             borderRadius="50%"
-            // background="none"
+            background="none"
             display="flex"
             justifyContent="center"
             alignItems="center"
           >
             <PiGiftBold
               style={{
-                width: '1.8rem',
-                height: '1.8rem',
+                width: '1.5rem',
+                height: '1.5rem',
                 color,
               }}
             />

@@ -63,6 +63,7 @@ const RandomFanart = () => {
   const article_link = useResponsiveLink(fanart?.id, 'article');
 
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
 
@@ -178,25 +179,90 @@ const RandomFanart = () => {
   };
 
   return (
-    <Card
+    <Box
+      // className="random-fanart"
+      p="1rem 0"
+      borderRadius="1rem"
       display="flex"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      flexWrap="wrap"
-      marginTop="16px"
-      marginBottom="30px"
-      className="random-fanart"
-      background={color2}
+      background={bg2}
       w="100%"
       maxW="540px"
       minH="120px"
-      // borderColor="gray.200"
-      borderRadius="lg"
-      // boxShadow="0 0 10px 0 rgba(0, 0, 0, 0.2)"
-      // pt="6rem"
-      p="2rem 0"
     >
+      <Box
+        display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+        w="100%"
+      >
+        <Text
+          fontSize="lg"
+          fontWeight="bold"
+          textAlign="left"
+          w="100%"
+          p="0 1rem"
+        >
+          왁타버스 랜덤 팬아트
+        </Text>
+        <Popover placement="bottom">
+          <PopoverTrigger>
+            <Button
+              borderRadius="1rem"
+              w="40px"
+              colorScheme="green"
+              variant="ghost"
+              size="md"
+              // mt="1.5rem"
+              p="0"
+              m="0 1rem "
+              aria-label="랜덤가챠 게시판 포함/제외하기"
+            >
+              <IoSettingsSharp boxSize={30} />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent w="300px" p="0.5rem">
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverBody>
+              <Heading as="h5" size="sm">
+                랜덤가챠 게시판 포함/제외하기
+              </Heading>
+              <Stack spacing={3} direction="row" mt="0.5rem">
+                <Checkbox
+                  name="isd"
+                  isChecked={checkboxValues.isd}
+                  onChange={handleCheckboxChange}
+                >
+                  이세돌
+                </Checkbox>
+                <Checkbox
+                  name="wak"
+                  isChecked={checkboxValues.wak}
+                  onChange={handleCheckboxChange}
+                >
+                  우왁굳
+                </Checkbox>
+                <Checkbox
+                  name="gomem"
+                  isChecked={checkboxValues.gomem}
+                  onChange={handleCheckboxChange}
+                >
+                  고멤/고카
+                </Checkbox>
+              </Stack>
+            </PopoverBody>
+            <PopoverFooter>
+              간혹 제외한 게시판에서의 팬아트가 뽑힐 수 있습니다 (짝! 그래서
+              재밌는 거에요~)
+            </PopoverFooter>
+          </PopoverContent>
+        </Popover>
+      </Box>
+
       {!isvisible && (
         <div className="random-fanart__guide" style={guide}>
           <Text fontSize="xl" fontWeight="bold" mb="1rem">
@@ -275,58 +341,6 @@ const RandomFanart = () => {
         </Skeleton>
       )}
       <Flex gap="2">
-        <Popover placement="bottom">
-          <PopoverTrigger>
-            <Button
-              w="40px"
-              colorScheme="green"
-              variant="outline"
-              size="md"
-              mt="1.5rem"
-              p="0"
-              aria-label="랜덤가챠 게시판 포함/제외하기"
-            >
-              <IoSettingsSharp />
-              <IoSettingsSharp boxSize={30} />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent w="300px" p="0.5rem">
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <PopoverBody>
-              <Heading as="h5" size="sm">
-                랜덤가챠 게시판 포함/제외하기
-              </Heading>
-              <Stack spacing={3} direction="row" mt="0.5rem">
-                <Checkbox
-                  name="isd"
-                  isChecked={checkboxValues.isd}
-                  onChange={handleCheckboxChange}
-                >
-                  이세돌
-                </Checkbox>
-                <Checkbox
-                  name="wak"
-                  isChecked={checkboxValues.wak}
-                  onChange={handleCheckboxChange}
-                >
-                  우왁굳
-                </Checkbox>
-                <Checkbox
-                  name="gomem"
-                  isChecked={checkboxValues.gomem}
-                  onChange={handleCheckboxChange}
-                >
-                  고멤/고카
-                </Checkbox>
-              </Stack>
-            </PopoverBody>
-            <PopoverFooter>
-              간혹 제외한 게시판에서의 팬아트가 뽑힐 수 있습니다 (짝! 그래서
-              재밌는 거에요~)
-            </PopoverFooter>
-          </PopoverContent>
-        </Popover>
         <Spacer />
         <Button
           className="random-fanart__button"
@@ -338,10 +352,10 @@ const RandomFanart = () => {
         >
           <FaDice />
           {/* <FaDice boxSize={12} /> */}
-          &nbsp; 팬아트 랜덤가챠
+          &nbsp; 랜덤가챠 굴리기
         </Button>
       </Flex>
-    </Card>
+    </Box>
   );
 };
 

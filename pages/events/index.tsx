@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 
 // import HashLoader from 'react-spinners/HashLoader';
 import EventFanarts from '@/components/events/EventFanarts';
+import MySnowfall from '@/components/events/MySnowfall';
 import SearchLayout from '@/components/layout/search-layout';
 import RandomFanart from '@/components/tools/RandomFanart';
 import { useStore } from '@/store/store';
@@ -16,8 +17,9 @@ const Events = () => {
 
   return (
     <SearchLayout title="이벤트">
-      <EventFanarts initialFanart={null} />
+      <MySnowfall />
       <RandomFanart />
+      <EventFanarts initialFanart={null} />
       <Box h="120vh">준비중...</Box>
     </SearchLayout>
   );

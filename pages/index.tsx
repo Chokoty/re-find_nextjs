@@ -9,6 +9,7 @@ import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 
 import EventModal from '@/components/events/EventModal';
+import MySnowfall from '@/components/events/MySnowfall';
 import Loading from '@/components/tools/Loading';
 import Preview from '@/components/tools/Preview';
 import SearchResult from '@/components/tools/SearchResult';
@@ -182,6 +183,7 @@ export default function Home({ last_update_info }: HomeProps) {
 
   return (
     <Box className="home_body" ref={targetRef} backgroundColor={bgColor}>
+      <MySnowfall />
       <TopTitle data={data} resetFiles={resetFiles} />
       {congrat && <EventModal targetCount={targetCount} />}
       {/* 업로드 전 */}

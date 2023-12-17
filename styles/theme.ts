@@ -68,7 +68,8 @@ export const darkMode = {
   color3: '#292929',
   color4: '#303134',
   color5: '#FFFFFF73',
-  color6: '#FFFFFFD9',
+  color6: '#FFFFFFD9', // #5C5F6B
+  color7: '#5C5F6B',
   footerColor: '#ced4da9a',
   highlight: '#EF80B1',
   badge: '#FC719F',
