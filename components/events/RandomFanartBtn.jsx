@@ -24,7 +24,7 @@ const url2 =
 
 const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const [fanart, setFanart] = useState(null);
-  const [keywordUrl, setKeywordUrl] = useState(null);
+  const [keywordUrl, setKeywordUrl] = useState(url2);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
@@ -178,7 +178,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
                     borderRadius="1rem"
                     overflow="hidden"
                     w="100%"
-                    pt="3rem"
+                    pt="2rem"
                   >
                     <Link
                       className="link-to-wakzoo"
@@ -228,10 +228,11 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
                       passHref
                       style={linkDiv}
                     >
-                      <Text color="#1B1642">
+                      <Text>
+                        {/* color="#1B1642" */}
                         제목: {fanart?.title.slice(0, 20)}
                       </Text>
-                      <Text color="#1B1642">작가: {fanart?.nickname}</Text>
+                      <Text>작가: {fanart?.nickname}</Text>
                     </Box>
                   </Box>
                 </>
@@ -244,7 +245,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
             className="random-fanart-kidding"
             colorScheme="yellow"
             size="md"
-            mt="1.5rem"
+            mt="1rem"
             p="0 3rem"
             borderRadius="4rem"
             onClick={showRandomFanart}
