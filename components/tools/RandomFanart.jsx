@@ -219,7 +219,7 @@ const RandomFanart = () => {
               size="md"
               // mt="1.5rem"
               p="0"
-              m="0 1rem "
+              m="0 2rem"
               aria-label="랜덤가챠 게시판 포함/제외하기"
             >
               <IoSettingsSharp boxSize={30} />

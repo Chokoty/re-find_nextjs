@@ -35,7 +35,7 @@ const eventsData = [
 const EventFanarts = ({ initialFanart }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
-  const [selectedEventKey, setSelectedEventKey] = useState(null);
+  const [selectedEventKey, setSelectedEventKey] = useState('IsegyeDol2Y');
 
   const handleEventClick = (key) => {
     setSelectedEventKey(key);
