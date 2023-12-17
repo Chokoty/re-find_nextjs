@@ -22,7 +22,7 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   return (
-    <Box className="body" h="160vh">
+    <Box className="body" h="200vh">
       <SearchHeader title={title} />
       <Divider
         className="divider"

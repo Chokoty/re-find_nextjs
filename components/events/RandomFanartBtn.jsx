@@ -48,6 +48,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     } else if (selectedEventKey === 'IsegyeDol2Y') {
       setKeywordUrl(url2);
     }
+    fetchRandomFanart();
   }, [selectedEventKey]);
 
   useEffect(() => {
