@@ -1,8 +1,6 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import IsegyeFestivalFanart from '@/components/events/IsegyeFestivalFanart';
-import KiddingFanart from '@/components/events/KiddingFanart';
 import RandomFanartBtn from '@/components/events/RandomFanartBtn';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -35,10 +33,6 @@ const eventsData = [
 ];
 
 const EventFanarts = ({ initialFanart }) => {
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   const [selectedEventKey, setSelectedEventKey] = useState(null);
