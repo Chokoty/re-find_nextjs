@@ -158,7 +158,7 @@ const Artists = () =>
       const fetchArtistsList = async () => {
         try {
           const response = await axios.get(
-            'http://re-find.reruru.com/author_list'
+            'https://re-find.reruru.com/author_list'
           );
           setArtistsList(response.data);
           console.log(response.data);
