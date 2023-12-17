@@ -20,7 +20,6 @@ const Events = () => {
       <MySnowfall />
       <RandomFanart />
       <EventFanarts initialFanart={null} />
-      <Box h="120vh">준비중...</Box>
     </SearchLayout>
   );
 };

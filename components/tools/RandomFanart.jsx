@@ -181,6 +181,7 @@ const RandomFanart = () => {
   return (
     <Box
       // className="random-fanart"
+      m="0 auto"
       p="1rem 0"
       borderRadius="1rem"
       display="flex"
@@ -206,7 +207,7 @@ const RandomFanart = () => {
           w="100%"
           p="0 1rem"
         >
-          왁타버스 랜덤 팬아트
+          왁타버스 팬아트 랜덤 가챠
         </Text>
         <Popover placement="bottom">
           <PopoverTrigger>
@@ -281,7 +282,7 @@ const RandomFanart = () => {
                 borderRadius="1rem"
                 overflow="hidden"
                 w="100%"
-                pt="3rem"
+                pt="2rem"
                 // mb="1rem"
               >
                 <Link
@@ -290,7 +291,6 @@ const RandomFanart = () => {
                   passHref
                   isExternal
                   style={linkDiv}
-                  pt="3rem"
                 >
                   <NextImage
                     unoptimized
@@ -344,10 +344,12 @@ const RandomFanart = () => {
         <Spacer />
         <Button
           className="random-fanart__button"
-          w="160px"
+          // w="160px"
           colorScheme="yellow"
           size="md"
           mt="1.5rem"
+          p="0 3rem"
+          borderRadius="4rem"
           onClick={showRandomFanart}
         >
           <FaDice />
