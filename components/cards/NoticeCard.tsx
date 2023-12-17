@@ -37,7 +37,7 @@ const NoticeCard: React.FC<NoticeCardProps> = ({
       // maxW="608px"
       maxW="700px"
       p="1rem"
-      boxShadow="2xl"
+      // boxShadow="2xl"
       background={bg2}
       borderRadius="0.75rem"
     >

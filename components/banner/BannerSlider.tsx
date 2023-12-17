@@ -14,7 +14,7 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner2 from '@/components/banner/Banner2';
-// import HalloweenBtn from '@/components/events/HalloweenBtn';
+import EventBtn from '@/components/events/EventBtn';
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -55,7 +55,7 @@ const BannerSlider = () => {
           //   },
           // }}
           style={{
-            paddingBottom: '1.6rem',
+            paddingBottom: '1.8rem',
           }}
         >
           <SwiperSlide style={swiperSlideStyle}>
@@ -64,9 +64,9 @@ const BannerSlider = () => {
           {/* <SwiperSlide style={swiperSlideStyle}>
             <MelonVoteModal />
           </SwiperSlide> */}
-          {/* <SwiperSlide style={swiperSlideStyle}>
-            <HalloweenBtn />
-          </SwiperSlide> */}
+          <SwiperSlide style={swiperSlideStyle}>
+            <EventBtn />
+          </SwiperSlide>
         </Swiper>
       </Box>
     </Box>

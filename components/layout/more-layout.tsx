@@ -18,10 +18,11 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
   const isIndex = false;
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   return (
-    <Box className="body" m="0 auto">
+    <Box className="body" m="0 auto" background={bg}>
       <MoreHeader title={title} isIndex={isIndex} />
       <Divider
         className="divider"

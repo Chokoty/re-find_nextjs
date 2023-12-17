@@ -54,18 +54,23 @@ const HeaderComponent = ({
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
   const showShadow = useShowShadow(50, 0);
 
+  const handleInputClick = () => {
+    console.log('handleInputClick');
+    if (router.pathname !== '/search') {
+      router.push('/search');
+    }
+    onOpen();
+  };
+
   return (
     <Flex
       position="sticky"
       zIndex="200"
       as="header"
-      // h="3.6rem"
       h="60px"
       pt="0"
       top="0"
       p="0 1rem"
-      // pt="50px "
-      // top="-50px"
       alignItems="center"
       justifyContent="space-between"
       boxShadow={showShadow ? boxShadow : 'none'}
@@ -186,7 +191,8 @@ const HeaderComponent = ({
           border="none"
           bg={searchBgColor}
           alignItems="center"
-          onClick={onOpen}
+          // onClick={onOpen}
+          onClick={handleInputClick}
         />
         <InputRightElement
           pointerEvents="none"

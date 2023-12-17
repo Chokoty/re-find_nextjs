@@ -26,6 +26,7 @@ const More = () => {
     lightMode.highlight,
     darkMode.highlight
   );
+  const bg = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   const handleButtonClick = () => {
     toggleColorMode(); // 다크 모드 전환
@@ -59,6 +60,8 @@ const More = () => {
             justifyContent="space-between"
             alignItems="center"
             gap="1rem"
+            borderRadius="1rem"
+            background={bg}
           >
             <Box p="0.5rem">
               <MdInfoOutline
@@ -84,6 +87,8 @@ const More = () => {
             justifyContent="space-between"
             alignItems="center"
             gap="1rem"
+            borderRadius="1rem"
+            background={bg}
           >
             <Box p="0.5rem">
               <MdOutlineContactSupport
@@ -104,6 +109,8 @@ const More = () => {
           justifyContent="space-between"
           alignItems="center"
           gap="1rem"
+          borderRadius="1rem"
+          background={bg}
           onClick={handleButtonClick}
         >
           <DarkModeToggle />

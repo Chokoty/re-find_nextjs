@@ -9,7 +9,7 @@ const Banner2 = () => {
       maxW="700px"
       borderRadius="lg"
       boxShadow="md"
-      // w="94%"
+      w="94%"
       // maxH="110px"
     >
       <Box maxW="700px" borderRadius="lg" overflow="hidden" m="0 auto">
