@@ -20,7 +20,7 @@ import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 const IsegyeFestivalFanart = ({ initialFanart }) => {
   const [fanart, setFanart] = useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(true);
   // const [isFocused, setIsFocused] = useState(false);
   const [isBold, setIsBold] = useState(false);

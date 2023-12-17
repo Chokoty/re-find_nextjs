@@ -1,5 +1,6 @@
 import {
   Box,
+  Skeleton,
   useColorModeValue,
   useDisclosure,
   useToast,
@@ -39,6 +40,7 @@ export default function Home() {
   const { onToggle } = useDisclosure();
 
   const [lastUpdateInfo, setLastUpdateInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드
   const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
@@ -72,6 +74,7 @@ export default function Home() {
   useEffect(() => {
     const fetchLastUpdateInfo = async () => {
       try {
+        setIsLoading(true);
         const response = await axios.get(
           'https://re-find.reruru.com/last_update_info'
         );
@@ -80,6 +83,10 @@ export default function Home() {
         console.log('Error fetching last update info:', error);
         // 오류 처리 로직
       }
+      // 1초 후 로딩 종료
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     };
 
     fetchLastUpdateInfo();
@@ -222,7 +229,9 @@ export default function Home() {
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           /> */}
-          <UpdateBoard last_update_info={lastUpdateInfo} />
+          <Skeleton isLoaded={!isLoading}>
+            <UpdateBoard last_update_info={lastUpdateInfo} />
+          </Skeleton>
           <UpdateLogBoard width={'100%'} />
         </Box>
       )}

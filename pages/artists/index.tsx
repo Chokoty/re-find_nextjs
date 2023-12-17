@@ -11,8 +11,7 @@ import axios from 'axios';
 import { set } from 'lodash';
 import NextImage from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -42,7 +41,6 @@ const sortTypes = [
 ];
 
 const viewTypes = [
-  // { name: '전체', value: 'all' },
   { name: '금손 작가', value: 'goldhand_cnt' },
   { name: '베스트', value: 'best_cnt' },
   { name: '우왁굳', value: 'wak_cnt' },
@@ -51,29 +49,33 @@ const viewTypes = [
 ];
 
 const Artists = ({ artists_list }) => {
-  const router = useRouter();
+  const itemsPerPage = 50;
 
+  const [artists, setArtists] = useState([]);
+  const [filteredArtists, setFilteredArtists] = useState(artists);
+  const [visibleArtists, setVisibleArtists] = useState([]);
+
+  const [nickname, setNickname] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [page, setPage] = useState(1);
+  const [isLastPage, setIsLastPage] = useState(false);
+
+  const [selectedView, setSelectedView] = useState(null);
+  const [sortCriteria, setSortCriteria] = useState({
+    field: 'total_likes',
+    order: 'descending', // 'ascending' 또는 'descending'
+  });
+  const [prevSortCriteria, setPrevSortCriteria] = useState({
+    field: '',
+    order: '',
+  });
+
+  const debouncedSearchTerm = useDebounce<string>(searchTerm, 500); // 500ms 지연
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
-
-  const [artists, setArtists] = useState([]);
-  const [filteredArtists, setFilteredArtists] = useState(artists);
-
-  const [nickname, setNickname] = useState('');
-  const [page, setPage] = useState(1);
-  const [isLastPage, setIsLastPage] = useState(false);
-
-  const [selectedView, setSelectedView] = useState(null);
-  // const [selectedViews, setSelectedViews] = useState({});
-  const [sortCriteria, setSortCriteria] = useState({
-    field: 'total_likes',
-    order: 'descending', // 'ascending' 또는 'descending'
-  });
-  const [searchTerm, setSearchTerm] = useState('');
-  const debouncedSearchTerm = useDebounce<string>(searchTerm, 500); // 500ms 지연
 
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -81,9 +83,6 @@ const Artists = ({ artists_list }) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.badge);
 
-  // const filteredArtists = artists.filter((artist) =>
-  //   artist.name.includes(searchTerm)
-  // );
   const highlightText = (text, highlight2) => {
     const parts = text.split(new RegExp(`(${highlight2})`, 'gi'));
     return parts.map((part, index) =>
@@ -105,9 +104,35 @@ const Artists = ({ artists_list }) => {
   };
 
   const handleViewSelect = (value) => {
+    setPrevSortCriteria({
+      field: '',
+      order: '',
+    });
+
     setSelectedView((prevValue) => (prevValue === value ? null : value));
+    const isExist = sortTypes.find((sortType) => sortType.value === value);
+    if (isExist) {
+      setPrevSortCriteria(sortCriteria);
+    }
+
+    if (sortCriteria.field === value) {
+      setSortCriteria({
+        field: 'total_likes',
+        order: 'descending',
+      });
+    } else {
+      setSortCriteria((prevState) => {
+        // if (prevSortCriteria.field === '') {
+        //   return { ...prevState, field: 'total_likes', order: 'descending' };
+        // }
+        // return prevSortCriteria;
+        return { ...prevState, field: value, order: 'descending' };
+      });
+    }
   };
+
   const handleChangeSortCriteria = (field) => {
+    setPrevSortCriteria(sortCriteria); // 이전 정렬 기준 저장
     setSortCriteria((prevState) => {
       if (prevState.field === field) {
         return {
@@ -126,52 +151,68 @@ const Artists = ({ artists_list }) => {
     setSearchTerm(e.target.value);
   };
 
+  // 1 artists 데이터 로드
   useEffect(() => {
     const updatedArtists = Object.entries(artists_list).map(([key, value]) => {
       return { name: key, ...(value as User) };
     });
     setArtists(updatedArtists);
-  }, []);
+  }, [artists_list]);
 
+  // 2 검색, 정렬, 뷰 선택에 따른 filteredArtists 업데이트
   useEffect(() => {
-    // API 호출 또는 필터링 로직
-    console.log(debouncedSearchTerm);
-  }, [debouncedSearchTerm]);
-  // 무한 스크롤
-  useEffect(() => {
-    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView) console.log('inView: ', inView);
-    if (inView && !isLastPage) {
-      // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
-      setPage((prevState) => prevState + 1);
-    }
-  }, [inView, isLastPage]);
+    let updatedArtists = artists;
 
-  useEffect(() => {
-    // let updatedArtists = Object.entries(artists_list).map(([key, value]) => {
-    //   return { name: key, ...(value as User) };
-    // });
-    let updatedArtists = filteredArtists;
-
-    // 검색어 필터링 적용
     if (debouncedSearchTerm) {
+      // 검색어 필터링 적용
       updatedArtists = updatedArtists.filter((artist) =>
         artist.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
       );
     }
 
-    // 선택된 뷰 기준 필터링 적용
     if (selectedView) {
+      // 선택된 뷰 기준 필터링 적용
       updatedArtists = updatedArtists.filter(
         (artist) => artist[selectedView] > 0
       );
     }
-
     // 정렬 로직 적용
     updatedArtists = sortArtists(updatedArtists, sortCriteria);
 
     setFilteredArtists(updatedArtists);
-  }, [filteredArtists, debouncedSearchTerm, selectedView, sortCriteria]);
+    setVisibleArtists(updatedArtists.slice(0, itemsPerPage)); // 초기화
+    setPage(1); // 페이지 초기화
+    setIsLastPage(false); // 마지막 페이지 초기화
+  }, [artists, debouncedSearchTerm, selectedView, sortCriteria]);
+
+  // 3 페이지 변경에 따른 visibleArtists 업데이트
+  useEffect(() => {
+    if (isLastPage) return;
+    // 현재 보여지는 아티스트의 수가 전체 필터링된 아티스트 수보다 많거나 같으면 마지막 페이지로 간주
+    if (visibleArtists.length >= filteredArtists.length) {
+      setIsLastPage(true);
+    } else {
+      setIsLastPage(false);
+    }
+    setVisibleArtists((prev) => [
+      ...prev,
+      ...filteredArtists.slice(prev.length, page * itemsPerPage),
+    ]);
+  }, [page, filteredArtists]);
+
+  // 무한 스크롤 이벤트 처리 - inView가 true이고 마지막 페이지가 아닐 때 page를 증가
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView) console.log('inView: ', inView);
+    if (inView && !isLastPage) {
+      setPage((prev) => prev + 1);
+    }
+  }, [inView, isLastPage]);
+
+  // useEffect(() => {
+  //   // API 호출 또는 필터링 로직
+  //   console.log(debouncedSearchTerm);
+  // }, [debouncedSearchTerm]);
 
   useEffect(() => {
     const filteredArtists2 = searchTerm
@@ -182,12 +223,6 @@ const Artists = ({ artists_list }) => {
 
     setFilteredArtists(filteredArtists2);
   }, [searchTerm, artists]);
-
-  useEffect(() => {
-    if (inView && !isLastPage) {
-      setPage((prev) => prev + 1);
-    }
-  }, [inView, isLastPage]);
 
   return (
     <Box mt="10px" mb="10px" p="1rem" textAlign="center" w="100%">
@@ -237,55 +272,11 @@ const Artists = ({ artists_list }) => {
             />
           </InputRightElement>
         </InputGroup>
-        <ul
-          style={{
-            listStyle: 'none',
-            display: 'flex',
-            flexDirection: 'row',
-            gap: '1rem',
-            flexWrap: 'wrap',
-            margin: '1rem 0',
-          }}
-        >
-          {sortTypes.map((sortType, index) => (
-            <li key={index}>
-              <Button
-                size="md"
-                onClick={() => handleChangeSortCriteria(sortType.value)}
-                backgroundColor={
-                  sortCriteria.field === sortType.value ? highlight : bg3
-                }
-                _hover={{
-                  backgroundColor:
-                    sortCriteria.field === sortType.value ? highlight : bg3,
-                }}
-              >
-                {sortType.name}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 -960 960 960"
-                  style={{
-                    transform:
-                      sortCriteria.field === sortType.value &&
-                      sortCriteria.order === 'descending'
-                        ? 'rotate(0deg)'
-                        : 'rotate(180deg)',
-                    transition: 'transform 0.1s ease-in-out',
-                  }}
-                >
-                  <path d="M480-360 280-560h400L480-360Z" fill={color}></path>
-                </svg>
-              </Button>
-            </li>
-          ))}
-        </ul>
         <Box
           display="flex"
           flexDirection="column"
           alignItems="center"
-          mb="1rem"
+          m="1rem"
           p="1rem"
           w="100%"
           // h="126px"
@@ -315,10 +306,66 @@ const Artists = ({ artists_list }) => {
               </li>
             ))}
           </ul>
+          <Text mt="1rem">{filteredArtists.length}명의 작가님들이 있어요.</Text>
         </Box>
-        <Box mb="1rem">
-          <Text>{filteredArtists.length}명의 작가님들이 있어요.</Text>{' '}
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          // m="1rem"
+          // p="1rem"
+          w="100%"
+          // h="126px"
+          backgroundColor={bg2}
+          borderRadius="1rem"
+        >
+          <ul
+            style={{
+              listStyle: 'none',
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '1rem',
+              flexWrap: 'wrap',
+              margin: '1rem 0',
+            }}
+          >
+            {sortTypes.map((sortType, index) => (
+              <li key={index}>
+                <Button
+                  size="md"
+                  onClick={() => handleChangeSortCriteria(sortType.value)}
+                  backgroundColor={
+                    sortCriteria.field === sortType.value ? highlight : bg3
+                  }
+                  _hover={{
+                    backgroundColor:
+                      sortCriteria.field === sortType.value ? highlight : bg3,
+                  }}
+                >
+                  {sortType.name}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 -960 960 960"
+                    style={{
+                      transform:
+                        sortCriteria.field === sortType.value &&
+                        sortCriteria.order === 'descending'
+                          ? 'rotate(0deg)'
+                          : 'rotate(180deg)',
+                      transition: 'transform 0.1s ease-in-out',
+                    }}
+                  >
+                    <path d="M480-360 280-560h400L480-360Z" fill={color}></path>
+                  </svg>
+                </Button>
+              </li>
+            ))}
+          </ul>
         </Box>
+
+        <Box mb="1rem"></Box>
         <Box
           mt="1rem"
           w="100%"
@@ -333,9 +380,10 @@ const Artists = ({ artists_list }) => {
           {/* {filteredArtists.map((artist, index) => (
             <div key={index}>{highlightText(artist.name, searchTerm)}</div>
           ))} */}
-          {filteredArtists.slice(0, 30).map(
+          {visibleArtists.map(
             (artist, index) =>
-              artist !== '' && (
+              artist !== '' &&
+              !artist.name.includes('탈퇴회원') && (
                 <Link
                   key={index}
                   href={`/artists/${artist.name}`}
@@ -369,6 +417,9 @@ const Artists = ({ artists_list }) => {
                       alignItems="center"
                       gap="2rem"
                     >
+                      <Text fontSize="lg" fontWeight="bold">
+                        {index <= 100 ? index + 1 : '-'}
+                      </Text>
                       <NextImage
                         unoptimized
                         width={100}
@@ -393,54 +444,74 @@ const Artists = ({ artists_list }) => {
                       alignItems="center"
                       justifyContent="space-between"
                       gap="0.5rem"
+                      w="100%"
                     >
                       <Box
                         display="flex"
                         flexDirection="row"
-                        justifyContent="flex-start"
+                        justifyContent="flex-end"
+                        w="100%"
                       >
-                        {sortTypes.map((sortType, index2) => (
-                          <Button
-                            key={index2}
-                            colorScheme="pink"
-                            variant="outline"
-                            size="sm"
-                            mr="0.5rem"
-                            display="flex"
-                            flexDirection="column"
-                            h="3rem"
-                          >
-                            <Text fontSize="md">{sortType.name}</Text>
-                            <Text fontSize="lg">
-                              {artist[sortType.value] >= 10000
-                                ? `${(artist[sortType.value] / 10000).toFixed(
-                                    1
-                                  )}만`
-                                : artist[sortType.value]}
-                            </Text>
-                          </Button>
-                        ))}
+                        {viewTypes.map(
+                          (viewType, index3) =>
+                            artist[viewType.value] !== 0 && (
+                              <Button
+                                key={index3}
+                                colorScheme="blue"
+                                variant={
+                                  sortCriteria.field === viewType.value
+                                    ? 'solid'
+                                    : 'outline'
+                                }
+                                size="sm"
+                                mr="0.5rem"
+                                display="flex"
+                                flexDirection="column"
+                                h="3rem"
+                              >
+                                <Text fontSize="sm">{viewType.name}</Text>
+                                <Text fontSize="md">
+                                  {' '}
+                                  {artist[viewType.value]}
+                                </Text>
+                              </Button>
+                            )
+                        )}
                       </Box>
                       <Box
                         display="flex"
                         flexDirection="row"
-                        justifyContent="flex-start"
+                        justifyContent="flex-end"
+                        w="100%"
                       >
-                        {viewTypes.map((viewType, index3) => (
-                          <Button
-                            key={index3}
-                            colorScheme="blue"
-                            variant="outline"
-                            size="sm"
-                            mr="0.5rem"
-                            display="flex"
-                            flexDirection="column"
-                            h="3rem"
-                          >
-                            <Text fontSize="md">{viewType.name}</Text>
-                            <Text fontSize="lg"> {artist[viewType.value]}</Text>
-                          </Button>
-                        ))}
+                        {sortTypes.map(
+                          (sortType, index2) =>
+                            artist[sortType.value] !== 0 && (
+                              <Button
+                                key={index2}
+                                colorScheme="pink"
+                                variant={
+                                  sortCriteria.field === sortType.value
+                                    ? 'solid'
+                                    : 'outline'
+                                }
+                                size="sm"
+                                mr="0.5rem"
+                                display="flex"
+                                flexDirection="column"
+                                h="3rem"
+                              >
+                                <Text fontSize="sm">{sortType.name}</Text>
+                                <Text fontSize="md">
+                                  {artist[sortType.value] >= 10000
+                                    ? `${(
+                                        artist[sortType.value] / 10000
+                                      ).toFixed(1)}만`
+                                    : artist[sortType.value]}
+                                </Text>
+                              </Button>
+                            )
+                        )}
                       </Box>
                     </Box>
                   </Button>
@@ -450,6 +521,16 @@ const Artists = ({ artists_list }) => {
           {/* Observer를 위한 div */}
           {<Box ref={ref} w="100%" h="2rem"></Box>}
         </Box>
+        {!isLastPage && (
+          <Box
+            m="2rem"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <HashLoader color="#01BFA2" />
+          </Box>
+        )}
       </Box>
     </Box>
   );
