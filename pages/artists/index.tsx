@@ -564,22 +564,22 @@ const Artists = () =>
 
 export default Artists;
 
-export async function getServerSideProps(context) {
-  try {
-    const artists_list = await axios
-      .get(`http://re-find.reruru.com/author_list`)
-      .then((res) => res.data);
+// export async function getServerSideProps(context) {
+//   try {
+//     const artists_list = await axios
+//       .get(`http://re-find.reruru.com/author_list`)
+//       .then((res) => res.data);
 
-    return {
-      props: {
-        artists_list,
-      },
-    };
-  } catch (error) {
-    console.error('Error fetching data:', error);
+//     return {
+//       props: {
+//         artists_list,
+//       },
+//     };
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
 
-    return {
-      notFound: true, // Next.js에서 제공하는 notFound 속성을 사용하여 페이지를 404로 표시
-    };
-  }
-}
+//     return {
+//       notFound: true, // Next.js에서 제공하는 notFound 속성을 사용하여 페이지를 404로 표시
+//     };
+//   }
+// }
