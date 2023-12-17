@@ -8,6 +8,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { set } from 'lodash';
 import NextImage from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -16,6 +17,7 @@ import { FaSearch } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
+import { useDebounce } from '@/hook/useDebounce';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface User {
@@ -29,6 +31,7 @@ interface User {
   total_views: number;
   total_likes: number;
   total_comments: number;
+  textValue?: string;
 }
 
 const sortTypes = [
@@ -49,6 +52,7 @@ const viewTypes = [
 
 const Artists = ({ artists_list }) => {
   const router = useRouter();
+
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
@@ -56,6 +60,8 @@ const Artists = ({ artists_list }) => {
   });
 
   const [artists, setArtists] = useState([]);
+  const [filteredArtists, setFilteredArtists] = useState(artists);
+
   const [nickname, setNickname] = useState('');
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
@@ -66,6 +72,8 @@ const Artists = ({ artists_list }) => {
     field: 'total_likes',
     order: 'descending', // 'ascending' 또는 'descending'
   });
+  const [searchTerm, setSearchTerm] = useState('');
+  const debouncedSearchTerm = useDebounce<string>(searchTerm, 500); // 500ms 지연
 
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -73,6 +81,20 @@ const Artists = ({ artists_list }) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.badge);
 
+  // const filteredArtists = artists.filter((artist) =>
+  //   artist.name.includes(searchTerm)
+  // );
+  const highlightText = (text, highlight2) => {
+    const parts = text.split(new RegExp(`(${highlight2})`, 'gi'));
+    return parts.map((part, index) =>
+      part.toLowerCase() === highlight.toLowerCase() ? (
+        <mark key={index}>{part}</mark>
+      ) : (
+        part
+      )
+    );
+  };
+  // 정렬 로직
   const sortArtists = (_artists, { field, order }) => {
     return _artists.sort((a, b) => {
       if (order === 'ascending') {
@@ -85,14 +107,6 @@ const Artists = ({ artists_list }) => {
   const handleViewSelect = (value) => {
     setSelectedView((prevValue) => (prevValue === value ? null : value));
   };
-  // const handleViewSelect = (value) => {
-  //   setSelectedViews((prevViews) => ({
-  //     ...prevViews,
-  //     [value]: !prevViews[value],
-  //   }));
-
-  //   console.log(selectedViews);
-  // };
   const handleChangeSortCriteria = (field) => {
     setSortCriteria((prevState) => {
       if (prevState.field === field) {
@@ -101,7 +115,7 @@ const Artists = ({ artists_list }) => {
           order: prevState.order === 'ascending' ? 'descending' : 'ascending',
         };
       }
-      return { ...prevState, field, order: 'ascending' };
+      return { ...prevState, field, order: 'descending' };
     });
     console.log(sortCriteria);
   };
@@ -109,17 +123,20 @@ const Artists = ({ artists_list }) => {
   const handleSearch = (e) => {
     console.log(e.target.value);
     setNickname(e.target.value);
+    setSearchTerm(e.target.value);
   };
 
   useEffect(() => {
-    const dataArray = Object.entries(artists_list).map(([key, value]) => {
+    const updatedArtists = Object.entries(artists_list).map(([key, value]) => {
       return { name: key, ...(value as User) };
     });
-
-    console.log(dataArray);
-    setArtists(dataArray);
+    setArtists(updatedArtists);
   }, []);
 
+  useEffect(() => {
+    // API 호출 또는 필터링 로직
+    console.log(debouncedSearchTerm);
+  }, [debouncedSearchTerm]);
   // 무한 스크롤
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
@@ -129,6 +146,49 @@ const Artists = ({ artists_list }) => {
       setPage((prevState) => prevState + 1);
     }
   }, [inView, isLastPage]);
+
+  useEffect(() => {
+    // let updatedArtists = Object.entries(artists_list).map(([key, value]) => {
+    //   return { name: key, ...(value as User) };
+    // });
+    let updatedArtists = filteredArtists;
+
+    // 검색어 필터링 적용
+    if (debouncedSearchTerm) {
+      updatedArtists = updatedArtists.filter((artist) =>
+        artist.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+      );
+    }
+
+    // 선택된 뷰 기준 필터링 적용
+    if (selectedView) {
+      updatedArtists = updatedArtists.filter(
+        (artist) => artist[selectedView] > 0
+      );
+    }
+
+    // 정렬 로직 적용
+    updatedArtists = sortArtists(updatedArtists, sortCriteria);
+
+    setFilteredArtists(updatedArtists);
+  }, [filteredArtists, debouncedSearchTerm, selectedView, sortCriteria]);
+
+  useEffect(() => {
+    const filteredArtists2 = searchTerm
+      ? artists.filter((artist) =>
+          artist.name.toLowerCase().includes(searchTerm)
+        )
+      : artists;
+
+    setFilteredArtists(filteredArtists2);
+  }, [searchTerm, artists]);
+
+  useEffect(() => {
+    if (inView && !isLastPage) {
+      setPage((prev) => prev + 1);
+    }
+  }, [inView, isLastPage]);
+
   return (
     <Box mt="10px" mb="10px" p="1rem" textAlign="center" w="100%">
       <Text as="h2" fontSize="3xl" fontWeight="bold">
@@ -210,8 +270,8 @@ const Artists = ({ artists_list }) => {
                     transform:
                       sortCriteria.field === sortType.value &&
                       sortCriteria.order === 'descending'
-                        ? 'rotate(180deg)'
-                        : 'rotate(0deg)',
+                        ? 'rotate(0deg)'
+                        : 'rotate(180deg)',
                     transition: 'transform 0.1s ease-in-out',
                   }}
                 >
@@ -245,8 +305,6 @@ const Artists = ({ artists_list }) => {
               <li key={index}>
                 <Button
                   size="md"
-                  // onClick={() => handleViewSelect(viewType.value)}
-                  // colorScheme={selectedViews[viewType.value] ? 'blue' : 'gray'}
                   onClick={() => handleViewSelect(viewType.value)}
                   colorScheme={
                     selectedView === viewType.value ? 'blue' : 'gray'
@@ -259,7 +317,7 @@ const Artists = ({ artists_list }) => {
           </ul>
         </Box>
         <Box mb="1rem">
-          <Text>{artists.length}명의 작가님들이 있어요.</Text>{' '}
+          <Text>{filteredArtists.length}명의 작가님들이 있어요.</Text>{' '}
         </Box>
         <Box
           mt="1rem"
@@ -272,7 +330,10 @@ const Artists = ({ artists_list }) => {
           backgroundColor={bg2}
           borderRadius="1rem"
         >
-          {artists.slice(0, 30).map(
+          {/* {filteredArtists.map((artist, index) => (
+            <div key={index}>{highlightText(artist.name, searchTerm)}</div>
+          ))} */}
+          {filteredArtists.slice(0, 30).map(
             (artist, index) =>
               artist !== '' && (
                 <Link
@@ -350,7 +411,13 @@ const Artists = ({ artists_list }) => {
                             h="3rem"
                           >
                             <Text fontSize="md">{sortType.name}</Text>
-                            <Text fontSize="lg"> {artist[sortType.value]}</Text>
+                            <Text fontSize="lg">
+                              {artist[sortType.value] >= 10000
+                                ? `${(artist[sortType.value] / 10000).toFixed(
+                                    1
+                                  )}만`
+                                : artist[sortType.value]}
+                            </Text>
                           </Button>
                         ))}
                       </Box>

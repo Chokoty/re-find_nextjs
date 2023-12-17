@@ -69,7 +69,7 @@ export const SearchHeader = ({ title }) => {
     <Box
       position="sticky"
       pt="0"
-      top="0"
+      top="60px"
       w="100%"
       h="60px"
       zIndex="200"
