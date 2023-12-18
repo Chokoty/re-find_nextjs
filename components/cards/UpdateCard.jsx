@@ -164,7 +164,7 @@ const UpdateCard = ({ update }) => {
               alignItems="center"
               justifyContent="center"
             >
-              <Box w="1rem" h="1rem" mr="0.3rem">
+              <Box h="1rem" mr="0.3rem">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
