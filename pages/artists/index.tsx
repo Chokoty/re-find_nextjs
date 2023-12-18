@@ -8,7 +8,6 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import axios from 'axios';
-import { set } from 'lodash';
 import NextImage from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -290,6 +289,10 @@ const Artists = () =>
         textAlign="center"
         w="100%"
         backgroundColor={bg}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
       >
         <Text as="h2" fontSize="3xl" fontWeight="bold">
           왁타버스 작가
@@ -303,6 +306,7 @@ const Artists = () =>
           alignItems="center"
           mt="3rem"
           w="100%"
+          maxW="1024px"
         >
           <InputGroup
             display="flex"
@@ -345,6 +349,7 @@ const Artists = () =>
             m="1rem"
             p="1rem"
             w="100%"
+            maxW="1024px"
             // h="126px"
             backgroundColor={bg2}
             borderRadius="1rem"
@@ -384,6 +389,7 @@ const Artists = () =>
             // m="1rem"
             // p="1rem"
             w="100%"
+            maxW="1024px"
             // h="126px"
             backgroundColor={bg2}
             borderRadius="1rem"
@@ -442,6 +448,7 @@ const Artists = () =>
           <Box
             mt="1rem"
             w="100%"
+            maxW="1024px"
             m="0 auto"
             display="flex"
             flexDirection="row"
