@@ -277,7 +277,7 @@ const Artists = () =>
             mb="2.5rem"
           >
             <Input
-              placeholder="왁물원 아이디"
+              placeholder="왁물원 닉네임"
               focusBorderColor="#01BFA2"
               size="md"
               value={nickname}
