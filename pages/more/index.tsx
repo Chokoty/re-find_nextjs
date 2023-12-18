@@ -1,16 +1,17 @@
-import { InfoIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
   Flex,
+  Link,
   Text,
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import Link from 'next/link';
+import NextLink from 'next/link';
 import React, { useEffect } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
+import { PiGiftBold } from 'react-icons/pi';
 
 import MoreLayout from '@/components/layout/more-layout';
 import DarkModeToggle from '@/components/tools/DarkModeToggle';
@@ -48,7 +49,7 @@ const More = () => {
         mt="1rem"
         mb="1rem"
       >
-        <Link href={'/more/about'} passHref>
+        <NextLink href={'/more/about'} passHref>
           <Button
             variant="solid"
             w="9rem"
@@ -74,8 +75,8 @@ const More = () => {
 
             <Text fontSize="xl">리파인드 소개</Text>
           </Button>
-        </Link>
-        <Link href={'/more/support'} passHref>
+        </NextLink>
+        <NextLink href={'/more/support'} passHref>
           <Button
             variant="solid"
             w="9rem"
@@ -97,7 +98,28 @@ const More = () => {
             </Box>
             <Text fontSize="xl">문의,지원</Text>
           </Button>
-        </Link>
+        </NextLink>
+        <NextLink href={'/events'} passHref>
+          <Button
+            variant="solid"
+            w="9rem"
+            h="8rem"
+            p="1rem"
+            mb="1rem"
+            display="flex"
+            flexDirection="column"
+            justifyContent="space-between"
+            alignItems="center"
+            gap="1rem"
+            borderRadius="1rem"
+            background={bg}
+          >
+            <Box p="0.5rem">
+              <PiGiftBold style={{ width: '2rem', height: '2rem' }} />
+            </Box>
+            <Text fontSize="xl">이벤트</Text>
+          </Button>
+        </NextLink>
         <Button
           variant="solid"
           w="9rem"
@@ -117,18 +139,20 @@ const More = () => {
           <Text fontSize="xl">화면 스타일</Text>
         </Button>
       </Flex>
-      <Button colorScheme="purple">
-        <AiFillExperiment
-          className="icon"
-          style={{
-            width: '20px',
-            height: '20px',
-            padding: '0',
-            marginRight: '0.5rem',
-          }}
-        />
-        (beta)이세돌 팬아트를 키워드로 찾아주는 AI
-      </Button>
+      <Link href="https://cafe.naver.com/steamindiegame/9524252" isExternal>
+        <Button colorScheme="purple">
+          <AiFillExperiment
+            className="icon"
+            style={{
+              width: '20px',
+              height: '20px',
+              padding: '0',
+              marginRight: '0.5rem',
+            }}
+          />
+          (beta)이세돌 팬아트를 키워드로 찾아주는 AI
+        </Button>
+      </Link>
       <UpdateLogBoard width={'100%'} />
     </MoreLayout>
   );

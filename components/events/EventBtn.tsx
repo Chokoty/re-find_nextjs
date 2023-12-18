@@ -11,22 +11,24 @@ const EventBtn = () => {
 
   return (
     <Box
-      w="94%"
+      w="100%"
       h="100%"
+      p={['0.8rem 0', '1.5rem 0', '2.7rem 0']}
       maxW="700px"
-      maxH="110px"
+      maxH="130px"
       display="flex"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
       background={bg2}
-      borderRadius="lg"
+      borderRadius="1rem"
       boxShadow="md"
     >
       <Button
         background="black"
         color="white"
         w="60%"
+        h="40px"
         // mb="2rem"
         _hover={{ background: '#ddd', color: 'black' }}
       >

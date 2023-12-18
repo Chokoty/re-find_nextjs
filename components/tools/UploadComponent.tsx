@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import { SlCloudUpload } from 'react-icons/sl';
 
@@ -25,12 +25,12 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
       backgroundColor={bgColor2}
       borderRadius="1rem"
       m="1rem 0"
+      p="1rem"
       display="flex"
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
       w="100%"
-      h="20rem"
       maxW="700px"
     >
       <Box
@@ -40,15 +40,9 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
         border="0.25rem dashed #6d6d6d"
         borderRadius="1rem"
         cursor="pointer"
-        // w="50%"
-        maxW="550px"
-        h="250px"
-        m="2rem 0"
-        p="5px"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
+        p="1rem"
+        maxW="400px"
+        w="100%"
       >
         <Box
           {...getRootProps()}
@@ -57,14 +51,15 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
+          gap="0.5rem"
         >
           <input {...getInputProps()} />
           <SlCloudUpload className="logo" />
-          <Box mt="1rem">
+          <Box>
             {isDragActive ? (
-              <p>이미지를 여기에 드롭하세요!</p>
+              <Text>이미지를 여기에 드롭하세요!</Text>
             ) : (
-              <p>
+              <Text maxW="300px" textAlign="center">
                 이미지를 여기로 드래그하거나 화면을 클릭하여 파일을&nbsp;
                 <span
                   className="underline"
@@ -75,7 +70,7 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
                   업로드
                 </span>
                 하세요.
-              </p>
+              </Text>
             )}
           </Box>
         </Box>

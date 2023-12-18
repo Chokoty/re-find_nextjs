@@ -19,11 +19,10 @@ import EventBtn from '@/components/events/EventBtn';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const swiperSlideStyle = {
-  // width: '508px',
-  height: '130px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  width: '100%',
 };
 
 const BannerSlider = () => {
@@ -31,8 +30,8 @@ const BannerSlider = () => {
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (
-    <Box m="1rem 0" pb="1rem" w="100%" background={bgColor}>
-      <Box maxW="700px" overflow="hidden" m="0 auto">
+    <Box maxW="700px" m="1rem 0" w="90%" background={bgColor}>
+      <Box overflow="hidden" m="0 auto">
         <Swiper
           className="mySwiper"
           // navigation={true}
@@ -55,7 +54,7 @@ const BannerSlider = () => {
           //   },
           // }}
           style={{
-            paddingBottom: '1.8rem',
+            paddingBottom: '2.5rem',
           }}
         >
           <SwiperSlide style={swiperSlideStyle}>

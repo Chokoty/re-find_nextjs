@@ -106,31 +106,66 @@ const Artists = () =>
       });
     };
 
+    // const handleViewSelect = (value) => {
+    //   setPrevSortCriteria({
+    //     field: '',
+    //     order: '',
+    //   });
+
+    //   setSelectedView((prevValue) => (prevValue === value ? null : value));
+    //   const isExist = sortTypes.find((sortType) => sortType.value === value);
+    //   if (isExist) {
+    //     setPrevSortCriteria(sortCriteria);
+    //   }
+
+    //   if (sortCriteria.field === value) {
+    //     setSortCriteria({
+    //       field: 'total_likes',
+    //       order: 'descending',
+    //     });
+    //   } else {
+    //     setSortCriteria((prevState) => {
+    //       // if (prevSortCriteria.field === '') {
+    //       //   return { ...prevState, field: 'total_likes', order: 'descending' };
+    //       // }
+    //       // return prevSortCriteria;
+    //       return { ...prevState, field: value, order: 'descending' };
+    //     });
+    //   }
+    // };
+
     const handleViewSelect = (value) => {
-      setPrevSortCriteria({
-        field: '',
-        order: '',
-      });
-
-      setSelectedView((prevValue) => (prevValue === value ? null : value));
-      const isExist = sortTypes.find((sortType) => sortType.value === value);
-      if (isExist) {
-        setPrevSortCriteria(sortCriteria);
-      }
-
-      if (sortCriteria.field === value) {
+      if (selectedView === value) {
+        // 뷰 선택 해제
+        setSelectedView(null);
+        // 전체 아티스트 목록에서 sortCriteria 기준으로 정렬
         setSortCriteria({
           field: 'total_likes',
           order: 'descending',
         });
+        const sortedArtists = sortArtists(artists, sortCriteria);
+        setFilteredArtists(sortedArtists);
+        setVisibleArtists(sortedArtists.slice(0, itemsPerPage));
+        setPage(1);
+        setIsLastPage(false);
       } else {
+        setSelectedView((prevValue) => (prevValue === value ? null : value));
         setSortCriteria((prevState) => {
-          // if (prevSortCriteria.field === '') {
-          //   return { ...prevState, field: 'total_likes', order: 'descending' };
-          // }
-          // return prevSortCriteria;
           return { ...prevState, field: value, order: 'descending' };
         });
+        // // 새로운 뷰 선택
+        // setSelectedView(value);
+        // // 뷰에 따라 아티스트 목록 필터링 및 정렬
+        // const updatedArtists = artists.filter((artist) => artist[value] > 0);
+        // const sortedArtists = sortArtists(updatedArtists, sortCriteria);
+        // // const updatedArtists = sortArtists(artists, sortCriteria);
+        // // const updatedArtists = artists
+        // //   .filter((artist) => artist[value] > 0)
+        // //   .sort((a, b) => sortArtists(a, b, sortCriteria));
+        // // setFilteredArtists(updatedArtists);
+        // setVisibleArtists(sortedArtists.slice(0, itemsPerPage));
+        // setPage(1);
+        // setIsLastPage(false);
       }
     };
 
@@ -259,7 +294,7 @@ const Artists = () =>
           display="flex"
           flexDirection="column"
           alignItems="center"
-          mt="2rem"
+          mt="3rem"
           w="100%"
         >
           <InputGroup
@@ -267,6 +302,7 @@ const Artists = () =>
             alignItems="center"
             justifyContent="center"
             maxW="400px"
+            mb="2.5rem"
           >
             <Input
               placeholder="왁물원 아이디"
@@ -306,11 +342,15 @@ const Artists = () =>
             backgroundColor={bg2}
             borderRadius="1rem"
           >
+            <Text mb="1rem">
+              {filteredArtists.length}명의 작가님들이 있어요.
+            </Text>
             <ul
               style={{
                 listStyle: 'none',
                 display: 'flex',
                 flexDirection: 'row',
+                justifyContent: 'center',
                 gap: '1rem',
                 flexWrap: 'wrap',
               }}
@@ -329,9 +369,6 @@ const Artists = () =>
                 </li>
               ))}
             </ul>
-            <Text mt="1rem">
-              {filteredArtists.length}명의 작가님들이 있어요.
-            </Text>
           </Box>
           <Box
             display="flex"
@@ -349,6 +386,7 @@ const Artists = () =>
                 listStyle: 'none',
                 display: 'flex',
                 flexDirection: 'row',
+                justifyContent: 'center',
                 gap: '1rem',
                 flexWrap: 'wrap',
                 margin: '1rem 0',

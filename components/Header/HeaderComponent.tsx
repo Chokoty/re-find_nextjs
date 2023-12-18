@@ -22,6 +22,7 @@ import { RiMenu2Line } from 'react-icons/ri';
 import DarkModeToggle from '@/components/tools/DarkModeToggle';
 import MyDrawer from '@/components/tools/MyDrawer';
 import SearchModal from '@/components/tools/SearchModal';
+import { useResponsive } from '@/hook/useResponsive';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -38,12 +39,15 @@ const HeaderComponent = ({
   const router = useRouter();
   const isCurrentPath = (path) => router.pathname === path;
 
-  const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const isMobile = useResponsive(); // 모바일 환경인지 체크
+
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const color5 = useColorModeValue(lightMode.color, darkMode.color5);
   const color6 = useColorModeValue(lightMode.color, darkMode.color6);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
-  const searchBgColor = useColorModeValue(lightMode.bg3, darkMode.bg3);
+  const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
   const boxShadowLight =
@@ -75,7 +79,7 @@ const HeaderComponent = ({
       justifyContent="space-between"
       boxShadow={showShadow ? boxShadow : 'none'}
       style={{
-        backgroundColor: bgColor,
+        backgroundColor: bg2,
         color,
       }}
     >
@@ -99,70 +103,74 @@ const HeaderComponent = ({
             />
           </Link>
         </Button>
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          position="relative"
-          w="60px"
-          p="0 1rem"
-        >
-          <NextLink href="/artworks" passHref>
-            <Text
-              fontWeight="700"
-              color={isCurrentPath('/artworks') ? color6 : color5}
-              _hover={{
-                color: color6,
-              }}
-            >
-              작품
-            </Text>
-          </NextLink>
-          {isCurrentPath('/artworks') && (
+        {!isMobile && (
+          <>
             <Box
-              w="1rem"
-              h="0.25rem"
-              borderRadius="2px"
-              background={highlight}
-              position="absolute"
-              bottom="-0.5rem"
-              opacity="1"
-            />
-          )}
-        </Box>
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          position="relative"
-          w="60px"
-          p="0 1rem"
-        >
-          <NextLink href="/artists" passHref>
-            <Text
-              color={isCurrentPath('/artists') ? color6 : color5}
-              fontWeight="700"
-              _hover={{
-                color: color6,
-              }}
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              position="relative"
+              w="60px"
+              p="0 1rem"
             >
-              작가
-            </Text>
-          </NextLink>
-          {isCurrentPath('/artists') && (
+              <NextLink href="/artworks" passHref>
+                <Text
+                  fontWeight="700"
+                  color={isCurrentPath('/artworks') ? color6 : color5}
+                  _hover={{
+                    color: color6,
+                  }}
+                >
+                  작품
+                </Text>
+              </NextLink>
+              {isCurrentPath('/artworks') && (
+                <Box
+                  w="1rem"
+                  h="0.25rem"
+                  borderRadius="2px"
+                  background={highlight}
+                  position="absolute"
+                  bottom="-0.5rem"
+                  opacity="1"
+                />
+              )}
+            </Box>
             <Box
-              w="1rem"
-              h="0.25rem"
-              borderRadius="2px"
-              background={highlight}
-              position="absolute"
-              bottom="-0.5rem"
-              opacity="1"
-            />
-          )}
-        </Box>
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              position="relative"
+              w="60px"
+              p="0 1rem"
+            >
+              <NextLink href="/artists" passHref>
+                <Text
+                  color={isCurrentPath('/artists') ? color6 : color5}
+                  fontWeight="700"
+                  _hover={{
+                    color: color6,
+                  }}
+                >
+                  작가
+                </Text>
+              </NextLink>
+              {isCurrentPath('/artists') && (
+                <Box
+                  w="1rem"
+                  h="0.25rem"
+                  borderRadius="2px"
+                  background={highlight}
+                  position="absolute"
+                  bottom="-0.5rem"
+                  opacity="1"
+                />
+              )}
+            </Box>
+          </>
+        )}
       </Box>
       <InputGroup m="0 " w="70%">
         <InputLeftElement
@@ -188,11 +196,25 @@ const HeaderComponent = ({
           h="2.25rem"
           pl="3rem"
           borderRadius="2rem"
-          border="none"
-          bg={searchBgColor}
+          bg={bg3}
           alignItems="center"
-          // onClick={onOpen}
           onClick={handleInputClick}
+          focusBorderColor="#01BFA2"
+          size="md"
+          // value={nickname}
+          // onChange={handleSearch}
+          _hover={{
+            backgroundColor: bg2,
+            borderColor: '#01BFA2',
+          }}
+          _focus={{ backgroundColor: bg2 }}
+          sx={{
+            'input::placeholder': {
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+            },
+          }}
         />
         <InputRightElement
           pointerEvents="none"
@@ -215,15 +237,18 @@ const HeaderComponent = ({
       </InputGroup>
       <Flex>
         {/* <DarkModeToggle className="dark-mode-toggle" /> */}
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          position="relative"
-          w="60px"
-          p="0 1rem"
-        ></Box>
+
+        {!isMobile && (
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            position="relative"
+            w="60px"
+            p="0 1rem"
+          ></Box>
+        )}
 
         <MyDrawer
           isOpen={isOpenDrawer}
@@ -234,7 +259,7 @@ const HeaderComponent = ({
           <Button
             w="3rem"
             h="3rem"
-            mr="1rem"
+            // m="0 0.5rem"
             p="0"
             borderRadius="50%"
             background="none"

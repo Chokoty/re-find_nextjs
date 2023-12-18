@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 
 import LinkBtns from '@/components/tools/LinkBtn';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -17,7 +17,20 @@ export const Footer = () => {
         w="100%"
       >
         <LinkBtns />
-        <p>Copyright ⓒ 2023 RE: FIND. All Rights Reserved.</p>
+        <Box pb="1rem">
+          <Text fontSize="md" fontWeight="700" textAlign="left" mb="0.5rem">
+            고객센터
+          </Text>
+          <Text fontSize="sm" textAlign="left">
+            팀 리파인드
+          </Text>
+          <Text fontSize="sm" textAlign="center">
+            rerurureruru@gmail.com
+          </Text>
+        </Box>
+        <Text fontSize="sm" textAlign="center">
+          Copyright ⓒ 2023 RE: FIND. All Rights Reserved.
+        </Text>
       </Box>
     </footer>
   );

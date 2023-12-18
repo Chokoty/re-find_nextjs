@@ -7,12 +7,12 @@ const Banner2 = () => {
   return (
     <Box
       maxW="700px"
-      borderRadius="lg"
+      borderRadius="1rem"
       boxShadow="md"
-      w="94%"
+      w="100%"
       // maxH="110px"
     >
-      <Box maxW="700px" borderRadius="lg" overflow="hidden" m="0 auto">
+      <Box maxW="700px" borderRadius="1rem" overflow="hidden" m="0 auto">
         <NextLink href="/more/about">
           <NextImage
             width={800}

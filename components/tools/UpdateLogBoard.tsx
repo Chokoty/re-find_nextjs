@@ -52,7 +52,7 @@ const UpdateLogBoard = ({ width }) => {
           </Box>
         </Flex>
       </NextLink>
-      <UpdateLog count={1} />
+      <UpdateLog count={2} />
     </Box>
   );
 };

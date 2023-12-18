@@ -23,8 +23,9 @@ const TopTitle = ({ data, resetFiles }) => {
       <BannerSlider />
 
       <Box
-        w="100%"
-        h="20rem"
+        w="90%"
+        p="1rem 0"
+        // h="20rem"
         // maxW="850px"
         maxW="700px"
         display="flex"
@@ -32,7 +33,7 @@ const TopTitle = ({ data, resetFiles }) => {
         alignItems="center"
         justifyContent="center"
         background={bgColor}
-        p="1.5rem"
+        // p="1.5rem"
         borderRadius="1rem"
         // mt="1rem"
       >

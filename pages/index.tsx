@@ -24,7 +24,7 @@ interface HomeProps {
   last_update_info: any;
 }
 
-const targetCount = 40000; // 이벤트 타겟 카운트
+const targetCount = 50000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
   () => import('@/components/tools/UploadImages'),
   {
@@ -220,6 +220,7 @@ export default function Home() {
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
+          w="90%"
         >
           <DynamicUploadImages
             getDataFromChild={getDataFromChild}

@@ -21,15 +21,14 @@ const UpdateBoard = ({ last_update_info }) => {
   return (
     <Box
       className="update-info"
-      mt="3em"
-      mb="6em"
+      m="3em 0 1rem 0"
       display="grid"
       alignItems="center"
       placeItems="center"
       // gridGap="1em"
-      // gap="1em"
-      // w="100%"
-      w="700px"
+      gap="1em"
+      w="100%"
+      maxW="700px"
       background={bg2}
       borderRadius="1rem"
     >
@@ -37,21 +36,27 @@ const UpdateBoard = ({ last_update_info }) => {
         display="flex"
         flexDirection="column"
         alignItems="center"
-        placeItems="center"
         w="100%"
-        p="1em"
+        p="1em 0"
         borderBottom="1px solid"
         borderColor={bg}
       >
-        <Heading as="h2" size="md" color={color}>
-          현재 아래 게시글까지 반영되었어요!
+        <Heading
+          as="h2"
+          size="md"
+          color={color}
+          textAlign="left"
+          w="100%"
+          pl="1em"
+        >
+          게시판 업데이트 현황
         </Heading>
       </Box>
       {last_update_info?.map((update, index) => (
         <UpdateCard key={index} update={update} />
       ))}
       {last_update_info === null || last_update_info?.length === 0 ? (
-        <Alert status="error">
+        <Alert status="error" w="90%" borderRadius="1rem">
           <AlertIcon />
           <AlertTitle></AlertTitle>
           <AlertDescription>
