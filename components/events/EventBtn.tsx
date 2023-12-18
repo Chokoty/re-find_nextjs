@@ -25,8 +25,9 @@ const EventBtn = () => {
       boxShadow="md"
     >
       <Button
-        background="black"
-        color="white"
+        // background="black"
+        colorScheme="purple"
+        // color="white"
         w="60%"
         h="40px"
         // mb="2rem"
