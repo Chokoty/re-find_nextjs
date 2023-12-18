@@ -41,7 +41,7 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
         borderRadius="1rem"
         cursor="pointer"
         p="1rem"
-        maxW="400px"
+        maxW="500px"
         w="100%"
       >
         <Box
