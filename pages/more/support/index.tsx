@@ -38,17 +38,17 @@ const Support = () => {
             boxShadow="md"
             borderWidth="1px"
             borderRadius="lg"
-            width="144px"
-            height="128px"
+            width="160px"
+            height="144px"
             display="flex"
             flexDirection="column"
             justifyContent="center"
           >
             <FaBug size="60px" />
+            <Text fontSize="2xl" mt="1.5rem">
+              {data[0].title}
+            </Text>
           </Button>
-          <Text fontSize="2xl" mt="10px">
-            {data[0].title}
-          </Text>
         </Box>
         <Box className="area" mt="5rem">
           <Button
@@ -58,17 +58,17 @@ const Support = () => {
             boxShadow="md"
             borderWidth="1px"
             borderRadius="lg"
-            width="144px"
-            height="128px"
+            width="160px"
+            height="144px"
             display="flex"
             flexDirection="column"
             justifyContent="center"
           >
             <BsChatDots size="60px" />
+            <Text fontSize="2xl" mt="1.5rem">
+              {data[1].title}
+            </Text>
           </Button>
-          <Text fontSize="2xl" mt="10px">
-            {data[1].title}
-          </Text>
         </Box>
       </Box>
     </MoreLayout>

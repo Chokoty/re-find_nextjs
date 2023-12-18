@@ -29,22 +29,24 @@ const NoticeCard: React.FC<NoticeCardProps> = ({
     darkMode.highlight
   );
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   return (
     <Card
       width="100%"
-      maxW="608px"
+      // maxW="608px"
+      maxW="700px"
       p="1rem"
-      boxShadow="2xl"
-      background={color2}
+      // boxShadow="2xl"
+      background={bg2}
       borderRadius="0.75rem"
     >
-      <Text textAlign="left" p="0" fontSize="sm">
+      <Text textAlign="left" p="0" fontSize="md">
         {type} {content}
       </Text>
       <CardFooter mt="0.5rem" p="0">
         <Flex w="100%" justifyContent="space-between" alignItems="center">
-          <Text fontSize="xs" textAlign="left">
+          <Text fontSize="sm" textAlign="left">
             {date}
           </Text>
           {directLink && (

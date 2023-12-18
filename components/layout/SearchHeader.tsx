@@ -11,6 +11,7 @@ import React, { useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
+import BackButton from '@/components/tools/BackButton';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -25,6 +26,7 @@ export const SearchHeader = ({ title }) => {
   const myDrawerRef = useRef(null);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
@@ -69,24 +71,25 @@ export const SearchHeader = ({ title }) => {
     <Box
       position="sticky"
       pt="0"
-      top="0"
+      top="60px"
       w="100%"
+      h="60px"
       zIndex="200"
       boxShadow={showShadow ? boxShadow : 'none'}
     >
       <Flex
         as="header"
         style={{
-          backgroundColor: bgColor,
+          backgroundColor: bgColor2,
           color,
-          padding: '1rem',
+          padding: '0 1rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
         }}
       >
         <Box w="3rem" h="3rem">
-          <Button
+          {/* <Button
             w="3rem"
             h="3rem"
             p="0.5rem"
@@ -97,7 +100,8 @@ export const SearchHeader = ({ title }) => {
             <NextLink href="/">
               <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
             </NextLink>
-          </Button>
+          </Button> */}
+          <BackButton />
         </Box>
         <Box w="16rem" h="3rem">
           <Heading

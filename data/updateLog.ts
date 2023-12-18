@@ -192,6 +192,18 @@ const updateLog: UpdateLog[] = [
     content: '공지멜론 MMA 2023 밀리언스 TOP10 에 키딩이 들어갔어요.',
     directLink: 'https://cafe.naver.com/steamindiegame/13776472',
   },
+  {
+    id: 30,
+    date: '2023.12.17',
+    content: '이세돌 데뷔 2주년 축하드립니다!!! 이세돌 영원히 뱅온해!!!',
+  },
+  {
+    id: 30,
+    date: '2023.12.18',
+    type: '[안내]',
+    content:
+      '사이트 UI가 전체적으로 리뉴얼 되었습니다. 이제 작가 검색페이지가 사용 가능합니다. 키워드 검색 기능, 작품 패이지 기능도 곧 오픈될 예정입니다.',
+  },
 ];
 
 export default updateLog;

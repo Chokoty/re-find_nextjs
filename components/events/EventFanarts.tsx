@@ -1,185 +1,135 @@
-import {
-  Accordion,
-  AccordionButton,
-  AccordionIcon,
-  AccordionItem,
-  AccordionPanel,
-  Box,
-  Button,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import React from 'react';
+import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
+import React, { useState } from 'react';
 
+import RandomFanartBtn from '@/components/events/RandomFanartBtn';
 import { darkMode, lightMode } from '@/styles/theme';
 
-import IsegyeFestivalFanart from './IsegyeFestivalFanart';
-import KiddingFanart from './KiddingFanart';
+const eventsData = [
+  {
+    key: 'third_album',
+    title: '🌼 KIDDING 특집 🌼',
+    backgroundColor: '#72C424',
+    color: '',
+  },
+  {
+    key: 'isegye_festival',
+    title: '❤️‍🔥 이세계 페스티벌 특집 ❤️‍🔥',
+    backgroundColor: '#6A3CBC',
+    color: '',
+  },
 
-const data = ['Kidding', '이세계 페스티벌', '할로윈', ''];
+  // {
+  //   key: 'Halloween',
+  //   title: '🎃 할로윈 특집 🎃',
+  //   backgroundColor: 'black',
+  //   color: '',
+  // },
+  {
+    key: 'IsegyeDol2Y',
+    title: '🎉 이세돌 2주년 특집 🎉',
+    backgroundColor: '#FE9ECE',
+    color: '',
+  },
+];
 
 const EventFanarts = ({ initialFanart }) => {
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+
+  const [selectedEventKey, setSelectedEventKey] = useState('IsegyeDol2Y');
+
+  const handleEventClick = (key) => {
+    setSelectedEventKey(key);
+  };
 
   return (
     <Box
-      mt={10}
+      m="0 auto"
+      mt="1rem"
+      background={bg2}
       maxW="540px"
       w="100%"
       display="flex"
-      justifyContent="center"
-      alignItems="center"
       flexDirection="column"
+      justifyContent="flex-start"
+      alignItems="center"
+      borderRadius="1rem"
+      p="1rem 0"
     >
-      <Text
-        fontSize="xl"
-        fontWeight="bold"
-        // color={highlightColor}
-        textAlign="center"
-        mb={4}
-      >
-        특집 팬아트 랜덤 가챠
-      </Text>
-      {/* <Box
+      <Box
         display="flex"
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+        w="100%"
+      >
+        <Text
+          fontSize="lg"
+          fontWeight="bold"
+          textAlign="left"
+          w="100%"
+          p="0 1rem"
+        >
+          특집 팬아트 랜덤 가챠
+        </Text>
+        <Text
+          fontSize="lg"
+          fontWeight="bold"
+          textAlign="right"
+          w="100%"
+          p="0 2rem"
+        >
+          총 {eventsData.length} 개
+        </Text>
+      </Box>
+      <Box
+        border="1px solid #FE78BB"
+        borderRadius="1rem"
+        p="0.5rem 0"
+        w="90%"
+        mt="1rem"
+        maxH="260px" // 최대 높이 설정
+        overflowY="scroll" // 세로 스크롤 적용
+        display="flex"
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        flexDirection="row"
-        flexWrap="wrap"
-        mb={4}
       >
-        {data.map((item, index) => (
-          <Button
-            m="0.3rem"
-            key={index}
-            border="1.5px solid #FE78BB"
-            borderRadius={8}
-            padding="1.5rem"
-            w="200px"
-            h="80px"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Text
-              fontSize="xl"
-              fontWeight="bold"
-              color="#ec355b"
-              textAlign="center"
-            >
-              {item}
-            </Text>
-          </Button>
-        ))}
-      </Box> */}
-
-      <Accordion allowToggle defaultIndex={[1]} style={{ width: '100%' }}>
-        <AccordionItem mb={1}>
-          <Text>
-            <AccordionButton
-              // background="#FE78BB"
-              // background="#166938"
-              background="linear-gradient(90deg, rgba(57,155,55,1) 0%, rgba(121,197,36,1) 5%, rgba(121,197,36,1) 15%, rgba(57,155,55,1) 25%, rgba(37,98,45,1) 35%, rgba(31,50,36,1) 45%, rgba(31,50,36,1) 55%, rgba(37,98,45,1) 65%, rgba(57,155,55,1) 75%, rgba(121,197,36,1) 85%, rgba(121,197,36,1) 95%, rgba(57,155,55,1) 100%)"
-              // #166938 #8FDF2F # #15231F #ec355b
-              // border="1.5px solid #FE78BB"
+        {eventsData
+          .slice()
+          .reverse()
+          .map((item, index) => (
+            <Button
+              m="0.25rem"
+              key={index}
+              background={
+                selectedEventKey === item.key ? item.backgroundColor : null
+              }
               _hover={{
-                background: '#b3e971',
-                // background: '#fbd9ea',
+                background: item.backgroundColor,
               }}
-              sx={{
-                '&:hover': {
-                  '> *': {
-                    color: '#000',
-                  },
-                },
-              }}
-            >
-              <Box
-                as="span"
-                flex="1"
-                textAlign="center"
-                fontSize="xl"
-                fontWeight="bold"
-                color="#ec355b"
-                // color="#FFF"
-              >
-                Kidding
-              </Box>
-              <AccordionIcon color="#ec355b" />
-            </AccordionButton>
-          </Text>
-          <AccordionPanel
-            w="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            bg="#FFFAE8"
-            pb={4}
-            borderRadius="
-              0 0 0.2rem 0.5rem
-            "
-          >
-            <Box border="1.5px solid #FE78BB" borderRadius="0.2rem" w="100%">
-              <KiddingFanart initialFanart={null} />
-            </Box>
-          </AccordionPanel>
-        </AccordionItem>
-
-        <AccordionItem>
-          <Text>
-            <AccordionButton
-              // background="#374079"
-              // border="1.5px solid #374079"
-              // border="1.5px solid #14532D"
-              // background="#9BCC95"
-              background="linear-gradient(90deg, rgba(27,11,31,1) 3%, rgba(61,69,101,1) 10%, rgba(104,53,178,1) 15%, rgba(237,176,138,1) 18%, rgba(108,60,116,1) 20%, rgba(212,122,201,1) 25%, rgba(212,122,201,1) 75%, rgba(108,60,116,1) 80%, rgba(237,176,138,1) 82%, rgba(104,53,178,1) 85%, rgba(61,69,101,1) 90%, rgba(27,11,31,1) 97%)"
-              _hover={{
-                background: '#fbd9ea',
-              }}
-              sx={{
-                '&:hover': {
-                  '> *': {
-                    color: '#000',
-                  },
-                },
-              }}
-            >
-              <Box
-                as="span"
-                flex="1"
-                textAlign="center"
-                fontSize="xl"
-                fontWeight="bold"
-                color="#fdce28"
-              >
-                이세계 페스티벌
-              </Box>
-              <AccordionIcon color="#fdce28" />
-            </AccordionButton>
-          </Text>
-          <AccordionPanel
-            pb={4}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-            bg="#EEECE8"
-            borderRadius="
-              0 0 0.2rem 0.5rem
-            "
-          >
-            <Box
-              border="1.5px solid #374079"
-              borderRadius="0.2rem"
+              borderRadius="1rem"
               padding="1.5rem"
-              w="100%"
+              w="95%"
+              alignItems="center"
+              justifyContent="center"
+              onClick={() => handleEventClick(item.key)}
             >
-              <IsegyeFestivalFanart initialFanart={initialFanart} />
-            </Box>
-          </AccordionPanel>
-        </AccordionItem>
-      </Accordion>
+              <Text
+                fontSize="md"
+                fontWeight="bold"
+                color={item.color}
+                textAlign="center"
+              >
+                {item.title}
+              </Text>
+            </Button>
+          ))}
+      </Box>
+
+      <RandomFanartBtn
+        initialFanart={initialFanart}
+        selectedEventKey={selectedEventKey}
+      />
     </Box>
   );
 };

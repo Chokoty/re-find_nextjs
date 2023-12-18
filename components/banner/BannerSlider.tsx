@@ -14,29 +14,24 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner2 from '@/components/banner/Banner2';
-import HalloweenBtn from '@/components/events/HalloweenBtn';
+import EventBtn from '@/components/events/EventBtn';
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const swiperSlideStyle = {
-  // width: '508px',
-  height: '130px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  width: '100%',
 };
 
 const BannerSlider = () => {
   const color = useColorModeValue(lightMode.color2, darkMode.bg);
+  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (
-    <Box
-      // pt="1.5rem"
-      pb="1rem"
-      w="100%"
-      background={color}
-    >
-      <Box maxW="540px" overflow="hidden" m="0 auto">
+    <Box maxW="700px" m="1rem 0" w="90%" background={bgColor}>
+      <Box overflow="hidden" m="0 auto">
         <Swiper
           className="mySwiper"
           // navigation={true}
@@ -59,7 +54,7 @@ const BannerSlider = () => {
           //   },
           // }}
           style={{
-            paddingBottom: '1.6rem',
+            paddingBottom: '2.5rem',
           }}
         >
           <SwiperSlide style={swiperSlideStyle}>
@@ -68,9 +63,9 @@ const BannerSlider = () => {
           {/* <SwiperSlide style={swiperSlideStyle}>
             <MelonVoteModal />
           </SwiperSlide> */}
-          {/* <SwiperSlide style={swiperSlideStyle}>
-            <HalloweenBtn />
-          </SwiperSlide> */}
+          <SwiperSlide style={swiperSlideStyle}>
+            <EventBtn />
+          </SwiperSlide>
         </Swiper>
       </Box>
     </Box>

@@ -5,7 +5,7 @@ import { CgMoreO } from 'react-icons/cg';
 import { FaSearch } from 'react-icons/fa';
 import { FaImage } from 'react-icons/fa6';
 import { IoPersonCircle } from 'react-icons/io5';
-import { MdHomeFilled } from 'react-icons/md';
+import { MdHomeFilled, MdPerson } from 'react-icons/md';
 
 const TabBarComponent = ({ tab, setTab }) => {
   const getButtonColor = (buttonName) => {
@@ -86,29 +86,29 @@ const TabBarComponent = ({ tab, setTab }) => {
             />
           </Link>
         </NextLink>
-        <NextLink href="/more" passHref>
+        <NextLink href="/artists" passHref>
           <Link
             style={{
-              color: getButtonColor('more'),
+              color: getButtonColor('artists'),
               width: '2.5rem',
               height: '2.5rem',
             }}
-            onClick={() => setTab('more')}
+            onClick={() => setTab('artists')}
           >
-            {/* <IoPersonCircle
+            <MdPerson
+              style={{
+                color: getButtonColor('artists'),
+                width: '2rem',
+                height: '2rem',
+              }}
+            />
+            {/* <CgMoreO
               style={{
                 color: getButtonColor('more'),
                 width: '2rem',
                 height: '2rem',
               }}
             /> */}
-            <CgMoreO
-              style={{
-                color: getButtonColor('more'),
-                width: '2rem',
-                height: '2rem',
-              }}
-            />
           </Link>
         </NextLink>
         {/* <Button

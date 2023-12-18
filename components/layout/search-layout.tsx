@@ -19,10 +19,10 @@ interface OtherLayoutProps {
 
 const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
   const bgColor = useColorModeValue(lightMode.highlight, darkMode.highlight);
-  const color = useColorModeValue(lightMode.color, darkMode.color);
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (
-    <Box className="body" h="120vh">
+    <Box className="body" h="240vh" background={bg}>
       <SearchHeader title={title} />
       <Divider
         className="divider"

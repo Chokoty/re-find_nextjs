@@ -1,4 +1,4 @@
-import { Button, Divider, Heading, useColorModeValue } from '@chakra-ui/react';
+import { Box, Divider, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
@@ -14,25 +14,28 @@ interface OtherLayoutProps {
 
 const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
   const router = useRouter(); // useRouter 사용
-  const isIndex = router.asPath.endsWith('/more'); // 현재 경로가 '/more'로 끝나는지 확인
-
-  const bgColor = useColorModeValue(lightMode.highlight, darkMode.highlight);
+  // const isIndex = router.asPath.endsWith('/more'); // 현재 경로가 '/more'로 끝나는지 확인
+  const isIndex = false;
+  const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   return (
-    <div className="body">
+    <Box className="body" m="0 auto" background={bg}>
       <MoreHeader title={title} isIndex={isIndex} />
       <Divider
         className="divider"
         style={{
           margin: '2rem auto',
           maxWidth: '10rem',
-          backgroundColor: bgColor,
+          backgroundColor: highlight,
           height: '5px',
+          borderRadius: '5px',
         }}
       />
       <div className="layout">{children}</div>
-    </div>
+    </Box>
   );
 };
 

@@ -12,6 +12,10 @@ const Search = () => {
   const [nickname, setNickname] = useState('');
   const [query, setQuery] = useState('');
 
+  useEffect(() => {
+    alert('준비중입니다!');
+  }, []);
+
   const handleSearch = () => {
     if (query) {
       // router.push(`/artists/${query}`);

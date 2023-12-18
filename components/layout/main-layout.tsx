@@ -1,11 +1,12 @@
 import type { ReactNode } from 'react';
 import React from 'react';
 
-import { Header } from '@/components/Header/Header';
 // eslint-disable-next-line import/no-unresolved
+// import { MobileHeader } from '@/components/layout/MobileHeader';
+// import { NavBar } from '@/components/layout/NavBar';
+// import MySnowfall from '@/components/events/MySnowfall';
+import { Header } from '@/components/Header/Header';
 import { Footer } from '@/components/layout/Footer';
-import { MobileHeader } from '@/components/layout/MobileHeader';
-import { NavBar } from '@/components/layout/NavBar';
 import { TabBar } from '@/components/TabBar/TabBar';
 import { useResponsive } from '@/hook/useResponsive';
 
@@ -18,8 +19,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
   return (
     <>
-      {!isMobile ? <Header /> : null}
+      <Header />
+      {/* {!isMobile ? <Header /> : null} */}
       {/* <NavBar /> */}
+      {/* <MySnowfall /> */}
+
       <main>{children}</main>
       <Footer />
       {isMobile ? <TabBar /> : null}

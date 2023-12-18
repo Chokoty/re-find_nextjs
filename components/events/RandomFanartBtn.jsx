@@ -6,7 +6,7 @@ import {
   Skeleton,
   Text,
   useBreakpointValue,
-  // useColorModeValue,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import axios from 'axios';
 import NextImage from 'next/image';
@@ -14,16 +14,42 @@ import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
-// import { IoSettingsSharp } from 'react-icons/io5';
-// import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/styles/theme';
 
-const IsegyeFestivalFanart = ({ initialFanart }) => {
+import { useResponsiveLink } from '../../hook/useResponsiveLink';
+
+const url1 = 'https://re-find.reruru.com/';
+const url2 =
+  'https://re-find.reruru.com/keyword_rand?query=%EB%A6%AC%EC%99%80%EC%9D%B8%EB%93%9C&query=rewind&query=re:wind&query=%EB%8D%B0%EB%B7%94%202%EC%A3%BC%EB%85%84&case_sensitive=false&title&board=isd&board=best&board=goldhand';
+
+const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const [fanart, setFanart] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [keywordUrl, setKeywordUrl] = useState(url2);
+  const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
-  // const [isFocused, setIsFocused] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   const [isBold, setIsBold] = useState(false);
+
+  const direction = useBreakpointValue({ base: 'column', md: 'row' });
+
+  const article_link = useResponsiveLink(
+    fanart?.url.split('/').pop(),
+    'article'
+  );
+
+  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
+
+  useEffect(() => {
+    // console.log('selectedEventKey: ', selectedEventKey);
+    if (selectedEventKey === 'kidding') {
+      setKeywordUrl(`${url1}third_album`);
+    } else if (selectedEventKey === 'isegye_festival') {
+      setKeywordUrl(`${url1}isegye_festival`);
+    } else if (selectedEventKey === 'IsegyeDol2Y') {
+      setKeywordUrl(url2);
+    }
+    fetchRandomFanart();
+  }, [selectedEventKey]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -32,17 +58,6 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
   }, []);
-  // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-  const direction = useBreakpointValue({ base: 'column', md: 'row' });
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
-
-  const article_link = useResponsiveLink(
-    fanart?.url.split('/').pop(),
-    'article'
-  );
-  // const toggleFocus = () => {
-  //   setIsFocused(!isFocused);
-  // };
 
   useEffect(() => {
     if (initialFanart == null) fetchRandomFanart();
@@ -50,9 +65,14 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
   }, []);
 
   const fetchRandomFanart = async () => {
+    if (!keywordUrl) {
+      // console.log('keywordUrl is null');
+      return;
+    }
     try {
       setIsLoading(true);
-      const res = await axios.get(`https://re-find.reruru.com/isegye_festival`);
+      // console.log('keywordUrl: ', keywordUrl);
+      const res = await axios.get(`https://re-find.reruru.com/third_album`);
       // console.log(res.data);
       setFanart(res.data);
     } catch (error) {
@@ -88,9 +108,6 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    // border: '1.5px solid #FE78BB',
-    // borderRadius: '0.2rem',
-    // padding: '1.5rem',
   };
   const img = {
     display: 'flex',
@@ -120,13 +137,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
   };
 
   return (
-    <Box
-      // p="0.5rem"
-      w="100%"
-      //  maxW="540px"
-
-      borderRadius="lg"
-    >
+    <Box p="0.5rem" w="100%" borderRadius="lg">
       <div style={previewContainer} className="random-fanart">
         {!isvisible && (
           <div className="random-fanart__guide" style={guide}>
@@ -159,15 +170,6 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
         )}
         {isvisible && (
           <Box>
-            {/* <Text
-              fontSize="xl"
-              fontWeight="bold"
-              mb="1rem"
-              align="center"
-              color="#000"
-            >
-              이세계 페스티벌 특집 팬아트
-            </Text> */}
             <Skeleton isLoaded={!isLoading}>
               {fanart && (
                 <>
@@ -176,8 +178,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                     borderRadius="1rem"
                     overflow="hidden"
                     w="100%"
-                    pt="3rem"
-                    // mb="1rem"
+                    pt="2rem"
                   >
                     <Link
                       className="link-to-wakzoo"
@@ -195,7 +196,6 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                         width={475}
                         height={475}
                         src={modifiedUrl300}
-                        // src={fanart?.img_url}
                         alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
                         onLoad={handleLoad}
                       />
@@ -228,20 +228,11 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                       passHref
                       style={linkDiv}
                     >
-                      <Text
-                        color="#1B1642"
-                        // as="b"
-                        // fontWeight={isBold ? 'bold' : 'normal'}
-                      >
+                      <Text>
+                        {/* color="#1B1642" */}
                         제목: {fanart?.title.slice(0, 20)}
                       </Text>
-                      <Text
-                        color="#1B1642"
-                        // as="b"
-                        // fontWeight={isBold ? 'bold' : 'normal'}
-                      >
-                        작가: {fanart?.nickname}
-                      </Text>
+                      <Text>작가: {fanart?.nickname}</Text>
                     </Box>
                   </Box>
                 </>
@@ -252,21 +243,15 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
         <Flex gap="2">
           <Button
             className="random-fanart-kidding"
-            // w="200px"
-            backgroundColor="#14532D"
-            // backgroundColor="#FE78BB"
-            _hover={{
-              bg: '#9BCC95',
-              // bg: '#e94396'
-            }}
-            color="#FFF"
+            colorScheme="yellow"
             size="md"
-            mt="1.5rem"
+            mt="1rem"
+            p="0 3rem"
+            borderRadius="4rem"
             onClick={showRandomFanart}
           >
-            <FaDice />
-            {/* <FaDice boxSize={12} /> */}
-            &nbsp; 이세계 페스티벌 팬아트 랜덤가챠
+            <FaDice boxSize={12} />
+            &nbsp; 랜덤가챠 굴리기
           </Button>
         </Flex>
       </div>
@@ -274,4 +259,4 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
   );
 };
 
-export default IsegyeFestivalFanart;
+export default RandomFanartBtn;
