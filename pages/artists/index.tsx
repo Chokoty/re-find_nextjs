@@ -53,6 +53,7 @@ const Artists = () =>
     const itemsPerPage = 50;
 
     const [artistsList, setArtistsList] = useState([]);
+    // const [artistsList, setArtistsList] = useState(artists_list);
     const [artists, setArtists] = useState([]);
     const [filteredArtists, setFilteredArtists] = useState(artists);
     const [visibleArtists, setVisibleArtists] = useState([]);
@@ -105,34 +106,6 @@ const Artists = () =>
       });
     };
 
-    // const handleViewSelect = (value) => {
-    //   setPrevSortCriteria({
-    //     field: '',
-    //     order: '',
-    //   });
-
-    //   setSelectedView((prevValue) => (prevValue === value ? null : value));
-    //   const isExist = sortTypes.find((sortType) => sortType.value === value);
-    //   if (isExist) {
-    //     setPrevSortCriteria(sortCriteria);
-    //   }
-
-    //   if (sortCriteria.field === value) {
-    //     setSortCriteria({
-    //       field: 'total_likes',
-    //       order: 'descending',
-    //     });
-    //   } else {
-    //     setSortCriteria((prevState) => {
-    //       // if (prevSortCriteria.field === '') {
-    //       //   return { ...prevState, field: 'total_likes', order: 'descending' };
-    //       // }
-    //       // return prevSortCriteria;
-    //       return { ...prevState, field: value, order: 'descending' };
-    //     });
-    //   }
-    // };
-
     const handleViewSelect = (value) => {
       if (selectedView === value) {
         // 뷰 선택 해제
@@ -152,19 +125,6 @@ const Artists = () =>
         setSortCriteria((prevState) => {
           return { ...prevState, field: value, order: 'descending' };
         });
-        // // 새로운 뷰 선택
-        // setSelectedView(value);
-        // // 뷰에 따라 아티스트 목록 필터링 및 정렬
-        // const updatedArtists = artists.filter((artist) => artist[value] > 0);
-        // const sortedArtists = sortArtists(updatedArtists, sortCriteria);
-        // // const updatedArtists = sortArtists(artists, sortCriteria);
-        // // const updatedArtists = artists
-        // //   .filter((artist) => artist[value] > 0)
-        // //   .sort((a, b) => sortArtists(a, b, sortCriteria));
-        // // setFilteredArtists(updatedArtists);
-        // setVisibleArtists(sortedArtists.slice(0, itemsPerPage));
-        // setPage(1);
-        // setIsLastPage(false);
       }
     };
 
@@ -208,6 +168,7 @@ const Artists = () =>
     // 1 artists 데이터 로드
     useEffect(() => {
       // const updatedArtists = Object.entries(artists_list).map(
+      //   ([key, value]) => {
       const updatedArtists = Object.entries(artistsList).map(([key, value]) => {
         return { name: key, ...(value as User) };
       });
@@ -483,10 +444,11 @@ const Artists = () =>
                       key={index}
                       w="100%"
                       m="0 1rem"
+                      p="1rem"
                       mt="1rem"
-                      h="126px"
+                      h={['250px', '250px', '126px']}
                       display="flex"
-                      flexDirection="row"
+                      flexDirection={['column', 'column', 'row']}
                       alignItems="center"
                       justifyContent="space-between"
                       borderRadius="1rem"
@@ -529,7 +491,7 @@ const Artists = () =>
                         <Box
                           display="flex"
                           flexDirection="row"
-                          justifyContent="flex-end"
+                          justifyContent={['center', 'center', 'flex-end']}
                           w="100%"
                         >
                           {viewTypes.map(
@@ -561,7 +523,7 @@ const Artists = () =>
                         <Box
                           display="flex"
                           flexDirection="row"
-                          justifyContent="flex-end"
+                          justifyContent={['center', 'center', 'flex-end']}
                           w="100%"
                         >
                           {sortTypes.map(
