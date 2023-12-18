@@ -29,7 +29,7 @@ export const Footer = () => {
           </Text>
         </Box>
         <Text fontSize="sm" textAlign="center">
-          Copyright ⓒ 2023 RE: FIND. All Rights Reserved.
+          Copyright ⓒ 2023 RE:FIND. All Rights Reserved.
         </Text>
       </Box>
     </footer>
