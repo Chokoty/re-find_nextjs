@@ -139,7 +139,7 @@ const Artists = () =>
         }
         return { ...prevState, field, order: 'descending' };
       });
-      console.log(sortCriteria);
+      // console.log(sortCriteria);
     };
 
     const handleSearch = (e) => {
@@ -155,7 +155,7 @@ const Artists = () =>
             'https://re-find.reruru.com/author_list'
           );
           setArtistsList(response.data);
-          console.log(response.data);
+          // console.log(response.data);
         } catch (error) {
           console.error('Error fetching data:', error);
           // 여기에 에러 처리 로직 추가
@@ -172,7 +172,7 @@ const Artists = () =>
       const updatedArtists = Object.entries(artistsList).map(([key, value]) => {
         return { name: key, ...(value as User) };
       });
-      console.log(updatedArtists);
+      // console.log(updatedArtists);
       setArtists(updatedArtists);
     }, [artistsList]);
     // }, [artists_list]);

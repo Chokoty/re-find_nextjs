@@ -40,16 +40,16 @@
     .title-main {
       display: flex;
       text-align: center;
-      font-size: $title-main-size;
+      font-size: $title-main-size/ 1.2;
 
       @include tablet {
-        font-size: $title-main-size / 1.2; // 1.33333;
+        font-size: $title-main-size / 1.4; // 1.33333;
       }
       @include mobile {
-        font-size: $title-main-size / 1.5;
+        font-size: $title-main-size / 1.7;
       }
       @include small {
-        font-size: $title-main-size / 2.1;
+        font-size: $title-main-size / 2;
       }
 
       .highlight {
@@ -97,13 +97,13 @@
     }
   }
   .title-text {
-    font-size: $title-sub-size;
+    font-size: $title-sub-size / 1.2;
     font-weight: 700;
     @include tablet {
-      font-size: $title-sub-size / 1.3;
+      font-size: $title-sub-size / 1.4;
     }
     @include mobile {
-      font-size: $title-sub-size / 1.5; //1.5;
+      font-size: $title-sub-size / 1.7; //1.5;
     }
     @include small {
       font-size: $title-sub-size / 2;
