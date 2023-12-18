@@ -56,7 +56,7 @@ const UpdateCard = ({ update }) => {
   return (
     <Box
       width="90%"
-      p="1.5rem 0"
+      p="0.5rem 0"
       borderRadius="0"
       borderBottom="1px solid"
       borderColor={bg}
