@@ -283,7 +283,14 @@ const Artists = () =>
     }, [searchTerm, artists]);
 
     return (
-      <Box mt="10px" mb="10px" p="1rem" textAlign="center" w="100%">
+      <Box
+        mt="10px"
+        mb="10px"
+        p="1rem"
+        textAlign="center"
+        w="100%"
+        backgroundColor={bg}
+      >
         <Text as="h2" fontSize="3xl" fontWeight="bold">
           왁타버스 작가
         </Text>
@@ -587,7 +594,7 @@ const Artists = () =>
             {/* Observer를 위한 div */}
             {<Box ref={ref} w="100%" h="2rem"></Box>}
           </Box>
-          {!isLastPage && (
+          {/* {!isLastPage && (
             <Box
               m="2rem"
               display="flex"
@@ -596,7 +603,15 @@ const Artists = () =>
             >
               <HashLoader color="#01BFA2" />
             </Box>
-          )}
+          )} */}
+          <Box
+            m="2rem"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <HashLoader color="#01BFA2" />
+          </Box>
         </Box>
       </Box>
     );

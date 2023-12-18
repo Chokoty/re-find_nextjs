@@ -77,7 +77,7 @@ const HeaderComponent = ({
       p="0 1rem"
       alignItems="center"
       justifyContent="space-between"
-      boxShadow={showShadow ? boxShadow : 'none'}
+      // boxShadow={showShadow ? boxShadow : 'none'}
       style={{
         backgroundColor: bg2,
         color,
