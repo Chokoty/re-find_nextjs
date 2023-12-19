@@ -29,10 +29,14 @@ export const Footer = () => {
             contact@re-find.xyz
           </Text>
           <Link href="/more/support">
-            <Text fontSize="sm" textAlign="left">
+            <Text fontSize="sm" textAlign="left" mb="1.5rem">
               문의 및 지원
             </Text>
           </Link>
+          <Text fontSize="sm" textAlign="left" w="100%" maxW="310px">
+            RE:FIND는 수익 창출을 하지 않으며 왁타버스 구성원과 팬들을 위해
+            만들어진 팬메이드 비공식 사이트입니다.
+          </Text>
         </Box>
         <Box pb="1rem"></Box>
         <Text fontSize="sm" textAlign="center">
