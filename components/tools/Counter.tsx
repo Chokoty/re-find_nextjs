@@ -1,4 +1,10 @@
-import { Badge, Box, Skeleton, useColorModeValue } from '@chakra-ui/react';
+import {
+  Badge,
+  Box,
+  Skeleton,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
@@ -36,17 +42,18 @@ const Counter = ({ data }) => {
     <Box className="counter" maxW="320px">
       <Skeleton isLoaded={!counterLoading} display="flex">
         {counter === null ? (
-          '현재 서버와의 연결이 불안정합니다.'
+          <Text> 현재 서버와의 연결이 불안정합니다.</Text>
         ) : (
-          <>
-            <CountUp end={counter.total_counter} />
-            &nbsp;
-            <Badge style={{ backgroundColor: badge }} fontSize="1em">
+          <Box>
+            <Text>
+              <CountUp end={counter.total_counter} />
+            </Text>
+            <Badge style={{ backgroundColor: badge }} fontSize="1rem">
               +
               <CountUp end={counter.today_counter} duration={5} />
             </Badge>
-            &nbsp; 개의 출처를 찾았습니다.
-          </>
+            <Text>개의 출처를 찾았습니다.</Text>
+          </Box>
         )}
       </Skeleton>
     </Box>
