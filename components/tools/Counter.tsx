@@ -39,7 +39,7 @@ const Counter = ({ data }) => {
   }, [data]);
 
   return (
-    <Box className="counter" maxW="320px">
+    <Box className="counter" maxW="360px">
       <Skeleton isLoaded={!counterLoading} display="flex">
         {counter === null ? (
           <Text> 현재 서버와의 연결이 불안정합니다.</Text>

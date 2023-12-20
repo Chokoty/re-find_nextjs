@@ -112,10 +112,11 @@ const HeaderComponent = ({
               alignItems="center"
               position="relative"
               w="60px"
-              p="0 1rem"
+              // m="0 1rem"
             >
               <NextLink href="/artworks" passHref>
                 <Text
+                  w="2rem"
                   fontWeight="700"
                   color={isCurrentPath('/artworks') ? color6 : color5}
                   _hover={{
@@ -148,6 +149,7 @@ const HeaderComponent = ({
             >
               <NextLink href="/artists" passHref>
                 <Text
+                  w="2rem"
                   color={isCurrentPath('/artists') ? color6 : color5}
                   fontWeight="700"
                   _hover={{
