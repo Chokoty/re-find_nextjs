@@ -40,13 +40,6 @@ const Counter = ({ data }) => {
 
   return (
     <Box className="counter" maxW="360px">
-      <Box display="flex" flexDirection="row" gap="0.2rem">
-        <Text>12</Text>
-        <Badge style={{ backgroundColor: badge }} fontSize="1rem">
-          + 1232
-        </Badge>
-        <Text>개의 출처를 찾았습니다.</Text>
-      </Box>
       <Skeleton isLoaded={!counterLoading} display="flex">
         {counter === null ? (
           <Text> 현재 서버와의 연결이 불안정합니다.</Text>
