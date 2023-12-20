@@ -931,7 +931,7 @@ const Artists = () =>
                                 >
                                   {/* <Text fontSize="sm">{sortType.name}</Text> */}
                                   {sortType.name === '총 작품' && (
-                                    <FaSearch
+                                    <FaImage
                                       style={{
                                         width: '1.2rem',
                                         height: '1.2rem',
