@@ -71,7 +71,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
       setIsLoading(true);
       console.log('keywordUrl: ', keywordUrl);
       const res = await axios.get(keywordUrl);
-      // console.log(res.data);
+      console.log(res.data);
       setFanart(res.data);
     } catch (error) {
       if (error.response && error.response.status === 500) {
