@@ -2,35 +2,8 @@ import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
 import RandomFanartBtn from '@/components/events/RandomFanartBtn';
+import { eventsData } from '@/data/events';
 import { darkMode, lightMode } from '@/styles/theme';
-
-const eventsData = [
-  {
-    key: 'third_album',
-    title: '🌼 KIDDING 특집 🌼',
-    backgroundColor: '#72C424',
-    color: '',
-  },
-  {
-    key: 'isegye_festival',
-    title: '❤️‍🔥 이세계 페스티벌 특집 ❤️‍🔥',
-    backgroundColor: '#6A3CBC',
-    color: '',
-  },
-
-  // {
-  //   key: 'Halloween',
-  //   title: '🎃 할로윈 특집 🎃',
-  //   backgroundColor: 'black',
-  //   color: '',
-  // },
-  {
-    key: 'IsegyeDol2Y',
-    title: '🎉 이세돌 2주년 특집 🎉',
-    backgroundColor: '#FE9ECE',
-    color: '',
-  },
-];
 
 const EventFanarts = ({ initialFanart }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);

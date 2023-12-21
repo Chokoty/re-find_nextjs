@@ -13,18 +13,15 @@ import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
+import { eventsData } from '@/data/events';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import { useResponsiveLink } from '../../hook/useResponsiveLink';
 
-const url1 = 'https://re-find.reruru.com/';
-const url2 =
-  'https://re-find.reruru.com/keyword_rand?query=%EB%A6%AC%EC%99%80%EC%9D%B8%EB%93%9C&query=rewind&query=re:wind&query=%EB%8D%B0%EB%B7%94%202%EC%A3%BC%EB%85%84&case_sensitive=false&title&board=isd&board=best&board=goldhand';
-
 const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const [fanart, setFanart] = useState(null);
-  const [keywordUrl, setKeywordUrl] = useState(url2);
+  const [keywordUrl, setKeywordUrl] = useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
@@ -40,15 +37,16 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
 
   useEffect(() => {
-    // console.log('selectedEventKey: ', selectedEventKey);
-    if (selectedEventKey === 'kidding') {
-      setKeywordUrl(`${url1}third_album`);
-    } else if (selectedEventKey === 'isegye_festival') {
-      setKeywordUrl(`${url1}isegye_festival`);
-    } else if (selectedEventKey === 'IsegyeDol2Y') {
-      setKeywordUrl(url2);
+    console.log('selectedEventKey: ', selectedEventKey);
+
+    const selectedEvent = eventsData.find(
+      (event) => event.key === selectedEventKey
+    );
+    if (selectedEvent) {
+      setKeywordUrl(selectedEvent.url);
     }
-    fetchRandomFanart();
+
+    // fetchRandomFanart();
   }, [selectedEventKey]);
 
   useEffect(() => {
@@ -59,10 +57,10 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     return () => clearInterval(intervalId); // Clear interval on component unmount
   }, []);
 
-  useEffect(() => {
-    if (initialFanart == null) fetchRandomFanart();
-    setFanart(initialFanart);
-  }, []);
+  // useEffect(() => {
+  //   if (initialFanart == null) fetchRandomFanart();
+  //   setFanart(initialFanart);
+  // }, []);
 
   const fetchRandomFanart = async () => {
     if (!keywordUrl) {
@@ -71,8 +69,8 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     }
     try {
       setIsLoading(true);
-      // console.log('keywordUrl: ', keywordUrl);
-      const res = await axios.get(`https://re-find.reruru.com/third_album`);
+      console.log('keywordUrl: ', keywordUrl);
+      const res = await axios.get(keywordUrl);
       // console.log(res.data);
       setFanart(res.data);
     } catch (error) {
