@@ -42,36 +42,65 @@ const SortTypeIcons = ({ sortCriteria, sortTypes, artist, component }) => {
   return (
     <Box
       display="flex"
-      flexDirection="row"
-      justifyContent={align}
-      // pl={['2.2rem', '0', '0']}
+      flexDirection={['column', 'row', 'row']}
       alignItems="center"
-      flexWrap="wrap"
       gap="0.5rem"
-      w="100%"
-      minW={['200px', '312px', '312px']}
     >
-      {sortTypes.map(
-        (sortType, index2) =>
-          artist[sortType.value] !== 0 && (
-            <Text
-              key={index2}
-              color={
-                sortCriteria?.field === sortType.value ? 'pink.500' : 'gray.500'
-              }
-              size="sm"
-              mr="1rem"
-              display="flex"
-              flexDirection="row"
-              gap="0.5rem"
-            >
-              <IconComponent sortTypeName={sortType.name} />
-              <Text fontSize="xs">
-                {formatArtistValue(artist[sortType.value])}
+      <Box
+        display="flex"
+        flexDirection="row"
+        // justifyContent={align}
+        // // pl={['2.2rem', '0', '0']}
+        // alignItems="center"
+        // flexWrap="wrap"
+        gap="1rem"
+        mr="0.5em"
+        // // w="100%"
+        // minW={['200px', '312px', '312px']}
+      >
+        {sortTypes.slice(0, 3).map(
+          (sortType, index2) =>
+            artist[sortType.value] !== 0 && (
+              <Text
+                key={index2}
+                color={
+                  sortCriteria?.field === sortType.value
+                    ? 'pink.500'
+                    : 'gray.500'
+                }
+                size="sm"
+                display="flex"
+                flexDirection="row"
+                gap="0.5rem"
+              >
+                <IconComponent sortTypeName={sortType.name} />
+                <Text fontSize="xs">
+                  {formatArtistValue(artist[sortType.value])}
+                </Text>
               </Text>
+            )
+        )}
+      </Box>
+      <Box display="flex" justifyContent="center" alignItems="center">
+        {artist[sortTypes[3].value] !== 0 && (
+          <Text
+            color={
+              sortCriteria?.field === sortTypes[3].value
+                ? 'pink.500'
+                : 'gray.500'
+            }
+            size="sm"
+            display="flex"
+            flexDirection="row"
+            gap="0.5rem"
+          >
+            <IconComponent sortTypeName={sortTypes[3].name} />
+            <Text fontSize="xs">
+              {formatArtistValue(artist[sortTypes[3].value])}
             </Text>
-          )
-      )}
+          </Text>
+        )}
+      </Box>
     </Box>
   );
 };

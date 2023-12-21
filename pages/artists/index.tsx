@@ -8,7 +8,7 @@ import ArtistsList from '@/components/artist/ArtistsList';
 import ArtistsSearchInput from '@/components/artist/ArtistsSearchInput';
 import SortTypeButtonGroup from '@/components/artist/SortTypeButtonGroup';
 import ViewTypeButtonGroup from '@/components/artist/ViewTypeButtonGroup';
-import { sortTypes, viewTypes } from '@/data/artists';
+import { sampleData, sortTypes, viewTypes } from '@/data/artists';
 import { useDebounce } from '@/hook/useDebounce';
 import useArtistsStore from '@/store/artistsStore';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -35,9 +35,9 @@ const Artists = () =>
     const itemsPerPage = 50;
 
     const [isRendering, setIsRendering] = useState(true);
-    const { artistsList, setArtistsList } = useArtistsStore();
+    // const { artistsList, setArtistsList } = useArtistsStore();
+    const [artistsList, setArtistsList] = useState(sampleData);
 
-    // const [artistsList, setArtistsList] = useState(sampleData);
     const [artists, setArtists] = useState([]);
     const [filteredArtists, setFilteredArtists] = useState(artists);
     const [visibleArtists, setVisibleArtists] = useState([]);
@@ -162,7 +162,8 @@ const Artists = () =>
     // }, []);
 
     useEffect(() => {
-      if (artistsList.length === 0) {
+      // if (artistsList.length === 0) {
+      if (Object.keys(artistsList).length === 0) {
         const fetchArtistsList = async () => {
           try {
             const response = await axios.get(
