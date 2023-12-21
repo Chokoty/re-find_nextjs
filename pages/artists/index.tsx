@@ -8,7 +8,7 @@ import ArtistsList from '@/components/artist/ArtistsList';
 import ArtistsSearchInput from '@/components/artist/ArtistsSearchInput';
 import SortTypeButtonGroup from '@/components/artist/SortTypeButtonGroup';
 import ViewTypeButtonGroup from '@/components/artist/ViewTypeButtonGroup';
-import { sampleData, sortTypes, viewTypes } from '@/data/artists';
+import { sortTypes, viewTypes } from '@/data/artists';
 import { useDebounce } from '@/hook/useDebounce';
 import { darkMode, lightMode } from '@/styles/theme';
 
