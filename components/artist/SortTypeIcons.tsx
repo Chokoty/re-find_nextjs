@@ -49,7 +49,7 @@ const SortTypeIcons = ({ sortCriteria, sortTypes, artist, component }) => {
       flexWrap="wrap"
       gap="0.5rem"
       w="100%"
-      minW={['200px', '297px', '297px']}
+      minW={['200px', '312px', '312px']}
     >
       {sortTypes.map(
         (sortType, index2) =>
