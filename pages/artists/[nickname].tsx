@@ -27,7 +27,7 @@ const Artist = ({ artist_name2info }) => {
   if (Array.isArray(nickname)) [actualNickname] = nickname;
   else actualNickname = nickname;
 
-  console.log(artist_name2info);
+  // console.log(artist_name2info);
   const [profile, setProfile] = useState(artist_name2info);
   const [artworks, setArtworks] = useState([]);
   const [page, setPage] = useState(1);

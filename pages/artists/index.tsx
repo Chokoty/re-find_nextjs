@@ -10,6 +10,7 @@ import SortTypeButtonGroup from '@/components/artist/SortTypeButtonGroup';
 import ViewTypeButtonGroup from '@/components/artist/ViewTypeButtonGroup';
 import { sortTypes, viewTypes } from '@/data/artists';
 import { useDebounce } from '@/hook/useDebounce';
+import useArtistsStore from '@/store/artistsStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface User {
@@ -29,10 +30,13 @@ interface User {
 const Artists = () =>
   // { artists_list }
   {
+    // const { artistsData, setArtistsData } = useArtistsStore();
+
     const itemsPerPage = 50;
 
     const [isRendering, setIsRendering] = useState(true);
-    const [artistsList, setArtistsList] = useState([]);
+    const { artistsList, setArtistsList } = useArtistsStore();
+
     // const [artistsList, setArtistsList] = useState(sampleData);
     const [artists, setArtists] = useState([]);
     const [filteredArtists, setFilteredArtists] = useState(artists);
@@ -111,13 +115,16 @@ const Artists = () =>
 
     const handleChangeSortCriteria = (field) => {
       setPrevSortCriteria(sortCriteria); // 이전 정렬 기준 저장
+      if (prevSortCriteria.field === field) {
+        return;
+      }
       setSortCriteria((prevState) => {
-        if (prevState.field === field) {
-          return {
-            ...prevState,
-            order: prevState.order === 'ascending' ? 'descending' : 'ascending',
-          };
-        }
+        // if (prevState.field === field) {
+        // return {
+        //   ...prevState,
+        //   order: prevState.order === 'ascending' ? 'descending' : 'ascending',
+        // };
+        // }
         return { ...prevState, field, order: 'descending' };
       });
       // console.log(sortCriteria);
@@ -137,22 +144,39 @@ const Artists = () =>
       }, 6000);
       console.log('isRendering: ', isRendering);
     }, []);
-    useEffect(() => {
-      const fetchArtistsList = async () => {
-        try {
-          const response = await axios.get(
-            'https://re-find.reruru.com/author_list'
-          );
-          setArtistsList(response.data);
-          // console.log(response.data);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-          // 여기에 에러 처리 로직 추가
-        }
-      };
+    // useEffect(() => {
+    //   const fetchArtistsList = async () => {
+    //     try {
+    //       const response = await axios.get(
+    //         'https://re-find.reruru.com/author_list'
+    //       );
+    //       setArtistsList(response.data);
+    //       // console.log(response.data);
+    //     } catch (error) {
+    //       console.error('Error fetching data:', error);
+    //       // 여기에 에러 처리 로직 추가
+    //     }
+    //   };
 
-      fetchArtistsList();
-    }, []);
+    //   fetchArtistsList();
+    // }, []);
+
+    useEffect(() => {
+      if (artistsList.length === 0) {
+        const fetchArtistsList = async () => {
+          try {
+            const response = await axios.get(
+              'https://re-find.reruru.com/author_list'
+            );
+            setArtistsList(response.data);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
+
+        fetchArtistsList();
+      }
+    }, [artistsList]);
 
     // 1 artists 데이터 로드
     useEffect(() => {
@@ -213,6 +237,7 @@ const Artists = () =>
       if (inView) console.log('inView: ', inView);
       if (inView && !isLastPage) {
         setPage((prev) => prev + 1);
+        console.log('page: ', page);
       }
     }, [inView, isLastPage]);
 
