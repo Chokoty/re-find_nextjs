@@ -19,7 +19,7 @@ const ArtistsList = ({
   sortCriteria,
   sortTypes,
   viewTypes,
-  ref,
+  // ref,
 }) => {
   const isMobile = useResponsive();
 
@@ -148,8 +148,8 @@ const ArtistsList = ({
             </Link>
           )
       )}
-      {/* Observer를 위한 div */}
-      {<Box ref={ref} w="100%" h="2rem"></Box>}
+      {/* Observer를 위한 div
+      {<Box ref={ref} w="100%" h="2rem"></Box>} */}
     </Box>
   );
 };

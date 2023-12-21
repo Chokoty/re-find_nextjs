@@ -276,8 +276,10 @@ const Artists = () =>
             sortCriteria={sortCriteria}
             sortTypes={sortTypes}
             viewTypes={viewTypes}
-            ref={ref}
+            // ref={ref}
           />
+          {/* Observer를 위한 div */}
+          {<Box ref={ref} w="100%" h="2rem"></Box>}
           {(!isLastPage || isRendering) && (
             <Box
               m="2rem"
