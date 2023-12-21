@@ -7,9 +7,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
+import AuthorProfileHead from '@/components/artist/AuthorProfileHead';
+import ViewSelectBar from '@/components/artist/ViewSelectBar';
 import { ArtistHeader } from '@/components/layout/ArtistHeader';
-import AuthorProfileHead from '@/components/tools/AuthorProfileHead';
-import ViewSelectBar from '@/components/tools/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 
@@ -27,6 +27,7 @@ const Artist = ({ artist_name2info }) => {
   if (Array.isArray(nickname)) [actualNickname] = nickname;
   else actualNickname = nickname;
 
+  console.log(artist_name2info);
   const [profile, setProfile] = useState(artist_name2info);
   const [artworks, setArtworks] = useState([]);
   const [page, setPage] = useState(1);

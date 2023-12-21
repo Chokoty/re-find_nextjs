@@ -1,19 +1,25 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import React from 'react';
 
-const ViewTypeIcons = ({ sortCriteria, viewTypes, artist }) => {
+const ViewTypeIcons = ({ sortCriteria, viewTypes, artist, component }) => {
   // 모든 viewType이 0인지 확인
   const isAllZero = viewTypes.every((viewType) => artist[viewType.value] === 0);
+
+  let align = ['center', 'center', 'center'];
+  if (component === 'inIndex') {
+    align = ['center', 'center', 'flex-end'];
+  }
 
   return (
     <Box
       display="flex"
       flexDirection="row"
-      justifyContent={['flex-start', 'center', 'flex-end']}
+      justifyContent={align}
+      // justifyContent={['center', 'center', 'flex-end']}
       w="100%"
       flexWrap="wrap"
       gap="0.5rem"
-      pl={['1rem', '0', '0']}
+      // pl={['1rem', '0', '0']}
     >
       {isAllZero ? (
         <Text fontSize="md" color="gray.500">
@@ -28,7 +34,7 @@ const ViewTypeIcons = ({ sortCriteria, viewTypes, artist }) => {
                 // colorScheme="blue"
                 colorScheme={viewType.colorScheme}
                 variant={
-                  sortCriteria.field === viewType.value ? 'solid' : 'outline'
+                  sortCriteria?.field === viewType.value ? 'solid' : 'outline'
                 }
                 size="sm"
                 display="flex"

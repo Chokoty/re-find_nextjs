@@ -116,6 +116,7 @@ const ArtistsList = ({
                         sortCriteria={sortCriteria}
                         sortTypes={sortTypes}
                         artist={artist}
+                        component={'inIndex'}
                       />
                     )}
                   </Box>
@@ -133,12 +134,14 @@ const ArtistsList = ({
                       sortCriteria={sortCriteria}
                       sortTypes={sortTypes}
                       artist={artist}
+                      component={'inIndex'}
                     />
                   )}
                   <ViewTypeIcons
                     sortCriteria={sortCriteria}
                     viewTypes={viewTypes}
                     artist={artist}
+                    component={'inIndex'}
                   />
                 </Box>
               </Button>

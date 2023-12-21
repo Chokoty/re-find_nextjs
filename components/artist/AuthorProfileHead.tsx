@@ -16,6 +16,9 @@ import {
 import React, { useState } from 'react';
 import { ImLink } from 'react-icons/im';
 
+import SortTypeIcons from '@/components/artist/SortTypeIcons';
+import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
+import { sortTypes, viewTypes } from '@/data/artists';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 interface AuthorProfileHeadProps {
@@ -125,13 +128,27 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
       </Text>
 
       <Flex // 작품 수, 팔로워, 팔로잉
-        flexDirection="row"
+        flexDirection="column"
+        justifyContent="center"
         alignItems="center"
-        m="8px 0"
+        m="1rem 0.5rem"
+        gap="1rem"
       >
         <Box as="button">
           <Text fontWeight="600">작품 수 {profile?.num_artworks}개</Text>
         </Box>
+        <SortTypeIcons
+          sortCriteria={null}
+          sortTypes={sortTypes}
+          artist={profile}
+          component={'inNickname'}
+        />
+        <ViewTypeIcons
+          sortCriteria={null}
+          viewTypes={viewTypes}
+          artist={profile}
+          component={'inNickname'}
+        />
         {/* <Text fontSize="14px" fontWeight="400" p="0 4px">
     ·
   </Text>

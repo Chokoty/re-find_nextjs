@@ -33,17 +33,23 @@ const IconComponent = ({ sortTypeName }) => {
   }
 };
 
-const SortTypeIcons = ({ sortCriteria, sortTypes, artist }) => {
+const SortTypeIcons = ({ sortCriteria, sortTypes, artist, component }) => {
+  let align = ['center', 'center', 'center'];
+  if (component === 'inIndex') {
+    align = ['center', 'center', 'flex-start'];
+  }
+
   return (
     <Box
       display="flex"
       flexDirection="row"
-      justifyContent="flex-start"
-      pl={['2.2rem', '0', '0']}
+      justifyContent={align}
+      // pl={['2.2rem', '0', '0']}
       alignItems="center"
       flexWrap="wrap"
       gap="0.5rem"
-      w={['200px', '260px', '260px']}
+      w="100%"
+      minW={['200px', '297px', '297px']}
     >
       {sortTypes.map(
         (sortType, index2) =>
@@ -51,7 +57,7 @@ const SortTypeIcons = ({ sortCriteria, sortTypes, artist }) => {
             <Text
               key={index2}
               color={
-                sortCriteria.field === sortType.value ? 'pink.500' : 'gray.500'
+                sortCriteria?.field === sortType.value ? 'pink.500' : 'gray.500'
               }
               size="sm"
               mr="1rem"
