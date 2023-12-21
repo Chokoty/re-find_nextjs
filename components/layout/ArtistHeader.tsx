@@ -12,7 +12,7 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export const ArtistHeader = ({ title }) => {
-  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   return (
