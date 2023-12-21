@@ -157,8 +157,8 @@ const UpdateCard = ({ update }) => {
             <Badge
               variant="subtle"
               colorScheme="green"
-              // w="6rem"
               borderRadius="6px"
+              p="0 0.2rem"
               h="2rem"
               display="flex"
               alignItems="center"

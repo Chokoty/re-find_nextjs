@@ -134,9 +134,9 @@ const LinkBtns = () => {
       alignItems="center"
     >
       <WakzooButton />
-      <WaksplorerButton />
       <YoutubeButton />
-      <XButton />
+      <WaksplorerButton />
+      {/* <XButton /> */}
       <GithubButton />
     </Flex>
   );

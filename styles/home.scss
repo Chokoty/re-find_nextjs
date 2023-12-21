@@ -7,20 +7,6 @@
   margin: 0 auto;
   // padding-top: 30px;
 
-  .counter {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: 2px solid #ccc;
-    margin-bottom: 10px;
-
-    @include mobile {
-      font-size: $font-size / 1.1;
-    }
-  }
   .counter.light {
     border: 2px solid #333;
   }

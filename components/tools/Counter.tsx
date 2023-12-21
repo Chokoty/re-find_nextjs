@@ -39,20 +39,40 @@ const Counter = ({ data }) => {
   }, [data]);
 
   return (
-    <Box className="counter" maxW="360px">
+    <Box
+      maxW="360px"
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      h="2.5rem"
+      p="1rem"
+      borderRadius="3rem"
+      border="2px solid #ccc"
+      mb="0.5rem"
+    >
       <Skeleton isLoaded={!counterLoading} display="flex">
         {counter === null ? (
-          <Text> 현재 서버와의 연결이 불안정합니다.</Text>
+          <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
+            현재 서버와의 연결이 불안정합니다.
+          </Text>
         ) : (
-          <Box display="flex" flexDirection="row" gap="0.2rem">
-            <Text>
+          <Box
+            display="flex"
+            flexDirection="row"
+            alignItems="center"
+            justifyContent="center"
+            gap="0.2rem"
+          >
+            <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
               <CountUp end={counter.total_counter} />
             </Text>
             <Badge style={{ backgroundColor: badge }} fontSize="1rem">
               +
               <CountUp end={counter.today_counter} duration={5} />
             </Badge>
-            <Text>개의 출처를 찾았습니다.</Text>
+            <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
+              개의 출처를 찾았습니다.
+            </Text>
           </Box>
         )}
       </Skeleton>
