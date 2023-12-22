@@ -158,7 +158,7 @@ const UpdateCard = ({ update }) => {
               variant="subtle"
               colorScheme="green"
               borderRadius="6px"
-              p="0 0.2rem"
+              p="0 0.5rem"
               h="2rem"
               display="flex"
               alignItems="center"
@@ -188,8 +188,9 @@ const UpdateCard = ({ update }) => {
               variant="subtle"
               // w="7rem"
               maxW="7rem"
-              p="0.5rem 1rem"
+              p="0 0.5rem"
               borderRadius="6px"
+              colorScheme="red"
               h="2rem"
               display="flex"
               alignItems="center"
@@ -199,7 +200,7 @@ const UpdateCard = ({ update }) => {
                 <NextLink
                   href={`/artists/${update.info.nickname}`}
                   style={{
-                    color: highlightColor,
+                    // color: highlightColor,
                     display: 'flex',
                     alignItems: 'center',
                   }}
