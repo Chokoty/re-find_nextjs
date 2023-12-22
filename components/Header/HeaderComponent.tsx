@@ -278,24 +278,26 @@ const HeaderComponent = ({
             />
           </Button>
         </NextLink>
-        <NextLink href="/more">
-          <Box
-            className="hamburger"
-            w="3rem"
-            h="3rem"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <RiMenu2Line
-              style={{
-                width: '1.8rem',
-                height: '1.8rem',
-                color,
-              }}
-            />
-          </Box>
-        </NextLink>
+        {isMobile && (
+          <NextLink href="/more">
+            <Box
+              className="hamburger"
+              w="3rem"
+              h="3rem"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <RiMenu2Line
+                style={{
+                  width: '1.8rem',
+                  height: '1.8rem',
+                  color,
+                }}
+              />
+            </Box>
+          </NextLink>
+        )}
       </Flex>
       <SearchModal isOpen={isOpen} onClose={onClose} />
     </Flex>

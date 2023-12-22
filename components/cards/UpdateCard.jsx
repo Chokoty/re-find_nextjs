@@ -196,7 +196,7 @@ const UpdateCard = ({ update }) => {
             <Badge
               variant="subtle"
               // w="7rem"
-              maxW="7rem"
+              maxW="9rem"
               p="0 0.5rem"
               borderRadius="6px"
               colorScheme="red"

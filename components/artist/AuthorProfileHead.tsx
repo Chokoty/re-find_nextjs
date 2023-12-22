@@ -132,7 +132,7 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
         justifyContent="center"
         alignItems="center"
         m="1rem 0.5rem"
-        gap="1rem"
+        gap="1.5rem"
       >
         <Box as="button">
           <Text fontWeight="600">작품 수 {profile?.num_artworks}개</Text>

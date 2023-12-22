@@ -9,7 +9,6 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
-import { MdPerson } from 'react-icons/md';
 
 import UpdateCard from '@/components/cards/UpdateCard';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -26,8 +25,6 @@ const UpdateBoard = ({ last_update_info }) => {
       display="grid"
       alignItems="center"
       placeItems="center"
-      // gridGap="1em"
-      // gap="0.5rem"
       w="100%"
       maxW="700px"
       background={bg2}
@@ -56,16 +53,17 @@ const UpdateBoard = ({ last_update_info }) => {
       {last_update_info?.map((update, index) => (
         <UpdateCard key={index} update={update} />
       ))}
-      {last_update_info === null || last_update_info?.length === 0 ? (
-        <Alert status="error" w="90%" borderRadius="1rem">
-          <AlertIcon />
-          <AlertTitle></AlertTitle>
-          <AlertDescription>
-            현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
-            빠른 시일 내에 해결하겠습니다.
-          </AlertDescription>
-        </Alert>
-      ) : null}
+      {last_update_info === null ||
+        (last_update_info?.length === 0 && (
+          <Alert status="error" w="90%" borderRadius="1rem">
+            <AlertIcon />
+            <AlertTitle></AlertTitle>
+            <AlertDescription>
+              현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
+              빠른 시일 내에 해결하겠습니다.
+            </AlertDescription>
+          </Alert>
+        ))}
       <Box
         display="flex"
         flexDirection="column"

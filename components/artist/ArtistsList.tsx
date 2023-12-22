@@ -1,4 +1,8 @@
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Box,
   Button,
   Text,
@@ -30,6 +34,7 @@ const ArtistsList = ({
   return (
     <Box
       mt="1rem"
+      p="1rem"
       w="100%"
       maxW="1024px"
       m="0 auto"
@@ -87,20 +92,22 @@ const ArtistsList = ({
                   <Text fontSize="lg" fontWeight="bold">
                     {index <= 100 ? index + 1 : '-'}
                   </Text>
-                  <NextImage
-                    unoptimized
-                    width={100}
-                    height={100}
-                    style={{
-                      borderRadius: '50%',
-                      objectFit: 'cover',
-                      width: imgValue,
-                      height: imgValue,
-                      // marginRight: '1rem',
-                    }}
-                    src={artist.prof_url}
-                    alt={artist.name}
-                  />
+                  <Box>
+                    <NextImage
+                      unoptimized
+                      width={100}
+                      height={100}
+                      style={{
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        width: imgValue,
+                        height: imgValue,
+                        // marginRight: '1rem',
+                      }}
+                      src={artist.prof_url}
+                      alt={artist.name}
+                    />
+                  </Box>
                   <Box
                     display="flex"
                     flexDirection="column"
@@ -148,8 +155,19 @@ const ArtistsList = ({
             </Link>
           )
       )}
+
       {/* Observer를 위한 div
       {<Box ref={ref} w="100%" h="2rem"></Box>} */}
+      {visibleArtists === null ||
+        (visibleArtists?.length === 0 && (
+          <Alert status="error" w="90%" borderRadius="1rem" maxW="500px">
+            <AlertIcon />
+            <AlertTitle></AlertTitle>
+            <AlertDescription textAlign="start">
+              현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
+            </AlertDescription>
+          </Alert>
+        ))}
     </Box>
   );
 };

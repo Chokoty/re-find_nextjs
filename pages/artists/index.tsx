@@ -144,22 +144,6 @@ const Artists = () =>
       }, 6000);
       console.log('isRendering: ', isRendering);
     }, []);
-    // useEffect(() => {
-    //   const fetchArtistsList = async () => {
-    //     try {
-    //       const response = await axios.get(
-    //         'https://re-find.reruru.com/author_list'
-    //       );
-    //       setArtistsList(response.data);
-    //       // console.log(response.data);
-    //     } catch (error) {
-    //       console.error('Error fetching data:', error);
-    //       // 여기에 에러 처리 로직 추가
-    //     }
-    //   };
-
-    //   fetchArtistsList();
-    // }, []);
 
     useEffect(() => {
       // if (artistsList.length === 0) {
