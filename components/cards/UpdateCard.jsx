@@ -56,7 +56,7 @@ const UpdateCard = ({ update }) => {
   return (
     <Box
       width="90%"
-      p="0.5rem 0"
+      p="0"
       borderRadius="0"
       borderBottom="1px solid"
       borderColor={bg}
@@ -68,20 +68,29 @@ const UpdateCard = ({ update }) => {
       alignItems="center"
       placeItems="center"
     >
-      <NextImage
-        unoptimized
-        width={100}
-        height={100}
-        style={{
-          borderRadius: '0.5rem',
-          objectFit: 'cover',
-          width: '6rem',
-          height: '6rem',
-          marginRight: '1rem',
-        }}
-        src={getImageSrc()}
-        alt={update.info.title}
-      />
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        h="6rem"
+        w="6rem"
+        borderRadius="0.5rem"
+        mr="1rem"
+      >
+        <NextImage
+          unoptimized
+          width={100}
+          height={100}
+          style={{
+            borderRadius: '0.5rem',
+            objectFit: 'cover',
+            width: '6rem',
+            height: '6rem',
+          }}
+          src={getImageSrc()}
+          alt={update.info.title}
+        />
+      </Box>
       <Box
         display="flex"
         flexDirection="column"
@@ -208,11 +217,13 @@ const UpdateCard = ({ update }) => {
                   <MdPerson
                     style={{
                       // color: getButtonColor('artists'),
-                      width: '0.8rem',
-                      height: '0.8rem',
+                      width: '1rem',
+                      height: '1rem',
                     }}
                   />
-                  <Text noOfLines={1}>{update.info.nickname}</Text>
+                  <Text ml="0.2rem" noOfLines={1}>
+                    {update.info.nickname}
+                  </Text>
                   <ExternalLinkIcon
                     style={{
                       marginLeft: '0.2rem',

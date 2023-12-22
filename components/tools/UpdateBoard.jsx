@@ -27,7 +27,7 @@ const UpdateBoard = ({ last_update_info }) => {
       alignItems="center"
       placeItems="center"
       // gridGap="1em"
-      gap="1em"
+      // gap="0.5rem"
       w="100%"
       maxW="700px"
       background={bg2}
