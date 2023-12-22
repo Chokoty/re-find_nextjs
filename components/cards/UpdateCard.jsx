@@ -13,7 +13,7 @@ import {
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
-import { MdArrowForwardIos } from 'react-icons/md';
+import { MdArrowForwardIos, MdPerson } from 'react-icons/md';
 
 import boardData from '@/data/board.ts';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
@@ -205,6 +205,13 @@ const UpdateCard = ({ update }) => {
                     alignItems: 'center',
                   }}
                 >
+                  <MdPerson
+                    style={{
+                      // color: getButtonColor('artists'),
+                      width: '0.8rem',
+                      height: '0.8rem',
+                    }}
+                  />
                   <Text noOfLines={1}>{update.info.nickname}</Text>
                   <ExternalLinkIcon
                     style={{

@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
+import { MdPerson } from 'react-icons/md';
 
 import UpdateCard from '@/components/cards/UpdateCard';
 import { darkMode, lightMode } from '@/styles/theme';
