@@ -73,7 +73,7 @@ const UpdateCard = ({ update }) => {
         justifyContent="center"
         alignItems="center"
         h="6rem"
-        w="6rem"
+        w="8rem"
         borderRadius="0.5rem"
         mr="1rem"
       >
@@ -98,7 +98,7 @@ const UpdateCard = ({ update }) => {
         alignItems="flex-start"
         h="100%"
         w="100%"
-        p="0.5rem 0"
+        p="1rem 0"
       >
         <Flex
           w="100%"
