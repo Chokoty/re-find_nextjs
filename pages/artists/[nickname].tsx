@@ -94,8 +94,7 @@ const Artist = ({ artist_name2info }) => {
         return { ...prevState, field: value, order: 'descending' };
       });
     }
-    // return { ...prevState, field: value, order: 'descending' };
-    // });
+    resetArtworks();
   };
 
   const getArtistInfo = useCallback(async () => {
