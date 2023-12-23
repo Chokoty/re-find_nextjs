@@ -20,8 +20,9 @@ const Artist = ({ artist_name2info }) => {
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
-    rootMargin: '1000px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+    rootMargin: '20px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
+
   const nickname = router.query.nickname as string;
   let actualNickname = '';
   if (Array.isArray(nickname)) [actualNickname] = nickname;
@@ -302,6 +303,8 @@ const Artist = ({ artist_name2info }) => {
                 <HashLoader color="#01BFA2" />
               </Box>
             )}
+            {/* Observer를 위한 div */}
+            {<Box ref={ref} w="100%" h="5rem"></Box>}
           </Box>
         )}
       </>
