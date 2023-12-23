@@ -76,11 +76,11 @@ const Artist = ({ artist_name2info }) => {
   }, []);
 
   const handleViewTypeSelect = (value) => {
-    setSortCriteria({ field: value, order: 'descending' });
-    // console.log(value);
-    // return { ...prevState, field: value, order: 'descending' };
-    // });
-    getArtistArtworks();
+    // setSortCriteria({ field: value, order: 'descending' });
+    // // console.log(value);
+    // // return { ...prevState, field: value, order: 'descending' };
+    // // });
+    // getArtistArtworks();
   };
 
   const getArtistInfo = useCallback(async () => {
