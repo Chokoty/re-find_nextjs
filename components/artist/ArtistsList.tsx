@@ -29,7 +29,7 @@ const ArtistsList = ({
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
-  const imgValue = useBreakpointValue({ base: '3rem', md: '6rem' });
+  const imgValue = useBreakpointValue({ base: '4rem', md: '6rem' });
 
   return (
     <Box

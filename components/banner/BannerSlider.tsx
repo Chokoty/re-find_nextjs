@@ -3,7 +3,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, useBreakpointValue, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import {
   Autoplay,
@@ -28,9 +28,10 @@ const swiperSlideStyle = {
 const BannerSlider = () => {
   const color = useColorModeValue(lightMode.color2, darkMode.bg);
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  const width = useBreakpointValue({ base: '90%', md: '100%' });
 
   return (
-    <Box maxW="700px" m="1rem 0" w="90%" background={bgColor}>
+    <Box maxW="700px" mb="1rem" w={width} background={bgColor}>
       <Box overflow="hidden" m="0 auto">
         <Swiper
           className="mySwiper"

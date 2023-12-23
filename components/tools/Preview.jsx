@@ -8,7 +8,7 @@ const Preview = ({ files }) => {
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginTop: 16,
+    // marginTop: 16,
     marginBottom: 30,
   };
   const img = {

@@ -6,6 +6,7 @@ import {
   Box,
   Heading,
   Text,
+  useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -17,6 +18,7 @@ const UpdateBoard = ({ last_update_info }) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
+  const width = useBreakpointValue({ base: '90%', md: '100%' });
 
   return (
     <Box
@@ -25,7 +27,7 @@ const UpdateBoard = ({ last_update_info }) => {
       display="grid"
       alignItems="center"
       placeItems="center"
-      w="100%"
+      w={width}
       maxW="700px"
       background={bg2}
       borderRadius="1rem"

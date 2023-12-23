@@ -7,31 +7,16 @@ import {
   useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
-import NextLink from 'next/link';
 import React, { useEffect } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
-import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
-import { PiGiftBold } from 'react-icons/pi';
 
 import MoreLayout from '@/components/layout/more-layout';
-import DarkModeToggle from '@/components/tools/DarkModeToggle';
+import MoreButtons from '@/components/tools/MoreButtons';
 import UpdateLogBoard from '@/components/tools/UpdateLogBoard';
 import { useStore } from '@/store/store';
-import { darkMode, lightMode } from '@/styles/theme';
 
 const More = () => {
   const setIsOpen = useStore((state) => state.setIsOpen);
-  const { toggleColorMode } = useColorMode();
-
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-  const bg = useColorModeValue(lightMode.bg2, darkMode.bg2);
-
-  const handleButtonClick = () => {
-    toggleColorMode(); // 다크 모드 전환
-  };
 
   useEffect(() => {
     setIsOpen(false);
@@ -49,95 +34,7 @@ const More = () => {
         mt="1rem"
         mb="1rem"
       >
-        <NextLink href={'/more/about'} passHref>
-          <Button
-            variant="solid"
-            w="9rem"
-            h="8rem"
-            p="1rem"
-            mb="1rem"
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-between"
-            alignItems="center"
-            gap="1rem"
-            borderRadius="1rem"
-            background={bg}
-          >
-            <Box p="0.5rem">
-              <MdInfoOutline
-                style={{
-                  width: '2rem',
-                  height: '2rem',
-                }}
-              />
-            </Box>
-
-            <Text fontSize="xl">리파인드 소개</Text>
-          </Button>
-        </NextLink>
-        <NextLink href={'/more/support'} passHref>
-          <Button
-            variant="solid"
-            w="9rem"
-            h="8rem"
-            p="1rem"
-            mb="1rem"
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-between"
-            alignItems="center"
-            gap="1rem"
-            borderRadius="1rem"
-            background={bg}
-          >
-            <Box p="0.5rem">
-              <MdOutlineContactSupport
-                style={{ width: '2rem', height: '2rem' }}
-              />
-            </Box>
-            <Text fontSize="xl">문의,지원</Text>
-          </Button>
-        </NextLink>
-        <NextLink href={'/events'} passHref>
-          <Button
-            variant="solid"
-            w="9rem"
-            h="8rem"
-            p="1rem"
-            mb="1rem"
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-between"
-            alignItems="center"
-            gap="1rem"
-            borderRadius="1rem"
-            background={bg}
-          >
-            <Box p="0.5rem">
-              <PiGiftBold style={{ width: '2rem', height: '2rem' }} />
-            </Box>
-            <Text fontSize="xl">이벤트</Text>
-          </Button>
-        </NextLink>
-        <Button
-          variant="solid"
-          w="9rem"
-          h="8rem"
-          p="1rem"
-          mb="1rem"
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          alignItems="center"
-          gap="1rem"
-          borderRadius="1rem"
-          background={bg}
-          onClick={handleButtonClick}
-        >
-          <DarkModeToggle />
-          <Text fontSize="xl">화면 스타일</Text>
-        </Button>
+        <MoreButtons />
       </Flex>
       <Link href="https://cafe.naver.com/steamindiegame/9524252" isExternal>
         <Button colorScheme="purple">

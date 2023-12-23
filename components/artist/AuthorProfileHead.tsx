@@ -134,9 +134,9 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
         m="1rem 0.5rem"
         gap="1.5rem"
       >
-        <Box as="button">
-          <Text fontWeight="600">작품 수 {profile?.num_artworks}개</Text>
-        </Box>
+        {/* <Box as="button">
+          <Text fontWeight="600">작품 수 {profile[sortTypes[3].value]}개</Text>
+        </Box> */}
         <SortTypeIcons
           sortCriteria={null}
           sortTypes={sortTypes}

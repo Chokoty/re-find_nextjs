@@ -1,4 +1,9 @@
-import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  useBreakpointValue,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import React from 'react';
 import { SlCloudUpload } from 'react-icons/sl';
 
@@ -20,8 +25,12 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
     darkMode.highlight
   );
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const width = useBreakpointValue({ base: '90%', md: '100%' });
+
   return (
     <Box
+      w={width}
+      maxW="700px"
       backgroundColor={bgColor2}
       borderRadius="1rem"
       m="1rem 0"
@@ -30,8 +39,6 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      w="100%"
-      maxW="700px"
     >
       <Box
         className={`uploader ${isDragActive ? 'active' : ''} ${

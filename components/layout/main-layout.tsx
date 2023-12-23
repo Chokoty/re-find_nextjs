@@ -20,13 +20,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <>
       <Header />
-      {/* {!isMobile ? <Header /> : null} */}
-      {/* <NavBar /> */}
-      {/* <MySnowfall /> */}
-
       <main>{children}</main>
-      <Footer />
-      {isMobile ? <TabBar /> : null}
+      {/* {isMobile ? <Footer /> : null} */}
+      {isMobile && <TabBar />}
     </>
   );
 };

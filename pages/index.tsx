@@ -1,5 +1,7 @@
 import {
   Box,
+  Flex,
+  Heading,
   Skeleton,
   useColorModeValue,
   useDisclosure,
@@ -9,15 +11,19 @@ import axios from 'axios';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 
+import BannerSlider from '@/components/banner/BannerSlider';
 import EventModal from '@/components/events/EventModal';
 import MySnowfall from '@/components/events/MySnowfall';
+import { Footer } from '@/components/layout/Footer';
 import Loading from '@/components/tools/Loading';
+import MoreButtons from '@/components/tools/MoreButtons';
 import Preview from '@/components/tools/Preview';
 import SearchResult from '@/components/tools/SearchResult';
 import UpdateBoard from '@/components/tools/UpdateBoard';
 import UpdateLogBoard from '@/components/tools/UpdateLogBoard';
 import UploadImages from '@/components/tools/UploadImages';
 import TopTitle from '@/components/TopTitle';
+import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface HomeProps {
@@ -35,6 +41,8 @@ const DynamicUploadImages = dynamic(
 
 export default function Home() {
   // { last_update_info }: HomeProps
+  const isMobile = useResponsive();
+
   const toast = useToast();
   const targetRef = useRef(null);
   const { onToggle } = useDisclosure();
@@ -209,56 +217,135 @@ export default function Home() {
   };
 
   return (
-    <Box className="home_body" ref={targetRef} backgroundColor={bgColor}>
+    <Box
+      className="home_body"
+      display="flex"
+      justifyContent="center"
+      alignItems="start"
+      flexDirection="row"
+      width="100%"
+      maxW="1208px"
+      flexWrap="wrap"
+      gap="1.5rem"
+      margin="1rem auto"
+      ref={targetRef}
+      backgroundColor={bgColor}
+    >
       <MySnowfall />
-      <TopTitle data={data} resetFiles={resetFiles} />
       {congrat && <EventModal targetCount={targetCount} />}
-      {/* 업로드 전 */}
-      {uploadedfiles.length === 0 && (
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          w="90%"
-        >
-          <DynamicUploadImages
-            getDataFromChild={getDataFromChild}
-            getHashFromChild={getHashFromChild}
-          />
-          {/* <UploadImages
+      <Box
+        w="100%"
+        minH="100vh"
+        maxW="700px"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <BannerSlider />
+        <TopTitle data={data} resetFiles={resetFiles} />
+        {/* 업로드 전 */}
+        {uploadedfiles.length === 0 && (
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            w="100%"
+          >
+            <DynamicUploadImages
+              getDataFromChild={getDataFromChild}
+              getHashFromChild={getHashFromChild}
+            />
+            {/* <UploadImages
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           /> */}
-          <Skeleton isLoaded={!isLoading}>
-            <UpdateBoard last_update_info={lastUpdateInfo} />
-          </Skeleton>
-          <UpdateLogBoard width={'100%'} />
-        </Box>
-      )}
-      {/* 업로드 후 */}
-      {uploadedfiles.length !== 0 && hash !== null && (
-        <Box
-          className="result-area"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Preview files={uploadedfiles} />
-          {isSearchingData && <Loading />}
-          {!isSearchingData && (
-            <SearchResult
-              searchTime={searchTime}
-              data={data}
-              ids={ids}
-              isSearchingAuthor={isSearchingAuthor}
-              author={author2}
-              resetFiles={resetFiles}
-            />
-          )}
-        </Box>
-      )}
+            <Skeleton isLoaded={!isLoading}>
+              <UpdateBoard last_update_info={lastUpdateInfo} />
+            </Skeleton>
+          </Box>
+        )}
+        {/* 업로드 후 */}
+        {uploadedfiles.length !== 0 && hash !== null && (
+          <Box
+            background={bgColor2}
+            borderRadius="1rem"
+            w="100%"
+            className="result-area"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            m="1rem 0 10rem 0"
+            p="1rem"
+          >
+            <Preview files={uploadedfiles} />
+            {isSearchingData && <Loading />}
+            {!isSearchingData && (
+              <SearchResult
+                searchTime={searchTime}
+                data={data}
+                ids={ids}
+                isSearchingAuthor={isSearchingAuthor}
+                author={author2}
+                resetFiles={resetFiles}
+              />
+            )}
+          </Box>
+        )}
+      </Box>
+      <Box
+        w="100%"
+        maxW="400px"
+        // ml="1.5rem"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        {!isMobile && (
+          <Box background={bgColor2} borderRadius="1rem" p="1rem 0">
+            <Flex
+              pl="1rem"
+              w="100%"
+              maxW="400px"
+              flexDir="row"
+              justifyContent="space-between"
+              alignItems="center"
+              cursor="pointer"
+            >
+              <Heading size="md">좀 더!</Heading>
+              {/* <Text fontSize="md">더보기</Text> */}
+              <Box
+                h="2rem"
+                w="2rem"
+                borderRadius="50%"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                // border="1px solid #828282"
+              >
+                {/* <IoIosArrowForward size="1rem" /> */}
+              </Box>
+            </Flex>
+            <MoreButtons />
+          </Box>
+        )}
+        <UpdateLogBoard width={'80%'} />
+        <Footer />
+      </Box>
+      <Box
+        w="100%"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        // mt="1rem"
+      >
+        {/* <BannerSlider />
+        <TopTitle data={data} resetFiles={resetFiles} /> */}
+      </Box>
     </Box>
   );
 }
