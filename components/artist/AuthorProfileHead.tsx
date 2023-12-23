@@ -24,11 +24,15 @@ import { useResponsiveLink } from '@/hook/useResponsiveLink';
 interface AuthorProfileHeadProps {
   nickname: string;
   profile: any;
+  sortCriteria: any;
+  handleViewTypeSelect: any;
 }
 
 const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
   nickname,
   profile,
+  sortCriteria,
+  handleViewTypeSelect,
 }) => {
   const toast = useToast();
   const [isOpen, setIsOpen] = useState(false);
@@ -144,10 +148,11 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
           component={'inNickname'}
         />
         <ViewTypeIcons
-          sortCriteria={null}
+          sortCriteria={sortCriteria}
           viewTypes={viewTypes}
           artist={profile}
           component={'inNickname'}
+          onSelectViewType={handleViewTypeSelect}
         />
         {/* <Text fontSize="14px" fontWeight="400" p="0 4px">
     ·

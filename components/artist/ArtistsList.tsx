@@ -149,6 +149,7 @@ const ArtistsList = ({
                     viewTypes={viewTypes}
                     artist={artist}
                     component={'inIndex'}
+                    onSelectViewType={null}
                   />
                 </Box>
               </Button>

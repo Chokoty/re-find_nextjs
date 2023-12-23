@@ -32,7 +32,11 @@ const Artist = ({ artist_name2info }) => {
   const [artworks, setArtworks] = useState([]);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
-  const [selectedBoard, setSelectedBoard] = useState(null);
+  // const [selectedBoard, setSelectedBoard] = useState(null);
+  const [sortCriteria, setSortCriteria] = useState({
+    field: '',
+    order: 'descending', // 'ascending' 또는 'descending'
+  });
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
@@ -71,6 +75,14 @@ const Artist = ({ artist_name2info }) => {
     setLoadingImage(Loading);
   }, []);
 
+  const handleViewTypeSelect = (value) => {
+    setSortCriteria({ field: value, order: 'descending' });
+    // console.log(value);
+    // return { ...prevState, field: value, order: 'descending' };
+    // });
+    getArtistArtworks();
+  };
+
   const getArtistInfo = useCallback(async () => {
     try {
       const response = await axios
@@ -94,11 +106,12 @@ const Artist = ({ artist_name2info }) => {
     // console.log('artworks loading...');
 
     try {
-      const response = await axios
-        .get(
-          `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`
-        )
-        .then((res) => res.data);
+      let url = `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
+      if (sortCriteria.field !== '') {
+        url += `&board=${sortCriteria}`;
+      }
+
+      const response = await axios.get(url).then((res) => res.data);
 
       if (response.lastPage === true) {
         setIsLastPage(true);
@@ -123,7 +136,7 @@ const Artist = ({ artist_name2info }) => {
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  }, [sortType, page, nickname]);
+  }, [sortType, page, nickname, sortCriteria]);
 
   useEffect(() => {
     // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
@@ -211,7 +224,12 @@ const Artist = ({ artist_name2info }) => {
             margin="0 auto"
             mb="2rem"
           >
-            <AuthorProfileHead nickname={actualNickname} profile={profile} />
+            <AuthorProfileHead
+              nickname={actualNickname}
+              profile={profile}
+              sortCriteria={sortCriteria}
+              handleViewTypeSelect={handleViewTypeSelect}
+            />
             <ViewSelectBar
               activeView={activeView}
               onViewChange={handleViewChange}

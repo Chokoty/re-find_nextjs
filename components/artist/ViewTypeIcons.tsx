@@ -1,7 +1,13 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import React from 'react';
 
-const ViewTypeIcons = ({ sortCriteria, viewTypes, artist, component }) => {
+const ViewTypeIcons = ({
+  sortCriteria,
+  viewTypes,
+  artist,
+  component,
+  onSelectViewType,
+}) => {
   // 모든 viewType이 0인지 확인
   const isAllZero = viewTypes.every((viewType) => artist[viewType.value] === 0);
 
@@ -41,6 +47,7 @@ const ViewTypeIcons = ({ sortCriteria, viewTypes, artist, component }) => {
                 flexDirection={['row', 'row', 'column']}
                 h={['2rem', '2rem', '3rem']}
                 gap={['0.5rem', '0.5rem', '0']}
+                onClick={() => onSelectViewType(viewType.value)}
               >
                 <Text fontSize="sm">{viewType.name}</Text>
                 <Text fontSize="md"> {artist[viewType.value]}</Text>
