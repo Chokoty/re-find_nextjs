@@ -48,15 +48,22 @@ const Artist = ({ artist_name2info }) => {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
+  const resetArtworks = useCallback(() => {
+    setArtworks([]);
+    setPage(1);
+    setIsLastPage(false);
+  }, []);
+
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {
     if (menuText === sortType) return;
     setSortType(menuText);
     // router.push(`/artists/${nickname}?view=${activeView}&sort=${menuText}`);
     // 다시 불러오기
-    setPage(1);
-    setIsLastPage(false);
-    setArtworks([]);
+    // setPage(1);
+    // setIsLastPage(false);
+    // setArtworks([]);
+    resetArtworks();
   }, []);
 
   // 뷰 선택하기
@@ -76,10 +83,10 @@ const Artist = ({ artist_name2info }) => {
   }, []);
 
   const handleViewTypeSelect = (value) => {
-    // setSortCriteria({ field: value, order: 'descending' });
-    // // console.log(value);
-    // // return { ...prevState, field: value, order: 'descending' };
-    // // });
+    setSortCriteria({ field: value, order: 'descending' });
+    console.log(value);
+    // return { ...prevState, field: value, order: 'descending' };
+    // });
     // getArtistArtworks();
   };
 
@@ -136,11 +143,15 @@ const Artist = ({ artist_name2info }) => {
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  }, [sortType, page, nickname, sortCriteria]);
+  }, [sortType, page, nickname]);
+
+  // useEffect(() => {
+  //   // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
+  // }, [activeView, sortType]);
 
   useEffect(() => {
-    // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
-  }, [activeView, sortType]);
+    resetArtworks();
+  }, [sortCriteria]);
 
   useEffect(() => {
     if (isInitialRender) {
