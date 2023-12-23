@@ -123,7 +123,7 @@ const Artist = ({ artist_name2info }) => {
     try {
       let url = `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
       if (sortCriteria.field !== '') {
-        url += `&board=${sortCriteria.field}`;
+        url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
       }
       console.log(url);
 
