@@ -20,7 +20,7 @@ const Artist = ({ artist_name2info }) => {
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
-    rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+    rootMargin: '1000px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
   const nickname = router.query.nickname as string;
   let actualNickname = '';
@@ -84,7 +84,7 @@ const Artist = ({ artist_name2info }) => {
 
   const handleViewTypeSelect = (value) => {
     // 같은거 누르면 해제,토글
-    console.log(value);
+    // console.log(value);
     if (value === sortCriteria.field) {
       setSortCriteria((prevState) => {
         return { ...prevState, field: '', order: 'descending' };
@@ -124,7 +124,7 @@ const Artist = ({ artist_name2info }) => {
       if (sortCriteria.field !== '') {
         url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
       }
-      console.log(url);
+      // console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);
 
@@ -293,7 +293,7 @@ const Artist = ({ artist_name2info }) => {
                     )}
                     {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
                     {/* Observer를 위한 div */}
-                    {<Box ref={ref} w="100%" h="2rem"></Box>}
+                    {<Box ref={ref} w="100%" h="5rem"></Box>}
                   </Box>
                 )}
               </>
