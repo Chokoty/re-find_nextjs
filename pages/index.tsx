@@ -340,14 +340,15 @@ export default function Home() {
           </Box>
         )}
         <UpdateLogBoard width={'80%'} />
-        {!inView ? <Footer /> : <Box h="398px"></Box>}
+        <Footer />
+        {/* {!inView ? <Footer /> : <Box h="398px"></Box>} */}
         {/* Observer를 위한 div */}
-        {<Box ref={ref} w="100%" h="3rem"></Box>}
-        {inView && (
+        {/* {<Box ref={ref} w="100%" h="3rem"></Box>} */}
+        {/* {inView && (
           <Box position="fixed" bottom="-1rem" h="120vh" pt="10rem">
             <Footer />
           </Box>
-        )}
+        )} */}
       </Box>
       <Box
         w="100%"
