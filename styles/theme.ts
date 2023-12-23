@@ -14,7 +14,7 @@ const theme = extendTheme({
   styles: {
     global: (props) => ({
       body: {
-        backgroundColor: mode('#FFFFFF', '#0D0F1D')(props), // opgg #1C1C1F  hoyo #0D0F1D
+        backgroundColor: mode('#F5F6FB', '#0D0F1D')(props), // opgg #1C1C1F  hoyo #0D0F1D
         color: mode('gray.900', 'gray.50')(props),
       },
       '::selection': {

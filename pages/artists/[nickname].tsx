@@ -32,6 +32,7 @@ const Artist = ({ artist_name2info }) => {
   const [artworks, setArtworks] = useState([]);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
+  const [selectedBoard, setSelectedBoard] = useState(null);
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
