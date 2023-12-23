@@ -55,16 +55,15 @@ const Artist = ({ artist_name2info }) => {
   }, []);
 
   // 정렬 선택하기
-  const handleMenuItemClick = useCallback((menuText: string) => {
-    if (menuText === sortType) return;
-    setSortType(menuText);
-    // router.push(`/artists/${nickname}?view=${activeView}&sort=${menuText}`);
-    // 다시 불러오기
-    // setPage(1);
-    // setIsLastPage(false);
-    // setArtworks([]);
-    resetArtworks();
-  }, []);
+  const handleMenuItemClick = useCallback(
+    (menuText: string) => {
+      console.log(menuText);
+      if (menuText === sortType) return;
+      setSortType(menuText);
+      resetArtworks();
+    },
+    [sortType, resetArtworks] // useCallback 문제였음...
+  );
 
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {

@@ -15,7 +15,7 @@ import {
   useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   MdMoreHoriz,
   MdOutlineDashboard,
@@ -24,10 +24,10 @@ import {
   MdOutlineViewDay,
 } from 'react-icons/md';
 
+import { menuItems } from '@/data/artists';
 import { useResponsive } from '@/hook/useResponsive';
+import { useShowShadow } from '@/hook/useShowShadow';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import { useShowShadow } from '../../hook/useShowShadow';
 
 interface ViewSelectBarProps {
   selectedMenu: string;
@@ -48,18 +48,11 @@ const ViewSelectBar = ({
 
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   const [isOpen, setIsOpen] = useState(false);
+  const [label, setLabel] = useState('최신순');
 
-  const menuItems = [
-    { id: 'latest', label: '최신순' },
-    { id: 'oldest', label: '업로드순' },
-    { id: 'view', label: '조회수순' },
-    { id: 'like', label: '좋아요순' },
-    { id: 'comment', label: '댓글순' },
-  ];
-
-  const selectedLabel = menuItems.find(
-    (item) => item.id === selectedMenu
-  )?.label;
+  // const selectedLabel = menuItems.find(
+  //   (item) => item.id === selectedMenu
+  // )?.label;
 
   const handlePopoverOpen = () => {
     setIsOpen(true);
@@ -82,6 +75,13 @@ const ViewSelectBar = ({
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
 
   const showShadow = useShowShadow(386, 0);
+
+  useEffect(() => {
+    console.log('selectedMenu', selectedMenu);
+    const newLabel = menuItems?.find((item) => item.id === selectedMenu)?.label;
+    console.log('newLabel', newLabel);
+    setLabel(newLabel);
+  }, [selectedMenu]);
 
   return (
     <Flex // 뷰 선택 버튼
@@ -112,7 +112,7 @@ const ViewSelectBar = ({
             as={Button}
             rightIcon={<MdOutlineKeyboardArrowDown />}
           >
-            {!isSmallerThan370 && selectedLabel}
+            {!isSmallerThan370 && label}
           </MenuButton>
           <MenuList>
             {menuItems.map((item) => (
