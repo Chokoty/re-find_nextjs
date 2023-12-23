@@ -83,11 +83,19 @@ const Artist = ({ artist_name2info }) => {
   }, []);
 
   const handleViewTypeSelect = (value) => {
-    setSortCriteria({ field: value, order: 'descending' });
+    // 같은거 누르면 해제,토글
     console.log(value);
+    if (value === sortCriteria.field) {
+      setSortCriteria((prevState) => {
+        return { ...prevState, field: '', order: 'descending' };
+      });
+    } else {
+      setSortCriteria((prevState) => {
+        return { ...prevState, field: value, order: 'descending' };
+      });
+    }
     // return { ...prevState, field: value, order: 'descending' };
     // });
-    // getArtistArtworks();
   };
 
   const getArtistInfo = useCallback(async () => {
@@ -115,8 +123,9 @@ const Artist = ({ artist_name2info }) => {
     try {
       let url = `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
       if (sortCriteria.field !== '') {
-        url += `&board=${sortCriteria}`;
+        url += `&board=${sortCriteria.field}`;
       }
+      console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);
 
@@ -143,7 +152,7 @@ const Artist = ({ artist_name2info }) => {
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  }, [sortType, page, nickname]);
+  }, [sortType, page, nickname, sortCriteria.field]);
 
   // useEffect(() => {
   //   // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
@@ -151,7 +160,8 @@ const Artist = ({ artist_name2info }) => {
 
   useEffect(() => {
     resetArtworks();
-  }, [sortCriteria]);
+    getArtistArtworks();
+  }, [sortCriteria, sortCriteria.field]);
 
   useEffect(() => {
     if (isInitialRender) {
