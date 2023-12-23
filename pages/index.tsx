@@ -10,6 +10,7 @@ import {
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 import BannerSlider from '@/components/banner/BannerSlider';
 import EventModal from '@/components/events/EventModal';
@@ -42,6 +43,12 @@ const DynamicUploadImages = dynamic(
 export default function Home() {
   // { last_update_info }: HomeProps
   const isMobile = useResponsive();
+
+  const { ref, inView } = useInView({
+    // infinite scroll을 위한 옵저버
+    threshold: 0,
+    rootMargin: '0px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+  });
 
   const toast = useToast();
   const targetRef = useRef(null);
@@ -333,7 +340,14 @@ export default function Home() {
           </Box>
         )}
         <UpdateLogBoard width={'80%'} />
-        <Footer />
+        {!inView ? <Footer /> : <Box h="398px"></Box>}
+        {/* Observer를 위한 div */}
+        {<Box ref={ref} w="100%" h="3rem"></Box>}
+        {inView && (
+          <Box position="fixed" bottom="-1rem" h="120vh" pt="10rem">
+            <Footer />
+          </Box>
+        )}
       </Box>
       <Box
         w="100%"
