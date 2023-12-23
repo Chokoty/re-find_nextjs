@@ -35,8 +35,8 @@ const Artists = () =>
     const itemsPerPage = 50;
 
     const [isRendering, setIsRendering] = useState(true);
-    const { artistsList, setArtistsList } = useArtistsStore();
-    // const [artistsList, setArtistsList] = useState(sampleData);
+    // const { artistsList, setArtistsList } = useArtistsStore();
+    const [artistsList, setArtistsList] = useState(sampleData);
 
     const [artists, setArtists] = useState([]);
     const [filteredArtists, setFilteredArtists] = useState(artists);

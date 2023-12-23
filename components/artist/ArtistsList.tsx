@@ -92,7 +92,7 @@ const ArtistsList = ({
                   <Text fontSize="lg" fontWeight="bold">
                     {index <= 100 ? index + 1 : '-'}
                   </Text>
-                  <Box>
+                  <Box w={imgValue}>
                     <NextImage
                       unoptimized
                       width={100}
