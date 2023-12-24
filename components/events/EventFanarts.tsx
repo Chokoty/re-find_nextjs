@@ -51,7 +51,7 @@ const EventFanarts = ({ initialFanart, showCnt, width }) => {
           fontSize="lg"
           fontWeight="bold"
           textAlign="right"
-          w="100%"
+          w="50%"
           p="0 2rem"
         >
           총 {eventsData.length} 개
