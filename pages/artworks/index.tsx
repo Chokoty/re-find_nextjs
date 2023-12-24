@@ -23,7 +23,7 @@ const Artworks = () => {
 
   useEffect(() => {
     setIsOpen(false);
-    alert('오픈 예정입니다.');
+    // alert('오픈 예정입니다.');
   }, []);
 
   return (
@@ -34,8 +34,7 @@ const Artworks = () => {
       <Text fontSize="md">
         왁물원에 올라온 팬아트들을 모아놓은 갤러리입니다.
       </Text>
-      <Text mt="5rem">오픈예정</Text>
-      {/* <Box
+      <Box
         m="2rem auto"
         w="94%"
         mb="2rem"
@@ -107,7 +106,7 @@ const Artworks = () => {
               </NextLink>
             ))}
         </SimpleGrid>
-      </Box> */}
+      </Box>
     </Box>
   );
 };
