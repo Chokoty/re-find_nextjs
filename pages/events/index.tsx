@@ -19,7 +19,7 @@ const Events = () => {
     <SearchLayout title="이벤트">
       <MySnowfall />
       <RandomFanart />
-      <EventFanarts initialFanart={null} />
+      <EventFanarts initialFanart={null} showCnt={0} width={'100%'} />
     </SearchLayout>
   );
 };
