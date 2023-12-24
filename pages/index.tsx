@@ -13,6 +13,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import BannerSlider from '@/components/banner/BannerSlider';
+import EventFanarts from '@/components/events/EventFanarts';
 import EventModal from '@/components/events/EventModal';
 import MySnowfall from '@/components/events/MySnowfall';
 import { Footer } from '@/components/layout/Footer';
@@ -339,6 +340,7 @@ export default function Home() {
             <MoreButtons />
           </Box>
         )}
+        <EventFanarts initialFanart={null} showCnt={2} width={'84%'} />
         <UpdateLogBoard width={'80%'} />
         <Footer />
         {/* {!inView ? <Footer /> : <Box h="398px"></Box>} */}

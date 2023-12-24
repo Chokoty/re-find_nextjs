@@ -1,14 +1,17 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
+import Link from 'next/link';
 import React, { useState } from 'react';
 
 import RandomFanartBtn from '@/components/events/RandomFanartBtn';
 import { eventsData } from '@/data/events';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const EventFanarts = ({ initialFanart }) => {
+const EventFanarts = ({ initialFanart, showCnt, width }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
-  const [selectedEventKey, setSelectedEventKey] = useState('IsegyeDol2Y');
+  const [selectedEventKey, setSelectedEventKey] = useState(
+    eventsData[eventsData.length - 1].key
+  );
 
   const handleEventClick = (key) => {
     setSelectedEventKey(key);
@@ -20,7 +23,7 @@ const EventFanarts = ({ initialFanart }) => {
       mt="1rem"
       background={bg2}
       maxW="540px"
-      w="100%"
+      w={width}
       display="flex"
       flexDirection="column"
       justifyContent="flex-start"
@@ -42,13 +45,13 @@ const EventFanarts = ({ initialFanart }) => {
           w="100%"
           p="0 1rem"
         >
-          특집 팬아트 랜덤 가챠
+          특집 팬아트 가챠
         </Text>
         <Text
           fontSize="lg"
           fontWeight="bold"
           textAlign="right"
-          w="100%"
+          w="50%"
           p="0 2rem"
         >
           총 {eventsData.length} 개
@@ -67,36 +70,100 @@ const EventFanarts = ({ initialFanart }) => {
         justifyContent="center"
         alignItems="center"
       >
-        {eventsData
-          .slice()
-          .reverse()
-          .map((item, index) => (
-            <Button
-              m="0.25rem"
-              key={index}
-              background={
-                selectedEventKey === item.key ? item.backgroundColor : null
-              }
-              _hover={{
-                background: item.backgroundColor,
-              }}
-              borderRadius="1rem"
-              padding="1.5rem"
-              w="95%"
-              alignItems="center"
-              justifyContent="center"
-              onClick={() => handleEventClick(item.key)}
-            >
-              <Text
-                fontSize="md"
-                fontWeight="bold"
-                color={item.color}
-                textAlign="center"
+        {showCnt === 0 && (
+          <Box w="90%" p="0 0.5rem">
+            {eventsData
+              .slice()
+              .reverse()
+              .map((item, index) => (
+                <Button
+                  m="0.25rem"
+                  key={index}
+                  background={
+                    selectedEventKey === item.key ? item.backgroundColor : null
+                  }
+                  _hover={{
+                    background: item.backgroundColor,
+                  }}
+                  borderRadius="1rem"
+                  padding="1.5rem"
+                  w="95%"
+                  alignItems="center"
+                  justifyContent="center"
+                  onClick={() => handleEventClick(item.key)}
+                >
+                  <Text
+                    fontSize="md"
+                    fontWeight="bold"
+                    color={item.color}
+                    textAlign="center"
+                  >
+                    {item.title}
+                  </Text>
+                </Button>
+              ))}
+          </Box>
+        )}
+        {showCnt !== 0 && (
+          <Box w="100%" p="0 0.5rem">
+            {eventsData
+              .slice(-showCnt) // This will take the last `showCnt` elements from the array
+              .reverse()
+              .map((item, index) => (
+                <Button
+                  m="0.25rem"
+                  key={index}
+                  background={
+                    selectedEventKey === item.key ? item.backgroundColor : null
+                  }
+                  _hover={{
+                    background: item.backgroundColor,
+                  }}
+                  borderRadius="1rem"
+                  padding="1.5rem"
+                  w="95%"
+                  alignItems="center"
+                  justifyContent="center"
+                  onClick={() => handleEventClick(item.key)}
+                >
+                  <Text
+                    fontSize="md"
+                    fontWeight="bold"
+                    color={item.color}
+                    textAlign="center"
+                  >
+                    {item.title}
+                  </Text>
+                </Button>
+              ))}
+            <Link href="/events">
+              <Button
+                m="0.25rem"
+                // background={
+                //   selectedEventKey === item.key ? item.backgroundColor : null
+                // }
+                // _hover={{
+                //   background: item.backgroundColor,
+                // }}
+                borderRadius="1rem"
+                padding="1.5rem"
+                w="95%"
+                alignItems="center"
+                justifyContent="center"
+                // onClick={() => handleEventClick(item.key)}
               >
-                {item.title}
-              </Text>
-            </Button>
-          ))}
+                <Text
+                  fontSize="md"
+                  fontWeight="bold"
+                  // color={item.color}
+                  textAlign="center"
+                >
+                  랜덤가챠 더보기
+                </Text>
+              </Button>
+            </Link>
+          </Box>
+        )}
       </Box>
 
       <RandomFanartBtn

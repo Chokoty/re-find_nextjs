@@ -25,10 +25,10 @@ export const eventsData = [
   },
   {
     id: 4,
-    key: 'isegye_festival',
-    title: '❤️‍🔥 크리스마스 특집 ❤️‍🔥',
-    backgroundColor: '#6A3CBC',
+    key: 'christmas',
+    title: '🎅🏼 크리스마스 특집 🎄',
+    backgroundColor: '#C10602',
     color: '',
-    url: 'https://re-find.reruru.com/isegye_festival',
+    url: 'https://re-find.reruru.com/keyword_rand?query=크리스마스&query=christmas&case_sensitive=false&title&board=isd&board=best&board=goldhand',
   },
 ];
