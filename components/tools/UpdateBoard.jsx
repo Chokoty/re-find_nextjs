@@ -23,7 +23,9 @@ const UpdateBoard = ({ last_update_info }) => {
   return (
     <Box
       className="update-info"
-      m="3em 0 1rem 0"
+      m="0 auto"
+      mt="3rem"
+      mb="1rem"
       display="grid"
       alignItems="center"
       placeItems="center"
