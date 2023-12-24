@@ -87,12 +87,12 @@ const MasonryView = ({
           ))}
         {!isDeletedVisible &&
           artworks?.map((artwork, index) =>
-            !artwork.deleted ? (
+            !artwork?.deleted ? (
               <MasonryCard
                 key={index}
                 nickname={nickname}
                 artwork={artwork}
-                isFocused={artwork.id === focusedArtworkId}
+                isFocused={artwork?.id === focusedArtworkId}
                 onToggleFocus={handleToggleFocus}
               />
             ) : null

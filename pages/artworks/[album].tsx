@@ -1,4 +1,4 @@
-import { Box, Center, Text, useToast } from '@chakra-ui/react';
+import { Box, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -10,28 +10,39 @@ import ViewSelectBar from '@/components/artist/ViewSelectBar';
 import SearchLayout from '@/components/layout/search-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import data from '@/data/gallary';
+import gallary from '@/data/gallary';
 import members from '@/data/members';
 
 const url = 'https://re-find.reruru.com/search_txt?query=';
 
-const Album = ({ search_artworks }) => {
+const Album = () => {
   const toast = useToast();
   const router = useRouter();
-  const { key } = router.query;
-  const [gallary, setGallary] = useState({});
+  const { id } = router.query;
+  const [album, setAlbum] = useState(null);
 
   useEffect(() => {
-    if (key) {
-      // board
-      const g = data.filter((item) => item.key === key);
-      console.log(g);
-      setGallary(g[0] || {}); // Assuming you want to set the first match
-    }
-  }, [key]);
+    if (id) {
+      console.log(id);
+      // router.query에서 가져온 id를 숫자로 변환합니다.
+      const numericId = Array.isArray(id)
+        ? parseInt(id[0], 10)
+        : parseInt(id, 10);
 
-  const [artworks, setArtworks] = useState([search_artworks]); // useState(artist_artworks_data?.list);
-  console.log(artworks);
+      // gallary 배열에서 해당 id를 가진 항목을 찾습니다.
+      const g = gallary.find((item) => item.id === numericId);
+
+      if (g) {
+        // 찾은 항목을 album 상태에 설정합니다.
+        setAlbum(g);
+      } else {
+        // 항목을 찾지 못한 경우에 대한 처리 (예: 오류 메시지 표시)
+        console.log('해당 id를 가진 항목을 찾을 수 없습니다.');
+      }
+    }
+  }, [id]);
+
+  const [artworks, setArtworks] = useState(); // useState(artist_artworks_data?.list);
 
   // infinite scroll
   const { ref, inView } = useInView({
@@ -58,7 +69,7 @@ const Album = ({ search_artworks }) => {
     // 다시 불러오기
     // setPage(1);
     // setIsLastPage(false);
-    setArtworks([]);
+    // setArtworks([]);
   }, []);
 
   // 뷰 선택하기
@@ -86,7 +97,7 @@ const Album = ({ search_artworks }) => {
         m=" 3rem"
       >
         <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-          🎃 할로윈 특집 🎃
+          {album?.title}
         </Text>
         <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
           왁타버스 팬아트
@@ -161,7 +172,7 @@ export default Album;
 export async function getServerSideProps(context) {
   const { key } = context.query;
   console.log(key);
-  const matchingItem = data.find((item) => item.key === key);
+  const matchingItem = gallary.find((item) => item.id === key);
   console.log(matchingItem);
   // console.log(`${url}${key}${gallary[0].option}&page=1 `);
   try {

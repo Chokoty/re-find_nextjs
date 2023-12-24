@@ -17,7 +17,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
   const [imageHeight, setImageHeight] = useState(null);
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  const modifiedUrl300 = useModifiedImageUrl(artwork.img_url, 300);
+  const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url, 300);
 
   const handleImageLoad = (e) => {
     setImageHeight(e.target.height);
@@ -32,7 +32,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
       pb="16px"
       display="inline-block"
       position="relative"
-      key={artwork.id}
+      key={artwork?.id}
       m="0 1rem"
     >
       <Box position="relative">
@@ -44,7 +44,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
           position="relative"
         >
           <NextImage
-            alt={artwork.title}
+            alt={artwork?.title}
             width={236}
             height={236}
             style={{
@@ -53,10 +53,10 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
               width: '100%',
               height: '100%',
               borderRadius: '1rem',
-              filter: artwork.deleted ? 'blur(6px)' : 'none', // 블러 처리
+              filter: artwork?.deleted ? 'blur(6px)' : 'none', // 블러 처리
             }}
             src={
-              artwork.img_url === ''
+              artwork?.img_url === ''
                 ? 'http://via.placeholder.com/236x236'
                 : modifiedUrl300
             }
@@ -73,16 +73,17 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
           borderRadius="1rem"
           zIndex={1}
           background={isFocused ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.0)'}
-          onClick={() => onToggleFocus(artwork.id)}
-          onMouseEnter={() => onToggleFocus(artwork.id)}
+          onClick={() => onToggleFocus(artwork?.id)}
+          onMouseEnter={() => onToggleFocus(artwork?.id)}
         />
         {isFocused && (
           <Link
             className="link-to-wakzoo-from-profile"
             href={
-              artwork.url === ''
-                ? '#'
-                : article_link + artwork.url.split('/').pop()
+              artwork?.url ? article_link + artwork.url.split('/').pop() : '#'
+              // artwork?.url === ''
+              //   ? '#'
+              //   : article_link + artwork.url.split('/').pop()
             }
             isExternal
           >
@@ -268,7 +269,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
       </Box>
       <Box>
         <Text fontWeight={500} p="0.5rem 0">
-          {artwork.title}
+          {artwork?.title}
         </Text>
       </Box>
     </Box>

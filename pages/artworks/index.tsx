@@ -9,10 +9,7 @@ import NextLink from 'next/link';
 import React, { useEffect } from 'react';
 
 // import HashLoader from 'react-spinners/HashLoader';
-import EventFanarts from '@/components/events/EventFanarts';
-import SearchLayout from '@/components/layout/search-layout';
-import RandomFanart from '@/components/tools/RandomFanart';
-import data from '@/data/gallary';
+import gallary from '@/data/gallary';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -76,14 +73,11 @@ const Artworks = () => {
           placeItems="center"
           m="0 auto"
         >
-          {data
+          {gallary
             .slice()
             .reverse()
             .map((item, index) => (
-              <NextLink
-                key={index}
-                href={`/artworks/${encodeURIComponent(item.key)}`}
-              >
+              <NextLink key={index} href={`/artworks/${item.id}`}>
                 <Box
                   key={index}
                   p="1rem"
