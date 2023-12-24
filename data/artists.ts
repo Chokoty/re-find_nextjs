@@ -24,6 +24,14 @@ export const sortTypes: Sort[] = [
   { name: '총 작품', value: 'total_cnt' },
 ];
 
+export const menuItems = [
+  { id: 'latest', label: '최신순' },
+  { id: 'oldest', label: '업로드순' },
+  { id: 'view', label: '조회수순' },
+  { id: 'like', label: '좋아요순' },
+  { id: 'comment', label: '댓글순' },
+];
+
 export const sampleData = {
   꺼녁: {
     total_cnt: 109,

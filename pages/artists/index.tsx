@@ -1,5 +1,6 @@
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import axios from 'axios';
+import { set } from 'lodash';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -47,6 +48,7 @@ const Artists = () =>
     const [page, setPage] = useState(1);
     const [isLastPage, setIsLastPage] = useState(false);
 
+    const [alert, setAlert] = useState(false);
     const [selectedView, setSelectedView] = useState(null);
     const [sortCriteria, setSortCriteria] = useState({
       field: 'total_likes',
@@ -156,6 +158,7 @@ const Artists = () =>
             setArtistsList(response.data);
           } catch (error) {
             console.error('Error fetching data:', error);
+            setAlert(true);
           }
         };
 
@@ -286,6 +289,7 @@ const Artists = () =>
             sortCriteria={sortCriteria}
             sortTypes={sortTypes}
             viewTypes={viewTypes}
+            alert={alert}
             // ref={ref}
           />
           {/* Observer를 위한 div */}

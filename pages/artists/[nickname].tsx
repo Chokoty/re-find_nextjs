@@ -20,8 +20,9 @@ const Artist = ({ artist_name2info }) => {
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
-    rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+    rootMargin: '600px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
+
   const nickname = router.query.nickname as string;
   let actualNickname = '';
   if (Array.isArray(nickname)) [actualNickname] = nickname;
@@ -32,6 +33,11 @@ const Artist = ({ artist_name2info }) => {
   const [artworks, setArtworks] = useState([]);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
+  // const [selectedBoard, setSelectedBoard] = useState(null);
+  const [sortCriteria, setSortCriteria] = useState({
+    field: '',
+    order: 'descending', // 'ascending' 또는 'descending'
+  });
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
@@ -43,16 +49,22 @@ const Artist = ({ artist_name2info }) => {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
-  // 정렬 선택하기
-  const handleMenuItemClick = useCallback((menuText: string) => {
-    if (menuText === sortType) return;
-    setSortType(menuText);
-    // router.push(`/artists/${nickname}?view=${activeView}&sort=${menuText}`);
-    // 다시 불러오기
+  const resetArtworks = useCallback(() => {
+    setArtworks([]);
     setPage(1);
     setIsLastPage(false);
-    setArtworks([]);
   }, []);
+
+  // 정렬 선택하기
+  const handleMenuItemClick = useCallback(
+    (menuText: string) => {
+      console.log(menuText);
+      if (menuText === sortType) return;
+      setSortType(menuText);
+      resetArtworks();
+    },
+    [sortType, resetArtworks] // useCallback 문제였음...
+  );
 
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {
@@ -69,6 +81,21 @@ const Artist = ({ artist_name2info }) => {
   const handleLoading = useCallback((Loading) => {
     setLoadingImage(Loading);
   }, []);
+
+  const handleViewTypeSelect = (value) => {
+    // 같은거 누르면 해제,토글
+    // console.log(value);
+    if (value === sortCriteria.field) {
+      setSortCriteria((prevState) => {
+        return { ...prevState, field: '', order: 'descending' };
+      });
+    } else {
+      setSortCriteria((prevState) => {
+        return { ...prevState, field: value, order: 'descending' };
+      });
+    }
+    resetArtworks();
+  };
 
   const getArtistInfo = useCallback(async () => {
     try {
@@ -93,11 +120,13 @@ const Artist = ({ artist_name2info }) => {
     // console.log('artworks loading...');
 
     try {
-      const response = await axios
-        .get(
-          `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`
-        )
-        .then((res) => res.data);
+      let url = `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
+      if (sortCriteria.field !== '') {
+        url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
+      }
+      // console.log(url);
+
+      const response = await axios.get(url).then((res) => res.data);
 
       if (response.lastPage === true) {
         setIsLastPage(true);
@@ -122,11 +151,16 @@ const Artist = ({ artist_name2info }) => {
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  }, [sortType, page, nickname]);
+  }, [sortType, page, nickname, sortCriteria.field]);
+
+  // useEffect(() => {
+  //   // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
+  // }, [activeView, sortType]);
 
   useEffect(() => {
-    // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
-  }, [activeView, sortType]);
+    resetArtworks();
+    getArtistArtworks();
+  }, [sortCriteria, sortCriteria.field]);
 
   useEffect(() => {
     if (isInitialRender) {
@@ -210,7 +244,12 @@ const Artist = ({ artist_name2info }) => {
             margin="0 auto"
             mb="2rem"
           >
-            <AuthorProfileHead nickname={actualNickname} profile={profile} />
+            <AuthorProfileHead
+              nickname={actualNickname}
+              profile={profile}
+              sortCriteria={sortCriteria}
+              handleViewTypeSelect={handleViewTypeSelect}
+            />
             <ViewSelectBar
               activeView={activeView}
               onViewChange={handleViewChange}
@@ -254,7 +293,7 @@ const Artist = ({ artist_name2info }) => {
                     )}
                     {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
                     {/* Observer를 위한 div */}
-                    {<Box ref={ref} w="100%" h="2rem"></Box>}
+                    {<Box ref={ref} w="100%" h="5rem"></Box>}
                   </Box>
                 )}
               </>
@@ -264,6 +303,8 @@ const Artist = ({ artist_name2info }) => {
                 <HashLoader color="#01BFA2" />
               </Box>
             )}
+            {/* Observer를 위한 div */}
+            {<Box ref={ref} w="100%" h="5rem"></Box>}
           </Box>
         )}
       </>

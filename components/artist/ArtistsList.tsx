@@ -23,7 +23,7 @@ const ArtistsList = ({
   sortCriteria,
   sortTypes,
   viewTypes,
-  // ref,
+  alert,
 }) => {
   const isMobile = useResponsive();
 
@@ -92,7 +92,7 @@ const ArtistsList = ({
                   <Text fontSize="lg" fontWeight="bold">
                     {index <= 100 ? index + 1 : '-'}
                   </Text>
-                  <Box>
+                  <Box w={imgValue}>
                     <NextImage
                       unoptimized
                       width={100}
@@ -149,6 +149,7 @@ const ArtistsList = ({
                     viewTypes={viewTypes}
                     artist={artist}
                     component={'inIndex'}
+                    onSelectViewType={null}
                   />
                 </Box>
               </Button>
@@ -158,16 +159,15 @@ const ArtistsList = ({
 
       {/* Observer를 위한 div
       {<Box ref={ref} w="100%" h="2rem"></Box>} */}
-      {visibleArtists === null ||
-        (visibleArtists?.length === 0 && (
-          <Alert status="error" w="90%" borderRadius="1rem" maxW="500px">
-            <AlertIcon />
-            <AlertTitle></AlertTitle>
-            <AlertDescription textAlign="start">
-              현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
-            </AlertDescription>
-          </Alert>
-        ))}
+      {alert === true && (
+        <Alert status="error" w="90%" borderRadius="1rem" maxW="500px">
+          <AlertIcon />
+          <AlertTitle></AlertTitle>
+          <AlertDescription textAlign="start">
+            현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
+          </AlertDescription>
+        </Alert>
+      )}
     </Box>
   );
 };

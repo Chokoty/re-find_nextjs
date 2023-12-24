@@ -196,7 +196,7 @@ const UpdateCard = ({ update }) => {
             <Badge
               variant="subtle"
               // w="7rem"
-              maxW="12rem"
+              maxW="8rem"
               p="0 0.5rem"
               borderRadius="6px"
               colorScheme="red"
@@ -221,7 +221,7 @@ const UpdateCard = ({ update }) => {
                       height: '1rem',
                     }}
                   />
-                  <Text ml="0.2rem" noOfLines={1}>
+                  <Text ml="0.2rem" noOfLines={1} maxW="8rem">
                     {update.info.nickname}
                   </Text>
                   <ExternalLinkIcon
