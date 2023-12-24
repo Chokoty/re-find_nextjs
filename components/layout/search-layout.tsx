@@ -24,7 +24,7 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
   return (
     <Box className="body" h="240vh" background={bg} w="100%" m="0 auto">
       <SearchHeader title={title} />
-      <Divider
+      {/* <Divider
         className="divider"
         style={{
           margin: '1rem auto',
@@ -32,7 +32,7 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
           backgroundColor: bgColor,
           height: '5px',
         }}
-      />
+      /> */}
       <Box className="layout">{children}</Box>
     </Box>
   );

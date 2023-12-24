@@ -85,7 +85,7 @@ const Search = () => {
           textAlign="left"
           // w="500px"
         >
-          'ㅇㅇ' 에 대한 검색 결과입니다. 총 400
+          `&apos; 에 대한 검색 결과입니다. 총 400`
         </Text>
         <Accordion allowMultiple w="100%">
           <AccordionItem

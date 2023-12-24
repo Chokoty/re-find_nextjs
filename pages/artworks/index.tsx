@@ -6,6 +6,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
+import path from 'path';
 import React, { useEffect } from 'react';
 
 // import HashLoader from 'react-spinners/HashLoader';
@@ -17,6 +19,20 @@ import { darkMode, lightMode } from '@/styles/theme';
 const Artworks = () => {
   const setIsOpen = useStore((state) => state.setIsOpen);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+
+  const router = useRouter();
+  const onClick = (id, subTitle) => {
+    // const { subTitle } = gallary.find((item) => item.id === id);
+    console.log(subTitle);
+
+    router.push(
+      {
+        pathname: `/artworks/${id}`,
+        query: { subTitle },
+      },
+      `/artworks/${id}`
+    );
+  };
 
   useEffect(() => {
     setIsOpen(false);
@@ -43,10 +59,7 @@ const Artworks = () => {
         gap="0.5rem"
       >
         {members.map((member, index) => (
-          <NextLink
-            key={index}
-            href={`/artworks/${encodeURIComponent(member.value)}`}
-          >
+          <NextLink key={index} href={`/artworks/${member.value}`}>
             <Button key={index} p="1rem" borderRadius="1rem">
               <Text fontSize="xl" fontWeight="bold" textAlign="left">
                 {member.name}
@@ -77,27 +90,28 @@ const Artworks = () => {
             .slice()
             .reverse()
             .map((item, index) => (
-              <NextLink key={index} href={`/artworks/${item.id}`}>
-                <Box
-                  key={index}
-                  p="1rem"
-                  m={['0', '0.5rem']}
-                  mb=" 1rem"
-                  w={['158px', '200px']}
-                  h={['158px', '200px']}
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                  background={bg2}
-                  borderRadius="1rem"
-                  boxShadow="md"
-                >
-                  <Text fontSize="xl" fontWeight="bold" textAlign="left">
-                    {item.title}
-                  </Text>
-                </Box>
-              </NextLink>
+              // <NextLink key={index} href={`/artworks/${item.id}`}>
+              <Button
+                key={index}
+                p="1rem"
+                m={['0', '0.5rem']}
+                mb=" 1rem"
+                w={['158px', '200px']}
+                h={['158px', '200px']}
+                display="flex"
+                flexDirection="column"
+                justifyContent="flex-start"
+                alignItems="center"
+                background={bg2}
+                borderRadius="1rem"
+                boxShadow="md"
+                onClick={() => onClick(item.id, item.subTitle)}
+              >
+                <Text fontSize="xl" fontWeight="bold" textAlign="left">
+                  {item.title}
+                </Text>
+              </Button>
+              // </NextLink>
             ))}
         </SimpleGrid>
       </Box>
