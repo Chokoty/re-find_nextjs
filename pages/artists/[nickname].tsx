@@ -58,7 +58,7 @@ const Artist = ({ artist_name2info }) => {
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
     (menuText: string) => {
-      console.log(menuText);
+      // console.log(menuText);
       if (menuText === sortType) return;
       setSortType(menuText);
       resetArtworks();
@@ -112,7 +112,7 @@ const Artist = ({ artist_name2info }) => {
   }, [nickname]);
 
   const getArtistArtworks = useCallback(async () => {
-    console.log('getArtistArtworks');
+    // console.log('getArtistArtworks');
     if (isLastPage) return;
     if (loadingData) return;
 
@@ -124,10 +124,10 @@ const Artist = ({ artist_name2info }) => {
       if (sortCriteria.field !== '') {
         url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
       }
-      console.log(url); //!
+      // console.log(url); //!
 
       const response = await axios.get(url).then((res) => res.data);
-      console.log(response);
+      // console.log(response);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
@@ -167,15 +167,16 @@ const Artist = ({ artist_name2info }) => {
       setIsInitialRender(false);
       return;
     }
-    console.log('page: ', page);
+    // console.log('page: ', page);
     getArtistArtworks();
   }, [sortType, page]);
 
   // 무한 스크롤
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView) console.log('inView: ', inView);
+    // if (inView) console.log('inView: ', inView);
     if (inView && !isLastPage && !loadingData) {
+      // !loadingData: 작가페이지 카운트 버그 수정
       // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
       setPage((prevState) => prevState + 1);
     }
@@ -183,7 +184,7 @@ const Artist = ({ artist_name2info }) => {
 
   useEffect(() => {
     if (nickname) {
-      console.log(nickname);
+      // console.log(nickname);
       getArtistArtworks();
     }
   }, [nickname]);
