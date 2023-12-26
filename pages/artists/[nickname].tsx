@@ -31,7 +31,7 @@ const Artist = ({ artist_name2info }) => {
   // console.log(artist_name2info);
   const [profile, setProfile] = useState(artist_name2info);
   const [artworks, setArtworks] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
   // const [selectedBoard, setSelectedBoard] = useState(null);
   const [sortCriteria, setSortCriteria] = useState({
