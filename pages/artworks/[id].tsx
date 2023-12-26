@@ -28,6 +28,7 @@ export default function Album({ id }) {
 
   const [album, setAlbum] = useState(null);
   const [artworks, setArtworks] = useState(null);
+  const [url, setUrl] = useState(null);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
@@ -72,47 +73,53 @@ export default function Album({ id }) {
     if (loadingData) return;
 
     setLoadingData(true);
-    const url = 'https://re-find.reruru.com/search_txt?query=';
+    // const url = 'https://re-find.reruru.com/search_txt?query=';
 
-    // try {
-    //   let url = `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
-    //   if (sortCriteria.field !== '') {
-    //     url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
-    //   }
-    //   // console.log(url);
+    try {
+      // let url = album?.option;
+      // url += `&type=${sortType}&page=${page}`;
+      // query=${member}&type=${sortType}&page=${page}`;
+      console.log(url);
 
-    //   const response = await axios.get(url).then((res) => res.data);
+      const response = await axios.get(url).then((res) => res.data);
 
-    //   if (response.lastPage === true) {
-    //     setIsLastPage(true);
-    //   }
-    //   if (page === 1) setArtworks([...response.list]);
-    //   else setArtworks([...artworks, ...response.list]);
-    // } catch (error) {
-    //   // 500에러 예외처리
-    //   console.log(error.response);
-    //   if (error.response?.status === 500) {
-    //     toast({
-    //       title:
-    //         '현재 작가 프로필 쪽 서버가 점검중 입니다. 잠시 후 다시 시도해주세요.',
-    //       description: '500 error',
-    //       status: 'error',
-    //       duration: 3000,
-    //       isClosable: true,
-    //     });
-    //   }
-    //   console.error('Error fetching more data:', error);
-    //   setIsLastPage(true);
-    // } finally {
-    //   setLoadingData(false); // Set loading state to false regardless of success or failure
-    // }
+      if (response.lastPage === true) {
+        setIsLastPage(true);
+      }
+      if (page === 1) setArtworks([...response.list]);
+      else setArtworks([...artworks, ...response.list]);
+    } catch (error) {
+      // 500에러 예외처리
+      console.log(error.response);
+      if (error.response?.status === 500) {
+        toast({
+          title:
+            '현재 작가 프로필 쪽 서버가 점검중 입니다. 잠시 후 다시 시도해주세요.',
+          description: '500 error',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
+      }
+      console.error('Error fetching more data:', error);
+      setIsLastPage(true);
+    } finally {
+      setLoadingData(false); // Set loading state to false regardless of success or failure
+    }
   }, [sortType, page, album]);
+
+  useEffect(() => {
+    setUrl(`${url}&type=${sortType}&page=${page}`);
+    console.log(url);
+  }, [sortType, page]);
 
   useEffect(() => {
     // console.log(id);
     // console.log(idid);
     const g = gallary.find((item) => item.id.toString() === id);
+    console.log(g);
     setAlbum(g);
+    setUrl(g?.option);
     getFanartAlbum();
   }, []);
 
@@ -136,6 +143,7 @@ export default function Album({ id }) {
             album?.subTitle
           )}
         </Text>
+        {album?.description && <Text m="0 auto">{album.description}</Text>}
       </Box>
       <ViewSelectBar
         activeView={activeView}
