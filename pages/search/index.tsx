@@ -85,9 +85,9 @@ const Search = () => {
           textAlign="left"
           // w="500px"
         >
-          `&apos; 에 대한 검색 결과입니다. 총 400`
+          `&apos; 에 대한 검색 결과입니다. 총 700`
         </Text>
-        <Accordion allowMultiple w="100%">
+        {/* <Accordion allowMultiple w="100%">
           <AccordionItem
             border="none"
             _focus={{ boxShadow: 'none' }}
@@ -156,7 +156,7 @@ const Search = () => {
               nisi ut aliquip ex ea commodo consequat.
             </AccordionPanel>
           </AccordionItem>
-        </Accordion>
+        </Accordion> */}
       </Box>
       <Box
         m="0 auto"

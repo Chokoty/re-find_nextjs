@@ -121,6 +121,7 @@ export default function Album({ id }) {
     setAlbum(g);
     setUrl(g?.option);
     getFanartAlbum();
+    alert('커밍쑨!');
   }, []);
 
   // useEffect(() => {
