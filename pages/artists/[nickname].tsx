@@ -31,7 +31,7 @@ const Artist = ({ artist_name2info }) => {
   // console.log(artist_name2info);
   const [profile, setProfile] = useState(artist_name2info);
   const [artworks, setArtworks] = useState([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
   // const [selectedBoard, setSelectedBoard] = useState(null);
   const [sortCriteria, setSortCriteria] = useState({
@@ -175,7 +175,7 @@ const Artist = ({ artist_name2info }) => {
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
     if (inView) console.log('inView: ', inView);
-    if (inView && !isLastPage) {
+    if (inView && !isLastPage && !loadingData) {
       // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
       setPage((prevState) => prevState + 1);
     }
