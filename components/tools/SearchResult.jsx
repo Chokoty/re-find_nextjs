@@ -65,6 +65,11 @@ const SearchResult = ({
                   <ExternalLinkIcon mx="2px" />
                 </Text>
               )}
+              {item.is_shukkou === true && (
+                <Text fontSize="xl" mb="20px" textAlign="center">
+                  `(슛코당한 팬아트일 확률이 높습니다.)`
+                </Text>
+              )}
             </Link>
           ))}
 
