@@ -124,10 +124,10 @@ const Artist = ({ artist_name2info }) => {
       if (sortCriteria.field !== '') {
         url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
       }
-      // console.log(url);
+      console.log(url); //!
 
       const response = await axios.get(url).then((res) => res.data);
-
+      console.log(response);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
