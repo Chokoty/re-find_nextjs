@@ -64,7 +64,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
 
   const fetchRandomFanart = async () => {
     if (!keywordUrl) {
-      console.log('keywordUrl is null');
+      // console.log('keywordUrl is null');
       return;
     }
     try {

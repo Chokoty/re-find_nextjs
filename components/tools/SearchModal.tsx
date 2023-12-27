@@ -97,13 +97,10 @@ const SearchModal = ({ isOpen, onClose }) => {
           justifyContent="center"
           alignItems="flex-start"
         >
-          <Text>포함할 검색어를 선택해주세요</Text>
+          <Text>검색에 포함할 대상을 선택하세요.</Text>
           <Stack spacing={5} direction="row">
-            <Checkbox defaultChecked isDisabled>
-              작가닉네임
-            </Checkbox>
-            <Checkbox isDisabled>제목</Checkbox>
-            <Checkbox isDisabled>키워드</Checkbox>
+            <Checkbox defaultChecked>작품</Checkbox>
+            <Checkbox defaultChecked>작가</Checkbox>
           </Stack>
         </ModalBody>
         <ModalFooter

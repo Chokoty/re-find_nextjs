@@ -12,10 +12,9 @@ import SimpleView from '@/components/views/SimpleView';
 import gallary from '@/data/gallary';
 import members from '@/data/members';
 
-export default function Album({ id, keyword }) {
+export default function Album() {
   const toast = useToast();
   const router = useRouter();
-  // const idid = router.query.id as string; // 이렇게! 이렇게!
 
   // infinite scroll
   const { ref, inView } = useInView({
@@ -23,10 +22,9 @@ export default function Album({ id, keyword }) {
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
 
-  const [album, setAlbum] = useState(null);
+  const [album, setAlbum] = useState(gallary[0]);
   const [member, setMember] = useState(null);
   const [artworks, setArtworks] = useState(null);
-  // const [url, setUrl] = useState(null);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
@@ -103,19 +101,19 @@ export default function Album({ id, keyword }) {
     }
   }, [sortType, page, album, member]);
 
-  useEffect(() => {
-    // console.log(id);
-    // console.log(idid);
-    const g = gallary.find((item) => item.id.toString() === id);
-    // console.log(g);
-    setAlbum(g);
-    const m = members.find((item) => item.value === id);
-    // console.log(m);
-    setMember(m);
-    // setUrl(g?.option);
-    getFanartAlbum();
-    // alert('커밍쑨!');
-  }, []);
+  // useEffect(() => {
+  //   // console.log(id);
+  //   // console.log(idid);
+  //   const g = gallary.find((item) => item.id.toString() === id);
+  //   // console.log(g);
+  //   setAlbum(g);
+  //   const m = members.find((item) => item.value === id);
+  //   // console.log(m);
+  //   setMember(m);
+  //   // setUrl(g?.option);
+  //   getFanartAlbum();
+  //   // alert('커밍쑨!');
+  // }, []);
 
   return (
     <SearchLayout title="팬아트 갤러리">
@@ -126,21 +124,10 @@ export default function Album({ id, keyword }) {
         alignItems="center"
         m=" 3rem"
       >
-        {/* {router.query?.subTitle ? (
-            <Text  m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'>{router.query.subTitle}</Text>
-          ) : (
-            album?.subTitle
-          )} */}
-        {member?.name ? (
-          <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-            {member.name} 팬아트
-          </Text>
-        ) : (
-          <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-            {album?.subTitle}
-          </Text>
-        )}
-        {album?.description && <Text m="0 auto">{album.description}</Text>}
+        <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
+          {album?.subTitle}
+        </Text>
+        <Text m="0 auto">{album?.description}</Text>
       </Box>
       <ViewSelectBar
         activeView={activeView}
@@ -201,15 +188,15 @@ export default function Album({ id, keyword }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const { id } = context.query;
-  const keyword =
-    members.find((item) => item.value === id)?.name ||
-    gallary.find((item) => item.id.toString() === id)?.option;
-  return {
-    props: {
-      id,
-      keyword,
-    },
-  };
-}
+// export async function getServerSideProps(context) {
+//   const { id } = context.query;
+//   const keyword =
+//     members.find((item) => item.value === id)?.name ||
+//     gallary.find((item) => item.id.toString() === id)?.option;
+//   return {
+//     props: {
+//       id,
+//       keyword,
+//     },
+//   };
+// }

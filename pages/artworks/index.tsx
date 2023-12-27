@@ -7,7 +7,6 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import path from 'path';
 import React, { useEffect } from 'react';
 
 // import HashLoader from 'react-spinners/HashLoader';
@@ -21,16 +20,18 @@ const Artworks = () => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   const router = useRouter();
-  const onClick = (id, subTitle) => {
+  const onClick = (id, subTitle, sub) => {
     // const { subTitle } = gallary.find((item) => item.id === id);
     console.log(subTitle);
 
     router.push(
       {
-        pathname: `/artworks/${id}`,
+        // pathname: `/artworks/${id}`,
+        // if id === 0 -> sub
+        pathname: `/artworks/${id === 0 ? sub : id}`,
         query: { subTitle },
       },
-      `/artworks/${id}`
+      `/artworks/${id === 0 ? sub : id}`
     );
   };
 
@@ -105,7 +106,7 @@ const Artworks = () => {
                 background={bg2}
                 borderRadius="1rem"
                 boxShadow="md"
-                onClick={() => onClick(item.id, item.subTitle)}
+                onClick={() => onClick(item.id, item.subTitle, item?.sub)}
               >
                 <Text fontSize="xl" fontWeight="bold" textAlign="left">
                   {item.title}

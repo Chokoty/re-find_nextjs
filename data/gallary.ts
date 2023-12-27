@@ -1,5 +1,6 @@
 interface Gallary {
   id: number;
+  sub?: string;
   option?: string;
   title: string;
   subTitle: string;
@@ -8,7 +9,8 @@ interface Gallary {
 
 const gallary: Gallary[] = [
   {
-    id: 1,
+    id: 0,
+    sub: 'isdPick',
     option:
       'https://re-find.reruru.com/search_txt?board=isd_notice&author&per_page=30',
     title: '이세돌이 직접 고른 팬아트',
