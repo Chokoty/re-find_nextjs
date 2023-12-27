@@ -37,7 +37,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
 
   useEffect(() => {
-    console.log('selectedEventKey: ', selectedEventKey);
+    // console.log('selectedEventKey: ', selectedEventKey);
 
     const selectedEvent = eventsData.find(
       (event) => event.key === selectedEventKey
@@ -64,14 +64,14 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
 
   const fetchRandomFanart = async () => {
     if (!keywordUrl) {
-      // console.log('keywordUrl is null');
+      console.log('keywordUrl is null');
       return;
     }
     try {
       setIsLoading(true);
-      console.log('keywordUrl: ', keywordUrl);
+      // console.log('keywordUrl: ', keywordUrl);
       const res = await axios.get(keywordUrl);
-      console.log(res.data);
+      // console.log(res.data);
       setFanart(res.data);
     } catch (error) {
       if (error.response && error.response.status === 500) {
