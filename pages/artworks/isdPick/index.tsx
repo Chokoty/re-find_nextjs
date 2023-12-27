@@ -76,11 +76,13 @@ export default function Album() {
 
       const response = await axios.get(url).then((res) => res.data);
 
-      if (response.lastPage === true) {
+      if (response?.lastPage === true) {
         setIsLastPage(true);
       }
-      if (page === 1) setArtworks([...response.list]);
-      else setArtworks([...artworks, ...response.list]);
+      // if (page === 1) setArtworks([...response.list]);
+      // else setArtworks([...artworks, ...response.list]);
+      if (page === 1) setArtworks([...response]);
+      else setArtworks([...artworks, ...response]);
     } catch (error) {
       // 500에러 예외처리
       console.log(error.response);
