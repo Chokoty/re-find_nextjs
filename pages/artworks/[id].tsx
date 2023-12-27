@@ -71,9 +71,9 @@ export default function Album({ id, keyword }) {
     if (loadingData) return;
 
     setLoadingData(true);
-
+    // https://re-find.reruru.com/search_txt?query=%EC%A3%BC%EB%A5%B4%EB%A5%B4&title&type=latest&per_page=30&page=1
     try {
-      const url = `https://re-find.reruru.com/search_txt?query=${keyword}&type=${sortType}&per_page=30&page=${page}`;
+      const url = `https://re-find.reruru.com/search_txt?query=${keyword}&title&type=${sortType}&per_page=30&page=${page}`;
       console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);

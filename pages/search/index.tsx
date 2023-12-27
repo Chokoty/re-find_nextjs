@@ -358,7 +358,7 @@ const Search = () => {
 
           <TabPanels>
             <TabPanel>
-              <Box>1</Box>
+              <Box></Box>
             </TabPanel>
             <TabPanel>
               <p>two!</p>
@@ -420,9 +420,6 @@ const Search = () => {
         </SimpleGrid>
       </Box> */}
     </Box>
-    // <SearchLayout title="검색">
-    //
-    // </SearchLayout>
   );
 };
 
