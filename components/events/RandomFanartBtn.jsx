@@ -15,9 +15,8 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 
 import { eventsData } from '@/data/events';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import { useResponsiveLink } from '../../hook/useResponsiveLink';
 
 const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const [fanart, setFanart] = useState(null);
@@ -57,41 +56,19 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   //   return () => clearInterval(intervalId); // Clear interval on component unmount
   // }, []);
 
-  useEffect(() => {
-    if (initialFanart == null) fetchRandomFanart();
-    setFanart(initialFanart);
-  }, []);
+  // useEffect(() => {
+  //   if (initialFanart == null) fetchRandomFanart();
+  //   setFanart(initialFanart);
+  // }, []);
 
-  const fetchRandomFanart = useCallback(async () => {
-    if (!keywordUrl) {
-      console.log('keywordUrl is null');
-      return;
-    }
-    try {
-      setIsLoading(true);
-      const res = await axios.get(keywordUrl);
-      setFanart(res.data);
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        console.log('Server Error: ', error.response.status);
-      } else if (error.code === 'ERR_NETWORK') {
-        console.log('Network Error: ', error.code);
-      } else {
-        console.log(error);
-      }
-    }
-  }, [keywordUrl, setIsLoading, setFanart]);
-
-  // const fetchRandomFanart = async () => {
+  // const fetchRandomFanart = useCallback(async () => {
   //   if (!keywordUrl) {
   //     console.log('keywordUrl is null');
   //     return;
   //   }
   //   try {
   //     setIsLoading(true);
-  //     // console.log('keywordUrl: ', keywordUrl);
   //     const res = await axios.get(keywordUrl);
-  //     // console.log(res.data);
   //     setFanart(res.data);
   //   } catch (error) {
   //     if (error.response && error.response.status === 500) {
@@ -102,7 +79,29 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   //       console.log(error);
   //     }
   //   }
-  // };
+  // }, [keywordUrl, setIsLoading, setFanart]);
+
+  const fetchRandomFanart = async () => {
+    if (!keywordUrl) {
+      console.log('keywordUrl is null');
+      return;
+    }
+    try {
+      setIsLoading(true);
+      // console.log('keywordUrl: ', keywordUrl);
+      const res = await axios.get(keywordUrl);
+      // console.log(res.data);
+      setFanart(res.data);
+    } catch (error) {
+      if (error.response && error.response.status === 500) {
+        console.log('Server Error: ', error.response.status);
+      } else if (error.code === 'ERR_NETWORK') {
+        console.log('Network Error: ', error.code);
+      } else {
+        console.log(error);
+      }
+    }
+  };
 
   // const handleLoad = async () => {
   //   // await new Promise((r) => setTimeout(r, 1000));
