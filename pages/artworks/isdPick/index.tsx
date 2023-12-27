@@ -71,7 +71,7 @@ export default function Album() {
     setLoadingData(true);
 
     try {
-      const url = `https://re-find.reruru.com/search_txt?query=${keyword}&type=${sortType}&per_page=30&page=${page}`;
+      const url = `https://re-find.reruru.com/search_txt?query=${gallary[0].option}&type=${sortType}&per_page=30&page=${page}`;
       console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);
