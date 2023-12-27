@@ -46,7 +46,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
       setKeywordUrl(selectedEvent.url);
     }
 
-    // fetchRandomFanart();
+    fetchRandomFanart();
   }, [selectedEventKey]);
 
   useEffect(() => {
@@ -96,7 +96,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   };
 
   const showRandomFanart = () => {
-    if (!isvisible) setIsvisible(true);
+    // if (!isvisible) setIsvisible(true);
     fetchRandomFanart();
   };
 
