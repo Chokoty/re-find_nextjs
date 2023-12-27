@@ -11,8 +11,7 @@ const gallary: Gallary[] = [
   {
     id: 0,
     sub: 'isdPick',
-    option:
-      'https://re-find.reruru.com/search_txt?board=isd_notice&author&per_page=30',
+    option: 'board=isd_notice&author',
     title: '이세돌이 직접 고른 팬아트',
     subTitle: '이세돌이 고른 팬아트',
     description: '이세돌의 공지사항에 올라온 팬아트를 모아봤습니다.',
