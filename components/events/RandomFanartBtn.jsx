@@ -25,7 +25,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
-  const [isBold, setIsBold] = useState(false);
+  // const [isBold, setIsBold] = useState(false);
 
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
 
@@ -49,13 +49,13 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     fetchRandomFanart();
   }, [selectedEventKey]);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsBold((prevIsBold) => !prevIsBold);
-    }, 1000); // Toggle bold every 1 second
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setIsBold((prevIsBold) => !prevIsBold);
+  //   }, 1000); // Toggle bold every 1 second
 
-    return () => clearInterval(intervalId); // Clear interval on component unmount
-  }, []);
+  //   return () => clearInterval(intervalId); // Clear interval on component unmount
+  // }, []);
 
   // useEffect(() => {
   //   if (initialFanart == null) fetchRandomFanart();
@@ -84,16 +84,16 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     }
   };
 
-  const handleLoad = async () => {
-    // await new Promise((r) => setTimeout(r, 1000));
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        setIsLoading(false);
-        resolve();
-      }, 1000);
-    });
-    setIsLoading(false);
-  };
+  // const handleLoad = async () => {
+  //   // await new Promise((r) => setTimeout(r, 1000));
+  //   await new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       setIsLoading(false);
+  //       resolve();
+  //     }, 1000);
+  //   });
+  //   setIsLoading(false);
+  // };
 
   const showRandomFanart = () => {
     // if (!isvisible) setIsvisible(true);
@@ -195,7 +195,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
                         height={475}
                         src={modifiedUrl300}
                         alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
-                        onLoad={handleLoad}
+                        // onLoad={handleLoad}
                       />
                       <Box
                         position="absolute"
