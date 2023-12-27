@@ -347,7 +347,7 @@ const Search = () => {
           textAlign="left"
           // w="500px"
         >
-          `모시깽이' 에 대한 검색 결과입니다. 총 700
+          &apos;모시깽이&apos; 에 대한 검색 결과입니다. 총 700
         </Text>
         <Tabs>
           <TabList>
