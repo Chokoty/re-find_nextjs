@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import NextImage from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
 import { eventsData } from '@/data/events';
@@ -57,21 +57,19 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   //   return () => clearInterval(intervalId); // Clear interval on component unmount
   // }, []);
 
-  // useEffect(() => {
-  //   if (initialFanart == null) fetchRandomFanart();
-  //   setFanart(initialFanart);
-  // }, []);
+  useEffect(() => {
+    if (initialFanart == null) fetchRandomFanart();
+    setFanart(initialFanart);
+  }, []);
 
-  const fetchRandomFanart = async () => {
+  const fetchRandomFanart = useCallback(async () => {
     if (!keywordUrl) {
       console.log('keywordUrl is null');
       return;
     }
     try {
       setIsLoading(true);
-      // console.log('keywordUrl: ', keywordUrl);
       const res = await axios.get(keywordUrl);
-      // console.log(res.data);
       setFanart(res.data);
     } catch (error) {
       if (error.response && error.response.status === 500) {
@@ -82,7 +80,29 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
         console.log(error);
       }
     }
-  };
+  }, [keywordUrl, setIsLoading, setFanart]);
+
+  // const fetchRandomFanart = async () => {
+  //   if (!keywordUrl) {
+  //     console.log('keywordUrl is null');
+  //     return;
+  //   }
+  //   try {
+  //     setIsLoading(true);
+  //     // console.log('keywordUrl: ', keywordUrl);
+  //     const res = await axios.get(keywordUrl);
+  //     // console.log(res.data);
+  //     setFanart(res.data);
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 500) {
+  //       console.log('Server Error: ', error.response.status);
+  //     } else if (error.code === 'ERR_NETWORK') {
+  //       console.log('Network Error: ', error.code);
+  //     } else {
+  //       console.log(error);
+  //     }
+  //   }
+  // };
 
   // const handleLoad = async () => {
   //   // await new Promise((r) => setTimeout(r, 1000));
