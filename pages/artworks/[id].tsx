@@ -77,7 +77,7 @@ export default function Album({ id, keyword }) {
       console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);
-
+      console.log(response);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
