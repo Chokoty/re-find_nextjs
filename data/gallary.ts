@@ -18,19 +18,19 @@ const gallary: Gallary[] = [
   },
   {
     id: 2,
-    option: '&title&ranktype=latest&per_page=30',
+    option: '할로윈',
     title: '할로윈 팬아트',
     subTitle: '🎃 할로윈 특집 팬아트 🎃',
   },
   {
     id: 3,
-    option: '&title&ranktype=latest&per_page=30',
+    option: '이세돌 2주년',
     title: '이세돌 2주년 팬아트',
     subTitle: '이세돌 2주년 팬아트',
   },
   {
     id: 4,
-    option: '&title&ranktype=latest&per_page=30',
+    option: '크리스마스',
     title: '크리스마스 팬아트',
     subTitle: '🎅🏼 크리스마스 특집 팬아트 🎄',
   },
