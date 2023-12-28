@@ -103,16 +103,16 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     }
   };
 
-  // const handleLoad = async () => {
-  //   // await new Promise((r) => setTimeout(r, 1000));
-  //   await new Promise((resolve) => {
-  //     setTimeout(() => {
-  //       setIsLoading(false);
-  //       resolve();
-  //     }, 1000);
-  //   });
-  //   setIsLoading(false);
-  // };
+  const handleLoad = async () => {
+    // await new Promise((r) => setTimeout(r, 1000));
+    await new Promise((resolve) => {
+      setTimeout(() => {
+        setIsLoading(false);
+        resolve();
+      }, 100);
+    });
+    setIsLoading(false);
+  };
 
   const showRandomFanart = () => {
     // if (!isvisible) setIsvisible(true);
@@ -214,7 +214,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
                         height={475}
                         src={modifiedUrl300}
                         alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
-                        // onLoad={handleLoad}
+                        onLoad={handleLoad}
                       />
                       <Box
                         position="absolute"
