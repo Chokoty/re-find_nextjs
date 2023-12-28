@@ -80,7 +80,8 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
           <Link
             className="link-to-wakzoo-from-profile"
             href={
-              artwork?.url ? article_link + artwork.url.split('/').pop() : '#'
+              // artwork?.url ? article_link + artwork.url.split('/').pop() : '#'
+              artwork?.id ? article_link + artwork.id : '#'
               // artwork?.url === ''
               //   ? '#'
               //   : article_link + artwork.url.split('/').pop()
