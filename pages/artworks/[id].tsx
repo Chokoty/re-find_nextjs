@@ -81,10 +81,8 @@ export default function Album({ id, keyword }) {
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
-      // if (page === 1) setArtworks([...response.list]);
-      // else setArtworks([...artworks, ...response.list]);
-      if (page === 1) setArtworks([...response]);
-      else setArtworks([...artworks, ...response]);
+      if (page === 1) setArtworks([...response.list]);
+      else setArtworks([...artworks, ...response.list]);
     } catch (error) {
       // 500에러 예외처리
       console.log(error.response);
