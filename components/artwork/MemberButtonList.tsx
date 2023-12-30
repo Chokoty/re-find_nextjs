@@ -18,12 +18,16 @@ const MemberButtonList = ({ members, type, range, selected, setSelected }) => {
 
     router.push(
       {
-        // pathname: `/artworks/${id}`,
-        // if id === 0 -> sub
-        // pathname: `/artworks/${id === 0 ? sub : id}`,
-        // query: { subTitle },
-      },
-      `/artworks/${value}`
+        pathname: `/artworks/${value}`,
+        query: { subTitle: value },
+      }
+      // {
+      //   pathname: `/artworks/${id}`,
+      //   if id === 0 -> sub
+      //   pathname: `/artworks/${id === 0 ? sub : id}`,
+      //   query: { subTitle },
+      // },
+      // `/artworks/${value}`
     );
   };
 

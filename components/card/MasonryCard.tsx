@@ -17,7 +17,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
   const [imageHeight, setImageHeight] = useState(null);
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url, 300);
+  const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
 
   const handleImageLoad = (e) => {
     setImageHeight(e.target.height);
@@ -144,7 +144,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                       maxWidth="100%"
                       textAlign="center"
                     >
-                      {artwork.date.split(' ')[0].slice(0, -1)}
+                      {artwork?.date?.split(' ')[0].slice(0, -1)}
                     </Text>
                   </Flex>
                   <Flex
@@ -193,7 +193,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                       maxWidth="100%"
                       textAlign="center"
                     >
-                      {artwork.date.split(' ')[0].slice(0, -1)}
+                      {artwork?.date?.split(' ')[0].slice(0, -1)}
                     </Text>
                   )}
                   <Flex
@@ -242,7 +242,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 <Button
                   as={Link}
                   className="link_to_wakzoo"
-                  href={artwork.url === '' ? '#' : article_link + artwork.id}
+                  href={article_link + artwork.id}
                   isExternal
                   _hover={{
                     textDecoration: 'none',
