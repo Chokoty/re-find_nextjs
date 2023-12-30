@@ -242,11 +242,7 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                 <Button
                   as={Link}
                   className="link_to_wakzoo"
-                  href={
-                    artwork.url === ''
-                      ? '#'
-                      : article_link + artwork.url.split('/').pop()
-                  }
+                  href={artwork.url === '' ? '#' : article_link + artwork.id}
                   isExternal
                   _hover={{
                     textDecoration: 'none',
