@@ -61,6 +61,7 @@ export default function Album({ value, keyword }) {
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {
     setActiveView(view);
+    console.log(view);
   }, []);
 
   // 삭제된 게시글 보이기
@@ -182,53 +183,54 @@ export default function Album({ value, keyword }) {
         handleShowDeleted={handleShowDeleted}
         usingPage={'gallery'}
       />
-      <Box
+      {/* <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
         margin="0 auto"
         mb="2rem"
-      >
-        {(!artworks || loadingData) && (
-          <Box
-            w="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <HashLoader color="#01BFA2" />
-          </Box>
-        )}
-        {artworks && (
-          <>
-            {artworks?.length !== 0 && (
-              <Box
-                w="100%"
-                overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-              >
-                {activeView === 'masonryView' && (
-                  <MasonryView
-                    nickname={''}
-                    artworks={artworks}
-                    isDeletedVisible={isDeletedVisible}
-                    // loadingImage={loadingImage}
-                    handleLoading={handleLoading}
-                  />
-                )}
-                {activeView === 'gridView' && (
-                  <SimpleView
-                    artworks={artworks}
-                    isDeletedVisible={isDeletedVisible}
-                    // handleLoading={handleLoading}
-                  />
-                )}
-                {/* Observer를 위한 div */}
-                {<Box ref={ref} w="100%" h="2rem"></Box>}
-              </Box>
-            )}
-          </>
-        )}
-      </Box>
+      > */}
+      {(!artworks || loadingData) && (
+        <Box
+          w="100%"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <HashLoader color="#01BFA2" />
+        </Box>
+      )}
+      {artworks && (
+        <>
+          {artworks?.length !== 0 && (
+            <Box
+              w="100%"
+              overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+            >
+              {activeView === 'masonryView' && (
+                <MasonryView
+                  nickname={''}
+                  artworks={artworks}
+                  isDeletedVisible={isDeletedVisible}
+                  // loadingImage={loadingImage}
+                  handleLoading={handleLoading}
+                  isGallary={true}
+                />
+              )}
+              {activeView === 'gridView' && (
+                <SimpleView
+                  artworks={artworks}
+                  isDeletedVisible={isDeletedVisible}
+                  // handleLoading={handleLoading}
+                />
+              )}
+              {/* Observer를 위한 div */}
+              {<Box ref={ref} w="100%" h="2rem"></Box>}
+            </Box>
+          )}
+        </>
+      )}
+      {/* </Box> */}
     </SearchLayout>
   );
 }

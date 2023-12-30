@@ -7,13 +7,20 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
+import NextLink from 'next/link';
 import React, { useState } from 'react';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
-const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
+const MasonryCard = ({
+  nickname,
+  artwork,
+  isFocused,
+  onToggleFocus,
+  isGallary,
+}) => {
   const [imageHeight, setImageHeight] = useState(null);
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
@@ -127,7 +134,8 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
                       maxWidth="100%"
                       textAlign="center"
                     >
-                      {nickname}
+                      {/* {nickname} */}
+                      {artwork?.author}
                     </Text>
                     <Text
                       fontSize={['sm', 'xl']}
@@ -258,10 +266,24 @@ const MasonryCard = ({ nickname, artwork, isFocused, onToggleFocus }) => {
           </Link>
         )}
       </Box>
-      <Box>
+      <Box
+        h="auto"
+        display="flex"
+        flexDir="column"
+        justifyContent="center"
+        alignItems="center"
+        mt="0.5rem"
+      >
         <Text fontWeight={500} p="0.5rem 0">
           {artwork?.title}
         </Text>
+        {isGallary && (
+          <NextLink href={`/artists/${artwork?.author}`} passHref>
+            <Text fontWeight={500} p="0.5rem 0">
+              작가: {artwork?.author}
+            </Text>
+          </NextLink>
+        )}
       </Box>
     </Box>
   );

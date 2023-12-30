@@ -284,6 +284,7 @@ const Artist = ({ artist_name2info }) => {
                         isDeletedVisible={isDeletedVisible}
                         // loadingImage={loadingImage}
                         handleLoading={handleLoading}
+                        isGallary={false}
                       />
                     )}
                     {activeView === 'grid' && (
