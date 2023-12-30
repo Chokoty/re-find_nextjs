@@ -20,7 +20,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
     artwork?.img_url_list[2],
     100
   );
-  const modifiedUrl300 = useModifiedImageUrl(artwork.img_url, 300);
+  const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
   const handleImageLoad = (e) => {
     setImageHeight(e.target.height);
   };
@@ -29,9 +29,7 @@ const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
     <Link
       className="link-to-wakzoo-from-profile"
       key={artwork.id}
-      href={
-        artwork.url === '' ? '#' : article_link + artwork.url.split('/').pop()
-      }
+      href={artwork?.id ? article_link + artwork.id : '#'}
       isExternal
       _hover={{ textDecoration: 'none' }}
       target="_blank"
