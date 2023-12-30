@@ -29,6 +29,7 @@ export default function Album({ id, keyword }) {
   // const [url, setUrl] = useState(null);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
+  const [total, setTotal] = useState(0);
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
@@ -71,13 +72,15 @@ export default function Album({ id, keyword }) {
     if (loadingData) return;
 
     setLoadingData(true);
-    // https://re-find.reruru.com/search_txt?query=%EC%A3%BC%EB%A5%B4%EB%A5%B4&title&type=latest&per_page=30&page=1
     try {
-      const url = `https://re-find.reruru.com/search_txt?query=${keyword}&title&type=${sortType}&per_page=30&page=${page}`;
+      // https://re-find.reruru.com/artworks?title&query=%ED%95%A0%EB%A1%9C%EC%9C%88&case_sensitive=false&board=isd&board=best&board=goldhand&per_page=30&page=1
+      const url = `
+      https://re-find.reruru.com/artworks?board=isd&board=best&board=goldhand&case_sensitive=false&title&query=${keyword}&type=${sortType}&per_page=30&page=${page}`;
       console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);
       console.log(response);
+      setTotal(response?.total);
       if (response.lastPage === true) {
         setIsLastPage(true);
       }
@@ -142,6 +145,9 @@ export default function Album({ id, keyword }) {
         )}
         {album?.description && <Text m="0 auto">{album.description}</Text>}
       </Box>
+      <Text>
+        총 {total}개의 {keyword} 팬아트가 있습니다.
+      </Text>
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}
