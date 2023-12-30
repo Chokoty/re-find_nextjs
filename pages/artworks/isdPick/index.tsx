@@ -162,6 +162,7 @@ export default function Album() {
                     isDeletedVisible={isDeletedVisible}
                     // loadingImage={loadingImage}
                     handleLoading={handleLoading}
+                    isGallary={true}
                   />
                 )}
                 {activeView === 'gridView' && (
