@@ -79,7 +79,7 @@ export default function Album() {
     try {
       const url = `https://re-find.reruru.com/isd_notice`;
       const response = await axios.get(url).then((res) => res.data);
-      console.log(response);
+      console.log(response); //
       setTotal(response?.total);
       setArtworks([...response.list]);
     } catch (error) {
