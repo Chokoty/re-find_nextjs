@@ -43,7 +43,7 @@ const ViewSelectBar = ({
   onMenuItemClick,
   isDeletedVisible,
   handleShowDeleted,
-  usingPage,
+  topOffset,
 }) => {
   const isMobile = useResponsive();
 
@@ -78,19 +78,18 @@ const ViewSelectBar = ({
 
   const showShadow = useShowShadow(386, 0);
 
-  useEffect(() => {
-    if (isMobile) {
-      setTopPosition(0);
-    } else {
-      setTopPosition(57);
-    }
-
-    if (usingPage === 'gallary') {
-      // 기존 TopPosition에 120px 더해주기
-      setTopPosition(topPosition + 120);
-    }
-    // top={isMobile ? '0' : '57px'}
-  }, [usingPage]);
+  // useEffect(() => {
+  //   if (usingPage === 'gallary') {
+  //     setTopPosition(0);
+  //   }
+  //   if (usingPage === 'artist') {
+  //     if (isMobile) {
+  //       setTopPosition(0);
+  //     } else {
+  //       setTopPosition(57);
+  //     }
+  //   }
+  // }, [usingPage]);
 
   useEffect(() => {
     console.log('selectedMenu', selectedMenu);
@@ -109,7 +108,7 @@ const ViewSelectBar = ({
       gap="2rem"
       position="sticky"
       // top={isMobile ? '0' : '57px'}
-      top={`${topPosition}px`}
+      top={`${60 + topOffset}px`}
       zIndex="90"
       w="100%"
       boxShadow={showShadow ? boxShadow : 'none'}

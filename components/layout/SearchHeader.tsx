@@ -75,7 +75,7 @@ export const SearchHeader = ({ title }) => {
       w="100%"
       h="60px"
       zIndex="200"
-      boxShadow={showShadow ? boxShadow : 'none'}
+      // boxShadow={showShadow ? boxShadow : 'none'}
     >
       <Flex
         as="header"

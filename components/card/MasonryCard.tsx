@@ -5,6 +5,7 @@ import {
   Link,
   Text,
   useBreakpointValue,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
@@ -13,6 +14,7 @@ import { HiOutlineExternalLink } from 'react-icons/hi';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const MasonryCard = ({
   nickname,
@@ -25,6 +27,7 @@ const MasonryCard = ({
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
+  const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
   const handleImageLoad = (e) => {
     setImageHeight(e.target.height);
@@ -241,6 +244,27 @@ const MasonryCard = ({
                 justifyContent="center"
                 alignItems="center"
               >
+                {isGallary && (
+                  <NextLink href={`/artists/${artwork?.author}`} passHref>
+                    <Button
+                      // as={Link}
+                      _hover={{
+                        textDecoration: 'none',
+                        cursor: 'pointer',
+                        backgroundColor: 'cyan.400',
+                      }}
+                      // target="_blank"
+                      // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+                      colorScheme="cyan"
+                      borderRadius="1rem"
+                      w="30%"
+                      h={['2.5rem', '3rem']}
+                    >
+                      <Text fontSize={['xs', 'md']}>작가</Text> &nbsp;
+                      <HiOutlineExternalLink />
+                    </Button>
+                  </NextLink>
+                )}
                 <Button
                   as={Link}
                   className="link_to_wakzoo"
@@ -254,8 +278,8 @@ const MasonryCard = ({
                   target="_blank"
                   rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
                   colorScheme="green"
-                  borderRadius="2rem"
-                  w="60%"
+                  borderRadius="1rem"
+                  w="50%"
                   h={['2.5rem', '3rem']}
                 >
                   <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
@@ -274,12 +298,10 @@ const MasonryCard = ({
         alignItems="center"
         mt="0.5rem"
       >
-        <Text fontWeight={500} p="0.5rem 0">
-          {artwork?.title}
-        </Text>
+        <Text fontWeight={500}>{artwork?.title}</Text>
         {isGallary && (
           <NextLink href={`/artists/${artwork?.author}`} passHref>
-            <Text fontWeight={500} p="0.5rem 0">
+            <Text color={highlight} fontWeight={500}>
               작가: {artwork?.author}
             </Text>
           </NextLink>

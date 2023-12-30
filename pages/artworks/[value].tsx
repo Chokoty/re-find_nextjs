@@ -172,8 +172,8 @@ export default function Album({ value, keyword }) {
           </Text>
         )}
         {album?.description && <Text m="0 auto">{album.description}</Text>}
+        <Text>총 {total}개의 팬아트가 있습니다.</Text>
       </Box>
-      <Text>총 {total}개의 팬아트가 있습니다.</Text>
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}
@@ -181,15 +181,8 @@ export default function Album({ value, keyword }) {
         onMenuItemClick={handleMenuItemClick}
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
-        usingPage={'gallery'}
+        topOffset={48}
       />
-      {/* <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        margin="0 auto"
-        mb="2rem"
-      > */}
       {(!artworks || loadingData) && (
         <Box
           w="100%"
@@ -230,7 +223,6 @@ export default function Album({ value, keyword }) {
           )}
         </>
       )}
-      {/* </Box> */}
     </SearchLayout>
   );
 }
