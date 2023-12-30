@@ -14,18 +14,20 @@ const AlbumGrid = ({ gallary }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const router = useRouter();
 
-  const onClick = (id, subTitle, sub) => {
+  const onClick = (id, subTitle, value) => {
     // const { subTitle } = gallary.find((item) => item.id === id);
-    console.log(subTitle);
+    console.log(subTitle, value);
 
     router.push(
       {
         // pathname: `/artworks/${id}`,
         // if id === 0 -> sub
-        pathname: `/artworks/${id === 0 ? sub : id}`,
+        // pathname: `/artworks/${id === 0 ? route : id}`,
+        pathname: `/artworks/${value}`,
         query: { subTitle },
       },
-      `/artworks/${id === 0 ? sub : id}`
+      // `/artworks/${id === 0 ? route : id}`
+      `/artworks/${value}`
     );
   };
 
@@ -68,7 +70,7 @@ const AlbumGrid = ({ gallary }) => {
                 background={bg2}
                 borderRadius="1rem"
                 boxShadow="md"
-                onClick={() => onClick(item.id, item.subTitle, item?.sub)}
+                onClick={() => onClick(item.id, item.subTitle, item.value)}
               >
                 <Text fontSize="xl" fontWeight="bold" textAlign="left">
                   {item.title}

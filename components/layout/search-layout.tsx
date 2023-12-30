@@ -33,7 +33,9 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
           height: '5px',
         }}
       /> */}
-      <Box className="layout">{children}</Box>
+      <Box w="100%" className="layout">
+        {children}
+      </Box>
     </Box>
   );
 };

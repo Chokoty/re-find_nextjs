@@ -20,7 +20,9 @@ const MemberButtonList = ({ members, type, range, selected, setSelected }) => {
       {
         pathname: `/artworks/${value}`,
         query: { subTitle: value },
-      }
+      },
+      `/artworks/${value}`
+
       // {
       //   pathname: `/artworks/${id}`,
       //   if id === 0 -> sub

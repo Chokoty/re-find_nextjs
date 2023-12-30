@@ -12,7 +12,7 @@ import SimpleView from '@/components/views/SimpleView';
 import gallary from '@/data/gallary';
 import members from '@/data/members';
 
-export default function Album({ id, keyword }) {
+export default function Album({ value, keyword }) {
   const toast = useToast();
   const router = useRouter();
   // const idid = router.query.id as string; // 이렇게! 이렇게!
@@ -41,15 +41,22 @@ export default function Album({ id, keyword }) {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
-  // 정렬 선택하기
-  const handleMenuItemClick = useCallback((menuText: string) => {
-    // if (menuText === sortType) return;
-    setSortType(menuText);
-    // 다시 불러오기
-    // setPage(1);
-    // setIsLastPage(false);
-    // setArtworks([]);
+  const resetArtworks = useCallback(() => {
+    setArtworks([]);
+    setPage(1);
+    setIsLastPage(false);
   }, []);
+
+  // 정렬 선택하기
+  const handleMenuItemClick = useCallback(
+    (menuText: string) => {
+      // console.log(menuText);
+      if (menuText === sortType) return;
+      setSortType(menuText);
+      resetArtworks();
+    },
+    [sortType, resetArtworks] // useCallback 문제였음...
+  );
 
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {
@@ -129,10 +136,10 @@ export default function Album({ id, keyword }) {
   useEffect(() => {
     // console.log(id);
     // console.log(idid);
-    const g = gallary.find((item) => item.id.toString() === id);
+    const g = gallary.find((item) => item.value === value);
     // console.log(g);
     setAlbum(g);
-    const m = members.find((item) => item.value === id);
+    const m = members.find((item) => item.value === value);
     // console.log(m);
     setMember(m);
     // setUrl(g?.option);
@@ -165,9 +172,7 @@ export default function Album({ id, keyword }) {
         )}
         {album?.description && <Text m="0 auto">{album.description}</Text>}
       </Box>
-      <Text>
-        총 {total}개의 {keyword} 팬아트가 있습니다.
-      </Text>
+      <Text>총 {total}개의 팬아트가 있습니다.</Text>
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}
@@ -229,13 +234,15 @@ export default function Album({ id, keyword }) {
 }
 
 export async function getServerSideProps(context) {
-  const { id } = context.query;
+  // const { id } = context.query;
+  const { value } = context.query;
   const keyword =
-    members.find((item) => item.value === id)?.name ||
-    gallary.find((item) => item.id.toString() === id)?.option;
+    members.find((item) => item.value === value)?.keyword ||
+    gallary.find((item) => item.value === value)?.keyword;
+  // gallary.find((item) => item.id.toString() === id)?.keyword;
   return {
     props: {
-      id,
+      value,
       keyword,
     },
   };
