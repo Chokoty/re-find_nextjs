@@ -2,7 +2,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Flex, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 
-import NoticeCard from '@/components/cards/NoticeCard';
+import NoticeCard from '@/components/card/NoticeCard';
 // import TMI from '@/data/tmi';
 import updateLog from '@/data/updateLog';
 import { darkMode, lightMode } from '@/styles/theme';

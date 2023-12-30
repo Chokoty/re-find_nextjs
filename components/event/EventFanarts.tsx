@@ -2,7 +2,7 @@ import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 import React, { useState } from 'react';
 
-import RandomFanartBtn from '@/components/events/RandomFanartBtn';
+import RandomFanartBtn from '@/components/event/RandomFanartBtn';
 import { eventsData } from '@/data/events';
 import { darkMode, lightMode } from '@/styles/theme';
 

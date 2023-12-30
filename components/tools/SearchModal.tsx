@@ -144,7 +144,7 @@ const SearchModal = ({ isOpen, onClose }) => {
           justifyContent="center"
           alignItems="flex-start"
         >
-          <Box
+          {/* <Box
             display="flex"
             flexDirection="column"
             justifyContent="center"
@@ -157,7 +157,7 @@ const SearchModal = ({ isOpen, onClose }) => {
               <Checkbox defaultChecked>작품</Checkbox>
               <Checkbox defaultChecked>작가</Checkbox>
             </Stack>
-          </Box>
+          </Box> */}
           <SearchOptions />
         </ModalBody>
         <ModalFooter

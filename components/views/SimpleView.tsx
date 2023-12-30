@@ -1,7 +1,7 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
 import React, { useState } from 'react';
 
-import SimpleCards from '@/components/cards/SimpleCards';
+import SimpleCards from '@/components/card/SimpleCards';
 
 const SimpleView = ({ artworks, isDeletedVisible }) => {
   const [focusedArtworkId, setFocusedArtworkId] = useState(null);

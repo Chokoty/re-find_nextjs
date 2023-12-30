@@ -14,7 +14,7 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner2 from '@/components/banner/Banner2';
-import EventBtn from '@/components/events/EventBtn';
+import EventBtn from '@/components/event/EventBtn';
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
 import { darkMode, lightMode } from '@/styles/theme';
 

@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
-import UpdateCard from '@/components/cards/UpdateCard';
+import UpdateCard from '@/components/card/UpdateCard';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const UpdateBoard = ({ last_update_info }) => {

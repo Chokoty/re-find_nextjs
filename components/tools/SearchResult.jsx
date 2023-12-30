@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
-import AuthorProfileCard from '@/components/cards/AuthorProfileCard';
+import AuthorProfileCard from '@/components/card/AuthorProfileCard';
 import Description from '@/components/tools/Description';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';

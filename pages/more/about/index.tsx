@@ -2,7 +2,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Flex, Heading, Link, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
-import ProfileCard2 from '@/components/cards/ProfileCard2';
+import ProfileCard2 from '@/components/card/ProfileCard2';
 import MoreLayout from '@/components/layout/more-layout';
 import BackButton from '@/components/tools/BackButton';
 import developers from '@/data/developers';

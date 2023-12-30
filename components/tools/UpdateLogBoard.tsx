@@ -10,7 +10,7 @@ import NextLink from 'next/link';
 import React from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
-import UpdateCard from '@/components/cards/UpdateCard';
+import UpdateCard from '@/components/card/UpdateCard';
 import UpdateLog from '@/components/tools/UpdateLog';
 import { darkMode, lightMode } from '@/styles/theme';
 

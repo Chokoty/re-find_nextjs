@@ -13,9 +13,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import BannerSlider from '@/components/banner/BannerSlider';
-import EventFanarts from '@/components/events/EventFanarts';
-import EventModal from '@/components/events/EventModal';
-import MySnowfall from '@/components/events/MySnowfall';
+import EventFanarts from '@/components/event/EventFanarts';
+import EventModal from '@/components/event/EventModal';
+import MySnowfall from '@/components/event/MySnowfall';
 import { Footer } from '@/components/layout/Footer';
 import Loading from '@/components/tools/Loading';
 import MoreButtons from '@/components/tools/MoreButtons';
