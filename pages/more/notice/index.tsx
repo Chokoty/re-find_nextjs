@@ -1,8 +1,8 @@
 import { Heading } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
-import MoreLayout from '@/components/layout/more-layout';
 import UpdateLog from '@/components/common/UpdateLog';
+import MoreLayout from '@/components/layout/more-layout';
 import { useStore } from '@/store/store';
 
 const Notice = () => {

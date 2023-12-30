@@ -1,11 +1,11 @@
 import { Box } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
+import RandomFanart from '@/components/common/RandomFanart';
 // import HashLoader from 'react-spinners/HashLoader';
 import EventFanarts from '@/components/event/EventFanarts';
 import MySnowfall from '@/components/event/MySnowfall';
 import SearchLayout from '@/components/layout/search-layout';
-import RandomFanart from '@/components/common/RandomFanart';
 import { useStore } from '@/store/store';
 
 const Events = () => {

@@ -10,9 +10,9 @@ import {
 import React, { useEffect } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 
-import MoreLayout from '@/components/layout/more-layout';
 import MoreButtons from '@/components/common/MoreButtons';
 import UpdateLogBoard from '@/components/common/UpdateLogBoard';
+import MoreLayout from '@/components/layout/more-layout';
 import { useStore } from '@/store/store';
 
 const More = () => {
