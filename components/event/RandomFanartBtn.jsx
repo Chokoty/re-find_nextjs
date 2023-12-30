@@ -10,14 +10,13 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 import NextImage from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
 import { eventsData } from '@/data/events';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import { useResponsiveLink } from '../../hook/useResponsiveLink';
 
 const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const [fanart, setFanart] = useState(null);
@@ -25,7 +24,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
-  const [isBold, setIsBold] = useState(false);
+  // const [isBold, setIsBold] = useState(false);
 
   const direction = useBreakpointValue({ base: 'column', md: 'row' });
 
@@ -49,18 +48,38 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     fetchRandomFanart();
   }, [selectedEventKey]);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsBold((prevIsBold) => !prevIsBold);
-    }, 1000); // Toggle bold every 1 second
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setIsBold((prevIsBold) => !prevIsBold);
+  //   }, 1000); // Toggle bold every 1 second
 
-    return () => clearInterval(intervalId); // Clear interval on component unmount
-  }, []);
+  //   return () => clearInterval(intervalId); // Clear interval on component unmount
+  // }, []);
 
   // useEffect(() => {
   //   if (initialFanart == null) fetchRandomFanart();
   //   setFanart(initialFanart);
   // }, []);
+
+  // const fetchRandomFanart = useCallback(async () => {
+  //   if (!keywordUrl) {
+  //     console.log('keywordUrl is null');
+  //     return;
+  //   }
+  //   try {
+  //     setIsLoading(true);
+  //     const res = await axios.get(keywordUrl);
+  //     setFanart(res.data);
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 500) {
+  //       console.log('Server Error: ', error.response.status);
+  //     } else if (error.code === 'ERR_NETWORK') {
+  //       console.log('Network Error: ', error.code);
+  //     } else {
+  //       console.log(error);
+  //     }
+  //   }
+  // }, [keywordUrl, setIsLoading, setFanart]);
 
   const fetchRandomFanart = async () => {
     if (!keywordUrl) {
@@ -90,7 +109,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
       setTimeout(() => {
         setIsLoading(false);
         resolve();
-      }, 1000);
+      }, 100);
     });
     setIsLoading(false);
   };

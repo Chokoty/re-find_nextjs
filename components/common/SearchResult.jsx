@@ -9,7 +9,7 @@ import {
 import React from 'react';
 
 import AuthorProfileCard from '@/components/card/AuthorProfileCard';
-import Description from '@/components/tools/Description';
+import Description from '@/components/common/Description';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';

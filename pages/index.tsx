@@ -17,13 +17,13 @@ import EventFanarts from '@/components/event/EventFanarts';
 import EventModal from '@/components/event/EventModal';
 import MySnowfall from '@/components/event/MySnowfall';
 import { Footer } from '@/components/layout/Footer';
-import Loading from '@/components/tools/Loading';
-import MoreButtons from '@/components/tools/MoreButtons';
-import Preview from '@/components/tools/Preview';
-import SearchResult from '@/components/tools/SearchResult';
-import UpdateBoard from '@/components/tools/UpdateBoard';
-import UpdateLogBoard from '@/components/tools/UpdateLogBoard';
-import UploadImages from '@/components/tools/UploadImages';
+import Loading from '@/components/common/Loading';
+import MoreButtons from '@/components/common/MoreButtons';
+import Preview from '@/components/common/Preview';
+import SearchResult from '@/components/common/SearchResult';
+import UpdateBoard from '@/components/common/UpdateBoard';
+import UpdateLogBoard from '@/components/common/UpdateLogBoard';
+import UploadImages from '@/components/common/UploadImages';
 import TopTitle from '@/components/TopTitle';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -34,7 +34,7 @@ interface HomeProps {
 
 const targetCount = 50000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
-  () => import('@/components/tools/UploadImages'),
+  () => import('@/components/common/UploadImages'),
   {
     ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
     loading: () => <p></p>,

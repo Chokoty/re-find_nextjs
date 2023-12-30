@@ -2,10 +2,10 @@ import { Box, useBreakpointValue, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import React from 'react';
 
+import Counter from '@/components/common/Counter';
 // import BannerSlider from '@/components/banner/BannerSlider';
 import SubTitle from '@/components/title/SubTitle';
 import Title from '@/components/title/Title';
-import Counter from '@/components/tools/Counter';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const TopTitle = ({ data, resetFiles }) => {

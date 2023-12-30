@@ -5,7 +5,9 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
-import ViewSelectBar from '@/components/artist/ViewSelectBar';
+import MemberButtonList from '@/components/artwork/MemberButtonList';
+import PageTitle from '@/components/common/PageTitle';
+import ViewSelectBar from '@/components/common/ViewSelectBar';
 import SearchLayout from '@/components/layout/search-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
@@ -22,10 +24,14 @@ export default function Album() {
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
 
+  const [total, setTotal] = useState(0);
+  const [artworks, setArtworks] = useState(null);
+  const [visibleArtworks, setVisibleArtworks] = useState(null);
+  const [page, setPage] = useState(1);
+
+  const [selected, setSelected] = useState('isd');
   const [album, setAlbum] = useState(gallary[0]);
   const [member, setMember] = useState(null);
-  const [artworks, setArtworks] = useState(null);
-  const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
   // 뷰 선택 메뉴
@@ -71,18 +77,11 @@ export default function Album() {
     setLoadingData(true);
 
     try {
-      // const url = `https://re-find.reruru.com/search_txt?query=${gallary[0].option}&type=${sortType}&per_page=30&page=${page}`;
-      // console.log(url);
       const url = `https://re-find.reruru.com/isd_notice`;
-
       const response = await axios.get(url).then((res) => res.data);
       console.log(response);
-
-      if (response?.lastPage === true) {
-        setIsLastPage(true);
-      }
-      if (page === 1) setArtworks([...response.list]);
-      else setArtworks([...artworks, ...response.list]);
+      setTotal(response?.total);
+      setArtworks([...response.list]);
     } catch (error) {
       // 500에러 예외처리
       console.log(error.response);
@@ -101,21 +100,7 @@ export default function Album() {
     } finally {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
-  }, [sortType, page, album, member]);
-
-  // useEffect(() => {
-  //   // console.log(id);
-  //   // console.log(idid);
-  //   const g = gallary.find((item) => item.id.toString() === id);
-  //   // console.log(g);
-  //   setAlbum(g);
-  //   const m = members.find((item) => item.value === id);
-  //   // console.log(m);
-  //   setMember(m);
-  //   // setUrl(g?.option);
-  //   getFanartAlbum();
-  //   // alert('커밍쑨!');
-  // }, []);
+  }, []);
 
   return (
     <SearchLayout title="팬아트 갤러리">
@@ -126,19 +111,25 @@ export default function Album() {
         alignItems="center"
         m=" 3rem"
       >
-        <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-          {album?.subTitle}
-        </Text>
-        <Text m="0 auto">{album?.description}</Text>
+        <PageTitle topTitle={album} />
+        <MemberButtonList
+          members={members}
+          type="sort"
+          range={{ start: 1, end: 8 }}
+          selected={selected}
+          setSelected={setSelected}
+        />
+        <Text>총 {total}</Text>
+
+        <ViewSelectBar
+          activeView={activeView}
+          onViewChange={handleViewChange}
+          selectedMenu={sortType}
+          onMenuItemClick={handleMenuItemClick}
+          isDeletedVisible={isDeletedVisible}
+          handleShowDeleted={handleShowDeleted}
+        />
       </Box>
-      <ViewSelectBar
-        activeView={activeView}
-        onViewChange={handleViewChange}
-        selectedMenu={sortType}
-        onMenuItemClick={handleMenuItemClick}
-        isDeletedVisible={isDeletedVisible}
-        handleShowDeleted={handleShowDeleted}
-      />
       <Box
         display="flex"
         flexDirection="column"
@@ -189,16 +180,3 @@ export default function Album() {
     </SearchLayout>
   );
 }
-
-// export async function getServerSideProps(context) {
-//   const { id } = context.query;
-//   const keyword =
-//     members.find((item) => item.value === id)?.name ||
-//     gallary.find((item) => item.id.toString() === id)?.option;
-//   return {
-//     props: {
-//       id,
-//       keyword,
-//     },
-//   };
-// }

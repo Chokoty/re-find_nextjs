@@ -11,7 +11,7 @@ import React from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
 import UpdateCard from '@/components/card/UpdateCard';
-import UpdateLog from '@/components/tools/UpdateLog';
+import UpdateLog from '@/components/common/UpdateLog';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const UpdateLogBoard = ({ width }) => {

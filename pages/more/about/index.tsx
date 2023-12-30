@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 
 import ProfileCard2 from '@/components/card/ProfileCard2';
 import MoreLayout from '@/components/layout/more-layout';
-import BackButton from '@/components/tools/BackButton';
+import BackButton from '@/components/common/BackButton';
 import developers from '@/data/developers';
 // import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';

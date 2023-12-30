@@ -19,9 +19,9 @@ import { FaSearch } from 'react-icons/fa';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
-import DarkModeToggle from '@/components/tools/DarkModeToggle';
-import MyDrawer from '@/components/tools/MyDrawer';
-import SearchModal from '@/components/tools/SearchModal';
+import DarkModeToggle from '@/components/common/DarkModeToggle';
+import MyDrawer from '@/components/common/MyDrawer';
+import SearchModal from '@/components/common/SearchModal';
 import { useResponsive } from '@/hook/useResponsive';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';

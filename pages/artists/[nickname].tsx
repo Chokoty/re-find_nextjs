@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import AuthorProfileHead from '@/components/artist/AuthorProfileHead';
-import ViewSelectBar from '@/components/artist/ViewSelectBar';
+import ViewSelectBar from '@/components/common/ViewSelectBar';
 import { ArtistHeader } from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';

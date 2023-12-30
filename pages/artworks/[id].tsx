@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
-import ViewSelectBar from '@/components/artist/ViewSelectBar';
+import ViewSelectBar from '@/components/common/ViewSelectBar';
 import SearchLayout from '@/components/layout/search-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';

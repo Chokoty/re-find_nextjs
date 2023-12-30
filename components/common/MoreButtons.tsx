@@ -9,7 +9,7 @@ import NextLink from 'next/link';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
 import { PiGiftBold } from 'react-icons/pi';
 
-import DarkModeToggle from '@/components/tools/DarkModeToggle';
+import DarkModeToggle from '@/components/common/DarkModeToggle';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const MoreButtons = () => {

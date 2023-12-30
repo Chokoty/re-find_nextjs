@@ -1,7 +1,7 @@
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 
-import LinkBtns from '@/components/tools/LinkBtn';
+import LinkBtns from '@/components/common/LinkBtn';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export const Footer = () => {

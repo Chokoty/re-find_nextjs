@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UploadComponent from '@/components/tools/UploadComponent';
+import UploadComponent from '@/components/common/UploadComponent';
 import { useUpload } from '@/hook/useUpload';
 
 interface UploadImagesProps {

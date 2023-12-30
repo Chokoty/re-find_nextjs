@@ -9,6 +9,7 @@ import ArtistsList from '@/components/artist/ArtistsList';
 import ArtistsSearchInput from '@/components/artist/ArtistsSearchInput';
 import SortTypeButtonGroup from '@/components/artist/SortTypeButtonGroup';
 import ViewTypeButtonGroup from '@/components/artist/ViewTypeButtonGroup';
+import PageTitle from '@/components/common/PageTitle';
 import { sampleData, sortTypes, viewTypes } from '@/data/artists';
 import { useDebounce } from '@/hook/useDebounce';
 import useArtistsStore from '@/store/artistsStore';
@@ -72,6 +73,10 @@ const Artists = () =>
     const color = useColorModeValue(lightMode.color, darkMode.color);
     const highlight = useColorModeValue(lightMode.highlight, darkMode.badge);
 
+    const topTitle = {
+      title: '왁타버스 작가',
+      description: '왁물원에서 활동중인 작가님의 작품을 모아서 볼 수 있어요',
+    };
     const highlightText = (text, highlight2) => {
       const parts = text.split(new RegExp(`(${highlight2})`, 'gi'));
       return parts.map((part, index) =>
@@ -257,12 +262,7 @@ const Artists = () =>
         alignItems="center"
         justifyContent="center"
       >
-        <Text as="h2" fontSize="3xl" fontWeight="bold">
-          왁타버스 작가
-        </Text>
-        <Text fontSize="md">
-          왁물원에서 활동중인 작가님의 작품을 모아서 볼 수 있어요.
-        </Text>
+        <PageTitle topTitle={topTitle} />
         <Box
           display="flex"
           flexDirection="column"

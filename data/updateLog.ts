@@ -204,6 +204,13 @@ const updateLog: UpdateLog[] = [
     content:
       '사이트 UI가 전체적으로 리뉴얼 되었습니다. 이제 작가 검색페이지가 사용 가능합니다. 키워드 검색 기능, 작품 페이지 기능도 곧 오픈될 예정입니다.',
   },
+  {
+    id: 30,
+    date: '2023.12.28',
+    content:
+      '2023연말공모전 왁물원 웰컴키트가 왁굳님과 이세돌 분들에게 전달되었습니다. 킹아!',
+    directLink: 'https://cafe.naver.com/steamindiegame/14239108',
+  },
 ];
 
 export default updateLog;

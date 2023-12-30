@@ -11,7 +11,7 @@ import React, { useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import BackButton from '@/components/tools/BackButton';
+import BackButton from '@/components/common/BackButton';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
