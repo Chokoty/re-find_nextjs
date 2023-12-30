@@ -258,6 +258,7 @@ const Artist = ({ artist_name2info }) => {
               onMenuItemClick={handleMenuItemClick}
               isDeletedVisible={isDeletedVisible}
               handleShowDeleted={handleShowDeleted}
+              usingPage={'artist'}
             />
             {!artworks && (
               <Box

@@ -156,6 +156,7 @@ const Artist = () =>
           onMenuItemClick={handleMenuItemClick}
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
+          usingPage={'artist'}
         />
         <Box
           display="flex"

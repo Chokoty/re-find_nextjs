@@ -106,6 +106,26 @@ export default function Album({ id, keyword }) {
     }
   }, [sortType, page, album, member]);
 
+  // 무한 스크롤
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView) console.log('inView: ', inView);
+    if (inView && !isLastPage && !loadingData) {
+      // !loadingData: 작가페이지 카운트 버그 수정
+      // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
+      setPage((prevState) => prevState + 1);
+    }
+  }, [inView, isLastPage]);
+
+  useEffect(() => {
+    if (isInitialRender) {
+      setIsInitialRender(false);
+      return;
+    }
+    console.log('page: ', page);
+    getFanartAlbum();
+  }, [sortType, page]);
+
   useEffect(() => {
     // console.log(id);
     // console.log(idid);
@@ -155,6 +175,7 @@ export default function Album({ id, keyword }) {
         onMenuItemClick={handleMenuItemClick}
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
+        usingPage={'gallery'}
       />
       <Box
         display="flex"

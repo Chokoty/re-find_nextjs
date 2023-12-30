@@ -128,6 +128,7 @@ export default function Album() {
           onMenuItemClick={handleMenuItemClick}
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
+          usingPage={'artist'}
         />
       </Box>
       <Box
