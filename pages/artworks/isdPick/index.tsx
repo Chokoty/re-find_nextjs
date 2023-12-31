@@ -35,7 +35,7 @@ export default function Album() {
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
   // 뷰 선택 메뉴
-  const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
+  const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -44,19 +44,27 @@ export default function Album() {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
-  // 정렬 선택하기
-  const handleMenuItemClick = useCallback((menuText: string) => {
-    // if (menuText === sortType) return;
-    setSortType(menuText);
-    // 다시 불러오기
-    // setPage(1);
-    // setIsLastPage(false);
-    // setArtworks([]);
+  const resetArtworks = useCallback(() => {
+    setArtworks([]);
+    setPage(1);
+    setIsLastPage(false);
   }, []);
+
+  // 정렬 선택하기
+  const handleMenuItemClick = useCallback(
+    (menuText: string) => {
+      // console.log(menuText);
+      if (menuText === sortType) return;
+      setSortType(menuText);
+      resetArtworks();
+    },
+    [sortType, resetArtworks] // useCallback 문제였음...
+  );
 
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {
     setActiveView(view);
+    console.log(view);
   }, []);
 
   // 삭제된 게시글 보이기
@@ -101,6 +109,26 @@ export default function Album() {
       setLoadingData(false); // Set loading state to false regardless of success or failure
     }
   }, []);
+
+  // 무한 스크롤
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView) console.log('inView: ', inView);
+    if (inView && !isLastPage && !loadingData) {
+      // !loadingData: 작가페이지 카운트 버그 수정
+      // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
+      setPage((prevState) => prevState + 1);
+    }
+  }, [inView, isLastPage]);
+
+  useEffect(() => {
+    if (isInitialRender) {
+      setIsInitialRender(false);
+      return;
+    }
+    console.log('page: ', page);
+    getFanartAlbum();
+  }, [sortType, page]);
 
   return (
     <SearchLayout title="팬아트 갤러리">

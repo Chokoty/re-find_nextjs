@@ -33,7 +33,7 @@ export default function Album({ value, keyword }) {
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
+  const [sortType, setSortType] = useState('view'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -135,17 +135,11 @@ export default function Album({ value, keyword }) {
   }, [sortType, page]);
 
   useEffect(() => {
-    // console.log(id);
-    // console.log(idid);
     const g = gallary.find((item) => item.value === value);
-    // console.log(g);
     setAlbum(g);
     const m = members.find((item) => item.value === value);
-    // console.log(m);
     setMember(m);
-    // setUrl(g?.option);
     getFanartAlbum();
-    // alert('커밍쑨!');
   }, []);
 
   return (
@@ -207,7 +201,7 @@ export default function Album({ value, keyword }) {
                   isDeletedVisible={isDeletedVisible}
                   // loadingImage={loadingImage}
                   handleLoading={handleLoading}
-                  isGallary={false}
+                  isGallary={true}
                 />
               )}
               {activeView === 'grid' && (

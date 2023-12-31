@@ -12,7 +12,7 @@ const gallary: Gallary[] = [
   {
     id: 0,
     value: 'isdPick',
-    title: '이세돌이 고른 팬아트',
+    title: '이세돌픽 팬아트',
     subTitle: '이세돌이 고른 팬아트',
     description: '이세돌의 공지사항에 올라온 팬아트를 모아봤습니다.',
     query: 'board=isd_notice&author',
