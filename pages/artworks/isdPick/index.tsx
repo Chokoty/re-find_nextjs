@@ -87,13 +87,9 @@ export default function Album() {
     setVisibleArtworks(filteredArtworks.slice(startIndex, endIndex));
   }, [page, filteredArtworks]);
 
-  useEffect(() => {
-    updateVisibleArtworks();
-  }, [updateVisibleArtworks]);
-
   const getFanartAlbum = useCallback(async () => {
     console.log('getFanartAlbum');
-    if (isLastPage) return;
+    // if (isLastPage) return;
     if (loadingData) return;
 
     setLoadingData(true);
@@ -126,25 +122,29 @@ export default function Album() {
 
   // filtered
   useEffect(() => {
+    resetArtworks();
     const { author } = members.find((item) => item.value === selected);
-    console.log(author);
-
+    // console.log(author);
     if (selected === 'isd') {
       setFilteredArtworks(artworks);
     } else {
       // artworks에서 author가 name인 것만 필터링
       const filtered = artworks.filter((item) => item.author === author);
-      console.log(filtered.length);
-      console.log(filtered);
+      // console.log(filtered.length);
+      // console.log(filtered);
       setFilteredArtworks(filtered);
     }
   }, [selected, artworks]);
 
   useEffect(() => {
+    if (isLastPage) return;
     console.log('filtered');
-    resetArtworks();
+
     updateVisibleArtworks();
-  }, [filteredArtworks]);
+    if (filteredArtworks.length <= itemsPerPage * page) {
+      setIsLastPage(true);
+    }
+  }, [page, filteredArtworks, updateVisibleArtworks]);
 
   // 무한 스크롤
   useEffect(() => {
