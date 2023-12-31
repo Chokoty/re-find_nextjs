@@ -15,6 +15,7 @@ import gallary from '@/data/gallary';
 import members from '@/data/members';
 
 export default function Album() {
+  const itemsPerPage = 30;
   const toast = useToast();
   const router = useRouter();
 
@@ -25,8 +26,8 @@ export default function Album() {
   });
 
   const [total, setTotal] = useState(0);
-  const [artworks, setArtworks] = useState(null);
-  const [visibleArtworks, setVisibleArtworks] = useState(null);
+  const [artworks, setArtworks] = useState([]);
+  const [visibleArtworks, setVisibleArtworks] = useState([]);
   const [page, setPage] = useState(1);
 
   const [selected, setSelected] = useState('isd');
@@ -76,6 +77,17 @@ export default function Album() {
   const handleLoading = useCallback((Loading) => {
     setLoadingImage(Loading);
   }, []);
+
+  const updateVisibleArtworks = useCallback(() => {
+    console.log('updateVisibleArtworks');
+    const startIndex = (page - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    setVisibleArtworks(artworks.slice(startIndex, endIndex));
+  }, [page, artworks]);
+
+  useEffect(() => {
+    updateVisibleArtworks();
+  }, [updateVisibleArtworks]);
 
   const getFanartAlbum = useCallback(async () => {
     console.log('getFanartAlbum');
@@ -176,9 +188,9 @@ export default function Album() {
             <HashLoader color="#01BFA2" />
           </Box>
         )}
-        {artworks && (
+        {visibleArtworks && (
           <>
-            {artworks?.length !== 0 && (
+            {visibleArtworks?.length !== 0 && (
               <Box
                 w="100%"
                 overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
@@ -186,7 +198,7 @@ export default function Album() {
                 {activeView === 'masonryView' && (
                   <MasonryView
                     nickname={''}
-                    artworks={artworks}
+                    artworks={visibleArtworks}
                     isDeletedVisible={isDeletedVisible}
                     // loadingImage={loadingImage}
                     handleLoading={handleLoading}
@@ -195,7 +207,7 @@ export default function Album() {
                 )}
                 {activeView === 'gridView' && (
                   <SimpleView
-                    artworks={artworks}
+                    artworks={visibleArtworks}
                     isDeletedVisible={isDeletedVisible}
                     // handleLoading={handleLoading}
                   />
