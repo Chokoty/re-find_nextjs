@@ -245,25 +245,25 @@ const MasonryCard = ({
                 alignItems="center"
               >
                 {isGallary && (
-                  <NextLink href={`/artists/${artwork?.author}`} passHref>
-                    <Button
-                      // as={Link}
-                      _hover={{
-                        textDecoration: 'none',
-                        cursor: 'pointer',
-                        backgroundColor: 'cyan.400',
-                      }}
-                      // target="_blank"
-                      // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-                      colorScheme="cyan"
-                      borderRadius="1rem"
-                      w="30%"
-                      h={['2.5rem', '3rem']}
-                    >
+                  <Button
+                    // as={Link}
+                    _hover={{
+                      textDecoration: 'none',
+                      cursor: 'pointer',
+                      backgroundColor: 'cyan.400',
+                    }}
+                    // target="_blank"
+                    // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+                    colorScheme="cyan"
+                    borderRadius="1rem"
+                    w="30%"
+                    h={['2.5rem', '3rem']}
+                  >
+                    <NextLink href={`/artists/${artwork?.author}`} passHref>
                       <Text fontSize={['xs', 'md']}>작가</Text> &nbsp;
                       <HiOutlineExternalLink />
-                    </Button>
-                  </NextLink>
+                    </NextLink>
+                  </Button>
                 )}
                 <Button
                   as={Link}
@@ -279,7 +279,7 @@ const MasonryCard = ({
                   rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
                   colorScheme="green"
                   borderRadius="1rem"
-                  w="50%"
+                  w="40%"
                   h={['2.5rem', '3rem']}
                 >
                   <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;

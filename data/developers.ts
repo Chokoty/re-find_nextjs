@@ -45,6 +45,14 @@ const developers: Developer[] = [
       'https://cafeptthumb-phinf.pstatic.net/MjAyMzA1MjZfMTI1/MDAxNjg1MTAwNTY2NTY2.cCitDbWemAnOtfRiNIzdVmOijuzUWXE8ZFtz5IiqL00g.Nsz762AIfFGN1OFaXrUH1OtkQszaqxp_VnZbJwSQFw4g.PNG/89.png?type=s3',
     contribute: ['배너,카드 디자인'],
   },
+  {
+    nickname: '바게트빵 옴뇸뇸',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/NyPZKCn8JER0USsj8xCz5w',
+    profURL:
+      'https://cafeptthumb-phinf.pstatic.net/MjAyMjA2MzBfMTcz/MDAxNjU2NTc3Mjg1MjEw.MpG1tZI0WuXFa5nCnNIFTpSZbpqkIyWbD-X5OBJPGUUg.2IUoqi5wgYsppBwfZ6xTzsFHrmKtsuy1LwI8DF3YhH4g.JPEG/%25EB%25A6%25AC%25EC%2596%25BC_%25EC%2598%25B4%25EB%2587%25B8%25EB%2587%25B8_-_%25EA%25B8%2580%25EC%259E%2590%25EC%25B6%2594%25EA%25B0%2580.jpg?type=s3',
+    contribute: ['웰컴키트 굿즈 디자인'],
+  },
 ];
 // https://m.cafe.naver.com/ca-fe/web/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA/articles
 

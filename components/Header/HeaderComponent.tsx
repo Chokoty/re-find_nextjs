@@ -8,6 +8,7 @@ import {
   InputRightElement,
   Link,
   Text,
+  Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { Sling as Hamburger } from 'hamburger-react';
@@ -116,14 +117,15 @@ const HeaderComponent = ({
             >
               <NextLink href="/artworks" passHref>
                 <Text
-                  w="2rem"
+                  w="3rem"
                   fontWeight="700"
+                  textAlign="center"
                   color={isCurrentPath('/artworks') ? color6 : color5}
                   _hover={{
                     color: color6,
                   }}
                 >
-                  작품
+                  갤러리
                 </Text>
               </NextLink>
               {isCurrentPath('/artworks') && (
@@ -258,25 +260,27 @@ const HeaderComponent = ({
           ref={myDrawerRef}
         />
         <NextLink href="/events">
-          <Button
-            w="3rem"
-            h="3rem"
-            // m="0 0.5rem"
-            p="0"
-            borderRadius="50%"
-            background="none"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <PiGiftBold
-              style={{
-                width: '1.5rem',
-                height: '1.5rem',
-                color,
-              }}
-            />
-          </Button>
+          <Tooltip label="이벤트관" aria-label="A tooltip">
+            <Button
+              w="3rem"
+              h="3rem"
+              // m="0 0.5rem"
+              p="0"
+              borderRadius="50%"
+              background="none"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <PiGiftBold
+                style={{
+                  width: '1.5rem',
+                  height: '1.5rem',
+                  color,
+                }}
+              />
+            </Button>
+          </Tooltip>
         </NextLink>
         {/* {isMobile && ( */}
         <NextLink href="/more">
