@@ -139,8 +139,13 @@ export default function Album() {
       return;
     }
     console.log('page: ', page);
-    getFanartAlbum();
+    // getFanartAlbum();
   }, [sortType, page]);
+
+  useEffect(() => {
+    console.log('album: ');
+    getFanartAlbum();
+  }, []);
 
   return (
     <SearchLayout title="팬아트 갤러리">
