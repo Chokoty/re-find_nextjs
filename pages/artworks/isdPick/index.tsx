@@ -129,11 +129,22 @@ export default function Album() {
     const { name } = members.find((item) => item.value === selected);
     console.log(name);
 
-    // artworks에서 author가 name인 것만 필터링
-    const filtered = artworks.filter((item) => item.author === name);
-    console.log(filtered.length);
-    console.log(filtered);
-    setFilteredArtworks(filtered);
+    if (selected === 'isd') {
+      setFilteredArtworks(artworks);
+    } else {
+      // artworks에서 author가 name인 것만 필터링
+      // const filtered = artworks.filter((item) => item.author === name);
+      const filtered = artworks.filter((artwork) => {
+        return members.some((m) => {
+          const authorOrName = m?.author || m.name;
+          console.log(authorOrName);
+          return artwork.author === authorOrName;
+        });
+      });
+      console.log(filtered.length);
+      console.log(filtered);
+      setFilteredArtworks(filtered);
+    }
   }, [selected, artworks]);
 
   useEffect(() => {
