@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
+import PageTitle from '@/components/common/PageTitle';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import SearchLayout from '@/components/layout/search-layout';
 import MasonryView from '@/components/views/MasonryView';
@@ -33,7 +34,7 @@ export default function Album({ value, keyword }) {
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState('random'); // 초기 상태 설정
+  const [sortType, setSortType] = useState('alzaltak'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -142,6 +143,11 @@ export default function Album({ value, keyword }) {
     getFanartAlbum();
   }, []);
 
+  const topTitle = {
+    title: album?.subTitle || `${member?.name} 팬아트`,
+    description: album?.description,
+  };
+
   return (
     <SearchLayout title="팬아트 갤러리">
       <Box
@@ -156,7 +162,7 @@ export default function Album({ value, keyword }) {
           ) : (
             album?.subTitle
           )} */}
-        {member?.name ? (
+        {/* {member?.name ? (
           <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
             {member.name} 팬아트
           </Text>
@@ -164,7 +170,8 @@ export default function Album({ value, keyword }) {
           <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
             {album?.subTitle}
           </Text>
-        )}
+        )} */}
+        <PageTitle topTitle={topTitle} />
         {album?.description && <Text m="0 auto">{album.description}</Text>}
         <Text>총 {total}개의 팬아트가 있습니다.</Text>
       </Box>

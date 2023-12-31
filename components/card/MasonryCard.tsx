@@ -261,7 +261,14 @@ const MasonryCard = ({
                     mr="1rem"
                   >
                     <NextLink href={`/artists/${artwork?.author}`} passHref>
-                      <Text fontSize={['xs', 'md']}>작가</Text> &nbsp;
+                      <Text
+                        textAlign="center"
+                        alignItems="center"
+                        fontSize={['xs', 'md']}
+                      >
+                        작가
+                      </Text>{' '}
+                      &nbsp;
                     </NextLink>
                   </Button>
                 )}

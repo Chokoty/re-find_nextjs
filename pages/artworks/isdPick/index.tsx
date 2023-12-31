@@ -126,14 +126,14 @@ export default function Album() {
 
   // filtered
   useEffect(() => {
-    const { name } = members.find((item) => item.value === selected);
-    // console.log(name);
+    const { author } = members.find((item) => item.value === selected);
+    console.log(author);
 
     if (selected === 'isd') {
       setFilteredArtworks(artworks);
     } else {
       // artworks에서 author가 name인 것만 필터링
-      const filtered = artworks.filter((item) => item.author === name);
+      const filtered = artworks.filter((item) => item.author === author);
       console.log(filtered.length);
       console.log(filtered);
       setFilteredArtworks(filtered);

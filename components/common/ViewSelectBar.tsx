@@ -50,7 +50,7 @@ const ViewSelectBar = ({
   const [topPosition, setTopPosition] = useState(0);
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   const [isOpen, setIsOpen] = useState(false);
-  const [label, setLabel] = useState('최신순');
+  const [label, setLabel] = useState('알잘딱순');
 
   // const selectedLabel = menuItems.find(
   //   (item) => item.id === selectedMenu
