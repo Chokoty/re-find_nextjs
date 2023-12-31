@@ -1,5 +1,6 @@
 import { Box, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
+import { filter } from 'lodash';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -27,6 +28,7 @@ export default function Album() {
 
   const [total, setTotal] = useState(0);
   const [artworks, setArtworks] = useState([]);
+  const [filteredArtworks, setFilteredArtworks] = useState([]);
   const [visibleArtworks, setVisibleArtworks] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -46,7 +48,7 @@ export default function Album() {
   const [loadingImage, setLoadingImage] = useState(true);
 
   const resetArtworks = useCallback(() => {
-    setArtworks([]);
+    setVisibleArtworks([]);
     setPage(1);
     setIsLastPage(false);
   }, []);
@@ -122,6 +124,24 @@ export default function Album() {
     }
   }, []);
 
+  // filtered
+  useEffect(() => {
+    const { name } = members.find((item) => item.value === selected);
+    console.log(name);
+
+    // artworks에서 author가 name인 것만 필터링
+    const filtered = artworks.filter((item) => item.author === name);
+    console.log(filtered.length);
+    console.log(filtered);
+    setFilteredArtworks(filtered);
+  }, [selected, artworks]);
+
+  useEffect(() => {
+    console.log('filtered');
+    resetArtworks();
+    updateVisibleArtworks();
+  }, [filteredArtworks]);
+
   // 무한 스크롤
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
@@ -164,18 +184,18 @@ export default function Album() {
           selected={selected}
           setSelected={setSelected}
         />
-        <Text>총 {total}</Text>
-
-        <ViewSelectBar
-          activeView={activeView}
-          onViewChange={handleViewChange}
-          selectedMenu={sortType}
-          onMenuItemClick={handleMenuItemClick}
-          isDeletedVisible={isDeletedVisible}
-          handleShowDeleted={handleShowDeleted}
-          topOffset={0}
-        />
+        {/* <Text>총 {total}</Text> */}
+        <Text>총 {filteredArtworks.length}</Text>
       </Box>
+      <ViewSelectBar
+        activeView={activeView}
+        onViewChange={handleViewChange}
+        selectedMenu={sortType}
+        onMenuItemClick={handleMenuItemClick}
+        isDeletedVisible={isDeletedVisible}
+        handleShowDeleted={handleShowDeleted}
+        topOffset={48}
+      />
       <Box
         display="flex"
         flexDirection="column"

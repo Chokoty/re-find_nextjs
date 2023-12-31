@@ -33,7 +33,7 @@ export default function Album({ value, keyword }) {
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState('view'); // 초기 상태 설정
+  const [sortType, setSortType] = useState('random'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 

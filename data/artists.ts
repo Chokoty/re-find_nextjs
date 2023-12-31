@@ -25,6 +25,7 @@ export const sortTypes: Sort[] = [
 ];
 
 export const menuItems = [
+  { id: 'random', label: '알잘딱순' },
   { id: 'latest', label: '최신순' },
   { id: 'oldest', label: '업로드순' },
   { id: 'view', label: '조회수순' },
