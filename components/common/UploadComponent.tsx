@@ -4,7 +4,8 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React from 'react';
+import Image from 'next/image';
+import React, { useState } from 'react';
 import { SlCloudUpload } from 'react-icons/sl';
 
 import { darkMode, lightMode } from '@/styles/theme';
@@ -20,6 +21,25 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
   getInputProps,
   isDragActive,
 }) => {
+  const [hover, setHover] = useState(false);
+  const [isClick, setIsClick] = useState(false);
+
+  const handleMouseEnter = () => {
+    setHover(true);
+  };
+
+  const handleMouseLeave = () => {
+    setHover(false);
+  };
+
+  const handleClick = () => {
+    setIsClick(true);
+    // 마우스 클릭 풀면 다시 false로 바꾸기
+    setTimeout(() => {
+      setIsClick(false);
+    }, 1000);
+  };
+
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -50,6 +70,9 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
         p="1rem"
         maxW="500px"
         w="100%"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleClick}
       >
         <Box
           {...getRootProps()}
@@ -61,7 +84,29 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
           gap="0.5rem"
         >
           <input {...getInputProps()} />
-          <SlCloudUpload className="logo" />
+          {/* <SlCloudUpload className="logo" /> */}
+          {isClick ? (
+            <Image
+              src="/static/images/refind-2.png"
+              alt="리파인드 로고2"
+              width={160}
+              height={160}
+              unoptimized
+            />
+          ) : (
+            <Image
+              src={
+                hover
+                  ? '/static/images/refind-2.png'
+                  : '/static/images/refind-1.png'
+              }
+              alt="리파인드 로고1"
+              width={160}
+              height={160}
+              unoptimized
+            />
+          )}
+
           <Box>
             {isDragActive ? (
               <Text>이미지를 여기에 드롭하세요!</Text>
