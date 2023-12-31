@@ -84,8 +84,8 @@ export default function Album() {
     console.log('updateVisibleArtworks');
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-    setVisibleArtworks(artworks.slice(startIndex, endIndex));
-  }, [page, artworks]);
+    setVisibleArtworks(filteredArtworks.slice(startIndex, endIndex));
+  }, [page, filteredArtworks]);
 
   useEffect(() => {
     updateVisibleArtworks();
@@ -127,20 +127,13 @@ export default function Album() {
   // filtered
   useEffect(() => {
     const { name } = members.find((item) => item.value === selected);
-    console.log(name);
+    // console.log(name);
 
     if (selected === 'isd') {
       setFilteredArtworks(artworks);
     } else {
       // artworks에서 author가 name인 것만 필터링
-      // const filtered = artworks.filter((item) => item.author === name);
-      const filtered = artworks.filter((artwork) => {
-        return members.some((m) => {
-          const authorOrName = m?.author || m.name;
-          console.log(authorOrName);
-          return artwork.author === authorOrName;
-        });
-      });
+      const filtered = artworks.filter((item) => item.author === name);
       console.log(filtered.length);
       console.log(filtered);
       setFilteredArtworks(filtered);
