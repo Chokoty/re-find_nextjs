@@ -32,7 +32,7 @@ export default function Album({ value, keyword }) {
   const [total, setTotal] = useState(0);
 
   // 뷰 선택 메뉴
-  const [activeView, setActiveView] = useState('masonryView'); // 초기 뷰 설정
+  const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -83,7 +83,7 @@ export default function Album({ value, keyword }) {
     try {
       // https://re-find.reruru.com/artworks?title&query=%ED%95%A0%EB%A1%9C%EC%9C%88&case_sensitive=false&board=isd&board=best&board=goldhand&per_page=30&page=1
       const url = `
-      https://re-find.reruru.com/artworks?board=isd&board=best&board=goldhand&case_sensitive=false&title&query=${keyword}&type=${sortType}&per_page=30&page=${page}`;
+      https://re-find.reruru.com/artworks?board=isd&board=best&board=goldhand&case_sensitive=false&title&query=${keyword}&ranktype=${sortType}&per_page=30&page=${page}`;
       console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);
@@ -200,25 +200,26 @@ export default function Album({ value, keyword }) {
               w="100%"
               overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
             >
-              {activeView === 'masonryView' && (
+              {activeView === 'masonry' && (
                 <MasonryView
                   nickname={''}
                   artworks={artworks}
                   isDeletedVisible={isDeletedVisible}
                   // loadingImage={loadingImage}
                   handleLoading={handleLoading}
-                  isGallary={true}
+                  isGallary={false}
                 />
               )}
-              {activeView === 'gridView' && (
+              {activeView === 'grid' && (
                 <SimpleView
                   artworks={artworks}
                   isDeletedVisible={isDeletedVisible}
                   // handleLoading={handleLoading}
                 />
               )}
+              {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
               {/* Observer를 위한 div */}
-              {<Box ref={ref} w="100%" h="2rem"></Box>}
+              {<Box ref={ref} w="100%" h="5rem"></Box>}
             </Box>
           )}
         </>

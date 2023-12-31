@@ -258,10 +258,10 @@ const MasonryCard = ({
                     borderRadius="1rem"
                     w="30%"
                     h={['2.5rem', '3rem']}
+                    mr="1rem"
                   >
                     <NextLink href={`/artists/${artwork?.author}`} passHref>
                       <Text fontSize={['xs', 'md']}>작가</Text> &nbsp;
-                      <HiOutlineExternalLink />
                     </NextLink>
                   </Button>
                 )}
