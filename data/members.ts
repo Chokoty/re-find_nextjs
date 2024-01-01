@@ -19,7 +19,7 @@ const members: Member[] = [
     value: 'isd',
     name: '이세돌',
     author: '이세돌',
-    query: 'gallery?member=woowakgood',
+    query: 'gallery?member=isd',
   },
   {
     id: 3,
