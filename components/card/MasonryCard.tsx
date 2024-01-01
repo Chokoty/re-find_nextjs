@@ -291,8 +291,7 @@ const MasonryCard = ({
                         fontSize={['xs', 'md']}
                       >
                         작가
-                      </Text>{' '}
-                      &nbsp;
+                      </Text>
                     </NextLink>
                   </Button>
                 )}
