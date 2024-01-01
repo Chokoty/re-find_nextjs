@@ -14,7 +14,13 @@ const members: Member[] = [
     author: '우왁굳',
     query: ['board=wak&query=두'],
   },
-  // { id: 2, name: '이세돌', value: 'isd', keyword: '이세돌' },
+  {
+    id: 2,
+    value: 'isd',
+    name: '이세돌',
+    author: '이세돌',
+    query: ['board=isd'],
+  },
   {
     id: 3,
     value: 'ine',

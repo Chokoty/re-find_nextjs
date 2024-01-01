@@ -146,6 +146,17 @@ const Artist = ({ artist_name2info }) => {
           isClosable: true,
         });
       }
+      // 504 에러 예외처리, 504 에러는 서버가 불안정할 때 발생
+      else if (error.response?.status === 504) {
+        toast({
+          title:
+            '현재 작가 프로필 쪽 서버가 불안정합니다. 잠시 후 다시 시도해주세요.',
+          description: '504 error',
+          status: 'error',
+          duration: 3000,
+          isClosable: true,
+        });
+      }
       console.error('Error fetching more data:', error);
       setIsLastPage(true);
     } finally {

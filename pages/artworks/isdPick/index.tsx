@@ -82,7 +82,7 @@ export default function Album() {
 
   const updateVisibleArtworks = useCallback(() => {
     console.log('updateVisibleArtworks');
-    console.log(page);
+    // console.log(page);
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     setVisibleArtworks(filteredArtworks.slice(startIndex, endIndex));
@@ -125,6 +125,10 @@ export default function Album() {
   }, [sortType]);
 
   useEffect(() => {
+    console.log(visibleArtworks);
+  }, [visibleArtworks]);
+
+  useEffect(() => {
     if (isInitialRender) {
       setIsInitialRender(false);
       return;
@@ -148,9 +152,9 @@ export default function Album() {
   // filtered
   useEffect(() => {
     resetArtworks();
-    // const { author } = members.find((item) => item.value === selected);
-    console.log(selected);
-    const author = members.find((item) => item.value === selected);
+    const { author } = members.find((item) => item.value === selected);
+    console.log(author);
+    // const author = members.find((item) => item.value === selected);
     // console.log(author);
     if (selected === 'isd') {
       setFilteredArtworks(artworks);
@@ -192,7 +196,7 @@ export default function Album() {
         <MemberButtonList
           members={members}
           type="sort"
-          range={{ start: 1, end: 7 }}
+          range={{ start: 1, end: 8 }}
           selected={selected}
           setSelected={setSelected}
         />
