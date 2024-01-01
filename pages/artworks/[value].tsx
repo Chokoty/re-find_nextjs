@@ -83,7 +83,7 @@ export default function Album({ value, query }) {
     setLoadingData(true);
     try {
       const url = `
-      https://re-find.reruru.com/${query}&case_sensitive=false&title&ranktype=${sortType}&per_page=30&page=${page}`;
+      https://re-find.reruru.com/${query}&ranktype=${sortType}&per_page=30&page=${page}`;
       console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);
