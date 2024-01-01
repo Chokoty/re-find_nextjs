@@ -169,7 +169,7 @@ const MasonryCard = ({
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
-                    w="90%"
+                    // w="90%"
                     gap="1rem"
                   >
                     <Box
@@ -231,7 +231,7 @@ const MasonryCard = ({
                     justifyContent="center"
                     alignItems="center"
                     textAlign="center"
-                    w="90%"
+                    // w="100%"
                     gap="1rem"
                   >
                     <Box>
