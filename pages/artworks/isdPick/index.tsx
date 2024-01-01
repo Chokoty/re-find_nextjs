@@ -82,14 +82,13 @@ export default function Album() {
 
   const updateVisibleArtworks = useCallback(() => {
     console.log('updateVisibleArtworks');
+    console.log(page);
     const startIndex = (page - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     setVisibleArtworks(filteredArtworks.slice(startIndex, endIndex));
   }, [page, filteredArtworks]);
 
   const getFanartAlbum = useCallback(async () => {
-    console.log('getFanartAlbum');
-    // if (isLastPage) return;
     if (loadingData) return;
 
     setLoadingData(true);
@@ -97,7 +96,7 @@ export default function Album() {
     try {
       const url = `https://re-find.reruru.com/isd_notice`;
       const response = await axios.get(url).then((res) => res.data);
-      console.log(response); //
+      console.log(response);
       setTotal(response?.total);
       setArtworks([...response.list]);
     } catch (error) {
@@ -120,10 +119,38 @@ export default function Album() {
     }
   }, []);
 
+  useEffect(() => {
+    resetArtworks();
+    // sort type에 따라 artworks 정렬
+  }, [sortType]);
+
+  useEffect(() => {
+    if (isInitialRender) {
+      setIsInitialRender(false);
+      return;
+    }
+    console.log('page: ', page);
+    // getFanartAlbum();
+    updateVisibleArtworks();
+  }, [page]);
+
+  useEffect(() => {
+    if (isLastPage) return;
+    console.log('filtered');
+    console.log(filteredArtworks);
+
+    updateVisibleArtworks();
+    if (filteredArtworks.length <= itemsPerPage * page) {
+      setIsLastPage(true);
+    }
+  }, [filteredArtworks]);
+
   // filtered
   useEffect(() => {
     resetArtworks();
-    const { author } = members.find((item) => item.value === selected);
+    // const { author } = members.find((item) => item.value === selected);
+    console.log(selected);
+    const author = members.find((item) => item.value === selected);
     // console.log(author);
     if (selected === 'isd') {
       setFilteredArtworks(artworks);
@@ -136,16 +163,6 @@ export default function Album() {
     }
   }, [selected, artworks]);
 
-  useEffect(() => {
-    if (isLastPage) return;
-    console.log('filtered');
-
-    updateVisibleArtworks();
-    if (filteredArtworks.length <= itemsPerPage * page) {
-      setIsLastPage(true);
-    }
-  }, [page, filteredArtworks, updateVisibleArtworks]);
-
   // 무한 스크롤
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
@@ -156,15 +173,6 @@ export default function Album() {
       setPage((prevState) => prevState + 1);
     }
   }, [inView, isLastPage]);
-
-  useEffect(() => {
-    if (isInitialRender) {
-      setIsInitialRender(false);
-      return;
-    }
-    console.log('page: ', page);
-    // getFanartAlbum();
-  }, [sortType, page]);
 
   useEffect(() => {
     console.log('album: ');
@@ -184,7 +192,7 @@ export default function Album() {
         <MemberButtonList
           members={members}
           type="sort"
-          range={{ start: 1, end: 8 }}
+          range={{ start: 1, end: 7 }}
           selected={selected}
           setSelected={setSelected}
         />
