@@ -14,13 +14,13 @@ const members: Member[] = [
     author: '우왁굳',
     query: 'gallery?member=woowakgood',
   },
-  {
-    id: 2,
-    value: 'isd',
-    name: '이세돌',
-    author: '이세돌',
-    query: 'gallery?member=isd',
-  },
+  // {
+  //   id: 2,
+  //   value: 'isd',
+  //   name: '이세돌',
+  //   author: '이세돌',
+  //   query: 'gallery?member=isd',
+  // },
   {
     id: 3,
     value: 'ine',
