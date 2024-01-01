@@ -13,7 +13,7 @@ import SimpleView from '@/components/views/SimpleView';
 import gallary from '@/data/gallary';
 import members from '@/data/members';
 
-export default function Album({ value, keyword }) {
+export default function Album({ value, query }) {
   const toast = useToast();
   const router = useRouter();
   // const idid = router.query.id as string; // 이렇게! 이렇게!
@@ -82,12 +82,12 @@ export default function Album({ value, keyword }) {
 
     setLoadingData(true);
     try {
-      // https://re-find.reruru.com/artworks?title&query=%ED%95%A0%EB%A1%9C%EC%9C%88&case_sensitive=false&board=isd&board=best&board=goldhand&per_page=30&page=1
       const url = `
-      https://re-find.reruru.com/artworks?board=isd&board=best&board=goldhand&case_sensitive=false&title&query=${keyword}&ranktype=${sortType}&per_page=30&page=${page}`;
+      https://re-find.reruru.com/artworks${query[0]}&case_sensitive=false&title&ranktype=${sortType}&per_page=30&page=${page}`;
       console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);
+
       console.log(response);
       setTotal(response?.total);
       if (response.lastPage === true) {
@@ -232,14 +232,14 @@ export default function Album({ value, keyword }) {
 export async function getServerSideProps(context) {
   // const { id } = context.query;
   const { value } = context.query;
-  const keyword =
-    members.find((item) => item.value === value)?.keyword ||
-    gallary.find((item) => item.value === value)?.keyword;
+  const query =
+    members.find((item) => item.value === value)?.query ||
+    gallary.find((item) => item.value === value)?.query;
   // gallary.find((item) => item.id.toString() === id)?.keyword;
   return {
     props: {
       value,
-      keyword,
+      query,
     },
   };
 }

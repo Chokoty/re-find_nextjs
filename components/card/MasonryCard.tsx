@@ -10,11 +10,23 @@ import {
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { useState } from 'react';
+import { FaComment, FaEye, FaImage, FaThumbsUp } from 'react-icons/fa';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 
+import { formatArtistValue } from '@/hook/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
+
+// const sortTypeData = [
+//   { name: '조회수', value: artwork.view, icon: FaEye },
+//   { name: '댓글수', value: artwork.comment, icon: FaComment },
+//   { name: '좋아요수', value: artwork.like, icon: FaThumbsUp },
+// ];
+const iconStyle = {
+  width: '1rem',
+  height: '1rem',
+};
 
 const MasonryCard = ({
   nickname,
@@ -160,28 +172,26 @@ const MasonryCard = ({
                     w="90%"
                   >
                     <Text fontSize={['sm', 'xl']} fontWeight="400">
-                      조회수{' '}
-                      {artwork.view === 0
-                        ? '0'
-                        : artwork.view
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                      <FaEye style={iconStyle} />
+                      {formatArtistValue(artwork.view)}
                     </Text>
                     <Text fontSize={['sm', 'xl']} fontWeight="400">
-                      좋아요{' '}
-                      {artwork.like === 0
+                      <FaThumbsUp style={iconStyle} />
+                      {formatArtistValue(artwork.like)}
+                      {/* {artwork.like === 0
                         ? '0'
                         : artwork.like
                             .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} */}
                     </Text>
                     <Text fontSize={['sm', 'xl']} fontWeight="400">
-                      댓글수{' '}
-                      {artwork.comment === 0
+                      <FaComment style={iconStyle} />
+                      {formatArtistValue(artwork.comment)}
+                      {/* {artwork.comment === 0
                         ? '0'
                         : artwork.comment
                             .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} */}
                     </Text>
                   </Flex>{' '}
                 </>
@@ -209,31 +219,23 @@ const MasonryCard = ({
                     w="90%"
                   >
                     <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      조{' '}
-                      {artwork.view === 0
-                        ? '0'
-                        : artwork.view
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                      &nbsp;
+                      <FaEye style={iconStyle} />
+                      {formatArtistValue(artwork.view)}
                     </Text>
                     <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      좋{' '}
-                      {artwork.like === 0
-                        ? '0'
-                        : artwork.like
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                      &nbsp;
+                      <FaThumbsUp style={iconStyle} />
+                      {formatArtistValue(artwork.like)}
                     </Text>
                     <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      댓{' '}
+                      <FaComment style={iconStyle} />
+                      {formatArtistValue(artwork.comment)}
+                      {/* 댓{' '}
                       {artwork.comment === 0
                         ? '0'
                         : artwork.comment
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
-                      &nbsp;
+                      &nbsp; */}
                     </Text>
                   </Flex>
                 </>
