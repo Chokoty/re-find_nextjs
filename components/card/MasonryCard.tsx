@@ -170,30 +170,45 @@ const MasonryCard = ({
                     alignItems="center"
                     textAlign="center"
                     w="90%"
+                    gap="1rem"
                   >
-                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                    <Box
+                      display="flex"
+                      flexDir="row"
+                      justifyContent="center"
+                      alignItems="center"
+                      gap="0.3rem"
+                    >
                       <FaEye style={iconStyle} />
-                      {formatArtistValue(artwork.view)}
-                    </Text>
-                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                      <Text fontSize={['sm', 'xl']} fontWeight="400">
+                        {formatArtistValue(artwork.view)}
+                      </Text>
+                    </Box>
+                    <Box
+                      display="flex"
+                      flexDir="row"
+                      justifyContent="center"
+                      alignItems="center"
+                      gap="0.3rem"
+                    >
                       <FaThumbsUp style={iconStyle} />
-                      {formatArtistValue(artwork.like)}
-                      {/* {artwork.like === 0
-                        ? '0'
-                        : artwork.like
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} */}
-                    </Text>
-                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                      <Text fontSize={['sm', 'xl']} fontWeight="400">
+                        {formatArtistValue(artwork.like)}
+                      </Text>
+                    </Box>
+                    <Box
+                      display="flex"
+                      flexDir="row"
+                      justifyContent="center"
+                      alignItems="center"
+                      gap="0.3rem"
+                    >
                       <FaComment style={iconStyle} />
-                      {formatArtistValue(artwork.comment)}
-                      {/* {artwork.comment === 0
-                        ? '0'
-                        : artwork.comment
-                            .toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} */}
-                    </Text>
-                  </Flex>{' '}
+                      <Text fontSize={['sm', 'xl']} fontWeight="400">
+                        {formatArtistValue(artwork.comment)}
+                      </Text>
+                    </Box>
+                  </Flex>
                 </>
               )}
               {imageHeight < 212 && (
@@ -217,26 +232,33 @@ const MasonryCard = ({
                     alignItems="center"
                     textAlign="center"
                     w="90%"
+                    gap="1rem"
                   >
-                    <Text fontSize={['xs', 'sm']} fontWeight="400">
+                    <Box>
                       <FaEye style={iconStyle} />
-                      {formatArtistValue(artwork.view)}
-                    </Text>
-                    <Text fontSize={['xs', 'sm']} fontWeight="400">
+                      <Text fontSize={['xs', 'sm']} fontWeight="400">
+                        {formatArtistValue(artwork.view)}
+                      </Text>
+                    </Box>
+                    <Box>
                       <FaThumbsUp style={iconStyle} />
-                      {formatArtistValue(artwork.like)}
-                    </Text>
-                    <Text fontSize={['xs', 'sm']} fontWeight="400">
+                      <Text fontSize={['xs', 'sm']} fontWeight="400">
+                        {formatArtistValue(artwork.like)}
+                      </Text>
+                    </Box>
+                    <Box>
                       <FaComment style={iconStyle} />
-                      {formatArtistValue(artwork.comment)}
-                      {/* 댓{' '}
+                      <Text fontSize={['xs', 'sm']} fontWeight="400">
+                        {formatArtistValue(artwork.comment)}
+                        {/* 댓{' '}
                       {artwork.comment === 0
                         ? '0'
                         : artwork.comment
                             .toString()
                             .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}{' '}
                       &nbsp; */}
-                    </Text>
+                      </Text>
+                    </Box>
                   </Flex>
                 </>
               )}
