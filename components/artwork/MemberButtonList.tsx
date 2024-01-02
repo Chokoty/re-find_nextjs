@@ -53,6 +53,13 @@ const MemberButtonList = ({ members, type, range, selected, setSelected }) => {
       overflowX="scroll" // 세로 스크롤 적용
       gap="0.5rem"
       as="ul"
+      sx={{
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+        '-ms-overflow-style': 'none' /* IE and Edge */,
+        'scrollbar-width': 'none' /* Firefox */,
+      }}
     >
       {range &&
         members.slice(range.start, range.end).map((member, index) => (

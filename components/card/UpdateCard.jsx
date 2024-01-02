@@ -165,38 +165,8 @@ const UpdateCard = ({ update }) => {
           >
             <Badge
               variant="subtle"
-              colorScheme="green"
-              borderRadius="6px"
-              p="0 0.5rem"
-              h="2rem"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Box w="1rem" h="1rem" mr="0.3rem">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </Box>
-              <Text color={color} fontSize={['sm', 'md', 'lg']}>
-                {uploadTimeDiff}
-              </Text>
-            </Badge>
-            <Badge
-              variant="subtle"
               // w="7rem"
-              maxW="8rem"
+              maxW="12rem"
               p="0 0.5rem"
               borderRadius="6px"
               colorScheme="red"
@@ -231,6 +201,36 @@ const UpdateCard = ({ update }) => {
                     }}
                   />
                 </NextLink>
+              </Text>
+            </Badge>
+            <Badge
+              variant="subtle"
+              colorScheme="green"
+              borderRadius="6px"
+              p="0 0.5rem"
+              h="2rem"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Box w="1rem" h="1rem" mr="0.3rem">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </Box>
+              <Text color={color} fontSize={['sm', 'md', 'lg']}>
+                {uploadTimeDiff}
               </Text>
             </Badge>
           </Box>

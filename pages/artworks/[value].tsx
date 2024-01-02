@@ -182,7 +182,7 @@ export default function Album({ value, query }) {
         onMenuItemClick={handleMenuItemClick}
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
-        topOffset={48}
+        topOffset={47}
       />
       {(!artworks || loadingData) && (
         <Box
