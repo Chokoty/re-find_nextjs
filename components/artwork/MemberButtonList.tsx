@@ -49,7 +49,7 @@ const MemberButtonList = ({ members, type, range, selected, setSelected }) => {
       display="flex"
       justifyContent="flex-start"
       alignItems="center"
-      maxW="540px"
+      maxW="620px"
       overflowX="scroll" // 세로 스크롤 적용
       gap="0.5rem"
       as="ul"
