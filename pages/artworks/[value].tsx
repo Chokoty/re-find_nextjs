@@ -173,7 +173,11 @@ export default function Album({ value, query }) {
         )} */}
         <PageTitle topTitle={topTitle} />
         {album?.description && <Text m="0 auto">{album.description}</Text>}
-        <Text>총 {total}개의 팬아트가 있습니다.</Text>
+        {
+          // member는 팬아트 개수 안 보이게
+          gallary && <Text>총 {total}개의 팬아트가 있습니다.</Text>
+        }
+        {/* <Text>총 {total}개의 팬아트가 있습니다.</Text> */}
       </Box>
       <ViewSelectBar
         activeView={activeView}
