@@ -33,7 +33,7 @@ const members: Member[] = [
     value: 'jinburger',
     name: '징버거',
     author: '징버거',
-    query: 'gallery?member=jinburger',
+    query: 'gallery?member=jingburger',
   },
   {
     id: 5,

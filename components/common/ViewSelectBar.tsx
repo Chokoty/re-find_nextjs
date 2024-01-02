@@ -182,6 +182,18 @@ const ViewSelectBar = ({
             <Text p="0.5rem 1rem" fontSize="sm">
               뷰 옵션
             </Text>
+            <Button
+              w="100%"
+              variant="ghost"
+              textAlign="left"
+              onClick={() => {
+                handleShowDeleted();
+              }}
+            >
+              <Text w="100%" textAlign="left">
+                혐잘딱 게시글 {isDeletedVisible ? '가리기' : '보이기'}
+              </Text>
+            </Button>
             {/* <Button
               w="100%"
               variant="ghost"

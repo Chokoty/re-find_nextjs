@@ -35,7 +35,7 @@ export default function Album({ value, query }) {
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   const [sortType, setSortType] = useState('alzaltak'); // 초기 상태 설정
-  const [isDeletedVisible, setIsDeletedVisible] = useState(false);
+  const [isDeletedVisible, setIsDeletedVisible] = useState(true);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
   // react-spinners
@@ -101,7 +101,7 @@ export default function Album({ value, query }) {
       if (error.response?.status === 500) {
         toast({
           title:
-            '현재 작가 프로필 쪽 서버가 점검중 입니다. 잠시 후 다시 시도해주세요.',
+            '현재 갤러리 페이지 기능이 점검중 입니다. 잠시 후 다시 시도해주세요.',
           description: '500 error',
           status: 'error',
           duration: 3000,
