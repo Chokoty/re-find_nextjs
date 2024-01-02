@@ -35,7 +35,7 @@ export default function Album({ value, query }) {
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   const [sortType, setSortType] = useState('alzaltak'); // 초기 상태 설정
-  const [isDeletedVisible, setIsDeletedVisible] = useState(true); // 혐잘딱 가리기
+  const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 / 가리기
   const [isInitialRender, setIsInitialRender] = useState(true);
 
   // react-spinners
