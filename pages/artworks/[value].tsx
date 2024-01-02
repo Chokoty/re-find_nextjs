@@ -210,7 +210,7 @@ export default function Album({ value, query }) {
                   nickname={''}
                   // artworks={artworks}
                   artworks={
-                    isDeletedVisible
+                    isDeletedVisible && gallary !== null
                       ? artworks
                       : artworks.filter((artwork) => artwork.is_hyum === false)
                   }
@@ -222,7 +222,11 @@ export default function Album({ value, query }) {
               )}
               {activeView === 'grid' && (
                 <SimpleView
-                  artworks={artworks}
+                  artworks={
+                    isDeletedVisible && gallary !== null
+                      ? artworks
+                      : artworks.filter((artwork) => artwork.is_hyum === false)
+                  }
                   isDeletedVisible={isDeletedVisible}
                   // handleLoading={handleLoading}
                 />
