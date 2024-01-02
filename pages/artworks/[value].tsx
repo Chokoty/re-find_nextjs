@@ -35,7 +35,7 @@ export default function Album({ value, query }) {
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   const [sortType, setSortType] = useState('alzaltak'); // 초기 상태 설정
-  const [isDeletedVisible, setIsDeletedVisible] = useState(true);
+  const [isDeletedVisible, setIsDeletedVisible] = useState(true); // 혐잘딱 가리기
   const [isInitialRender, setIsInitialRender] = useState(true);
 
   // react-spinners
@@ -208,7 +208,12 @@ export default function Album({ value, query }) {
               {activeView === 'masonry' && (
                 <MasonryView
                   nickname={''}
-                  artworks={artworks}
+                  // artworks={artworks}
+                  artworks={
+                    isDeletedVisible
+                      ? artworks
+                      : artworks.filter((artwork) => artwork.is_hyum === false)
+                  }
                   isDeletedVisible={isDeletedVisible}
                   // loadingImage={loadingImage}
                   handleLoading={handleLoading}
