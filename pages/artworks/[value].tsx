@@ -7,7 +7,7 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import PageTitle from '@/components/common/PageTitle';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
-import SearchLayout from '@/components/layout/search-layout';
+import GallaryLayout from '@/components/layout/gallary-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import gallary from '@/data/gallary';
@@ -149,7 +149,7 @@ export default function Album({ value, query }) {
   };
 
   return (
-    <SearchLayout title="팬아트 갤러리">
+    <GallaryLayout title="팬아트 갤러리">
       <Box
         display="flex"
         flexDirection="column"
@@ -238,7 +238,7 @@ export default function Album({ value, query }) {
           )}
         </>
       )}
-    </SearchLayout>
+    </GallaryLayout>
   );
 }
 

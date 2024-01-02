@@ -97,7 +97,7 @@ export const GallaryHeader = ({ title }) => {
             borderRadius="50%"
             flexShrink={0}
           >
-            <NextLink href="/gallary">
+            <NextLink href="/artworks">
               <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
             </NextLink>
           </Button>
