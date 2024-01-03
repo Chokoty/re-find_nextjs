@@ -2,7 +2,7 @@ interface Member {
   id: number;
   value: string;
   name: string;
-  author?: string;
+  author: string;
   query?: string;
 }
 
@@ -63,7 +63,13 @@ const members: Member[] = [
     author: '비챤',
     query: 'gallery?member=viichan',
   },
-  { id: 9, value: 'gomem', name: '고멤/교멤', query: 'gallery?member=gomem' },
+  {
+    id: 9,
+    value: 'gomem',
+    name: '고멤/교멤',
+    author: '고멤',
+    query: 'gallery?member=gomem',
+  },
   // { id: 10, name: '뢴트게늄', value: 'rt' },
 ];
 

@@ -152,10 +152,14 @@ export default function Album() {
   // filtered
   useEffect(() => {
     resetArtworks();
-    const { author } = members.find((item) => item.value === selected);
+    const m = members.find((item) => item.value === selected);
+    if (!m) {
+      console.error('Selected member not found');
+      return;
+    }
+    const { author } = m;
+    // const { author } = members.find((item) => item.value === selected);
     console.log(author);
-    // const author = members.find((item) => item.value === selected);
-    // console.log(author);
     if (selected === 'isd') {
       setFilteredArtworks(artworks);
     } else {
@@ -196,7 +200,7 @@ export default function Album() {
         <MemberButtonList
           members={members}
           type="sort"
-          range={{ start: 1, end: 8 }}
+          range={{ start: 1, end: 7 }}
           selected={selected}
           setSelected={setSelected}
         />
