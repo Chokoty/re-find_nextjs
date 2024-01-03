@@ -203,6 +203,7 @@ export default function Album() {
           range={{ start: 1, end: 7 }}
           selected={selected}
           setSelected={setSelected}
+          isdPick={true}
         />
         {/* <Text>총 {total}</Text> */}
         <Text>총 {filteredArtworks.length}</Text>

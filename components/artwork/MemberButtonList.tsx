@@ -3,7 +3,14 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-const MemberButtonList = ({ members, type, range, selected, setSelected }) => {
+const MemberButtonList = ({
+  members,
+  type,
+  range,
+  selected,
+  setSelected,
+  isdPick,
+}) => {
   const router = useRouter();
 
   const onClick = (value) => {
@@ -44,13 +51,14 @@ const MemberButtonList = ({ members, type, range, selected, setSelected }) => {
   return (
     <Box
       m="2rem auto"
+      pl="1rem"
       w="94%"
       mb="2rem"
       display="flex"
       // justifyContent="flex-start"
-      justifyContent="center"
+      justifyContent={isdPick === true ? 'center' : 'flex-start'}
       alignItems="center"
-      maxW="620px"
+      maxW="650px"
       overflowX="scroll" // 세로 스크롤 적용
       gap="0.5rem"
       as="ul"

@@ -22,14 +22,25 @@ const Artworks = () => {
   };
 
   return (
-    <Box mt="10px" mb="10px" p="1rem" textAlign="center" w="100%">
+    <Box
+      mt="10px"
+      mb="10px"
+      p="1rem"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      textAlign="center"
+      w="100%"
+    >
       <PageTitle topTitle={topTitle} />
       <MemberButtonList
         members={members}
         type="link"
-        range={null}
+        range={{ start: 0, end: 7 }}
         selected={null}
         setSelected={null}
+        isdPick={false}
       />
       <AlbumGrid gallary={gallary} />
     </Box>
