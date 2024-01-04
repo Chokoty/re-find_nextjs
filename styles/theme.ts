@@ -51,6 +51,7 @@ export const lightMode = {
   bg: '#F5F6FB', // basic #FFFFFF opgg #5383E8 hoyo #F5F6FB
   bg2: '#FFFFFF',
   bg3: '#F1F4F8', // #E1E1E1 opgg #FFFFFF hoyo #F1F4F8
+  bg4: '#1B1D2A',
   color: '#1B1642',
   color2: '#FFFFFF', // '#E8EAEC',
   color3: '#E1E1E1',
@@ -63,6 +64,7 @@ export const darkMode = {
   bg: '#0D0F1D', // basic #0F0F0F opgg #1C1C1F hoyo #0D0F1D
   bg2: '#1B1D2A', // hoyo #1B1D2A
   bg3: '#343746', // #303134 opgg #31313C hoyo ##343746
+  bg4: '#F5F6FB',
   color: '#E8EAEC',
   color2: '#18181B', // '#1B1642',
   color3: '#292929',

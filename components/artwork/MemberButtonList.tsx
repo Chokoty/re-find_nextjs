@@ -1,7 +1,9 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+
+import { darkMode, lightMode } from '@/styles/theme';
 
 const MemberButtonList = ({
   members,
@@ -12,6 +14,9 @@ const MemberButtonList = ({
   isdPick,
 }) => {
   const router = useRouter();
+  const bg4 = useColorModeValue(lightMode.bg4, darkMode.bg4);
+  const color = useColorModeValue(lightMode.color, darkMode.color);
+  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
 
   const onClick = (value) => {
     if (type === 'link') {
@@ -42,6 +47,7 @@ const MemberButtonList = ({
 
   const onClickSort = (value) => {
     if (selected === value) {
+      setSelected('isd');
       return;
     }
     // console.log(value);
@@ -58,7 +64,7 @@ const MemberButtonList = ({
       // justifyContent="flex-start"
       justifyContent={isdPick === true ? 'center' : 'flex-start'}
       alignItems="center"
-      maxW="650px"
+      maxW="680px"
       overflowX="scroll" // 세로 스크롤 적용
       gap="0.5rem"
       as="ul"
@@ -84,7 +90,23 @@ const MemberButtonList = ({
               p="1rem"
               borderRadius="1rem"
               onClick={() => onClick(member.value)}
-              colorScheme={selected === member.value ? 'green' : 'gray'}
+              background={selected === member.value ? member.personalColor : ''}
+              color={selected === member.value ? color2 : ''}
+              _hover={
+                selected === member.value
+                  ? {
+                      background: member.personalColor,
+                      color,
+                    }
+                  : {
+                      background: bg4,
+                      color: color2,
+                    }
+              }
+              // colorScheme={
+              //   selected === member.value ? : 'gray'
+              // }
+              variant="outline"
             >
               <Text fontSize="xl" fontWeight="bold" textAlign="left">
                 {member.name}
