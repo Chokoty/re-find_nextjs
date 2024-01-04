@@ -224,21 +224,7 @@ const Artists = () =>
       ]);
     }, [page, filteredArtists]);
 
-    // 무한 스크롤 이벤트 처리 - inView가 true이고 마지막 페이지가 아닐 때 page를 증가
-    useEffect(() => {
-      // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-      if (inView) console.log('inView: ', inView);
-      if (inView && !isLastPage) {
-        setPage((prev) => prev + 1);
-        console.log('page: ', page);
-      }
-    }, [inView, isLastPage]);
-
-    // useEffect(() => {
-    //   // API 호출 또는 필터링 로직
-    //   console.log(debouncedSearchTerm);
-    // }, [debouncedSearchTerm]);
-
+    // 4 검색어 변경에 따른 filteredArtists 업데이트
     useEffect(() => {
       const filteredArtists2 = searchTerm
         ? artists.filter((artist) =>
@@ -248,6 +234,16 @@ const Artists = () =>
 
       setFilteredArtists(filteredArtists2);
     }, [searchTerm, artists]);
+
+    // 무한 스크롤 이벤트 처리 - inView가 true이고 마지막 페이지가 아닐 때 page를 증가
+    useEffect(() => {
+      // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+      if (inView) console.log('inView: ', inView);
+      if (inView && !isLastPage) {
+        setPage((prev) => prev + 1);
+        console.log('page: ', page);
+      }
+    }, [inView, isLastPage]);
 
     return (
       <Box

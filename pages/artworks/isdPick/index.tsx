@@ -82,10 +82,20 @@ export default function Album() {
 
   const updateVisibleArtworks = useCallback(() => {
     console.log('updateVisibleArtworks');
-    // console.log(page);
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
-    setVisibleArtworks(filteredArtworks.slice(startIndex, endIndex));
+    // const startIndex = (page - 1) * itemsPerPage;
+    // const endIndex = startIndex + itemsPerPage;
+    // setVisibleArtworks(filteredArtworks.slice(startIndex, endIndex));
+    if (isLastPage) return;
+    // 현재 보여지는 아티스트의 수가 전체 필터링된 아티스트 수보다 많거나 같으면 마지막 페이지로 간주
+    if (visibleArtworks.length >= filteredArtworks.length) {
+      setIsLastPage(true);
+    } else {
+      setIsLastPage(false);
+    }
+    setVisibleArtworks((prev) => [
+      ...prev,
+      ...filteredArtworks.slice(prev.length, page * itemsPerPage),
+    ]);
   }, [page, filteredArtworks]);
 
   const getFanartAlbum = useCallback(async () => {
@@ -121,6 +131,7 @@ export default function Album() {
 
   useEffect(() => {
     resetArtworks();
+    // ??
     // sort type에 따라 artworks 정렬
   }, [sortType]);
 
@@ -151,27 +162,50 @@ export default function Album() {
 
   // filtered
   useEffect(() => {
-    resetArtworks();
+    // resetArtworks();
 
-    if (selected === 'isd') {
-      setFilteredArtworks(artworks);
-    } else {
-      const m = members.find((item) => item.value === selected);
-      if (!m) {
-        console.error('Selected member not found');
-        return;
-      }
-      const { author } = m;
-      // const { author } = members.find((item) => item.value === selected);
-      console.log(author);
+    // if (selected === 'isd') {
+    //   setFilteredArtworks(artworks);
+    //   setTotal(artworks.length);
+    // } else {
+    //   const m = members.find((item) => item.value === selected);
+    //   if (!m) {
+    //     console.error('Selected member not found');
+    //     return;
+    //   }
+    //   const { author } = m;
+    //   // const { author } = members.find((item) => item.value === selected);
+    //   console.log(author);
 
-      // artworks에서 author가 name인 것만 필터링
-      const filtered = artworks.filter((item) => item.author === author);
-      // console.log(filtered.length);
-      // console.log(filtered);
-      setFilteredArtworks(filtered);
-    }
-  }, [selected, artworks]);
+    //   // artworks에서 author가 name인 것만 필터링
+    //   const filtered = artworks.filter((item) => item.author === author);
+    //   // console.log(filtered.length);
+    //   // console.log(filtered);
+    //   setFilteredArtworks(filtered);
+    //   setTotal(filtered.length);
+    // }
+
+    const m = members.find((item) => item.value === selected);
+    const { author } = m;
+
+    const filterd =
+      selected === 'isd'
+        ? artworks
+        : artworks.filter((item) => item.author === author);
+    console.log(filterd.length);
+    console.log(filterd);
+
+    setFilteredArtworks(filterd);
+    setTotal(filterd.length);
+
+    // const filteredArtists2 = searchTerm
+    //   ? artists.filter((artist) =>
+    //       artist.name.toLowerCase().includes(searchTerm)
+    //     )
+    //   : artists;
+
+    // setFilteredArtists(filteredArtists2);
+  }, [artworks, selected]);
 
   // 무한 스크롤
   useEffect(() => {
@@ -180,10 +214,12 @@ export default function Album() {
     if (inView && !isLastPage && !loadingData) {
       // !loadingData: 작가페이지 카운트 버그 수정
       // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
-      setPage((prevState) => prevState + 1);
+      setPage((prev) => prev + 1);
+      console.log('page: ', page);
     }
   }, [inView, isLastPage]);
 
+  // 1회 실행
   useEffect(() => {
     console.log('album: ');
     getFanartAlbum();
