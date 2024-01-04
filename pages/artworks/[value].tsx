@@ -1,4 +1,4 @@
-import { Box, Text, useToast } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -12,6 +12,7 @@ import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import gallary from '@/data/gallary';
 import members from '@/data/members';
+import { darkMode, lightMode } from '@/styles/theme';
 
 export default function Album({ value, query }) {
   const toast = useToast();
@@ -41,6 +42,8 @@ export default function Album({ value, query }) {
   // react-spinners
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
+
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   const resetArtworks = useCallback(() => {
     setArtworks([]);
@@ -155,7 +158,12 @@ export default function Album({ value, query }) {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        m=" 3rem"
+        // m=" 3rem"
+        m="1.5rem 1rem"
+        mt="1rem"
+        p="1rem"
+        background={bg2}
+        borderRadius="1rem"
       >
         {/* {router.query?.subTitle ? (
             <Text  m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'>{router.query.subTitle}</Text>

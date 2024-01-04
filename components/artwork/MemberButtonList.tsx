@@ -57,12 +57,13 @@ const MemberButtonList = ({
   return (
     <Box
       m="2rem auto"
-      pl={['17rem', '10rem', '1rem']}
+      // pl={['0.5rem', '1rem', '2rem']}
+      // pl="0.5rem"
       w="94%"
       mb="2rem"
       display="flex"
-      // justifyContent="flex-start"
-      justifyContent={isdPick === true ? 'center' : 'flex-start'}
+      justifyContent="flex-start"
+      // justifyContent={isdPick === true ? 'center' : 'flex-start'}
       alignItems="center"
       maxW="680px"
       overflowX="scroll" // 세로 스크롤 적용
@@ -76,6 +77,19 @@ const MemberButtonList = ({
         'scrollbar-width': 'none' /* Firefox */,
       }}
     >
+      {range &&
+        members
+          .slice(0, range.start)
+          .map((member, index) => (
+            <Box
+              w="80px"
+              as="li"
+              key={index}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            ></Box>
+          ))}
       {range &&
         members.slice(range.start, range.end).map((member, index) => (
           <Box

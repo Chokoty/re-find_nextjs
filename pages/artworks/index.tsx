@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
 import AlbumGrid from '@/components/artwork/albumGrid';
@@ -7,9 +7,12 @@ import PageTitle from '@/components/common/PageTitle';
 import gallary from '@/data/gallary';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
+import { darkMode, lightMode } from '@/styles/theme';
 
 const Artworks = () => {
   const setIsOpen = useStore((state) => state.setIsOpen);
+
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   useEffect(() => {
     setIsOpen(false);
@@ -23,8 +26,6 @@ const Artworks = () => {
 
   return (
     <Box
-      mt="10px"
-      mb="10px"
       p="1rem"
       display="flex"
       flexDirection="column"
@@ -33,15 +34,24 @@ const Artworks = () => {
       textAlign="center"
       w="100%"
     >
-      <PageTitle topTitle={topTitle} />
-      <MemberButtonList
-        members={members}
-        type="link"
-        range={{ start: 0, end: 7 }}
-        selected={null}
-        setSelected={null}
-        isdPick={false}
-      />
+      <Box
+        // m="1.5rem 1rem"
+        // mt="1rem"
+        p="1rem"
+        background={bg2}
+        borderRadius="1rem"
+        w="100%"
+      >
+        <PageTitle topTitle={topTitle} />
+        <MemberButtonList
+          members={members}
+          type="link"
+          range={{ start: 0, end: 7 }}
+          selected={null}
+          setSelected={null}
+          isdPick={false}
+        />
+      </Box>
       <AlbumGrid gallary={gallary} />
     </Box>
   );
