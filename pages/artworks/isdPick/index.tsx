@@ -95,7 +95,7 @@ export default function Album() {
   // 뷰 선택하기
   const handleViewChange = useCallback((view: string) => {
     setActiveView(view);
-    console.log(view);
+    // console.log(view);
   }, []);
 
   // 삭제된 게시글 보이기
@@ -116,7 +116,7 @@ export default function Album() {
     try {
       const url = `https://re-find.reruru.com/isd_notice`;
       const response = await axios.get(url).then((res) => res.data);
-      console.log(response);
+      // console.log(response);
       setTotal(response?.total);
       setArtworks([...response.list]);
     } catch (error) {
@@ -145,9 +145,9 @@ export default function Album() {
   //   // sort type에 따라 artworks 정렬
   // }, [sortType]);
 
-  useEffect(() => {
-    console.log(visibleArtworks);
-  }, [visibleArtworks]);
+  // useEffect(() => {
+  //   console.log(visibleArtworks);
+  // }, [visibleArtworks]);
 
   // 페이지 변경에 따른 visibleArtists 업데이트
   useEffect(() => {
@@ -175,7 +175,7 @@ export default function Album() {
       selected === 'isd'
         ? artworks
         : artworks.filter((item) => item.author === m.author);
-    console.log(updatedArtworks);
+    // console.log(updatedArtworks);
     // 정렬
     let sortedArtworks = sortArtworks(updatedArtworks, sortType);
     if (sortType === 'latest') {
@@ -183,7 +183,7 @@ export default function Album() {
     } else if (sortType === 'oldest') {
       sortedArtworks = updatedArtworks.reverse();
     }
-    console.log(sortedArtworks);
+    // console.log(sortedArtworks);
 
     setFilteredArtworks(sortedArtworks);
     setTotal(sortedArtworks.length);
@@ -206,7 +206,7 @@ export default function Album() {
 
   // 1회 실행
   useEffect(() => {
-    console.log('album: ');
+    console.log('loading...');
     if (artworks.length === 0) {
       console.log('getFanartAlbum');
       getFanartAlbum();
