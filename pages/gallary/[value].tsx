@@ -157,8 +157,8 @@ export default function Album({ value, query }) {
     <Box>
       <Head>
         <title>{`${
-          album?.subTitle
-        } || ${`${member?.name}팬아트`} - RE:FIND`}</title>
+          album?.subTitle ? album.subTitle : `${member?.name} 팬아트`
+        } - RE:FIND`}</title>
         <meta
           property="og:title"
           content={`팬아트 - Gallary | RE:FIND `}
@@ -233,16 +233,6 @@ export default function Album({ value, query }) {
           topOffset={47}
           isdPick={false}
         />
-        {(!artworks || loadingData) && (
-          <Box
-            w="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <HashLoader color="#01BFA2" />
-          </Box>
-        )}
         {artworks && (
           <>
             {artworks?.length !== 0 && (
@@ -286,6 +276,16 @@ export default function Album({ value, query }) {
               </Box>
             )}
           </>
+        )}
+        {(!artworks || loadingData) && (
+          <Box
+            w="100%"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <HashLoader color="#01BFA2" />
+          </Box>
         )}
       </GallaryLayout>
     </Box>

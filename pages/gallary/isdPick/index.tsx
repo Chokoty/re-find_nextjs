@@ -278,16 +278,6 @@ export default function Album() {
           margin="0 auto"
           mb="2rem"
         >
-          {(!artworks || loadingData) && (
-            <Box
-              w="100%"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <HashLoader color="#01BFA2" />
-            </Box>
-          )}
           {visibleArtworks && (
             <>
               {visibleArtworks?.length !== 0 && (
@@ -318,6 +308,16 @@ export default function Album() {
                 </Box>
               )}
             </>
+          )}
+          {(!artworks || loadingData) && (
+            <Box
+              w="100%"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <HashLoader color="#01BFA2" />
+            </Box>
           )}
         </Box>
       </SearchLayout>
