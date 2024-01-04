@@ -68,18 +68,18 @@ const TabBarComponent = ({ tab, setTab }) => {
             />
           </Link>
         </NextLink>
-        <NextLink href="/artworks" passHref>
+        <NextLink href="/gallary" passHref>
           <Link
             style={{
-              color: getButtonColor('artworks'),
+              color: getButtonColor('gallary'),
               width: '2.5rem',
               height: '2.5rem',
             }}
-            onClick={() => setTab('artworks')}
+            onClick={() => setTab('gallary')}
           >
             <FaImage
               style={{
-                color: getButtonColor('artworks'),
+                color: getButtonColor('gallary'),
                 width: '1.8rem',
                 height: '1.8rem',
               }}
@@ -102,54 +102,8 @@ const TabBarComponent = ({ tab, setTab }) => {
                 height: '2rem',
               }}
             />
-            {/* <CgMoreO
-              style={{
-                color: getButtonColor('more'),
-                width: '2rem',
-                height: '2rem',
-              }}
-            /> */}
           </Link>
         </NextLink>
-        {/* <Button
-          variant="ghost"
-          _hover={{ background: 'none' }}
-          onClick={() => setTab('search')}
-        >
-          <FaSearch
-            style={{
-              color: getButtonColor('search'),
-              width: '1.5rem',
-              height: '1.5rem',
-            }}
-          />
-        </Button>
-        <Button
-          variant="ghost"
-          _hover={{ background: 'none' }}
-          onClick={() => setTab('artworks')}
-        >
-          <FaImage
-            style={{
-              color: getButtonColor('artworks'),
-              width: '2rem',
-              height: '2rem',
-            }}
-          />
-        </Button>
-        <Button
-          variant="ghost"
-          _hover={{ background: 'none' }}
-          onClick={() => setTab('profile')}
-        >
-          <IoPersonCircle
-            style={{
-              color: getButtonColor('profile'),
-              width: '2rem',
-              height: '2rem',
-            }}
-          />
-        </Button> */}
       </Flex>
     </Box>
   );

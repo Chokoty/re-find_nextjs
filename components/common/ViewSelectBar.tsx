@@ -36,7 +36,6 @@ interface ViewSelectBarProps {
 }
 
 const ViewSelectBar = ({
-  // artworks,
   activeView,
   onViewChange,
   selectedMenu,

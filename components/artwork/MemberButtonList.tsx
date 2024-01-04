@@ -30,18 +30,10 @@ const MemberButtonList = ({
 
     router.push(
       {
-        pathname: `/artworks/${value}`,
+        pathname: `/gallary/${value}`,
         query: { subTitle: value },
       },
-      `/artworks/${value}`
-
-      // {
-      //   pathname: `/artworks/${id}`,
-      //   if id === 0 -> sub
-      //   pathname: `/artworks/${id === 0 ? sub : id}`,
-      //   query: { subTitle },
-      // },
-      // `/artworks/${value}`
+      `/gallary/${value}`
     );
   };
 

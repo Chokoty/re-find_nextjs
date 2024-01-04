@@ -1,6 +1,7 @@
 import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { filter } from 'lodash';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -8,6 +9,7 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import MemberButtonList from '@/components/artwork/MemberButtonList';
 import PageTitle from '@/components/common/PageTitle';
+import ShareLinkButton from '@/components/common/ShareLinkButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import SearchLayout from '@/components/layout/search-layout';
 import MasonryView2 from '@/components/views/MasonryView2';
@@ -214,89 +216,111 @@ export default function Album() {
   }, [artworks]);
 
   return (
-    <SearchLayout title="팬아트 갤러리">
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        m="1.5rem 1rem"
-        mt="1rem"
-        p="1rem"
-        background={bg2}
-        borderRadius="1rem"
-      >
-        <PageTitle topTitle={album} />
-        <MemberButtonList
-          members={members}
-          type="sort"
-          range={{ start: 1, end: 7 }}
-          selected={selected}
-          setSelected={setSelected}
+    <Box>
+      <Head>
+        <title>{`이세돌픽 팬아트 - RE:FIND`}</title>
+        <meta
+          property="og:title"
+          content={`팬아트 - Gallary | RE:FIND `}
+          // content={`${profile?.author_nickname}- Profile | RE:FIND `}
+        />
+        <meta
+          property="og:description"
+          content="리파인드 - 왁타버스 이세계아이돌 팬아트 출처 찾기"
+        />
+        <meta property="og:type" content="website" />
+        {/* <meta property="og:image" content={profile?.author_prof_url} /> */}
+        <meta
+          property="og:url"
+          content={`https://re-find.xyz/gallary/isdPick`}
+        />
+      </Head>
+      <SearchLayout title="팬아트 갤러리">
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          m="1.5rem 1rem"
+          mt="1rem"
+          p="1rem"
+          background={bg2}
+          borderRadius="1rem"
+        >
+          <PageTitle topTitle={album} />
+          <ShareLinkButton />
+
+          <MemberButtonList
+            members={members}
+            type="sort"
+            range={{ start: 1, end: 7 }}
+            selected={selected}
+            setSelected={setSelected}
+            isdPick={true}
+          />
+          {/* <Text>총 {total}</Text> */}
+          <Text>총 {filteredArtworks.length}</Text>
+        </Box>
+        <ViewSelectBar
+          activeView={activeView}
+          onViewChange={handleViewChange}
+          selectedMenu={sortType}
+          onMenuItemClick={handleMenuItemClick}
+          isDeletedVisible={isDeletedVisible}
+          handleShowDeleted={handleShowDeleted}
+          topOffset={48}
           isdPick={true}
         />
-        {/* <Text>총 {total}</Text> */}
-        <Text>총 {filteredArtworks.length}</Text>
-      </Box>
-      <ViewSelectBar
-        activeView={activeView}
-        onViewChange={handleViewChange}
-        selectedMenu={sortType}
-        onMenuItemClick={handleMenuItemClick}
-        isDeletedVisible={isDeletedVisible}
-        handleShowDeleted={handleShowDeleted}
-        topOffset={48}
-        isdPick={true}
-      />
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        margin="0 auto"
-        mb="2rem"
-      >
-        {(!artworks || loadingData) && (
-          <Box
-            w="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <HashLoader color="#01BFA2" />
-          </Box>
-        )}
-        {visibleArtworks && (
-          <>
-            {visibleArtworks?.length !== 0 && (
-              <Box
-                w="100%"
-                overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-              >
-                {activeView === 'masonry' && (
-                  <MasonryView2
-                    nickname={''}
-                    artworks={visibleArtworks}
-                    isDeletedVisible={isDeletedVisible}
-                    // loadingImage={loadingImage}
-                    handleLoading={handleLoading}
-                    isGallary={true}
-                  />
-                )}
-                {activeView === 'grid' && (
-                  <SimpleView
-                    artworks={visibleArtworks}
-                    isDeletedVisible={isDeletedVisible}
-                    // handleLoading={handleLoading}
-                  />
-                )}
-                {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
-                {/* Observer를 위한 div */}
-                {<Box ref={ref} w="100%" h="5rem"></Box>}
-              </Box>
-            )}
-          </>
-        )}
-      </Box>
-    </SearchLayout>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          margin="0 auto"
+          mb="2rem"
+        >
+          {(!artworks || loadingData) && (
+            <Box
+              w="100%"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <HashLoader color="#01BFA2" />
+            </Box>
+          )}
+          {visibleArtworks && (
+            <>
+              {visibleArtworks?.length !== 0 && (
+                <Box
+                  w="100%"
+                  overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+                >
+                  {activeView === 'masonry' && (
+                    <MasonryView2
+                      nickname={''}
+                      artworks={visibleArtworks}
+                      isDeletedVisible={isDeletedVisible}
+                      // loadingImage={loadingImage}
+                      handleLoading={handleLoading}
+                      isGallary={true}
+                    />
+                  )}
+                  {activeView === 'grid' && (
+                    <SimpleView
+                      artworks={visibleArtworks}
+                      isDeletedVisible={isDeletedVisible}
+                      // handleLoading={handleLoading}
+                    />
+                  )}
+                  {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+                  {/* Observer를 위한 div */}
+                  {<Box ref={ref} w="100%" h="5rem"></Box>}
+                </Box>
+              )}
+            </>
+          )}
+        </Box>
+      </SearchLayout>
+    </Box>
   );
 }

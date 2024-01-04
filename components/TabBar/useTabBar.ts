@@ -10,8 +10,8 @@ const useTabBar = () => {
       setTab('home');
     } else if (router.pathname.startsWith('/search')) {
       setTab('search');
-    } else if (router.pathname.startsWith('/artworks')) {
-      setTab('artworks');
+    } else if (router.pathname.startsWith('/gallary')) {
+      setTab('gallary');
     } else if (router.pathname.startsWith('/more')) {
       setTab('more');
     }

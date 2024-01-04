@@ -1,11 +1,13 @@
 import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
 import axios from 'axios';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import PageTitle from '@/components/common/PageTitle';
+import ShareLinkButton from '@/components/common/ShareLinkButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import GallaryLayout from '@/components/layout/gallary-layout';
 import MasonryView from '@/components/views/MasonryView';
@@ -152,25 +154,46 @@ export default function Album({ value, query }) {
   };
 
   return (
-    <GallaryLayout title="팬아트 갤러리">
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        // m=" 3rem"
-        m="1.5rem 1rem"
-        mt="1rem"
-        p="1rem"
-        background={bg2}
-        borderRadius="1rem"
-      >
-        {/* {router.query?.subTitle ? (
+    <Box>
+      <Head>
+        <title>{`${
+          album?.subTitle
+        } || ${`${member?.name}팬아트`} - RE:FIND`}</title>
+        <meta
+          property="og:title"
+          content={`팬아트 - Gallary | RE:FIND `}
+          // content={`${profile?.author_nickname}- Profile | RE:FIND `}
+        />
+        <meta
+          property="og:description"
+          content="리파인드 - 왁타버스 이세계아이돌 팬아트 출처 찾기"
+        />
+        <meta property="og:type" content="website" />
+        {/* <meta property="og:image" content={profile?.author_prof_url} /> */}
+        <meta
+          property="og:url"
+          content={`https://re-find.xyz/gallary/${value}`}
+        />
+      </Head>
+      <GallaryLayout title="팬아트 갤러리">
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          // m=" 3rem"
+          m="1.5rem 1rem"
+          mt="1rem"
+          p="1rem"
+          background={bg2}
+          borderRadius="1rem"
+        >
+          {/* {router.query?.subTitle ? (
             <Text  m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'>{router.query.subTitle}</Text>
           ) : (
             album?.subTitle
           )} */}
-        {/* {member?.name ? (
+          {/* {member?.name ? (
           <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
             {member.name} 팬아트
           </Text>
@@ -179,75 +202,93 @@ export default function Album({ value, query }) {
             {album?.subTitle}
           </Text>
         )} */}
-        <PageTitle topTitle={topTitle} />
-        {album?.description && <Text m="0 auto">{album.description}</Text>}
-        {
-          // member는 팬아트 개수 안 보이게
-          album && <Text>총 {total}개의 팬아트가 있습니다.</Text>
-        }
-        {/* <Text>총 {total}개의 팬아트가 있습니다.</Text> */}
-      </Box>
-      <ViewSelectBar
-        activeView={activeView}
-        onViewChange={handleViewChange}
-        selectedMenu={sortType}
-        onMenuItemClick={handleMenuItemClick}
-        isDeletedVisible={isDeletedVisible}
-        handleShowDeleted={handleShowDeleted}
-        topOffset={47}
-        isdPick={false}
-      />
-      {(!artworks || loadingData) && (
-        <Box
-          w="100%"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <HashLoader color="#01BFA2" />
-        </Box>
-      )}
-      {artworks && (
-        <>
-          {artworks?.length !== 0 && (
-            <Box
-              w="100%"
-              overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+          <PageTitle topTitle={topTitle} />
+          {album?.description && <Text m="0 auto">{album.description}</Text>}
+          {
+            // member는 팬아트 개수 안 보이게
+            album && <Text>총 {total}개의 팬아트가 있습니다.</Text>
+          }
+          {/* <Text>총 {total}개의 팬아트가 있습니다.</Text> */}
+          {/* <Tooltip label="프로필 공유">
+            <Button
+              w="3rem"
+              h="3rem"
+              variant="ghost"
+              borderRadius="full"
+              p="0"
+              onClick={handleCopyLink}
             >
-              {activeView === 'masonry' && (
-                <MasonryView
-                  nickname={''}
-                  // artworks={artworks}
-                  artworks={
-                    isDeletedVisible && gallary !== null
-                      ? artworks
-                      : artworks.filter((artwork) => artwork.is_hyum === false)
-                  }
-                  isDeletedVisible={isDeletedVisible}
-                  // loadingImage={loadingImage}
-                  handleLoading={handleLoading}
-                  isGallary={true}
-                />
-              )}
-              {activeView === 'grid' && (
-                <SimpleView
-                  artworks={
-                    isDeletedVisible && gallary !== null
-                      ? artworks
-                      : artworks.filter((artwork) => artwork.is_hyum === false)
-                  }
-                  isDeletedVisible={isDeletedVisible}
-                  // handleLoading={handleLoading}
-                />
-              )}
-              {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
-              {/* Observer를 위한 div */}
-              {<Box ref={ref} w="100%" h="5rem"></Box>}
-            </Box>
-          )}
-        </>
-      )}
-    </GallaryLayout>
+              <ImLink />
+            </Button>
+          </Tooltip> */}
+          <ShareLinkButton />
+        </Box>
+        <ViewSelectBar
+          activeView={activeView}
+          onViewChange={handleViewChange}
+          selectedMenu={sortType}
+          onMenuItemClick={handleMenuItemClick}
+          isDeletedVisible={isDeletedVisible}
+          handleShowDeleted={handleShowDeleted}
+          topOffset={47}
+          isdPick={false}
+        />
+        {(!artworks || loadingData) && (
+          <Box
+            w="100%"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <HashLoader color="#01BFA2" />
+          </Box>
+        )}
+        {artworks && (
+          <>
+            {artworks?.length !== 0 && (
+              <Box
+                w="100%"
+                overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+              >
+                {activeView === 'masonry' && (
+                  <MasonryView
+                    nickname={''}
+                    // artworks={artworks}
+                    artworks={
+                      isDeletedVisible && gallary !== null
+                        ? artworks
+                        : artworks.filter(
+                            (artwork) => artwork.is_hyum === false
+                          )
+                    }
+                    isDeletedVisible={isDeletedVisible}
+                    // loadingImage={loadingImage}
+                    handleLoading={handleLoading}
+                    isGallary={true}
+                  />
+                )}
+                {activeView === 'grid' && (
+                  <SimpleView
+                    artworks={
+                      isDeletedVisible && gallary !== null
+                        ? artworks
+                        : artworks.filter(
+                            (artwork) => artwork.is_hyum === false
+                          )
+                    }
+                    isDeletedVisible={isDeletedVisible}
+                    // handleLoading={handleLoading}
+                  />
+                )}
+                {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+                {/* Observer를 위한 div */}
+                {<Box ref={ref} w="100%" h="5rem"></Box>}
+              </Box>
+            )}
+          </>
+        )}
+      </GallaryLayout>
+    </Box>
   );
 }
 

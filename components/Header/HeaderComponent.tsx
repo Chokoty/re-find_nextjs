@@ -115,12 +115,12 @@ const HeaderComponent = ({
               w="60px"
               // m="0 1rem"
             >
-              <NextLink href="/artworks" passHref>
+              <NextLink href="/gallary" passHref>
                 <Text
                   w="3rem"
                   fontWeight="700"
                   textAlign="center"
-                  color={isCurrentPath('/artworks') ? color6 : color5}
+                  color={isCurrentPath('/gallary') ? color6 : color5}
                   _hover={{
                     color: color6,
                   }}
@@ -128,7 +128,7 @@ const HeaderComponent = ({
                   갤러리
                 </Text>
               </NextLink>
-              {isCurrentPath('/artworks') && (
+              {isCurrentPath('/gallary') && (
                 <Box
                   w="1rem"
                   h="0.25rem"

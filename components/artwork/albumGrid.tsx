@@ -20,14 +20,10 @@ const AlbumGrid = ({ gallary }) => {
 
     router.push(
       {
-        // pathname: `/artworks/${id}`,
-        // if id === 0 -> sub
-        // pathname: `/artworks/${id === 0 ? route : id}`,
-        pathname: `/artworks/${value}`,
+        pathname: `/gallary/${value}`,
         query: { subTitle },
       },
-      // `/artworks/${id === 0 ? route : id}`
-      `/artworks/${value}`
+      `/gallary/${value}`
     );
   };
 
