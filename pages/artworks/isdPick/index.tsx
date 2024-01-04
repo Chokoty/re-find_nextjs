@@ -48,11 +48,11 @@ export default function Album() {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
-  const resetArtworks = useCallback(() => {
-    setVisibleArtworks([]);
-    setPage(1);
-    setIsLastPage(false);
-  }, []);
+  // const resetArtworks = useCallback(() => {
+  //   setVisibleArtworks([]);
+  //   setPage(1);
+  //   setIsLastPage(false);
+  // }, []);
 
   // 정렬 로직
   const sortArtworks = (_artworks, _sortType) => {
@@ -76,9 +76,11 @@ export default function Album() {
       // console.log(menuText);
       if (menuText === sortType) return;
       setSortType(menuText);
-      resetArtworks();
+      // resetArtworks();
+      setPage(1);
+      setIsLastPage(false);
     },
-    [sortType, resetArtworks] // useCallback 문제였음...
+    [sortType] // useCallback 문제였음...
   );
 
   // 뷰 선택하기
@@ -128,11 +130,11 @@ export default function Album() {
     }
   }, []);
 
-  useEffect(() => {
-    resetArtworks();
-    // ??
-    // sort type에 따라 artworks 정렬
-  }, [sortType]);
+  // useEffect(() => {
+  //   resetArtworks();
+  //   // ??
+  //   // sort type에 따라 artworks 정렬
+  // }, [sortType]);
 
   useEffect(() => {
     console.log(visibleArtworks);
@@ -164,14 +166,14 @@ export default function Album() {
       selected === 'isd'
         ? artworks
         : artworks.filter((item) => item.author === m.author);
-    // console.log(filterd.length);
-    // console.log(filterd);
 
     // 정렬
     updatedArtworks = sortArtworks(updatedArtworks, sortType);
 
     setFilteredArtworks(updatedArtworks);
     setTotal(updatedArtworks.length);
+    setPage(1);
+    setIsLastPage(false);
   }, [artworks, selected, sortType]);
 
   // 무한 스크롤
@@ -250,7 +252,7 @@ export default function Album() {
                 w="100%"
                 overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
               >
-                {activeView === 'masonryView' && (
+                {activeView === 'masonry' && (
                   <MasonryView
                     nickname={''}
                     artworks={visibleArtworks}
@@ -260,15 +262,16 @@ export default function Album() {
                     isGallary={true}
                   />
                 )}
-                {activeView === 'gridView' && (
+                {activeView === 'grid' && (
                   <SimpleView
                     artworks={visibleArtworks}
                     isDeletedVisible={isDeletedVisible}
                     // handleLoading={handleLoading}
                   />
                 )}
+                {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
                 {/* Observer를 위한 div */}
-                {<Box ref={ref} w="100%" h="2rem"></Box>}
+                {<Box ref={ref} w="100%" h="5rem"></Box>}
               </Box>
             )}
           </>
