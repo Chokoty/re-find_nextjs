@@ -270,6 +270,7 @@ const Artist = ({ artist_name2info }) => {
               isDeletedVisible={isDeletedVisible}
               handleShowDeleted={handleShowDeleted}
               topOffset={0}
+              isdPick={false}
             />
             {!artworks && (
               <Box

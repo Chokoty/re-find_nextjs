@@ -25,13 +25,13 @@ export const sortTypes: Sort[] = [
 ];
 
 export const menuItems = [
-  { id: 'alzaltak', label: '알잘딱순' },
-  { id: 'random', label: '랜덤순' },
-  { id: 'latest', label: '최신순' },
-  { id: 'oldest', label: '업로드순' },
-  { id: 'view', label: '조회수순' },
-  { id: 'like', label: '좋아요순' },
-  { id: 'comment', label: '댓글순' },
+  { id: 'alzaltak', label: '알잘딱순', isdPick: false },
+  { id: 'random', label: '랜덤순', isdPick: false },
+  { id: 'latest', label: '최신순', isdPick: true },
+  { id: 'oldest', label: '업로드순', isdPick: true },
+  { id: 'view', label: '조회수순', isdPick: true },
+  { id: 'like', label: '좋아요순', isdPick: true },
+  { id: 'comment', label: '댓글순', isdPick: true },
 ];
 
 export const sampleData = {

@@ -44,6 +44,7 @@ const ViewSelectBar = ({
   isDeletedVisible,
   handleShowDeleted,
   topOffset,
+  isdPick,
 }) => {
   const isMobile = useResponsive();
 
@@ -131,11 +132,26 @@ const ViewSelectBar = ({
             {!isSmallerThan370 && label}
           </MenuButton>
           <MenuList>
-            {menuItems.map((item) => (
-              <MenuItem key={item.id} onClick={() => onMenuItemClick(item.id)}>
-                {item.label}
-              </MenuItem>
-            ))}
+            {isdPick === true &&
+              menuItems
+                .filter((item) => item.isdPick === true)
+                .map((item) => (
+                  <MenuItem
+                    key={item.id}
+                    onClick={() => onMenuItemClick(item.id)}
+                  >
+                    {item.label}
+                  </MenuItem>
+                ))}
+            {isdPick === false &&
+              menuItems.map((item) => (
+                <MenuItem
+                  key={item.id}
+                  onClick={() => onMenuItemClick(item.id)}
+                >
+                  {item.label}
+                </MenuItem>
+              ))}
           </MenuList>
         </Menu>
       </Box>

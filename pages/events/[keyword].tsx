@@ -157,6 +157,7 @@ const Artist = () =>
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
           topOffset={0}
+          isdPick={false}
         />
         <Box
           display="flex"

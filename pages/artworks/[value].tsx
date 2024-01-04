@@ -187,6 +187,7 @@ export default function Album({ value, query }) {
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
         topOffset={47}
+        isdPick={false}
       />
       {(!artworks || loadingData) && (
         <Box
