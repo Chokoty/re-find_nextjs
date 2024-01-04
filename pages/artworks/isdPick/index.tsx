@@ -60,6 +60,12 @@ export default function Album() {
   // 정렬 로직
   const sortArtworks = (_artworks, _sortType) => {
     return _artworks.sort((a, b) => {
+      if (_sortType === 'latest') {
+        // 내림차순
+      }
+      if (_sortType === 'oldest') {
+        // 오름차순
+      }
       if (_sortType === 'view') {
         return b.view - a.view;
       }
@@ -171,7 +177,12 @@ export default function Album() {
         : artworks.filter((item) => item.author === m.author);
     console.log(updatedArtworks);
     // 정렬
-    const sortedArtworks = sortArtworks(updatedArtworks, sortType);
+    let sortedArtworks = sortArtworks(updatedArtworks, sortType);
+    if (sortType === 'latest') {
+      sortedArtworks = updatedArtworks;
+    } else if (sortType === 'oldest') {
+      sortedArtworks = updatedArtworks.reverse();
+    }
     console.log(sortedArtworks);
 
     setFilteredArtworks(sortedArtworks);
