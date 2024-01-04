@@ -57,7 +57,7 @@ const MemberButtonList = ({
   return (
     <Box
       m="2rem auto"
-      pl="1rem"
+      pl={['17rem', '10rem', '1rem']}
       w="94%"
       mb="2rem"
       display="flex"

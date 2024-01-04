@@ -68,7 +68,7 @@ const ViewSelectBar = ({
 
   const { onClose } = useDisclosure();
 
-  const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg);
+  const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   const boxShadowLight =

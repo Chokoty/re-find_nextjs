@@ -1,4 +1,4 @@
-import { Box, Text, useToast } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
 import axios from 'axios';
 import { filter } from 'lodash';
 import { useRouter } from 'next/router';
@@ -10,11 +10,12 @@ import MemberButtonList from '@/components/artwork/MemberButtonList';
 import PageTitle from '@/components/common/PageTitle';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import SearchLayout from '@/components/layout/search-layout';
-import MasonryView from '@/components/views/MasonryView';
+import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
 import gallary from '@/data/gallary';
 import members from '@/data/members';
 import useIsdPickStore from '@/store/isdPickStore';
+import { darkMode, lightMode } from '@/styles/theme';
 
 export default function Album() {
   const itemsPerPage = 30;
@@ -53,6 +54,8 @@ export default function Album() {
   //   setPage(1);
   //   setIsLastPage(false);
   // }, []);
+
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   // 정렬 로직
   const sortArtworks = (_artworks, _sortType) => {
@@ -204,7 +207,11 @@ export default function Album() {
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
-        m=" 3rem"
+        m="1.5rem 1rem"
+        mt="1rem"
+        p="1rem"
+        background={bg2}
+        borderRadius="1rem"
       >
         <PageTitle topTitle={album} />
         <MemberButtonList
@@ -253,7 +260,7 @@ export default function Album() {
                 overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
               >
                 {activeView === 'masonry' && (
-                  <MasonryView
+                  <MasonryView2
                     nickname={''}
                     artworks={visibleArtworks}
                     isDeletedVisible={isDeletedVisible}
