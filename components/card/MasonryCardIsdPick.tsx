@@ -278,7 +278,7 @@ const MasonryCardIsdPick = ({
                   w="40%"
                   h={['2.5rem', '3rem']}
                 >
-                  <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
+                  <Text fontSize={['xs', 'md']}>원본 게시글</Text> &nbsp;
                   <HiOutlineExternalLink />
                 </Button>
               </Flex>

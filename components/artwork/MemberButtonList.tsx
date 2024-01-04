@@ -82,7 +82,7 @@ const MemberButtonList = ({
           .slice(0, range.start)
           .map((member, index) => (
             <Box
-              w="80px"
+              w="60px"
               as="li"
               key={index}
               display="flex"

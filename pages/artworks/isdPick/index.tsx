@@ -169,12 +169,14 @@ export default function Album() {
       selected === 'isd'
         ? artworks
         : artworks.filter((item) => item.author === m.author);
-
+    console.log(updatedArtworks);
     // 정렬
-    updatedArtworks = sortArtworks(updatedArtworks, sortType);
+    const sortedArtworks = sortArtworks(updatedArtworks, sortType);
+    console.log(sortedArtworks);
 
-    setFilteredArtworks(updatedArtworks);
-    setTotal(updatedArtworks.length);
+    setFilteredArtworks(sortedArtworks);
+    setTotal(sortedArtworks.length);
+    setVisibleArtworks(sortedArtworks.slice(0, itemsPerPage));
     setPage(1);
     setIsLastPage(false);
   }, [artworks, selected, sortType]);
