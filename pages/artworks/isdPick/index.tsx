@@ -152,17 +152,19 @@ export default function Album() {
   // filtered
   useEffect(() => {
     resetArtworks();
-    const m = members.find((item) => item.value === selected);
-    if (!m) {
-      console.error('Selected member not found');
-      return;
-    }
-    const { author } = m;
-    // const { author } = members.find((item) => item.value === selected);
-    console.log(author);
+
     if (selected === 'isd') {
       setFilteredArtworks(artworks);
     } else {
+      const m = members.find((item) => item.value === selected);
+      if (!m) {
+        console.error('Selected member not found');
+        return;
+      }
+      const { author } = m;
+      // const { author } = members.find((item) => item.value === selected);
+      console.log(author);
+
       // artworks에서 author가 name인 것만 필터링
       const filtered = artworks.filter((item) => item.author === author);
       // console.log(filtered.length);
