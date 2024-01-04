@@ -186,12 +186,11 @@ export default function Album() {
     // }
 
     const m = members.find((item) => item.value === selected);
-    const { author } = m;
 
     const filterd =
       selected === 'isd'
         ? artworks
-        : artworks.filter((item) => item.author === author);
+        : artworks.filter((item) => item.author === m.author);
     console.log(filterd.length);
     console.log(filterd);
 
