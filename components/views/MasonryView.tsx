@@ -10,7 +10,7 @@ const MasonryView = ({
   artworks,
   isDeletedVisible,
   handleLoading,
-  isGallary,
+  isGallery,
 }) => {
   const [focusedArtworkId, setFocusedArtworkId] = useState(null);
 
@@ -84,7 +84,7 @@ const MasonryView = ({
               artwork={artwork}
               isFocused={artwork.id === focusedArtworkId}
               onToggleFocus={handleToggleFocus}
-              isGallary={isGallary}
+              isGallery={isGallery}
             />
           ))}
         {!isDeletedVisible &&
@@ -96,7 +96,7 @@ const MasonryView = ({
                 artwork={artwork}
                 isFocused={artwork?.id === focusedArtworkId}
                 onToggleFocus={handleToggleFocus}
-                isGallary={isGallary}
+                isGallery={isGallery}
               />
             ) : null
           )}

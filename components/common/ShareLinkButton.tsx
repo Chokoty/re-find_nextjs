@@ -6,7 +6,7 @@ const ShareLinkButton = () => {
 
   const handleCopyLink = () => {
     // 복사하려는 링크를 여기에 입력하세요.
-    // const linkToCopy = `https://re-find.xyz/gallary/${value}`;
+    // const linkToCopy = `https://re-find.xyz/gallery/${value}`;
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {

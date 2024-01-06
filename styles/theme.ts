@@ -59,6 +59,7 @@ export const lightMode = {
   highlight: '#01bda1',
   badge: '#c1eadf',
   highlight2: '#008080',
+  borderBottom: '#f5f6fb',
 };
 export const darkMode = {
   bg: '#0D0F1D', // basic #0F0F0F opgg #1C1C1F hoyo #0D0F1D
@@ -76,4 +77,5 @@ export const darkMode = {
   highlight: '#EF80B1',
   badge: '#FC719F',
   highlight2: '#FED6D7',
+  borderBottom: '#0c0f1d',
 };

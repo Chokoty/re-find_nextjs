@@ -8,6 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import AuthorProfileHead from '@/components/artist/AuthorProfileHead';
+import LoadButton from '@/components/common/LoadButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import { ArtistHeader } from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
@@ -48,6 +49,11 @@ const Artist = ({ artist_name2info }) => {
   // react-spinners
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
+
+  const loadData = () => {
+    console.log('loadData');
+    getArtistArtworks();
+  };
 
   const resetArtworks = useCallback(() => {
     setArtworks([]);
@@ -296,7 +302,7 @@ const Artist = ({ artist_name2info }) => {
                         isDeletedVisible={isDeletedVisible}
                         // loadingImage={loadingImage}
                         handleLoading={handleLoading}
-                        isGallary={false}
+                        isGallery={false}
                       />
                     )}
                     {activeView === 'grid' && (
@@ -320,6 +326,7 @@ const Artist = ({ artist_name2info }) => {
             )}
             {/* Observer를 위한 div */}
             {<Box ref={ref} w="100%" h="5rem"></Box>}
+            {!loadingData && <LoadButton loadData={loadData} />}
           </Box>
         )}
       </>

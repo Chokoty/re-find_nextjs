@@ -6,13 +6,14 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
+import LoadButton from '@/components/common/LoadButton';
 import PageTitle from '@/components/common/PageTitle';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
-import GallaryLayout from '@/components/layout/gallary-layout';
+import GalleryLayout from '@/components/layout/gallery-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import gallary from '@/data/gallary';
+import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -46,6 +47,11 @@ export default function Album({ value, query }) {
   const [loadingImage, setLoadingImage] = useState(true);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+
+  const loadData = () => {
+    console.log('loadData');
+    getFanartAlbum();
+  };
 
   const resetArtworks = useCallback(() => {
     setArtworks([]);
@@ -84,7 +90,7 @@ export default function Album({ value, query }) {
     console.log('getFanartAlbum');
     if (isLastPage) return;
     if (loadingData) return;
-
+    console.log('loading data');
     setLoadingData(true);
     try {
       const url = `
@@ -141,7 +147,7 @@ export default function Album({ value, query }) {
   }, [sortType, page]);
 
   useEffect(() => {
-    const g = gallary.find((item) => item.value === value);
+    const g = gallery.find((item) => item.value === value);
     setAlbum(g);
     const m = members.find((item) => item.value === value);
     setMember(m);
@@ -172,10 +178,10 @@ export default function Album({ value, query }) {
         {/* <meta property="og:image" content={profile?.author_prof_url} /> */}
         <meta
           property="og:url"
-          content={`https://re-find.xyz/gallary/${value}`}
+          content={`https://re-find.xyz/gallery/${value}`}
         />
       </Head>
-      <GallaryLayout title="팬아트 갤러리">
+      <GalleryLayout title="팬아트 갤러리">
         <Box
           display="flex"
           flexDirection="column"
@@ -185,8 +191,8 @@ export default function Album({ value, query }) {
           m="1.5rem 1rem"
           mt="1rem"
           p="1rem"
-          background={bg2}
-          borderRadius="1rem"
+          // background={bg2}
+          // borderRadius="1rem"
         >
           {/* {router.query?.subTitle ? (
             <Text  m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'>{router.query.subTitle}</Text>
@@ -245,7 +251,7 @@ export default function Album({ value, query }) {
                     nickname={''}
                     // artworks={artworks}
                     artworks={
-                      isDeletedVisible && gallary !== null
+                      isDeletedVisible && gallery !== null
                         ? artworks
                         : artworks.filter(
                             (artwork) => artwork.is_hyum === false
@@ -254,13 +260,13 @@ export default function Album({ value, query }) {
                     isDeletedVisible={isDeletedVisible}
                     // loadingImage={loadingImage}
                     handleLoading={handleLoading}
-                    isGallary={true}
+                    isGallery={true}
                   />
                 )}
                 {activeView === 'grid' && (
                   <SimpleView
                     artworks={
-                      isDeletedVisible && gallary !== null
+                      isDeletedVisible && gallery !== null
                         ? artworks
                         : artworks.filter(
                             (artwork) => artwork.is_hyum === false
@@ -287,7 +293,8 @@ export default function Album({ value, query }) {
             <HashLoader color="#01BFA2" />
           </Box>
         )}
-      </GallaryLayout>
+        {!loadingData && <LoadButton loadData={loadData} />}
+      </GalleryLayout>
     </Box>
   );
 }
@@ -297,8 +304,8 @@ export async function getServerSideProps(context) {
   const { value } = context.query;
   const query =
     members.find((item) => item.value === value)?.query ||
-    gallary.find((item) => item.value === value)?.query;
-  // gallary.find((item) => item.id.toString() === id)?.keyword;
+    gallery.find((item) => item.value === value)?.query;
+  // gallery.find((item) => item.id.toString() === id)?.keyword;
   return {
     props: {
       value,

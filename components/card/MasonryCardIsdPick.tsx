@@ -33,7 +33,7 @@ const MasonryCardIsdPick = ({
   artwork,
   isFocused,
   onToggleFocus,
-  isGallary,
+  isGallery,
 }) => {
   const [imageHeight, setImageHeight] = useState(null);
   const article_link = useResponsiveLink('', 'article');
@@ -295,7 +295,7 @@ const MasonryCardIsdPick = ({
         mt="0.5rem"
       >
         <Text fontWeight={500}>{artwork?.title}</Text>
-        {isGallary && (
+        {isGallery && (
           // <NextLink href={`/artists/${artwork?.author}`} passHref>
           <Link
             className="link-to-wakzoo"

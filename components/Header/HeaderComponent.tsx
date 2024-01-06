@@ -7,25 +7,25 @@ import {
   InputLeftElement,
   InputRightElement,
   Link,
-  Text,
   Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Sling as Hamburger } from 'hamburger-react';
+// import { Sling as Hamburger } from 'hamburger-react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
-import DarkModeToggle from '@/components/common/DarkModeToggle';
+// import DarkModeToggle from '@/components/common/DarkModeToggle';
 import MyDrawer from '@/components/common/MyDrawer';
 import SearchModal from '@/components/common/SearchModal';
+import HeaderTab from '@/components/Header/HeaderTab';
 import { useResponsive } from '@/hook/useResponsive';
 import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
+// import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 // import { useThemeStore } from '@/store/themeStore';
 
@@ -104,77 +104,7 @@ const HeaderComponent = ({
             />
           </Link>
         </Button>
-        {!isMobile && (
-          <>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              position="relative"
-              w="60px"
-              // m="0 1rem"
-            >
-              <NextLink href="/gallary" passHref>
-                <Text
-                  w="3rem"
-                  fontWeight="700"
-                  textAlign="center"
-                  color={isCurrentPath('/gallary') ? color6 : color5}
-                  _hover={{
-                    color: color6,
-                  }}
-                >
-                  갤러리
-                </Text>
-              </NextLink>
-              {isCurrentPath('/gallary') && (
-                <Box
-                  w="1rem"
-                  h="0.25rem"
-                  borderRadius="2px"
-                  background={highlight}
-                  position="absolute"
-                  bottom="-0.5rem"
-                  opacity="1"
-                />
-              )}
-            </Box>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              position="relative"
-              w="60px"
-              p="0 1rem"
-            >
-              <NextLink href="/artists" passHref>
-                <Text
-                  w="2rem"
-                  color={isCurrentPath('/artists') ? color6 : color5}
-                  fontWeight="700"
-                  _hover={{
-                    color: color6,
-                  }}
-                >
-                  작가
-                </Text>
-              </NextLink>
-              {isCurrentPath('/artists') && (
-                <Box
-                  w="1rem"
-                  h="0.25rem"
-                  borderRadius="2px"
-                  background={highlight}
-                  position="absolute"
-                  bottom="-0.5rem"
-                  opacity="1"
-                />
-              )}
-            </Box>
-          </>
-        )}
+        {!isMobile && <HeaderTab isCurrentPath={isCurrentPath} />}
       </Box>
       <InputGroup m="0 " w="70%">
         <InputLeftElement

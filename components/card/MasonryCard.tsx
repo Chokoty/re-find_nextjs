@@ -33,7 +33,7 @@ const MasonryCard = ({
   artwork,
   isFocused,
   onToggleFocus,
-  isGallary,
+  isGallery,
 }) => {
   const [imageHeight, setImageHeight] = useState(null);
   const article_link = useResponsiveLink('', 'article');
@@ -268,7 +268,7 @@ const MasonryCard = ({
                 justifyContent="center"
                 alignItems="center"
               >
-                {isGallary && (
+                {isGallery && (
                   <Button
                     // as={Link}
                     _hover={{
@@ -329,7 +329,7 @@ const MasonryCard = ({
         mt="0.5rem"
       >
         <Text fontWeight={500}>{artwork?.title}</Text>
-        {isGallary && (
+        {isGallery && (
           <NextLink href={`/artists/${artwork?.author}`} passHref>
             <Text color={highlight} fontWeight={500}>
               작가: {artwork?.author}

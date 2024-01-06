@@ -1,4 +1,4 @@
-interface Gallary {
+interface Gallery {
   id: number;
   value: string;
   title: string;
@@ -7,7 +7,7 @@ interface Gallary {
   query?: string;
 }
 
-const gallary: Gallary[] = [
+const gallery: Gallery[] = [
   {
     id: 0,
     value: 'isdPick',
@@ -42,4 +42,4 @@ const gallary: Gallary[] = [
   },
 ];
 
-export default gallary;
+export default gallery;

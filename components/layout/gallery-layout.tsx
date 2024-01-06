@@ -9,7 +9,7 @@ import NextLink from 'next/link';
 import type { ReactNode } from 'react';
 import React from 'react';
 
-import { GallaryHeader } from '@/components/layout/GallaryHeader';
+import { GalleryHeader } from '@/components/layout/GalleryHeader';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface OtherLayoutProps {
@@ -23,7 +23,7 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
 
   return (
     <Box className="body" minH="240vh" background={bg} w="100%" m="0 auto">
-      <GallaryHeader title={title} />
+      <GalleryHeader title={title} />
       {/* <Divider
         className="divider"
         style={{

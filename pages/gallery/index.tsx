@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import AlbumGrid from '@/components/artwork/albumGrid';
 import MemberButtonList from '@/components/artwork/MemberButtonList';
 import PageTitle from '@/components/common/PageTitle';
-import gallary from '@/data/gallary';
+import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -34,15 +34,19 @@ const Artworks = () => {
       textAlign="center"
       w="100%"
     >
+      <PageTitle topTitle={topTitle} />
       <Box
         // m="1.5rem 1rem"
-        // mt="1rem"
-        p="1rem"
+        mt="2rem"
+        p="0 1rem"
         background={bg2}
         borderRadius="1rem"
-        w="100%"
+        w="95%"
+        h="80px"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
       >
-        <PageTitle topTitle={topTitle} />
         <MemberButtonList
           members={members}
           type="link"
@@ -52,7 +56,7 @@ const Artworks = () => {
           isdPick={false}
         />
       </Box>
-      <AlbumGrid gallary={gallary} />
+      <AlbumGrid gallery={gallery} />
     </Box>
   );
 };

@@ -4,6 +4,7 @@ import { filter } from 'lodash';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
+import { FaArrowDown } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
@@ -14,7 +15,7 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import SearchLayout from '@/components/layout/search-layout';
 import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
-import gallary from '@/data/gallary';
+import gallary from '@/data/gallery';
 import members from '@/data/members';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -236,6 +237,8 @@ export default function Album() {
         />
       </Head>
       <SearchLayout title="팬아트 갤러리">
+        <PageTitle topTitle={album} />
+        <ShareLinkButton />
         <Box
           display="flex"
           flexDirection="column"
@@ -247,9 +250,6 @@ export default function Album() {
           background={bg2}
           borderRadius="1rem"
         >
-          <PageTitle topTitle={album} />
-          <ShareLinkButton />
-
           <MemberButtonList
             members={members}
             type="sort"
@@ -292,7 +292,7 @@ export default function Album() {
                       isDeletedVisible={isDeletedVisible}
                       // loadingImage={loadingImage}
                       handleLoading={handleLoading}
-                      isGallary={true}
+                      isGallery={true}
                     />
                   )}
                   {activeView === 'grid' && (

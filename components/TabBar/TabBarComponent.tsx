@@ -68,18 +68,18 @@ const TabBarComponent = ({ tab, setTab }) => {
             />
           </Link>
         </NextLink>
-        <NextLink href="/gallary" passHref>
+        <NextLink href="/gallery" passHref>
           <Link
             style={{
-              color: getButtonColor('gallary'),
+              color: getButtonColor('gallery'),
               width: '2.5rem',
               height: '2.5rem',
             }}
-            onClick={() => setTab('gallary')}
+            onClick={() => setTab('gallery')}
           >
             <FaImage
               style={{
-                color: getButtonColor('gallary'),
+                color: getButtonColor('gallery'),
                 width: '1.8rem',
                 height: '1.8rem',
               }}

@@ -79,7 +79,7 @@ const ViewSelectBar = ({
   const showShadow = useShowShadow(386, 0);
 
   // useEffect(() => {
-  //   if (usingPage === 'gallary') {
+  //   if (usingPage === 'gallery') {
   //     setTopPosition(0);
   //   }
   //   if (usingPage === 'artist') {

@@ -10,27 +10,27 @@ import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const AlbumGrid = ({ gallary }) => {
+const AlbumGrid = ({ gallery }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const router = useRouter();
 
   const onClick = (id, subTitle, value) => {
-    // const { subTitle } = gallary.find((item) => item.id === id);
+    // const { subTitle } = gallery.find((item) => item.id === id);
     console.log(subTitle, value);
 
     router.push(
       {
-        pathname: `/gallary/${value}`,
+        pathname: `/gallery/${value}`,
         query: { subTitle },
       },
-      `/gallary/${value}`
+      `/gallery/${value}`
     );
   };
 
   return (
     <Box
       m="0 auto"
-      mt="3rem"
+      mt="1rem"
       w="94%"
       mb="2rem"
       display="flex"
@@ -46,8 +46,8 @@ const AlbumGrid = ({ gallary }) => {
         placeItems="center"
         m="0 auto"
       >
-        {gallary &&
-          gallary
+        {gallery &&
+          gallery
             .slice()
             .reverse()
             .map((item, index) => (

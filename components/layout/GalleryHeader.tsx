@@ -16,7 +16,7 @@ import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export const GallaryHeader = ({ title }) => {
+export const GalleryHeader = ({ title }) => {
   const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
     state.isOpen,
     state.setIsOpen,
@@ -97,7 +97,7 @@ export const GallaryHeader = ({ title }) => {
             borderRadius="50%"
             flexShrink={0}
           >
-            <NextLink href="/gallary">
+            <NextLink href="/gallery">
               <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
             </NextLink>
           </Button>
