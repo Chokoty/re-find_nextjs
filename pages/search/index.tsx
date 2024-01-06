@@ -134,6 +134,16 @@ const Search = () => {
   };
 
   useEffect(() => {
+    if (router.query.keyword) {
+      const keywordFromQuery = router.query.keyword;
+      if (typeof keywordFromQuery === 'string') {
+        setKeyword(keywordFromQuery);
+      }
+      // You can also perform any actions needed with this keyword
+    }
+  }, [router.query]);
+
+  useEffect(() => {
     setIsOpen(false);
   }, []);
 

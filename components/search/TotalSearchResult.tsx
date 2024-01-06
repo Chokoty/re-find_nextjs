@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Select,
   Tab,
   TabList,
@@ -11,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 
+import SearchBar2 from '@/components/search/SearchBar2';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const SearchResult = ({ keyword, result }) => {
@@ -31,6 +33,7 @@ const SearchResult = ({ keyword, result }) => {
       borderRadius="1rem"
       boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
     >
+      <SearchBar2 isSearchPage={true} />
       <Text
         pl="1rem"
         m="1rem 0"
