@@ -43,21 +43,17 @@ const HeaderComponent = ({
   const isMobile = useResponsive(); // 모바일 환경인지 체크
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-  const color5 = useColorModeValue(lightMode.color, darkMode.color5);
-  const color6 = useColorModeValue(lightMode.color, darkMode.color6);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
-  const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
-  const boxShadowLight =
-    '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
-  const boxShadowDark =
-    '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
+  // const boxShadowLight =
+  //   '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
+  // const boxShadowDark =
+  //   '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
 
-  const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
-  const showShadow = useShowShadow(50, 0);
+  // const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
+  // const showShadow = useShowShadow(50, 0);
 
   const handleInputClick = () => {
     console.log('handleInputClick');
@@ -124,7 +120,6 @@ const HeaderComponent = ({
             }}
           ></span>
         </InputLeftElement>
-
         <Input
           placeholder="키워드 검색"
           h="2.25rem"

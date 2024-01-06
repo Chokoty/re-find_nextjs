@@ -190,7 +190,7 @@ const Artist = () =>
                       isDeletedVisible={isDeletedVisible}
                       // loadingImage={loadingImage}
                       handleLoading={handleLoading}
-                      isGallary={true}
+                      isGallery={true}
                     />
                   )}
                   {activeView === 'gridView' && (
