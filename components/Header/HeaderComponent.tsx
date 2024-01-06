@@ -21,8 +21,9 @@ import { RiMenu2Line } from 'react-icons/ri';
 
 // import DarkModeToggle from '@/components/common/DarkModeToggle';
 import MyDrawer from '@/components/common/MyDrawer';
-import SearchModal from '@/components/common/SearchModal';
 import HeaderTab from '@/components/Header/HeaderTab';
+import SearchBar from '@/components/search/SearchBar';
+import SearchModal from '@/components/search/SearchModal';
 import { useResponsive } from '@/hook/useResponsive';
 import { useShowShadow } from '@/hook/useShowShadow';
 // import { useStore } from '@/store/store';
@@ -55,13 +56,13 @@ const HeaderComponent = ({
   // const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
   // const showShadow = useShowShadow(50, 0);
 
-  const handleInputClick = () => {
-    console.log('handleInputClick');
-    if (router.pathname !== '/search') {
-      router.push('/search');
-    }
-    onOpen();
-  };
+  // const handleInputClick = () => {
+  //   // console.log('handleInputClick');
+  //   // if (router.pathname !== '/search') {
+  //   //   router.push('/search');
+  //   // }
+  //   onOpen();
+  // };
 
   return (
     <Flex
@@ -102,68 +103,7 @@ const HeaderComponent = ({
         </Button>
         {!isMobile && <HeaderTab isCurrentPath={isCurrentPath} />}
       </Box>
-      <InputGroup m="0 " w="70%">
-        <InputLeftElement
-          pointerEvents="none"
-          color="gray.300"
-          fontSize="1.2em"
-        >
-          <span
-            style={{
-              width: '1px',
-              height: '16px',
-              marginLeft: '8px',
-              background: color7,
-              position: 'absolute',
-              top: '25%',
-              right: '10%',
-            }}
-          ></span>
-        </InputLeftElement>
-        <Input
-          placeholder="키워드 검색"
-          h="2.25rem"
-          pl="3rem"
-          borderRadius="2rem"
-          bg={bg3}
-          alignItems="center"
-          onClick={handleInputClick}
-          focusBorderColor="#01BFA2"
-          size="md"
-          // value={nickname}
-          // onChange={handleSearch}
-          _hover={{
-            backgroundColor: bg2,
-            borderColor: '#01BFA2',
-          }}
-          _focus={{ backgroundColor: bg2 }}
-          sx={{
-            'input::placeholder': {
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-            },
-          }}
-        />
-        <InputRightElement
-          pointerEvents="none"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          padding="0.5rem"
-        >
-          <FaSearch
-            style={{
-              position: 'relative',
-              top: '-0.1rem',
-              right: '1rem',
-              width: '1.2rem',
-              height: '1.2rem',
-              color: color7,
-            }}
-          />
-        </InputRightElement>
-      </InputGroup>
+      <SearchBar onOpen={onOpen} />
       <Flex>
         {/* <DarkModeToggle className="dark-mode-toggle" /> */}
 

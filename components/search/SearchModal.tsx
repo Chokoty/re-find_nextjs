@@ -1,7 +1,5 @@
 import {
-  Box,
-  Checkbox,
-  Divider,
+  Button,
   Input,
   InputGroup,
   InputLeftElement,
@@ -12,8 +10,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Stack,
-  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -124,16 +120,18 @@ const SearchModal = ({ isOpen, onClose }) => {
               alignItems="center"
               padding="0.5rem"
             >
-              <FaSearch
-                style={{
-                  position: 'relative',
-                  top: '-0.1rem',
-                  right: '1rem',
-                  width: '1.2rem',
-                  height: '1.2rem',
-                  color: color7,
-                }}
-              />
+              <Button>
+                <FaSearch
+                  style={{
+                    position: 'relative',
+                    top: '-0.1rem',
+                    right: '1rem',
+                    width: '1.2rem',
+                    height: '1.2rem',
+                    color: color7,
+                  }}
+                />
+              </Button>
             </InputRightElement>
           </InputGroup>
         </ModalHeader>

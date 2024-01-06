@@ -17,7 +17,7 @@ import { FaSearch } from 'react-icons/fa';
 
 import DarkModeToggle from '@/components/common/DarkModeToggle';
 import MyDrawer from '@/components/common/MyDrawer';
-import SearchModal from '@/components/common/SearchModal';
+import SearchModal from '@/components/search/SearchModal';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 // import { useThemeStore } from '@/store/themeStore';
