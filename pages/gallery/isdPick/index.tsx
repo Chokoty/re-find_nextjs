@@ -250,6 +250,7 @@ export default function Album() {
           background={bg2}
           borderRadius="1rem"
         >
+          <Text>총 {filteredArtworks.length}</Text>
           <MemberButtonList
             members={members}
             type="sort"
@@ -259,7 +260,6 @@ export default function Album() {
             isdPick={true}
           />
           {/* <Text>총 {total}</Text> */}
-          <Text>총 {filteredArtworks.length}</Text>
         </Box>
         <ViewSelectBar
           activeView={activeView}
