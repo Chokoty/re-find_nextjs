@@ -8,6 +8,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
+import { MdArrowForwardIos, MdPerson } from 'react-icons/md';
 
 import AuthorProfileCard2 from '@/components/card/AuthorProfileCard2';
 import Description from '@/components/common/Description';
@@ -49,6 +50,7 @@ const SearchResult = ({
     lightMode.highlight,
     darkMode.highlight
   );
+  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
   const article_link = useResponsiveLink('', 'article');
 
@@ -67,25 +69,43 @@ const SearchResult = ({
       ) : (
         <div className="found">
           <Skeleton isLoaded={!isSearchingAuthor} mt="20px" mb="20px">
-            <Text fontSize="xl" mb="20px" textAlign="center">
-              {/* {author?.board || ''} */}
-              {data?.board || ''}
-            </Text>
-            <Link
-              fontSize="xl"
-              mb="20px"
-              textAlign="center"
-              // color="#01bda1"
-              color={highlightColor}
-              className="link-to-wakzoo"
-              href={article_link + ids[0].id}
-              isExternal
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="center"
+              width="100%"
+              gap="1rem"
+              background={color7}
+              borderRadius="1rem"
             >
-              <Text>
-                {data?.title}
-                <ExternalLinkIcon mx="2px" />
+              <Text fontSize="lg" textAlign="center">
+                {/* {author?.board || ''} */}
+                {data?.board || ''}
+                <MdArrowForwardIos
+                  style={{
+                    marginLeft: '0.5rem',
+                    fontSize: '0.8rem',
+                  }}
+                />
               </Text>
-            </Link>
+              <Link
+                fontSize="xl"
+                fontWeight="bold"
+                mb="20px"
+                textAlign="center"
+                // color="#01bda1"
+                color={highlightColor}
+                className="link-to-wakzoo"
+                href={article_link + ids[0].id}
+                isExternal
+              >
+                <Text>
+                  {data?.title}
+                  <ExternalLinkIcon mx="2px" />
+                </Text>
+              </Link>
+            </Box>
           </Skeleton>
           <Skeleton isLoaded={!isSearchingAuthor}>
             <AuthorProfileCard2
@@ -95,7 +115,9 @@ const SearchResult = ({
               board={uploadTimeDiff}
             />
           </Skeleton>
-          <Text>관련 게시글 링크</Text>
+          <Text mt="1rem" fontSize="xl">
+            관련 게시글 링크
+          </Text>
           {ids?.map((item, index) => (
             <Link
               key={index}
