@@ -5,6 +5,7 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -167,14 +168,21 @@ const BackButton = ({ isSearchPage }) => {
       </InputGroup>
       {isSearchPage && !isMobile && (
         <Button
-          colorScheme="green"
+          // colorScheme="green"
           borderRadius="2rem"
           p="0 1.25rem"
           minW="4rem"
           h="36px"
+          backgroundColor="#7dedda"
           onClick={handleInputClick}
+          _hover={{
+            backgroundColor: '#01BFA2',
+            color: 'white',
+          }}
         >
-          검색
+          <Text fontSize="1rem" fontWeight="700" color="#01BFA2">
+            검색
+          </Text>
         </Button>
       )}
     </Box>

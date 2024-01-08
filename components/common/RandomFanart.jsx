@@ -330,7 +330,8 @@ const RandomFanart = () => {
                   href={`/artists/${fanart?.nickname}`}
                   passHref
                   style={linkDiv}
-                  fontWeight={isBold ? 'bold' : 'normal'}
+                  // fontWeight={isBold ? 'bold' : 'normal'}
+                  fontWeight="bold"
                 >
                   <Text>랜덤 팬아트 id: {fanart?.id}</Text>
                   <Text>작가: {fanart?.nickname}</Text>

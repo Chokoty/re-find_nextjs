@@ -279,7 +279,7 @@ export default function Home() {
           <Box
             background={bgColor2}
             borderRadius="1rem"
-            w="100%"
+            w={['90%', '90%', '100%']}
             className="result-area"
             display="flex"
             flexDirection="column"

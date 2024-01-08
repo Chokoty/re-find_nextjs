@@ -180,12 +180,12 @@
     padding: 50px;
   }
 
-  .preview {
-    @include mobile {
-      width: 90%;
-      max-width: 360px;
-    }
-  }
+  // .preview {
+  //   @include mobile {
+  //     width: 90%;
+  //     max-width: 360px;
+  //   }
+  // }
 
   .result-area {
     display: flex;
@@ -200,10 +200,6 @@
       align-items: center;
     }
     .result {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
       .notFound {
         display: flex;
         justify-content: center;

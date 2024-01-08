@@ -1,16 +1,11 @@
+import { Box, useBreakpointValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
 
 const Preview = ({ files }) => {
   const file = files[0];
+  const width = useBreakpointValue({ base: '90%', md: '100%' });
 
-  const previewContainer = {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    // marginTop: 16,
-    marginBottom: 30,
-  };
   const img = {
     display: 'flex',
     height: '100%',
@@ -18,7 +13,15 @@ const Preview = ({ files }) => {
   };
 
   return (
-    <div style={previewContainer} className="preview">
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      width={width}
+      marginBottom={30}
+      className="preview"
+    >
       <Image
         alt={file.name}
         width={475}
@@ -31,7 +34,7 @@ const Preview = ({ files }) => {
         }}
         unoptimized
       />
-    </div>
+    </Box>
   );
 };
 
