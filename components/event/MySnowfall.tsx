@@ -4,13 +4,14 @@ import Snowfall from 'react-snowfall';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const MySnowfall = () => {
-  const color = useColorModeValue(lightMode.snowfall, darkMode.snowfall);
+  // const color = useColorModeValue(lightMode.snowfall, darkMode.snowfall);
 
   return (
     <>
       <Snowfall
         // Changes the snowflake color
-        color={color}
+        // color={color}
+        color="#dee4fd"
         // Applied to the canvas element
         // style={{ background: '#fff' }}
         // Controls the number of snowflakes that are created (default 150)
