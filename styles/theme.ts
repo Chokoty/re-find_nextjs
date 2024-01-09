@@ -60,7 +60,7 @@ export const lightMode = {
   badge: '#c1eadf',
   highlight2: '#008080',
   borderBottom: '#f5f6fb',
-  snowfall: '#dee4fd',
+  snowfall: '#607d8b',
 };
 export const darkMode = {
   bg: '#0D0F1D', // basic #0F0F0F opgg #1C1C1F hoyo #0D0F1D
@@ -79,5 +79,5 @@ export const darkMode = {
   badge: '#FC719F',
   highlight2: '#FED6D7',
   borderBottom: '#0c0f1d',
-  snowfall: '#607d8b',
+  snowfall: '#dee4fd',
 };
