@@ -33,7 +33,7 @@ const members: Member[] = [
   },
   {
     id: 4,
-    value: 'jinburger',
+    value: 'jingburger',
     name: '징버거',
     author: '징버거',
     query: 'gallery?member=jingburger',
