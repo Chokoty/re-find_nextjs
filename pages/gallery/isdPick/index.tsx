@@ -15,7 +15,7 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import SearchLayout from '@/components/layout/search-layout';
 import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
-import gallary from '@/data/gallery';
+import gallery from '@/data/gallery';
 import members from '@/data/members';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -38,7 +38,7 @@ export default function Album() {
   const [page, setPage] = useState(1);
 
   const [selected, setSelected] = useState('isd');
-  const [album, setAlbum] = useState(gallary[0]);
+  const [album, setAlbum] = useState(gallery[0]);
   const [member, setMember] = useState(null);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
@@ -222,7 +222,7 @@ export default function Album() {
         <title>{`이세돌픽 팬아트 - RE:FIND`}</title>
         <meta
           property="og:title"
-          content={`팬아트 - Gallary | RE:FIND `}
+          content={`팬아트 - Gallery | RE:FIND `}
           // content={`${profile?.author_nickname}- Profile | RE:FIND `}
         />
         <meta
@@ -233,7 +233,7 @@ export default function Album() {
         {/* <meta property="og:image" content={profile?.author_prof_url} /> */}
         <meta
           property="og:url"
-          content={`https://re-find.xyz/gallary/isdPick`}
+          content={`https://re-find.xyz/gallery/isdPick`}
         />
       </Head>
       <SearchLayout title="팬아트 갤러리">
