@@ -167,7 +167,7 @@ export default function Album({ value, query }) {
         } - RE:FIND`}</title>
         <meta
           property="og:title"
-          content={`팬아트 - Gallary | RE:FIND `}
+          content={`팬아트 - Gallery | RE:FIND `}
           // content={`${profile?.author_nickname}- Profile | RE:FIND `}
         />
         <meta
