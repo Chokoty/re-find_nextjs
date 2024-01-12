@@ -4,7 +4,7 @@ import React from 'react';
 
 const Preview = ({ files }) => {
   const file = files[0];
-  const width = useBreakpointValue({ base: '90%', md: '100%' });
+  // const width = useBreakpointValue({ base: '90%', md: '100%' });
 
   const img = {
     display: 'flex',
@@ -20,7 +20,6 @@ const Preview = ({ files }) => {
       alignItems="center"
       // width={width}
       width="100%"
-      marginBottom={30}
     >
       <Image
         alt={file.name}

@@ -70,6 +70,7 @@ const SearchResult = ({
       flexDirection="column"
       alignItems="center"
       width="100%"
+      maxW="500px"
     >
       {ids?.length === 0 ? (
         <div className="notFound">
@@ -141,17 +142,12 @@ const SearchResult = ({
                 </Text>
               </Link>
             </Box>
-
             <AuthorProfileCard2
               writerURL={data.author?.author_url}
               profURL={data.author?.author_prof_url}
               nickname={data.author?.author_nickname}
               uploadTimeDiff={uploadTimeDiff}
             />
-            {/* <Text mt="1rem" fontSize="xl">
-              관련 게시글 링크
-            </Text> */}
-
             <Accordion allowMultiple w="100%">
               <AccordionItem
                 border="none"

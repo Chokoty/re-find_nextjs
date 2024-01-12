@@ -276,16 +276,14 @@ export default function Home() {
         {/* 업로드 후 */}
         {uploadedfiles.length !== 0 && hash !== null && (
           <Box
-            // background={bgColor2}
-            borderRadius="1rem"
-            w={['90%', '90%', '100%']}
             className="result-area"
             display="flex"
             flexDirection="column"
             alignItems="center"
             justifyContent="center"
+            borderRadius="1rem"
+            w={['90%', '90%', '100%']}
             m="1rem 0 10rem 0"
-            // p="1rem"
           >
             <Preview files={uploadedfiles} />
             {isSearchingData && <Loading />}
