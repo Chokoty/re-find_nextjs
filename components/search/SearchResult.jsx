@@ -181,6 +181,7 @@ const SearchResult = ({
                         className="link"
                         href={article_link + item.id}
                         isExternal
+                        w="100%"
                       >
                         {item.is_deleted === true ? (
                           <Text fontSize="xl" mb="20px" textAlign="center">
