@@ -1,4 +1,4 @@
-import { Avatar, Button, Text, useColorModeValue } from '@chakra-ui/react';
+import { Avatar, Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
@@ -54,7 +54,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         target="_blank"
         color={'#f5f5f5'}
         boxShadow="md"
-        maxW="sm"
+        // maxW="sm"
         borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
@@ -65,36 +65,44 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         flexDirection="row"
         justifyContent="center"
         alignItems="center"
-        gap="10px"
+        gap="1rem"
+        w="100%"
       >
-        {profURL === 'NULL' ? (
-          <Avatar size="xl" name={nickname} src={profURL || ''} />
-        ) : (
-          <div
-            style={{
-              borderRadius: '50%',
-              overflow: 'hidden',
-              position: 'relative',
-              width: 96,
-              height: 96,
-            }}
-          >
-            <Image
-              src={
-                profURL ||
-                'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
-              }
-              alt={nickname}
-              fill={true}
-              unoptimized
-            />
-          </div>
-        )}
-
-        <Text fontSize="md" textAlign="center" mb="12px" color={highlightColor}>
-          {nickname || '프로필은 왁물원에서'}
-        </Text>
-        <Text
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          gap="0.5rem"
+        >
+          {profURL === 'NULL' ? (
+            <Avatar size="xl" name={nickname} src={profURL || ''} />
+          ) : (
+            <div
+              style={{
+                borderRadius: '50%',
+                overflow: 'hidden',
+                position: 'relative',
+                width: 96,
+                height: 96,
+              }}
+            >
+              <Image
+                src={
+                  profURL ||
+                  'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
+                }
+                alt={nickname}
+                fill={true}
+                unoptimized
+              />
+            </div>
+          )}
+          <Text fontSize="md" textAlign="center" color={highlightColor}>
+            {nickname || '프로필은 왁물원에서'}
+          </Text>
+        </Box>
+        {/* <Text
           fontSize="md"
           textAlign="center"
           color={color2}
@@ -104,7 +112,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
           bg={highlightColor2}
         >
           {board || '---'}
-        </Text>
+        </Text> */}
       </Button>
     </NextLink>
     // </Link>

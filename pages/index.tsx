@@ -64,9 +64,8 @@ export default function Home() {
   const [ids, setIds] = useState([]); // 게시글 여러 개
   const [hasSearchResult, setHasSearchResult] = useState(false); // 재검색 방지
   const [isSearchingData, setIsSearchingData] = useState(false);
-  const [isSearchingAuthor, setIsSearchingAuthor] = useState(false);
-  const [author, setAuthor] = useState(null);
-  const [author2, setAuthor2] = useState(null);
+  // const [isSearchingAuthor, setIsSearchingAuthor] = useState(false);
+  // const [author, setAuthor] = useState(null);
   const [searchTime, setSearchTime] = useState(0);
 
   // Theme
@@ -139,7 +138,7 @@ export default function Home() {
 
         console.log(response.data); // >>>테스트용
 
-        setAuthor2(response.data.author);
+        // setAuthor(response.data.author);
         setData(response.data);
         setIds(response.data.ids.slice(0, 15)); // 검색결과 10~15개 제한
         // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
@@ -218,7 +217,7 @@ export default function Home() {
   const resetFiles = () => {
     setUploadedFiles([]);
     setData(null);
-    setAuthor(null);
+    // setAuthor(null);
     setHasSearchResult(false);
     handleClick();
     onToggle();
@@ -277,7 +276,7 @@ export default function Home() {
         {/* 업로드 후 */}
         {uploadedfiles.length !== 0 && hash !== null && (
           <Box
-            background={bgColor2}
+            // background={bgColor2}
             borderRadius="1rem"
             w={['90%', '90%', '100%']}
             className="result-area"
@@ -286,7 +285,7 @@ export default function Home() {
             alignItems="center"
             justifyContent="center"
             m="1rem 0 10rem 0"
-            p="1rem"
+            // p="1rem"
           >
             <Preview files={uploadedfiles} />
             {isSearchingData && <Loading />}
@@ -295,8 +294,8 @@ export default function Home() {
                 searchTime={searchTime}
                 data={data}
                 ids={ids}
-                isSearchingAuthor={isSearchingAuthor}
-                author={author2}
+                // isSearchingAuthor={isSearchingAuthor}
+                // author={author}
                 resetFiles={resetFiles}
               />
             )}

@@ -18,14 +18,14 @@ const Preview = ({ files }) => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      width={width}
+      // width={width}
+      width="100%"
       marginBottom={30}
-      className="preview"
     >
       <Image
         alt={file.name}
-        width={475}
-        height={475}
+        width={500}
+        height={500}
         style={img}
         src={file.preview}
         // Revoke data uri after image is loaded

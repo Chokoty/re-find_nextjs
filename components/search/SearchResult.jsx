@@ -1,5 +1,6 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
+  Badge,
   Box,
   Button,
   Link,
@@ -8,7 +9,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import React from 'react';
-import { MdArrowForwardIos, MdPerson } from 'react-icons/md';
+import { MdArrowForwardIos } from 'react-icons/md';
 
 import AuthorProfileCard2 from '@/components/card/AuthorProfileCard2';
 import Description from '@/components/common/Description';
@@ -42,14 +43,15 @@ const SearchResult = ({
   searchTime,
   data,
   ids,
-  isSearchingAuthor,
-  author,
+  // isSearchingAuthor,
+  // author,
   resetFiles,
 }) => {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
   );
+  const b2 = useColorModeValue(lightMode.b2, darkMode.b2);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
   const article_link = useResponsiveLink('', 'article');
@@ -62,91 +64,107 @@ const SearchResult = ({
       alignItems="center"
       width="100%"
     >
-      {ids?.length === 0 && !isSearchingAuthor ? (
+      {ids?.length === 0 ? (
         <div className="notFound">
           <Description />
         </div>
       ) : (
         <div className="found">
-          <Skeleton isLoaded={!isSearchingAuthor} mt="20px" mb="20px">
+          {/* <Skeleton
+            isLoaded={!isSearchingAuthor}
+            mt="20px"
+            mb="20px"
+            width="100%"
+          > */}
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            width="100%"
+            gap="1rem"
+            background={b2}
+            borderRadius="1rem"
+            p="1rem"
+          >
             <Box
               display="flex"
-              flexDirection="column"
-              justifyContent="flex-start"
+              flexDirection="row"
+              justifyContent="center"
               alignItems="center"
               width="100%"
               gap="1rem"
-              background={color7}
-              borderRadius="1rem"
+              mt="20px"
             >
-              <Text fontSize="lg" textAlign="center">
+              <Text fontSize={['lg', 'xl']} textAlign="start">
                 {/* {author?.board || ''} */}
                 {data?.board || ''}
-                <MdArrowForwardIos
-                  style={{
-                    marginLeft: '0.5rem',
-                    fontSize: '0.8rem',
-                  }}
-                />
               </Text>
+              <MdArrowForwardIos
+                style={{
+                  marginLeft: '0.5rem',
+                  fontSize: '0.8rem',
+                }}
+              />
+            </Box>
+            <Link
+              fontSize={['2xl', '3xl']}
+              fontWeight="bold"
+              mb="20px"
+              textAlign="start"
+              // color="#01bda1"
+              color={highlightColor}
+              className="link-to-wakzoo"
+              href={article_link + ids[0].id}
+              isExternal
+            >
+              <Text>
+                {data?.title}
+                <ExternalLinkIcon mx="2px" />
+              </Text>
+            </Link>
+            {/* </Skeleton> */}
+            {/* <Skeleton w="100%" isLoaded={!isSearchingAuthor}> */}
+            <AuthorProfileCard2
+              writerURL={data.author?.author_url}
+              profURL={data.author?.author_prof_url}
+              nickname={data.author?.author_nickname}
+              board={uploadTimeDiff}
+            />
+            {/* </Skeleton> */}
+            <Text mt="1rem" fontSize="xl">
+              관련 게시글 링크
+            </Text>
+            {ids?.map((item, index) => (
               <Link
+                key={index}
                 fontSize="xl"
-                fontWeight="bold"
                 mb="20px"
                 textAlign="center"
                 // color="#01bda1"
                 color={highlightColor}
-                className="link-to-wakzoo"
-                href={article_link + ids[0].id}
+                className="link"
+                href={article_link + item.id}
                 isExternal
               >
-                <Text>
-                  {data?.title}
-                  <ExternalLinkIcon mx="2px" />
-                </Text>
+                {item.is_deleted === true ? (
+                  <Text fontSize="xl" mb="20px" textAlign="center">
+                    삭제된 게시글입니다.
+                  </Text>
+                ) : (
+                  <Text fontSize="xl" mb="20px" textAlign="center">
+                    {article_link + item.id}
+                    <ExternalLinkIcon mx="2px" />
+                  </Text>
+                )}
+                {item.is_shukkou === true && (
+                  <Text fontSize="xl" mb="20px" textAlign="center">
+                    `(슛코당한 팬아트일 확률이 높습니다.)`
+                  </Text>
+                )}
               </Link>
-            </Box>
-          </Skeleton>
-          <Skeleton isLoaded={!isSearchingAuthor}>
-            <AuthorProfileCard2
-              writerURL={author?.author_url}
-              profURL={author?.author_prof_url}
-              nickname={author?.author_nickname}
-              board={uploadTimeDiff}
-            />
-          </Skeleton>
-          <Text mt="1rem" fontSize="xl">
-            관련 게시글 링크
-          </Text>
-          {ids?.map((item, index) => (
-            <Link
-              key={index}
-              fontSize="xl"
-              mb="20px"
-              textAlign="center"
-              // color="#01bda1"
-              color={highlightColor}
-              className="link"
-              href={article_link + item.id}
-              isExternal
-            >
-              {item.is_deleted === true ? (
-                <Text fontSize="xl" mb="20px" textAlign="center">
-                  삭제된 게시글입니다.
-                </Text>
-              ) : (
-                <Text fontSize="xl" mb="20px" textAlign="center">
-                  {article_link + item.id}
-                  <ExternalLinkIcon mx="2px" />
-                </Text>
-              )}
-              {item.is_shukkou === true && (
-                <Text fontSize="xl" mb="20px" textAlign="center">
-                  `(슛코당한 팬아트일 확률이 높습니다.)`
-                </Text>
-              )}
-            </Link>
-          ))}
+            ))}
+          </Box>
         </div>
       )}
       <Text fontSize="xl" m="20px" textAlign="center">
