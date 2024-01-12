@@ -226,25 +226,25 @@
         }
       }
 
-      .found {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+      // .found {
+      //   display: flex;
+      //   flex-direction: column;
+      //   justify-content: center;
+      //   align-items: center;
+      //   text-align: center;
 
-        margin: 0 auto;
-        margin-bottom: 20px;
+      //   margin: 0 auto;
+      //   margin-bottom: 20px;
 
-        width: 100%;
-        .link {
-          word-break: break-all;
-          width: 100%;
-        }
-        @include mobile {
-          width: 90%;
-        }
-      }
+      //   width: 100%;
+      //   .link {
+      //     word-break: break-all;
+      //     width: 100%;
+      //   }
+      //   @include mobile {
+      //     width: 90%;
+      //   }
+      // }
     }
   }
 }

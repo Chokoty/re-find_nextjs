@@ -51,7 +51,8 @@ const SearchResult = ({
     lightMode.highlight,
     darkMode.highlight
   );
-  const b2 = useColorModeValue(lightMode.b2, darkMode.b2);
+  const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
+
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
   const article_link = useResponsiveLink('', 'article');
@@ -69,32 +70,35 @@ const SearchResult = ({
           <Description />
         </div>
       ) : (
-        <div className="found">
-          {/* <Skeleton
-            isLoaded={!isSearchingAuthor}
-            mt="20px"
-            mb="20px"
-            width="100%"
-          > */}
+        <Box
+          className="found"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          width="100%"
+          gap="1rem"
+          m="0 auto"
+          mb="2rem"
+        >
           <Box
+            w="100%"
             display="flex"
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
             width="100%"
             gap="1rem"
-            background={b2}
+            background={bgColor}
             borderRadius="1rem"
             p="1rem"
           >
             <Box
               display="flex"
               flexDirection="row"
-              justifyContent="center"
+              justifyContent="flex-start"
               alignItems="center"
-              width="100%"
-              gap="1rem"
-              mt="20px"
+              gap="0.5rem"
             >
               <Text fontSize={['lg', 'xl']} textAlign="start">
                 {/* {author?.board || ''} */}
@@ -102,17 +106,16 @@ const SearchResult = ({
               </Text>
               <MdArrowForwardIos
                 style={{
-                  marginLeft: '0.5rem',
+                  // marginLeft: '0.5rem',
                   fontSize: '0.8rem',
                 }}
               />
             </Box>
             <Link
-              fontSize={['2xl', '3xl']}
+              w="100%"
+              fontSize={['xl', '2xl']}
               fontWeight="bold"
-              mb="20px"
               textAlign="start"
-              // color="#01bda1"
               color={highlightColor}
               className="link-to-wakzoo"
               href={article_link + ids[0].id}
@@ -123,15 +126,12 @@ const SearchResult = ({
                 <ExternalLinkIcon mx="2px" />
               </Text>
             </Link>
-            {/* </Skeleton> */}
-            {/* <Skeleton w="100%" isLoaded={!isSearchingAuthor}> */}
             <AuthorProfileCard2
               writerURL={data.author?.author_url}
               profURL={data.author?.author_prof_url}
               nickname={data.author?.author_nickname}
-              board={uploadTimeDiff}
+              uploadTimeDiff={uploadTimeDiff}
             />
-            {/* </Skeleton> */}
             <Text mt="1rem" fontSize="xl">
               관련 게시글 링크
             </Text>
@@ -165,7 +165,7 @@ const SearchResult = ({
               </Link>
             ))}
           </Box>
-        </div>
+        </Box>
       )}
       <Text fontSize="xl" m="20px" textAlign="center">
         검색시간: {searchTime / 1000}s
