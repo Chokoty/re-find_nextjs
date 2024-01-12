@@ -30,6 +30,7 @@ const Description = () => {
 
   return (
     <Accordion
+      mt="1rem"
       className="description"
       allowToggle
       style={{

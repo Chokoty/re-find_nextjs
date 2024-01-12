@@ -148,7 +148,57 @@ const SearchResult = ({
               nickname={data.author?.author_nickname}
               uploadTimeDiff={uploadTimeDiff}
             />
-            <Accordion allowMultiple w="100%">
+            <Divider />
+            <Box as="span" flex="1" textAlign="left" fontSize="xl">
+              <Text>관련 게시글 링크</Text>
+            </Box>
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              width="100%"
+              gap="0.5rem"
+              p="1rem"
+            >
+              {ids?.map((item, index) => (
+                <Link
+                  key={index}
+                  fontSize="xl"
+                  mb="20px"
+                  textAlign="center"
+                  // color="#01bda1"
+                  color={highlightColor}
+                  className="link"
+                  href={article_link + item.id}
+                  isExternal
+                  w="100%"
+                >
+                  {item.is_deleted === true ? (
+                    <Text fontSize="xl" mb="20px" textAlign="center">
+                      삭제된 게시글입니다.
+                    </Text>
+                  ) : (
+                    <Text
+                      fontSize="xl"
+                      mb="20px"
+                      textAlign="center"
+                      noOfLines={1}
+                      w="90%"
+                    >
+                      {article_link + item.id}
+                      <ExternalLinkIcon mx="2px" />
+                    </Text>
+                  )}
+                  {item.is_shukkou === true && (
+                    <Text fontSize="xl" mb="20px" textAlign="center">
+                      `(슛코당한 팬아트일 확률이 높습니다.)`
+                    </Text>
+                  )}
+                </Link>
+              ))}
+            </Box>
+            {/* <Accordion allowMultiple w="100%">
               <AccordionItem
                 border="none"
                 _focus={{ boxShadow: 'none' }}
@@ -209,7 +259,7 @@ const SearchResult = ({
                   </Box>
                 </AccordionPanel>
               </AccordionItem>
-            </Accordion>
+            </Accordion> */}
           </Box>
         </Box>
       )}
