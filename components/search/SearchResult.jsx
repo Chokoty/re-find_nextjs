@@ -3,6 +3,7 @@ import {
   Badge,
   Box,
   Button,
+  Divider,
   Link,
   Skeleton,
   Text,
@@ -95,37 +96,48 @@ const SearchResult = ({
           >
             <Box
               display="flex"
-              flexDirection="row"
-              justifyContent="flex-start"
+              flexDirection="column"
+              justifyContent="center"
               alignItems="center"
+              width="100%"
               gap="0.5rem"
             >
-              <Text fontSize={['lg', 'xl']} textAlign="start">
-                {/* {author?.board || ''} */}
-                {data?.board || ''}
-              </Text>
-              <MdArrowForwardIos
-                style={{
-                  // marginLeft: '0.5rem',
-                  fontSize: '0.8rem',
-                }}
-              />
+              <Box
+                display="flex"
+                flexDirection="row"
+                justifyContent="flex-start"
+                alignItems="center"
+                gap="0.5rem"
+                w="100%"
+              >
+                <Text fontSize={['lg', 'xl']} textAlign="start">
+                  {/* {author?.board || ''} */}
+                  {data?.board || ''}
+                </Text>
+                <MdArrowForwardIos
+                  style={{
+                    // marginLeft: '0.5rem',
+                    fontSize: '0.8rem',
+                  }}
+                />
+              </Box>
+              <Link
+                w="100%"
+                fontSize={['xl', '2xl']}
+                fontWeight="bold"
+                textAlign="start"
+                color={highlightColor}
+                className="link-to-wakzoo"
+                href={article_link + ids[0].id}
+                isExternal
+              >
+                <Text>
+                  {data?.title}
+                  <ExternalLinkIcon mx="2px" />
+                </Text>
+              </Link>
             </Box>
-            <Link
-              w="100%"
-              fontSize={['xl', '2xl']}
-              fontWeight="bold"
-              textAlign="start"
-              color={highlightColor}
-              className="link-to-wakzoo"
-              href={article_link + ids[0].id}
-              isExternal
-            >
-              <Text>
-                {data?.title}
-                <ExternalLinkIcon mx="2px" />
-              </Text>
-            </Link>
+
             <AuthorProfileCard2
               writerURL={data.author?.author_url}
               profURL={data.author?.author_prof_url}

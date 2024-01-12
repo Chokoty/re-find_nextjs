@@ -42,12 +42,6 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
   const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
 
   return (
-    // <Link
-    //   className="link-to-wakzoo"
-    //   href={writerURL === '' ? '#' : member_link}
-    //   // passHref
-    //   isExternal
-    // >
     <NextLink
       style={{
         display: 'flex',
@@ -67,105 +61,85 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         target="_blank"
         color={'#f5f5f5'}
         boxShadow="md"
-        borderWidth="1px"
+        // borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
-        p="10px"
+        p="1rem"
         minW="240px"
         h="160px"
         display="flex"
-        flexDirection="row"
+        flexDirection={['column', 'row', 'row']}
         justifyContent="center"
         alignItems="center"
         gap="1rem"
         w="100%"
       >
+        {profURL === 'NULL' ? (
+          <Avatar size="lg" name={nickname} src={profURL || ''} />
+        ) : (
+          <div
+            style={{
+              borderRadius: '50%',
+              overflow: 'hidden',
+              position: 'relative',
+              width: 96,
+              height: 96,
+            }}
+          >
+            <Image
+              src={
+                profURL ||
+                'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
+              }
+              alt={nickname}
+              fill={true}
+              unoptimized
+            />
+          </div>
+        )}
         <Box
           display="flex"
-          flexDirection="row"
+          flexDirection="column"
           justifyContent="center"
           alignItems="center"
           gap="0.5rem"
         >
-          {profURL === 'NULL' ? (
-            <Avatar size="lg" name={nickname} src={profURL || ''} />
-          ) : (
-            <div
-              style={{
-                borderRadius: '50%',
-                overflow: 'hidden',
-                position: 'relative',
-                width: 96,
-                height: 96,
-              }}
-            >
-              <Image
-                src={
-                  profURL ||
-                  'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
-                }
-                alt={nickname}
-                fill={true}
-                unoptimized
-              />
-            </div>
-          )}
-          <Box
+          <Text fontSize="lg" textAlign="center">
+            {nickname || '프로필은 왁물원에서'}
+          </Text>
+          <Badge
+            variant="subtle"
+            colorScheme="green"
+            borderRadius="6px"
+            p="0 0.5rem"
+            h="2rem"
             display="flex"
-            flexDirection="column"
-            justifyContent="center"
             alignItems="center"
-            gap="0.5rem"
+            justifyContent="center"
           >
+            <Box w="1rem" h="1rem" mr="0.3rem">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </Box>
             <Text fontSize="lg" textAlign="center" color={highlightColor}>
-              {nickname || '프로필은 왁물원에서'}
+              {uploadTimeDiff}
             </Text>
-            <Badge
-              variant="subtle"
-              colorScheme="green"
-              borderRadius="6px"
-              p="0 0.5rem"
-              h="2rem"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Box w="1rem" h="1rem" mr="0.3rem">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </Box>
-              <Text fontSize="lg" textAlign="center" color={highlightColor}>
-                {uploadTimeDiff}
-              </Text>
-            </Badge>
-          </Box>
+          </Badge>
         </Box>
-        {/* <Text
-          fontSize="md"
-          textAlign="center"
-          color={color2}
-          px="2"
-          py="1"
-          rounded="full"
-          bg={highlightColor2}
-        >
-          {board || '---'}
-        </Text> */}
       </Button>
     </NextLink>
-    // </Link>
   );
 };
 
