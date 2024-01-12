@@ -65,6 +65,13 @@ const EventFanarts = ({ initialFanart, showCnt, width }) => {
         mt="1rem"
         maxH="260px" // 최대 높이 설정
         overflowY="scroll" // 세로 스크롤 적용
+        sx={{
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          '-ms-overflow-style': 'none' /* IE and Edge */,
+          'scrollbar-width': 'none' /* Firefox */,
+        }}
         display="flex"
         flexDirection="column"
         justifyContent="center"

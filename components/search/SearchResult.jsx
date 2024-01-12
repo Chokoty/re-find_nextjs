@@ -59,6 +59,7 @@ const SearchResult = ({
   );
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
+  const color = useColorModeValue(lightMode.color, darkMode.color);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
   const article_link = useResponsiveLink('', 'article');
@@ -110,21 +111,60 @@ const SearchResult = ({
               <Box
                 display="flex"
                 flexDirection="row"
-                justifyContent="flex-start"
+                justifyContent="space-between"
                 alignItems="center"
                 gap="0.5rem"
                 w="100%"
               >
-                <Text fontSize={['lg', 'xl']} textAlign="start">
-                  {/* {author?.board || ''} */}
-                  {data?.board || ''}
-                </Text>
-                <MdArrowForwardIos
-                  style={{
-                    // marginLeft: '0.5rem',
-                    fontSize: '0.8rem',
-                  }}
-                />
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  justifyContent="flex-start"
+                  alignItems="center"
+                  gap="0.5rem"
+                  w="100%"
+                >
+                  <Text fontSize={['lg', 'xl']} textAlign="start">
+                    {/* {author?.board || ''} */}
+                    {data?.board || ''}
+                  </Text>
+                  <MdArrowForwardIos
+                    style={{
+                      // marginLeft: '0.5rem',
+                      fontSize: '0.8rem',
+                    }}
+                  />
+                </Box>
+                <Badge
+                  variant="subtle"
+                  colorScheme="green"
+                  borderRadius="6px"
+                  p="0 0.5rem"
+                  h="2rem"
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="center"
+                >
+                  <Box w="1rem" h="1rem" mr="0.3rem">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </Box>
+                  <Text fontSize="lg" textAlign="center" color={color}>
+                    {uploadTimeDiff}
+                  </Text>
+                </Badge>
               </Box>
               <Link
                 w="100%"

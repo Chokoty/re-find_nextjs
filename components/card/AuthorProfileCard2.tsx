@@ -59,7 +59,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         }}
         as="a"
         target="_blank"
-        color={'#f5f5f5'}
+        // color={'#f5f5f5'}
         // boxShadow="md"
         // borderWidth="1px"
         borderRadius="lg"
@@ -107,7 +107,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
           <Text fontSize="lg" textAlign="center">
             {nickname || '프로필은 왁물원에서'}
           </Text>
-          <Badge
+          {/* <Badge
             variant="subtle"
             colorScheme="green"
             borderRadius="6px"
@@ -136,7 +136,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
             <Text fontSize="lg" textAlign="center" color={color}>
               {uploadTimeDiff}
             </Text>
-          </Badge>
+          </Badge> */}
         </Box>
       </Button>
     </NextLink>
