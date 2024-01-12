@@ -133,7 +133,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
                 />
               </svg>
             </Box>
-            <Text fontSize="lg" textAlign="center">
+            <Text fontSize="lg" textAlign="center" color={color}>
               {uploadTimeDiff}
             </Text>
           </Badge>

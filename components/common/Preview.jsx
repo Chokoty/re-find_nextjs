@@ -9,7 +9,7 @@ const Preview = ({ files }) => {
   const img = {
     display: 'flex',
     height: '100%',
-    borderRadius: '1rem',
+    borderRadius: '1rem 1rem 0 0',
   };
 
   return (

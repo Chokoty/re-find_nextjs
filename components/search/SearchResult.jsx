@@ -96,7 +96,7 @@ const SearchResult = ({
             width="100%"
             gap="1rem"
             background={bgColor}
-            borderRadius="1rem"
+            borderRadius="0 0 1rem 1rem"
             p="1rem"
           >
             <Box
@@ -160,58 +160,51 @@ const SearchResult = ({
                     <Text>관련 게시글 링크</Text>
                   </Box>
                 </AccordionButton>
-                <AccordionPanel pb={4}>
+                <AccordionPanel pb={4} w="100%">
                   <Box
                     display="flex"
-                    flexDirection="row"
-                    flexWrap="wrap"
-                    gap="1rem"
-                    m="1rem"
+                    flexDirection="column"
+                    justifyContent="center"
+                    alignItems="center"
+                    width="100%"
+                    gap="0.5rem"
+                    p="1rem"
                   >
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      justifyContent="center"
-                      alignItems="center"
-                      width="100%"
-                      gap="0.5rem"
-                      p="1rem"
-                    >
-                      {ids?.map((item, index) => (
-                        <Link
-                          key={index}
-                          fontSize="xl"
-                          mb="20px"
-                          textAlign="center"
-                          // color="#01bda1"
-                          color={highlightColor}
-                          className="link"
-                          href={article_link + item.id}
-                          isExternal
-                        >
-                          {item.is_deleted === true ? (
-                            <Text fontSize="xl" mb="20px" textAlign="center">
-                              삭제된 게시글입니다.
-                            </Text>
-                          ) : (
-                            <Text
-                              fontSize="xl"
-                              mb="20px"
-                              textAlign="center"
-                              noOfLines={1}
-                            >
-                              {article_link + item.id}
-                              <ExternalLinkIcon mx="2px" />
-                            </Text>
-                          )}
-                          {item.is_shukkou === true && (
-                            <Text fontSize="xl" mb="20px" textAlign="center">
-                              `(슛코당한 팬아트일 확률이 높습니다.)`
-                            </Text>
-                          )}
-                        </Link>
-                      ))}
-                    </Box>
+                    {ids?.map((item, index) => (
+                      <Link
+                        key={index}
+                        fontSize="xl"
+                        mb="20px"
+                        textAlign="center"
+                        // color="#01bda1"
+                        color={highlightColor}
+                        className="link"
+                        href={article_link + item.id}
+                        isExternal
+                      >
+                        {item.is_deleted === true ? (
+                          <Text fontSize="xl" mb="20px" textAlign="center">
+                            삭제된 게시글입니다.
+                          </Text>
+                        ) : (
+                          <Text
+                            fontSize="xl"
+                            mb="20px"
+                            textAlign="center"
+                            noOfLines={1}
+                            w="90%"
+                          >
+                            {article_link + item.id}
+                            <ExternalLinkIcon mx="2px" />
+                          </Text>
+                        )}
+                        {item.is_shukkou === true && (
+                          <Text fontSize="xl" mb="20px" textAlign="center">
+                            `(슛코당한 팬아트일 확률이 높습니다.)`
+                          </Text>
+                        )}
+                      </Link>
+                    ))}
                   </Box>
                 </AccordionPanel>
               </AccordionItem>
