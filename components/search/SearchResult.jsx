@@ -164,7 +164,12 @@ const SearchResult = ({
                     삭제된 게시글입니다.
                   </Text>
                 ) : (
-                  <Text fontSize="xl" mb="20px" textAlign="center">
+                  <Text
+                    fontSize="xl"
+                    mb="20px"
+                    textAlign="center"
+                    noOfLines={1}
+                  >
                     {article_link + item.id}
                     <ExternalLinkIcon mx="2px" />
                   </Text>

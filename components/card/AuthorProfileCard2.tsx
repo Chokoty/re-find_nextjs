@@ -60,13 +60,13 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         as="a"
         target="_blank"
         color={'#f5f5f5'}
-        boxShadow="md"
+        // boxShadow="md"
         // borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
         p="1rem"
         minW="240px"
-        h="160px"
+        // h="160px"
         display="flex"
         flexDirection={['column', 'row', 'row']}
         justifyContent="center"
@@ -133,7 +133,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
                 />
               </svg>
             </Box>
-            <Text fontSize="lg" textAlign="center" color={highlightColor}>
+            <Text fontSize="lg" textAlign="center">
               {uploadTimeDiff}
             </Text>
           </Badge>
