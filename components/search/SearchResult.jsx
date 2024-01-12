@@ -1,5 +1,10 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
   Badge,
   Box,
   Button,
@@ -80,7 +85,6 @@ const SearchResult = ({
           width="100%"
           gap="1rem"
           m="0 auto"
-          mb="2rem"
         >
           <Box
             w="100%"
@@ -144,43 +148,78 @@ const SearchResult = ({
               nickname={data.author?.author_nickname}
               uploadTimeDiff={uploadTimeDiff}
             />
-            <Text mt="1rem" fontSize="xl">
+            {/* <Text mt="1rem" fontSize="xl">
               관련 게시글 링크
-            </Text>
-            {ids?.map((item, index) => (
-              <Link
-                key={index}
-                fontSize="xl"
-                mb="20px"
-                textAlign="center"
-                // color="#01bda1"
-                color={highlightColor}
-                className="link"
-                href={article_link + item.id}
-                isExternal
+            </Text> */}
+
+            <Accordion allowMultiple w="100%">
+              <AccordionItem
+                border="none"
+                _focus={{ boxShadow: 'none' }}
+                _hover={{ boxShadow: 'none' }}
               >
-                {item.is_deleted === true ? (
-                  <Text fontSize="xl" mb="20px" textAlign="center">
-                    삭제된 게시글입니다.
-                  </Text>
-                ) : (
-                  <Text
-                    fontSize="xl"
-                    mb="20px"
-                    textAlign="center"
-                    noOfLines={1}
+                <AccordionButton p="1rem 0">
+                  <AccordionIcon />
+                  <Box as="span" flex="1" textAlign="left" fontSize="xl">
+                    <Text>관련 게시글 링크</Text>
+                  </Box>
+                </AccordionButton>
+                <AccordionPanel pb={4}>
+                  <Box
+                    display="flex"
+                    flexDirection="row"
+                    flexWrap="wrap"
+                    gap="1rem"
+                    m="1rem"
                   >
-                    {article_link + item.id}
-                    <ExternalLinkIcon mx="2px" />
-                  </Text>
-                )}
-                {item.is_shukkou === true && (
-                  <Text fontSize="xl" mb="20px" textAlign="center">
-                    `(슛코당한 팬아트일 확률이 높습니다.)`
-                  </Text>
-                )}
-              </Link>
-            ))}
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      justifyContent="center"
+                      alignItems="center"
+                      width="100%"
+                      gap="0.5rem"
+                      p="1rem"
+                    >
+                      {ids?.map((item, index) => (
+                        <Link
+                          key={index}
+                          fontSize="xl"
+                          mb="20px"
+                          textAlign="center"
+                          // color="#01bda1"
+                          color={highlightColor}
+                          className="link"
+                          href={article_link + item.id}
+                          isExternal
+                        >
+                          {item.is_deleted === true ? (
+                            <Text fontSize="xl" mb="20px" textAlign="center">
+                              삭제된 게시글입니다.
+                            </Text>
+                          ) : (
+                            <Text
+                              fontSize="xl"
+                              mb="20px"
+                              textAlign="center"
+                              noOfLines={1}
+                            >
+                              {article_link + item.id}
+                              <ExternalLinkIcon mx="2px" />
+                            </Text>
+                          )}
+                          {item.is_shukkou === true && (
+                            <Text fontSize="xl" mb="20px" textAlign="center">
+                              `(슛코당한 팬아트일 확률이 높습니다.)`
+                            </Text>
+                          )}
+                        </Link>
+                      ))}
+                    </Box>
+                  </Box>
+                </AccordionPanel>
+              </AccordionItem>
+            </Accordion>
           </Box>
         </Box>
       )}
