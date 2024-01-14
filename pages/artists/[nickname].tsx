@@ -42,13 +42,28 @@ const Artist = ({ artist_name2info }) => {
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
+  // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
+  const [sortType, setSortType] = useState(router.query.sort || 'latest');
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
   // react-spinners
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
+
+  // sortType 업데이트 시 URL 업데이트
+  useEffect(() => {
+    const currentPath = router.pathname;
+    const currentQuery = { ...router.query, sort: sortType };
+    router.replace(
+      {
+        pathname: currentPath,
+        query: currentQuery,
+      },
+      undefined,
+      { shallow: true }
+    );
+  }, [sortType, router]);
 
   const loadData = () => {
     console.log('loadData');
