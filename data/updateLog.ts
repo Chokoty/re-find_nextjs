@@ -217,6 +217,13 @@ const updateLog: UpdateLog[] = [
     type: '[안내]',
     content: '갤러리 페이지 기능이 추가되었습니다. 특집 팬아트도 확인해보세요!',
   },
+  {
+    id: 34,
+    date: '2024.1.14',
+    type: '[점검]',
+    content:
+      '(17:00~22:00)서버 점검중입니다. 일부 기능이 작동하지 않을 수 있습니다.',
+  },
 ];
 
 export default updateLog;
