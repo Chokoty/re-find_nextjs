@@ -43,6 +43,7 @@ const Artist = ({ artist_name2info }) => {
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
+  const [board, setBoard] = useState(router.query.board || '');
   const [sortType, setSortType] = useState(router.query.sort || 'latest');
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -51,10 +52,29 @@ const Artist = ({ artist_name2info }) => {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
-  // sortType 업데이트 시 URL 업데이트
+  // sortCriteria, sortType 업데이트 시 URL 업데이트
   useEffect(() => {
     const currentPath = router.pathname;
-    const currentQuery = { ...router.query, sort: sortType };
+    // const currentQuery = {
+    //   ...router.query,
+    //   sort: sortType,
+    //   // board 파라미터는 sortCriteria.field가 비어있지 않을 때만 포함
+    //   // ...(sortCriteria.field && { board: sortCriteria.field }),
+    //   ...(boards !== '' && { board: boards }),
+    // };
+    // eslint-disable-next-line prefer-const
+    let currentQuery = {
+      ...router.query,
+      sort: sortType,
+      board,
+    };
+    if (board !== '') {
+      // board 값이 있는 경우에만 추가
+      currentQuery.board = board;
+    } else {
+      // board 값이 없는 경우 삭제
+      delete currentQuery.board;
+    }
     router.replace(
       {
         pathname: currentPath,
@@ -63,7 +83,7 @@ const Artist = ({ artist_name2info }) => {
       undefined,
       { shallow: true }
     );
-  }, [sortType, router]);
+  }, [sortType, board, router]);
 
   const loadData = () => {
     console.log('loadData');
@@ -107,10 +127,12 @@ const Artist = ({ artist_name2info }) => {
     // 같은거 누르면 해제,토글
     // console.log(value);
     if (value === sortCriteria.field) {
+      setBoard('');
       setSortCriteria((prevState) => {
         return { ...prevState, field: '', order: 'descending' };
       });
     } else {
+      setBoard(value.replace('_cnt', ''));
       setSortCriteria((prevState) => {
         return { ...prevState, field: value, order: 'descending' };
       });
