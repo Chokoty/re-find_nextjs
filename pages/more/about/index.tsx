@@ -1,5 +1,12 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { Flex, Heading, Link, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Heading,
+  Link,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
 import ProfileCard2 from '@/components/card/ProfileCard2';
@@ -23,12 +30,20 @@ const About = () => {
 
   return (
     <MoreLayout title="About">
-      <div className="about-content">
+      <Box
+        w="100%"
+        p="1rem"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center"
+      >
         <Heading
-          className="page-title"
+          // className="page-title"
           as="h1"
-          size="md"
-          m="3rem auto"
+          size="lg"
+          m="1rem auto"
           noOfLines={1}
         >
           서비스 소개 왁물원 게시글
@@ -50,38 +65,81 @@ const About = () => {
             </Link>
           </li>
         </ul>
-        <Heading
-          className="page-title"
-          as="h1"
-          size="md"
-          m="3rem auto"
-          mt="6rem"
-          noOfLines={1}
-        >
-          크레딧
-        </Heading>
-
-        <Flex
-          className="developers"
+        <Box
+          w="100%"
+          p="1rem"
           display="flex"
-          flexWrap="wrap"
-          gap="20px"
-          justifyContent="center"
+          flexDirection="column"
           alignItems="center"
-          margin="0 auto"
-          p="0"
+          justifyContent="center"
+          textAlign="center"
         >
-          {developers.map((item, index) => (
-            <ProfileCard2
-              key={index}
-              writerURL={item.writerURL}
-              profURL={item.profURL}
-              nickname={item.nickname}
-              board={item.contribute}
-            />
-          ))}
-        </Flex>
-      </div>
+          <Text as="h1" fontSize="2xl" m="3rem 0 1rem 0">
+            팀 멤버
+          </Text>
+          <Flex
+            w="90%"
+            className="developers"
+            display="flex"
+            flexWrap="wrap"
+            gap="20px"
+            justifyContent="center"
+            alignItems="center"
+            margin="0 auto"
+            p="0"
+          >
+            {developers.map(
+              (item, index) =>
+                item.group === 'member' && (
+                  <ProfileCard2
+                    key={index}
+                    writerURL={item.writerURL}
+                    profURL={item.profURL}
+                    nickname={item.nickname}
+                    board={item.contribute}
+                  />
+                )
+            )}
+          </Flex>
+        </Box>
+        <Box
+          w="100%"
+          p="1rem"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          textAlign="center"
+        >
+          <Text mt="3rem" as="h1" fontSize="2xl">
+            크레딧
+          </Text>
+          <Flex
+            w="90%"
+            className="developers"
+            display="flex"
+            flexWrap="wrap"
+            gap="20px"
+            justifyContent="center"
+            alignItems="center"
+            margin="0 auto"
+            p="0"
+          >
+            {developers.map(
+              (item, index) =>
+                item.group === 'credit' && (
+                  <ProfileCard2
+                    key={index}
+                    writerURL={item.writerURL}
+                    profURL={item.profURL}
+                    nickname={item.nickname}
+                    board={item.contribute}
+                  />
+                )
+            )}
+          </Flex>
+        </Box>
+      </Box>
     </MoreLayout>
   );
 };

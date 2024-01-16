@@ -45,15 +45,16 @@ const gallery: Gallery[] = [
     query:
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
   },
-  // {
-  //   id: 5,
-  //   value: 'christmas',
-  //   type: 'special',
-  //   title: '비챤님 생일 팬아트',
-  //   subTitle: '🎂 비챤님 생일 팬아트 🎂',
-  //   query:
-  //     'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
-  // },
+  {
+    id: 5,
+    value: 'christmas',
+    type: 'special',
+    title: '비챤님 생일 팬아트',
+    subTitle: '🎂 비챤님 생일 팬아트 🎂',
+    query: 'gallery?member=viichan&since=20240116&until=20240116',
+  },
 ];
+
+// https://re-find.reruru.com/
 
 export default gallery;

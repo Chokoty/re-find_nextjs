@@ -1,4 +1,5 @@
 interface Developer {
+  group: string;
   nickname: string;
   writerURL: string;
   profURL: string;
@@ -6,6 +7,7 @@ interface Developer {
 }
 const developers: Developer[] = [
   {
+    group: 'member',
     nickname: '레루루',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/N8dX1e0GCf7CmHWtLoksOA',
@@ -14,6 +16,7 @@ const developers: Developer[] = [
     contribute: ['검색엔진', '백엔드 개발'],
   },
   {
+    group: 'member',
     nickname: '초코넛밀크티',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/fZ8VSlTngMBcoxspZWPPDw',
@@ -22,6 +25,7 @@ const developers: Developer[] = [
     contribute: ['UX 디자인', '프론트엔드 개발'],
   },
   {
+    group: 'member',
     nickname: '아이김',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/h_34S-J91nEd_7rculSuyQ',
@@ -30,6 +34,7 @@ const developers: Developer[] = [
     contribute: ['키워드검색 연구'],
   },
   {
+    group: 'member',
     nickname: '카닌',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA',
@@ -37,7 +42,17 @@ const developers: Developer[] = [
       'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MDNfMTQg/MDAxNjkxMDUyMzM5NzQw.nUzXx1Bqx_AGlvVaMkWjsOfF7zmQ4U3sg7jl44Uybtog.gLnPyIW3TYn6tr35c_OEDVm-FF4RedXbH0nplr2FE1wg.JPEG/externalFile.jpg?type=s3',
     contribute: ['QA'],
   },
+  // {
+  //   group: 'member',
+  //   nickname: 'cosmos',
+  //   writerURL:
+  //     'https://cafe.naver.com/ca-fe/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA',
+  //   profURL:
+  //     'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MDNfMTQg/MDAxNjkxMDUyMzM5NzQw.nUzXx1Bqx_AGlvVaMkWjsOfF7zmQ4U3sg7jl44Uybtog.gLnPyIW3TYn6tr35c_OEDVm-FF4RedXbH0nplr2FE1wg.JPEG/externalFile.jpg?type=s3',
+  //   contribute: ['보안'],
+  // },
   {
+    group: 'credit',
     nickname: '89',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/1MItD9uVwQKvZgopAxV4Og',
@@ -46,6 +61,7 @@ const developers: Developer[] = [
     contribute: ['배너,카드 디자인'],
   },
   {
+    group: 'credit',
     nickname: '바게트빵 옴뇸뇸',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/NyPZKCn8JER0USsj8xCz5w',

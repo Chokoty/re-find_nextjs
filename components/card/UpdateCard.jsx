@@ -69,7 +69,6 @@ const UpdateCard = ({ update }) => {
       placeItems="center"
     >
       <Link
-        w="100%"
         className="link-to-wakzoo"
         href={article_link}
         isExternal

@@ -12,6 +12,7 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 const AlbumGrid = ({ gallery }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const highlight2 = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const router = useRouter();
 
   const onClick = (id, subTitle, value) => {
@@ -63,7 +64,7 @@ const AlbumGrid = ({ gallery }) => {
                 flexDirection="column"
                 justifyContent="flex-start"
                 alignItems="center"
-                background={bg2}
+                background={item.type === 'special' ? highlight2 : bg2}
                 borderRadius="1rem"
                 boxShadow="md"
                 onClick={() => onClick(item.id, item.subTitle, item.value)}

@@ -39,6 +39,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
 
   return (
     <Link
+      // w="100%"
       className="link-to-wakzoo"
       href={writerURL === '' ? '#' : member_link}
       isExternal
@@ -48,11 +49,11 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         color={'#f5f5f5'}
         boxShadow="base"
         maxW="sm"
-        borderRadius="lg"
+        borderRadius="1rem"
         overflow="hidden"
         p="1.5rem"
         width="100%"
-        height="140px"
+        height="120px"
         display="flex"
         justifyContent="space-between"
         gap="10px"
