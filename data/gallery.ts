@@ -47,7 +47,7 @@ const gallery: Gallery[] = [
   },
   {
     id: 5,
-    value: 'christmas',
+    value: 'viichanBirthday',
     type: 'special',
     title: '비챤님 생일 팬아트',
     subTitle: '🎂 비챤님 생일 팬아트 🎂',
