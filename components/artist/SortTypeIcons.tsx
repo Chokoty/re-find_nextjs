@@ -92,7 +92,7 @@ const SortTypeIcons = ({ sortCriteria, sortTypes, artist, component }) => {
         )}
       </Box>
       <Box display="flex" justifyContent="center" alignItems="center">
-        {artist[sortTypes[3].value] !== 0 && (
+        {/* {artist[sortTypes[3].value] !== 0 && (
           <Text
             color={
               sortCriteria?.field === sortTypes[3].value
@@ -109,6 +109,28 @@ const SortTypeIcons = ({ sortCriteria, sortTypes, artist, component }) => {
               {formatArtistValue(artist[sortTypes[3].value])}
             </Text>
           </Text>
+        )} */}
+        {sortTypes.slice(3, 5).map(
+          (sortType, index2) =>
+            artist[sortType.value] !== 0 && (
+              <Text
+                key={index2}
+                color={
+                  sortCriteria?.field === sortType.value
+                    ? 'pink.500'
+                    : 'gray.500'
+                }
+                size="sm"
+                display="flex"
+                flexDirection="row"
+                gap="0.5rem"
+              >
+                <IconComponent sortTypeName={sortType.name} />
+                <Text fontSize="xs">
+                  {formatArtistValue(artist[sortType.value])}
+                </Text>
+              </Text>
+            )
         )}
       </Box>
     </Box>
