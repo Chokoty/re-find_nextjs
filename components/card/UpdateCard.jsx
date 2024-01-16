@@ -108,7 +108,7 @@ const UpdateCard = ({ update }) => {
         alignItems="flex-start"
         h="100%"
         w="100%"
-        p={['0.5rem 0', '1rem 0']}
+        p="1rem 0"
       >
         <Flex
           w="100%"
