@@ -79,8 +79,8 @@ const UpdateCard = ({ update }) => {
       >
         <NextImage
           unoptimized
-          width={100}
-          height={100}
+          width={isMobile ? 56 : 100}
+          height={isMobile ? 56 : 100}
           style={{
             borderRadius: '0.5rem',
             objectFit: 'cover',
@@ -105,7 +105,7 @@ const UpdateCard = ({ update }) => {
           flexDirection={['column', 'row']}
           alignItems={['flex-start', 'center']}
           justifyContent="space-between"
-          gap="1rem"
+          gap={['0.5rem', '1rem', '1rem']}
         >
           <Box
             display="flex"
@@ -175,7 +175,7 @@ const UpdateCard = ({ update }) => {
               alignItems="center"
               justifyContent="center"
             >
-              <Text fontSize={['sm', 'md', 'lg']}>
+              <Text fontSize={['xs', 'md', 'lg']}>
                 <NextLink
                   href={`/artists/${update.info.nickname}`}
                   style={{
@@ -229,7 +229,7 @@ const UpdateCard = ({ update }) => {
                   />
                 </svg>
               </Box>
-              <Text color={color} fontSize={['sm', 'md', 'lg']}>
+              <Text color={color} fontSize={['xs', 'md', 'lg']}>
                 {uploadTimeDiff}
               </Text>
             </Badge>
