@@ -68,29 +68,40 @@ const UpdateCard = ({ update }) => {
       alignItems="center"
       placeItems="center"
     >
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        h={isMobile ? '4rem' : '6rem'}
-        w={isMobile ? '6rem' : '8rem'}
-        borderRadius="0.5rem"
-        mr="1rem"
+      <Link
+        w="100%"
+        className="link-to-wakzoo"
+        href={article_link}
+        isExternal
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+        }}
       >
-        <NextImage
-          unoptimized
-          width={100}
-          height={100}
-          style={{
-            borderRadius: '0.5rem',
-            objectFit: 'cover',
-            width: isMobile ? '4rem' : '6rem',
-            height: isMobile ? '4rem' : '6rem',
-          }}
-          src={getImageSrc()}
-          alt={update.info.title}
-        />
-      </Box>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          h={isMobile ? '5rem' : '6rem'}
+          w={isMobile ? '5rem' : '8rem'}
+          borderRadius="0.5rem"
+          mr="1rem"
+        >
+          <NextImage
+            unoptimized
+            width={100}
+            height={100}
+            style={{
+              borderRadius: '0.5rem',
+              objectFit: 'cover',
+              width: isMobile ? '5rem' : '6rem',
+              height: isMobile ? '5rem' : '6rem',
+            }}
+            src={getImageSrc()}
+            alt={update.info.title}
+          />
+        </Box>
+      </Link>
       <Box
         display="flex"
         flexDirection="column"
