@@ -15,7 +15,7 @@ import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 // import useUrlQuery from '@/hooks/useUrlQuery';
 
-const Artist = ({ artist_name2info }) => {
+const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
   const router = useRouter();
   // const { sort, board } = router.query;
   const toast = useToast();
@@ -45,8 +45,9 @@ const Artist = ({ artist_name2info }) => {
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
-  const [board, setBoard] = useState('');
-  const [sortType, setSortType] = useState('latest');
+  const [board, setBoard] = useState(initialBoard);
+  const [sortType, setSortType] = useState(initialSort);
+  // const [sortType, setSortType] = useState('latest');
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -379,7 +380,8 @@ const Artist = ({ artist_name2info }) => {
 export default Artist;
 
 export async function getServerSideProps(context) {
-  const { nickname } = context.query;
+  // const { nickname } = context.query;
+  const { nickname, sort = '', board = '' } = context.query;
 
   try {
     const artist_name2info = await axios
@@ -389,6 +391,8 @@ export async function getServerSideProps(context) {
     return {
       props: {
         artist_name2info,
+        initialSort: sort,
+        initialBoard: board,
       },
     };
   } catch (error) {

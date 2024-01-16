@@ -91,7 +91,12 @@ const SortTypeIcons = ({ sortCriteria, sortTypes, artist, component }) => {
             )
         )}
       </Box>
-      <Box display="flex" justifyContent="center" alignItems="center">
+      <Box
+        display="flex"
+        gap="0.5rem"
+        justifyContent="center"
+        alignItems="center"
+      >
         {/* {artist[sortTypes[3].value] !== 0 && (
           <Text
             color={
