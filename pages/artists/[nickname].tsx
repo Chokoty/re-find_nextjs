@@ -13,9 +13,11 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import { ArtistHeader } from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+// import useUrlQuery from '@/hooks/useUrlQuery';
 
 const Artist = ({ artist_name2info }) => {
   const router = useRouter();
+  // const { sort, board } = router.query;
   const toast = useToast();
 
   const { ref, inView } = useInView({
@@ -43,8 +45,8 @@ const Artist = ({ artist_name2info }) => {
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
-  const [board, setBoard] = useState(router.query.board || '');
-  const [sortType, setSortType] = useState(router.query.sort || 'latest');
+  const [board, setBoard] = useState('');
+  const [sortType, setSortType] = useState('latest');
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -53,6 +55,9 @@ const Artist = ({ artist_name2info }) => {
   const [loadingImage, setLoadingImage] = useState(true);
 
   // sortCriteria, sortType 업데이트 시 URL 업데이트
+
+  // const urlQuery = useUrlQuery(sortCriteria, setSortCriteria, setBoard);
+
   useEffect(() => {
     const currentPath = router.pathname;
     // const currentQuery = {
