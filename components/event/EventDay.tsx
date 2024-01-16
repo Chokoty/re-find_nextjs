@@ -5,7 +5,7 @@ import { PiGiftBold } from 'react-icons/pi';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const EventBtn = () => {
+const EventDay = () => {
   const color3 = useColorModeValue(lightMode.color2, darkMode.color3);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
@@ -30,17 +30,17 @@ const EventBtn = () => {
         fontWeight="bold"
         mb="1rem"
       >
-        이벤트 페이지 개설!
+        비챤님 생일 축하드려요!!!
       </Text>
       <Button
         // background="black"
-        colorScheme="purple"
+        colorScheme="green"
         // color="white"
         w="60%"
         // h="40px"
+        // mb="2rem"
         p="0.5rem"
         borderRadius="1rem"
-        // mb="2rem"
         _hover={{ background: '#ddd', color: 'black' }}
       >
         {' '}
@@ -51,10 +51,12 @@ const EventBtn = () => {
             marginRight: '0.5rem',
           }}
         />
-        <NextLink href="/events/">팬아트 가챠 하러가기</NextLink>
+        <NextLink href="/gallery/viichanBirthday">
+          비챤님 생일기념 팬아트 보러가기
+        </NextLink>
       </Button>
     </Box>
   );
 };
 
-export default EventBtn;
+export default EventDay;
