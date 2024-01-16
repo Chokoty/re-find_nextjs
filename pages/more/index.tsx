@@ -50,7 +50,7 @@ const More = () => {
           (beta)이세돌 팬아트를 키워드로 찾아주는 AI
         </Button>
       </Link>
-      <UpdateLogBoard width={'100%'} />
+      <UpdateLogBoard width={'90%'} />
     </MoreLayout>
   );
 };

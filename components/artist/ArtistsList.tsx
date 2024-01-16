@@ -70,8 +70,9 @@ const ArtistsList = ({
                 }}
                 key={index}
                 w="100%"
-                m="0 1rem"
-                p={['0.5rem', '1rem', '1rem']}
+                mb="1rem"
+                // p={['0.5rem', '1rem', '1rem']}
+                p="1rem"
                 mt="1rem"
                 h="100%"
                 minH={['250px', '150px', '126px']}
@@ -156,11 +157,10 @@ const ArtistsList = ({
             </Link>
           )
       )}
-
       {/* Observer를 위한 div
       {<Box ref={ref} w="100%" h="2rem"></Box>} */}
       {alert === true && (
-        <Alert status="error" w="90%" borderRadius="1rem" maxW="500px">
+        <Alert status="error" w="100%" borderRadius="1rem" maxW="500px">
           <AlertIcon />
           <AlertTitle></AlertTitle>
           <AlertDescription textAlign="start">

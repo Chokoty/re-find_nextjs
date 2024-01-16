@@ -22,6 +22,7 @@ const SortTypeButtonGroup = ({
       maxW="1024px"
       backgroundColor={bg2}
       borderRadius="1rem"
+      p="0 1rem"
     >
       <ul
         style={{

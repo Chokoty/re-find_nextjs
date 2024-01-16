@@ -42,15 +42,15 @@ const developers: Developer[] = [
       'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MDNfMTQg/MDAxNjkxMDUyMzM5NzQw.nUzXx1Bqx_AGlvVaMkWjsOfF7zmQ4U3sg7jl44Uybtog.gLnPyIW3TYn6tr35c_OEDVm-FF4RedXbH0nplr2FE1wg.JPEG/externalFile.jpg?type=s3',
     contribute: ['QA'],
   },
-  // {
-  //   group: 'member',
-  //   nickname: 'cosmos',
-  //   writerURL:
-  //     'https://cafe.naver.com/ca-fe/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA',
-  //   profURL:
-  //     'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MDNfMTQg/MDAxNjkxMDUyMzM5NzQw.nUzXx1Bqx_AGlvVaMkWjsOfF7zmQ4U3sg7jl44Uybtog.gLnPyIW3TYn6tr35c_OEDVm-FF4RedXbH0nplr2FE1wg.JPEG/externalFile.jpg?type=s3',
-  //   contribute: ['보안'],
-  // },
+  {
+    group: 'member',
+    nickname: 'cosmos1122',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/-NxoStVDRfi-5l0gDrwz0Q',
+    profURL:
+      'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_77.png',
+    contribute: ['보안'],
+  },
   {
     group: 'credit',
     nickname: '89',

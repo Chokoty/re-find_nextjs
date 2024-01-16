@@ -266,6 +266,7 @@ const Artists = () =>
           mt="3rem"
           w="100%"
           maxW="1024px"
+          gap="1rem"
         >
           <ArtistsSearchInput nickname={nickname} handleSearch={handleSearch} />
           <ViewTypeButtonGroup
@@ -279,7 +280,6 @@ const Artists = () =>
             sortTypes={sortTypes}
             handleChangeSortCriteria={handleChangeSortCriteria}
           />
-          <Box mb="1rem"></Box>
           <ArtistsList
             visibleArtists={visibleArtists}
             sortCriteria={sortCriteria}
