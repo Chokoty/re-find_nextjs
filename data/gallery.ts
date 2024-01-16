@@ -1,6 +1,7 @@
 interface Gallery {
   id: number;
   value: string;
+  type: string;
   title: string;
   subTitle: string;
   description?: string;
@@ -11,6 +12,7 @@ const gallery: Gallery[] = [
   {
     id: 0,
     value: 'isdPick',
+    type: 'special',
     title: '이세돌픽 팬아트',
     subTitle: '이세돌이 고른 팬아트',
     description: '이세돌의 공지사항에 올라온 팬아트를 모아봤습니다.',
@@ -19,6 +21,7 @@ const gallery: Gallery[] = [
   {
     id: 2,
     value: 'halloween',
+    type: 'keyword',
     title: '할로윈 팬아트',
     subTitle: '🎃 할로윈 특집 🎃',
     query:
@@ -27,6 +30,7 @@ const gallery: Gallery[] = [
   {
     id: 3,
     value: 'rewind2year',
+    type: 'special',
     title: '이세돌 2주년 팬아트',
     subTitle: ' ❤️‍🔥 이세돌 2주년 ❤️‍🔥',
     query:
@@ -35,11 +39,21 @@ const gallery: Gallery[] = [
   {
     id: 4,
     value: 'christmas',
+    type: 'keyword',
     title: '크리스마스 팬아트',
     subTitle: '🎅🏼 크리스마스 특집 🎄',
     query:
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
   },
+  // {
+  //   id: 5,
+  //   value: 'christmas',
+  //   type: 'special',
+  //   title: '비챤님 생일 팬아트',
+  //   subTitle: '🎂 비챤님 생일 팬아트 🎂',
+  //   query:
+  //     'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
+  // },
 ];
 
 export default gallery;
