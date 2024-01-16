@@ -12,8 +12,8 @@ const useTabBar = () => {
       setTab('search');
     } else if (router.pathname.startsWith('/gallery')) {
       setTab('gallery');
-    } else if (router.pathname.startsWith('/more')) {
-      setTab('more');
+    } else if (router.pathname.startsWith('/artists')) {
+      setTab('artists');
     }
   }, [router.pathname]);
 
