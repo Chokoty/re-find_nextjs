@@ -1,6 +1,12 @@
 import { Box, Text } from '@chakra-ui/react';
 import React from 'react';
-import { FaComment, FaEye, FaImage, FaThumbsUp } from 'react-icons/fa';
+import {
+  FaBookmark,
+  FaComment,
+  FaEye,
+  FaImage,
+  FaThumbsUp,
+} from 'react-icons/fa';
 
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
 
@@ -30,6 +36,8 @@ const IconComponent = ({ sortTypeName }) => {
       return <FaComment style={iconStyle} />;
     case '총 좋아요':
       return <FaThumbsUp style={iconStyle} />;
+    case '총 구독':
+      return <FaBookmark style={iconStyle} />;
     default:
       return null;
   }

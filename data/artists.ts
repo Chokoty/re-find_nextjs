@@ -22,6 +22,7 @@ export const sortTypes: Sort[] = [
   { name: '총 댓글', value: 'total_comments' },
   { name: '총 좋아요', value: 'total_likes' },
   { name: '총 작품', value: 'total_cnt' },
+  { name: '총 구독', value: 'subscriber_cnt' },
 ];
 
 export const menuItems = [
