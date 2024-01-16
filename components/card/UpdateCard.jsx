@@ -72,20 +72,20 @@ const UpdateCard = ({ update }) => {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        h="6rem"
-        w="8rem"
+        h={isMobile ? '4rem' : '6rem'}
+        w={isMobile ? '6rem' : '8rem'}
         borderRadius="0.5rem"
         mr="1rem"
       >
         <NextImage
           unoptimized
-          width={isMobile ? 56 : 100}
-          height={isMobile ? 56 : 100}
+          width={100}
+          height={100}
           style={{
             borderRadius: '0.5rem',
             objectFit: 'cover',
-            width: '6rem',
-            height: '6rem',
+            width: isMobile ? '4rem' : '6rem',
+            height: isMobile ? '4rem' : '6rem',
           }}
           src={getImageSrc()}
           alt={update.info.title}
@@ -98,7 +98,7 @@ const UpdateCard = ({ update }) => {
         alignItems="flex-start"
         h="100%"
         w="100%"
-        p="1rem 0"
+        p={['0.5rem 0', '1rem 0']}
       >
         <Flex
           w="100%"
@@ -114,7 +114,7 @@ const UpdateCard = ({ update }) => {
             alignItems="flex-start"
             gap={['0.2rem', '1rem']}
           >
-            <Text fontSize={['md', 'lg']}>
+            <Text fontSize={['sm', 'md', 'lg']}>
               <Link
                 color={highlightColor}
                 className="link-to-wakzoo"
@@ -136,7 +136,7 @@ const UpdateCard = ({ update }) => {
             </Text>
             <Heading
               as="h1"
-              fontSize={['lg', 'xl']}
+              fontSize={['md', 'lg', 'xl']}
               textTransform="uppercase"
               m="0"
             >
@@ -170,7 +170,7 @@ const UpdateCard = ({ update }) => {
               p="0 0.5rem"
               borderRadius="6px"
               colorScheme="red"
-              h="2rem"
+              h={['1.5rem', '2rem']}
               display="flex"
               alignItems="center"
               justifyContent="center"
@@ -208,7 +208,7 @@ const UpdateCard = ({ update }) => {
               colorScheme="green"
               borderRadius="6px"
               p="0 0.5rem"
-              h="2rem"
+              h={['1.5rem', '2rem']}
               display="flex"
               alignItems="center"
               justifyContent="center"
