@@ -25,6 +25,7 @@ const UpdateLogBoard = ({ width }) => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      m="0 auto"
     >
       <NextLink href="/more/notice" legacyBehavior style={{ width: '100%' }}>
         <Flex
