@@ -18,7 +18,7 @@ const UpdateBoard = ({ last_update_info }) => {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-  const width = useBreakpointValue({ base: '90%', md: '100%' });
+  const width = useBreakpointValue({ base: '100%', md: '100%' });
 
   return (
     <Box
@@ -54,20 +54,29 @@ const UpdateBoard = ({ last_update_info }) => {
           게시판 업데이트 현황
         </Heading>
       </Box>
-      {last_update_info?.map((update, index) => (
-        <UpdateCard key={index} update={update} />
-      ))}
-      {last_update_info === null ||
-        (last_update_info?.length === 0 && (
-          <Alert status="error" w="90%" borderRadius="1rem">
-            <AlertIcon />
-            <AlertTitle></AlertTitle>
-            <AlertDescription>
-              현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
-              빠른 시일 내에 해결하겠습니다.
-            </AlertDescription>
-          </Alert>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        placeItems="center"
+        w="100%"
+        // p="1em"
+      >
+        {last_update_info?.map((update, index) => (
+          <UpdateCard key={index} update={update} />
         ))}
+        {last_update_info === null ||
+          (last_update_info?.length === 0 && (
+            <Alert status="error" w="90%" borderRadius="1rem">
+              <AlertIcon />
+              <AlertTitle></AlertTitle>
+              <AlertDescription>
+                현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려
+                죄송합니다. 빠른 시일 내에 해결하겠습니다.
+              </AlertDescription>
+            </Alert>
+          ))}
+      </Box>
       <Box
         display="flex"
         flexDirection="column"

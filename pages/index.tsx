@@ -310,7 +310,15 @@ export default function Home() {
         justifyContent="center"
       >
         {!isMobile && (
-          <Box background={bgColor2} borderRadius="1rem" p="1rem 0">
+          <Box
+            w="90%"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            background={bgColor2}
+            borderRadius="1rem"
+            p="1rem 0"
+          >
             <Flex
               pl="1rem"
               w="100%"
@@ -337,8 +345,8 @@ export default function Home() {
             <MoreButtons />
           </Box>
         )}
-        <EventFanarts initialFanart={null} showCnt={2} width={'84%'} />
-        <UpdateLogBoard width={'80%'} />
+        <EventFanarts initialFanart={null} showCnt={2} width={'90%'} />
+        <UpdateLogBoard width={'90%'} />
         <Footer />
         {/* {!inView ? <Footer /> : <Box h="398px"></Box>} */}
         {/* Observer를 위한 div */}
