@@ -63,8 +63,8 @@ export default function Album({ value, query, initialSort }) {
         pathname: currentPath,
         query: currentQuery,
       },
-      undefined
-      // { shallow: true }
+      undefined,
+      { shallow: true }
     );
   }, [sortType, router]);
 
