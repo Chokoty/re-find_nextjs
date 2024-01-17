@@ -46,7 +46,7 @@ const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
   const [board, setBoard] = useState('' || initialBoard);
-  const [sortType, setSortType] = useState('latest' || initialSort);
+  const [sortType, setSortType] = useState('latest');
   // const [sortType, setSortType] = useState('latest');
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
@@ -60,6 +60,7 @@ const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
   // const urlQuery = useUrlQuery(sortCriteria, setSortCriteria, setBoard);
 
   useEffect(() => {
+    if (initialSort !== '') setSortType(initialSort);
     const currentPath = router.pathname;
     // const currentQuery = {
     //   ...router.query,
@@ -74,6 +75,7 @@ const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
       sort: sortType,
       board,
     };
+
     if (board !== '') {
       // board 값이 있는 경우에만 추가
       currentQuery.board = board;
