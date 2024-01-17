@@ -17,7 +17,7 @@ import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function Album({ value, query }) {
+export default function Album({ value, query, initialSort }) {
   const toast = useToast();
   const router = useRouter();
   // const idid = router.query.id as string; // 이렇게! 이렇게!
@@ -47,6 +47,26 @@ export default function Album({ value, query }) {
   const [loadingImage, setLoadingImage] = useState(true);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+
+  useEffect(() => {
+    if (initialSort !== '') setSortType(initialSort);
+    const currentPath = router.pathname;
+    const currentQuery: {
+      [key: string]: string | string[];
+    } = {
+      ...router.query,
+      sort: sortType,
+    };
+    delete currentQuery.subTitle;
+    router.replace(
+      {
+        pathname: currentPath,
+        query: currentQuery,
+      },
+      undefined,
+      { shallow: true }
+    );
+  }, [sortType, router]);
 
   const loadData = () => {
     console.log('loadData');
@@ -301,7 +321,8 @@ export default function Album({ value, query }) {
 
 export async function getServerSideProps(context) {
   // const { id } = context.query;
-  const { value } = context.query;
+  const { value, sort = '' } = context.query;
+
   const query =
     members.find((item) => item.value === value)?.query ||
     gallery.find((item) => item.value === value)?.query;
@@ -310,6 +331,7 @@ export async function getServerSideProps(context) {
     props: {
       value,
       query,
+      initialSort: sort,
     },
   };
 }
