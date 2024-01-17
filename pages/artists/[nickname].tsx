@@ -13,12 +13,16 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import { ArtistHeader } from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+import { menuItems, viewTypes } from '@/data/artists';
 // import useUrlQuery from '@/hooks/useUrlQuery';
 
-const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
+const Artist = ({ artist_name2info }) => {
   const router = useRouter();
-  // const { sort, board } = router.query;
   const toast = useToast();
+  const validSortOptions = menuItems.map((item) => item.id);
+  const validBoardOptions = viewTypes.map((item) =>
+    item.value.replace('_cnt', '')
+  );
 
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
@@ -44,10 +48,18 @@ const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  // const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
-  const [board, setBoard] = useState('' || initialBoard);
-  const [sortType, setSortType] = useState('latest');
-  // const [sortType, setSortType] = useState('latest');
+  const [boardType, setBoardType] = useState(
+    // router.query.board &&
+    //   validBoardOptions.includes(router.query.board.toString())
+    //   ? router.query.board.toString()
+    // :
+    ''
+  );
+  const [sortType, setSortType] = useState(
+    router.query.sort && validSortOptions.includes(router.query.sort.toString())
+      ? router.query.sort.toString()
+      : 'latest'
+  );
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -55,35 +67,18 @@ const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
-  // sortCriteria, sortType 업데이트 시 URL 업데이트
-
-  // const urlQuery = useUrlQuery(sortCriteria, setSortCriteria, setBoard);
-
   useEffect(() => {
-    if (initialSort !== '') setSortType(initialSort);
+    // URL에 새로운 정렬 조건을 반영합니다.
     const currentPath = router.pathname;
-    // const currentQuery = {
-    //   ...router.query,
-    //   sort: sortType,
-    //   // board 파라미터는 sortCriteria.field가 비어있지 않을 때만 포함
-    //   // ...(sortCriteria.field && { board: sortCriteria.field }),
-    //   ...(boards !== '' && { board: boards }),
-    // };
-    // eslint-disable-next-line prefer-const
-    let currentQuery = {
-      ...router.query,
+    const { board, ...restQuery } = router.query;
+    const currentQuery: { [key: string]: string } = {
+      ...restQuery,
       sort: sortType,
-      board,
     };
-
-    if (board !== '') {
-      // board 값이 있는 경우에만 추가
-      currentQuery.board = board;
-    } else {
-      // board 값이 없는 경우 삭제
-      delete currentQuery.board;
-    }
-    router.replace(
+    // if (boardType !== '') {
+    //   currentQuery = { ...currentQuery, board: boardType };
+    // }
+    router.push(
       {
         pathname: currentPath,
         query: currentQuery,
@@ -91,7 +86,7 @@ const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
       undefined,
       { shallow: true }
     );
-  }, [sortType, board, router]);
+  }, [sortType, boardType, router]);
 
   const loadData = () => {
     console.log('loadData');
@@ -133,20 +128,26 @@ const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
 
   const handleViewTypeSelect = (value) => {
     // 같은거 누르면 해제,토글
-    // console.log(value);
+    // console.log(value.replace('_cnt', ''));
     if (value === sortCriteria.field) {
-      setBoard('');
+      setBoardType('');
       setSortCriteria((prevState) => {
         return { ...prevState, field: '', order: 'descending' };
       });
     } else {
-      setBoard(value.replace('_cnt', ''));
+      setBoardType(value.replace('_cnt', ''));
       setSortCriteria((prevState) => {
         return { ...prevState, field: value, order: 'descending' };
       });
     }
     resetArtworks();
   };
+
+  // useEffect(() => {
+  //   if (router.isReady && router.query.board) {
+  //     handleViewTypeSelect(router.query.board);
+  //   }
+  // }, [router, handleViewTypeSelect]);
 
   const getArtistInfo = useCallback(async () => {
     try {
@@ -382,8 +383,7 @@ const Artist = ({ artist_name2info, initialSort, initialBoard }) => {
 export default Artist;
 
 export async function getServerSideProps(context) {
-  // const { nickname } = context.query;
-  const { nickname, sort = '', board = '' } = context.query;
+  const { nickname } = context.query;
 
   try {
     const artist_name2info = await axios
@@ -393,8 +393,6 @@ export async function getServerSideProps(context) {
     return {
       props: {
         artist_name2info,
-        initialSort: sort,
-        initialBoard: board,
       },
     };
   } catch (error) {
