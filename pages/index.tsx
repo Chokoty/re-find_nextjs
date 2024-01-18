@@ -60,6 +60,7 @@ export default function Home() {
 
   const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드
   const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
+  // const [author, setAuthor] = useState(null);
   const [hash, setHash] = useState(null); // fetch를 통해 받아온 hash데이터를 저장할 상태
   const [ids, setIds] = useState([]); // 게시글 여러 개
   const [hasSearchResult, setHasSearchResult] = useState(false); // 재검색 방지
@@ -215,6 +216,7 @@ export default function Home() {
 
   // files 을 [] 로 초기화
   const resetFiles = () => {
+    console.log('resetFiles');
     setUploadedFiles([]);
     setData(null);
     // setAuthor(null);
