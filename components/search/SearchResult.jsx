@@ -8,7 +8,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MdArrowForwardIos } from 'react-icons/md';
 
 import AuthorProfileCard2 from '@/components/card/AuthorProfileCard2';
@@ -58,6 +58,10 @@ const SearchResult = ({
   const uploadTimeDiff = useUploadTimeDiff(data?.upload_date);
   const article_link = useResponsiveLink('', 'article');
 
+  useEffect(() => {
+    console.log('data', data);
+    // console.log('ids', ids);
+  }, []);
   return (
     <Box
       className="result"
