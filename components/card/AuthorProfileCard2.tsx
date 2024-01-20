@@ -39,7 +39,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
     darkMode.highlight2
   );
 
-  const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
+  const member_link = useResponsiveLink(writerURL?.split('/').pop(), 'member');
 
   return (
     <NextLink

@@ -60,6 +60,22 @@ export default function Album() {
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
+  useEffect(() => {
+    // URL에 새로운 정렬 조건을 반영합니다.
+    const currentPath = router.pathname;
+    const { subTitle, ...restQuery } = router.query;
+    const currentQuery = { ...restQuery, sort: sortType };
+    router.push({
+      pathname: currentPath,
+      query: currentQuery,
+    });
+  }, [sortType]);
+
+  const loadData = () => {
+    console.log('loadData');
+    getFanartAlbum();
+  };
+
   // 정렬 로직
   const sortArtworks = (_artworks, _sortType) => {
     return _artworks.sort((a, b) => {

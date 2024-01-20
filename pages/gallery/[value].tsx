@@ -13,6 +13,7 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import GalleryLayout from '@/components/layout/gallery-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+import { menuItems } from '@/data/artists';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -20,25 +21,27 @@ import { darkMode, lightMode } from '@/styles/theme';
 export default function Album({ value, query }) {
   const toast = useToast();
   const router = useRouter();
-  // const idid = router.query.id as string; // 이렇게! 이렇게!
+  const validSortOptions = menuItems.map((item) => item.id);
 
   // infinite scroll
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
-
   const [album, setAlbum] = useState(null);
   const [member, setMember] = useState(null);
   const [artworks, setArtworks] = useState(null);
-  // const [url, setUrl] = useState(null);
   const [page, setPage] = useState(1);
-  const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
+  const [isLastPage, setIsLastPage] = useState(false);
   const [total, setTotal] = useState(0);
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState('alzaltak'); // 초기 상태 설정
+  const [sortType, setSortType] = useState(
+    router.query.sort && validSortOptions.includes(router.query.sort.toString())
+      ? router.query.sort.toString()
+      : 'alzaltak'
+  ); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 / 가리기
   const [isInitialRender, setIsInitialRender] = useState(true);
 
@@ -47,6 +50,17 @@ export default function Album({ value, query }) {
   const [loadingImage, setLoadingImage] = useState(true);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+
+  useEffect(() => {
+    // URL에 새로운 정렬 조건을 반영합니다.
+    const currentPath = router.pathname;
+    const { subTitle, ...restQuery } = router.query;
+    const currentQuery = { ...restQuery, sort: sortType };
+    router.push({
+      pathname: currentPath,
+      query: currentQuery,
+    });
+  }, [sortType]);
 
   const loadData = () => {
     console.log('loadData');
@@ -300,8 +314,8 @@ export default function Album({ value, query }) {
 }
 
 export async function getServerSideProps(context) {
-  // const { id } = context.query;
   const { value } = context.query;
+
   const query =
     members.find((item) => item.value === value)?.query ||
     gallery.find((item) => item.value === value)?.query;
@@ -310,6 +324,7 @@ export async function getServerSideProps(context) {
     props: {
       value,
       query,
+      // initialSort: sort,
     },
   };
 }
