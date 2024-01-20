@@ -374,59 +374,59 @@ export default function Home() {
   );
 }
 
-export async function getServerSideProps() {
-  return {
-    props: {
-      last_update_info: null,
-      // counter: null,
-      // initialFanart: null,
-      // random_fanart: null,
-    },
-  };
+// export async function getServerSideProps() {
+//   return {
+//     props: {
+//       last_update_info: null,
+//       // counter: null,
+//       // initialFanart: null,
+//       // random_fanart: null,
+//     },
+//   };
 
-  try {
-    const timeout = 2000; // 3초
-    const last_update_info = axios
-      .get('https://re-find.reruru.com/last_update_info', { timeout })
-      .then((res) => res.data);
-    // const counter = axios
-    //     .get("https://isd-fanart.reruru.com/counter")
-    //     .then((res) => res.data);
-    // const initialFanart = axios
-    //   .get(`https://re-find.reruru.com/isegye_festival`)
-    //   .then((res) => res.data);
-    // const random_fanart = axios
-    //     .get("https://rerurureruru.com:8443/rand", { timeout })
-    //     .then((res) => res.data);
+//   try {
+//     const timeout = 2000; // 3초
+//     const last_update_info = axios
+//       .get('https://re-find.reruru.com/last_update_info', { timeout })
+//       .then((res) => res.data);
+//     // const counter = axios
+//     //     .get("https://isd-fanart.reruru.com/counter")
+//     //     .then((res) => res.data);
+//     // const initialFanart = axios
+//     //   .get(`https://re-find.reruru.com/isegye_festival`)
+//     //   .then((res) => res.data);
+//     // const random_fanart = axios
+//     //     .get("https://rerurureruru.com:8443/rand", { timeout })
+//     //     .then((res) => res.data);
 
-    const ret = await Promise.all([
-      // wow - 병렬로 요청해서 페이지 로딩 줄임!
-      last_update_info,
-      // counter,
-      // initialFanart,
-      // random_fanart,
-    ]);
+//     const ret = await Promise.all([
+//       // wow - 병렬로 요청해서 페이지 로딩 줄임!
+//       last_update_info,
+//       // counter,
+//       // initialFanart,
+//       // random_fanart,
+//     ]);
 
-    return {
-      props: {
-        last_update_info: ret[0],
-        // counter: ret[0],
-        // last_update_info: ret[1],
-        // random_fanart: ret[1],
-        // initialFanart: ret[1],
-      },
-    };
-  } catch (error) {
-    console.log('Error fetching data :', error);
+//     return {
+//       props: {
+//         last_update_info: ret[0],
+//         // counter: ret[0],
+//         // last_update_info: ret[1],
+//         // random_fanart: ret[1],
+//         // initialFanart: ret[1],
+//       },
+//     };
+//   } catch (error) {
+//     console.log('Error fetching data :', error);
 
-    // Return an alternate value if the fetch fails
-    return {
-      props: {
-        last_update_info: null,
-        // counter: null,
-        // initialFanart: null,
-        // random_fanart: null,
-      },
-    };
-  }
-}
+//     // Return an alternate value if the fetch fails
+//     return {
+//       props: {
+//         last_update_info: null,
+//         // counter: null,
+//         // initialFanart: null,
+//         // random_fanart: null,
+//       },
+//     };
+//   }
+// }
