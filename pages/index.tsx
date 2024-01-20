@@ -373,6 +373,15 @@ export default function Home() {
 }
 
 export async function getServerSideProps() {
+  return {
+    props: {
+      last_update_info: null,
+      // counter: null,
+      // initialFanart: null,
+      // random_fanart: null,
+    },
+  };
+
   try {
     const timeout = 2000; // 3초
     const last_update_info = axios
