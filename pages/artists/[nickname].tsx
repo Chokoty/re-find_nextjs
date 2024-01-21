@@ -67,26 +67,26 @@ const Artist = ({ artist_name2info }) => {
   const [loadingData, setLoadingData] = useState(false);
   const [loadingImage, setLoadingImage] = useState(true);
 
-  useEffect(() => {
-    // URL에 새로운 정렬 조건을 반영합니다.
-    const currentPath = router.pathname;
-    const { board, ...restQuery } = router.query;
-    const currentQuery: { [key: string]: string } = {
-      ...restQuery,
-      sort: sortType,
-    };
-    // if (boardType !== '') {
-    //   currentQuery = { ...currentQuery, board: boardType };
-    // }
-    router.push(
-      {
-        pathname: currentPath,
-        query: currentQuery,
-      },
-      undefined,
-      { shallow: true }
-    );
-  }, [sortType, boardType, router]);
+  // useEffect(() => {
+  //   // URL에 새로운 정렬 조건을 반영합니다.
+  //   const currentPath = router.pathname;
+  //   const { board, ...restQuery } = router.query;
+  //   const currentQuery: { [key: string]: string } = {
+  //     ...restQuery,
+  //     sort: sortType,
+  //   };
+  //   // if (boardType !== '') {
+  //   //   currentQuery = { ...currentQuery, board: boardType };
+  //   // }
+  //   router.push(
+  //     {
+  //       pathname: currentPath,
+  //       query: currentQuery,
+  //     },
+  //     undefined,
+  //     { shallow: true }
+  //   );
+  // }, [sortType, boardType, router]);
 
   const loadData = () => {
     console.log('loadData');
