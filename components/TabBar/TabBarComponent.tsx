@@ -1,11 +1,38 @@
-import { Box, Flex, Link } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import React from 'react';
-import { CgMoreO } from 'react-icons/cg';
+// import { CgMoreO } from 'react-icons/cg';
 import { FaSearch } from 'react-icons/fa';
 import { FaImage } from 'react-icons/fa6';
-import { IoPersonCircle } from 'react-icons/io5';
+// import { IoPersonCircle } from 'react-icons/io5';
 import { MdHomeFilled, MdPerson } from 'react-icons/md';
+
+const routerList = {
+  home: '/',
+  search: '/search',
+  gallery: '/gallery',
+  artists: '/artists',
+};
+
+const iconStyle = {
+  width: '2rem',
+  height: '2rem',
+};
+
+const IconComponent = ({ router }) => {
+  switch (router) {
+    case 'home':
+      return <MdHomeFilled style={iconStyle} />;
+    case 'search':
+      return <FaSearch style={iconStyle} />;
+    case 'gallery':
+      return <FaImage style={iconStyle} />;
+    case 'artists':
+      return <MdPerson style={iconStyle} />;
+    default:
+      return null;
+  }
+};
 
 const TabBarComponent = ({ tab, setTab }) => {
   const getButtonColor = (buttonName) => {
@@ -32,78 +59,19 @@ const TabBarComponent = ({ tab, setTab }) => {
         gap="2rem"
         boxShadow="dark-lg"
       >
-        <NextLink href="/" passHref>
-          <Link
-            style={{
-              color: getButtonColor('home'),
-              width: '2.5rem',
-              height: '2.5rem',
-            }}
-            onClick={() => setTab('home')}
-          >
-            <MdHomeFilled
-              style={{
-                color: getButtonColor('home'),
-                width: '2rem',
-                height: '2rem',
-              }}
-            />
-          </Link>
-        </NextLink>
-        <NextLink href="/search" passHref>
-          <Link
-            style={{
-              color: getButtonColor('search'),
-              width: '2.5rem',
-              height: '2.5rem',
-            }}
-            onClick={() => setTab('search')}
-          >
-            <FaSearch
-              style={{
-                color: getButtonColor('search'),
-                width: '1.8rem',
-                height: '1.8rem',
-              }}
-            />
-          </Link>
-        </NextLink>
-        <NextLink href="/gallery" passHref>
-          <Link
-            style={{
-              color: getButtonColor('gallery'),
-              width: '2.5rem',
-              height: '2.5rem',
-            }}
-            onClick={() => setTab('gallery')}
-          >
-            <FaImage
-              style={{
-                color: getButtonColor('gallery'),
-                width: '1.8rem',
-                height: '1.8rem',
-              }}
-            />
-          </Link>
-        </NextLink>
-        <NextLink href="/artists" passHref>
-          <Link
-            style={{
-              color: getButtonColor('artists'),
-              width: '2.5rem',
-              height: '2.5rem',
-            }}
-            onClick={() => setTab('artists')}
-          >
-            <MdPerson
-              style={{
-                color: getButtonColor('artists'),
-                width: '2rem',
-                height: '2rem',
-              }}
-            />
-          </Link>
-        </NextLink>
+        {Object.keys(routerList).map((router) => (
+          <NextLink href={routerList[router]} passHref key={router}>
+            <Box
+              color={getButtonColor(router)}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              onClick={() => setTab(router)}
+            >
+              <IconComponent router={router} />
+            </Box>
+          </NextLink>
+        ))}
       </Flex>
     </Box>
   );

@@ -222,7 +222,12 @@ const RandomFanart = () => {
               m="0 1rem"
               aria-label="랜덤가챠 게시판 포함/제외하기"
             >
-              <IoSettingsSharp boxSize={30} />
+              <IoSettingsSharp
+                style={{
+                  width: '20px',
+                  height: '20px',
+                }}
+              />
             </Button>
           </PopoverTrigger>
           <PopoverContent w="300px" p="0.5rem">
@@ -270,7 +275,6 @@ const RandomFanart = () => {
             아래 버튼을 누르면 랜덤 팬아트가 나와요!
           </Text>
           <FaArrowDown />
-          {/* <FaArrowDown boxSize={12} /> */}
         </div>
       )}
       {isvisible && (
@@ -353,8 +357,12 @@ const RandomFanart = () => {
           borderRadius="4rem"
           onClick={showRandomFanart}
         >
-          <FaDice />
-          {/* <FaDice boxSize={12} /> */}
+          <FaDice
+            style={{
+              width: '20px',
+              height: '20px',
+            }}
+          />
           &nbsp; 랜덤가챠 굴리기
         </Button>
       </Flex>

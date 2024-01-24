@@ -1,5 +1,11 @@
 import { SunIcon } from '@chakra-ui/icons';
-import { IconButton, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  IconButton,
+  useColorMode,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { FiMoon } from 'react-icons/fi';
 
 type DarkModeToggleProps = {
@@ -7,14 +13,14 @@ type DarkModeToggleProps = {
 };
 
 const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ className }) => {
-  const { toggleColorMode } = useColorMode();
+  // const { toggleColorMode } = useColorMode();
   const Icon = useColorModeValue(FiMoon, SunIcon);
 
   return (
     <IconButton
       className={className}
       flexShrink={0}
-      onClick={toggleColorMode}
+      // onClick={toggleColorMode}
       bg="none"
       variant={'ghost'}
       borderRadius="50%"
@@ -24,8 +30,6 @@ const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ className }) => {
           style={{
             width: '2rem',
             height: '2rem',
-            // width: '1.5rem',
-            // height: '1.5rem',
           }}
         />
       }

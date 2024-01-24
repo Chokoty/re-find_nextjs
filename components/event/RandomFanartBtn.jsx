@@ -182,7 +182,6 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
               </Text>
             </Flex>
             <FaArrowDown />
-            {/* <FaArrowDown boxSize={12} /> */}
           </div>
         )}
         {isvisible && (
@@ -267,7 +266,12 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
             borderRadius="4rem"
             onClick={showRandomFanart}
           >
-            <FaDice boxSize={12} />
+            <FaDice
+              style={{
+                width: '20px',
+                height: '20px',
+              }}
+            />
             &nbsp; 랜덤가챠 굴리기
           </Button>
         </Flex>

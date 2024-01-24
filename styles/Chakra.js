@@ -2,10 +2,10 @@ import {
   ChakraProvider,
   cookieStorageManagerSSR,
   localStorageManager,
-  withDefaultColorScheme,
+  // withDefaultColorScheme,
 } from '@chakra-ui/react';
 
-import theme from './theme';
+import theme from '@/styles/theme';
 
 export function Chakra({ cookies, children }) {
   // b) Pass `colorModeManager` prop

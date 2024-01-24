@@ -1,3 +1,4 @@
+import { SunIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -6,14 +7,16 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import { FiMoon } from 'react-icons/fi';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
 import { PiGiftBold } from 'react-icons/pi';
 
-import DarkModeToggle from '@/components/common/DarkModeToggle';
+// import DarkModeToggle from '@/components/common/DarkModeToggle';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const MoreButtons = () => {
   const bg = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const Icon = useColorModeValue(FiMoon, SunIcon);
 
   const { toggleColorMode } = useColorMode();
 
@@ -113,7 +116,15 @@ const MoreButtons = () => {
         background={bg}
         onClick={handleButtonClick}
       >
-        <DarkModeToggle />
+        {/* <DarkModeToggle className="icon" /> */}
+        <Box p="0.5rem">
+          <Icon
+            style={{
+              width: '2rem',
+              height: '2rem',
+            }}
+          />
+        </Box>
         <Text fontSize="xl">화면 스타일</Text>
       </Button>
     </Box>

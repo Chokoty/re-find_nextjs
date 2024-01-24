@@ -158,7 +158,6 @@ const KiddingFanart = ({ initialFanart }) => {
               </Text>
             </Flex>
             <FaArrowDown />
-            {/* <FaArrowDown boxSize={12} /> */}
           </div>
         )}
         {isvisible && (
@@ -261,7 +260,12 @@ const KiddingFanart = ({ initialFanart }) => {
             mt="1.5rem"
             onClick={showRandomFanart}
           >
-            <FaDice boxSize={12} />
+            <FaDice
+              style={{
+                width: '20px',
+                height: '20px',
+              }}
+            />
             &nbsp; 키딩 팬아트 랜덤가챠
           </Button>
         </Flex>
