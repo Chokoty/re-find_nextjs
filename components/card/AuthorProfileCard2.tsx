@@ -17,17 +17,17 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 interface AuthorProfileCardProps {
   author: any;
-  // writerURL: string;
-  // profURL: string;
-  // nickname: string;
+  writerURL: string;
+  profURL: string;
+  nickname: string;
   uploadTimeDiff: string;
 }
 
 const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
   author,
-  // writerURL,
-  // profURL,
-  // nickname,
+  writerURL,
+  profURL,
+  nickname,
   uploadTimeDiff,
 }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -43,10 +43,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
     darkMode.highlight2
   );
 
-  const member_link = useResponsiveLink(
-    author?.writerURL?.split('/').pop(),
-    'member'
-  );
+  const member_link = useResponsiveLink(writerURL?.split('/').pop(), 'member');
 
   return (
     <NextLink
@@ -57,7 +54,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         alignItems: 'center',
         width: '100%',
       }}
-      href={`/artists/${author?.nickname}`}
+      href={`/artists/${nickname}`}
     >
       <Button
         backgroundColor={bg2}
@@ -86,12 +83,8 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
           alignItems="center"
           w="100%"
         >
-          {author?.profURL === 'NULL' ? (
-            <Avatar
-              size="lg"
-              name={author?.nickname}
-              src={author?.profURL || ''}
-            />
+          {profURL === 'NULL' ? (
+            <Avatar size="lg" name={nickname} src={profURL || ''} />
           ) : (
             <div
               style={{
@@ -104,10 +97,10 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
             >
               <Image
                 src={
-                  author?.profURL ||
+                  profURL ||
                   'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
                 }
-                alt={author?.nickname}
+                alt={nickname}
                 fill={true}
                 unoptimized
               />
@@ -121,24 +114,24 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
             gap="0.5rem"
           >
             <Text fontSize="lg" textAlign="center">
-              {author?.nickname || '프로필은 왁물원에서'}
+              {nickname || '프로필은 왁물원에서'}
             </Text>
           </Box>
-          <SortTypeIcons
-            sortCriteria={null}
-            // sortTypes={sortTypes}
-            artist={author}
-            component={'inNickname'}
-          />
-          <ViewTypeIcons
-            sortCriteria={null}
-            // viewTypes={viewTypes}
-            selectedView={null}
-            artist={author}
-            component={'inNickname'}
-            onSelectViewType={null}
-          />
         </Box>
+        <SortTypeIcons
+          sortCriteria={null}
+          // sortTypes={sortTypes}
+          artist={author}
+          component={'inNickname'}
+        />
+        <ViewTypeIcons
+          sortCriteria={null}
+          // viewTypes={viewTypes}
+          selectedView={null}
+          artist={author}
+          component={'inNickname'}
+          onSelectViewType={null}
+        />
       </Button>
     </NextLink>
   );

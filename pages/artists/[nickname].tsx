@@ -135,7 +135,8 @@ const Artist = ({ artist_name2info }) => {
         return { ...prevState, field: '', order: 'descending' };
       });
     } else {
-      setBoardType(value.replace('_cnt', ''));
+      // setBoardType(value.replace('_cnt', ''));
+      setBoardType(value);
       setSortCriteria((prevState) => {
         return { ...prevState, field: value, order: 'descending' };
       });

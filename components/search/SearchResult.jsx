@@ -180,9 +180,9 @@ const SearchResult = ({
             {/* )} */}
             <AuthorProfileCard2
               author={data?.author}
-              // writerURL={data?.author?.author_url}
-              // profURL={data?.author?.author_prof_url}
-              // nickname={data?.author?.author_nickname}
+              writerURL={data?.author?.author_url}
+              profURL={data?.author?.author_prof_url}
+              nickname={data?.author?.author_nickname}
               uploadTimeDiff={uploadTimeDiff}
             />
             <Divider />

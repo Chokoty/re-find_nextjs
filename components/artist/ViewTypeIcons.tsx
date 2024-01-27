@@ -44,9 +44,7 @@ const ViewTypeIcons = ({
                 colorScheme={viewType.colorScheme}
                 variant={
                   // sortCriteria?.field === viewType.value ? 'solid' : 'outline'
-                  sortCriteria?.field || selectedView === viewType.value
-                    ? 'solid'
-                    : 'outline'
+                  selectedView === viewType.value ? 'solid' : 'outline'
                 }
                 size="sm"
                 display="flex"
