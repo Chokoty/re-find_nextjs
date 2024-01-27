@@ -59,9 +59,6 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         }}
         as="a"
         target="_blank"
-        // color={'#f5f5f5'}
-        // boxShadow="md"
-        // borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
         p="1rem"
