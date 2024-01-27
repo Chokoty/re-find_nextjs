@@ -15,17 +15,17 @@ import { HiOutlineExternalLink } from 'react-icons/hi';
 
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { useResponsive } from '@/hook/useResponsive';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
-// const sortTypeData = [
-//   { name: '조회수', value: artwork.view, icon: FaEye },
-//   { name: '댓글수', value: artwork.comment, icon: FaComment },
-//   { name: '좋아요수', value: artwork.like, icon: FaThumbsUp },
-// ];
 const iconStyle = {
   width: '1rem',
   height: '1rem',
+};
+const iconStyleMobile = {
+  width: '0.6rem',
+  height: '0.6rem',
 };
 
 const MasonryCard = ({
@@ -36,6 +36,7 @@ const MasonryCard = ({
   isGallery,
 }) => {
   const [imageHeight, setImageHeight] = useState(null);
+  const isMobile = useResponsive();
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
@@ -133,6 +134,7 @@ const MasonryCard = ({
             >
               {artwork.board}
             </Text>
+
             {imageHeight >= 212 && (
               <>
                 <Flex
@@ -149,7 +151,6 @@ const MasonryCard = ({
                     maxWidth="100%"
                     textAlign="center"
                   >
-                    {/* {nickname} */}
                     {artwork?.author}
                   </Text>
                   <Text
@@ -179,8 +180,8 @@ const MasonryCard = ({
                     alignItems="center"
                     gap="0.3rem"
                   >
-                    <FaEye style={iconStyle} />
-                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                    <FaEye style={isMobile ? iconStyleMobile : iconStyle} />
+                    <Text fontSize={['xs', 'lg']} fontWeight="400">
                       {formatArtistValue(artwork.view)}
                     </Text>
                   </Box>
@@ -191,8 +192,10 @@ const MasonryCard = ({
                     alignItems="center"
                     gap="0.3rem"
                   >
-                    <FaThumbsUp style={iconStyle} />
-                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                    <FaThumbsUp
+                      style={isMobile ? iconStyleMobile : iconStyle}
+                    />
+                    <Text fontSize={['xs', 'lg']} fontWeight="400">
                       {formatArtistValue(artwork.like)}
                     </Text>
                   </Box>
@@ -203,8 +206,8 @@ const MasonryCard = ({
                     alignItems="center"
                     gap="0.3rem"
                   >
-                    <FaComment style={iconStyle} />
-                    <Text fontSize={['sm', 'xl']} fontWeight="400">
+                    <FaComment style={isMobile ? iconStyleMobile : iconStyle} />
+                    <Text fontSize={['xs', 'lg']} fontWeight="400">
                       {formatArtistValue(artwork.comment)}
                     </Text>
                   </Box>
@@ -263,7 +266,6 @@ const MasonryCard = ({
             >
               {isGallery && (
                 <Button
-                  // as={Link}
                   _hover={{
                     textDecoration: 'none',
                     cursor: 'pointer',
