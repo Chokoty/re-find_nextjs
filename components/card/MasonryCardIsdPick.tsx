@@ -99,10 +99,10 @@ const MasonryCardIsdPick = ({
           onMouseEnter={() => onToggleFocus(artwork?.id)}
         />
         {isFocused && (
-          <Link
-            className="link-to-wakzoo-from-profile"
-            href={artwork?.source[0] ? article_link + artwork.source[0] : '#'}
-            isExternal
+          // <Link
+          //   className="link-to-wakzoo-from-profile"
+          //   href={artwork?.source[0] ? article_link + artwork.source[0] : '#'}
+          //   isExternal
           >
             <Flex
               flexDir="column"
@@ -283,7 +283,7 @@ const MasonryCardIsdPick = ({
                 </Button>
               </Flex>
             </Flex>
-          </Link>
+          // </Link>
         )}
       </Box>
       <Box
