@@ -68,6 +68,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         p="1rem"
         minW="240px"
         // h={['200px', '140px', '140px']}
+        h="100%"
         display="flex"
         // flexDirection={['column', 'row', 'row']}
         flexDirection="column"
@@ -82,6 +83,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
           justifyContent="center"
           alignItems="center"
           w="100%"
+          gap="1rem"
         >
           {profURL === 'NULL' ? (
             <Avatar size="lg" name={nickname} src={profURL || ''} />
