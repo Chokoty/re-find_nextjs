@@ -23,6 +23,7 @@ const ArtistsList = ({
   sortCriteria,
   sortTypes,
   viewTypes,
+  selectedView,
   alert,
 }) => {
   const isMobile = useResponsive();
@@ -148,6 +149,7 @@ const ArtistsList = ({
                   <ViewTypeIcons
                     sortCriteria={sortCriteria}
                     viewTypes={viewTypes}
+                    selectedView={selectedView}
                     artist={artist}
                     component={'inIndex'}
                     onSelectViewType={null}

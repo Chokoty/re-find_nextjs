@@ -278,6 +278,7 @@ const Artists = () =>
             sortCriteria={sortCriteria}
             sortTypes={sortTypes}
             viewTypes={viewTypes}
+            selectedView={selectedView}
             alert={alert}
             // ref={ref}
           />

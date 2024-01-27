@@ -4,6 +4,7 @@ import React from 'react';
 const ViewTypeIcons = ({
   sortCriteria,
   viewTypes,
+  selectedView,
   artist,
   component,
   onSelectViewType,
@@ -40,7 +41,8 @@ const ViewTypeIcons = ({
                 // colorScheme="blue"
                 colorScheme={viewType.colorScheme}
                 variant={
-                  sortCriteria?.field === viewType.value ? 'solid' : 'outline'
+                  // sortCriteria?.field === viewType.value ? 'solid' : 'outline'
+                  selectedView === viewType.value ? 'solid' : 'outline'
                 }
                 size="sm"
                 display="flex"
