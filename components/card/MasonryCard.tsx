@@ -208,7 +208,7 @@ const MasonryCard = ({
                   >
                     <FaComment style={isMobile ? iconStyleMobile : iconStyle} />
                     <Text fontSize={['xs', 'lg']} fontWeight="400">
-                      {formatArtistValue(artwork.comment)}
+                      {formatArtistValue(artwork.comments)}
                     </Text>
                   </Box>
                 </Flex>
@@ -252,7 +252,7 @@ const MasonryCard = ({
                   <Box>
                     <FaComment style={iconStyle} />
                     <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      {formatArtistValue(artwork.comment)}
+                      {formatArtistValue(artwork.comments)}
                     </Text>
                   </Box>
                 </Flex>

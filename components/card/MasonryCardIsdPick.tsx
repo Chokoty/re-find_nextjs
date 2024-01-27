@@ -205,7 +205,7 @@ const MasonryCardIsdPick = ({
                   >
                     <FaComment style={iconStyle} />
                     <Text fontSize={['sm', 'xl']} fontWeight="400">
-                      {formatArtistValue(artwork.comment)}
+                      {formatArtistValue(artwork.comments)}
                     </Text>
                   </Box>
                 </Flex>
@@ -249,7 +249,7 @@ const MasonryCardIsdPick = ({
                   <Box>
                     <FaComment style={iconStyle} />
                     <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      {formatArtistValue(artwork.comment)}
+                      {formatArtistValue(artwork.comments)}
                     </Text>
                   </Box>
                 </Flex>
