@@ -240,7 +240,7 @@ export default function Home() {
       ref={targetRef}
       backgroundColor={bgColor}
     >
-      <MySnowfall />
+      {/* <MySnowfall /> */}
       {congrat && <EventModal targetCount={targetCount} />}
       <Box
         w="100%"

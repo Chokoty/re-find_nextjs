@@ -328,7 +328,9 @@ const MasonryCard = ({
         alignItems="center"
         mt="0.5rem"
       >
-        <Text fontWeight={500}>{artwork?.title}</Text>
+        <Text fontWeight={500} noOfLines={1} w="100%">
+          {artwork?.title}
+        </Text>
         {isGallery && (
           <NextLink href={`/artists/${artwork?.author}`} passHref>
             <Text color={highlight} fontWeight={500}>

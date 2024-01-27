@@ -155,7 +155,7 @@ const Artist = ({ artist_name2info }) => {
         .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
         .then((res) => res.data);
       setProfile(response);
-      // console.log(response);
+      console.log(response);
     } catch (error) {
       console.error('Error fetching data:', error);
       // 404 페이지로 이동
