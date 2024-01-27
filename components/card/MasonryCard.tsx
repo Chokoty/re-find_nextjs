@@ -216,7 +216,7 @@ const MasonryCard = ({
             )}
             {imageHeight < 212 && (
               <>
-                {imageHeight > 140 && (
+                {imageHeight > 170 && (
                   <Text
                     fontSize={['xs', 'sm']}
                     fontWeight="400"
