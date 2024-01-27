@@ -103,10 +103,10 @@ const Artists = () =>
         // 뷰 선택 해제
         setSelectedView(null);
         // 전체 아티스트 목록에서 sortCriteria 기준으로 정렬
-        setSortCriteria({
-          field: 'total_likes',
-          order: 'descending',
-        });
+        // setSortCriteria({
+        //   field: 'total_likes',
+        //   order: 'descending',
+        // });
         const sortedArtists = sortArtists(artists, sortCriteria);
         setFilteredArtists(sortedArtists);
         setVisibleArtists(sortedArtists.slice(0, itemsPerPage));
@@ -114,9 +114,9 @@ const Artists = () =>
         setIsLastPage(false);
       } else {
         setSelectedView((prevValue) => (prevValue === value ? null : value));
-        setSortCriteria((prevState) => {
-          return { ...prevState, field: value, order: 'descending' };
-        });
+        // setSortCriteria((prevState) => {
+        //   return { ...prevState, field: value, order: 'descending' };
+        // });
       }
     };
 
@@ -126,15 +126,8 @@ const Artists = () =>
         return;
       }
       setSortCriteria((prevState) => {
-        // if (prevState.field === field) {
-        // return {
-        //   ...prevState,
-        //   order: prevState.order === 'ascending' ? 'descending' : 'ascending',
-        // };
-        // }
         return { ...prevState, field, order: 'descending' };
       });
-      // console.log(sortCriteria);
     };
 
     const handleSearch = (e) => {
