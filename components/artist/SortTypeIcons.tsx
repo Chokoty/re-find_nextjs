@@ -8,6 +8,7 @@ import {
   FaThumbsUp,
 } from 'react-icons/fa';
 
+import { sortTypes } from '@/data/artists';
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
 
 // const formatArtistValue = (value) => {
@@ -43,7 +44,12 @@ const IconComponent = ({ sortTypeName }) => {
   }
 };
 
-const SortTypeIcons = ({ sortCriteria, sortTypes, artist, component }) => {
+const SortTypeIcons = ({
+  sortCriteria,
+  // sortTypes,
+  artist,
+  component,
+}) => {
   let align = ['center', 'center', 'center'];
   if (component === 'inIndex') {
     align = ['center', 'center', 'flex-start'];

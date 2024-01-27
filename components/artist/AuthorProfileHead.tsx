@@ -145,30 +145,18 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
         </Box> */}
         <SortTypeIcons
           sortCriteria={null}
-          sortTypes={sortTypes}
+          // sortTypes={sortTypes}
           artist={profile}
           component={'inNickname'}
         />
         <ViewTypeIcons
           sortCriteria={sortCriteria}
-          viewTypes={viewTypes}
+          // viewTypes={viewTypes}
           selectedView={boardType}
           artist={profile}
           component={'inNickname'}
           onSelectViewType={handleViewTypeSelect}
         />
-        {/* <Text fontSize="14px" fontWeight="400" p="0 4px">
-    ·
-  </Text>
-  <Box as="button">
-    <Text fontWeight="600">팔로워 120명</Text>
-  </Box>
-  <Text fontSize="14px" fontWeight="400" p="0 4px">
-    ·
-  </Text>
-  <Box as="button">
-    <Text fontWeight="600">팔로잉 13명</Text>
-  </Box> */}
       </Flex>
       <Flex // 왁물원, 팔로우 버튼
         flexDirection="row"

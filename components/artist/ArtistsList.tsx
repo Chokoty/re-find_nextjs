@@ -123,7 +123,7 @@ const ArtistsList = ({
                     {!isMobile && (
                       <SortTypeIcons
                         sortCriteria={sortCriteria}
-                        sortTypes={sortTypes}
+                        // sortTypes={sortTypes}
                         artist={artist}
                         component={'inIndex'}
                       />
@@ -141,14 +141,14 @@ const ArtistsList = ({
                   {isMobile && (
                     <SortTypeIcons
                       sortCriteria={sortCriteria}
-                      sortTypes={sortTypes}
+                      // sortTypes={sortTypes}
                       artist={artist}
                       component={'inIndex'}
                     />
                   )}
                   <ViewTypeIcons
                     sortCriteria={sortCriteria}
-                    viewTypes={viewTypes}
+                    // viewTypes={viewTypes}
                     selectedView={selectedView}
                     artist={artist}
                     component={'inIndex'}

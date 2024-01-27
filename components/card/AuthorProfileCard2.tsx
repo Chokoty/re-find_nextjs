@@ -10,20 +10,24 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
 
+import SortTypeIcons from '@/components/artist/SortTypeIcons';
+import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface AuthorProfileCardProps {
-  writerURL: string;
-  profURL: string;
-  nickname: string;
+  author: any;
+  // writerURL: string;
+  // profURL: string;
+  // nickname: string;
   uploadTimeDiff: string;
 }
 
 const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
-  writerURL,
-  profURL,
-  nickname,
+  author,
+  // writerURL,
+  // profURL,
+  // nickname,
   uploadTimeDiff,
 }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -39,7 +43,10 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
     darkMode.highlight2
   );
 
-  const member_link = useResponsiveLink(writerURL?.split('/').pop(), 'member');
+  const member_link = useResponsiveLink(
+    author?.writerURL?.split('/').pop(),
+    'member'
+  );
 
   return (
     <NextLink
@@ -50,7 +57,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         alignItems: 'center',
         width: '100%',
       }}
-      href={`/artists/${nickname}`}
+      href={`/artists/${author?.nickname}`}
     >
       <Button
         backgroundColor={bg2}
@@ -65,75 +72,72 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         minW="240px"
         h={['200px', '140px', '140px']}
         display="flex"
-        flexDirection={['column', 'row', 'row']}
+        // flexDirection={['column', 'row', 'row']}
+        flexDirection="column"
         justifyContent="center"
         alignItems="center"
         gap="1rem"
         w="100%"
       >
-        {profURL === 'NULL' ? (
-          <Avatar size="lg" name={nickname} src={profURL || ''} />
-        ) : (
-          <div
-            style={{
-              borderRadius: '50%',
-              overflow: 'hidden',
-              position: 'relative',
-              width: 96,
-              height: 96,
-            }}
-          >
-            <Image
-              src={
-                profURL ||
-                'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
-              }
-              alt={nickname}
-              fill={true}
-              unoptimized
-            />
-          </div>
-        )}
         <Box
           display="flex"
-          flexDirection="column"
+          flexDirection={['column', 'row', 'row']}
           justifyContent="center"
           alignItems="center"
-          gap="0.5rem"
+          w="100%"
         >
-          <Text fontSize="lg" textAlign="center">
-            {nickname || '프로필은 왁물원에서'}
-          </Text>
-          {/* <Badge
-            variant="subtle"
-            colorScheme="green"
-            borderRadius="6px"
-            p="0 0.5rem"
-            h="2rem"
+          {author?.profURL === 'NULL' ? (
+            <Avatar
+              size="lg"
+              name={author?.nickname}
+              src={author?.profURL || ''}
+            />
+          ) : (
+            <div
+              style={{
+                borderRadius: '50%',
+                overflow: 'hidden',
+                position: 'relative',
+                width: 96,
+                height: 96,
+              }}
+            >
+              <Image
+                src={
+                  author?.profURL ||
+                  'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
+                }
+                alt={author?.nickname}
+                fill={true}
+                unoptimized
+              />
+            </div>
+          )}
+          <Box
             display="flex"
-            alignItems="center"
+            flexDirection="column"
             justifyContent="center"
+            alignItems="center"
+            gap="0.5rem"
           >
-            <Box w="1rem" h="1rem" mr="0.3rem">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            </Box>
-            <Text fontSize="lg" textAlign="center" color={color}>
-              {uploadTimeDiff}
+            <Text fontSize="lg" textAlign="center">
+              {author?.nickname || '프로필은 왁물원에서'}
             </Text>
-          </Badge> */}
+          </Box>
+          <SortTypeIcons
+            sortCriteria={null}
+            // sortTypes={sortTypes}
+            artist={author}
+            component={'inNickname'}
+          />
+          <ViewTypeIcons
+            sortCriteria={null}
+            // viewTypes={viewTypes}
+            selectedView={null}
+            artist={author}
+            component={'inNickname'}
+            onSelectViewType={null}
+          />
         </Box>
       </Button>
     </NextLink>

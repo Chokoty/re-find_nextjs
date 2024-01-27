@@ -179,9 +179,10 @@ const SearchResult = ({
             </Box>
             {/* )} */}
             <AuthorProfileCard2
-              writerURL={data?.author?.author_url}
-              profURL={data?.author?.author_prof_url}
-              nickname={data?.author?.author_nickname}
+              author={data?.author}
+              // writerURL={data?.author?.author_url}
+              // profURL={data?.author?.author_prof_url}
+              // nickname={data?.author?.author_nickname}
               uploadTimeDiff={uploadTimeDiff}
             />
             <Divider />

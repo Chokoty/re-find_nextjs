@@ -1,9 +1,11 @@
 import { Box, Button, Text } from '@chakra-ui/react';
 import React from 'react';
 
+import { viewTypes } from '@/data/artists';
+
 const ViewTypeIcons = ({
   sortCriteria,
-  viewTypes,
+  // viewTypes,
   selectedView,
   artist,
   component,
@@ -42,7 +44,9 @@ const ViewTypeIcons = ({
                 colorScheme={viewType.colorScheme}
                 variant={
                   // sortCriteria?.field === viewType.value ? 'solid' : 'outline'
-                  selectedView === viewType.value ? 'solid' : 'outline'
+                  sortCriteria?.field || selectedView === viewType.value
+                    ? 'solid'
+                    : 'outline'
                 }
                 size="sm"
                 display="flex"
