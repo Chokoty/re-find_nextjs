@@ -25,6 +25,7 @@ interface AuthorProfileHeadProps {
   nickname: string;
   profile: any;
   sortCriteria: any;
+  boardType: string;
   handleViewTypeSelect: any;
 }
 
@@ -32,6 +33,7 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
   nickname,
   profile,
   sortCriteria,
+  boardType,
   handleViewTypeSelect,
 }) => {
   const toast = useToast();
@@ -150,6 +152,7 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
         <ViewTypeIcons
           sortCriteria={sortCriteria}
           viewTypes={viewTypes}
+          selectedView={boardType}
           artist={profile}
           component={'inNickname'}
           onSelectViewType={handleViewTypeSelect}

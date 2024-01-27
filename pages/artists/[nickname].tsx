@@ -312,6 +312,7 @@ const Artist = ({ artist_name2info }) => {
               nickname={actualNickname}
               profile={profile}
               sortCriteria={sortCriteria}
+              boardType={boardType}
               handleViewTypeSelect={handleViewTypeSelect}
             />
             <ViewSelectBar
