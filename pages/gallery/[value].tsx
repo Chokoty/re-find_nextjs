@@ -201,27 +201,10 @@ export default function Album({ value, query }) {
           flexDirection="column"
           justifyContent="center"
           alignItems="center"
-          // m=" 3rem"
           m="1.5rem 1rem"
           mt="1rem"
           p="1rem"
-          // background={bg2}
-          // borderRadius="1rem"
         >
-          {/* {router.query?.subTitle ? (
-            <Text  m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'>{router.query.subTitle}</Text>
-          ) : (
-            album?.subTitle
-          )} */}
-          {/* {member?.name ? (
-          <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-            {member.name} 팬아트
-          </Text>
-        ) : (
-          <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-            {album?.subTitle}
-          </Text>
-        )} */}
           <PageTitle topTitle={topTitle} />
           {album?.description && <Text m="0 auto">{album.description}</Text>}
           {
@@ -250,7 +233,8 @@ export default function Album({ value, query }) {
           onMenuItemClick={handleMenuItemClick}
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
-          topOffset={47}
+          // topOffset={47}
+          topOffset={-13}
           isdPick={false}
         />
         {artworks && (

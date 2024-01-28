@@ -31,6 +31,8 @@ const HeaderComponent = ({
   const router = useRouter();
   const isCurrentPath = (path) => router.pathname === path;
   const isSearchPage = router.pathname === '/search';
+  const isGalleryPage = router.pathname === '/gallery';
+  const isAlbumPage = router.pathname.includes('/gallery');
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
 
@@ -39,7 +41,7 @@ const HeaderComponent = ({
 
   return (
     <Flex
-      position="sticky"
+      position={isAlbumPage && !isGalleryPage ? 'static' : 'sticky'}
       zIndex="200"
       as="header"
       h="60px"

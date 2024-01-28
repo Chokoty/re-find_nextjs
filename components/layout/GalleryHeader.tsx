@@ -8,7 +8,6 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import React, { useEffect, useRef } from 'react';
-import { FaSearch } from 'react-icons/fa';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import BackButton from '@/components/common/BackButton';
@@ -21,29 +20,22 @@ export const GalleryHeader = ({ title }) => {
     state.isOpen,
     state.setIsOpen,
   ]);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const myDrawerRef = useRef(null);
 
-  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-  const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
   const boxShadowLight =
     '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
   const boxShadowDark =
     '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
 
-  const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
-  const showShadow = useShowShadow(50, 0);
-
   useEffect(() => {
     if (!isOpenDrawer) {
       return;
     }
     const handleClick = (e) => {
-      // console.log(e.target);
       if (
         e.target.className === 'hamburger-react' ||
         e.target.closest('.hamburger-react')
@@ -71,11 +63,11 @@ export const GalleryHeader = ({ title }) => {
     <Box
       position="sticky"
       pt="0"
-      top="60px"
+      // top="60px
+      top="0"
       w="100%"
       h="60px"
       zIndex="200"
-      // boxShadow={showShadow ? boxShadow : 'none'}
     >
       <Flex
         as="header"
