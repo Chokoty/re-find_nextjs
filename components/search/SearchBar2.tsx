@@ -16,7 +16,7 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const BackButton = ({ isSearchPage }) => {
+const SearchBar2 = ({ isSearchPage, handleSearch2 }) => {
   const router = useRouter();
   const isMobile = useResponsive();
 
@@ -30,9 +30,10 @@ const BackButton = ({ isSearchPage }) => {
 
   const handleInputClick = () => {
     console.log('handleInputClick');
-    if (input.length > 0) {
-      router.push(`/search?keyword=${encodeURIComponent(input)}`);
-    }
+    // handleSearch2();
+    // if (input.length > 0) {
+    //   router.push(`/search?keyword=${encodeURIComponent(input)}`);
+    // }
   };
 
   const handleEnterKeyPress = (e) => {
@@ -189,4 +190,4 @@ const BackButton = ({ isSearchPage }) => {
   );
 };
 
-export default BackButton;
+export default SearchBar2;

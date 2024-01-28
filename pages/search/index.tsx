@@ -1,6 +1,7 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
+import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import SearchLayout from '@/components/layout/search-layout';
 import TotalSearchResult from '@/components/search/TotalSearchResult';
@@ -105,33 +106,40 @@ const Search = () => {
   const [sliderValue, setSliderValue] = useState([10, 30]);
   const [showTooltip, setShowTooltip] = useState([false, false]);
 
-  // useEffect(() => {
-  //   alert('준비중입니다!');
-  // }, []);
+  const searchByKeyword = useCallback(async () => {
+    try {
+      const response = await axios
+        .get(`https://re-find.reruru.com/search_txt?query=${keyword}`)
+        .then((res) => res.data);
+      // setProfile(response);
+      console.log(response);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // 404 페이지로 이동
+      router.push('/404');
+    }
+  }, [keyword]);
 
   const handleSearch = () => {
-    if (query) {
-      // router.push(`/artists/${query}`);
-    }
-    // alert('준비중입니다!');
+    searchByKeyword();
   };
-  const handleKeyPress2 = (event) => {
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleSearch();
     }
   };
 
-  const handleSearchNickname = () => {
-    if (nickname) {
-      router.push(`/artists/${nickname}`);
-    }
-  };
+  // const handleSearchNickname = () => {
+  //   if (nickname) {
+  //     router.push(`/artists/${nickname}`);
+  //   }
+  // };
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleSearchNickname();
-    }
-  };
+  // const handleKeyPress = (event) => {
+  //   if (event.key === 'Enter') {
+  //     handleSearchNickname();
+  //   }
+  // };
 
   useEffect(() => {
     if (router.query.keyword) {
@@ -149,7 +157,11 @@ const Search = () => {
 
   return (
     <Box mb="10px" p="1rem" textAlign="center" w="100%">
-      <TotalSearchResult keyword={keyword} result={result} />
+      <TotalSearchResult
+        keyword={keyword}
+        result={result}
+        handleSearch={handleSearch}
+      />
       {/* <Box
         m="0 auto"
         maxW="1024px"

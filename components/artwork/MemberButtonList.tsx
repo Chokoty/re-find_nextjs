@@ -1,5 +1,4 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -46,16 +45,40 @@ const MemberButtonList = ({
     setSelected(value);
   };
 
+  const getButtonBackground = (member) => {
+    if (selected === member.memberValue) {
+      return member.personalColor;
+    }
+    return '';
+  };
+
+  // const getButtonColor = (member) => {
+  //   if (selected === member.memberValue) {
+  //     return color2;
+  //   }
+  //   return color;
+  // };
+
+  const getButtonHoverStyles = (member) => {
+    if (selected === member.memberValue) {
+      return {
+        background: member.personalColor,
+        color: color2,
+      };
+    }
+    return {
+      background: bg4,
+      color: color2,
+    };
+  };
+
   return (
     <Box
       m="2rem auto"
-      // pl={['0.5rem', '1rem', '2rem']}
-      // pl="0.5rem"
       w="100%"
       mb="2rem"
       display="flex"
       justifyContent="flex-start"
-      // justifyContent={isdPick === true ? 'center' : 'flex-start'}
       alignItems="center"
       maxW="680px"
       overflowX="scroll" // 세로 스크롤 적용
@@ -98,6 +121,7 @@ const MemberButtonList = ({
               onClick={() => onClick(member.value)}
               background={selected === member.value ? member.personalColor : ''}
               color={selected === member.value ? color2 : ''}
+              // _hover={getButtonHoverStyles(member)}
               _hover={
                 selected === member.value
                   ? {
@@ -105,13 +129,10 @@ const MemberButtonList = ({
                       color,
                     }
                   : {
-                      background: bg4,
+                      background: member.personalColor2,
                       color: color2,
                     }
               }
-              // colorScheme={
-              //   selected === member.value ? : 'gray'
-              // }
               variant="outline"
             >
               <Text fontSize="xl" fontWeight="bold" textAlign="left">

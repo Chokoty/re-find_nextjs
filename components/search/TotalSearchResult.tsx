@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Select,
   Tab,
   TabList,
@@ -15,7 +14,7 @@ import React from 'react';
 import SearchBar2 from '@/components/search/SearchBar2';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchResult = ({ keyword, result }) => {
+const SearchResult = ({ keyword, result, handleSearch }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const borderBottom = useColorModeValue(
     lightMode.borderBottom,
@@ -33,7 +32,7 @@ const SearchResult = ({ keyword, result }) => {
       borderRadius="1rem"
       boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
     >
-      <SearchBar2 isSearchPage={true} />
+      <SearchBar2 isSearchPage={true} handleSearch2={handleSearch} />
       <Text
         pl="1rem"
         m="1rem 0"
