@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Badge,
-  Box,
-  Button,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Avatar, Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
@@ -20,7 +13,6 @@ interface AuthorProfileCardProps {
   writerURL: string;
   profURL: string;
   nickname: string;
-  uploadTimeDiff: string;
 }
 
 const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
@@ -28,20 +20,9 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
   writerURL,
   profURL,
   nickname,
-  uploadTimeDiff,
 }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-  const highlightColor2 = useColorModeValue(
-    lightMode.highlight2,
-    darkMode.highlight2
-  );
 
   const member_link = useResponsiveLink(writerURL?.split('/').pop(), 'member');
 
@@ -67,10 +48,8 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         overflow="hidden"
         p="1rem"
         minW="240px"
-        // h={['200px', '140px', '140px']}
         h="100%"
         display="flex"
-        // flexDirection={['column', 'row', 'row']}
         flexDirection="column"
         justifyContent="center"
         alignItems="center"
@@ -122,13 +101,11 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
         </Box>
         <SortTypeIcons
           sortCriteria={null}
-          // sortTypes={sortTypes}
           artist={author}
           component={'inNickname'}
         />
         <ViewTypeIcons
           sortCriteria={null}
-          // viewTypes={viewTypes}
           selectedView={null}
           artist={author}
           component={'inNickname'}

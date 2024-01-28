@@ -39,14 +39,7 @@ const data2 = {
   today_counter: '104',
 };
 
-const SearchResult = ({
-  searchTime,
-  data,
-  ids,
-  // isSearchingAuthor,
-  // author,
-  resetFiles,
-}) => {
+const SearchResult = ({ searchTime, data, ids, resetFiles }) => {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -183,7 +176,6 @@ const SearchResult = ({
               writerURL={data?.author?.author_url}
               profURL={data?.author?.author_prof_url}
               nickname={data?.author?.author_nickname}
-              uploadTimeDiff={uploadTimeDiff}
             />
             <Divider />
             <Box as="span" flex="1" textAlign="left" fontSize="xl">

@@ -5,7 +5,6 @@ import { viewTypes } from '@/data/artists';
 
 const ViewTypeIcons = ({
   sortCriteria,
-  // viewTypes,
   selectedView,
   artist,
   component,
@@ -44,7 +43,9 @@ const ViewTypeIcons = ({
                 colorScheme={viewType.colorScheme}
                 variant={
                   // sortCriteria?.field === viewType.value ? 'solid' : 'outline'
-                  selectedView === viewType.value ? 'solid' : 'outline'
+                  selectedView === null || selectedView !== viewType.value
+                    ? 'outline'
+                    : 'solid'
                 }
                 size="sm"
                 display="flex"

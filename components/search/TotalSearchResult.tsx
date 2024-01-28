@@ -63,6 +63,9 @@ const SearchResult = ({ keyword, result }) => {
           <Tab>전체(700)</Tab>
           <Tab>작가(20)</Tab>
           <Tab>작품(680)</Tab>
+          <Box display="flex" justifyContent="flex-end" alignItems="center">
+            1
+          </Box>
         </TabList>
 
         <TabPanels>

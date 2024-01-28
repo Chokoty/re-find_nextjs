@@ -13,20 +13,7 @@ import { sortTypes, viewTypes } from '@/data/artists';
 import { useDebounce } from '@/hook/useDebounce';
 import useArtistsStore from '@/store/artistsStore';
 import { darkMode, lightMode } from '@/styles/theme';
-
-interface User {
-  total_cnt: number;
-  best_cnt: number;
-  goldhand_cnt: number;
-  isd_cnt: number;
-  gomem_cnt: number;
-  wak_cnt: number;
-  prof_url: string;
-  total_views: number;
-  total_likes: number;
-  total_comments: number;
-  textValue?: string;
-}
+import type { Artist } from '@/types/artist';
 
 const Artists = () => {
   const itemsPerPage = 50;
@@ -161,7 +148,7 @@ const Artists = () => {
     // const updatedArtists = Object.entries(artists_list).map(
     //   ([key, value]) => {
     const updatedArtists = Object.entries(artistsList).map(([key, value]) => {
-      return { name: key, ...(value as User) };
+      return { name: key, ...(value as Artist) };
     });
     // console.log(updatedArtists);
     setArtists(updatedArtists);
