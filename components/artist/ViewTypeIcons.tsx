@@ -17,6 +17,10 @@ const ViewTypeIcons = ({
   if (component === 'inIndex') {
     align = ['center', 'center', 'flex-end'];
   }
+  if (!artist) {
+    // artist가 null인 경우 예외 처리
+    return null;
+  }
 
   return (
     <Box
