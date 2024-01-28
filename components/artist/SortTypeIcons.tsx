@@ -39,6 +39,11 @@ const SortTypeIcons = ({ sortCriteria, artist, component }) => {
     align = ['center', 'center', 'flex-start'];
   }
 
+  if (!artist) {
+    // artist가 null인 경우 예외 처리
+    return null;
+  }
+
   return (
     <Box
       display="flex"
