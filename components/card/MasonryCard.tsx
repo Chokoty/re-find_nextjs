@@ -180,7 +180,11 @@ const MasonryCard = ({
                     alignItems="center"
                     gap="0.3rem"
                   >
-                    <FaEye style={isMobile ? iconStyleMobile : iconStyle} />
+                    <FaEye
+                      style={
+                        widthValue === '180px' ? iconStyleMobile : iconStyle
+                      }
+                    />
                     <Text fontSize={['xs', 'lg']} fontWeight="400">
                       {formatArtistValue(artwork.view)}
                     </Text>
@@ -193,7 +197,9 @@ const MasonryCard = ({
                     gap="0.3rem"
                   >
                     <FaThumbsUp
-                      style={isMobile ? iconStyleMobile : iconStyle}
+                      style={
+                        widthValue === '180px' ? iconStyleMobile : iconStyle
+                      }
                     />
                     <Text fontSize={['xs', 'lg']} fontWeight="400">
                       {formatArtistValue(artwork.like)}
@@ -206,7 +212,11 @@ const MasonryCard = ({
                     alignItems="center"
                     gap="0.3rem"
                   >
-                    <FaComment style={isMobile ? iconStyleMobile : iconStyle} />
+                    <FaComment
+                      style={
+                        widthValue === '180px' ? iconStyleMobile : iconStyle
+                      }
+                    />
                     <Text fontSize={['xs', 'lg']} fontWeight="400">
                       {formatArtistValue(artwork.comments)}
                     </Text>
