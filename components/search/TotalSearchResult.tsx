@@ -32,7 +32,10 @@ const SearchResult = ({ keyword, result, handleSearch }) => {
       borderRadius="1rem"
       boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
     >
-      <SearchBar2 isSearchPage={true} handleSearch2={handleSearch} />
+      <SearchBar2
+        isSearchPage={true}
+        // handleSearch2={handleSearch}
+      />
       <Text
         pl="1rem"
         m="1rem 0"

@@ -21,8 +21,8 @@ export const sortTypes: Sort[] = [
   { name: '총 조회', value: 'total_views' },
   { name: '총 댓글', value: 'total_comments' },
   { name: '총 좋아요', value: 'total_likes' },
-  { name: '총 작품', value: 'total_cnt' }, // total_articles
-  { name: '총 구독', value: 'subscriber_cnt' }, // total_subscribers
+  { name: '총 작품', value: 'total_articles' },
+  { name: '총 구독', value: 'total_subscribers' },
 ];
 
 export const menuItems = [
