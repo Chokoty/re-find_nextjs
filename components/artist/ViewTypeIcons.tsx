@@ -10,16 +10,16 @@ const ViewTypeIcons = ({
   component,
   onSelectViewType,
 }) => {
+  if (!artist) {
+    // artist가 null인 경우 예외 처리
+    return null;
+  }
   // 모든 viewType이 0인지 확인
   const isAllZero = viewTypes.every((viewType) => artist[viewType.value] === 0);
 
   let align = ['center', 'center', 'center'];
   if (component === 'inIndex') {
     align = ['center', 'center', 'flex-end'];
-  }
-  if (!artist) {
-    // artist가 null인 경우 예외 처리
-    return null;
   }
 
   return (
