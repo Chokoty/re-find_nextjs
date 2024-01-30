@@ -242,7 +242,6 @@ export default function Home() {
     >
       {/* <MySnowfall /> */}
       {congrat && <EventModal targetCount={targetCount} />}
-      <EventModal targetCount={targetCount} />
       <Box
         w="100%"
         minH="100vh"
