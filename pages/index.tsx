@@ -32,7 +32,7 @@ interface HomeProps {
   last_update_info: any;
 }
 
-const targetCount = 49638; // 이벤트 타겟 카운트
+const targetCount = 49641; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
   () => import('@/components/common/UploadImages'),
   {
@@ -242,6 +242,7 @@ export default function Home() {
     >
       {/* <MySnowfall /> */}
       {congrat && <EventModal targetCount={targetCount} />}
+      <EventModal targetCount={targetCount} />
       <Box
         w="100%"
         minH="100vh"

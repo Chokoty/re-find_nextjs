@@ -71,7 +71,7 @@ const EventModal = ({ targetCount }) => {
               </Text>
               <br />
               드래그해서 보기:{' '}
-              <span className="hidden-text">이세계아이돌 2주년 축하합니다</span>
+              <span className="hidden-text">갤러리 기능 큰거 올지도?</span>
               <br />
               <br />
               메일 rerurureruru@gmail.com 또는 <br />
