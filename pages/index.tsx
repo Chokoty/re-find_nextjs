@@ -32,7 +32,7 @@ interface HomeProps {
   last_update_info: any;
 }
 
-const targetCount = 50000; // 이벤트 타겟 카운트
+const targetCount = 49638; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
   () => import('@/components/common/UploadImages'),
   {
@@ -201,7 +201,7 @@ export default function Home() {
     });
   };
 
-  // 4만 이벤트
+  // 5만 이벤트
   useEffect(() => {
     if (isInitialRender) {
       setIsInitialRender(false);
