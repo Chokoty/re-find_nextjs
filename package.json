@@ -61,6 +61,7 @@
     "zustand": "^4.3.7"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tsconfig/next": "^1.0.5",
     "@types/gtag.js": "^0.0.12",
     "@types/lodash.throttle": "^4.1.7",

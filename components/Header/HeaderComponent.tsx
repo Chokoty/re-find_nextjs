@@ -75,7 +75,9 @@ const HeaderComponent = ({
             />
           </Link>
         </Button>
-        {!isMobile && <HeaderTab isCurrentPath={isCurrentPath} />}
+        {!isMobile && (
+          <HeaderTab isCurrentPath={isCurrentPath} isAlbumPage={isAlbumPage} />
+        )}
       </Box>
       {!isSearchPage && <SearchBar onOpen={onOpen} />}
       <Flex>

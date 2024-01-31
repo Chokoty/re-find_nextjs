@@ -5,7 +5,7 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const HeaderTab = ({ isCurrentPath }) => {
+const HeaderTab = ({ isCurrentPath, isAlbumPage }) => {
   const color5 = useColorModeValue(lightMode.color, darkMode.color5);
   const color6 = useColorModeValue(lightMode.color, darkMode.color6);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
@@ -26,7 +26,7 @@ const HeaderTab = ({ isCurrentPath }) => {
             w="3rem"
             fontWeight="700"
             textAlign="center"
-            color={isCurrentPath('/gallery') ? color6 : color5}
+            color={isAlbumPage ? color6 : color5}
             _hover={{
               color: color6,
             }}
@@ -34,7 +34,7 @@ const HeaderTab = ({ isCurrentPath }) => {
             갤러리
           </Text>
         </NextLink>
-        {isCurrentPath('/gallery') && (
+        {isAlbumPage && (
           <Box
             w="1rem"
             h="0.25rem"
