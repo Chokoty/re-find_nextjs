@@ -12,7 +12,7 @@ import MemberButtonList from '@/components/artwork/MemberButtonList';
 import PageTitle from '@/components/common/PageTitle';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
-import SearchLayout from '@/components/layout/search-layout';
+import GalleryLayout from '@/components/layout/gallery-layout';
 import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
@@ -252,7 +252,7 @@ export default function Album() {
           content={`https://re-find.xyz/gallery/isdPick`}
         />
       </Head>
-      <SearchLayout title="팬아트 갤러리">
+      <GalleryLayout title="팬아트 갤러리">
         <PageTitle topTitle={album} />
         <ShareLinkButton />
         <Box
@@ -284,7 +284,8 @@ export default function Album() {
           onMenuItemClick={handleMenuItemClick}
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
-          topOffset={48}
+          // topOffset={48}
+          topOffset={-13}
           isdPick={true}
         />
         <Box
@@ -336,7 +337,7 @@ export default function Album() {
             </Box>
           )}
         </Box>
-      </SearchLayout>
+      </GalleryLayout>
     </Box>
   );
 }
