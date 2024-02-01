@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 
 import AlbumGrid from '@/components/artwork/albumGrid';
 import MemberButtonList from '@/components/artwork/MemberButtonList';
-import PageTitle from '@/components/common/PageTitle';
+import PageTitleIndex from '@/components/common/PageTitleIndex';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
@@ -41,8 +41,21 @@ const Artworks = () => {
   }, [router]);
 
   const topTitle = {
-    title: '팬아트 갤러리',
-    description: '왁물원에 올라온 팬아트들을 모아놓은 갤러리입니다.',
+    // title: '팬아트 갤러리',
+    description: '왁물원에 올라온 모든 팬아트들을 이 곳에서 찾아보세요!',
+  };
+
+  const backgroundImageUrl =
+    '/static/images/크리스마스커버일러스트_1920x1080.jpg'; // 배경 이미지 URL
+
+  const backgroundStyle = {
+    backgroundImage: `url(${backgroundImageUrl})`,
+    // backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0)), url(${backgroundImageUrl})`,
+
+    // backgroundSize: 'cover',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: '100% 100%',
   };
 
   return (
@@ -55,7 +68,8 @@ const Artworks = () => {
       textAlign="center"
       w="100%"
     >
-      <PageTitle topTitle={topTitle} />
+      <Box w="100%" h="100%" style={backgroundStyle}></Box>
+      <PageTitleIndex topTitle={topTitle} />
       <Box
         // m="1.5rem 1rem"
         mt="2rem"

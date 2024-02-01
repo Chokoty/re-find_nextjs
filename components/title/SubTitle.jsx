@@ -1,4 +1,4 @@
-import { useColorModeValue } from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 // import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
@@ -28,7 +28,14 @@ const SubTitle = () => {
         {data[currentIndex]}
       </p>
       <p className="title-text">팬아트</p>
-      <div className="bg-crop">
+      <Box
+        className="bg-crop"
+        position="relative"
+        overflow="hidden"
+        borderRadius="20px"
+        boxShadow="0 2px 4px rgba(105, 80, 48, 0.2)"
+        border="1px solid #695030"
+      >
         {/* <Image
           src="/쿵야굳.jpg"
           alt="실사왁굳"
@@ -47,7 +54,7 @@ const SubTitle = () => {
           // unoptimized
           // placeholder="blur"
         />
-      </div>
+      </Box>
       <p className="title-text">출처 찾기</p>
     </div>
   );

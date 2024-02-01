@@ -271,7 +271,7 @@ const ViewSelectBar2 = ({
   useEffect(() => {
     const handleScroll = () => {
       const topOffset1 = window.scrollY;
-      console.log('topOffset1', topOffset1);
+      // console.log('topOffset1', topOffset1);
       if (topOffset1 >= 300) {
         setIsSticky(true);
       } else {
