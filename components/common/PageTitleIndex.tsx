@@ -54,7 +54,7 @@ const PageTitleIndex = ({ topTitle }) => {
             fontSize={['3xl', '5xl', '5rem']}
             fontFamily={'ONE-Mobile-POP'}
           >
-            팬아트
+            팬dd
           </Text>
           <Box
             className="bg-crop"

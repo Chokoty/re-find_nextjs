@@ -73,7 +73,7 @@ const Artworks = () => {
       <Box
         // m="1.5rem 1rem"
         mt="2rem"
-        p="0 1rem"
+        p="0 1rem" // 12
         background={bg2}
         borderRadius="1rem"
         w="95%"
