@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import { links } from '../data/links';
+import { links } from '@/data/links';
+import { useResponsive } from '@/hook/useResponsive';
 
 export const useResponsiveLink = (
   id: string,
@@ -9,25 +10,7 @@ export const useResponsiveLink = (
   // pcLink: string,
   // boardtype: number
 ): string => {
-  const [isMobile, setIsMobile] = useState<boolean>(true);
-
-  useEffect(() => {
-    const checkScreenWidth = () => {
-      const screenWidth = window.innerWidth;
-      setIsMobile(screenWidth < 768);
-    };
-
-    // 컴포넌트가 마운트될 때 화면 너비 확인
-    checkScreenWidth();
-
-    // 화면 크기가 변경될 때 이벤트 리스너 추가
-    window.addEventListener('resize', checkScreenWidth);
-
-    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
-    return () => {
-      window.removeEventListener('resize', checkScreenWidth);
-    };
-  }, []);
+  const isMobile = useResponsive(); // 모바일 환경인지 체크
 
   // 모바일 또는 PC 링크 반환
   if (type === 'article') {

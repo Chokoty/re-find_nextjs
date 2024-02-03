@@ -6,7 +6,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
-import ViewSelectBar from '@/components/tools/ViewSelectBar';
+import ViewSelectBar from '@/components/common/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 
@@ -40,9 +40,8 @@ const Artist = () =>
 
     // 정렬 선택하기
     const handleMenuItemClick = useCallback((menuText: string) => {
-      //if (menuText === sortType) return;
+      // if (menuText === sortType) return;
       setSortType(menuText);
-      console.log(menuText);
       // 다시 불러오기
       setPage(1);
       setIsLastPage(false);
@@ -157,6 +156,8 @@ const Artist = () =>
           onMenuItemClick={handleMenuItemClick}
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
+          topOffset={0}
+          isdPick={false}
         />
         <Box
           display="flex"
@@ -189,6 +190,7 @@ const Artist = () =>
                       isDeletedVisible={isDeletedVisible}
                       // loadingImage={loadingImage}
                       handleLoading={handleLoading}
+                      isGallery={true}
                     />
                   )}
                   {activeView === 'gridView' && (

@@ -2,7 +2,7 @@ import { Box, useBreakpointValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import Masonry from 'react-masonry-css';
 
-import MasonryCard from '@/components/cards/MasonryCard';
+import MasonryCard from '@/components/card/MasonryCard';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 const MasonryView = ({
@@ -10,6 +10,7 @@ const MasonryView = ({
   artworks,
   isDeletedVisible,
   handleLoading,
+  isGallery,
 }) => {
   const [focusedArtworkId, setFocusedArtworkId] = useState(null);
 
@@ -83,17 +84,19 @@ const MasonryView = ({
               artwork={artwork}
               isFocused={artwork.id === focusedArtworkId}
               onToggleFocus={handleToggleFocus}
+              isGallery={isGallery}
             />
           ))}
         {!isDeletedVisible &&
           artworks?.map((artwork, index) =>
-            !artwork.deleted ? (
+            !artwork?.deleted ? (
               <MasonryCard
                 key={index}
                 nickname={nickname}
                 artwork={artwork}
-                isFocused={artwork.id === focusedArtworkId}
+                isFocused={artwork?.id === focusedArtworkId}
                 onToggleFocus={handleToggleFocus}
+                isGallery={isGallery}
               />
             ) : null
           )}

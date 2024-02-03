@@ -1,37 +1,9 @@
 .home_body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  margin: 0 auto;
-  // padding-top: 30px;
-
-  .counter {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: 2px solid #ccc;
-    margin-bottom: 10px;
-
-    @include mobile {
-      font-size: $font-size / 1.1;
-    }
-  }
   .counter.light {
     border: 2px solid #333;
   }
 
   .title {
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
     .content {
       text-decoration: none;
       // color: #fff;
@@ -40,13 +12,13 @@
     .title-main {
       display: flex;
       text-align: center;
-      font-size: $title-main-size;
+      font-size: $title-main-size/ 1.2;
 
       @include tablet {
-        font-size: $title-main-size / 1.2; // 1.33333;
+        font-size: $title-main-size / 1.4; // 1.33333;
       }
       @include mobile {
-        font-size: $title-main-size / 1.5;
+        font-size: $title-main-size / 1.7;
       }
       @include small {
         font-size: $title-main-size / 2;
@@ -97,13 +69,13 @@
     }
   }
   .title-text {
-    font-size: $title-sub-size;
+    font-size: $title-sub-size / 1.2;
     font-weight: 700;
     @include tablet {
-      font-size: $title-sub-size / 1.2;
+      font-size: $title-sub-size / 1.4;
     }
     @include mobile {
-      font-size: $title-sub-size / 1.6; //1.5;
+      font-size: $title-sub-size / 1.7; //1.5;
     }
     @include small {
       font-size: $title-sub-size / 2;
@@ -111,19 +83,6 @@
   }
 
   .uploader {
-    width: 50%;
-    max-width: 550px;
-    height: 250px;
-    margin: 80px 0px 60px 0px;
-    padding: 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    border: 4px dashed #6d6d6d;
-    border-radius: 20px;
-    cursor: pointer;
-
     @include tablet {
       width: 60%;
       min-width: 500px;
@@ -221,30 +180,19 @@
     padding: 50px;
   }
 
-  .preview {
-    @include mobile {
-      width: 90%;
-      max-width: 360px;
-    }
-  }
-
   .result-area {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
 
     .loading {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
+      // display: flex;
+      // flex-direction: row;
+      // justify-content: center;
+      // align-items: center;
     }
     .result {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
       .notFound {
         display: flex;
         justify-content: center;
@@ -278,25 +226,25 @@
         }
       }
 
-      .found {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+      // .found {
+      //   display: flex;
+      //   flex-direction: column;
+      //   justify-content: center;
+      //   align-items: center;
+      //   text-align: center;
 
-        margin: 0 auto;
-        margin-bottom: 20px;
+      //   margin: 0 auto;
+      //   margin-bottom: 20px;
 
-        width: 100%;
-        .link {
-          word-break: break-all;
-          width: 100%;
-        }
-        @include mobile {
-          width: 90%;
-        }
-      }
+      //   width: 100%;
+      //   .link {
+      //     word-break: break-all;
+      //     width: 100%;
+      //   }
+      //   @include mobile {
+      //     width: 90%;
+      //   }
+      // }
     }
   }
 }

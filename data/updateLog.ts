@@ -1,6 +1,7 @@
 interface UpdateLog {
   id: number;
   date: string;
+  type?: string; // [안내] or ''
   content: string;
   directLink?: string;
 }
@@ -9,12 +10,14 @@ const updateLog: UpdateLog[] = [
   {
     id: 1,
     date: '2023.03.16',
+    type: '[안내]',
     content:
       '이제 금손 일러레의 방에 업로드 된 이미지도 검색할 수 있습니다. 비정기적으로 업데이트 됩니다.',
   },
   {
     id: 2,
     date: '2023.03.20',
+    type: '[안내]',
     content:
       'AI로 그린 팬아트 검색에 대한 수요가 있는 것 같아서 왁타버스 불법 AI 팬아트도 추가했습니다. 비정기적으로 업데이트 됩니다.',
   },
@@ -178,9 +181,48 @@ const updateLog: UpdateLog[] = [
   {
     id: 28,
     date: '2023.10.22',
+    type: '[안내]',
     content:
       '작가프로필 페이지가 정식 오픈되었습니다!!! 많은 이용 부탁드립니다. (형은신이야)',
     directLink: 'https://cafe.naver.com/steamindiegame/13410477',
+  },
+  {
+    id: 29,
+    date: '2023.11.23',
+    content: '공지멜론 MMA 2023 밀리언스 TOP10 에 키딩이 들어갔어요.',
+    directLink: 'https://cafe.naver.com/steamindiegame/13776472',
+  },
+  {
+    id: 30,
+    date: '2023.12.17',
+    content: '이세돌 데뷔 2주년 축하드립니다!!! 이세돌 영원히 뱅온해!!!',
+  },
+  {
+    id: 31,
+    date: '2023.12.18',
+    type: '[안내]',
+    content:
+      '사이트 UI가 전체적으로 리뉴얼 되었습니다. 이제 작가 검색페이지가 사용 가능합니다. 키워드 검색 기능, 작품 페이지 기능도 곧 오픈될 예정입니다.',
+  },
+  {
+    id: 32,
+    date: '2023.12.28',
+    content:
+      '2023연말공모전 왁물원 웰컴키트가 왁굳님과 이세돌 분들에게 전달되었습니다. 킹아!',
+    directLink: 'https://cafe.naver.com/steamindiegame/14239108',
+  },
+  {
+    id: 33,
+    date: '2024.1.7',
+    type: '[안내]',
+    content: '갤러리 페이지 기능이 추가되었습니다. 특집 팬아트도 확인해보세요!',
+  },
+  {
+    id: 34,
+    date: '2024.1.14',
+    type: '[점검완료]',
+    content:
+      '(17:00~20:00)서버 점검중입니다. 일부 기능이 작동하지 않을 수 있습니다.',
   },
 ];
 

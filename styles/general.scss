@@ -9,6 +9,7 @@
 // @import "./support.scss";
 @import './otherLayout.scss';
 @import './masonryLayout.scss';
+@import './SwiperCustomStyles.scss';
 
 * {
   margin: 0;
@@ -27,13 +28,13 @@ body {
 }
 
 header {
-  .box {
-    width: 48px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  // .box {
+  //   width: 48px;
+  //   height: 40px;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  // }
   .dark-mode-toggle {
     margin-left: 10px;
     margin-right: 10px;

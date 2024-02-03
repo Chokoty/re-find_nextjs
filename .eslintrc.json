@@ -45,15 +45,15 @@
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "import/no-unresolved": "off",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "optionalDependencies": false,
-        "peerDependencies": false,
-        "devDependencies": ["**/*.test.js", "**/*.spec.js"]
-      }
-    ],
-
+    "import/no-extraneous-dependencies": "off",
+    // "import/no-extraneous-dependencies": [
+    //   "error",
+    //   {
+    //     "devDependencies": ["**/*.test.js", "**/*.spec.js", "**/test/**/*.js"],
+    //     "optionalDependencies": false,
+    //     "peerDependencies": false
+    //   }
+    // ],
     "no-restricted-syntax": "off",
     "no-restricted-imports": [
       "warn",
