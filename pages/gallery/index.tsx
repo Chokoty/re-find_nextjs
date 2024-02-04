@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, flexbox, useColorModeValue } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
@@ -9,6 +9,7 @@ import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
+import GalleryCard from '@/components/card/GalleryCard';
 
 const Artworks = () => {
   const router = useRouter();
@@ -70,6 +71,49 @@ const Artworks = () => {
     >
       <Box w="100%" h="100%" style={backgroundStyle}></Box>
       <PageTitleIndex topTitle={topTitle} />
+
+      <Box 
+        display="flex"
+        w = "100%"
+        h = "600px"
+        alignItems = "center"
+        p = "0 6rem"
+        gap = "20px"
+      >
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={["board1", "board2", "board3"]}
+        />
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={["board1", "board2", "board3"]}
+        />
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={["board1", "board2", "board3"]}
+        />
+         <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={["board1", "board2", "board3"]}
+        />
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={["board1", "board2", "board3"]}
+        />
+
+      </Box>
+
+
       <Box
         // m="1.5rem 1rem"
         mt="2rem"
