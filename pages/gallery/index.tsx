@@ -77,7 +77,7 @@ const Artworks = () => {
         w = "100%"
         h = "600px"
         alignItems = "center"
-        p = "0 6rem"
+        ml = "6rem"
         gap = "20px"
       >
         <GalleryCard
@@ -116,7 +116,7 @@ const Artworks = () => {
 
       <Box
         // m="1.5rem 1rem"
-        mt="2rem"
+        mt="5rem"
         p="0 1rem"
         background={bg2}
         borderRadius="1rem"
