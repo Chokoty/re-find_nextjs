@@ -1,4 +1,4 @@
-import { Box, flexbox, useColorModeValue } from '@chakra-ui/react';
+import { Box, flexbox, useColorModeValue, Text, Button } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
@@ -72,44 +72,108 @@ const Artworks = () => {
       <Box w="100%" h="100%" style={backgroundStyle}></Box>
       <PageTitleIndex topTitle={topTitle} />
 
+
+
       <Box 
-        display="flex"
         w = "100%"
-        h = "600px"
-        alignItems = "center"
-        ml = "6rem"
-        gap = "20px"
+        h = "800px"
+        ml ="6rem"
       >
-        <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
-        <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
-        <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
-         <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
-        <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
+
+        <Text 
+          textAlign="left"
+          fontWeight="bold"
+          fontSize="4xl"
+        >
+            이 주의 왁물원 인기 팬아트!
+        </Text>
+
+        <Box
+          display="flex"
+          justifyContent="flex-start"
+          alignItems="center"
+          mt="2rem"
+        > 
+          <Button 
+          borderRadius="2rem"
+          mr="0.5rem"
+          opacity="0.7" 
+          >
+            <Text>
+              전체
+            </Text>
+          </Button>
+          
+          <Button 
+          borderRadius="2rem" 
+          mr="0.5rem"
+          opacity="0.7" 
+          >
+            이세계아이돌
+          </Button>
+          
+          <Button 
+          borderRadius="2rem" 
+          mr="0.5rem"
+          opacity="0.7" 
+          >
+            고정멤버
+          </Button>
+          <Button 
+          borderRadius="2rem" 
+          mr="0.5rem"
+          opacity="0.7" 
+          >
+            불법배경
+          </Button>
+          <Button 
+          borderRadius="2rem" 
+          mr="0.5rem"
+          opacity="0.7" 
+          >
+            우왁굳
+          </Button>
+          <Button 
+          borderRadius="2rem" 
+          mr="0.5rem"
+          opacity="0.7" 
+          >
+            금손 작가들의 방
+          </Button>
+        </Box>
+
+        <Box display="flex" alignItems="center" gap="20px" mt="2rem">
+          <GalleryCard
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+            <GalleryCard
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+            <GalleryCard
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+            <GalleryCard
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+            <GalleryCard
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+        </Box>
 
       </Box>
 
