@@ -55,9 +55,9 @@ const GalleryCard: React.FC<AuthorProfileCardProps> = ({
               }}
               unoptimized
             />
-        </Box>
-        <Text textAlign="left">[2인 이상]안녕하세요</Text>
-        <Text textAlign="left">작가: 후히이</Text>
+      </Box>
+      <Text textAlign="left">[2인 이상]안녕하세요</Text>
+      <Text textAlign="left">작가: 후히이</Text>
     </Box>
   );
 };

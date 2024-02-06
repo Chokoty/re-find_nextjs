@@ -11,6 +11,7 @@ import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import GalleryCard from '@/components/card/GalleryCard';
+import GalleryAlbum from '@/components/card/GalleryAlbum';
 
 const Artworks = () => {
   const router = useRouter();
@@ -60,6 +61,18 @@ const Artworks = () => {
     backgroundSize: '100% 100%',
   };
 
+  const callButton = (text) => (
+    <Button 
+      borderRadius="2rem"
+      mr="0.5rem"
+      opacity="0.7" 
+    >
+      <Text>
+        { text }
+      </Text>
+    </Button>
+  )//버튼 호출 함수
+
   return (
     <Box
       p="1rem"
@@ -105,53 +118,13 @@ const Artworks = () => {
           alignItems="center"
           mt="2rem"
         > 
-          <Button 
-          borderRadius="2rem"
-          mr="0.5rem"
-          opacity="0.7" 
-          >
-            <Text>
-              전체
-            </Text>
-          </Button>
-          
-          <Button 
-          borderRadius="2rem" 
-          mr="0.5rem"
-          opacity="0.7" 
-          >
-            이세계아이돌
-          </Button>
-          
-          <Button 
-          borderRadius="2rem" 
-          mr="0.5rem"
-          opacity="0.7" 
-          >
-            고정멤버
-          </Button>
-          <Button 
-          borderRadius="2rem" 
-          mr="0.5rem"
-          opacity="0.7" 
-          >
-            불법배경
-          </Button>
-          <Button 
-          borderRadius="2rem" 
-          mr="0.5rem"
-          opacity="0.7" 
-          >
-            우왁굳
-          </Button>
-          <Button 
-          borderRadius="2rem" 
-          mr="0.5rem"
-          opacity="0.7" 
-          >
-            금손 작가들의 방
-          </Button>
-        </Box>
+          {callButton('전체')}
+          {callButton('이세계아이돌')}
+          {callButton('고정멤버')}
+          {callButton('불법 배경')}
+          {callButton('우왁굳')}
+          {callButton('금손 작가들의 방')}
+        </Box>{/* 버튼 */}
 
         <Box display="flex" alignItems="center" gap="20px" mt="2rem">
           <GalleryCard
@@ -184,33 +157,78 @@ const Artworks = () => {
               nickname="nickname"
               board={["board1", "board2", "board3"]}
             />
-        </Box>
+        </Box>{/* 사진들 */}
 
       </Box>
 
 
-      <Box
-        // m="1.5rem 1rem"
-        mt="5rem"
-        p="0 1rem"
-        background={bg2}
-        borderRadius="1rem"
-        w="95%"
-        h="80px"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
+
+      <Box 
+        w = "100%"
+        h = "800px"
+        ml ="6rem"
+        mt="8rem"
       >
-        <MemberButtonList
-          members={members}
-          type="link"
-          range={{ start: 0, end: 7 }}
-          selected={null}
-          setSelected={null}
-          isdPick={false}
-        />
-      </Box>
-      <AlbumGrid gallery={gallery} />
+        <Box display="flex">
+          <Text 
+            textAlign="left"
+            fontWeight="bold"
+            fontSize="40px"
+            mr="1rem"
+          >
+            리파인드 인기 앨범
+          </Text>
+          <MdOutlineArrowForwardIos 
+            style={{
+              width:"2rem",
+              height:"2rem",
+              marginTop:"1rem"
+            }}
+          />
+        </Box>  
+
+        <Box
+          display="flex"
+          justifyContent="flex-start"
+          alignItems="center"
+          mt="2rem"
+        > 
+          {callButton('전체')}
+          {callButton('이세계아이돌')}
+          {callButton('고정멤버')}
+          {callButton('불법 배경')}
+          {callButton('우왁굳')}
+          {callButton('금손 작가들의 방')}
+        </Box>{/* 버튼 */}
+        
+        <Box display="flex" alignItems="center" gap="20px" mt="2rem">
+            <GalleryAlbum 
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+            <GalleryAlbum 
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+            <GalleryAlbum 
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+            <GalleryAlbum 
+              writerURL="12312"
+              profURL="asdf"
+              nickname="nickname"
+              board={["board1", "board2", "board3"]}
+            />
+        </Box>
+            
+      </Box>  
     </Box>
   );
 };
