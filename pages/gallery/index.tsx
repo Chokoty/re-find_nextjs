@@ -9,6 +9,7 @@ import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
+import { MdOutlineArrowForwardIos } from 'react-icons/md';
 import GalleryCard from '@/components/card/GalleryCard';
 
 const Artworks = () => {
@@ -79,15 +80,25 @@ const Artworks = () => {
         h = "800px"
         ml ="6rem"
       >
-
-        <Text 
-          textAlign="left"
-          fontWeight="bold"
-          fontSize="4xl"
-        >
-            이 주의 왁물원 인기 팬아트!
-        </Text>
-
+        
+        <Box display="flex">
+          <Text 
+            textAlign="left"
+            fontWeight="bold"
+            fontSize="40px"
+            mr="1rem"
+          >
+              이 주의 왁물원 인기 팬아트!
+          </Text>
+          <MdOutlineArrowForwardIos 
+            style={{
+              width:"2rem",
+              height:"2rem",
+              marginTop:"1rem"
+            }}
+          />
+        </Box>
+  
         <Box
           display="flex"
           justifyContent="flex-start"
