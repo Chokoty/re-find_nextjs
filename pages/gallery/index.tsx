@@ -4,12 +4,12 @@ import React, { useEffect } from 'react';
 
 import AlbumGrid from '@/components/artwork/albumGrid';
 import MemberButtonList from '@/components/artwork/MemberButtonList';
+import GalleryCard from '@/components/card/GalleryCard';
 import PageTitleIndex from '@/components/common/PageTitleIndex';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
-import GalleryCard from '@/components/card/GalleryCard';
 
 const Artworks = () => {
   const router = useRouter();
@@ -72,47 +72,57 @@ const Artworks = () => {
       <Box w="100%" h="100%" style={backgroundStyle}></Box>
       <PageTitleIndex topTitle={topTitle} />
 
-      <Box 
+      <Box
         display="flex"
-        w = "100%"
-        h = "600px"
-        alignItems = "center"
-        ml = "6rem"
-        gap = "20px"
+        w="100%"
+        h="600px"
+        alignItems="center"
+        ml="6rem"
+        gap="20px"
       >
-        <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
-        <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
-        <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
-         <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
-        <GalleryCard
-          writerURL="12312"
-          profURL="asdf"
-          nickname="nickname"
-          board={["board1", "board2", "board3"]}
-        />
+        {['비챤', '고세구', '릴파', '아이네', '주르르', '징버거'].map(
+          (member, index) => (
+            <GalleryCard
+              key={index}
+              writerURL="12312"
+              profURL="asdf"
+              nickname={member}
+              board={['board1', 'board2', 'board3']}
+            />
+          )
+        )}
 
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={['board1', 'board2', 'board3']}
+        />
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={['board1', 'board2', 'board3']}
+        />
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={['board1', 'board2', 'board3']}
+        />
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={['board1', 'board2', 'board3']}
+        />
+        <GalleryCard
+          writerURL="12312"
+          profURL="asdf"
+          nickname="nickname"
+          board={['board1', 'board2', 'board3']}
+        />
       </Box>
-
 
       <Box
         // m="1.5rem 1rem"
