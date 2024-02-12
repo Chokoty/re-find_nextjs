@@ -91,55 +91,32 @@ const Search = () => {
 
   const router = useRouter();
 
-  const [keyword, setKeyword] = useState('ㄱㅇㅇ');
+  const [keyword, setKeyword] = useState('');
   const [result, setResult] = useState(data);
 
-  const [nickname, setNickname] = useState('');
-  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
+  const [isLastPage, setIsLastPage] = useState(false);
+  const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
 
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-  const highlight = useColorModeValue(lightMode.highlight, darkMode.badge);
-
-  const [sliderValue, setSliderValue] = useState([10, 30]);
-  const [showTooltip, setShowTooltip] = useState([false, false]);
 
   const searchByKeyword = useCallback(async () => {
+    if (keyword === '') return;
     try {
-      const response = await axios
-        .get(`https://re-find.reruru.com/search_txt?query=${keyword}`)
-        .then((res) => res.data);
-      // setProfile(response);
+      const url = `
+      https://re-find.reruru.com/artworks?query=${keyword}&ranktype=${sortType}&per_page=30&page=${page}`;
+      console.log(url);
+
+      const response = await axios.get(url).then((res) => res.data);
+      setResult(response);
       console.log(response);
     } catch (error) {
       console.error('Error fetching data:', error);
+      setResult([]);
       // 404 페이지로 이동
-      router.push('/404');
+      // router.push('/404');
     }
-  }, [keyword]);
-
-  const handleSearch = () => {
-    searchByKeyword();
-  };
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
-  };
-
-  // const handleSearchNickname = () => {
-  //   if (nickname) {
-  //     router.push(`/artists/${nickname}`);
-  //   }
-  // };
-
-  // const handleKeyPress = (event) => {
-  //   if (event.key === 'Enter') {
-  //     handleSearchNickname();
-  //   }
-  // };
+  }, [keyword, sortType, page]);
 
   useEffect(() => {
     if (router.query.keyword) {
@@ -147,9 +124,13 @@ const Search = () => {
       if (typeof keywordFromQuery === 'string') {
         setKeyword(keywordFromQuery);
       }
-      // You can also perform any actions needed with this keyword
+      // You can also perform any acti aons needed with this keyword
     }
   }, [router.query]);
+
+  useEffect(() => {
+    searchByKeyword();
+  }, [keyword]);
 
   useEffect(() => {
     setIsOpen(false);
@@ -160,93 +141,9 @@ const Search = () => {
       <TotalSearchResult
         keyword={keyword}
         result={result}
-        handleSearch={handleSearch}
+        searchByKeyword={searchByKeyword}
+        setResult={setResult}
       />
-      {/* <Box
-        m="0 auto"
-        maxW="1024px"
-        w="100%"
-        background={bg2}
-        p="1rem"
-        mb="1rem"
-        borderRadius="1rem"
-        boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
-      >
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          gap="1rem"
-          mb="4rem"
-        >
-          <Text as="h1" size="2xl">
-            검색
-          </Text>
-          <Input
-            placeholder="작가 닉네임, 작품 제목, 키워드 "
-            maxW="400px"
-            size="md"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            onKeyDown={handleKeyPress}
-          />
-          <Button colorScheme="blue" size="md" onClick={handleSearchNickname}>
-            Search
-          </Button>
-          <SearchOptions />
-        </Box>
-      </Box> */}
-
-      {/* <Box
-        m="0 auto"
-        mt="3rem"
-        w="94%"
-        mb="2rem"
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <SimpleGrid
-          w={['100%', '90%']}
-          minChildWidth={['150px', '200px']} // 모바일에서는 150px, 그 외에서는 200px
-          spacing={['0.5rem', '0.75rem']}
-          justifyContent="center"
-          alignItems="center"
-          placeItems="center"
-          m="0 auto"
-        >
-          {data
-            .slice()
-            .reverse()
-            .map((item, index) => (
-              <NextLink
-                key={index}
-                href={`/artworks/${encodeURIComponent(item.key)}`}
-              >
-                <Box
-                  key={index}
-                  p="1rem"
-                  m={['0', '0.5rem']}
-                  mb=" 1rem"
-                  w={['158px', '200px']}
-                  h={['158px', '200px']}
-                  display="flex"
-                  flexDirection="column"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                  background={bg2}
-                  borderRadius="1rem"
-                  boxShadow="md"
-                >
-                  <Text fontSize="xl" fontWeight="bold" textAlign="left">
-                    {item.title}
-                  </Text>
-                </Box>
-              </NextLink>
-            ))}
-        </SimpleGrid>
-      </Box> */}
     </Box>
   );
 };

@@ -8,15 +8,16 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import axios from 'axios';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchBar2 = ({ isSearchPage }) => {
+const SearchBar2 = ({ isSearchPage, keyword, searchByKeyword, setResult }) => {
   const router = useRouter();
   const isMobile = useResponsive();
 
@@ -28,23 +29,47 @@ const SearchBar2 = ({ isSearchPage }) => {
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
+  // const searchByKeyword2 = useCallback(async () => {
+  //   try {
+  //     const url = `
+  //     https://re-find.reruru.com/artworks?query=${input}&ranktype=latest&per_page=30&page=1`;
+  //     console.log(url);
+
+  //     const response = await axios.get(url).then((res) => res.data);
+  //     setResult(response);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //     setResult(null);
+  //     // 404 페이지로 이동
+  //     // router.push('/404');
+  //   }
+  // }, [input]);
+
+  const handleSearch = (event) => {
+    setInput(event.target.value);
+    // console.log(event.target.value);
+  };
+
   const handleInputClick = () => {
     console.log('handleInputClick');
-    // handleSearch2();
-    // if (input.length > 0) {
-    //   router.push(`/search?keyword=${encodeURIComponent(input)}`);
-    // }
+    // '/search' 경로로 이동하면서 쿼리 파라미터로 입력 값을 전달합니다.
+    // router.push({
+    //   pathname: '/search',
+    //   query: { query: input },
+    // });
+    if (input?.length > 0) {
+      // '/search' 경로로 이동하면서 쿼리 파라미터 keyword로 입력 값을 전달합니다.
+      router.push(`/search?keyword=${encodeURIComponent(input)}`);
+    }
+    if (isSearchPage) searchByKeyword();
+    // else searchByKeyword2();
   };
 
   const handleEnterKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleInputClick();
     }
-  };
-
-  const handleSearch = (e) => {
-    // console.log(e.target.value);
-    setInput(e.target.value);
   };
 
   const handleClear = () => {
@@ -55,6 +80,8 @@ const SearchBar2 = ({ isSearchPage }) => {
     if (isSearchPage === true) {
       setWidth(['100%', '80%']);
     }
+    setInput(keyword);
+    if (isSearchPage && keyword !== '') searchByKeyword();
   }, []);
 
   return (
@@ -84,6 +111,7 @@ const SearchBar2 = ({ isSearchPage }) => {
             }}
           ></span>
         </InputLeftElement>
+
         <Input
           placeholder="키워드 검색"
           h="2.25rem"
@@ -93,12 +121,9 @@ const SearchBar2 = ({ isSearchPage }) => {
           alignItems="center"
           value={input}
           onChange={handleSearch}
-          onClick={handleInputClick}
           onKeyPress={handleEnterKeyPress}
           focusBorderColor="#01BFA2"
           size="md"
-          // value={nickname}
-          // onChange={handleSearch}
           _hover={{
             backgroundColor: bg2,
             borderColor: '#01BFA2',

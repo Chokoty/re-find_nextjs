@@ -24,8 +24,7 @@ const gallery: Gallery[] = [
     type: 'keyword',
     title: '할로윈 팬아트',
     subTitle: '🎃 할로윈 특집 🎃',
-    query:
-      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+    query: 'artworks?case_sensitive=false&title&query=할로윈',
   },
   {
     id: 3,
@@ -34,7 +33,7 @@ const gallery: Gallery[] = [
     title: '이세돌 2주년 팬아트',
     subTitle: ' ❤️‍🔥 이세돌 2주년 ❤️‍🔥',
     query:
-      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=리와인드&query=rewind&query=re:wind&query=데뷔%202주년',
+      'artworks?case_sensitive=false&title&query=리와인드&query=rewind&query=re:wind&query=데뷔%202주년',
   },
   {
     id: 4,
@@ -42,8 +41,7 @@ const gallery: Gallery[] = [
     type: 'keyword',
     title: '크리스마스 팬아트',
     subTitle: '🎅🏼 크리스마스 특집 🎄',
-    query:
-      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
+    query: 'artworks?case_sensitive=false&title&query=크리스마스',
   },
   {
     id: 5,

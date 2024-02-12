@@ -5,11 +5,16 @@ import {
   InputRightElement,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const BackButton = ({ onOpen }) => {
+const SearchBar = ({ onOpen }) => {
+  const [searchQuery, setSearchQuery] = useState(''); // 입력 값 상태
+  const router = useRouter(); // 페이지 이동을 위한 router 객체
+
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
@@ -20,6 +25,23 @@ const BackButton = ({ onOpen }) => {
     //   router.push('/search');
     // }
     onOpen();
+  };
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+    console.log(event.target.value);
+  };
+  const executeSearch = () => {
+    // '/search' 경로로 이동하면서 쿼리 파라미터로 입력 값을 전달합니다.
+    router.push({
+      pathname: '/search',
+      query: { query: searchQuery },
+    });
+  };
+
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      executeSearch();
+    }
   };
 
   return (
@@ -49,6 +71,9 @@ const BackButton = ({ onOpen }) => {
         size="md"
         // value={nickname}
         // onChange={handleSearch}
+        value={searchQuery} // 입력 상태를 value로 설정
+        onChange={handleSearchChange} // 입력 변경 이벤트 처리
+        onKeyPress={handleKeyPress} // 키보드 입력 이벤트 처리
         _hover={{
           backgroundColor: bg2,
           borderColor: '#01BFA2',
@@ -84,4 +109,4 @@ const BackButton = ({ onOpen }) => {
   );
 };
 
-export default BackButton;
+export default SearchBar;

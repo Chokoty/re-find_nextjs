@@ -58,7 +58,11 @@ const SearchModal = ({ isOpen, onClose }) => {
           pl={1}
           pr={1}
         >
-          <SearchBar2 isSearchPage={false} />
+          <SearchBar2
+            isSearchPage={false}
+            keyword={''}
+            searchByKeyword={null}
+          />
         </ModalHeader>
         <ModalBody
           pb={6}
@@ -67,29 +71,15 @@ const SearchModal = ({ isOpen, onClose }) => {
           justifyContent="center"
           alignItems="flex-start"
         >
-          {/* <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="flex-start"
-            mb="1rem"
-            gap="0.5rem"
-          >
-            <Text>검색에 포함할 대상을 선택하세요.</Text>
-            <Stack spacing={5} direction="row">
-              <Checkbox defaultChecked>작품</Checkbox>
-              <Checkbox defaultChecked>작가</Checkbox>
-            </Stack>
-          </Box> */}
-          <SearchOptions />
+          {/* <SearchOptions /> */}
         </ModalBody>
-        <ModalFooter
+        {/* <ModalFooter
           display="flex"
           justifyContent="center"
           alignItems="flex-start"
         >
           현재 작가닉네임 검색만 가능합니다!
-        </ModalFooter>
+        </ModalFooter> */}
       </ModalContent>
     </Modal>
   );
