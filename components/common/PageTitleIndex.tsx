@@ -6,6 +6,7 @@ import { darkMode, lightMode } from '@/styles/theme';
 const PageTitleIndex = ({ topTitle }) => {
   const [isLargerThanSmall] = useMediaQuery('(min-width: 30em)');
   const [isLargerThanMedium] = useMediaQuery('(min-width: 48em)');
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   let imageWidth = 150; // 기본 이미지 너비
   let top = '-2rem'; // 기본 이미지 왼쪽으로 이동
@@ -28,8 +29,24 @@ const PageTitleIndex = ({ topTitle }) => {
     darkMode.highlight
   );
 
+  const backgroundImageUrl =
+    '/static/images/크리스마스커버일러스트_1920x1080.jpg'; // 배경 이미지 URL
+
+  const backgroundStyle = {
+    background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 50%, ${bg} 100%), linear-gradient(90deg, ${bg} 0%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  };
+
   return (
-    <Box w="100%" h="1040px">
+    <Box
+      w="100%"
+      h="50em"
+      style={backgroundStyle}
+      position="relative"
+      top="-60px"
+    >
       <Box
         display="flex"
         flexDirection="column"
@@ -37,7 +54,7 @@ const PageTitleIndex = ({ topTitle }) => {
         justifyContent="center"
         textAlign="center"
         w="90%"
-        m="6rem auto"
+        m="10rem auto"
       >
         <Text fontSize={['sm', 'md', 'xl']}>{topTitle?.description}</Text>
         <Box
@@ -51,7 +68,7 @@ const PageTitleIndex = ({ topTitle }) => {
           <Text
             m="0"
             as="h1"
-            fontSize={['3xl', '5xl', '5rem']}
+            fontSize={['3xl', '5xl', '4rem']}
             fontFamily={'ONE-Mobile-POP'}
           >
             팬아트
@@ -59,7 +76,7 @@ const PageTitleIndex = ({ topTitle }) => {
           <Box
             className="bg-crop"
             w={['4rem', '6rem', '10rem']}
-            h={['2rem', '3rem', '5rem']}
+            h={['2rem', '3rem', '4rem']}
             position="relative"
             overflow="hidden"
             borderRadius={['3rem', '5rem']}
@@ -81,7 +98,7 @@ const PageTitleIndex = ({ topTitle }) => {
           <Text
             m="0"
             as="h1"
-            fontSize={['3xl', '5xl', '80px']}
+            fontSize={['3xl', '5xl', '4rem']}
             fontFamily={'ONE-Mobile-POP'}
             color={highlightColor}
           >

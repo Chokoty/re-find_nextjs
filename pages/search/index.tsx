@@ -164,42 +164,6 @@ const Search = () => {
       />
       {/* <Box
         m="0 auto"
-        maxW="1024px"
-        w="100%"
-        background={bg2}
-        p="1rem"
-        mb="1rem"
-        borderRadius="1rem"
-        boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
-      >
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          gap="1rem"
-          mb="4rem"
-        >
-          <Text as="h1" size="2xl">
-            검색
-          </Text>
-          <Input
-            placeholder="작가 닉네임, 작품 제목, 키워드 "
-            maxW="400px"
-            size="md"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-            onKeyDown={handleKeyPress}
-          />
-          <Button colorScheme="blue" size="md" onClick={handleSearchNickname}>
-            Search
-          </Button>
-          <SearchOptions />
-        </Box>
-      </Box> */}
-
-      {/* <Box
-        m="0 auto"
         mt="3rem"
         w="94%"
         mb="2rem"

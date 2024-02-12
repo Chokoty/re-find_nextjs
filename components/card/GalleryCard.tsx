@@ -13,14 +13,14 @@ import React from 'react';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface AuthorProfileCardProps {
+interface CardProps {
   writerURL: string;
   profURL: string;
   nickname: string;
   board: string[];
 }
 
-const GalleryCard: React.FC<AuthorProfileCardProps> = ({
+const GalleryCard: React.FC<CardProps> = ({
   writerURL,
   profURL,
   nickname,
@@ -36,28 +36,38 @@ const GalleryCard: React.FC<AuthorProfileCardProps> = ({
     darkMode.highlight2
   );
 
-  const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
-
   return (
-    <Box h="600px">
-      <Box w="415px" h="600px">
-       <Image
-              src="/static/images/크리스마스커버일러스트_1920x1080.jpg"
-              alt="이파리티콘-추워"
-              width={600}
-              height={600}
-              style={{
-              objectFit:"cover",
-              objectPosition: 'center top',
-              width: '100%',
-              height: '100%',
-              borderRadius: '1rem'
-              }}
-              unoptimized
-            />
-        </Box>
-        <Text textAlign="left">[2인 이상]안녕하세요</Text>
-        <Text textAlign="left">작가: 후히이</Text>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="flex-start"
+      justifyContent="center"
+      textAlign="center"
+      gap="0.4rem"
+      _hover={{
+        cursor: 'pointer',
+      }}
+    >
+      <Box w="300px" h="430px">
+        <Image
+          src="/static/images/크리스마스커버일러스트_1920x1080.jpg"
+          alt="이파리티콘-추워"
+          width={600}
+          height={600}
+          style={{
+            objectFit: 'cover',
+            objectPosition: 'center top',
+            width: '100%',
+            height: '100%',
+            borderRadius: '1rem',
+          }}
+          unoptimized
+        />
+      </Box>
+      <Text fontSize="md" fontWeight="bold" style={{ cursor: 'pointer' }}>
+        [2인 이상]안녕하세요
+      </Text>
+      <Text fontSize="sm">작가: 후히이</Text>
     </Box>
   );
 };

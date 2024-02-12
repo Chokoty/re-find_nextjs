@@ -9,7 +9,7 @@ import {
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
@@ -36,8 +36,23 @@ const HeaderComponent = ({
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
 
+  const [isScrolling, setIsScrolling] = useState(false);
+
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      setIsScrolling(scrollTop > 60); // 스크롤이 100px 이상인 경우 true, 아니면 false
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <Flex
@@ -51,7 +66,12 @@ const HeaderComponent = ({
       alignItems="center"
       justifyContent="space-between"
       style={{
-        backgroundColor: bg2,
+        backgroundImage: 'none',
+        // backgroundImage: isScrolling
+        //   ? 'none' // 스크롤 시에만 그라데이션 배경 적용
+        //   : `linear-gradient(90deg, ${bg2} 0%, rgba(0, 0, 0, 0) 50%, ${bg2} 100%)`,
+        backgroundColor: isScrolling ? bg2 : 'transparent', // 스크롤이 없을 때는 배경색을 bg2로 설정
+        transition: 'background-color 0.3s, background-image 0.3s',
         color,
       }}
     >
