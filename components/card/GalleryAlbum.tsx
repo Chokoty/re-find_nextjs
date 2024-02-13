@@ -41,13 +41,23 @@ const GalleryAlbum: React.FC<AuthorProfileCardProps> = ({
   const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
 
   return (
-    <Box h="600px">
-      <Box w="560px" h="400px" position="relative">
+    <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="flex-start"
+        justifyContent="center"
+        textAlign="center"
+    >
+      <Box 
+      w="560px" 
+      h="400px" 
+      position="relative"
+      >
        <Image
               src="/static/images/크리스마스커버일러스트_1920x1080.jpg"
               alt="이파리티콘-추워"
-              width={600}
-              height={600}
+              width={560}
+              height={400}
               style={{
                 objectFit:"cover",
                 objectPosition: 'center top',
@@ -73,7 +83,7 @@ const GalleryAlbum: React.FC<AuthorProfileCardProps> = ({
             리파인드 추천
           </Text>
         </Box>
-        <Box w="560px" h="400px" alignItems="center">
+        <Box alignItems="center">
           <Text
             position="absolute"
             bottom="3rem"
@@ -90,6 +100,7 @@ const GalleryAlbum: React.FC<AuthorProfileCardProps> = ({
               position: "absolute",
               bottom: "2rem",
               right: "2rem",
+              cursor: 'pointer'
             }}
           />
           <Text
@@ -101,7 +112,7 @@ const GalleryAlbum: React.FC<AuthorProfileCardProps> = ({
           >
             이세돌과 함께 메리 크리스마스!
           </Text>
-        </Box> 
+          </Box> 
       </Box>
     </Box>
   );

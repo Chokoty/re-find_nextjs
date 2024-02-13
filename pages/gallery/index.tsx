@@ -4,6 +4,10 @@ import {
   flexbox,
   Text,
   useColorModeValue,
+  grid,
+  Flex,
+  SimpleGrid,
+  Divider
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
@@ -19,6 +23,7 @@ import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
+import { render } from 'react-dom';
 
 const galleryList = [
   '전체',
@@ -37,6 +42,36 @@ const albumList = [
   '우왁굳',
   '금손 작가들의 방',
 ];
+
+const membersAlbumList = [
+  '우왁굳',
+  '이세계아이돌',
+  '아이네',
+  '징버거',
+  '릴파',
+  '주르르',
+  '고세구',
+  '비챤',
+  '고정 멤버',
+  '고멤 아카데미',
+];
+
+const CallButton = ({ text }) => (
+  <Button borderRadius="2rem" mr="0.5rem">
+    <Text>{text}</Text>
+  </Button>
+);
+
+
+const renderButtonGroup = (start, end) => (
+  <Box>
+    {membersAlbumList.slice(start, end).map((item, index) => (
+      <React.Fragment key={index}>
+        <CallButton text={item} />
+      </React.Fragment>
+    ))}
+  </Box>
+);
 
 const Artworks = () => {
   const router = useRouter();
@@ -86,11 +121,6 @@ const Artworks = () => {
     backgroundSize: '100% 100%',
   };
 
-  const CallButton = ({ text }) => (
-    <Button borderRadius="2rem" mr="0.5rem">
-      <Text>{text}</Text>
-    </Button>
-  );
 
   return (
     <Box
@@ -107,7 +137,7 @@ const Artworks = () => {
         top="-480px"
         w="100%"
         h="800px"
-        ml="6rem"
+        ml="10rem"
         display="flex"
         flexDirection="column"
         // alignItems="center"
@@ -116,15 +146,16 @@ const Artworks = () => {
         gap="1.5rem"
       >
         <Box display="flex" gap="0.5rem">
-          <Text textAlign="left" fontWeight="bold" fontSize="2xl">
+          <Text textAlign="left" fontWeight="bold" fontSize="4xl">
             이 주의 왁물원 인기 팬아트!
           </Text>
           <Box>
             <MdOutlineArrowForwardIos
               style={{
-                width: '1.2rem',
-                height: '1.2rem',
-                marginTop: '0.6rem',
+                width: '2.4rem',
+                height: '2.4rem',
+                marginTop: '0.5rem',
+                cursor: 'pointer'
               }}
             />
           </Box>
@@ -154,62 +185,109 @@ const Artworks = () => {
       </Box>
 
       <Box
-        display="flex"
+        position="relative"
+        top="-480px"
         w="100%"
-        h="600px"
-        alignItems="center"
-        ml="6rem"
-        gap="20px"
-      ></Box>
-
-      <Box w="100%" h="800px" ml="6rem" mt="8rem">
-        <Box display="flex">
-          <Text textAlign="left" fontWeight="bold" fontSize="40px" mr="1rem">
+        h="800px"
+        ml="10rem"
+        display="flex"
+        flexDirection="column"
+        // alignItems="center"
+        // justifyContent="center"
+        // textAlign="center"
+        gap="1.5rem"
+      >
+        <Box display="flex" gap="0.5rem">
+          <Text textAlign="left" fontWeight="bold" fontSize="4xl">
             리파인드 인기 앨범
           </Text>
-          <MdOutlineArrowForwardIos
-            style={{
-              width: '2rem',
-              height: '2rem',
-              marginTop: '1rem',
-            }}
-          />
+          <Box>
+            <MdOutlineArrowForwardIos
+              style={{
+                width: '2.4rem',
+                height: '2.4rem',
+                marginTop: '0.5rem',
+                cursor: 'pointer'
+              }}
+            />
+          </Box>
         </Box>
-
+        <Box display="flex" justifyContent="flex-start" alignItems="center">
+          {galleryList.map((item, index) => (
+            <CallButton key={index} text={item} />
+          ))}
+        </Box>
         <Box
           display="flex"
           justifyContent="flex-start"
           alignItems="center"
-          mt="2rem"
-        ></Box>
-
-        <Box display="flex" alignItems="center" gap="20px" mt="2rem">
-          <GalleryAlbum
-            writerURL="12312"
-            profURL="asdf"
-            nickname="nickname"
-            board={['board1', 'board2', 'board3']}
-          />
-          <GalleryAlbum
-            writerURL="12312"
-            profURL="asdf"
-            nickname="nickname"
-            board={['board1', 'board2', 'board3']}
-          />
-          <GalleryAlbum
-            writerURL="12312"
-            profURL="asdf"
-            nickname="nickname"
-            board={['board1', 'board2', 'board3']}
-          />
-          <GalleryAlbum
-            writerURL="12312"
-            profURL="asdf"
-            nickname="nickname"
-            board={['board1', 'board2', 'board3']}
-          />
+          gap="20px"
+          overflowX="auto"
+        >
+          {albumList.map((item, index) => (
+            <GalleryAlbum
+              key={index}
+              writerURL="12312"
+              profURL="asdf"
+              nickname={item}
+              board={['board1', 'board2', 'board3']}
+            />
+          ))}
         </Box>
       </Box>
+
+      <Box
+        position="relative"
+        top="-480px"
+        w="100%"
+        h="1000px"
+        ml="10rem"
+        display="flex"
+        flexDirection="column"
+        // alignItems="center"
+        // justifyContent="center"
+        // textAlign="center"
+        gap="1.5rem"
+      >
+        <Box display="flex" gap="0.5rem">
+          <Text textAlign="left" fontWeight="bold" fontSize="4xl">
+            멤버별 앨범 모아보기
+          </Text>
+          <Box>
+            <MdOutlineArrowForwardIos
+              style={{
+                width: '2.4rem',
+                height: '2.4rem',
+                marginTop: '0.5rem',
+                cursor: 'pointer'
+              }}
+            />
+          </Box>
+        </Box>
+        <Box display="flex" justifyContent="flex-start" alignItems="center">
+          {renderButtonGroup(0, 1)}
+          <Divider orientation='vertical' mr='0.5rem' />
+          {renderButtonGroup(1, 8)}
+          <Divider orientation='vertical' mr='0.5rem' />
+          {renderButtonGroup(8, 10)}
+        </Box>
+
+
+
+        <Box display="flex" flexWrap="wrap"  columnGap="20px" rowGap="40px">
+          {membersAlbumList.slice(0,9).map((item, index) => (
+            <GalleryAlbum
+              key={index}
+              writerURL="12312"
+              profURL="asdf"
+              nickname={item}
+              board={['board1', 'board2', 'board3']}
+            />
+          ))}
+        </Box>
+      </Box>
+
+
     </Box>
   );
 };
