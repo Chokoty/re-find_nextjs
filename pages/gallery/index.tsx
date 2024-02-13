@@ -1,13 +1,8 @@
-import {
-  Box,
-  Button,
-  flexbox,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
+import { Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import AlbumGrid from '@/components/artwork/albumGrid';
@@ -134,7 +129,7 @@ const Artworks = () => {
             <CallButton key={index} text={item} />
           ))}
         </Box>
-        <Box
+        {/* <Box
           display="flex"
           justifyContent="flex-start"
           alignItems="center"
@@ -150,7 +145,26 @@ const Artworks = () => {
               board={['board1', 'board2', 'board3']}
             />
           ))}
-        </Box>
+        </Box> */}
+        <Swiper
+          navigation={true}
+          modules={[Navigation]}
+          spaceBetween={20} // 슬라이드 사이의 간격
+          slidesPerView={4} // 한 번에 보여지는 슬라이드 수
+          slidesPerGroup={4} // 한 번에 넘어가는 슬라이드 그룹 수
+          loop={false} // 슬라이드 반복 여부
+        >
+          {albumList.map((item, index) => (
+            <SwiperSlide key={index}>
+              <GalleryCard
+                writerURL="12312"
+                profURL="asdf"
+                nickname={item}
+                board={['board1', 'board2', 'board3']}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Box>
 
       <Box
