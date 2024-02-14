@@ -8,8 +8,9 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import LoadButton from '@/components/common/LoadButton';
 import PageTitle from '@/components/common/PageTitle';
+import PageTitleIndex from '@/components/common/PageTitleIndex';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
-import ViewSelectBar from '@/components/common/ViewSelectBar';
+import ViewSelectBar2 from '@/components/common/ViewSelectBar2';
 import GalleryLayout from '@/components/layout/gallery-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
@@ -205,6 +206,7 @@ export default function Album({ value, query }) {
           mt="1rem"
           p="1rem"
         >
+          <PageTitleIndex topTitle={topTitle} />
           <PageTitle topTitle={topTitle} />
           {album?.description && <Text m="0 auto">{album.description}</Text>}
           {
@@ -226,7 +228,7 @@ export default function Album({ value, query }) {
           </Tooltip> */}
           <ShareLinkButton />
         </Box>
-        <ViewSelectBar
+        <ViewSelectBar2
           activeView={activeView}
           onViewChange={handleViewChange}
           selectedMenu={sortType}

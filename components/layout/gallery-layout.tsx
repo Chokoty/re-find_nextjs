@@ -21,7 +21,7 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
 
   return (
     <Box className="body" minH="240vh" background={bg} w="100%" m="0 auto">
-      <GalleryHeader title={title} />
+      {/* <GalleryHeader title={title} /> */}
       <Box w="100%" className="layout">
         {children}
       </Box>
