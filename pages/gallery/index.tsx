@@ -237,7 +237,9 @@ const Artworks = () => {
             <CallButton key={index} text={item} />
           ))}
         </Box>
-        <Box
+        
+        
+        {/* <Box
           display="flex"
           justifyContent="flex-start"
           alignItems="center"
@@ -253,7 +255,29 @@ const Artworks = () => {
               board={['board1', 'board2', 'board3']}
             />
           ))}
-        </Box>
+        </Box> */}
+
+        <Swiper
+          navigation={true}
+          modules={[Navigation]}
+          spaceBetween={20} 
+          slidesPerView={4} 
+          slidesPerGroup={4}
+          loop={false}
+        >
+          {albumList.map((item, index) => (
+            <SwiperSlide key={index}>
+              <GalleryAlbum
+                writerURL="12312"
+                profURL="asdf"
+                nickname={item}
+                board={['board1', 'board2', 'board3']}
+              />
+            </SwiperSlide>
+          ))}
+
+        </Swiper>
+
       </Box>
 
       <Box
