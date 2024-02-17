@@ -41,8 +41,10 @@ const TabBarComponent = ({ tab, setTab }) => {
 
   return (
     <Box
-      position="sticky"
-      bottom="4"
+      // position="sticky"
+      position="fixed"
+      w="100%"
+      bottom="1rem"
       zIndex="200"
       display="flex"
       justifyContent="center"

@@ -3,25 +3,55 @@ import { Box, useColorModeValue } from '@chakra-ui/react';
 // import Image from 'next/image';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const PageTitleIndex = ({ backgroundImageUrl }) => {
+const PageTitleIndex = ({ children, backgroundImageUrl }) => {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   const backgroundStyle = {
     background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, ${bg} 100%), linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-    backgroundSize: '140%', // 'cover','contain',
+    backgroundPosition: 'top', // 'center',
+    backgroundSize: '140%', // 'cover', // 'contain',
   };
 
   return (
     <Box
       w="100%"
-      paddingTop="56.25%" // 16:9
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
       position="relative"
-      top="-60px"
-      style={backgroundStyle}
     >
-      {/* <Box
+      <Box
+        w="100%"
+        position="absolute"
+        top={['4rem', '8rem']}
+        p={['0 1rem', '0 2rem', '0 2rem']}
+      >
+        {children}
+      </Box>
+      <Box
+        w="100%"
+        paddingTop="56.25%" // 16:9
+        position="relative"
+        top="-60px"
+        style={backgroundStyle}
+        zIndex="-2"
+      >
+        <Box
+          position="relative"
+          // top={['-8rem', '-12.5rem', '-16rem']}
+          top="100px"
+          p={['1rem', '1rem', '2rem']}
+          w="100%"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="flex-start"
+          textAlign="center"
+          zIndex="-1"
+        ></Box>
+        {/* <Box
         position="absolute"
         top="0px"
         left="0"
@@ -40,7 +70,7 @@ const PageTitleIndex = ({ backgroundImageUrl }) => {
           height={1080} // 이미지의 높이 설정
         />
       </Box> */}
-      {/* {children} */}
+      </Box>
     </Box>
   );
 };
