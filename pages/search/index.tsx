@@ -109,7 +109,9 @@ const Search = () => {
   const searchByKeyword = useCallback(async () => {
     try {
       const response = await axios
-        .get(`https://re-find.reruru.com/search_txt?query=${keyword}`)
+        .get(
+          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/search_txt?query=${keyword}`
+        )
         .then((res) => res.data);
       // setProfile(response);
       console.log(response);

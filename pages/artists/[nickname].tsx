@@ -153,7 +153,9 @@ const Artist = ({ artist_name2info }) => {
   const getArtistInfo = useCallback(async () => {
     try {
       const response = await axios
-        .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
+        .get(
+          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_name2info?name=${nickname}`
+        )
         .then((res) => res.data);
       setProfile(response);
       console.log(response);
@@ -173,7 +175,7 @@ const Artist = ({ artist_name2info }) => {
     // console.log('artworks loading...');
 
     try {
-      let url = `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
+      let url = `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
       if (sortCriteria.field !== '') {
         url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
       }
@@ -389,7 +391,9 @@ export async function getServerSideProps(context) {
 
   try {
     const artist_name2info = await axios
-      .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
+      .get(
+        `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_name2info?name=${nickname}`
+      )
       .then((res) => res.data);
 
     return {

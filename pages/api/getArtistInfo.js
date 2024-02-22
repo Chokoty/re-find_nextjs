@@ -5,7 +5,7 @@ const getArtistInfo = async (req, res) => {
   console.log(nickname);
   try {
     const response = await axios.get(
-      `https://re-find.reruru.com/author_name2info?name=${nickname}`
+      `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_name2info?name=${nickname}`
     );
     res.status(200).json(response.data);
     console.log(response.data);

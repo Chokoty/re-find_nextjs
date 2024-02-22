@@ -133,7 +133,7 @@ export default function Album() {
     setLoadingData(true);
 
     try {
-      const url = `https://re-find.reruru.com/isd_notice`;
+      const url = `${process.env.NEXT_PUBLIC_REDIRECT_URL}/isd_notice`;
       const response = await axios.get(url).then((res) => res.data);
       // console.log(response);
       setTotal(response?.total);

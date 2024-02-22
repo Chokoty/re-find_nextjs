@@ -52,7 +52,9 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
   const fetchRandomFanart = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get(`https://re-find.reruru.com/isegye_festival`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_REDIRECT_URL}/isegye_festival`
+      );
       // console.log(res.data);
       setFanart(res.data);
     } catch (error) {

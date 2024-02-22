@@ -74,7 +74,7 @@ const Artist = () =>
       try {
         const response = await axios
           .get(
-            `https://re-find.reruru.com/author_artworks?name=${keyword}&type=${sortType}&page=${page}`
+            `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_artworks?name=${keyword}&type=${sortType}&page=${page}`
           )
           .then((res) => res.data);
 
