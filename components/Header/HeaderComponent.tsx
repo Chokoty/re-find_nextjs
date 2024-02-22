@@ -6,19 +6,22 @@ import {
   Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
 import MyDrawer from '@/components/common/MyDrawer';
 import HeaderTab from '@/components/Header/HeaderTab';
 import SearchBar from '@/components/search/SearchBar';
-import SearchModal from '@/components/search/SearchModal';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
+
+const SearchModal = dynamic(() => import('@/components/search/SearchModal'), {
+  ssr: false,
+});
 
 const HeaderComponent = ({
   toggleDrawer,

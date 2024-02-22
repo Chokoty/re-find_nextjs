@@ -1,6 +1,4 @@
 import { Box, useBreakpointValue, useColorModeValue } from '@chakra-ui/react';
-import NextLink from 'next/link';
-import React from 'react';
 
 import Counter from '@/components/common/Counter';
 // import BannerSlider from '@/components/banner/BannerSlider';

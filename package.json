@@ -29,7 +29,6 @@
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "eslint-plugin-jsx-a11y": "^6.7.1",
-    "framer-motion": "^10.12.10",
     "hamburger-react": "^2.5.0",
     "iconv-lite": "^0.6.3",
     "imagesloaded": "^5.0.0",

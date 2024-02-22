@@ -10,46 +10,42 @@ import {
 import axios from 'axios';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
 
-import BannerSlider from '@/components/banner/BannerSlider';
 import Loading from '@/components/common/Loading';
 import MoreButtons from '@/components/common/MoreButtons';
 import Preview from '@/components/common/Preview';
 import UpdateBoard from '@/components/common/UpdateBoard';
 import UpdateLogBoard from '@/components/common/UpdateLogBoard';
-import UploadImages from '@/components/common/UploadImages';
 import EventFanarts from '@/components/event/EventFanarts';
-import EventModal from '@/components/event/EventModal';
-import MySnowfall from '@/components/event/MySnowfall';
 import { Footer } from '@/components/layout/Footer';
 import SearchResult from '@/components/search/SearchResult';
+import BannerSkeleton from '@/components/skeleton/BannerSkeleton';
+import UploadImageSkeleton from '@/components/skeleton/UploadImageSkeleton';
 import TopTitle from '@/components/TopTitle';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
-
-interface HomeProps {
-  last_update_info: any;
-}
 
 const targetCount = 50000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
   () => import('@/components/common/UploadImages'),
   {
     ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
-    loading: () => <p></p>,
+    loading: () => <UploadImageSkeleton />,
   }
 );
+
+const BannerSlider = dynamic(() => import('@/components/banner/BannerSlider'), {
+  ssr: false,
+  loading: () => <BannerSkeleton />,
+});
+
+const EventModal = dynamic(() => import('@/components/event/EventModal'), {
+  ssr: false,
+});
 
 export default function Home() {
   // { last_update_info }: HomeProps
   const isMobile = useResponsive();
-
-  const { ref, inView } = useInView({
-    // infinite scroll을 위한 옵저버
-    threshold: 0,
-    rootMargin: '0px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
-  });
 
   const toast = useToast();
   const targetRef = useRef(null);
@@ -86,6 +82,14 @@ export default function Home() {
     setHash(childHashData);
     console.log(hash);
   };
+
+  useEffect(() => {
+    toast({
+      title: `현재 서버와 연결이 원활하지 않습니다. 잠시 후 다시 시도해주세요.`,
+      status: `error`,
+      isClosable: true,
+    });
+  }, []);
 
   useEffect(() => {
     const fetchLastUpdateInfo = async () => {
