@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react';
 import React, { useEffect } from 'react';
 
 import RandomFanart from '@/components/common/RandomFanart';

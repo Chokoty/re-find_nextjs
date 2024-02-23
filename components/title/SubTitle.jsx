@@ -3,6 +3,7 @@ import Image from 'next/image';
 // import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
+import WakGood from '@/public/real-wakgood.webp';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const data = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
@@ -39,7 +40,7 @@ const SubTitle = () => {
           // placeholder="blur"
         /> */}
         <Image
-          src="/real-wakgood.jpg"
+          src={WakGood}
           alt="실사왁굳"
           className="bg-wakdoo"
           width={100}

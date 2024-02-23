@@ -94,11 +94,10 @@ const ArtistsList = ({
                   <Text fontSize="lg" fontWeight="bold">
                     {index <= 100 ? index + 1 : '-'}
                   </Text>
-                  <Box w={imgValue}>
+                  <Box w={imgValue} h={imgValue} pos="relative">
                     <NextImage
-                      unoptimized
-                      width={100}
-                      height={100}
+                      fill
+                      sizes="(min-width: 767px) 66px, 100px"
                       style={{
                         borderRadius: '50%',
                         objectFit: 'cover',

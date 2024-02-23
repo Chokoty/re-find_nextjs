@@ -225,7 +225,7 @@ export async function getServerSideProps(context) {
     const keyword_artworks = await axios
 
       .get(
-        `http://re-find.reruru.com/author_artworks?name=${keyword}&type=latest&page=1`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${keyword}&type=latest&page=1`
       )
       .then((res) => res.data);
 

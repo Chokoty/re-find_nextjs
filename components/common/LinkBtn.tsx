@@ -3,6 +3,10 @@ import NextImage from 'next/image';
 import React from 'react';
 import { FaYoutube } from 'react-icons/fa';
 
+import Twitter from '@/public/static/icons/twitter-x-logo.webp';
+import Waksplorer from '@/public/static/icons/waksplorer-logo.webp';
+import Wakzoo from '@/public/static/icons/wakzoo-logo.webp';
+
 const XButton = () => (
   <Button
     href="https://twitter.com/rerurureruru"
@@ -19,7 +23,8 @@ const XButton = () => (
     <NextImage
       width={18}
       height={18}
-      src="/static/icons/twitter-x-logo.png"
+      quality={90}
+      src={Twitter}
       alt="twitter-x"
       style={{ filter: 'invert(100%)' }}
     />
@@ -40,12 +45,7 @@ const WakzooButton = () => (
     target="_blank"
     shadow="md"
   >
-    <NextImage
-      width={60}
-      height={60}
-      src="/static/icons/wakzoo-logo.png"
-      alt="naver-cafe-logo"
-    />
+    <NextImage width={60} height={60} src={Wakzoo} alt="naver-cafe-logo" />
   </Button>
 );
 
@@ -117,7 +117,8 @@ const WaksplorerButton = () => (
     <NextImage
       width={30}
       height={30}
-      src="/static/icons/waksplorer-logo.png"
+      quality={90}
+      src={Waksplorer}
       alt="twitter-x"
     />
   </Button>

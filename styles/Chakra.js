@@ -1,9 +1,10 @@
+import { ChakraProvider } from '@chakra-ui/provider';
 import {
   cookieStorageManagerSSR,
   localStorageManager,
   // withDefaultColorScheme,
 } from '@chakra-ui/react';
-import { ChakraProvider } from '@chakra-ui/provider';
+
 import theme from '@/styles/theme';
 
 export function Chakra({ cookies, children }) {

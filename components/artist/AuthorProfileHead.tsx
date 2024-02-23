@@ -12,13 +12,11 @@ import {
   Tooltip,
   useToast,
 } from '@chakra-ui/react';
-// import Image from 'next/image';
 import React, { useState } from 'react';
 import { ImLink } from 'react-icons/im';
 
 import SortTypeIcons from '@/components/artist/SortTypeIcons';
 import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
-import { sortTypes, viewTypes } from '@/data/artists';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 interface AuthorProfileHeadProps {

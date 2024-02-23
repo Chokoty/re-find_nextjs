@@ -83,7 +83,6 @@ const MasonryCard = ({
                 ? 'http://via.placeholder.com/236x236'
                 : modifiedUrl300
             }
-            unoptimized
             onLoad={handleImageLoad}
           />
         </Box>

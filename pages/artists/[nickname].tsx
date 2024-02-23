@@ -392,7 +392,7 @@ export async function getServerSideProps(context) {
   try {
     const artist_name2info = await axios
       .get(
-        `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_name2info?name=${nickname}`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/author_name2info?name=${nickname}`
       )
       .then((res) => res.data);
 

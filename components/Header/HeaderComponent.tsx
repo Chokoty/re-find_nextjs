@@ -71,10 +71,9 @@ const HeaderComponent = ({
           <Link href="/">
             <Image
               alt="logo"
-              width={40}
-              height={40}
+              width={32}
+              height={32}
               src="/android-chrome-512x512.png"
-              unoptimized
             />
           </Link>
         </Button>

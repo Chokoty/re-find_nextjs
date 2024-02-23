@@ -1,10 +1,8 @@
 import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
 import axios from 'axios';
-import { filter } from 'lodash';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FaArrowDown } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
@@ -70,11 +68,6 @@ export default function Album() {
   //     query: currentQuery,
   //   });
   // }, [sortType]);
-
-  const loadData = () => {
-    console.log('loadData');
-    getFanartAlbum();
-  };
 
   // 정렬 로직
   const sortArtworks = (_artworks, _sortType) => {
