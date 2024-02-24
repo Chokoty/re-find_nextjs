@@ -103,7 +103,7 @@ const RandomFanart = () => {
         .filter((key) => checkboxValues[key])
         .join('&');
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_REDIRECT_URL}/rand?${queryParams}`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/rand?${queryParams}`
       );
       setFanart(res.data);
     } catch (error) {

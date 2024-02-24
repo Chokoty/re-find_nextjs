@@ -96,7 +96,7 @@ export default function Home() {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/last_update_info`
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/last_update_info`
         );
         setLastUpdateInfo(response.data);
       } catch (error) {
@@ -130,7 +130,7 @@ export default function Home() {
         // 재검색 방지
         const startTime = new Date().getTime(); // 시작시간 기록
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/receive?dhash=${hash[0]}`
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/receive?dhash=${hash[0]}`
         );
         // const response = await axios.post(
         //   'https://re-find.reruru.com/receive',
