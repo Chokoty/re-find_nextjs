@@ -1,5 +1,4 @@
-import create from 'zustand';
-
+import { create } from 'zustand';
 import type { Artwork } from '@/types/artwork';
 
 interface isdPickStore {
