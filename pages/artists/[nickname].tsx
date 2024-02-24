@@ -223,13 +223,11 @@ const Artist = ({ artist_name2info }) => {
   //   // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
   // }, [activeView, sortType]);
 
-  // sortCriteria 변경 시 useEffect 실행
   useEffect(() => {
     resetArtworks();
     getArtistArtworks();
   }, [sortCriteria, sortCriteria.field]);
 
-  // sortType, page 변경 시 useEffect 실행
   useEffect(() => {
     if (isInitialRender) {
       setIsInitialRender(false);
