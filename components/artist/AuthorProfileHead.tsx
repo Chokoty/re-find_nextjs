@@ -22,7 +22,6 @@ import { useResponsiveLink } from '@/hook/useResponsiveLink';
 interface AuthorProfileHeadProps {
   nickname: string;
   profile: any;
-  sortCriteria: any;
   boardType: string;
   handleViewTypeSelect: any;
 }
@@ -30,7 +29,6 @@ interface AuthorProfileHeadProps {
 const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
   nickname,
   profile,
-  sortCriteria,
   boardType,
   handleViewTypeSelect,
 }) => {
@@ -143,13 +141,10 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
         </Box> */}
         <SortTypeIcons
           sortCriteria={null}
-          // sortTypes={sortTypes}
           artist={profile}
           component={'inNickname'}
         />
         <ViewTypeIcons
-          sortCriteria={sortCriteria}
-          // viewTypes={viewTypes}
           selectedView={boardType}
           artist={profile}
           component={'inNickname'}

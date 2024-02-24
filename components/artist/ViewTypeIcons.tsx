@@ -4,7 +4,6 @@ import React from 'react';
 import { viewTypes } from '@/data/artists';
 
 const ViewTypeIcons = ({
-  sortCriteria,
   selectedView,
   artist,
   component,

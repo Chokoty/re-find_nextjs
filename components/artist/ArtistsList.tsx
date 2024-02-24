@@ -146,7 +146,6 @@ const ArtistsList = ({
                     />
                   )}
                   <ViewTypeIcons
-                    sortCriteria={sortCriteria}
                     // viewTypes={viewTypes}
                     selectedView={selectedView}
                     artist={artist}

@@ -150,21 +150,21 @@ const Artist = ({ artist_name2info }) => {
   //   }
   // }, [router, handleViewTypeSelect]);
 
-  const getArtistInfo = useCallback(async () => {
-    try {
-      const response = await axios
-        .get(
-          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_name2info?name=${nickname}`
-        )
-        .then((res) => res.data);
-      setProfile(response);
-      console.log(response);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      // 404 페이지로 이동
-      router.push('/404');
-    }
-  }, [nickname]);
+  // const getArtistInfo = useCallback(async () => {
+  //   try {
+  //     const response = await axios
+  //       .get(
+  //         `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_name2info?name=${nickname}`
+  //       )
+  //       .then((res) => res.data);
+  //     setProfile(response);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //     // 404 페이지로 이동
+  //     router.push('/404');
+  //   }
+  // }, [nickname]);
 
   const getArtistArtworks = useCallback(async () => {
     // console.log('getArtistArtworks');
@@ -223,17 +223,18 @@ const Artist = ({ artist_name2info }) => {
   //   // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
   // }, [activeView, sortType]);
 
+  // sortCriteria 변경 시 useEffect 실행
   useEffect(() => {
     resetArtworks();
     getArtistArtworks();
   }, [sortCriteria, sortCriteria.field]);
 
+  // sortType, page 변경 시 useEffect 실행
   useEffect(() => {
     if (isInitialRender) {
       setIsInitialRender(false);
       return;
     }
-    // console.log('page: ', page);
     getArtistArtworks();
   }, [sortType, page]);
 
@@ -248,12 +249,13 @@ const Artist = ({ artist_name2info }) => {
     }
   }, [inView, isLastPage]);
 
-  useEffect(() => {
-    if (nickname) {
-      // console.log(nickname);
-      getArtistArtworks();
-    }
-  }, [nickname]);
+  // 초기 작가 artworks 렌더링
+  // useEffect(() => {
+  //   if (nickname) {
+  //     console.log('useEffect when nickname is changed', nickname);
+  //     getArtistArtworks();
+  //   }
+  // }, [nickname]);
 
   return (
     <Box>
@@ -314,7 +316,6 @@ const Artist = ({ artist_name2info }) => {
             <AuthorProfileHead
               nickname={actualNickname}
               profile={profile}
-              sortCriteria={sortCriteria}
               boardType={boardType}
               handleViewTypeSelect={handleViewTypeSelect}
             />
