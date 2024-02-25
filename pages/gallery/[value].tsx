@@ -1,4 +1,10 @@
-import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Text,
+  useColorModeValue,
+  useToast,
+} from '@chakra-ui/react';
 import axios from 'axios';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -7,10 +13,10 @@ import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import LoadButton from '@/components/common/LoadButton';
-import PageTitle from '@/components/common/PageTitle';
-import PageTitleIndex from '@/components/common/PageTitleIndex';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
+import TopBackground from '@/components/common/TopBackground';
 import ViewSelectBar2 from '@/components/common/ViewSelectBar2';
+import TopTitle from '@/components/gallery/TopTitle';
 import GalleryLayout from '@/components/layout/gallery-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
@@ -35,6 +41,7 @@ export default function Album({ value, query }) {
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
   const [total, setTotal] = useState(0);
+  const [isMember, setIsMember] = useState(false);
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
@@ -51,6 +58,7 @@ export default function Album({ value, query }) {
   const [loadingImage, setLoadingImage] = useState(true);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
   // useEffect(() => {
   //   // URL에 새로운 정렬 조건을 반영합니다.
@@ -166,13 +174,20 @@ export default function Album({ value, query }) {
     setAlbum(g);
     const m = members.find((item) => item.value === value);
     setMember(m);
+    if (m === undefined) {
+      setIsMember(false);
+    } else {
+      setIsMember(true);
+    }
     getFanartAlbum();
   }, []);
 
-  const topTitle = {
+  const titleText = {
     title: album?.subTitle || `${member?.name} 팬아트`,
-    description: album?.description,
+    // description: album?.description,
+    description: `${total}개의 팬아트`,
   };
+  const backgroundImageUrl = album?.image; // 배경 이미지 URL
 
   return (
     <Box>
@@ -197,37 +212,10 @@ export default function Album({ value, query }) {
         />
       </Head>
       <GalleryLayout title="팬아트 갤러리">
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          m="1.5rem 1rem"
-          mt="1rem"
-          p="1rem"
-        >
-          <PageTitleIndex topTitle={topTitle} />
-          <PageTitle topTitle={topTitle} />
-          {album?.description && <Text m="0 auto">{album.description}</Text>}
-          {
-            // member는 팬아트 개수 안 보이게
-            album && <Text>총 {total}개의 팬아트가 있습니다.</Text>
-          }
-          {/* <Text>총 {total}개의 팬아트가 있습니다.</Text> */}
-          {/* <Tooltip label="프로필 공유">
-            <Button
-              w="3rem"
-              h="3rem"
-              variant="ghost"
-              borderRadius="full"
-              p="0"
-              onClick={handleCopyLink}
-            >
-              <ImLink />
-            </Button>
-          </Tooltip> */}
+        <TopBackground backgroundImageUrl={backgroundImageUrl} isAlbum={true}>
+          <TopTitle titleText={titleText} isMember={isMember} />
           <ShareLinkButton />
-        </Box>
+        </TopBackground>
         <ViewSelectBar2
           activeView={activeView}
           onViewChange={handleViewChange}
@@ -239,6 +227,7 @@ export default function Album({ value, query }) {
           topOffset={-13}
           isdPick={false}
         />
+
         {artworks && (
           <>
             {artworks?.length !== 0 && (

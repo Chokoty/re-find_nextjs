@@ -83,15 +83,10 @@ const GalleryIndexTitle = () => {
   );
 };
 
-const Title = ({ titleText }) => {
+const TopTitle = ({ titleText, isMember }) => {
   const [isLargerThanSmall] = useMediaQuery('(min-width: 30em)');
   const [isLargerThanMedium] = useMediaQuery('(min-width: 48em)');
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
 
   let imageWidth = 150; // 기본 이미지 너비
   let top = '-2rem'; // 기본 이미지 왼쪽으로 이동
@@ -116,33 +111,47 @@ const Title = ({ titleText }) => {
       alignItems="flex-start"
       justifyContent="center"
       textAlign="center"
-      // w="90%"
-      // m="10rem auto"
     >
-      <Text fontSize={['sm', 'md', 'xl']}>{titleText?.description}</Text>
       {titleText.title === '팬아트 갤러리' ? (
-        <GalleryIndexTitle />
+        <>
+          <Text fontSize={['sm', 'md', 'xl']}>{titleText?.description}</Text>
+          <GalleryIndexTitle />
+        </>
       ) : (
         <Box
           display="flex"
-          flexDirection="row"
-          alignItems="center"
+          flexDirection="column"
+          alignItems="flex-start"
           justifyContent="flex-start"
           w="100%"
           m="0 auto"
+          gap="1rem"
         >
           <Text
             m="0"
             as="h1"
-            fontSize={['3xl', '5xl', '4rem']}
+            fontSize={['2xl', '4xl', '5xl', '4rem']}
             fontFamily={'ONE-Mobile-POP'}
           >
             {titleText.title}
           </Text>
+          {isMember === false && (
+            <Box
+              display="flex"
+              flexDirection="row"
+              alignItems="center"
+              justifyContent="flex-start"
+            >
+              <Text fontWeight="bold" fontSize={['sm', 'md', 'xl']}>
+                {titleText?.description}
+              </Text>
+              <Text fontSize={['sm', 'md', 'xl']}>가 있어요.</Text>
+            </Box>
+          )}
         </Box>
       )}
     </Box>
   );
 };
 
-export default Title;
+export default TopTitle;

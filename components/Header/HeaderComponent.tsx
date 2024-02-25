@@ -9,7 +9,7 @@ import {
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
@@ -18,6 +18,7 @@ import HeaderTab from '@/components/Header/HeaderTab';
 import SearchBar from '@/components/search/SearchBar';
 import SearchModal from '@/components/search/SearchModal';
 import { useResponsive } from '@/hook/useResponsive';
+import { useScroll } from '@/hook/useScroll';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const HeaderComponent = ({
@@ -29,30 +30,16 @@ const HeaderComponent = ({
   onClose,
 }) => {
   const router = useRouter();
+  const isMobile = useResponsive(); // 모바일 환경인지 체크
+  const isScrolling = useScroll(60);
+
   const isCurrentPath = (path) => router.pathname === path;
   const isSearchPage = router.pathname === '/search';
   const isGalleryPage = router.pathname === '/gallery';
   const isAlbumPage = router.pathname.includes('/gallery');
 
-  const isMobile = useResponsive(); // 모바일 환경인지 체크
-
-  const [isScrolling, setIsScrolling] = useState(false);
-
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      setIsScrolling(scrollTop > 60); // 스크롤이 100px 이상인 경우 true, 아니면 false
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   return (
     <Flex

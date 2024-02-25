@@ -7,15 +7,19 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useRef } from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import BackButton from '@/components/common/BackButton';
+import { useScroll } from '@/hook/useScroll';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useStore } from '@/store/store';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export const GalleryHeader = ({ title }) => {
+  const isScrolling = useScroll(60);
+
   const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
     state.isOpen,
     state.setIsOpen,
@@ -23,7 +27,7 @@ export const GalleryHeader = ({ title }) => {
 
   const myDrawerRef = useRef(null);
 
-  const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   const boxShadowLight =
@@ -71,14 +75,20 @@ export const GalleryHeader = ({ title }) => {
     >
       <Flex
         as="header"
-        style={{
-          backgroundColor: bgColor2,
-          color,
-          padding: '0 1rem',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-        }}
+        backgroundColor={isScrolling ? bg2 : 'transparent'}
+        transition="background-color 0.3s, background-image 0.3s"
+        p="0 1rem"
+        justifyContent="space-between"
+        alignItems="center"
+
+        // style={{
+        //   backgroundColor: bg2,
+        //   color,
+        //   padding: '0 1rem',
+        //   display: 'flex',
+        //   justifyContent: 'space-between',
+        //   alignItems: 'center',
+        // }}
       >
         <Box w="3rem" h="3rem">
           <Button

@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Heading,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
 import React from 'react';
 
@@ -21,10 +15,8 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
 
   return (
     <Box className="body" minH="240vh" background={bg} w="100%" m="0 auto">
-      {/* <GalleryHeader title={title} /> */}
-      <Box w="100%" className="layout">
-        {children}
-      </Box>
+      <GalleryHeader title={title} />
+      {children}
     </Box>
   );
 };

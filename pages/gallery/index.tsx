@@ -9,7 +9,7 @@ import AlbumGrid from '@/components/artwork/albumGrid';
 import MemberButtonList from '@/components/artwork/MemberButtonList';
 // import PageTitleIndex from '@/components/common/PageTitleIndex';
 import TopBackground from '@/components/common/TopBackground';
-import Title from '@/components/gallery/Title';
+import TopTitle from '@/components/gallery/TopTitle';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { useStore } from '@/store/store';
@@ -55,7 +55,7 @@ const Artworks = () => {
     }
   }, [router]);
 
-  const topTitle = {
+  const titleText = {
     title: '팬아트 갤러리',
     description: '왁물원에 올라온 팬아트들을 모아놓은 갤러리입니다.',
   };
@@ -72,10 +72,10 @@ const Artworks = () => {
       w="100%"
       position="relative"
     >
-      <TopBackground backgroundImageUrl={backgroundImageUrl}>
-        <Title titleText={topTitle} />
+      <TopBackground backgroundImageUrl={backgroundImageUrl} isAlbum={false}>
+        <TopTitle titleText={titleText} isMember={false} />
       </TopBackground>
-      <Box position="absolute" top="20rem" w="95%">
+      <Box position="absolute" top="20rem" w="95%" zIndex="1">
         <Box
           p="0 2rem"
           // background={bg2}

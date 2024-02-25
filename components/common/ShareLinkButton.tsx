@@ -1,8 +1,17 @@
-import { Button, Tooltip, useToast } from '@chakra-ui/react';
+import {
+  Button,
+  Text,
+  Tooltip,
+  useColorModeValue,
+  useToast,
+} from '@chakra-ui/react';
 import { ImLink } from 'react-icons/im';
+
+import { darkMode, lightMode } from '@/styles/theme';
 
 const ShareLinkButton = () => {
   const toast = useToast();
+  const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
   const handleCopyLink = () => {
     // 복사하려는 링크를 여기에 입력하세요.
@@ -23,13 +32,24 @@ const ShareLinkButton = () => {
   return (
     <Tooltip label="링크 공유">
       <Button
-        w="3rem"
+        w={['8rem', '10rem', '12rem']}
         h="3rem"
-        variant="ghost"
-        borderRadius="full"
-        p="0"
+        // variant="ghost"
+        // borderRadius="full"
+        // p="0"
+        m="3rem 0"
+        p="0 1rem"
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        gap="1rem"
+        background={highlight}
+        // w="200px"
+        borderRadius="2rem"
         onClick={handleCopyLink}
       >
+        <Text size={['0.8rem', '1rem', '1.2rem']}>갤러리 공유하기</Text>
         <ImLink />
       </Button>
     </Tooltip>

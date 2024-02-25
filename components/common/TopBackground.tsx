@@ -3,11 +3,17 @@ import { Box, useColorModeValue } from '@chakra-ui/react';
 // import Image from 'next/image';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const PageTitleIndex = ({ children, backgroundImageUrl }) => {
+const PageTitleIndex = ({ children, backgroundImageUrl, isAlbum }) => {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   const backgroundStyle = {
     background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, ${bg} 100%), linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'top', // 'center',
+    backgroundSize: '140%', // 'cover', // 'contain',
+  };
+  const backgroundStyle2 = {
+    background: `linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'top', // 'center',
     backgroundSize: '140%', // 'cover', // 'contain',
@@ -25,8 +31,9 @@ const PageTitleIndex = ({ children, backgroundImageUrl }) => {
       <Box
         w="100%"
         position="absolute"
-        top={['4rem', '8rem']}
+        top={['2rem', '4rem', '6rem']}
         p={['0 1rem', '0 2rem', '0 2rem']}
+        zIndex="2"
       >
         {children}
       </Box>
@@ -35,8 +42,8 @@ const PageTitleIndex = ({ children, backgroundImageUrl }) => {
         paddingTop="56.25%" // 16:9
         position="relative"
         top="-60px"
-        style={backgroundStyle}
-        zIndex="-2"
+        style={isAlbum ? backgroundStyle2 : backgroundStyle}
+        zIndex="1"
       >
         <Box
           position="relative"

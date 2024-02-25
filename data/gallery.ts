@@ -6,6 +6,7 @@ interface Gallery {
   subTitle: string;
   description?: string;
   query?: string;
+  image?: string;
 }
 
 const gallery: Gallery[] = [
@@ -42,6 +43,7 @@ const gallery: Gallery[] = [
     title: '크리스마스 팬아트',
     subTitle: '🎅🏼 크리스마스 특집 🎄',
     query: 'artworks?case_sensitive=false&title&query=크리스마스',
+    image: '/static/images/gallery/크리스마스커버일러스트_1920x1080.jpg',
   },
   {
     id: 5,
@@ -50,6 +52,7 @@ const gallery: Gallery[] = [
     title: '비챤님 생일 팬아트',
     subTitle: '🎂 비챤님 생일 팬아트 🎂',
     query: 'gallery?member=viichan&since=20240116&until=20240116',
+    image: '/static/images/gallery/생일축하드립니다_챤님.png',
   },
 ];
 

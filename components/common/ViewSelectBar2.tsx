@@ -41,8 +41,8 @@ const Button1 = ({ activeView, id, onViewChange, children }) => {
     <Button
       variant={activeView === id ? 'solid' : 'ghost'}
       onClick={() => onViewChange(id)}
-      w="4.5rem"
-      h="3rem"
+      w="3.5rem"
+      h="2.5rem"
       bg={activeView === id ? '#FFFFFF0D' : 'none'}
       borderRadius="30px"
     >
@@ -63,8 +63,10 @@ const MenuButton1 = ({
       <MenuButton
         bg={bg2}
         maxW="116px"
-        h="3rem"
-        borderRadius="800px"
+        p={isSmallerThan370 ? '0' : '0 1rem'}
+        m="0 auto"
+        h="2.5rem"
+        borderRadius="10rem"
         variant="ghost"
         as={Button}
         rightIcon={
@@ -81,13 +83,15 @@ const MenuButton1 = ({
       >
         {!isSmallerThan370 && label}
         {isSmallerThan370 && (
-          <MdOutlineKeyboardArrowDown
-            style={{
-              alignItems: 'center',
-              display: 'flex',
-              justifyContent: 'center',
-            }}
-          />
+          <Box display="flex" justifyContent="center">
+            <MdOutlineKeyboardArrowDown
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            />
+          </Box>
         )}
       </MenuButton>
       <MenuList minWidth="110px" borderRadius="12px" bg={bg}>
@@ -150,8 +154,8 @@ const PopoverButton = ({
           justifyContent="flex-start"
         >
           <Button
-            w="3rem"
-            h="3rem"
+            w="2.5rem"
+            h="2.5rem"
             p="0"
             borderRadius="full"
             variant="ghost"
@@ -160,7 +164,7 @@ const PopoverButton = ({
               bg: '#EF80B140',
             }}
           >
-            <MdMoreHoriz size="24px" />
+            <MdMoreHoriz size="1.5rem" />
           </Button>
         </Box>
       </PopoverTrigger>
@@ -271,7 +275,7 @@ const ViewSelectBar2 = ({
   useEffect(() => {
     const handleScroll = () => {
       const topOffset1 = window.scrollY;
-      console.log('topOffset1', topOffset1);
+      // console.log('topOffset1', topOffset1);
       if (topOffset1 >= 300) {
         setIsSticky(true);
       } else {
