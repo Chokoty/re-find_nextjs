@@ -184,7 +184,8 @@ const SearchResult = ({ keyword, result, searchByKeyword, setResult }) => {
                         textAlign="left"
                         // w="500px"
                       >
-                        '{keyword}' 에 대한 검색 결과입니다. 총 {result.length}
+                        &apos{keyword}&apos 에 대한 검색 결과입니다. 총{' '}
+                        {result.length}
                       </Text>
                       <Box
                         display="flex"
