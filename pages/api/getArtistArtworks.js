@@ -5,7 +5,7 @@ const getArtistArtworks = async (req, res) => {
 
   try {
     const response = await axios.get(
-      `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${type}&page=${page}}`
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${nickname}&type=${type}&page=${page}}`
     );
     console.log(response.data);
 

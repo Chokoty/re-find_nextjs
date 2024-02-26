@@ -105,7 +105,6 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
           component={'inNickname'}
         />
         <ViewTypeIcons
-          sortCriteria={null}
           selectedView={null}
           artist={author}
           component={'inNickname'}

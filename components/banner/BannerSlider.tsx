@@ -5,12 +5,7 @@ import 'swiper/css/scrollbar';
 
 import { Box, useBreakpointValue, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
-import {
-  Autoplay,
-  EffectCreative,
-  Navigation,
-  Pagination,
-} from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner2 from '@/components/banner/Banner2';
@@ -27,7 +22,7 @@ const swiperSlideStyle = {
 };
 
 const BannerSlider = () => {
-  const color = useColorModeValue(lightMode.color2, darkMode.bg);
+  // const color = useColorModeValue(lightMode.color2, darkMode.bg);
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const width = useBreakpointValue({ base: '90%', md: '100%' });
 

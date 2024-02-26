@@ -55,7 +55,9 @@ const KiddingFanart = ({ initialFanart }) => {
   const fetchRandomFanart = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get(`https://re-find.reruru.com/third_album`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/third_album`
+      );
       // console.log(res.data);
       setFanart(res.data);
     } catch (error) {

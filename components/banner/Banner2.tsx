@@ -3,6 +3,8 @@ import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
 
+import MainBanner from '@/public/static/images/banners/banner2.webp';
+
 const Banner2 = () => {
   return (
     <Box
@@ -15,9 +17,11 @@ const Banner2 = () => {
       <Box maxW="700px" borderRadius="1rem" overflow="hidden" m="0 auto">
         <NextLink href="/more/about">
           <NextImage
-            width={800}
-            height={200}
-            src="/static/images/banners/banner2.png"
+            width={700}
+            height={130}
+            priority
+            quality={90}
+            src={MainBanner}
             alt="배너2"
             // layout="fill"
             // objectFit="cover"

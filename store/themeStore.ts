@@ -1,6 +1,6 @@
+import { useColorModeValue } from '@chakra-ui/react';
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
-import { useColorModeValue } from '@chakra-ui/react';
 
 type Theme = 'light' | 'dark';
 

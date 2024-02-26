@@ -1,10 +1,8 @@
 import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
 import axios from 'axios';
-import { filter } from 'lodash';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FaArrowDown } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
@@ -71,11 +69,6 @@ export default function Album() {
   //   });
   // }, [sortType]);
 
-  const loadData = () => {
-    console.log('loadData');
-    getFanartAlbum();
-  };
-
   // 정렬 로직
   const sortArtworks = (_artworks, _sortType) => {
     return _artworks.sort((a, b) => {
@@ -133,7 +126,7 @@ export default function Album() {
     setLoadingData(true);
 
     try {
-      const url = `https://re-find.reruru.com/isd_notice`;
+      const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/isd_notice`;
       const response = await axios.get(url).then((res) => res.data);
       // console.log(response);
       setTotal(response?.total);

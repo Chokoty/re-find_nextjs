@@ -21,9 +21,12 @@ const Counter = ({ data }) => {
     try {
       const timeout = 2000; // 2초
       setCounterLoading(true);
-      const response = await axios.get('https://re-find.reruru.com/counter', {
-        timeout,
-      });
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/counter`,
+        {
+          timeout,
+        }
+      );
       const ccounter = response?.data;
       // console.log(ccounter);
       setCounter(ccounter);

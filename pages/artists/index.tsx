@@ -130,7 +130,7 @@ const Artists = () => {
       const fetchArtistsList = async () => {
         try {
           const response = await axios.get(
-            'https://re-find.reruru.com/author_list'
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/author_list`
           );
           setArtistsList(response.data);
         } catch (error) {

@@ -1,5 +1,4 @@
-import create from 'zustand';
-
+import { create } from 'zustand';
 import type { Artist } from '@/types/artist';
 
 interface ArtistsStore {

@@ -6,8 +6,9 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { SlCloudUpload } from 'react-icons/sl';
 
+import UploadImage from '@/public/static/images/refind-1.webp';
+import UploadHoverImage from '@/public/static/images/refind-2.webp';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface UploadComponentProps {
@@ -87,23 +88,17 @@ const UploadComponent: React.FC<UploadComponentProps> = ({
           {/* <SlCloudUpload className="logo" /> */}
           {isClick ? (
             <Image
-              src="/static/images/refind-2.png"
+              src={UploadHoverImage}
               alt="리파인드 로고2"
               width={160}
               height={160}
-              unoptimized
             />
           ) : (
             <Image
-              src={
-                hover
-                  ? '/static/images/refind-2.png'
-                  : '/static/images/refind-1.png'
-              }
+              src={hover ? UploadHoverImage : UploadImage}
               alt="리파인드 로고1"
               width={160}
               height={160}
-              unoptimized
             />
           )}
 

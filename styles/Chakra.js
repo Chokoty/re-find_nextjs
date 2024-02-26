@@ -1,5 +1,5 @@
+import { ChakraProvider } from '@chakra-ui/provider';
 import {
-  ChakraProvider,
   cookieStorageManagerSSR,
   localStorageManager,
   // withDefaultColorScheme,

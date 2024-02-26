@@ -1,7 +1,5 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
-import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import { darkMode, lightMode } from '@/styles/theme';
 

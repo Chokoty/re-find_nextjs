@@ -150,19 +150,21 @@ const Artist = ({ artist_name2info }) => {
   //   }
   // }, [router, handleViewTypeSelect]);
 
-  const getArtistInfo = useCallback(async () => {
-    try {
-      const response = await axios
-        .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
-        .then((res) => res.data);
-      setProfile(response);
-      console.log(response);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      // 404 페이지로 이동
-      router.push('/404');
-    }
-  }, [nickname]);
+  // const getArtistInfo = useCallback(async () => {
+  //   try {
+  //     const response = await axios
+  //       .get(
+  //         `${process.env.NEXT_PUBLIC_SERVER_URL}/author_name2info?name=${nickname}`
+  //       )
+  //       .then((res) => res.data);
+  //     setProfile(response);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.error('Error fetching data:', error);
+  //     // 404 페이지로 이동
+  //     router.push('/404');
+  //   }
+  // }, [nickname]);
 
   const getArtistArtworks = useCallback(async () => {
     // console.log('getArtistArtworks');
@@ -173,7 +175,7 @@ const Artist = ({ artist_name2info }) => {
     // console.log('artworks loading...');
 
     try {
-      let url = `https://re-find.reruru.com/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
+      let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
       if (sortCriteria.field !== '') {
         url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
       }
@@ -231,7 +233,6 @@ const Artist = ({ artist_name2info }) => {
       setIsInitialRender(false);
       return;
     }
-    // console.log('page: ', page);
     getArtistArtworks();
   }, [sortType, page]);
 
@@ -246,12 +247,13 @@ const Artist = ({ artist_name2info }) => {
     }
   }, [inView, isLastPage]);
 
-  useEffect(() => {
-    if (nickname) {
-      // console.log(nickname);
-      getArtistArtworks();
-    }
-  }, [nickname]);
+  // 초기 작가 artworks 렌더링
+  // useEffect(() => {
+  //   if (nickname) {
+  //     console.log('useEffect when nickname is changed', nickname);
+  //     getArtistArtworks();
+  //   }
+  // }, [nickname]);
 
   return (
     <Box>
@@ -312,7 +314,6 @@ const Artist = ({ artist_name2info }) => {
             <AuthorProfileHead
               nickname={actualNickname}
               profile={profile}
-              sortCriteria={sortCriteria}
               boardType={boardType}
               handleViewTypeSelect={handleViewTypeSelect}
             />
@@ -389,7 +390,9 @@ export async function getServerSideProps(context) {
 
   try {
     const artist_name2info = await axios
-      .get(`https://re-find.reruru.com/author_name2info?name=${nickname}`)
+      .get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/author_name2info?name=${nickname}`
+      )
       .then((res) => res.data);
 
     return {

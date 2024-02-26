@@ -6,7 +6,6 @@ import React from 'react';
 // import { NavBar } from '@/components/layout/NavBar';
 // import MySnowfall from '@/components/events/MySnowfall';
 import { Header } from '@/components/Header/Header';
-import { Footer } from '@/components/layout/Footer';
 import { TabBar } from '@/components/TabBar/TabBar';
 import { useResponsive } from '@/hook/useResponsive';
 

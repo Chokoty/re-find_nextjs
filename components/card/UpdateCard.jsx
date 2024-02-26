@@ -87,7 +87,7 @@ const UpdateCard = ({ update }) => {
           mr="1rem"
         >
           <NextImage
-            unoptimized
+            quality={90}
             width={100}
             height={100}
             style={{
