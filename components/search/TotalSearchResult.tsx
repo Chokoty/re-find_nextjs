@@ -140,7 +140,7 @@ const SearchResult = ({ keyword, result, searchByKeyword, setResult }) => {
         isSearchPage={true}
         keyword={keyword}
         searchByKeyword={searchByKeyword}
-        setResult={setResult}
+        // setResult={setResult}
         // handleSearch2={handleSearch}
       />
       {keyword === '' && (
