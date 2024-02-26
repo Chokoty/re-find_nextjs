@@ -17,7 +17,7 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchBar2 = ({ isSearchPage, keyword, searchByKeyword, setResult }) => {
+const SearchBar2 = ({ isSearchPage, keyword, searchByKeyword }) => {
   const router = useRouter();
   const isMobile = useResponsive();
 
