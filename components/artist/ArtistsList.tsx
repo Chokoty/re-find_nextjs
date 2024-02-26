@@ -107,6 +107,7 @@ const ArtistsList = ({
                       }}
                       src={artist.prof_url}
                       alt={artist.name}
+                      unoptimized
                     />
                   </Box>
                   <Box

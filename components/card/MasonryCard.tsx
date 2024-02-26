@@ -84,6 +84,7 @@ const MasonryCard = ({
                 : modifiedUrl300
             }
             onLoad={handleImageLoad}
+            unoptimized
           />
         </Box>
         <Box
