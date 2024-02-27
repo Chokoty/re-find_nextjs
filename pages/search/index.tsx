@@ -110,7 +110,7 @@ const Search = () => {
     try {
       const response = await axios
         .get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/search_txt?query=${keyword}`
+          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/search_txt?query=${keyword}`
         )
         .then((res) => res.data);
       // setProfile(response);

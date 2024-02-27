@@ -1,16 +1,16 @@
-@import "mixins";
+@import 'mixins';
 $color-primary: #ff0000;
 
 .title {
-    color: $color-primary;
+  color: $color-primary;
 
-    a {
-        background-color: green;
-    }
+  a {
+    background-color: green;
+  }
 }
 
 @include mobile() {
-    .title {
-        color: blue;
-    }
+  .title {
+    color: blue;
+  }
 }

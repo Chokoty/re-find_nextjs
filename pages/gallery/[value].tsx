@@ -108,7 +108,7 @@ export default function Album({ value, query }) {
     setLoadingData(true);
     try {
       const url = `
-      ${process.env.NEXT_PUBLIC_SERVER_URL}/${query}&ranktype=${sortType}&per_page=30&page=${page}`;
+      ${process.env.NEXT_PUBLIC_REDIRECT_URL}/${query}&ranktype=${sortType}&per_page=30&page=${page}`;
       console.log(url);
 
       const response = await axios.get(url).then((res) => res.data);

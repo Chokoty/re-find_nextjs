@@ -22,7 +22,7 @@ const Counter = ({ data }) => {
       const timeout = 2000; // 2초
       setCounterLoading(true);
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/counter`,
+        `${process.env.NEXT_PUBLIC_REDIRECT_URL}/counter`,
         {
           timeout,
         }
