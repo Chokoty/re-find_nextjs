@@ -1,10 +1,4 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Heading,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
 import React from 'react';
 

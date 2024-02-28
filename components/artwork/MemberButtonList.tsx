@@ -1,5 +1,5 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
@@ -24,16 +24,11 @@ const MemberButtonList = ({
       onClickSort(value);
     }
   };
+  // @ts-ignore TODO: 변경
   const onClickLink = (value) => {
     // console.log(value);
 
-    router.push(
-      {
-        pathname: `/gallery/${value}`,
-        query: { subTitle: value },
-      },
-      `/gallery/${value}`
-    );
+    router.push(`/gallery/${value}`);
   };
 
   const onClickSort = (value) => {

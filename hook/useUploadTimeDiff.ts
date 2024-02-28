@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 
 export const useUploadTimeDiff = (writeDate: number): string => {

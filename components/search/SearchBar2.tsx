@@ -8,7 +8,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -17,7 +16,6 @@ import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const SearchBar2 = ({ isSearchPage }) => {
-  const router = useRouter();
   const isMobile = useResponsive();
 
   const [input, setInput] = useState(''); // 검색어

@@ -1,21 +1,23 @@
-import { useRouter } from 'next/router';
+'use client';
+
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const useTabBar = () => {
   const [tab, setTab] = useState('home');
-  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (router.pathname === '/') {
+    if (pathname === '/') {
       setTab('home');
-    } else if (router.pathname.startsWith('/search')) {
+    } else if (pathname.startsWith('/search')) {
       setTab('search');
-    } else if (router.pathname.startsWith('/gallery')) {
+    } else if (pathname.startsWith('/gallery')) {
       setTab('gallery');
-    } else if (router.pathname.startsWith('/artists')) {
+    } else if (pathname.startsWith('/artists')) {
       setTab('artists');
     }
-  }, [router.pathname]);
+  }, [pathname]);
 
   return { tab, setTab };
 };

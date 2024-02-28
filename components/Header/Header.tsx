@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 
 import HeaderComponent from '@/components/Header/HeaderComponent';
 import useHeader from '@/components/Header/useHeader';

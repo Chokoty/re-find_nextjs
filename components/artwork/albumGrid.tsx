@@ -5,7 +5,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
@@ -15,17 +15,12 @@ const AlbumGrid = ({ gallery }) => {
   const highlight2 = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const router = useRouter();
 
+  // @ts-ignore // TODO: 변경
   const onClick = (id, subTitle, value) => {
     // const { subTitle } = gallery.find((item) => item.id === id);
     console.log(subTitle, value);
 
-    router.push(
-      {
-        pathname: `/gallery/${value}`,
-        query: { subTitle },
-      },
-      `/gallery/${value}`
-    );
+    router.push(`/gallery/${value}`);
   };
 
   return (

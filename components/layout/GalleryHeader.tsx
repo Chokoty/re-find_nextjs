@@ -12,11 +12,11 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import BackButton from '@/components/common/BackButton';
 import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
+import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export const GalleryHeader = ({ title }) => {
-  const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
+  const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);

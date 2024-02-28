@@ -1,8 +1,10 @@
+'use client';
+
 import { BellIcon, InfoIcon } from '@chakra-ui/icons';
 import { Box, Collapse } from '@chakra-ui/react';
 import Link from 'next/link';
 import React from 'react';
-import { AiFillExperiment, AiFillHome } from 'react-icons/ai';
+import { AiFillExperiment } from 'react-icons/ai';
 import { BiSupport } from 'react-icons/bi';
 
 type MyDrawerProps = {

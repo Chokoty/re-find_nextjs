@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 import TabBarComponent from '@/components/TabBar/TabBarComponent';
