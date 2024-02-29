@@ -162,7 +162,7 @@ export default function DetailedGallery({ value, query }) {
 
   const topTitle = {
     // @ts-ignore
-    title: album?.subTitle || `${member?.name} 팬아트`,
+    title: album?.subTitle || `${member?.name ?? ''} 팬아트`,
     // @ts-ignore
     description: album?.description,
   };

@@ -306,7 +306,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
               onMenuItemClick={handleMenuItemClick}
               isDeletedVisible={isDeletedVisible}
               handleShowDeleted={handleShowDeleted}
-              topOffset={0}
+              topOffset={59}
               isdPick={false}
             />
             {!artworks && (

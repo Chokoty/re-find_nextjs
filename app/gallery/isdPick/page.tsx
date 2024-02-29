@@ -259,7 +259,7 @@ export default function Album() {
           isDeletedVisible={isDeletedVisible}
           handleShowDeleted={handleShowDeleted}
           // topOffset={48}
-          topOffset={-13}
+          topOffset={47}
           isdPick={true}
         />
         <Box

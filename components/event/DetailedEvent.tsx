@@ -157,7 +157,7 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
         onMenuItemClick={handleMenuItemClick}
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
-        topOffset={0}
+        topOffset={59}
         isdPick={false}
       />
       <Box
