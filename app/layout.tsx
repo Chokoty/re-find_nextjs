@@ -29,6 +29,7 @@ export const metadata: Metadata = {
     images: siteConfig.image,
   },
   icons: siteConfig.icons,
+  referrer: 'no-referrer',
 };
 
 export const viewport: Viewport = {
