@@ -10,7 +10,7 @@ import LoadButton from '@/components/common/LoadButton';
 import PageTitle from '@/components/common/PageTitle';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
-import GalleryLayout from '@/components/layout/gallery-layout';
+import DetailedGalleryLayout from '@/components/layout/gallery-layout';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
@@ -168,26 +168,25 @@ export default function DetailedGallery({ value, query }) {
   };
 
   return (
-    <Box>
-      <GalleryLayout title="팬아트 갤러리">
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          // m=" 3rem"
-          m="1.5rem 1rem"
-          mt="1rem"
-          p="1rem"
-          // background={bg2}
-          // borderRadius="1rem"
-        >
-          {/* {router.query?.subTitle ? (
+    <DetailedGalleryLayout title="팬아트 갤러리">
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        // m=" 3rem"
+        m="1.5rem 1rem"
+        mt="1rem"
+        p="1rem"
+        // background={bg2}
+        // borderRadius="1rem"
+      >
+        {/* {router.query?.subTitle ? (
             <Text  m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'>{router.query.subTitle}</Text>
           ) : (
             album?.subTitle
           )} */}
-          {/* {member?.name ? (
+        {/* {member?.name ? (
           <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
             {member.name} 팬아트
           </Text>
@@ -196,15 +195,15 @@ export default function DetailedGallery({ value, query }) {
             {album?.subTitle}
           </Text>
         )} */}
-          <PageTitle topTitle={topTitle} />
-          {/* @ts-ignore */}
-          {album?.description && <Text m="0 auto">{album.description}</Text>}
-          {
-            // member는 팬아트 개수 안 보이게
-            album && <Text>총 {total}개의 팬아트가 있습니다.</Text>
-          }
-          {/* <Text>총 {total}개의 팬아트가 있습니다.</Text> */}
-          {/* <Tooltip label="프로필 공유">
+        <PageTitle topTitle={topTitle} />
+        {/* @ts-ignore */}
+        {album?.description && <Text m="0 auto">{album.description}</Text>}
+        {
+          // member는 팬아트 개수 안 보이게
+          album && <Text>총 {total}개의 팬아트가 있습니다.</Text>
+        }
+        {/* <Text>총 {total}개의 팬아트가 있습니다.</Text> */}
+        {/* <Tooltip label="프로필 공유">
             <Button
               w="3rem"
               h="3rem"
@@ -216,80 +215,79 @@ export default function DetailedGallery({ value, query }) {
               <ImLink />
             </Button>
           </Tooltip> */}
-          <ShareLinkButton />
+        <ShareLinkButton />
+      </Box>
+      <ViewSelectBar
+        activeView={activeView}
+        onViewChange={handleViewChange}
+        selectedMenu={sortType}
+        onMenuItemClick={handleMenuItemClick}
+        isDeletedVisible={isDeletedVisible}
+        handleShowDeleted={handleShowDeleted}
+        topOffset={47}
+        isdPick={false}
+      />
+      {artworks && (
+        <>
+          {/* @ts-ignore */}
+          {artworks?.length !== 0 && (
+            <Box
+              w="100%"
+              overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+            >
+              {activeView === 'masonry' && (
+                <MasonryView
+                  nickname={''}
+                  // artworks={artworks}
+                  artworks={
+                    isDeletedVisible && gallery !== null
+                      ? artworks
+                      : // @ts-ignore
+                        artworks.filter(
+                          // @ts-ignore
+                          (artwork) => artwork.is_hyum === false
+                        )
+                  }
+                  isDeletedVisible={isDeletedVisible}
+                  // loadingImage={loadingImage}
+                  handleLoading={handleLoading}
+                  isGallery={true}
+                />
+              )}
+              {activeView === 'grid' && (
+                <SimpleView
+                  artworks={
+                    isDeletedVisible && gallery !== null
+                      ? artworks
+                      : // @ts-ignore
+                        artworks.filter(
+                          // @ts-ignore
+                          (artwork) => artwork.is_hyum === false
+                        )
+                  }
+                  isDeletedVisible={isDeletedVisible}
+                  // handleLoading={handleLoading}
+                />
+              )}
+              {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+              {/* Observer를 위한 div */}
+              {<Box ref={ref} w="100%" h="5rem"></Box>}
+            </Box>
+          )}
+        </>
+      )}
+      {(!artworks || loadingData) && (
+        <Box
+          w="100%"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <HashLoader color="#01BFA2" />
         </Box>
-        <ViewSelectBar
-          activeView={activeView}
-          onViewChange={handleViewChange}
-          selectedMenu={sortType}
-          onMenuItemClick={handleMenuItemClick}
-          isDeletedVisible={isDeletedVisible}
-          handleShowDeleted={handleShowDeleted}
-          topOffset={47}
-          isdPick={false}
-        />
-        {artworks && (
-          <>
-            {/* @ts-ignore */}
-            {artworks?.length !== 0 && (
-              <Box
-                w="100%"
-                overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-              >
-                {activeView === 'masonry' && (
-                  <MasonryView
-                    nickname={''}
-                    // artworks={artworks}
-                    artworks={
-                      isDeletedVisible && gallery !== null
-                        ? artworks
-                        : // @ts-ignore
-                          artworks.filter(
-                            // @ts-ignore
-                            (artwork) => artwork.is_hyum === false
-                          )
-                    }
-                    isDeletedVisible={isDeletedVisible}
-                    // loadingImage={loadingImage}
-                    handleLoading={handleLoading}
-                    isGallery={true}
-                  />
-                )}
-                {activeView === 'grid' && (
-                  <SimpleView
-                    artworks={
-                      isDeletedVisible && gallery !== null
-                        ? artworks
-                        : // @ts-ignore
-                          artworks.filter(
-                            // @ts-ignore
-                            (artwork) => artwork.is_hyum === false
-                          )
-                    }
-                    isDeletedVisible={isDeletedVisible}
-                    // handleLoading={handleLoading}
-                  />
-                )}
-                {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
-                {/* Observer를 위한 div */}
-                {<Box ref={ref} w="100%" h="5rem"></Box>}
-              </Box>
-            )}
-          </>
-        )}
-        {(!artworks || loadingData) && (
-          <Box
-            w="100%"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <HashLoader color="#01BFA2" />
-          </Box>
-        )}
-        {!loadingData && <LoadButton loadData={loadData} />}
-      </GalleryLayout>
-    </Box>
+      )}
+      {!loadingData && <LoadButton loadData={loadData} />}
+    </DetailedGalleryLayout>
   );
 }
 

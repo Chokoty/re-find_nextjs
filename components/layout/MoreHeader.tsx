@@ -14,7 +14,7 @@ import { useShowShadow } from '@/hook/useShowShadow';
 import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export const MoreHeader = ({ title, isIndex }) => {
+export default function MoreHeader({ title, isIndex }) {
   const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
@@ -114,4 +114,4 @@ export const MoreHeader = ({ title, isIndex }) => {
       </Flex>
     </Box>
   );
-};
+}

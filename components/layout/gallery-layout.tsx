@@ -1,8 +1,7 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
-import React from 'react';
 
-import { GalleryHeader } from '@/components/layout/GalleryHeader';
+import GalleryHeader from '@/components/layout/GalleryHeader';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface OtherLayoutProps {
@@ -10,7 +9,10 @@ interface OtherLayoutProps {
   title: string;
 }
 
-const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
+export default function DetailedGalleryLayout({
+  children,
+  title,
+}: OtherLayoutProps) {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (
@@ -21,6 +23,4 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
       </Box>
     </Box>
   );
-};
-
-export default MoreLayout;
+}

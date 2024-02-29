@@ -26,7 +26,7 @@ import { darkMode, lightMode } from '@/styles/theme';
 // import NoticeBanner from '../NoticeBanner';
 // import Title from '../Title';
 
-export const MobileHeader = () => {
+export default function MobileHeader() {
   // useStore
   // const count = useStore((state) => state.count);
   const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
@@ -125,4 +125,4 @@ export const MobileHeader = () => {
       <Box w="3rem" h="3rem"></Box>
     </Box>
   );
-};
+}

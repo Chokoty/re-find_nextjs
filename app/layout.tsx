@@ -3,8 +3,8 @@ import '@/styles/general.scss';
 
 import type { Metadata, Viewport } from 'next';
 
-import { Header } from '@/components/Header/Header';
-import { TabBar } from '@/components/TabBar/TabBar';
+import Header from '@/components/Header/Header';
+import TabBar from '@/components/TabBar/TabBar';
 import { siteConfig } from '@/lib/config';
 import { Providers } from '@/lib/Providers';
 
@@ -47,7 +47,7 @@ export default function RootLayout({
       <body>
         <Providers>
           <Header />
-          {children}
+          <main>{children}</main>
           <TabBar />
         </Providers>
       </body>

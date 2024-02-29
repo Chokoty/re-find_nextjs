@@ -3,7 +3,7 @@
 import HeaderComponent from '@/components/Header/HeaderComponent';
 import useHeader from '@/components/Header/useHeader';
 
-export const Header = () => {
+export default function Header() {
   const {
     hideHeader,
     isOpenDrawer,
@@ -28,4 +28,4 @@ export const Header = () => {
       )}
     </>
   );
-};
+}

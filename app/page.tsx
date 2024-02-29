@@ -19,7 +19,7 @@ import Preview from '@/components/common/Preview';
 import UpdateBoard from '@/components/common/UpdateBoard';
 import UpdateLogBoard from '@/components/common/UpdateLogBoard';
 import EventFanarts from '@/components/event/EventFanarts';
-import { Footer } from '@/components/layout/Footer';
+import Footer from '@/components/layout/Footer';
 import SearchResult from '@/components/search/SearchResult';
 import BannerSkeleton from '@/components/skeleton/BannerSkeleton';
 import UploadImageSkeleton from '@/components/skeleton/UploadImageSkeleton';

@@ -10,7 +10,7 @@ import HashLoader from 'react-spinners/HashLoader';
 import AuthorProfileHead from '@/components/artist/AuthorProfileHead';
 import LoadButton from '@/components/common/LoadButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
-import { ArtistHeader } from '@/components/layout/ArtistHeader';
+import ArtistHeader from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 
