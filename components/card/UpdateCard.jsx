@@ -96,6 +96,7 @@ const UpdateCard = ({ update }) => {
             }}
             src={getImageSrc()}
             alt={update.info.title}
+            unoptimized
           />
         </Box>
       </Link>
