@@ -171,7 +171,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
     // console.log('artworks loading...');
 
     try {
-      let url = `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
+      let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
       if (sortCriteria.field !== '') {
         url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
       }

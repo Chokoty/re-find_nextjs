@@ -135,7 +135,7 @@ export default function Artists() {
       const fetchArtistsList = async () => {
         try {
           const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_list`
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/author_list`
           );
           setArtistsList(response.data);
         } catch (error) {

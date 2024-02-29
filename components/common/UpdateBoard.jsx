@@ -26,7 +26,7 @@ const UpdateBoard = () => {
       try {
         setIsLoading(true);
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/last_update_info`
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/last_update_info`
         );
         setLastUpdateInfo(response.data);
       } catch (error) {

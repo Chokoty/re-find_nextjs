@@ -56,7 +56,7 @@ const KiddingFanart = ({ initialFanart }) => {
     try {
       setIsLoading(true);
       const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_REDIRECT_URL}/third_album`
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/third_album`
       );
       // console.log(res.data);
       setFanart(res.data);

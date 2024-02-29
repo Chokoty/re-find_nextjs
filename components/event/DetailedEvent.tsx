@@ -72,7 +72,7 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
       const response = await axios
         .get(
           // @ts-ignore
-          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/author_artworks?name=${keyword}&type=${sortType}&page=${page}`
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${keyword}&type=${sortType}&page=${page}`
         )
         .then((res) => res.data);
 
