@@ -34,13 +34,12 @@ export function generateMetadata({ params: { nickname } }: Params): Metadata {
   };
 }
 
-export default async function page({ params }: Params) {
-  const { nickname } = params;
+export default async function page({ params: { nickname } }: Params) {
+  const decodedNickname = decodeURIComponent(nickname);
   const artistInfo = await axios
     .get(
       `${process.env.NEXT_PUBLIC_SERVER_URL}/author_name2info?name=${nickname}`
     )
     .then((res) => res.data);
-
-  return <DetailedArtists nickname={nickname} artistInfo={artistInfo} />;
+  return <DetailedArtists nickname={decodedNickname} artistInfo={artistInfo} />;
 }
