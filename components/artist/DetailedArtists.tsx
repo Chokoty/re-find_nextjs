@@ -2,7 +2,6 @@
 
 import { Box, Center, Text, useToast } from '@chakra-ui/react';
 import axios from 'axios';
-import Head from 'next/head';
 import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -22,7 +21,6 @@ export default function DetailedArtists({ nickname, artistInfo }) {
   // const validBoardOptions = viewTypes.map((item) =>
   //   item.value.replace('_cnt', '')
   // );
-
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
@@ -259,24 +257,6 @@ export default function DetailedArtists({ nickname, artistInfo }) {
 
   return (
     <Box>
-      <Head>
-        <title>{`${profile?.author_nickname} - RE:FIND`}</title>
-        <meta
-          property="og:title"
-          content={`작가님 - Profile | RE:FIND `}
-          // content={`${profile?.author_nickname}- Profile | RE:FIND `}
-        />
-        <meta
-          property="og:description"
-          content="리파인드 - 왁타버스 이세계아이돌 팬아트 출처 찾기"
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content={profile?.author_prof_url} />
-        <meta
-          property="og:url"
-          content={`https://re-find.xyz/artists/${profile?.author_nickname}`}
-        />
-      </Head>
       <>
         <ArtistHeader title="" />
         {profile?.author_nickname === '' && profile.num_artworks === 0 && (
