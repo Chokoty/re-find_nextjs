@@ -2,8 +2,6 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
   Badge,
   Box,
-  Card,
-  CardBody,
   Flex,
   Heading,
   Link,

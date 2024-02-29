@@ -52,10 +52,6 @@ export default function Home() {
   const toast = useToast();
   const targetRef = useRef(null);
   const { onToggle } = useDisclosure();
-
-  const [lastUpdateInfo, setLastUpdateInfo] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-
   const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드
   const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
   // const [author, setAuthor] = useState(null);
@@ -84,27 +80,6 @@ export default function Home() {
     setHash(childHashData);
     console.log(hash);
   };
-
-  useEffect(() => {
-    const fetchLastUpdateInfo = async () => {
-      try {
-        setIsLoading(true);
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_REDIRECT_URL}/last_update_info`
-        );
-        setLastUpdateInfo(response.data);
-      } catch (error) {
-        console.log('Error fetching last update info:', error);
-        // 오류 처리 로직
-      }
-      // 1초 후 로딩 종료
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-    };
-
-    fetchLastUpdateInfo();
-  }, []);
 
   useEffect(() => {
     if (hash) {
@@ -268,9 +243,7 @@ export default function Home() {
             getDataFromChild={getDataFromChild}
             getHashFromChild={getHashFromChild}
           /> */}
-            <Skeleton isLoaded={!isLoading}>
-              <UpdateBoard last_update_info={lastUpdateInfo} />
-            </Skeleton>
+            <UpdateBoard />
           </Box>
         )}
         {/* 업로드 후 */}
