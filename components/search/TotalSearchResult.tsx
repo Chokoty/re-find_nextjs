@@ -9,17 +9,20 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 import SearchBar2 from '@/components/search/SearchBar2';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchResult = ({ keyword, result, handleSearch }) => {
+export default function SearchResult({ result }) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const borderBottom = useColorModeValue(
     lightMode.borderBottom,
     darkMode.borderBottom
   );
+  const searchParams = useSearchParams();
+  const keyword = searchParams.get('keyword') ?? 'ㄱㅇㅇ';
 
   return (
     <Box
@@ -111,6 +114,4 @@ const SearchResult = ({ keyword, result, handleSearch }) => {
       </Tabs>
     </Box>
   );
-};
-
-export default SearchResult;
+}

@@ -7,7 +7,7 @@ import WakGood from '@/public/real-wakgood.webp';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const data = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
-const SubTitle = () => {
+export default function SubTitle() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const highlightColor = useColorModeValue(
@@ -52,6 +52,4 @@ const SubTitle = () => {
       <p className="title-text">출처 찾기</p>
     </div>
   );
-};
-
-export default SubTitle;
+}

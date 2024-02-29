@@ -11,11 +11,11 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import BackButton from '@/components/common/BackButton';
 import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
+import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export const MoreHeader = ({ title, isIndex }) => {
-  const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
+export default function MoreHeader({ title, isIndex }) {
+  const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
@@ -114,4 +114,4 @@ export const MoreHeader = ({ title, isIndex }) => {
       </Flex>
     </Box>
   );
-};
+}

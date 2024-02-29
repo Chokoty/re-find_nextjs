@@ -9,7 +9,7 @@ import { FaSearch } from 'react-icons/fa';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const ArtistsSearchInput = ({ nickname, handleSearch }) => {
+export default function ArtistsSearchInput({ nickname, handleSearch }) {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
@@ -49,6 +49,4 @@ const ArtistsSearchInput = ({ nickname, handleSearch }) => {
       </InputRightElement>
     </InputGroup>
   );
-};
-
-export default ArtistsSearchInput;
+}

@@ -1,42 +1,31 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  useColorModeValue,
-  useDisclosure,
-} from '@chakra-ui/react';
-import NextLink from 'next/link';
+import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect, useRef } from 'react';
-import { FaSearch } from 'react-icons/fa';
-import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import BackButton from '@/components/common/BackButton';
-import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
+import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export const SearchHeader = ({ title }) => {
-  const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
+export default function SearchHeader({ title }) {
+  const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  // const { isOpen, onOpen, onClose } = useDisclosure();
 
   const myDrawerRef = useRef(null);
 
-  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  // const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
+  // const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-  const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
   const boxShadowLight =
     '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
   const boxShadowDark =
     '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
 
-  const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
-  const showShadow = useShowShadow(50, 0);
+  // const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
+  // const showShadow = useShowShadow(50, 0);
 
   useEffect(() => {
     if (!isOpenDrawer) {
@@ -63,9 +52,9 @@ export const SearchHeader = ({ title }) => {
     return () => window.removeEventListener('mousedown', handleClick);
   }, [isOpenDrawer]);
 
-  const toggleDrawer = () => {
-    setIsOpenDrawer(!isOpenDrawer);
-  };
+  // const toggleDrawer = () => {
+  //   setIsOpenDrawer(!isOpenDrawer);
+  // };
 
   return (
     <Box
@@ -119,4 +108,4 @@ export const SearchHeader = ({ title }) => {
       </Flex>
     </Box>
   );
-};
+}

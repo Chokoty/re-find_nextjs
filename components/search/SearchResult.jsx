@@ -39,7 +39,7 @@ const data2 = {
   today_counter: '104',
 };
 
-const SearchResult = ({ searchTime, data, ids, resetFiles }) => {
+export default function SearchResult({ searchTime, data, ids, resetFiles }) {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -300,6 +300,4 @@ const SearchResult = ({ searchTime, data, ids, resetFiles }) => {
       </Button>
     </Box>
   );
-};
-
-export default SearchResult;
+}

@@ -18,7 +18,7 @@ import DarkModeToggle from '@/components/common/DarkModeToggle';
 import MyDrawer from '@/components/common/MyDrawer';
 import SearchModal from '@/components/search/SearchModal';
 import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
+import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 // import { useThemeStore } from '@/store/themeStore';
 

@@ -24,7 +24,7 @@ import {
 import React from 'react';
 import { FaComment, FaEye, FaImage, FaThumbsUp } from 'react-icons/fa';
 
-const SearchOptionsComponent = () => {
+export default function SearchOptionsComponent() {
   // const getButtonColor = (buttonName) => {
   //   return tab === buttonName ? '#FFFFFF' : '#828282';
   // };
@@ -272,6 +272,4 @@ const SearchOptionsComponent = () => {
       </AccordionItem>
     </Accordion>
   );
-};
-
-export default SearchOptionsComponent;
+}

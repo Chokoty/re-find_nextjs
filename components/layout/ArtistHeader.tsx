@@ -11,7 +11,7 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-export const ArtistHeader = ({ title }) => {
+export default function ArtistHeader({ title }) {
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
@@ -57,4 +57,4 @@ export const ArtistHeader = ({ title }) => {
       </Flex>
     </Box>
   );
-};
+}

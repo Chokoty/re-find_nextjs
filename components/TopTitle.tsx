@@ -6,7 +6,7 @@ import SubTitle from '@/components/title/SubTitle';
 import Title from '@/components/title/Title';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const TopTitle = ({ data, resetFiles }) => {
+export default function TopTitle({ data, resetFiles }) {
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const width = useBreakpointValue({ base: '90%', md: '100%' });
 
@@ -31,6 +31,4 @@ const TopTitle = ({ data, resetFiles }) => {
       <SubTitle />
     </Box>
   );
-};
-
-export default TopTitle;
+}

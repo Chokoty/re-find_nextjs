@@ -9,7 +9,7 @@ import {
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
@@ -31,11 +31,11 @@ const HeaderComponent = ({
   onOpen,
   onClose,
 }) => {
-  const router = useRouter();
-  const isCurrentPath = (path) => router.pathname === path;
-  const isSearchPage = router.pathname === '/search';
-  const isGalleryPage = router.pathname === '/gallery';
-  const isAlbumPage = router.pathname.includes('/gallery');
+  const pathname = usePathname();
+  const isCurrentPath = (path) => pathname === path;
+  const isSearchPage = pathname === '/search';
+  const isGalleryPage = pathname === '/gallery';
+  const isAlbumPage = pathname.includes('/gallery');
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
 

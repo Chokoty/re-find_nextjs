@@ -1,8 +1,8 @@
 @charset "UTF-8";
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css");
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css');
 @font-face {
-  font-family: "ONE-Mobile-POP";
-  src: url("./fonts/ONE-Mobile-POP.woff") format("woff");
+  font-family: 'ONE-Mobile-POP';
+  src: url('./fonts/ONE-Mobile-POP.woff') format('woff');
 }
 .home_body {
   display: flex;
@@ -415,7 +415,18 @@ html {
 }
 
 body {
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+  font-family:
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif !important;
   background: #000000;
 }
 
@@ -545,4 +556,4 @@ footer {
 .hidden-text {
   color: #01bda1;
   background-color: #01bda1;
-}/*# sourceMappingURL=general.css.map */
+} /*# sourceMappingURL=general.css.map */

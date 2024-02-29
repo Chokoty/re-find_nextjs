@@ -1,15 +1,8 @@
-import {
-  Box,
-  Button,
-  Divider,
-  Heading,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import NextLink from 'next/link';
+import { Box, useColorModeValue } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
 import React from 'react';
 
-import { SearchHeader } from '@/components/layout/SearchHeader';
+import SearchHeader from '@/components/layout/SearchHeader';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface OtherLayoutProps {
@@ -17,8 +10,8 @@ interface OtherLayoutProps {
   title: string;
 }
 
-const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
-  const bgColor = useColorModeValue(lightMode.highlight, darkMode.highlight);
+export default function MoreLayout({ children, title }: OtherLayoutProps) {
+  // const bgColor = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (
@@ -38,6 +31,4 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
       </Box>
     </Box>
   );
-};
-
-export default MoreLayout;
+}

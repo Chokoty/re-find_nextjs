@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Modal,
   ModalBody,
@@ -7,15 +9,15 @@ import {
   ModalOverlay,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
 import SearchBar2 from '@/components/search/SearchBar2';
 import SearchOptions from '@/components/search/SearchOptions';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchModal = ({ isOpen, onClose }) => {
-  const router = useRouter();
+export default function SearchModal({ isOpen, onClose }) {
+  const pathname = usePathname();
 
   // modal
   const initialRef = React.useRef(null);
@@ -28,10 +30,10 @@ const SearchModal = ({ isOpen, onClose }) => {
   const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
 
   useEffect(() => {
-    if (router.pathname === '/search') {
+    if (pathname === '/search') {
       onClose();
     }
-  }, [router.pathname, onClose]);
+  }, [pathname, onClose]);
 
   return (
     <Modal
@@ -93,6 +95,4 @@ const SearchModal = ({ isOpen, onClose }) => {
       </ModalContent>
     </Modal>
   );
-};
-
-export default SearchModal;
+}

@@ -20,16 +20,16 @@ import DarkModeToggle from '@/components/common/DarkModeToggle';
 import MyDrawer from '@/components/common/MyDrawer';
 import SearchModal from '@/components/search/SearchModal';
 import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
+import { useDrawerStore } from '@/store/drawerStore';
 // import { useThemeStore } from '@/store/themeStore';
 import { darkMode, lightMode } from '@/styles/theme';
 // import NoticeBanner from '../NoticeBanner';
 // import Title from '../Title';
 
-export const MobileHeader = () => {
+export default function MobileHeader() {
   // useStore
   // const count = useStore((state) => state.count);
-  const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
+  const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
@@ -125,4 +125,4 @@ export const MobileHeader = () => {
       <Box w="3rem" h="3rem"></Box>
     </Box>
   );
-};
+}

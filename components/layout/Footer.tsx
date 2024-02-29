@@ -4,7 +4,7 @@ import Link from 'next/link';
 import LinkBtns from '@/components/common/LinkBtn';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export const Footer = () => {
+export default function Footer() {
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.footerColor, darkMode.footerColor);
 
@@ -51,4 +51,4 @@ export const Footer = () => {
       </Box>
     </footer>
   );
-};
+}

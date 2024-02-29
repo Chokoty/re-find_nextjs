@@ -1,3 +1,5 @@
+'use client';
+
 import { DifferenceHashBuilder } from 'browser-image-hash';
 import { useState } from 'react';
 

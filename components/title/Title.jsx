@@ -4,7 +4,7 @@ import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const Title = ({ onTitleClick }) => {
+export default function Title({ onTitleClick }) {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -25,6 +25,4 @@ const Title = ({ onTitleClick }) => {
       </Link>
     </Box>
   );
-};
-
-export default Title;
+}

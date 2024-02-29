@@ -46,6 +46,7 @@
     "import/no-duplicates": "error",
     "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     // "import/no-extraneous-dependencies": [
     //   "error",
     //   {
@@ -90,5 +91,6 @@
   //     "parser": "@babel/eslint-parser"
   //   }
   // ],
-  "ignorePatterns": ["components/*.jsx", "pages/api/*.js"]
+  // "ignorePatterns": ["components/*.jsx", "pages/api/*.js"]
+  "ignorePatterns": ["components/*.jsx", "app/api/*.js"]
 }

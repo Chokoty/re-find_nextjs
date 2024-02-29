@@ -1,22 +1,21 @@
+'use client';
+
 import {
   Box,
   Button,
   Flex,
   Heading,
   useColorModeValue,
-  useDisclosure,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import BackButton from '@/components/common/BackButton';
-import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
+import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export const GalleryHeader = ({ title }) => {
-  const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
+export default function GalleryHeader({ title }) {
+  const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
@@ -26,10 +25,10 @@ export const GalleryHeader = ({ title }) => {
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
-  const boxShadowLight =
-    '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
-  const boxShadowDark =
-    '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
+  // const boxShadowLight =
+  //   '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
+  // const boxShadowDark =
+  //   '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
 
   useEffect(() => {
     if (!isOpenDrawer) {
@@ -111,4 +110,4 @@ export const GalleryHeader = ({ title }) => {
       </Flex>
     </Box>
   );
-};
+}

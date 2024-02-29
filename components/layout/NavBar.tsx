@@ -11,7 +11,6 @@ import {
 } from '@chakra-ui/react';
 import { Sling as Hamburger } from 'hamburger-react';
 import Image from 'next/image';
-import NextLink from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
@@ -19,16 +18,13 @@ import DarkModeToggle from '@/components/common/DarkModeToggle';
 import MyDrawer from '@/components/common/MyDrawer';
 import SearchModal from '@/components/search/SearchModal';
 import { useShowShadow } from '@/hook/useShowShadow';
-import { useStore } from '@/store/store';
-// import { useThemeStore } from '@/store/themeStore';
+import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
-// import NoticeBanner from '../NoticeBanner';
-// import Title from '../Title';
 
-export const NavBar = () => {
+export default function NavBar() {
   // useStore
   // const count = useStore((state) => state.count);
-  const [isOpenDrawer, setIsOpenDrawer] = useStore((state) => [
+  const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
@@ -186,4 +182,4 @@ export const NavBar = () => {
       <SearchModal isOpen={isOpen} onClose={onClose} />
     </Box>
   );
-};
+}
