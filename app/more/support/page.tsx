@@ -19,7 +19,7 @@ const data = [
   },
 ];
 
-const Support = () => {
+export default function Support() {
   const setIsOpen = useDrawerStore((state) => state.setIsOpen);
   // const color = useColorModeValue(lightMode.color, darkMode.color);
 
@@ -73,6 +73,4 @@ const Support = () => {
       </Box>
     </MoreLayout>
   );
-};
-
-export default Support;
+}

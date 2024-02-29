@@ -8,7 +8,7 @@ import MySnowfall from '@/components/event/MySnowfall';
 import SearchLayout from '@/components/layout/search-layout';
 import { useDrawerStore } from '@/store/drawerStore';
 
-const Events = () => {
+export default function Events() {
   const setIsOpen = useDrawerStore((state) => state.setIsOpen);
 
   useEffect(() => {
@@ -22,6 +22,4 @@ const Events = () => {
       <EventFanarts initialFanart={null} showCnt={0} width={'100%'} />
     </SearchLayout>
   );
-};
-
-export default Events;
+}

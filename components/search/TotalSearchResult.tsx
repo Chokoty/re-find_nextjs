@@ -15,7 +15,7 @@ import React from 'react';
 import SearchBar2 from '@/components/search/SearchBar2';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchResult = ({ result }) => {
+export default function SearchResult({ result }) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const borderBottom = useColorModeValue(
     lightMode.borderBottom,
@@ -114,6 +114,4 @@ const SearchResult = ({ result }) => {
       </Tabs>
     </Box>
   );
-};
-
-export default SearchResult;
+}

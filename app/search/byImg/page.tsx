@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import OtherLayout from '@/components/layout/other-layout';
 import { useDrawerStore } from '@/store/drawerStore';
 
-const Result = () => {
+export default function Result() {
   const setIsOpen = useDrawerStore((state) => state.setIsOpen);
 
   // const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -19,6 +19,4 @@ const Result = () => {
       <div className="toLink">result</div>
     </OtherLayout>
   );
-};
-
-export default Result;
+}

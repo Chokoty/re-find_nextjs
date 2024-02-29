@@ -12,7 +12,7 @@ interface OtherLayoutProps {
   title: string;
 }
 
-const OtherLayout2: React.FC<OtherLayoutProps> = ({ children, title }) => {
+export default function OtherLayout2({ children, title }: OtherLayoutProps) {
   const bgColor = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
@@ -41,6 +41,4 @@ const OtherLayout2: React.FC<OtherLayoutProps> = ({ children, title }) => {
       <div className="layout">{children}</div>
     </div>
   );
-};
-
-export default OtherLayout2;
+}

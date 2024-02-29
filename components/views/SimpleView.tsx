@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 import SimpleCards from '@/components/card/SimpleCards';
 
-const SimpleView = ({ artworks, isDeletedVisible }) => {
+export default function SimpleView({ artworks, isDeletedVisible }) {
   const [focusedArtworkId, setFocusedArtworkId] = useState(null);
   console.log('artworks');
   const handleToggleFocus = (id: any) => {
@@ -57,6 +57,4 @@ const SimpleView = ({ artworks, isDeletedVisible }) => {
       </SimpleGrid>
     </Box>
   );
-};
-
-export default SimpleView;
+}

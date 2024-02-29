@@ -18,14 +18,14 @@ import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const ArtistsList = ({
+export default function ArtistsList({
   visibleArtists,
   sortCriteria,
   sortTypes,
   viewTypes,
   selectedView,
   alert,
-}) => {
+}) {
   const isMobile = useResponsive();
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -171,6 +171,4 @@ const ArtistsList = ({
       )}
     </Box>
   );
-};
-
-export default ArtistsList;
+}

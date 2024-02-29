@@ -9,7 +9,7 @@ import UpdateLogBoard from '@/components/common/UpdateLogBoard';
 import MoreLayout from '@/components/layout/more-layout';
 import { useDrawerStore } from '@/store/drawerStore';
 
-const More = () => {
+export default function More() {
   const setIsOpen = useDrawerStore((state) => state.setIsOpen);
 
   useEffect(() => {
@@ -47,6 +47,4 @@ const More = () => {
       <UpdateLogBoard width={'90%'} />
     </MoreLayout>
   );
-};
-
-export default More;
+}

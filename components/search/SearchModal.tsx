@@ -16,7 +16,7 @@ import SearchBar2 from '@/components/search/SearchBar2';
 import SearchOptions from '@/components/search/SearchOptions';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchModal = ({ isOpen, onClose }) => {
+export default function SearchModal({ isOpen, onClose }) {
   const pathname = usePathname();
 
   // modal
@@ -95,6 +95,4 @@ const SearchModal = ({ isOpen, onClose }) => {
       </ModalContent>
     </Modal>
   );
-};
-
-export default SearchModal;
+}

@@ -83,7 +83,7 @@ const data = [
   },
 ];
 
-const Search = () => {
+export default function Search() {
   const setIsOpen = useDrawerStore((state) => state.setIsOpen);
   const [result] = useState(data);
 
@@ -236,6 +236,4 @@ const Search = () => {
       </Box> */}
     </Box>
   );
-};
-
-export default Search;
+}

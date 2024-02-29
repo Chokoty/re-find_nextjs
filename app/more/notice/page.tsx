@@ -6,7 +6,7 @@ import UpdateLog from '@/components/common/UpdateLog';
 import MoreLayout from '@/components/layout/more-layout';
 import { useDrawerStore } from '@/store/drawerStore';
 
-const Notice = () => {
+export default function Notice() {
   const setIsOpen = useDrawerStore((state) => state.setIsOpen);
 
   useEffect(() => {
@@ -20,6 +20,4 @@ const Notice = () => {
       </div>
     </MoreLayout>
   );
-};
-
-export default Notice;
+}

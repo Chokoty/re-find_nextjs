@@ -13,7 +13,7 @@ import { TbDownload, TbPhotoSearch } from 'react-icons/tb';
 
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
-const ListView = ({ artworks }) => {
+export default function ListView({ artworks }) {
   const article_link = useResponsiveLink('', 'article');
   const isTabletOrSmaller = useBreakpointValue({ base: true, md: false });
   // console.log(artworks);
@@ -205,6 +205,4 @@ const ListView = ({ artworks }) => {
       )}
     </Flex>
   );
-};
-
-export default ListView;
+}

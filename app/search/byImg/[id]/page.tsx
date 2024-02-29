@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import OtherLayout from '@/components/layout/other-layout';
 import { useDrawerStore } from '@/store/drawerStore';
 
-const Search = ({ params }: { params: { id: string } }) => {
+export default function Search({ params }: { params: { id: string } }) {
   const setIsOpen = useDrawerStore((state) => state.setIsOpen);
   const { id } = params;
 
@@ -20,6 +20,4 @@ const Search = ({ params }: { params: { id: string } }) => {
       <div className="toLink">search</div>
     </OtherLayout>
   );
-};
-
-export default Search;
+}

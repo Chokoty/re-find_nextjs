@@ -34,7 +34,7 @@ const IconComponent = ({ router }) => {
   }
 };
 
-const TabBarComponent = ({ tab, setTab }) => {
+export default function TabBarComponent({ tab, setTab }) {
   const getButtonColor = (buttonName) => {
     return tab === buttonName ? '#FFFFFF' : '#828282';
   };
@@ -75,6 +75,4 @@ const TabBarComponent = ({ tab, setTab }) => {
       </Flex>
     </Box>
   );
-};
-
-export default TabBarComponent;
+}

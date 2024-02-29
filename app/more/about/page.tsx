@@ -15,7 +15,7 @@ import MoreLayout from '@/components/layout/more-layout';
 import developers from '@/data/developers';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const About = () => {
+export default function About() {
   // const setIsOpen = useStore((state) => state.setIsOpen);
 
   const highlightColor = useColorModeValue(
@@ -141,6 +141,4 @@ const About = () => {
       </Box>
     </MoreLayout>
   );
-};
-
-export default About;
+}

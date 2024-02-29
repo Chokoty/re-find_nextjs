@@ -9,7 +9,7 @@ import { FaSearch } from 'react-icons/fa';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const BackButton = ({ onOpen }) => {
+export default function BackButton({ onOpen }) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
@@ -82,6 +82,4 @@ const BackButton = ({ onOpen }) => {
       </InputRightElement>
     </InputGroup>
   );
-};
-
-export default BackButton;
+}

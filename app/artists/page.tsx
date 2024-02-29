@@ -17,7 +17,7 @@ import useArtistsStore from '@/store/artistsStore';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { Artist } from '@/types/artist';
 
-const Artists = () => {
+export default function Artists() {
   const itemsPerPage = 50;
 
   const [isRendering, setIsRendering] = useState(true);
@@ -284,9 +284,7 @@ const Artists = () => {
       </Box>
     </Box>
   );
-};
-
-export default Artists;
+}
 
 // export async function getServerSideProps(context) {
 //   try {

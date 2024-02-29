@@ -15,7 +15,7 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchBar2 = ({ isSearchPage }) => {
+export default function SearchBar2({ isSearchPage }) {
   const isMobile = useResponsive();
 
   const [input, setInput] = useState(''); // 검색어
@@ -186,6 +186,4 @@ const SearchBar2 = ({ isSearchPage }) => {
       )}
     </Box>
   );
-};
-
-export default SearchBar2;
+}

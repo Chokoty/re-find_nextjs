@@ -5,13 +5,13 @@ import Masonry from 'react-masonry-css';
 import MasonryCard from '@/components/card/MasonryCard';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
-const MasonryView = ({
+export default function MasonryView({
   nickname,
   artworks,
   isDeletedVisible,
   handleLoading,
   isGallery,
-}) => {
+}) {
   const [focusedArtworkId, setFocusedArtworkId] = useState(null);
 
   const article_link = useResponsiveLink('', 'article');
@@ -103,6 +103,4 @@ const MasonryView = ({
       </Box>
     </Box>
   );
-};
-
-export default MasonryView;
+}
