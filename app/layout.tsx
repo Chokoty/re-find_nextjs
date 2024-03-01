@@ -55,8 +55,8 @@ export default function RootLayout({
           <TabBar />
         </Providers>
       </body>
-      <GoogleAnalytics gaId={GA_ID} />
-      <GoogleTagManager gtmId={GTM_ID} />
+      <GoogleAnalytics gaId={GA_ID || ''} />
+      <GoogleTagManager gtmId={GTM_ID || ''} />
     </html>
   );
 }

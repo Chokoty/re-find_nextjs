@@ -166,12 +166,17 @@ export default function Home() {
   const handleClick = () => {
     const headerHeight = 108;
     const targetElement = targetRef.current;
-    const topPosition = targetElement.offsetTop - headerHeight;
 
-    window.scrollTo({
-      top: topPosition,
-      behavior: 'smooth', // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
-    });
+    if (targetElement !== null) {
+      // targetElement가 null이 아닌지 확인
+      const topPosition =
+        (targetElement as HTMLElement).offsetTop - headerHeight;
+
+      window.scrollTo({
+        top: topPosition,
+        behavior: 'smooth', // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
+      });
+    }
   };
 
   // 5만 이벤트
