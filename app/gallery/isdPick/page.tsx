@@ -185,7 +185,7 @@ export default function Album() {
     updatedArtworks =
       selected === 'isd'
         ? artworks
-        : artworks.filter((item) => item.author === m.author);
+        : artworks.filter((item) => item.author === m?.author);
     // console.log(updatedArtworks);
     // 정렬
     let sortedArtworks = sortArtworks(updatedArtworks, sortType);
