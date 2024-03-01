@@ -1,6 +1,7 @@
 import 'normalize.css';
 import '@/styles/general.scss';
 
+import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 
 import Header from '@/components/Header/Header';
@@ -36,6 +37,9 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,6 +55,8 @@ export default function RootLayout({
           <TabBar />
         </Providers>
       </body>
+      <GoogleAnalytics gaId={GA_ID} />
+      <GoogleTagManager gtmId={GTM_ID} />
     </html>
   );
 }

@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "downlevelIteration": true, // useSearchParams
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -19,13 +15,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     },
-    "types": [
-      "@types/gtag.js"
-    ],
     "plugins": [
       {
         "name": "next"
@@ -41,7 +32,5 @@
     "components/MansonryView.tsx.back",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }
