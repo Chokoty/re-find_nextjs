@@ -276,7 +276,6 @@ export default function Home() {
       <Box
         w="100%"
         maxW="400px"
-        // ml="1.5rem"
         display="flex"
         flexDirection="column"
         alignItems="center"
