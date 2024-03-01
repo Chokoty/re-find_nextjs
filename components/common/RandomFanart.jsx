@@ -19,7 +19,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
@@ -27,6 +26,7 @@ import { IoSettingsSharp } from 'react-icons/io5';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { getRandomFanart } from '@/lib/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const setLocalStorage = (key, value) => {
@@ -99,13 +99,8 @@ const RandomFanart = () => {
   const fetchRandomFanart = async () => {
     try {
       setIsLoading(true);
-      const queryParams = Object.keys(checkboxValues)
-        .filter((key) => checkboxValues[key])
-        .join('&');
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/rand?${queryParams}`
-      );
-      setFanart(res.data);
+      const result = await getRandomFanart(checkboxValues);
+      setFanart(result);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);

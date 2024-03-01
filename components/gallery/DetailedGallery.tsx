@@ -1,7 +1,6 @@
 'use client';
 
 import { Box, Text, useToast } from '@chakra-ui/react';
-import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -15,6 +14,7 @@ import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
+import { getKeywordGalleryArtworks } from '@/lib/service/client/gallery';
 
 // @ts-ignore
 export default function DetailedGallery({ value, query }) {
@@ -93,21 +93,23 @@ export default function DetailedGallery({ value, query }) {
     console.log('loading data');
     setLoadingData(true);
     try {
-      const url = `
-      ${process.env.NEXT_PUBLIC_SERVER_URL}/${query}&ranktype=${sortType}&per_page=30&page=${page}`;
-      console.log(url);
-
-      const response = await axios.get(url).then((res) => res.data);
-
-      console.log(response);
-      setTotal(response?.total);
-      if (response.lastPage === true) {
+      const {
+        total: totalCount,
+        list,
+        lastPage,
+      } = await getKeywordGalleryArtworks({
+        query,
+        sortType,
+        page,
+      });
+      setTotal(totalCount);
+      if (lastPage === true) {
         setIsLastPage(true);
       }
       // @ts-ignore
-      if (page === 1) setArtworks([...response.list]);
+      if (page === 1) setArtworks([...list]);
       // @ts-ignore
-      else setArtworks([...artworks, ...response.list]);
+      else setArtworks([...artworks, ...list]);
     } catch (error) {
       // 500에러 예외처리
       // console.log(error.response);

@@ -1,7 +1,6 @@
 'use client';
 
 import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
-import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -15,6 +14,7 @@ import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
+import { getIsdArtworks } from '@/lib/service/client/gallery';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -125,11 +125,9 @@ export default function Album() {
     setLoadingData(true);
 
     try {
-      const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/isd_notice`;
-      const response = await axios.get(url).then((res) => res.data);
-      // console.log(response);
-      setTotal(response?.total);
-      setArtworks([...response.list]);
+      const { total, list } = await getIsdArtworks();
+      setTotal(total);
+      setArtworks([...list]);
     } catch (error) {
       // 500에러 예외처리
       console.log(error.response);

@@ -6,10 +6,10 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import UpdateCardList from '@/components/card/UpdateCardList';
+import { getRecentUpdateInfos } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const UpdateBoard = () => {
@@ -25,10 +25,8 @@ const UpdateBoard = () => {
     const fetchLastUpdateInfo = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/last_update_info`
-        );
-        setLastUpdateInfo(response.data);
+        const result = await getRecentUpdateInfos();
+        setLastUpdateInfo(result);
       } catch (error) {
         console.log('Error fetching last update info:', error);
         // 오류 처리 로직

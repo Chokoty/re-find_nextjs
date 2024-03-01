@@ -1,7 +1,6 @@
 'use client';
 
 import { Box, useColorModeValue } from '@chakra-ui/react';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -13,6 +12,7 @@ import ViewTypeButtonGroup from '@/components/artist/ViewTypeButtonGroup';
 import PageTitle from '@/components/common/PageTitle';
 import { sortTypes, viewTypes } from '@/data/artists';
 import { useDebounce } from '@/hook/useDebounce';
+import { getAuthorList } from '@/lib/service/client/artists';
 import useArtistsStore from '@/store/artistsStore';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { Artist } from '@/types/artist';
@@ -134,10 +134,8 @@ export default function Artists() {
     if (Object.keys(artistsList).length === 0) {
       const fetchArtistsList = async () => {
         try {
-          const response = await axios.get(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/author_list`
-          );
-          setArtistsList(response.data);
+          const result = await getAuthorList();
+          setArtistsList(result);
         } catch (error) {
           console.error('Error fetching data:', error);
           setAlert(true);

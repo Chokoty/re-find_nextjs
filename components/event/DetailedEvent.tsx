@@ -1,7 +1,6 @@
 'use client';
 
 import { Box, Text, useToast } from '@chakra-ui/react';
-import axios from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -9,6 +8,7 @@ import HashLoader from 'react-spinners/HashLoader';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+import { getArtistInfo } from '@/lib/service/client/artists';
 
 export default function DetailedEvent({ keyword }: { keyword: string }) {
   // { keyword_artworks }
@@ -69,20 +69,20 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
     // console.log('artworks loading...');
 
     try {
-      const response = await axios
-        .get(
-          // @ts-ignore
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${keyword}&type=${sortType}&page=${page}`
-        )
-        .then((res) => res.data);
+      const { list, lastPage } = await getArtistInfo({
+        nickname: keyword,
+        sortType,
+        page,
+        field: '',
+      });
 
-      if (response.lastPage === true) {
+      if (lastPage === true) {
         setIsLastPage(true);
       }
       // @ts-ignore
-      if (page === 1) setArtworks([...response.list]);
+      if (page === 1) setArtworks([...list]);
       // @ts-ignore
-      else setArtworks([...artworks, ...response.list]);
+      else setArtworks([...artworks, ...list]);
     } catch (error) {
       // 500에러 예외처리
       // console.log(error.response);

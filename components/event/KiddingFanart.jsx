@@ -8,13 +8,13 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
 // import { IoSettingsSharp } from 'react-icons/io5';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
+import { getKidingArtworks } from '@/lib/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import { useResponsiveLink } from '../../hook/useResponsiveLink';
@@ -55,11 +55,8 @@ const KiddingFanart = ({ initialFanart }) => {
   const fetchRandomFanart = async () => {
     try {
       setIsLoading(true);
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/third_album`
-      );
-      // console.log(res.data);
-      setFanart(res.data);
+      const result = await getKidingArtworks();
+      setFanart(result);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);

@@ -8,7 +8,6 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import NextImage from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
@@ -16,6 +15,7 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { eventsData } from '@/data/events';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { getUrlInfo } from '@/lib/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
@@ -89,9 +89,8 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     try {
       setIsLoading(true);
       // console.log('keywordUrl: ', keywordUrl);
-      const res = await axios.get(keywordUrl);
-      // console.log(res.data);
-      setFanart(res.data);
+      const result = await getUrlInfo(keywordUrl);
+      setFanart(result);
     } catch (error) {
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);

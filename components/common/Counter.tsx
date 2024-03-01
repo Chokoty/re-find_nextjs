@@ -5,10 +5,10 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 
+import { getCounters } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const Counter = ({ data }) => {
@@ -19,16 +19,8 @@ const Counter = ({ data }) => {
   // counter 가져오기
   const fetchCounter = async () => {
     try {
-      const timeout = 2000; // 2초
       setCounterLoading(true);
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/counter`,
-        {
-          timeout,
-        }
-      );
-      const ccounter = response?.data;
-      // console.log(ccounter);
+      const ccounter = await getCounters();
       setCounter(ccounter);
       setCounterLoading(false);
     } catch (err) {

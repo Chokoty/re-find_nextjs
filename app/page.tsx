@@ -4,12 +4,10 @@ import {
   Box,
   Flex,
   Heading,
-  Skeleton,
   useColorModeValue,
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -25,6 +23,7 @@ import BannerSkeleton from '@/components/skeleton/BannerSkeleton';
 import UploadImageSkeleton from '@/components/skeleton/UploadImageSkeleton';
 import TopTitle from '@/components/TopTitle';
 import { useResponsive } from '@/hook/useResponsive';
+import { getImageInfoByHash } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const targetCount = 50000; // 이벤트 타겟 카운트
@@ -98,9 +97,7 @@ export default function Home() {
       if (!hasSearchResult) {
         // 재검색 방지
         const startTime = new Date().getTime(); // 시작시간 기록
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/receive?dhash=${hash[0]}`
-        );
+        const result = await getImageInfoByHash(hash[0]);
         // const response = await axios.post(
         //   'https://re-find.reruru.com/receive',
         //   body
@@ -113,8 +110,8 @@ export default function Home() {
         // console.log(response.data); // >>>테스트용
 
         // setAuthor(response.data.author);
-        setData(response.data);
-        setIds(response.data.ids.slice(0, 15)); // 검색결과 10~15개 제한
+        setData(result);
+        setIds(result.ids.slice(0, 15)); // 검색결과 10~15개 제한
         // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
       }
       setIsSearchingData(false); //  검색 완료

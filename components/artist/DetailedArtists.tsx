@@ -1,7 +1,6 @@
 'use client';
 
 import { Box, Center, Text, useToast } from '@chakra-ui/react';
-import axios from 'axios';
 import Image from 'next/image';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -13,6 +12,7 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ArtistHeader from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+import { getArtistInfo } from '@/lib/service/client/artists';
 
 // @ts-ignore
 export default function DetailedArtists({ nickname, artistInfo }) {
@@ -171,21 +171,20 @@ export default function DetailedArtists({ nickname, artistInfo }) {
     // console.log('artworks loading...');
 
     try {
-      let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
-      if (sortCriteria.field !== '') {
-        url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
-      }
-      // console.log(url); //!
-
-      const response = await axios.get(url).then((res) => res.data);
+      const { list, lastPage } = await getArtistInfo({
+        nickname,
+        sortType,
+        page,
+        field: sortCriteria.field,
+      });
       // console.log(response);
-      if (response.lastPage === true) {
+      if (lastPage === true) {
         setIsLastPage(true);
       }
       // @ts-ignore
-      if (page === 1) setArtworks([...response.list]);
+      if (page === 1) setArtworks([...list]);
       // @ts-ignore
-      else setArtworks([...artworks, ...response.list]);
+      else setArtworks([...artworks, ...list]);
     } catch (error) {
       // 500에러 예외처리
       // console.log(error.response);
