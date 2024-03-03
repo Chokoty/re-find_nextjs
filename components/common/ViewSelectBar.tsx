@@ -95,7 +95,7 @@ const ViewSelectBar = ({
     console.log('selectedMenu', selectedMenu);
     const newLabel = menuItems?.find((item) => item.id === selectedMenu)?.label;
     console.log('newLabel', newLabel);
-    setLabel(newLabel);
+    setLabel(newLabel ?? ''); // null 병합 연산자
   }, [selectedMenu]);
 
   return (
