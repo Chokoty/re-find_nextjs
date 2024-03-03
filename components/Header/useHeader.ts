@@ -8,11 +8,11 @@ const useHeader = () => {
   const [hideHeader, sethideHeader] = useState(false);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const myDrawerRef = useRef(null);
+  const myDrawerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname.startsWith('/more')) {
+    if (pathname && pathname.startsWith('/more')) {
       sethideHeader(true);
     } else {
       sethideHeader(false);
