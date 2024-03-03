@@ -68,6 +68,7 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
               position: 'relative',
               width: 96,
               height: 96,
+              backgroundColor: '#ffffff',
             }}
           >
             <Image
