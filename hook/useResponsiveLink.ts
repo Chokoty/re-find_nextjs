@@ -11,7 +11,7 @@ export const useResponsiveLink = (
   // mobileLink: string,
   // pcLink: string,
   // boardtype: number
-): string => {
+): string | undefined => {
   const isMobile = useResponsive(); // 모바일 환경인지 체크
 
   // 모바일 또는 PC 링크 반환
