@@ -27,6 +27,11 @@ import TopTitle from '@/components/TopTitle';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
+interface Data {
+  total_counter: string;
+  ids: Array<{ is_deleted: boolean }>;
+}
+
 const targetCount = 50000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
   () => import('@/components/common/UploadImages'),
@@ -53,7 +58,8 @@ export default function Home() {
   const targetRef = useRef(null);
   const { onToggle } = useDisclosure();
   const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드
-  const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
+  const [data, setData] = useState<Data | null>(null);
+  // const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
   // const [author, setAuthor] = useState(null);
   const [hash, setHash] = useState(null); // fetch를 통해 받아온 hash데이터를 저장할 상태
   const [ids, setIds] = useState([]); // 게시글 여러 개

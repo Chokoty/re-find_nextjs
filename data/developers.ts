@@ -87,6 +87,15 @@ const developers: Developer[] = [
   },
   {
     group: 'member',
+    nickname: '그적미적',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/pOPKPO_oxEcNS6b1i73B2g',
+    profURL:
+      'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png',
+    contribute: ['프론트엔드 개발'],
+  },
+  {
+    group: 'member',
     nickname: '카미루',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/QT_1TSjBK6C4WyE4n2k1zA',
