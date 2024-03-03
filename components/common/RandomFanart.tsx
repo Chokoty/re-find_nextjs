@@ -28,6 +28,7 @@ import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { getRandomFanart } from '@/lib/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
+import type { CheckBoxType } from '@/types';
 
 const setLocalStorage = (key, value) => {
   try {
@@ -51,9 +52,9 @@ const getLocalStorage = (key) => {
 
 const RandomFanart = () => {
   const [fanart, setFanart] = useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(false);
-  const [checkboxValues, setCheckboxValues] = useState({
+  const [checkboxValues, setCheckboxValues] = useState<CheckBoxType>({
     isd: true,
     wak: true,
     gomem: true,
