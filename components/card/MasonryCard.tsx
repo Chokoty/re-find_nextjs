@@ -35,7 +35,7 @@ const MasonryCard = ({
   onToggleFocus,
   isGallery,
 }) => {
-  const [imageHeight, setImageHeight] = useState(null);
+  const [imageHeight, setImageHeight] = useState(0);
   const isMobile = useResponsive();
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });

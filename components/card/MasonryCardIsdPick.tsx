@@ -35,7 +35,7 @@ const MasonryCardIsdPick = ({
   onToggleFocus,
   isGallery,
 }) => {
-  const [imageHeight, setImageHeight] = useState(null);
+  const [imageHeight, setImageHeight] = useState(0);
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
