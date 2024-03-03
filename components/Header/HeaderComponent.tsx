@@ -35,7 +35,7 @@ const HeaderComponent = ({
   const isCurrentPath = (path) => pathname === path;
   const isSearchPage = pathname === '/search';
   const isGalleryPage = pathname === '/gallery';
-  const isAlbumPage = pathname.includes('/gallery');
+  const isAlbumPage = pathname && pathname.includes('/gallery');
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
 

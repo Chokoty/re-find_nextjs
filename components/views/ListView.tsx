@@ -18,7 +18,7 @@ export default function ListView({ artworks }) {
   const isTabletOrSmaller = useBreakpointValue({ base: true, md: false });
   // console.log(artworks);
 
-  const [hoveredIndices, setHoveredIndices] = useState([]);
+  const [hoveredIndices, setHoveredIndices] = useState<number[]>([]);
   // const [clickedIndices, setClickedIndices] = useState([]);
   const [clickedIndex, setClickedIndex] = useState(null);
 

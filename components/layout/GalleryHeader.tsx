@@ -20,7 +20,7 @@ export default function GalleryHeader({ title }) {
     state.setIsOpen,
   ]);
 
-  const myDrawerRef = useRef(null);
+  const myDrawerRef = useRef<HTMLElement | null>(null);
 
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);

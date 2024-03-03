@@ -11,8 +11,13 @@ import CountUp from 'react-countup';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
+interface CounterData {
+  total_counter: number;
+  today_counter: number;
+}
+
 const Counter = ({ data }) => {
-  const [counter, setCounter] = useState(null);
+  const [counter, setCounter] = useState<CounterData | null>(null);
   const [counterLoading, setCounterLoading] = useState(false);
   const badge = useColorModeValue(lightMode.badge, darkMode.badge);
 

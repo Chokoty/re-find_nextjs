@@ -24,7 +24,10 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
-  const member_link = useResponsiveLink(writerURL?.split('/').pop(), 'member');
+  const member_link = useResponsiveLink(
+    writerURL?.split('/').pop() || 'default',
+    'member'
+  );
 
   return (
     <NextLink

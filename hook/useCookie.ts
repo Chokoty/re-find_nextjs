@@ -11,7 +11,7 @@ const setCookie = (name: string, value: string, days: number): void => {
 // 쿠키 가져오기 함수
 const getCookie = (name: string): string => {
   const cookieValue = document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`);
-  return cookieValue ? cookieValue.pop() : '';
+  return cookieValue ? cookieValue.pop() || '' : '';
 };
 
 // 쿠키 삭제 함수

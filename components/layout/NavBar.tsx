@@ -30,7 +30,7 @@ export default function NavBar() {
   ]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const myDrawerRef = useRef(null);
+  const myDrawerRef = useRef<HTMLElement | null>(null);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);

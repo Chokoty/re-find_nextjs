@@ -20,7 +20,7 @@ export default function MoreHeader({ title, isIndex }) {
     state.setIsOpen,
   ]);
 
-  const myDrawerRef = useRef(null);
+  const myDrawerRef = useRef<HTMLElement | null>(null);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);

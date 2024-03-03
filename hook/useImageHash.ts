@@ -4,7 +4,7 @@ import { DifferenceHashBuilder } from 'browser-image-hash';
 import { useState } from 'react';
 
 export const useImageHash = () => {
-  const [hash, setHash] = useState(null);
+  const [hash, setHash] = useState<string | null>(null);
 
   const generateHashForImage = async (imageFile) => {
     // console.log('generateHashForImage');

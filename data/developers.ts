@@ -26,9 +26,11 @@ const developers: Developer[] = [
   },
   {
     group: 'member',
-    nickname: '날다람쥐썬더',
-    writerURL: '',
-    profURL: '',
+    nickname: '람쥐썬더펀치',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/N27vMPTAxmQvTsmC9DDBvw?tab=articles',
+    profURL:
+      'https://cafeptthumb-phinf.pstatic.net/MjAyMjEyMzFfMzAw/MDAxNjcyNDE4NDMwMDY4.M-KVuEbK3g-t_dtXfF5HD3R5owyRoTTdDs4JVW2Xrk0g.jZtoVCyqTUJPYnn8B-WBq5MyNEOagFgIXgb-kYbVerwg.GIF/e4bdb81317f7d2f1feb233c4d0164737.gif?type=s3',
     contribute: ['UX 디자인'],
   },
   {

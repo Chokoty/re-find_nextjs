@@ -12,7 +12,7 @@ export default function SearchHeader({ title }) {
   ]);
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const myDrawerRef = useRef(null);
+  const myDrawerRef = useRef<HTMLElement | null>(null);
 
   // const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   // const searchBgColor = useColorModeValue('#E1E1E1', '#303134');

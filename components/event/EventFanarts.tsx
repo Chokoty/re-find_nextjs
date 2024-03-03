@@ -87,7 +87,7 @@ const EventFanarts = ({ initialFanart, showCnt, width }) => {
                   m="0.25rem"
                   key={index}
                   background={
-                    selectedEventKey === item.key ? item.backgroundColor : null
+                    selectedEventKey === item.key ? item.backgroundColor : ''
                   }
                   _hover={{
                     background: item.backgroundColor,
@@ -121,7 +121,7 @@ const EventFanarts = ({ initialFanart, showCnt, width }) => {
                   m="0.25rem"
                   key={index}
                   background={
-                    selectedEventKey === item.key ? item.backgroundColor : null
+                    selectedEventKey === item.key ? item.backgroundColor : ''
                   }
                   _hover={{
                     background: item.backgroundColor,

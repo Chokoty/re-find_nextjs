@@ -41,7 +41,7 @@ export default function MasonryView2({
     Array(artworks?.length).fill(false)
   ); // 각 이미지에 대한 버튼 표시 여부를 배열로 관리
 
-  const [hoveredIndices, setHoveredIndices] = useState([]);
+  const [hoveredIndices, setHoveredIndices] = useState<number[]>([]);
   const [clickedIndex, setClickedIndex] = useState(null);
 
   const handleMouseEnter = (index) => {
