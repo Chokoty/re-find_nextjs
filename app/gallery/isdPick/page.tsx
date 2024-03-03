@@ -14,7 +14,7 @@ import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
-import { getIsdArtworks } from '@/lib/service/client/gallery';
+import { getIsdNotice } from '@/lib/service/client/gallery';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -125,7 +125,7 @@ export default function Album() {
     setLoadingData(true);
 
     try {
-      const { total, list } = await getIsdArtworks();
+      const { total, list } = await getIsdNotice();
       setTotal(total);
       setArtworks([...list]);
     } catch (error) {

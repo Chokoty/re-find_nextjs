@@ -12,7 +12,7 @@ import { getCounters } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const Counter = ({ data }) => {
-  const [counter, setCounter] = useState(null);
+  const [counter, setCounter] = useState<Counter | null>(null);
   const [counterLoading, setCounterLoading] = useState(false);
   const badge = useColorModeValue(lightMode.badge, darkMode.badge);
 
@@ -20,8 +20,8 @@ const Counter = ({ data }) => {
   const fetchCounter = async () => {
     try {
       setCounterLoading(true);
-      const ccounter = await getCounters();
-      setCounter(ccounter);
+      const result = await getCounters();
+      setCounter(result);
       setCounterLoading(false);
     } catch (err) {
       setCounterLoading(false);
@@ -59,11 +59,11 @@ const Counter = ({ data }) => {
             gap="0.2rem"
           >
             <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
-              <CountUp end={counter.total_counter} />
+              <CountUp end={parseInt(counter.total_counter)} />
             </Text>
             <Badge style={{ backgroundColor: badge }} fontSize="1rem">
               +
-              <CountUp end={counter.today_counter} duration={5} />
+              <CountUp end={parseInt(counter.today_counter)} duration={5} />
             </Badge>
             <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
               개의 출처를 찾았습니다.
