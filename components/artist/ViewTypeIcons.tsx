@@ -4,17 +4,17 @@ import { viewTypes } from '@/data/artists';
 
 type Props = {
   selectedView: string | null;
-  artist: Author;
+  artist: AuthorCommon;
   component: string;
   onSelectViewType: ((viewType: string) => void) | null;
 };
 
-const ViewTypeIcons = ({
+export default function ViewTypeIcons({
   selectedView,
   artist,
   component,
   onSelectViewType,
-}: Props) => {
+}: Props) {
   if (!artist) {
     // artist가 null인 경우 예외 처리
     return null;
@@ -74,6 +74,4 @@ const ViewTypeIcons = ({
       )}
     </Box>
   );
-};
-
-export default ViewTypeIcons;
+}

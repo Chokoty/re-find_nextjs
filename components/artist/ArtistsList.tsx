@@ -17,15 +17,23 @@ import SortTypeIcons from '@/components/artist/SortTypeIcons';
 import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
+import type { AuthorInfoWithName, Sort, SortCriteria, View } from '@/types';
+
+type Props = {
+  visibleArtists: AuthorInfoWithName[];
+  sortCriteria: SortCriteria;
+  sortTypes: Sort[];
+  viewTypes: View[];
+  selectedView: keyof AuthorCommon | null;
+  alert: boolean;
+};
 
 export default function ArtistsList({
   visibleArtists,
   sortCriteria,
-  sortTypes,
-  viewTypes,
   selectedView,
   alert,
-}) {
+}: Props) {
   const isMobile = useResponsive();
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -51,8 +59,7 @@ export default function ArtistsList({
           ))} */}
       {visibleArtists.map(
         (artist, index) =>
-          artist !== '' &&
-          !artist.name.includes('탈퇴회원') && (
+          artist.name.includes('탈퇴회원') && (
             <Link
               key={index}
               href={`/artists/${artist.name}`}

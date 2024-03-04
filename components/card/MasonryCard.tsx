@@ -15,7 +15,6 @@ import { HiOutlineExternalLink } from 'react-icons/hi';
 
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { useResponsive } from '@/hook/useResponsive';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -28,25 +27,35 @@ const iconStyleMobile = {
   height: '0.6rem',
 };
 
+type Props = {
+  nickname: string;
+  artwork: ArtworkList | GalleryArtworkList;
+  isFocused: boolean;
+  onToggleFocus: (id: number | null) => void;
+  isGallery: boolean;
+};
+
 const MasonryCard = ({
-  nickname,
   artwork,
   isFocused,
   onToggleFocus,
   isGallery,
-}) => {
-  const [imageHeight, setImageHeight] = useState(null);
-  const isMobile = useResponsive();
+}: Props) => {
+  const [imageHeight, setImageHeight] = useState<number | null>(null);
+  // const isMobile = useResponsive();
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
-  const handleImageLoad = (e) => {
-    setImageHeight(e.target.height);
+  const handleImageLoad = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    setImageHeight((e.target as HTMLImageElement).height);
   };
 
   // console.log(artwork);
+  const authorName = 'author' in artwork ? artwork.author : '';
 
   return (
     <Box
@@ -96,8 +105,8 @@ const MasonryCard = ({
           borderRadius="1rem"
           zIndex={1}
           background={isFocused ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.0)'}
-          onClick={() => onToggleFocus(artwork?.id)}
-          onMouseEnter={() => onToggleFocus(artwork?.id)}
+          onClick={() => onToggleFocus(artwork.id)}
+          onMouseEnter={() => onToggleFocus(artwork.id)}
         />
         {isFocused && (
           // <Link
@@ -135,7 +144,7 @@ const MasonryCard = ({
               {artwork.board}
             </Text>
 
-            {imageHeight >= 212 && (
+            {imageHeight && imageHeight >= 212 && (
               <>
                 <Flex
                   flexDir="column"
@@ -151,7 +160,7 @@ const MasonryCard = ({
                     maxWidth="100%"
                     textAlign="center"
                   >
-                    {artwork?.author}
+                    {authorName}
                   </Text>
                   <Text
                     fontSize={['sm', 'xl']}
@@ -224,9 +233,9 @@ const MasonryCard = ({
                 </Flex>
               </>
             )}
-            {imageHeight < 212 && (
+            {imageHeight && imageHeight < 212 && (
               <>
-                {imageHeight > 170 && (
+                {imageHeight && imageHeight > 170 && (
                   <Text
                     fontSize={['xs', 'sm']}
                     fontWeight="400"
@@ -289,7 +298,7 @@ const MasonryCard = ({
                   h={['2.5rem', '3rem']}
                   mr="1rem"
                 >
-                  <NextLink href={`/artists/${artwork?.author}`} passHref>
+                  <NextLink href={`/artists/${authorName}`} passHref>
                     <Text
                       textAlign="center"
                       alignItems="center"
@@ -337,9 +346,9 @@ const MasonryCard = ({
           {artwork?.title}
         </Text>
         {isGallery && (
-          <NextLink href={`/artists/${artwork?.author}`} passHref>
+          <NextLink href={`/artists/${authorName}`} passHref>
             <Text color={highlight} fontWeight={500}>
-              작가: {artwork?.author}
+              작가: {authorName}
             </Text>
           </NextLink>
         )}

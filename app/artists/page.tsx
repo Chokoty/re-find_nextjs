@@ -15,7 +15,7 @@ import { useDebounce } from '@/hook/useDebounce';
 import { getAuthorList } from '@/lib/service/client/artists';
 import useArtistsStore from '@/store/artistsStore';
 import { darkMode, lightMode } from '@/styles/theme';
-import type { Artist } from '@/types/artist';
+import type { AuthorInfoWithName, SortCriteria } from '@/types';
 
 export default function Artists() {
   const itemsPerPage = 50;
@@ -24,9 +24,11 @@ export default function Artists() {
   const { artistsList, setArtistsList } = useArtistsStore();
   // const [artistsList, setArtistsList] = useState(sampleData);
 
-  const [artists, setArtists] = useState([]);
+  const [artists, setArtists] = useState<AuthorInfoWithName[]>([]);
   const [filteredArtists, setFilteredArtists] = useState(artists);
-  const [visibleArtists, setVisibleArtists] = useState([]);
+  const [visibleArtists, setVisibleArtists] = useState<AuthorInfoWithName[]>(
+    []
+  );
 
   const [nickname, setNickname] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -34,8 +36,10 @@ export default function Artists() {
   const [isLastPage, setIsLastPage] = useState(false);
 
   const [alert, setAlert] = useState(false);
-  const [selectedView, setSelectedView] = useState(null);
-  const [sortCriteria, setSortCriteria] = useState({
+  const [selectedView, setSelectedView] = useState<keyof AuthorCommon | null>(
+    null
+  );
+  const [sortCriteria, setSortCriteria] = useState<SortCriteria>({
     field: 'total_likes',
     order: 'descending', // 'ascending' 또는 'descending'
   });
@@ -71,9 +75,11 @@ export default function Artists() {
   // };
 
   // 정렬 로직
-  // @ts-ignore
-  const sortArtists = (_artists, { field, order }) => {
-    // @ts-ignore
+
+  const sortArtists = (
+    _artists: AuthorInfoWithName[],
+    { field, order }: SortCriteria
+  ) => {
     return _artists.sort((a, b) => {
       if (order === 'ascending') {
         return a[field] - b[field];
@@ -81,8 +87,8 @@ export default function Artists() {
       return b[field] - a[field];
     });
   };
-  // @ts-ignore
-  const handleViewSelect = (value) => {
+
+  const handleViewSelect = (value: keyof AuthorCommon) => {
     if (selectedView === value) {
       // 뷰 선택 해제
       setSelectedView(null);
@@ -103,8 +109,7 @@ export default function Artists() {
       // });
     }
   };
-  // @ts-ignore
-  const handleChangeSortCriteria = (field) => {
+  const handleChangeSortCriteria = (field: keyof AuthorCommon) => {
     setPrevSortCriteria(sortCriteria); // 이전 정렬 기준 저장
     if (prevSortCriteria.field === field) {
       return;
@@ -113,9 +118,7 @@ export default function Artists() {
       return { ...prevState, field, order: 'descending' };
     });
   };
-  // @ts-ignore
-  const handleSearch = (e) => {
-    console.log(e.target.value);
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
     setSearchTerm(e.target.value);
   };
@@ -151,10 +154,9 @@ export default function Artists() {
     // const updatedArtists = Object.entries(artists_list).map(
     //   ([key, value]) => {
     const updatedArtists = Object.entries(artistsList).map(([key, value]) => {
-      return { name: key, ...(value as Artist) };
+      return { name: key, ...(value as AuthorInfo) };
     });
     // console.log(updatedArtists);
-    // @ts-ignore
     setArtists(updatedArtists);
   }, [artistsList]);
   // }, [artists_list]);
@@ -166,7 +168,6 @@ export default function Artists() {
     if (debouncedSearchTerm) {
       // 검색어 필터링 적용
       updatedArtists = updatedArtists.filter((artist) =>
-        // @ts-ignore
         artist.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
       );
     }
@@ -205,7 +206,6 @@ export default function Artists() {
   useEffect(() => {
     const filteredArtists2 = searchTerm
       ? artists.filter((artist) =>
-          // @ts-ignore
           artist.name.toLowerCase().includes(searchTerm)
         )
       : artists;

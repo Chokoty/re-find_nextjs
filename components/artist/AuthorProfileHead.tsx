@@ -12,26 +12,26 @@ import {
   Tooltip,
   useToast,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ImLink } from 'react-icons/im';
 
 import SortTypeIcons from '@/components/artist/SortTypeIcons';
 import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
-interface AuthorProfileHeadProps {
+interface Props {
   nickname: string;
-  profile: any;
+  profile: AuthorOverview;
   boardType: string;
-  handleViewTypeSelect: any;
+  handleViewTypeSelect: (viewType: string) => void;
 }
 
-const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
+export default function AuthorProfileHead({
   nickname,
   profile,
   boardType,
   handleViewTypeSelect,
-}) => {
+}: Props) {
   const toast = useToast();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,10 +46,10 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
   };
 
   const member_link = useResponsiveLink(
-    profile?.author_url.split('/').pop(),
+    profile.author_url.split('/').pop() ?? '',
     'member'
   );
-  const article_link = useResponsiveLink('', 'article');
+  // const article_link = useResponsiveLink('', 'article');
   // console.log(profile?.author_prof_url);
 
   const handleToggle = () => {
@@ -57,9 +57,9 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
   };
   const handleCopyLink = () => {
     // 복사하려는 링크를 여기에 입력하세요.
-    const linkToCopy = `https://re-find.xyz/artists/${encodeURIComponent(
-      profile?.author_nickname
-    )}`;
+    // const linkToCopy = `https://re-find.xyz/artists/${encodeURIComponent(
+    //   profile?.author_nickname
+    // )}`;
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
@@ -188,6 +188,4 @@ const AuthorProfileHead: React.FC<AuthorProfileHeadProps> = ({
       </Flex>
     </Flex>
   );
-};
-
-export default AuthorProfileHead;
+}

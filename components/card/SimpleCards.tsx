@@ -1,30 +1,26 @@
-import { Box, Flex, Link, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Flex, Link, Text } from '@chakra-ui/react';
 import NextImage from 'next/image';
-import React, { useState } from 'react';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 
-const SimpleCard = ({ artwork, isFocused, onToggleFocus }) => {
+type Prop = {
+  artwork: ArtworkList;
+};
+
+const SimpleCard = ({ artwork }: Prop) => {
   const article_link = useResponsiveLink('', 'article');
-  const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  const [imageHeight, setImageHeight] = useState(null);
+  // const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
+  // const [imageHeight, setImageHeight] = useState(null);
   const uploadTimeDiff = useUploadTimeDiff(artwork.date);
 
-  const modifiedUrl100List1 = useModifiedImageUrl(
-    artwork?.img_url_list[1],
-    100
-  );
-  const modifiedUrl100List2 = useModifiedImageUrl(
-    artwork?.img_url_list[2],
-    100
-  );
+  const modifiedUrl100List1 = useModifiedImageUrl(artwork.img_url_list[1], 100);
+  const modifiedUrl100List2 = useModifiedImageUrl(artwork.img_url_list[2], 100);
   const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
-  const handleImageLoad = (e) => {
-    setImageHeight(e.target.height);
-  };
-
+  // const handleImageLoad = (e) => {
+  //   setImageHeight(e.target.height);
+  // };
   return (
     <Link
       className="link-to-wakzoo-from-profile"

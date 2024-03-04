@@ -1,7 +1,11 @@
 import { Button, Tooltip } from '@chakra-ui/react';
 import { FaArrowDown } from 'react-icons/fa6';
 
-const LoadButton = ({ loadData }) => {
+type Prop = {
+  loadData: () => void;
+};
+
+const LoadButton = ({ loadData }: Prop) => {
   return (
     <Tooltip label="수동으로 불러오기">
       <Button

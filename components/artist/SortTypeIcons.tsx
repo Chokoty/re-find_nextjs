@@ -10,6 +10,7 @@ import {
 
 import { sortTypes } from '@/data/artists';
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
+import type { SortCriteria } from '@/types';
 
 const iconStyle = {
   width: '1rem',
@@ -33,20 +34,13 @@ const IconComponent = ({ sortTypeName }: { sortTypeName: string }) => {
   }
 };
 
-type Order = 'ascending' | 'descending';
-
-type SortCriteria = {
-  field: string;
-  order: Order;
-};
-
 type Props = {
   sortCriteria: SortCriteria | null;
-  artist: Author;
+  artist: AuthorCommon;
   component: string;
 };
 
-const SortTypeIcons = ({ sortCriteria, artist }: Props) => {
+export default function SortTypeIcons({ sortCriteria, artist }: Props) {
   // let align = ['center', 'center', 'center'];
   // if (component === 'inIndex') {
   //   align = ['center', 'center', 'flex-start'];
@@ -119,6 +113,4 @@ const SortTypeIcons = ({ sortCriteria, artist }: Props) => {
       </Box>
     </Box>
   );
-};
-
-export default SortTypeIcons;
+}

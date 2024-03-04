@@ -15,25 +15,28 @@ import {
   useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   MdMoreHoriz,
   MdOutlineDashboard,
   MdOutlineGridView,
   MdOutlineKeyboardArrowDown,
-  MdOutlineViewDay,
 } from 'react-icons/md';
 
 import { menuItems } from '@/data/artists';
-import { useResponsive } from '@/hook/useResponsive';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface ViewSelectBarProps {
+type Props = {
+  activeView: string;
+  onViewChange: (view: string) => void;
   selectedMenu: string;
-  onViewChange;
   onMenuItemClick: (menuText: string) => void;
-}
+  isDeletedVisible: boolean;
+  handleShowDeleted: () => void;
+  topOffset: number;
+  isdPick: boolean;
+};
 
 const ViewSelectBar = ({
   activeView,
@@ -44,26 +47,26 @@ const ViewSelectBar = ({
   handleShowDeleted,
   topOffset,
   isdPick,
-}) => {
-  const isMobile = useResponsive();
+}: Props) => {
+  // const isMobile = useResponsive();
 
-  const [topPosition, setTopPosition] = useState(0);
+  // const [topPosition, setTopPosition] = useState(0);
+  // const [isOpen, setIsOpen] = useState(false);
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
-  const [isOpen, setIsOpen] = useState(false);
   const [label, setLabel] = useState('알잘딱순');
 
   // const selectedLabel = menuItems.find(
   //   (item) => item.id === selectedMenu
   // )?.label;
 
-  const handlePopoverOpen = () => {
-    setIsOpen(true);
-  };
+  // const handlePopoverOpen = () => {
+  //   setIsOpen(true);
+  // };
 
-  const handlePopoverClose = () => {
-    setIsOpen(false);
-    handleShowDeleted();
-  };
+  // const handlePopoverClose = () => {
+  //   setIsOpen(false);
+  //   handleShowDeleted();
+  // };
 
   const { onClose } = useDisclosure();
 
@@ -92,9 +95,8 @@ const ViewSelectBar = ({
   // }, [usingPage]);
 
   useEffect(() => {
-    console.log('selectedMenu', selectedMenu);
-    const newLabel = menuItems?.find((item) => item.id === selectedMenu)?.label;
-    console.log('newLabel', newLabel);
+    const newLabel =
+      menuItems.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
     setLabel(newLabel);
   }, [selectedMenu]);
 
