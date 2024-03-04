@@ -1,6 +1,6 @@
 interface View {
   name: string;
-  value: string;
+  value: keyof Author;
   colorScheme: string;
 }
 
@@ -14,7 +14,7 @@ export const viewTypes: View[] = [
 
 interface Sort {
   name: string;
-  value: string;
+  value: keyof Author;
 }
 
 export const sortTypes: Sort[] = [

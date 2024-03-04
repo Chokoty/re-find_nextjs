@@ -20,6 +20,6 @@ export const getCounters = async () => {
 // 최근 업데이트 게시물 가져오기
 export const getRecentUpdateInfos = async () => {
   const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/last_update_info`;
-  const response = await axios.get<RecentBoardData>(url);
+  const response = await axios.get<RecentBoardData[]>(url);
   return response.data;
 };

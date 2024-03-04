@@ -4,36 +4,44 @@ import {
   Flex,
   Link,
   Skeleton,
+  SystemProps,
   Text,
   useBreakpointValue,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
 import { eventsData } from '@/data/events';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { getUrlInfo } from '@/lib/service/client/events';
-import { darkMode, lightMode } from '@/styles/theme';
+import { isAxiosError } from 'axios';
 
-const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
-  const [fanart, setFanart] = useState(null);
-  const [keywordUrl, setKeywordUrl] = useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+type Props = {
+  initialFanart: null;
+  selectedEventKey: string;
+};
+
+const RandomFanartBtn = ({ selectedEventKey }: Props) => {
+  const [fanart, setFanart] = useState<EventFanart | null>(null);
+  const [keywordUrl, setKeywordUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(true);
   const [isFocused, setIsFocused] = useState(false);
   // const [isBold, setIsBold] = useState(false);
 
-  const direction = useBreakpointValue({ base: 'column', md: 'row' });
+  const direction = useBreakpointValue({
+    base: 'column',
+    md: 'row',
+  }) as SystemProps['flexDirection'];
 
   const article_link = useResponsiveLink(
-    fanart?.url.split('/').pop(),
+    fanart?.url.split('/').pop() ?? '',
     'article'
   );
 
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
+  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
 
   useEffect(() => {
     // console.log('selectedEventKey: ', selectedEventKey);
@@ -92,6 +100,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
       const result = await getUrlInfo(keywordUrl);
       setFanart(result);
     } catch (error) {
+      if (!isAxiosError(error)) return;
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
       } else if (error.code === 'ERR_NETWORK') {
@@ -102,15 +111,26 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     }
   };
 
-  const handleLoad = async () => {
-    // await new Promise((r) => setTimeout(r, 1000));
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        setIsLoading(false);
-        resolve();
-      }, 100);
-    });
-    setIsLoading(false);
+  // const handleLoad = async () => {
+  //   // await new Promise((r) => setTimeout(r, 1000));
+  //   await new Promise((resolve, _) => {
+  //     setTimeout(() => {
+  //       setIsLoading(false);
+  //       resolve();
+  //     }, 100);
+  //   });
+  //   setIsLoading(false);
+  // };
+  const handleLoad = () => {
+    (async () => {
+      await new Promise((resolve, _) => {
+        setTimeout(() => {
+          setIsLoading(false);
+          resolve(undefined);
+        }, 100);
+      });
+      setIsLoading(false);
+    })();
   };
 
   const showRandomFanart = () => {
@@ -118,14 +138,14 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     fetchRandomFanart();
   };
 
-  const previewContainer = {
+  const previewContainer: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
   };
-  const img = {
+  const img: React.CSSProperties = {
     display: 'flex',
     height: '100%',
     maxHeight: '400px',
@@ -136,7 +156,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     marginBottom: '0.5rem',
   };
 
-  const linkDiv = {
+  const linkDiv: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -144,7 +164,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
     width: '100%',
   };
 
-  const guide = {
+  const guide: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'end',
@@ -198,10 +218,10 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
                     <Link
                       className="link-to-wakzoo"
                       href={article_link}
-                      passHref
+                      // passHref
                       isExternal
                       style={{
-                        linkDiv,
+                        ...linkDiv,
                         position: 'relative',
                       }}
                     >
@@ -211,7 +231,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
                         width={475}
                         height={475}
                         src={modifiedUrl300}
-                        alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
+                        alt={`랜덤 팬아트 게시글 id: ${fanart?.title}`}
                         onLoad={handleLoad}
                       />
                       <Box
@@ -240,7 +260,7 @@ const RandomFanartBtn = ({ initialFanart, selectedEventKey }) => {
                     <Box
                       as="a"
                       href={`/artists/${fanart?.nickname}`}
-                      passHref
+                      // passHref
                       style={linkDiv}
                     >
                       <Text>

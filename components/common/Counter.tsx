@@ -11,7 +11,11 @@ import CountUp from 'react-countup';
 import { getCounters } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const Counter = ({ data }) => {
+type Prop = {
+  data: Source | null;
+};
+
+export default function Counter({ data }: Prop) {
   const [counter, setCounter] = useState<Counter | null>(null);
   const [counterLoading, setCounterLoading] = useState(false);
   const badge = useColorModeValue(lightMode.badge, darkMode.badge);
@@ -73,6 +77,4 @@ const Counter = ({ data }) => {
       </Skeleton>
     </Box>
   );
-};
-
-export default Counter;
+}

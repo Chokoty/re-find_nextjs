@@ -2,9 +2,10 @@ import React from 'react';
 
 import UploadComponent from '@/components/common/UploadComponent';
 import { useUpload } from '@/hook/useUpload';
+import { FileWithPreview } from '@/types';
 
 interface UploadImagesProps {
-  getDataFromChild: (files: File[]) => void;
+  getDataFromChild: (files: FileWithPreview[]) => void;
   getHashFromChild: (hashes: string[]) => void;
 }
 const UploadImages: React.FC<UploadImagesProps> = ({

@@ -1,21 +1,15 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Flex, Heading } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React from 'react';
 import { IoIosArrowForward } from 'react-icons/io';
 
-import UpdateCard from '@/components/card/UpdateCard';
 import UpdateLog from '@/components/common/UpdateLog';
-import { darkMode, lightMode } from '@/styles/theme';
 
-const UpdateLogBoard = ({ width }) => {
-  const color = useColorModeValue(lightMode.color, darkMode.color);
+type Prop = {
+  width: string;
+};
+
+const UpdateLogBoard = ({ width }: Prop) => {
+  // const color = useColorModeValue(lightMode.color, darkMode.color);
 
   return (
     <Box

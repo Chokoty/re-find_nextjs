@@ -25,6 +25,8 @@ import TopTitle from '@/components/TopTitle';
 import { useResponsive } from '@/hook/useResponsive';
 import { getImageInfoByHash } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
+import { isAxiosError } from 'axios';
+import { FileWithPreview } from '@/types';
 
 const targetCount = 50000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
@@ -49,40 +51,39 @@ export default function Home() {
   const isMobile = useResponsive();
 
   const toast = useToast();
-  const targetRef = useRef(null);
+  const targetRef = useRef<HTMLDivElement>(null);
   const { onToggle } = useDisclosure();
-  const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드
-  const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
-  // const [author, setAuthor] = useState(null);
-  const [hash, setHash] = useState(null); // fetch를 통해 받아온 hash데이터를 저장할 상태
-  const [ids, setIds] = useState([]); // 게시글 여러 개
+  const [uploadedfiles, setUploadedFiles] = useState<FileWithPreview[] | null>(
+    []
+  ); // 파일 업로드
+  const [data, setData] = useState<Source | null>(null); // fetch를 통해 받아온 데이터를 저장할 상태
+  const [hash, setHash] = useState<string[] | null>(null); // fetch를 통해 받아온 hash데이터를 저장할 상태
+  const [ids, setIds] = useState<ID[]>([]); // 게시글 여러 개
   const [hasSearchResult, setHasSearchResult] = useState(false); // 재검색 방지
   const [isSearchingData, setIsSearchingData] = useState(false);
+  const [searchTime, setSearchTime] = useState(0);
   // const [isSearchingAuthor, setIsSearchingAuthor] = useState(false);
   // const [author, setAuthor] = useState(null);
-  const [searchTime, setSearchTime] = useState(0);
+  // const [author, setAuthor] = useState(null);
 
+  // event
+  const [congrat, setCongrat] = useState(false);
+  const [isInitialRender, setIsInitialRender] = useState(true);
   // Theme
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
-  // event
-  const [congrat, setCongrat] = useState(false);
-  const [isInitialRender, setIsInitialRender] = useState(true);
-
   // 이미지 업로드, 해시값 받기
-  const getDataFromChild = (childData) => {
+  const getDataFromChild = (childData: FileWithPreview[]) => {
     setUploadedFiles(childData);
   };
-  const getHashFromChild = (childHashData) => {
+  const getHashFromChild = (childHashData: string[]) => {
     setHash(childHashData);
-    console.log(hash);
   };
 
   useEffect(() => {
     if (hash) {
-      // console.log(hash);
       fetchOriginalUrl();
     }
   }, [hash]);
@@ -92,8 +93,9 @@ export default function Home() {
     try {
       setIsSearchingData(true); // 검색중
       const body = new FormData();
+      if (!uploadedfiles) return;
       body.append('file', uploadedfiles[0]);
-
+      if (!hash) return;
       if (!hasSearchResult) {
         // 재검색 방지
         const startTime = new Date().getTime(); // 시작시간 기록
@@ -106,9 +108,6 @@ export default function Home() {
         console.log(`Image search time: ${endTime - startTime}ms`); // 차이값 출력
         const diffTime = endTime - startTime; // ms
         setSearchTime(diffTime); // 차이값 저장
-
-        // console.log(response.data); // >>>테스트용
-
         // setAuthor(response.data.author);
         setData(result);
         setIds(result.ids.slice(0, 15)); // 검색결과 10~15개 제한
@@ -117,6 +116,7 @@ export default function Home() {
       setIsSearchingData(false); //  검색 완료
       setHasSearchResult(true); // 재검색을 방지
     } catch (error) {
+      if (!isAxiosError(error)) return;
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
         toast({
@@ -142,27 +142,27 @@ export default function Home() {
 
   // 결과 안내 메시지
   useEffect(() => {
-    if (uploadedfiles.length > 0) {
-      toast({
-        title:
-          data?.ids?.length === 0
-            ? 'Search Failed'
-            : `Searching Time: ${searchTime / 1000}s`,
-        description:
-          data?.ids[0]?.is_deleted === true ? '아! 삭제된 게시글입니다.' : '',
-        status: `${
-          data?.ids?.length === 0 || data?.ids[0]?.is_deleted === true
-            ? 'error'
-            : 'success'
-        }`,
-        isClosable: true,
-      });
-    }
+    if (!uploadedfiles || uploadedfiles.length === 0) return;
+    toast({
+      title:
+        data?.ids?.length === 0
+          ? 'Search Failed'
+          : `Searching Time: ${searchTime / 1000}s`,
+      description:
+        data?.ids[0]?.is_deleted === true ? '아! 삭제된 게시글입니다.' : '',
+      status: `${
+        data?.ids?.length === 0 || data?.ids[0]?.is_deleted === true
+          ? 'error'
+          : 'success'
+      }`,
+      isClosable: true,
+    });
   }, [data, searchTime]);
 
   const handleClick = () => {
     const headerHeight = 108;
     const targetElement = targetRef.current;
+    if (!targetElement) return;
     const topPosition = targetElement.offsetTop - headerHeight;
 
     window.scrollTo({
@@ -224,7 +224,7 @@ export default function Home() {
         <BannerSlider />
         <TopTitle data={data} resetFiles={resetFiles} />
         {/* 업로드 전 */}
-        {uploadedfiles.length === 0 && (
+        {(!uploadedfiles || uploadedfiles.length === 0) && (
           <Box
             display="flex"
             flexDirection="column"
@@ -244,7 +244,7 @@ export default function Home() {
           </Box>
         )}
         {/* 업로드 후 */}
-        {uploadedfiles.length !== 0 && hash !== null && (
+        {uploadedfiles && uploadedfiles.length !== 0 && hash !== null && (
           <Box
             className="result-area"
             display="flex"
@@ -257,7 +257,7 @@ export default function Home() {
           >
             <Preview files={uploadedfiles} />
             {isSearchingData && <Loading />}
-            {!isSearchingData && (
+            {!isSearchingData && data && (
               <SearchResult
                 searchTime={searchTime}
                 data={data}

@@ -18,7 +18,9 @@ const UpdateBoard = () => {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const width = useBreakpointValue({ base: '100%', md: '100%' });
 
-  const [lastUpdateInfo, setLastUpdateInfo] = useState(null);
+  const [lastUpdateInfo, setLastUpdateInfo] = useState<
+    RecentBoardData[] | null
+  >(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

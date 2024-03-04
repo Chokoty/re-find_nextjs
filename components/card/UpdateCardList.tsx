@@ -8,7 +8,11 @@ import {
 
 import UpdateCard from './UpdateCard';
 
-export default function UpdateCardList({ updates }) {
+type Prop = {
+  updates: RecentBoardData[] | null;
+};
+
+export default function UpdateCardList({ updates }: Prop) {
   return (
     <Box
       display="flex"
@@ -22,7 +26,7 @@ export default function UpdateCardList({ updates }) {
         <UpdateCard key={index} update={update} />
       ))}
       {updates === null ||
-        (updates?.length === 0 && (
+        (updates.length === 0 && (
           <Alert status="error" w="90%" borderRadius="1rem">
             <AlertIcon />
             <AlertTitle></AlertTitle>

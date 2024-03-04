@@ -1,14 +1,20 @@
 import { Box, Button, Text } from '@chakra-ui/react';
-import React from 'react';
 
 import { viewTypes } from '@/data/artists';
+
+type Props = {
+  selectedView: string | null;
+  artist: Author;
+  component: string;
+  onSelectViewType: ((viewType: string) => void) | null;
+};
 
 const ViewTypeIcons = ({
   selectedView,
   artist,
   component,
   onSelectViewType,
-}) => {
+}: Props) => {
   if (!artist) {
     // artist가 null인 경우 예외 처리
     return null;
@@ -55,7 +61,10 @@ const ViewTypeIcons = ({
                 flexDirection={['row', 'row', 'column']}
                 h={['2rem', '2rem', '3rem']}
                 gap={['0.5rem', '0.5rem', '0']}
-                onClick={() => onSelectViewType(viewType.value)}
+                onClick={() => {
+                  if (!onSelectViewType) return;
+                  onSelectViewType(viewType.value);
+                }}
               >
                 <Text fontSize="sm">{viewType.name}</Text>
                 <Text fontSize="md"> {artist[viewType.value]}</Text>

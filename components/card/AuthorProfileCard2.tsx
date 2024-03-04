@@ -5,11 +5,10 @@ import React from 'react';
 
 import SortTypeIcons from '@/components/artist/SortTypeIcons';
 import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface AuthorProfileCardProps {
-  author: any;
+  author: Author;
   writerURL: string;
   profURL: string;
   nickname: string;
@@ -17,14 +16,13 @@ interface AuthorProfileCardProps {
 
 const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
   author,
-  writerURL,
   profURL,
   nickname,
 }) => {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
-  const member_link = useResponsiveLink(writerURL?.split('/').pop(), 'member');
+  // const member_link = useResponsiveLink(writerURL?.split('/').pop(), 'member');
 
   return (
     <NextLink

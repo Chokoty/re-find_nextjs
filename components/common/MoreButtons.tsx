@@ -11,7 +11,6 @@ import { FiMoon } from 'react-icons/fi';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
 import { PiGiftBold } from 'react-icons/pi';
 
-// import DarkModeToggle from '@/components/common/DarkModeToggle';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const MoreButtons = () => {
