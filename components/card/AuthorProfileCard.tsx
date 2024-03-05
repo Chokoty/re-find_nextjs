@@ -24,7 +24,10 @@ export default function AuthorProfileCard({ profURL, nickname, board }: Props) {
     darkMode.highlight2
   );
 
-  // const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
+  // const member_link = useResponsiveLink(
+  //   writerURL.split('/').pop() || 'default',
+  //   'member'
+  // );
 
   return (
     // <Link

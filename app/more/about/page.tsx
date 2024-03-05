@@ -13,10 +13,12 @@ import {
 import ProfileCard2 from '@/components/card/ProfileCard2';
 import MoreLayout from '@/components/layout/more-layout';
 import developers from '@/data/developers';
+import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function About() {
   // const setIsOpen = useStore((state) => state.setIsOpen);
+  const isMobile = useResponsive();
 
   const highlightColor = useColorModeValue(
     lightMode.highlight,
@@ -26,6 +28,11 @@ export default function About() {
   // useEffect(() => {
   //   setIsOpen(false);
   // }, [setIsOpen]);
+
+  const isMemberCountOdd =
+    developers.filter((item) => item.group === 'member').length % 2 !== 0;
+  const isCreditCountOdd =
+    developers.filter((item) => item.group === 'credit').length % 2 !== 0;
 
   return (
     <MoreLayout title="About">
@@ -99,6 +106,7 @@ export default function About() {
                   />
                 )
             )}
+            {!isMobile && isMemberCountOdd && <Box w="346px" h="120px"></Box>}
           </Flex>
         </Box>
         <Box
@@ -136,6 +144,7 @@ export default function About() {
                   />
                 )
             )}
+            {!isMobile && isCreditCountOdd && <Box w="346px" h="120px"></Box>}
           </Flex>
         </Box>
       </Box>

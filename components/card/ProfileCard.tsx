@@ -35,7 +35,7 @@ export default function AuthorProfileCard({
   );
 
   const member_link = useResponsiveLink(
-    writerURL.split('/').pop() ?? '',
+    writerURL.split('/').pop() || 'default',
     'member'
   );
 

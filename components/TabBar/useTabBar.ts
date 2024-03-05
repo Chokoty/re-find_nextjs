@@ -8,6 +8,9 @@ const useTabBar = () => {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (!pathname) {
+      return; // Or set a default tab, if desired
+    }
     if (pathname === '/') {
       setTab('home');
     } else if (pathname.startsWith('/search')) {

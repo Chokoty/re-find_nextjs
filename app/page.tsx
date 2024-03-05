@@ -28,6 +28,11 @@ import { getImageInfoByHash } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { FileWithPreview } from '@/types';
 
+interface Data {
+  total_counter: string;
+  ids: Array<{ is_deleted: boolean }>;
+}
+
 const targetCount = 50000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(
   () => import('@/components/common/UploadImages'),
@@ -273,7 +278,6 @@ export default function Home() {
       <Box
         w="100%"
         maxW="400px"
-        // ml="1.5rem"
         display="flex"
         flexDirection="column"
         alignItems="center"

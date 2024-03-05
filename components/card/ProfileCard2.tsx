@@ -36,7 +36,7 @@ export default function AuthorProfileCard2({
   );
 
   const member_link = useResponsiveLink(
-    writerURL.split('/').pop() ?? '',
+    writerURL.split('/').pop() || 'default',
     'member'
   );
 
@@ -71,6 +71,7 @@ export default function AuthorProfileCard2({
               position: 'relative',
               width: 96,
               height: 96,
+              backgroundColor: '#ffffff',
             }}
           >
             <Image

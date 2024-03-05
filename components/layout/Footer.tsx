@@ -46,7 +46,7 @@ export default function Footer() {
         </Box>
         <Box pb="1rem"></Box>
         <Text fontSize="sm" textAlign="center">
-          Copyright ⓒ 2023 RE:FIND. All Rights Reserved.
+          Copyright &copy; 2023 RE:FIND. All Rights Reserved.
         </Text>
       </Box>
     </footer>

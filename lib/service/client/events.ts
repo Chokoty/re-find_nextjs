@@ -1,5 +1,6 @@
-import type { CheckBoxType } from '@/types';
 import axios from 'axios';
+
+import type { CheckBoxType } from '@/types';
 
 // 랜덤 팬아트 가져오기
 export const getRandomFanart = async (checkboxValues: CheckBoxType) => {
