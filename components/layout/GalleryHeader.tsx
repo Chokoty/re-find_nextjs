@@ -14,13 +14,16 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function GalleryHeader({ title }) {
+type Prop = { title: string };
+
+export default function GalleryHeader({ title }: Prop) {
   const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
 
-  const myDrawerRef = useRef(null);
+  // TODO: 등록이 안되어있는데...? > 물어보기
+  const myDrawerRef = useRef<HTMLDivElement>(null);
 
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -34,18 +37,21 @@ export default function GalleryHeader({ title }) {
     if (!isOpenDrawer) {
       return;
     }
-    const handleClick = (e) => {
+    const handleClick = (e: globalThis.MouseEvent) => {
       if (
-        e.target.className === 'hamburger-react' ||
-        e.target.closest('.hamburger-react')
+        (e.target as HTMLDivElement).className === 'hamburger-react' ||
+        (e.target as HTMLDivElement).closest('.hamburger-react')
       ) {
         return;
       }
-      if (e.target.tagName.toLowerCase() === 'a') {
+      if ((e.target as HTMLDivElement).tagName.toLowerCase() === 'a') {
         console.log('a');
         return; // Return early if the clicked element is an <a> tag
       }
-      if (myDrawerRef.current && !myDrawerRef.current.contains(e.target)) {
+      if (
+        myDrawerRef.current &&
+        !myDrawerRef.current.contains(e.target as HTMLDivElement)
+      ) {
         // console.log("other");
         setIsOpenDrawer(false);
       }
@@ -54,9 +60,9 @@ export default function GalleryHeader({ title }) {
     return () => window.removeEventListener('mousedown', handleClick);
   }, [isOpenDrawer]);
 
-  const toggleDrawer = () => {
-    setIsOpenDrawer(!isOpenDrawer);
-  };
+  // const toggleDrawer = () => {
+  //   setIsOpenDrawer(!isOpenDrawer);
+  // };
 
   return (
     <Box

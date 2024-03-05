@@ -38,7 +38,7 @@ type Props = {
   isdPick: boolean;
 };
 
-const ViewSelectBar = ({
+export default function ViewSelectBar({
   activeView,
   onViewChange,
   selectedMenu,
@@ -47,7 +47,7 @@ const ViewSelectBar = ({
   handleShowDeleted,
   topOffset,
   isdPick,
-}: Props) => {
+}: Props) {
   // const isMobile = useResponsive();
 
   // const [topPosition, setTopPosition] = useState(0);
@@ -234,6 +234,4 @@ const ViewSelectBar = ({
   </Button> */}
     </Flex>
   );
-};
-
-export default ViewSelectBar;
+}

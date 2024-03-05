@@ -5,7 +5,7 @@ type Prop = {
   loadData: () => void;
 };
 
-const LoadButton = ({ loadData }: Prop) => {
+export default function LoadButton({ loadData }: Prop) {
   return (
     <Tooltip label="수동으로 불러오기">
       <Button
@@ -27,6 +27,4 @@ const LoadButton = ({ loadData }: Prop) => {
       </Button>
     </Tooltip>
   );
-};
-
-export default LoadButton;
+}

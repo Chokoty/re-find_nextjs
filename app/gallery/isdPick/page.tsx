@@ -17,6 +17,7 @@ import members from '@/data/members';
 import { getIsdNotice } from '@/lib/service/client/gallery';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
+import { isAxiosError } from 'axios';
 
 export default function Album() {
   const itemsPerPage = 30;
@@ -28,14 +29,15 @@ export default function Album() {
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
 
-  const [, setTotal] = useState(0);
+  // const [, setTotal] = useState(0);
   const { artworks, setArtworks } = useIsdPickStore();
-  const [filteredArtworks, setFilteredArtworks] = useState([]);
-  const [visibleArtworks, setVisibleArtworks] = useState([]);
+  const [filteredArtworks, setFilteredArtworks] = useState<IsdArtworkList[]>(
+    []
+  );
+  const [visibleArtworks, setVisibleArtworks] = useState<IsdArtworkList[]>([]);
   const [page, setPage] = useState(1);
 
   const [selected, setSelected] = useState('isd');
-  const [album] = useState(gallery[0]);
   // const [member, setMember] = useState(null);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
 
@@ -47,7 +49,7 @@ export default function Album() {
 
   // react-spinners
   const [loadingData, setLoadingData] = useState(false);
-  const [, setLoadingImage] = useState(true);
+  // const [, setLoadingImage] = useState(true);
 
   // const resetArtworks = useCallback(() => {
   //   setVisibleArtworks([]);
@@ -67,9 +69,13 @@ export default function Album() {
   //     query: currentQuery,
   //   });
   // }, [sortType]);
+  const album = {
+    title: gallery[0].title,
+    description: gallery[0].description!,
+  };
 
   // 정렬 로직
-  const sortArtworks = (_artworks, _sortType) => {
+  const sortArtworks = (_artworks: IsdArtworkList[], _sortType: string) => {
     return _artworks.sort((a, b) => {
       if (_sortType === 'latest') {
         // 내림차순
@@ -115,9 +121,9 @@ export default function Album() {
   }, []);
 
   // 이미지 로딩
-  const handleLoading = useCallback((Loading) => {
-    setLoadingImage(Loading);
-  }, []);
+  // const handleLoading = useCallback((Loading) => {
+  //   setLoadingImage(Loading);
+  // }, []);
 
   const getFanartAlbum = useCallback(async () => {
     if (loadingData) return;
@@ -125,12 +131,12 @@ export default function Album() {
     setLoadingData(true);
 
     try {
-      const { total, list } = await getIsdNotice();
-      setTotal(total);
+      const { list } = await getIsdNotice();
+      // setTotal(total);
       setArtworks([...list]);
     } catch (error) {
       // 500에러 예외처리
-      console.log(error.response);
+      if (!isAxiosError(error)) return;
       if (error.response?.status === 500) {
         toast({
           title:
@@ -183,8 +189,7 @@ export default function Album() {
     updatedArtworks =
       selected === 'isd'
         ? artworks
-        : artworks.filter((item) => item.author === m.author);
-    // console.log(updatedArtworks);
+        : artworks.filter((item) => item.author === m?.author);
     // 정렬
     let sortedArtworks = sortArtworks(updatedArtworks, sortType);
     if (sortType === 'latest') {
@@ -192,10 +197,9 @@ export default function Album() {
     } else if (sortType === 'oldest') {
       sortedArtworks = updatedArtworks.reverse();
     }
-    // console.log(sortedArtworks);
 
     setFilteredArtworks(sortedArtworks);
-    setTotal(sortedArtworks.length);
+    // setTotal(sortedArtworks.length);
     setVisibleArtworks(sortedArtworks.slice(0, itemsPerPage));
     setPage(1);
     setIsLastPage(false);
@@ -240,7 +244,6 @@ export default function Album() {
         >
           <Text>총 {filteredArtworks.length}</Text>
           <MemberButtonList
-            members={members}
             type="sort"
             range={{ start: 1, end: 7 }}
             selected={selected}
@@ -280,7 +283,7 @@ export default function Album() {
                       artworks={visibleArtworks}
                       isDeletedVisible={isDeletedVisible}
                       // loadingImage={loadingImage}
-                      handleLoading={handleLoading}
+                      // handleLoading={handleLoading}
                       isGallery={true}
                     />
                   )}

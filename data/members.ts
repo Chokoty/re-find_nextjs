@@ -1,12 +1,4 @@
-interface Member {
-  id: number;
-  value: string;
-  name: string;
-  author: string;
-  query?: string;
-  personalColor?: string;
-  personalColor2?: string;
-}
+import type { Member } from '@/types';
 
 const members: Member[] = [
   {

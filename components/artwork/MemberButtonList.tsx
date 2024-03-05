@@ -1,37 +1,38 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
+import members from '@/data/members';
 
-const MemberButtonList = ({
-  members,
-  type,
-  range,
-  selected,
-  setSelected,
-  isdPick,
-}) => {
+type Props = {
+  type: string;
+  range: { start: number; end: number };
+  selected: string | null;
+  setSelected: ((value: string) => void) | null;
+  isdPick: boolean;
+};
+
+const MemberButtonList = ({ type, range, selected, setSelected }: Props) => {
   const router = useRouter();
   const bg4 = useColorModeValue(lightMode.bg4, darkMode.bg4);
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
 
-  const onClick = (value) => {
+  const onClick = (value: string) => {
     if (type === 'link') {
       onClickLink(value);
     } else if (type === 'sort') {
       onClickSort(value);
     }
   };
-  // @ts-ignore TODO: 변경
-  const onClickLink = (value) => {
+  const onClickLink = (value: string) => {
     // console.log(value);
 
     router.push(`/gallery/${value}`);
   };
 
-  const onClickSort = (value) => {
+  const onClickSort = (value: string) => {
+    if (!setSelected) return;
     if (selected === value) {
       setSelected('isd');
       return;
@@ -40,12 +41,12 @@ const MemberButtonList = ({
     setSelected(value);
   };
 
-  const getButtonBackground = (member) => {
-    if (selected === member.memberValue) {
-      return member.personalColor;
-    }
-    return '';
-  };
+  // const getButtonBackground = (member) => {
+  //   if (selected === member.memberValue) {
+  //     return member.personalColor;
+  //   }
+  //   return '';
+  // };
 
   // const getButtonColor = (member) => {
   //   if (selected === member.memberValue) {
@@ -54,18 +55,18 @@ const MemberButtonList = ({
   //   return color;
   // };
 
-  const getButtonHoverStyles = (member) => {
-    if (selected === member.memberValue) {
-      return {
-        background: member.personalColor,
-        color: color2,
-      };
-    }
-    return {
-      background: bg4,
-      color: color2,
-    };
-  };
+  // const getButtonHoverStyles = (member) => {
+  //   if (selected === member.memberValue) {
+  //     return {
+  //       background: member.personalColor,
+  //       color: color2,
+  //     };
+  //   }
+  //   return {
+  //     background: bg4,
+  //     color: color2,
+  //   };
+  // };
 
   return (
     <Box

@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Text, useToast } from '@chakra-ui/react';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
@@ -15,9 +15,15 @@ import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { getKeywordGalleryArtworks } from '@/lib/service/client/gallery';
+import { isAxiosError } from 'axios';
+import { Gallery, Member } from '@/types';
 
-// @ts-ignore
-export default function DetailedGallery({ value, query }) {
+type Props = {
+  value: string;
+  query: string;
+};
+
+export default function DetailedGallery({ value, query }: Props) {
   const toast = useToast();
   // const idid = router.query.id as string; // 이렇게! 이렇게!
   // infinite scroll
@@ -26,9 +32,9 @@ export default function DetailedGallery({ value, query }) {
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
 
-  const [album, setAlbum] = useState(null);
-  const [member, setMember] = useState(null);
-  const [artworks, setArtworks] = useState(null);
+  const [album, setAlbum] = useState<Gallery | null>(null);
+  const [member, setMember] = useState<Member | null>(null);
+  const [artworks, setArtworks] = useState<GalleryArtworkList[]>([]);
   // const [url, setUrl] = useState(null);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
@@ -42,7 +48,7 @@ export default function DetailedGallery({ value, query }) {
 
   // react-spinners
   const [loadingData, setLoadingData] = useState(false);
-  const [, setLoadingImage] = useState(true);
+  // const [, setLoadingImage] = useState(true);
 
   // const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
@@ -52,7 +58,6 @@ export default function DetailedGallery({ value, query }) {
   };
 
   const resetArtworks = useCallback(() => {
-    // @ts-ignore
     setArtworks([]);
     setPage(1);
     setIsLastPage(false);
@@ -81,10 +86,9 @@ export default function DetailedGallery({ value, query }) {
   }, []);
 
   // 이미지 로딩
-  // @ts-ignore
-  const handleLoading = useCallback((Loading) => {
-    setLoadingImage(Loading);
-  }, []);
+  // const handleLoading = useCallback((Loading: boolean) => {
+  //   setLoadingImage(Loading);
+  // }, []);
 
   const getFanartAlbum = useCallback(async () => {
     console.log('getFanartAlbum');
@@ -106,14 +110,12 @@ export default function DetailedGallery({ value, query }) {
       if (lastPage === true) {
         setIsLastPage(true);
       }
-      // @ts-ignore
       if (page === 1) setArtworks([...list]);
-      // @ts-ignore
-      else setArtworks([...artworks, ...list]);
+      else setArtworks((prev) => [...prev, ...list]);
     } catch (error) {
       // 500에러 예외처리
-      // console.log(error.response);
-      // @ts-ignore
+      if (!isAxiosError(error)) return;
+      // if(!isAxiosError(error)) throw error;
       if (error.response?.status === 500) {
         toast({
           title:
@@ -153,20 +155,15 @@ export default function DetailedGallery({ value, query }) {
 
   useEffect(() => {
     const g = gallery.find((item) => item.value === value);
-    // @ts-ignore
-    setAlbum(g);
-    // @ts-ignore
+    setAlbum(g ?? null);
     const m = members.find((item) => item.value === value);
-    // @ts-ignore
-    setMember(m);
+    setMember(m ?? null);
     getFanartAlbum();
   }, []);
 
   const topTitle = {
-    // @ts-ignore
     title: album?.subTitle || `${member?.name ?? ''} 팬아트`,
-    // @ts-ignore
-    description: album?.description,
+    description: album?.description!,
   };
 
   return (
@@ -231,7 +228,6 @@ export default function DetailedGallery({ value, query }) {
       />
       {artworks && (
         <>
-          {/* @ts-ignore */}
           {artworks?.length !== 0 && (
             <Box
               w="100%"
@@ -244,15 +240,11 @@ export default function DetailedGallery({ value, query }) {
                   artworks={
                     isDeletedVisible && gallery !== null
                       ? artworks
-                      : // @ts-ignore
-                        artworks.filter(
-                          // @ts-ignore
-                          (artwork) => artwork.is_hyum === false
-                        )
+                      : artworks.filter((artwork) => artwork.is_hyum === false)
                   }
                   isDeletedVisible={isDeletedVisible}
                   // loadingImage={loadingImage}
-                  handleLoading={handleLoading}
+                  // handleLoading={handleLoading}
                   isGallery={true}
                 />
               )}
@@ -261,11 +253,7 @@ export default function DetailedGallery({ value, query }) {
                   artworks={
                     isDeletedVisible && gallery !== null
                       ? artworks
-                      : // @ts-ignore
-                        artworks.filter(
-                          // @ts-ignore
-                          (artwork) => artwork.is_hyum === false
-                        )
+                      : artworks.filter((artwork) => artwork.is_hyum === false)
                   }
                   isDeletedVisible={isDeletedVisible}
                   // handleLoading={handleLoading}

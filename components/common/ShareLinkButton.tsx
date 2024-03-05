@@ -1,7 +1,7 @@
 import { Button, Tooltip, useToast } from '@chakra-ui/react';
 import { ImLink } from 'react-icons/im';
 
-const ShareLinkButton = () => {
+export default function ShareLinkButton() {
   const toast = useToast();
 
   const handleCopyLink = () => {
@@ -34,6 +34,4 @@ const ShareLinkButton = () => {
       </Button>
     </Tooltip>
   );
-};
-
-export default ShareLinkButton;
+}

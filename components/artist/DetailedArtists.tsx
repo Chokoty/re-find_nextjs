@@ -196,7 +196,6 @@ export default function DetailedArtists({ nickname, artistInfo }: Props) {
         });
       }
       // 504 에러 예외처리, 504 에러는 서버가 불안정할 때 발생
-      // @ts-ignore
       else if (error.response?.status === 504) {
         toast({
           title:

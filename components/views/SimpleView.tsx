@@ -1,5 +1,4 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
-import { useState } from 'react';
 
 import SimpleCards from '@/components/card/SimpleCards';
 

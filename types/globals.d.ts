@@ -62,21 +62,10 @@ declare global {
     list: IsdArtworkList[];
   }
 
-  export interface IsdArtworkList {
-    id: number;
-    url: string;
-    img_url: string;
-    img_url_list: string[];
-    board: string;
-    category: string;
-    title: string;
+  export interface IsdArtworkList extends ArtworkList {
     author: string;
     content: string;
-    date: string;
-    view: number;
-    like: number;
-    comment: number;
-    deleted: boolean;
+    comment: number; // TODO: comments로 통일시켜 달라고하기
     source: number[];
     is_shukkou: boolean;
     is_hyum: boolean;

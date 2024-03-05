@@ -1,12 +1,4 @@
-interface Gallery {
-  id: number;
-  value: string;
-  type: string;
-  title: string;
-  subTitle: string;
-  description?: string;
-  query?: string;
-}
+import type { Gallery } from '@/types';
 
 const gallery: Gallery[] = [
   {
