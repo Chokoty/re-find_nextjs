@@ -37,8 +37,8 @@ export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
-const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
-const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID!;
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
 
 export default function RootLayout({
   children,
