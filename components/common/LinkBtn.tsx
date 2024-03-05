@@ -3,34 +3,33 @@ import NextImage from 'next/image';
 import React from 'react';
 import { FaYoutube } from 'react-icons/fa';
 
-import Twitter from '@/public/static/icons/twitter-x-logo.webp';
+import Afreeca from '@/public/static/icons/afreecatv-logo.webp';
 import Waksplorer from '@/public/static/icons/waksplorer-logo.webp';
 import Wakzoo from '@/public/static/icons/wakzoo-logo.webp';
 
-const XButton = () => (
+const AfreecaButton = () => (
   <Button
-    href="https://twitter.com/rerurureruru"
+    href="https://bj.afreecatv.com/ecvhao"
     as="a"
-    borderRadius={8}
     target="_blank"
     width="32px"
     mr="2.5"
     p="0"
-    colorScheme="black"
-    bg="black"
+    colorScheme="white"
+    bg="white"
+    borderRadius={8}
     shadow="md"
   >
     <NextImage
-      width={18}
-      height={18}
+      width={30}
+      height={30}
       quality={90}
-      src={Twitter}
-      alt="twitter-x"
-      style={{ filter: 'invert(100%)' }}
+      src={Afreeca}
+      alt="afreeca"
+      // style={{ filter: 'invert(100%)' }}
     />
   </Button>
 );
-
 const WakzooButton = () => (
   <Button
     className="link-to-wakzoo"
@@ -40,12 +39,18 @@ const WakzooButton = () => (
     mr="2.5"
     href="https://cafe.naver.com/steamindiegame"
     colorScheme="green"
-    bg="#FFFFFF"
+    bg="white"
     as="a"
     target="_blank"
     shadow="md"
   >
-    <NextImage width={60} height={60} src={Wakzoo} alt="naver-cafe-logo" />
+    <NextImage
+      width={60}
+      height={60}
+      quality={90}
+      src={Wakzoo}
+      alt="naver-cafe-logo"
+    />
   </Button>
 );
 
@@ -73,35 +78,6 @@ const YoutubeButton = () => (
   </Button>
 );
 
-const GithubButton = () => (
-  <Button
-    width="32px"
-    borderRadius={8}
-    p="0"
-    mr="2.5"
-    href="https://github.com/re-find-WAKTAVERSE"
-    bg="#eee"
-    as="a"
-    target="_blank"
-    shadow="md"
-  >
-    <svg
-      aria-hidden="true"
-      className="octicon octicon-mark-github"
-      height="24"
-      version="1.1"
-      viewBox="0 0 16 16"
-      width="24"
-      color="#333"
-    >
-      <path
-        fillRule="evenodd"
-        d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
-      ></path>
-    </svg>
-  </Button>
-);
-
 const WaksplorerButton = () => (
   <Button
     href="https://waktaver.se/"
@@ -119,12 +95,12 @@ const WaksplorerButton = () => (
       height={30}
       quality={90}
       src={Waksplorer}
-      alt="twitter-x"
+      alt="waksplorer"
     />
   </Button>
 );
 
-const LinkBtns = () => {
+export default function LinkBtns() {
   return (
     <Flex
       w="100%"
@@ -135,22 +111,9 @@ const LinkBtns = () => {
       alignItems="center"
     >
       <WakzooButton />
+      <AfreecaButton />
       <YoutubeButton />
       <WaksplorerButton />
-      {/* <XButton /> */}
-      <GithubButton />
     </Flex>
   );
-};
-
-export default LinkBtns;
-
-// const GithubIcon = () => (
-//   <Box
-//     width="36px"
-//     height="36px"
-//     backgroundImage="url('/static/icons/search-icon.svg')"
-//     backgroundPosition="center"
-//     backgroundSize="contain"
-//   />
-// );
+}
