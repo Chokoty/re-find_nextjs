@@ -28,7 +28,7 @@ const RandomFanartBtn = ({ selectedEventKey }: Props) => {
   const [keywordUrl, setKeywordUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(true);
-  const [isFocused, setIsFocused] = useState(false);
+  // const [isFocused, setIsFocused] = useState(false);
   // const [isBold, setIsBold] = useState(false);
 
   const direction = useBreakpointValue({

@@ -9,10 +9,13 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import { getArtistInfo } from '@/lib/service/client/artists';
+import { isAxiosError } from 'axios';
 
-export default function DetailedEvent({ keyword }: { keyword: string }) {
+type Prop = { keyword: string };
+
+export default function DetailedEvent({ keyword }: Prop) {
   // { keyword_artworks }
-  const [artworks, setArtworks] = useState([]); // useState(artist_artworks_data?.list);
+  const [artworks, setArtworks] = useState<ArtworkList[]>([]); // useState(artist_artworks_data?.list);
 
   // infinite scroll
   const { ref, inView } = useInView({
@@ -55,10 +58,9 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
   }, []);
 
   // 이미지 로딩
-  // @ts-ignore
-  const handleLoading = useCallback((Loading) => {
-    setLoadingImage(Loading);
-  }, []);
+  // const handleLoading = useCallback((Loading) => {
+  //   setLoadingImage(Loading);
+  // }, []);
 
   const getArtistArtworks = useCallback(async () => {
     // console.log('getArtistArtworks');
@@ -79,14 +81,11 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
       if (lastPage === true) {
         setIsLastPage(true);
       }
-      // @ts-ignore
       if (page === 1) setArtworks([...list]);
-      // @ts-ignore
       else setArtworks([...artworks, ...list]);
     } catch (error) {
       // 500에러 예외처리
-      // console.log(error.response);
-      // @ts-ignore
+      if (!isAxiosError(error)) return;
       if (error.response?.status === 500) {
         toast({
           title:
@@ -190,7 +189,7 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
                     artworks={artworks}
                     isDeletedVisible={isDeletedVisible}
                     // loadingImage={loadingImage}
-                    handleLoading={handleLoading}
+                    // handleLoading={handleLoading}
                     isGallery={true}
                   />
                 )}
