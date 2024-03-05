@@ -9,7 +9,7 @@ type Prop = {
   count: number;
 };
 
-const UpdateLog = ({ count }: Prop) => {
+export default function UpdateLog({ count }: Prop) {
   // const highlightColor = useColorModeValue(
   //   lightMode.highlight,
   //   darkMode.highlight
@@ -40,6 +40,4 @@ const UpdateLog = ({ count }: Prop) => {
         ))}
     </Flex>
   );
-};
-
-export default UpdateLog;
+}

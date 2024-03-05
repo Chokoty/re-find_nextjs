@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 // 쿠키 설정 함수
 const setCookie = (name: string, value: string, days: number): void => {
   // console.log('setCookie', value);
@@ -9,7 +7,7 @@ const setCookie = (name: string, value: string, days: number): void => {
 };
 
 // 쿠키 가져오기 함수
-const getCookie = (name: string): string => {
+const getCookie = (name: string) => {
   const cookieValue = document.cookie.match(`(^|;)\\s*${name}\\s*=\\s*([^;]+)`);
   return cookieValue ? cookieValue.pop() : '';
 };

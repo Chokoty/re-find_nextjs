@@ -1,12 +1,13 @@
 import { Box } from '@chakra-ui/react';
 import Image from 'next/image';
-import { FileWithPreview } from '@/types';
+
+import type { FileWithPreview } from '@/types';
 
 type Prop = {
   files: FileWithPreview[];
 };
 
-const Preview = ({ files }: Prop) => {
+export default function Preview({ files }: Prop) {
   const file = files[0];
   // const width = useBreakpointValue({ base: '90%', md: '100%' });
 
@@ -39,6 +40,4 @@ const Preview = ({ files }: Prop) => {
       />
     </Box>
   );
-};
-
-export default Preview;
+}

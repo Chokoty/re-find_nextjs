@@ -1,14 +1,15 @@
+import type { SystemProps } from '@chakra-ui/react';
 import {
   Box,
   Button,
   Flex,
   Link,
   Skeleton,
-  SystemProps,
   Text,
   useBreakpointValue,
   // useColorModeValue,
 } from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
@@ -16,7 +17,6 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { getIsdArtworks } from '@/lib/service/client/events';
-import { isAxiosError } from 'axios';
 // import { IoSettingsSharp } from 'react-icons/io5';
 // import { darkMode, lightMode } from '@/styles/theme';
 
@@ -24,7 +24,7 @@ type Prop = {
   initialFanart: EventFanart | null;
 };
 
-const IsegyeFestivalFanart = ({ initialFanart }: Prop) => {
+export default function IsegyeFestivalFanart({ initialFanart }: Prop) {
   const [fanart, setFanart] = useState<EventFanart | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(true);
@@ -280,6 +280,4 @@ const IsegyeFestivalFanart = ({ initialFanart }: Prop) => {
       </div>
     </Box>
   );
-};
-
-export default IsegyeFestivalFanart;
+}

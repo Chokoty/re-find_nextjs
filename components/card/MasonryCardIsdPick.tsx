@@ -35,12 +35,12 @@ type Props = {
   isGallery: boolean;
 };
 
-const MasonryCardIsdPick = ({
+export default function MasonryCardIsdPick({
   artwork,
   isFocused,
   onToggleFocus,
   isGallery,
-}: Props) => {
+}: Props) {
   const [imageHeight, setImageHeight] = useState<number | null>(null);
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
@@ -319,6 +319,4 @@ const MasonryCardIsdPick = ({
       </Box>
     </Box>
   );
-};
-
-export default MasonryCardIsdPick;
+}

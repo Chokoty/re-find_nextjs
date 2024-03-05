@@ -3,23 +3,17 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import React from 'react';
 
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface AuthorProfileCardProps {
+interface Props {
   writerURL: string;
   profURL: string;
   nickname: string;
   board: string;
 }
 
-const AuthorProfileCard: React.FC<AuthorProfileCardProps> = ({
-  writerURL,
-  profURL,
-  nickname,
-  board,
-}) => {
-  const color = useColorModeValue(lightMode.color, darkMode.color);
+export default function AuthorProfileCard({ profURL, nickname, board }: Props) {
+  // const color = useColorModeValue(lightMode.color, darkMode.color);
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const highlightColor = useColorModeValue(
     lightMode.highlight,
@@ -30,7 +24,7 @@ const AuthorProfileCard: React.FC<AuthorProfileCardProps> = ({
     darkMode.highlight2
   );
 
-  const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
+  // const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
 
   return (
     // <Link
@@ -99,6 +93,4 @@ const AuthorProfileCard: React.FC<AuthorProfileCardProps> = ({
     </NextLink>
     // </Link>
   );
-};
-
-export default AuthorProfileCard;
+}

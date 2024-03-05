@@ -13,16 +13,18 @@ import { TbDownload, TbPhotoSearch } from 'react-icons/tb';
 
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
-export default function ListView({ artworks }) {
+type Prop = { artworks: ArtworkList[] };
+
+export default function ListView({ artworks }: Prop) {
   const article_link = useResponsiveLink('', 'article');
   const isTabletOrSmaller = useBreakpointValue({ base: true, md: false });
   // console.log(artworks);
 
-  const [hoveredIndices, setHoveredIndices] = useState([]);
+  const [hoveredIndices, setHoveredIndices] = useState<number[]>([]);
   // const [clickedIndices, setClickedIndices] = useState([]);
-  const [clickedIndex, setClickedIndex] = useState(null);
+  const [clickedIndex, setClickedIndex] = useState<number | null>(null);
 
-  const handleButtonClick = (index) => {
+  const handleButtonClick = (index: number) => {
     if (clickedIndex === index) {
       // 이미 클릭된 버튼을 다시 클릭하면 null로 설정하여 끕니다.
       setClickedIndex(null);
@@ -31,11 +33,11 @@ export default function ListView({ artworks }) {
       setClickedIndex(index);
     }
   };
-  const handleMouseEnter = (index) => {
+  const handleMouseEnter = (index: number) => {
     setHoveredIndices((prev) => [...prev, index]);
   };
 
-  const handleMouseLeave = (index) => {
+  const handleMouseLeave = (index: number) => {
     setHoveredIndices((prev) => prev.filter((i) => i !== index));
   };
   return (

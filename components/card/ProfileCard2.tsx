@@ -12,19 +12,19 @@ import React from 'react';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface AuthorProfileCardProps {
+interface Props {
   writerURL: string;
   profURL: string;
   nickname: string;
   board: string[];
 }
 
-const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
+export default function AuthorProfileCard2({
   writerURL,
   profURL,
   nickname,
   board,
-}) => {
+}: Props) {
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const highlightColor = useColorModeValue(
     lightMode.highlight,
@@ -35,7 +35,10 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
     darkMode.highlight2
   );
 
-  const member_link = useResponsiveLink(writerURL.split('/').pop(), 'member');
+  const member_link = useResponsiveLink(
+    writerURL.split('/').pop() ?? '',
+    'member'
+  );
 
   return (
     <Link
@@ -117,6 +120,4 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
       </Button>
     </Link>
   );
-};
-
-export default AuthorProfileCard2;
+}

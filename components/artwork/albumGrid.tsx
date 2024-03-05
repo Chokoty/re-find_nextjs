@@ -6,11 +6,11 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import gallery from '@/data/gallery';
 
+import gallery from '@/data/gallery';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const AlbumGrid = () => {
+export default function AlbumGrid() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const highlight2 = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const router = useRouter();
@@ -69,6 +69,4 @@ const AlbumGrid = () => {
       </SimpleGrid>
     </Box>
   );
-};
-
-export default AlbumGrid;
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -17,7 +18,6 @@ import members from '@/data/members';
 import { getIsdNotice } from '@/lib/service/client/gallery';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
-import { isAxiosError } from 'axios';
 
 export default function Album() {
   const itemsPerPage = 30;

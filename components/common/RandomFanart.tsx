@@ -19,6 +19,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
@@ -29,7 +30,6 @@ import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { getRandomFanart } from '@/lib/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { CheckBoxType } from '@/types';
-import { isAxiosError } from 'axios';
 
 const setLocalStorage = (key: string, value: CheckBoxType) => {
   try {
@@ -52,7 +52,7 @@ const getLocalStorage = (key: string) => {
   }
 };
 
-const RandomFanart = () => {
+export default function RandomFanart() {
   const [fanart, setFanart] = useState<EventFanart | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(false);
@@ -370,6 +370,4 @@ const RandomFanart = () => {
       </Flex>
     </Box>
   );
-};
-
-export default RandomFanart;
+}

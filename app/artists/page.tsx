@@ -75,7 +75,6 @@ export default function Artists() {
   // };
 
   // 정렬 로직
-
   const sortArtists = (
     _artists: AuthorInfoWithName[],
     { field, order }: SortCriteria
@@ -156,7 +155,6 @@ export default function Artists() {
     const updatedArtists = Object.entries(artistsList).map(([key, value]) => {
       return { name: key, ...(value as AuthorInfo) };
     });
-    // console.log(updatedArtists);
     setArtists(updatedArtists);
   }, [artistsList]);
   // }, [artists_list]);

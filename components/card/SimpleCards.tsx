@@ -9,7 +9,7 @@ type Prop = {
   artwork: ArtworkList;
 };
 
-const SimpleCard = ({ artwork }: Prop) => {
+export default function SimpleCard({ artwork }: Prop) {
   const article_link = useResponsiveLink('', 'article');
   // const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   // const [imageHeight, setImageHeight] = useState(null);
@@ -215,6 +215,4 @@ const SimpleCard = ({ artwork }: Prop) => {
       </Box>
     </Link>
   );
-};
-
-export default SimpleCard;
+}

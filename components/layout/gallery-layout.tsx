@@ -7,12 +7,9 @@ import { darkMode, lightMode } from '@/styles/theme';
 type Props = {
   children: ReactNode;
   title: string;
-}
+};
 
-export default function DetailedGalleryLayout({
-  children,
-  title,
-}: Props) {
+export default function DetailedGalleryLayout({ children, title }: Props) {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (

@@ -18,7 +18,7 @@ import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const Description = () => {
+export default function Description() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   // Theme
@@ -125,6 +125,4 @@ const Description = () => {
       </AccordionItem>
     </Accordion>
   );
-};
-
-export default Description;
+}

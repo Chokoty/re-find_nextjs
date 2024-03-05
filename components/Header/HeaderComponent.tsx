@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
+import type { RefObject } from 'react';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
@@ -23,16 +24,25 @@ const SearchModal = dynamic(() => import('@/components/search/SearchModal'), {
   ssr: false,
 });
 
-const HeaderComponent = ({
+type Props = {
+  toggleDrawer: () => void;
+  isOpenDrawer: boolean;
+  myDrawerRef: RefObject<HTMLDivElement>;
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+};
+
+export default function HeaderComponent({
   toggleDrawer,
   isOpenDrawer,
   myDrawerRef,
   isOpen,
   onOpen,
   onClose,
-}) => {
+}: Props) {
   const pathname = usePathname();
-  const isCurrentPath = (path) => pathname === path;
+  const isCurrentPath = (path: string) => pathname === path;
   const isSearchPage = pathname === '/search';
   const isGalleryPage = pathname === '/gallery';
   const isAlbumPage = pathname.includes('/gallery');
@@ -147,6 +157,4 @@ const HeaderComponent = ({
       <SearchModal isOpen={isOpen} onClose={onClose} />
     </Flex>
   );
-};
-
-export default HeaderComponent;
+}

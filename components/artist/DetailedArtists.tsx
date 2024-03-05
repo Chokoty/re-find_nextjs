@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, Center, Text, useToast } from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
@@ -13,7 +14,6 @@ import ArtistHeader from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import { getArtistInfo } from '@/lib/service/client/artists';
-import { isAxiosError } from 'axios';
 
 type Props = {
   nickname: string;

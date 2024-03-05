@@ -12,7 +12,7 @@ import UpdateCardList from '@/components/card/UpdateCardList';
 import { getRecentUpdateInfos } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const UpdateBoard = () => {
+export default function UpdateBoard() {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
@@ -101,6 +101,4 @@ const UpdateBoard = () => {
       </Box>
     </Box>
   );
-};
-
-export default UpdateBoard;
+}

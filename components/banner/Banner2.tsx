@@ -5,7 +5,7 @@ import React from 'react';
 
 import MainBanner from '@/public/static/images/banners/banner2.webp';
 
-const Banner2 = () => {
+export default function Banner2() {
   return (
     <Box
       maxW="700px"
@@ -30,6 +30,4 @@ const Banner2 = () => {
       </Box>
     </Box>
   );
-};
-
-export default Banner2;
+}

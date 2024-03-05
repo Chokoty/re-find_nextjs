@@ -1,14 +1,15 @@
+import type { SystemProps } from '@chakra-ui/react';
 import {
   Box,
   Button,
   Flex,
   Link,
   Skeleton,
-  SystemProps,
   Text,
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
@@ -18,13 +19,12 @@ import { getKidingArtworks } from '@/lib/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import { useResponsiveLink } from '../../hook/useResponsiveLink';
-import { isAxiosError } from 'axios';
 
 type Prop = {
   initialFanart: EventFanart | null;
 };
 
-const KiddingFanart = ({ initialFanart }: Prop) => {
+export default function KiddingFanart({ initialFanart }: Prop) {
   const [fanart, setFanart] = useState<EventFanart | null>(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isvisible, setIsvisible] = useState(true);
@@ -276,6 +276,4 @@ const KiddingFanart = ({ initialFanart }: Prop) => {
       </div>
     </Box>
   );
-};
-
-export default KiddingFanart;
+}

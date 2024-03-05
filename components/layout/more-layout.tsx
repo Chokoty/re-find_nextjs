@@ -5,12 +5,12 @@ import React from 'react';
 import MoreHeader from '@/components/layout/MoreHeader';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface OtherLayoutProps {
+interface Props {
   children: ReactNode;
   title: string;
 }
 
-const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
+export default function MoreLayout({ children, title }: Props) {
   // const isIndex = router.asPath.endsWith('/more'); // 현재 경로가 '/more'로 끝나는지 확인
   const isIndex = false;
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
@@ -34,6 +34,4 @@ const MoreLayout: React.FC<OtherLayoutProps> = ({ children, title }) => {
       <div className="layout">{children}</div>
     </Box>
   );
-};
-
-export default MoreLayout;
+}

@@ -1,4 +1,4 @@
-import { Sort, View } from '@/types';
+import type { Sort, View } from '@/types';
 
 export const viewTypes: View[] = [
   { name: '베스트', value: 'best_cnt', colorScheme: 'red' },

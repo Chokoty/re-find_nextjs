@@ -35,12 +35,12 @@ type Props = {
   isGallery: boolean;
 };
 
-const MasonryCard = ({
+export default function MasonryCard({
   artwork,
   isFocused,
   onToggleFocus,
   isGallery,
-}: Props) => {
+}: Props) {
   const [imageHeight, setImageHeight] = useState<number | null>(null);
   // const isMobile = useResponsive();
   const article_link = useResponsiveLink('', 'article');
@@ -355,6 +355,4 @@ const MasonryCard = ({
       </Box>
     </Box>
   );
-};
-
-export default MasonryCard;
+}

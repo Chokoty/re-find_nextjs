@@ -8,6 +8,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -25,8 +26,7 @@ import TopTitle from '@/components/TopTitle';
 import { useResponsive } from '@/hook/useResponsive';
 import { getImageInfoByHash } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
-import { isAxiosError } from 'axios';
-import { FileWithPreview } from '@/types';
+import type { FileWithPreview } from '@/types';
 
 const targetCount = 50000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(

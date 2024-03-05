@@ -1,8 +1,8 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 
-import { darkMode, lightMode } from '@/styles/theme';
 import members from '@/data/members';
+import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
   type: string;
@@ -12,7 +12,12 @@ type Props = {
   isdPick: boolean;
 };
 
-const MemberButtonList = ({ type, range, selected, setSelected }: Props) => {
+export default function MemberButtonList({
+  type,
+  range,
+  selected,
+  setSelected,
+}: Props) {
   const router = useRouter();
   const bg4 = useColorModeValue(lightMode.bg4, darkMode.bg4);
   const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -163,6 +168,4 @@ const MemberButtonList = ({ type, range, selected, setSelected }: Props) => {
         ))}
     </Box>
   );
-};
-
-export default MemberButtonList;
+}

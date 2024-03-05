@@ -35,7 +35,6 @@ export default function ArtistsList({
   alert,
 }: Props) {
   const isMobile = useResponsive();
-
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
   const imgValue = useBreakpointValue({ base: '4rem', md: '6rem' });
@@ -59,7 +58,7 @@ export default function ArtistsList({
           ))} */}
       {visibleArtists.map(
         (artist, index) =>
-          artist.name.includes('탈퇴회원') && (
+          !artist.name.includes('탈퇴회원') && (
             <Link
               key={index}
               href={`/artists/${artist.name}`}

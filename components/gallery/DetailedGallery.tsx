@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, Text, useToast } from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -15,8 +16,7 @@ import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { getKeywordGalleryArtworks } from '@/lib/service/client/gallery';
-import { isAxiosError } from 'axios';
-import { Gallery, Member } from '@/types';
+import type { Gallery, Member } from '@/types';
 
 type Props = {
   value: string;
@@ -163,7 +163,7 @@ export default function DetailedGallery({ value, query }: Props) {
 
   const topTitle = {
     title: album?.subTitle || `${member?.name ?? ''} 팬아트`,
-    description: album?.description!,
+    description: album?.description ?? '',
   };
 
   return (

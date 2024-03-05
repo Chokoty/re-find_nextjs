@@ -8,7 +8,7 @@ type Prop = {
   width: string;
 };
 
-const UpdateLogBoard = ({ width }: Prop) => {
+export default function UpdateLogBoard({ width }: Prop) {
   // const color = useColorModeValue(lightMode.color, darkMode.color);
 
   return (
@@ -50,6 +50,4 @@ const UpdateLogBoard = ({ width }: Prop) => {
       <UpdateLog count={2} />
     </Box>
   );
-};
-
-export default UpdateLogBoard;
+}

@@ -16,7 +16,7 @@ type Prop = {
   targetCount: number;
 };
 
-const EventModal = ({ targetCount }: Prop) => {
+export default function EventModal({ targetCount }: Prop) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalIsOpen, setModalIsOpen] = useState(true);
 
@@ -108,6 +108,4 @@ const EventModal = ({ targetCount }: Prop) => {
       )}
     </>
   );
-};
-
-export default EventModal;
+}

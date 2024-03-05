@@ -12,7 +12,7 @@ type Props = {
   width: string;
 };
 
-const EventFanarts = ({ initialFanart, showCnt, width }: Props) => {
+export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   const [selectedEventKey, setSelectedEventKey] = useState(
@@ -189,6 +189,4 @@ const EventFanarts = ({ initialFanart, showCnt, width }: Props) => {
       />
     </Box>
   );
-};
-
-export default EventFanarts;
+}

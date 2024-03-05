@@ -13,7 +13,7 @@ import { PiGiftBold } from 'react-icons/pi';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const MoreButtons = () => {
+export default function MoreButtons() {
   const bg = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const Icon = useColorModeValue(FiMoon, SunIcon);
 
@@ -128,6 +128,4 @@ const MoreButtons = () => {
       </Button>
     </Box>
   );
-};
-
-export default MoreButtons;
+}

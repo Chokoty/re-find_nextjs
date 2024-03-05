@@ -24,7 +24,7 @@ type Prop = {
   update: RecentBoardData;
 };
 
-const UpdateCard = ({ update }: Prop) => {
+export default function UpdateCard({ update }: Prop) {
   const isMobile = useResponsive();
 
   const highlightColor = useColorModeValue(
@@ -251,6 +251,4 @@ const UpdateCard = ({ update }: Prop) => {
       </Box>
     </Box>
   );
-};
-
-export default UpdateCard;
+}

@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, Text, useToast } from '@chakra-ui/react';
+import { isAxiosError } from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -9,7 +10,6 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import { getArtistInfo } from '@/lib/service/client/artists';
-import { isAxiosError } from 'axios';
 
 type Prop = { keyword: string };
 

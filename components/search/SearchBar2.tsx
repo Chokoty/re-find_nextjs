@@ -38,13 +38,13 @@ export default function SearchBar2({ isSearchPage }: Prop) {
     // }
   };
 
-  const handleEnterKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleInputClick();
-    }
-  };
+  // const handleEnterKeyPress = (e) => {
+  //   if (e.key === 'Enter') {
+  //     handleInputClick();
+  //   }
+  // };
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(e.target.value);
     setInput(e.target.value);
   };
@@ -96,7 +96,7 @@ export default function SearchBar2({ isSearchPage }: Prop) {
           value={input}
           onChange={handleSearch}
           onClick={handleInputClick}
-          onKeyPress={handleEnterKeyPress}
+          // onKeyPress={handleEnterKeyPress}
           focusBorderColor="#01BFA2"
           size="md"
           // value={nickname}
