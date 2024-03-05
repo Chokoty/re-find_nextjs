@@ -4,41 +4,32 @@ import {
   Flex,
   Link,
   Skeleton,
+  SystemProps,
   Text,
   useBreakpointValue,
-  useColorModeValue,
+  // useColorModeValue,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
-// import { IoSettingsSharp } from 'react-icons/io5';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { getKidingArtworks } from '@/lib/service/client/events';
-import { darkMode, lightMode } from '@/styles/theme';
+import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { getIsdArtworks } from '@/lib/service/client/events';
+import { isAxiosError } from 'axios';
+// import { IoSettingsSharp } from 'react-icons/io5';
+// import { darkMode, lightMode } from '@/styles/theme';
 
-import { useResponsiveLink } from '../../hook/useResponsiveLink';
+type Prop = {
+  initialFanart: EventFanart | null;
+};
 
-const KiddingFanart = ({ initialFanart }) => {
-  const [fanart, setFanart] = useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+const IsegyeFestivalFanart = ({ initialFanart }: Prop) => {
+  const [fanart, setFanart] = useState<EventFanart | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(true);
-  const [isFocused, setIsFocused] = useState(false);
+  // const [isFocused, setIsFocused] = useState(false);
   const [isBold, setIsBold] = useState(false);
-
-  // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-  const direction = useBreakpointValue({ base: 'column', md: 'row' });
-
-  const article_link = useResponsiveLink(
-    fanart?.url.split('/').pop(),
-    'article'
-  );
-
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
-
-  // const toggleFocus = () => {
-  //   setIsFocused(!isFocused);
-  // };
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -47,6 +38,21 @@ const KiddingFanart = ({ initialFanart }) => {
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
   }, []);
+  // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+  const direction = useBreakpointValue({
+    base: 'column',
+    md: 'row',
+  }) as SystemProps['flexDirection'];
+  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
+
+  const article_link = useResponsiveLink(
+    fanart?.url.split('/').pop() ?? '',
+    'article'
+  );
+  // const toggleFocus = () => {
+  //   setIsFocused(!isFocused);
+  // };
+
   useEffect(() => {
     if (initialFanart == null) fetchRandomFanart();
     setFanart(initialFanart);
@@ -55,9 +61,10 @@ const KiddingFanart = ({ initialFanart }) => {
   const fetchRandomFanart = async () => {
     try {
       setIsLoading(true);
-      const result = await getKidingArtworks();
+      const result = await getIsdArtworks();
       setFanart(result);
     } catch (error) {
+      if (!isAxiosError(error)) return;
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
       } else if (error.code === 'ERR_NETWORK') {
@@ -69,12 +76,8 @@ const KiddingFanart = ({ initialFanart }) => {
   };
 
   const handleLoad = async () => {
-    // await new Promise((r) => setTimeout(r, 1000));
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        setIsLoading(false);
-        resolve();
-      }, 1000);
+    await new Promise((r) => {
+      setTimeout(r, 1000);
     });
     setIsLoading(false);
   };
@@ -84,7 +87,7 @@ const KiddingFanart = ({ initialFanart }) => {
     fetchRandomFanart();
   };
 
-  const previewContainer = {
+  const previewContainer: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -94,7 +97,7 @@ const KiddingFanart = ({ initialFanart }) => {
     // borderRadius: '0.2rem',
     // padding: '1.5rem',
   };
-  const img = {
+  const img: React.CSSProperties = {
     display: 'flex',
     height: '100%',
     maxHeight: '400px',
@@ -105,7 +108,7 @@ const KiddingFanart = ({ initialFanart }) => {
     marginBottom: '0.5rem',
   };
 
-  const linkDiv = {
+  const linkDiv: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -113,7 +116,7 @@ const KiddingFanart = ({ initialFanart }) => {
     width: '100%',
   };
 
-  const guide = {
+  const guide: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'end',
@@ -123,11 +126,10 @@ const KiddingFanart = ({ initialFanart }) => {
 
   return (
     <Box
-      // bg="#FFFAE8"
-      p="0.5rem"
+      // p="0.5rem"
       w="100%"
-      // minW="300px"
-      // maxW="540px"
+      //  maxW="540px"
+
       borderRadius="lg"
     >
       <div style={previewContainer} className="random-fanart">
@@ -168,7 +170,7 @@ const KiddingFanart = ({ initialFanart }) => {
               align="center"
               color="#000"
             >
-              3집 Kidding 특집 팬아트
+              이세계 페스티벌 특집 팬아트
             </Text> */}
             <Skeleton isLoaded={!isLoading}>
               {fanart && (
@@ -179,14 +181,15 @@ const KiddingFanart = ({ initialFanart }) => {
                     overflow="hidden"
                     w="100%"
                     pt="3rem"
+                    // mb="1rem"
                   >
                     <Link
                       className="link-to-wakzoo"
                       href={article_link}
-                      passHref
+                      // passHref
                       isExternal
                       style={{
-                        linkDiv,
+                        ...linkDiv,
                         position: 'relative',
                       }}
                     >
@@ -197,7 +200,7 @@ const KiddingFanart = ({ initialFanart }) => {
                         height={475}
                         src={modifiedUrl300}
                         // src={fanart?.img_url}
-                        alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
+                        alt={`랜덤 팬아트 게시글 title: ${fanart?.title}`}
                         onLoad={handleLoad}
                       />
                       <Box
@@ -226,17 +229,19 @@ const KiddingFanart = ({ initialFanart }) => {
                     <Box
                       as="a"
                       href={`/artists/${fanart?.nickname}`}
-                      passHref
+                      // passHref
                       style={linkDiv}
                     >
                       <Text
                         color="#1B1642"
+                        // as="b"
                         // fontWeight={isBold ? 'bold' : 'normal'}
                       >
                         제목: {fanart?.title.slice(0, 20)}
                       </Text>
                       <Text
                         color="#1B1642"
+                        // as="b"
                         // fontWeight={isBold ? 'bold' : 'normal'}
                       >
                         작가: {fanart?.nickname}
@@ -252,8 +257,12 @@ const KiddingFanart = ({ initialFanart }) => {
           <Button
             className="random-fanart-kidding"
             // w="200px"
-            backgroundColor="#FE78BB"
-            _hover={{ bg: '#e94396' }}
+            backgroundColor="#14532D"
+            // backgroundColor="#FE78BB"
+            _hover={{
+              bg: '#9BCC95',
+              // bg: '#e94396'
+            }}
             color="#FFF"
             size="md"
             mt="1.5rem"
@@ -265,7 +274,7 @@ const KiddingFanart = ({ initialFanart }) => {
                 height: '20px',
               }}
             />
-            &nbsp; 키딩 팬아트 랜덤가챠
+            &nbsp; 이세계 페스티벌 팬아트 랜덤가챠
           </Button>
         </Flex>
       </div>
@@ -273,4 +282,4 @@ const KiddingFanart = ({ initialFanart }) => {
   );
 };
 
-export default KiddingFanart;
+export default IsegyeFestivalFanart;
