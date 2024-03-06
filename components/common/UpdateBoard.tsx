@@ -9,7 +9,7 @@ import {
 import { useEffect, useState } from 'react';
 
 import UpdateCardList from '@/components/card/UpdateCardList';
-import { getRecentUpdateInfos } from '@/lib/service/client/home';
+import { getRecentUpdateInfos } from '@/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function UpdateBoard() {

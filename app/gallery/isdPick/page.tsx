@@ -15,7 +15,7 @@ import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
-import { getIsdNotice } from '@/lib/service/client/gallery';
+import { getIsdNotice } from '@/service/client/gallery';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
 

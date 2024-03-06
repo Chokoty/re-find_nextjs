@@ -9,7 +9,7 @@ import HashLoader from 'react-spinners/HashLoader';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import { getArtistInfo } from '@/lib/service/client/artists';
+import { getArtistInfo } from '@/service/client/artists';
 
 type Prop = { keyword: string };
 

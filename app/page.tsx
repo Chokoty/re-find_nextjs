@@ -24,14 +24,9 @@ import BannerSkeleton from '@/components/skeleton/BannerSkeleton';
 import UploadImageSkeleton from '@/components/skeleton/UploadImageSkeleton';
 import TopTitle from '@/components/TopTitle';
 import { useResponsive } from '@/hook/useResponsive';
-import { getImageInfoByHash } from '@/lib/service/client/home';
+import { getImageInfoByHash } from '@/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { FileWithPreview } from '@/types';
-
-interface Data {
-  total_counter: string;
-  ids: Array<{ is_deleted: boolean }>;
-}
 
 const targetCount = 50000; // 이벤트 타겟 카운트
 const DynamicUploadImages = dynamic(

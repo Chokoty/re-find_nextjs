@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 // 역대 작가 리스트 가져오기
+// 아래처럼 lastpage를 받고 page를 주는 형태로 변경 요청
 export const getAuthorList = async () => {
   const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/author_list`;
   const response = await axios.get<AuthorList>(url);
@@ -9,6 +10,7 @@ export const getAuthorList = async () => {
 };
 
 // 작가의 작품들 가져오기
+// {"lastPage": true, "list": []}
 export const getArtistInfo = async ({
   nickname,
   sortType,

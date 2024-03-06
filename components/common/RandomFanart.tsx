@@ -27,7 +27,7 @@ import { IoSettingsSharp } from 'react-icons/io5';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { getRandomFanart } from '@/lib/service/client/events';
+import { getRandomFanart } from '@/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { CheckBoxType } from '@/types';
 

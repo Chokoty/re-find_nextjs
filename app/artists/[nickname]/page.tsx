@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import DetailedArtists from '@/components/artist/DetailedArtists';
 import { siteConfig } from '@/lib/config';
-import { getAuthorInfo } from '@/lib/service/server/artists';
+import { getAuthorInfo } from '@/service/server/artists';
 
 type Params = {
   params: { nickname: string };

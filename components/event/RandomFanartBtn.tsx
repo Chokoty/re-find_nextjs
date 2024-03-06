@@ -16,7 +16,7 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { eventsData } from '@/data/events';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { getUrlInfo } from '@/lib/service/client/events';
+import { getUrlInfo } from '@/service/client/events';
 
 type Props = {
   initialFanart: null;

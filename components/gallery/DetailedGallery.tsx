@@ -15,7 +15,7 @@ import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
-import { getKeywordGalleryArtworks } from '@/lib/service/client/gallery';
+import { getKeywordGalleryArtworks } from '@/service/client/gallery';
 import type { Gallery, Member } from '@/types';
 
 type Props = {

@@ -13,7 +13,7 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ArtistHeader from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import { getArtistInfo } from '@/lib/service/client/artists';
+import { getArtistInfo } from '@/service/client/artists';
 
 type Props = {
   nickname: string;

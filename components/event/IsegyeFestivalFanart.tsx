@@ -16,7 +16,7 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { getIsdArtworks } from '@/lib/service/client/events';
+import { getIsdArtworks } from '@/service/client/events';
 // import { IoSettingsSharp } from 'react-icons/io5';
 // import { darkMode, lightMode } from '@/styles/theme';
 

@@ -15,7 +15,7 @@ import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { getKidingArtworks } from '@/lib/service/client/events';
+import { getKidingArtworks } from '@/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import { useResponsiveLink } from '../../hook/useResponsiveLink';
