@@ -31,7 +31,7 @@
     "airbnb-base",
     "airbnb-typescript/base",
     "prettier",
-    "@tanstack/eslint-plugin-query/recommended"
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }], // Delete `␍` prettier/prettier 해결 방법
@@ -78,8 +78,7 @@
     "no-use-before-define": "off",
     // "no-null/no-null": 2,
     "@tanstack/query/exhaustive-deps": "error",
-    "@tanstack/query/no-deprecated-options": "error",
-    "@tanstack/query/prefer-query-object-syntax": "error",
+    "@tanstack/query/no-rest-destructuring": "warn",
     "@tanstack/query/stable-query-client": "error"
   },
 
