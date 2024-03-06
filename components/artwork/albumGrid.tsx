@@ -6,20 +6,17 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import React from 'react';
 
+import gallery from '@/data/gallery';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const AlbumGrid = ({ gallery }) => {
+export default function AlbumGrid() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const highlight2 = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const router = useRouter();
 
-  // @ts-ignore // TODO: 변경
-  const onClick = (id, subTitle, value) => {
+  const onClick = (value: string) => {
     // const { subTitle } = gallery.find((item) => item.id === id);
-    console.log(subTitle, value);
-
     router.push(`/gallery/${value}`);
   };
 
@@ -42,37 +39,34 @@ const AlbumGrid = ({ gallery }) => {
         placeItems="center"
         m="0 auto"
       >
-        {gallery &&
-          gallery
-            .slice()
-            .reverse()
-            .map((item, index) => (
-              // <NextLink key={index} href={`/artworks/${item.id}`}>
-              <Button
-                key={index}
-                p="1rem"
-                m={['0', '0.5rem']}
-                mb=" 1rem"
-                w={['158px', '200px']}
-                h={['158px', '200px']}
-                display="flex"
-                flexDirection="column"
-                justifyContent="flex-start"
-                alignItems="center"
-                background={item.type === 'special' ? highlight2 : bg2}
-                borderRadius="1rem"
-                boxShadow="md"
-                onClick={() => onClick(item.id, item.subTitle, item.value)}
-              >
-                <Text fontSize="xl" fontWeight="bold" textAlign="left">
-                  {item.title}
-                </Text>
-              </Button>
-              // </NextLink>
-            ))}
+        {gallery
+          .slice()
+          .reverse()
+          .map((item, index) => (
+            // <NextLink key={index} href={`/artworks/${item.id}`}>
+            <Button
+              key={index}
+              p="1rem"
+              m={['0', '0.5rem']}
+              mb=" 1rem"
+              w={['158px', '200px']}
+              h={['158px', '200px']}
+              display="flex"
+              flexDirection="column"
+              justifyContent="flex-start"
+              alignItems="center"
+              background={item.type === 'special' ? highlight2 : bg2}
+              borderRadius="1rem"
+              boxShadow="md"
+              onClick={() => onClick(item.value)}
+            >
+              <Text fontSize="xl" fontWeight="bold" textAlign="left">
+                {item.title}
+              </Text>
+            </Button>
+            // </NextLink>
+          ))}
       </SimpleGrid>
     </Box>
   );
-};
-
-export default AlbumGrid;
+}

@@ -19,7 +19,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
@@ -27,9 +27,11 @@ import { IoSettingsSharp } from 'react-icons/io5';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { getRandomFanart } from '@/lib/service/client/events';
 import { darkMode, lightMode } from '@/styles/theme';
+import type { CheckBoxType } from '@/types';
 
-const setLocalStorage = (key, value) => {
+const setLocalStorage = (key: string, value: CheckBoxType) => {
   try {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (e) {
@@ -37,9 +39,10 @@ const setLocalStorage = (key, value) => {
   }
 };
 
-const getLocalStorage = (key) => {
+const getLocalStorage = (key: string) => {
   try {
-    return JSON.parse(localStorage.getItem(key));
+    const value = localStorage.getItem(key);
+    if (value) return JSON.parse(value);
   } catch (e) {
     const cookie = document.cookie
       .split('; ')
@@ -49,23 +52,25 @@ const getLocalStorage = (key) => {
   }
 };
 
-const RandomFanart = () => {
-  const [fanart, setFanart] = useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+export default function RandomFanart() {
+  const [fanart, setFanart] = useState<EventFanart | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(false);
-  const [checkboxValues, setCheckboxValues] = useState({
+  const [checkboxValues, setCheckboxValues] = useState<CheckBoxType>({
     isd: true,
     wak: true,
     gomem: true,
   });
   const [isBold, setIsBold] = useState(false);
+  const article_link = useResponsiveLink(
+    fanart?.url.split('/').pop() ?? '',
+    'article'
+  );
 
-  const article_link = useResponsiveLink(fanart?.id, 'article');
-
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+  // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
+  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -99,14 +104,10 @@ const RandomFanart = () => {
   const fetchRandomFanart = async () => {
     try {
       setIsLoading(true);
-      const queryParams = Object.keys(checkboxValues)
-        .filter((key) => checkboxValues[key])
-        .join('&');
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/rand?${queryParams}`
-      );
-      setFanart(res.data);
+      const result = await getRandomFanart(checkboxValues);
+      setFanart(result);
     } catch (error) {
+      if (!isAxiosError(error)) return;
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
       } else if (error.code === 'ERR_NETWORK') {
@@ -120,7 +121,7 @@ const RandomFanart = () => {
     // setIsLoading(false);
   };
 
-  const handleCheckboxChange = (e) => {
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const updatedCheckboxValues = {
       ...checkboxValues,
       [e.target.name]: e.target.checked,
@@ -142,16 +143,16 @@ const RandomFanart = () => {
     setLocalStorage('checkboxValues', updatedCheckboxValues);
   };
 
-  const previewContainer = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    marginTop: 16,
-    marginBottom: 30,
-  };
-  const img = {
+  // const previewContainer = {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   flexWrap: 'wrap',
+  //   marginTop: 16,
+  //   marginBottom: 30,
+  // };
+  const img: React.CSSProperties = {
     display: 'flex',
     height: '100%',
     maxHeight: '400px',
@@ -162,7 +163,7 @@ const RandomFanart = () => {
     marginBottom: '0.5rem',
   };
 
-  const linkDiv = {
+  const linkDiv: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -170,7 +171,7 @@ const RandomFanart = () => {
     width: '100%',
   };
 
-  const guide = {
+  const guide: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'end',
@@ -292,7 +293,7 @@ const RandomFanart = () => {
                 <Link
                   className="link-to-akzoo"
                   href={article_link}
-                  passHref
+                  // passHref
                   isExternal
                   style={linkDiv}
                 >
@@ -303,7 +304,7 @@ const RandomFanart = () => {
                     height={475}
                     // src={fanart?.img_url}
                     src={modifiedUrl300}
-                    alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
+                    alt={`랜덤 팬아트 게시글 title: ${fanart?.title}`}
                     onLoad={handleLoad}
                   />
                   <Box
@@ -332,12 +333,13 @@ const RandomFanart = () => {
                 <Box
                   as="a"
                   href={`/artists/${fanart?.nickname}`}
-                  passHref
+                  // passHref
                   style={linkDiv}
                   // fontWeight={isBold ? 'bold' : 'normal'}
                   fontWeight="bold"
                 >
-                  <Text>랜덤 팬아트 id: {fanart?.id}</Text>
+                  {/* <Text>랜덤 팬아트 id: {fanart?.id}</Text> */}
+                  <Text>제목: {fanart?.title.slice(0, 20)}</Text>
                   <Text>작가: {fanart?.nickname}</Text>
                 </Box>
               </Box>
@@ -368,6 +370,4 @@ const RandomFanart = () => {
       </Flex>
     </Box>
   );
-};
-
-export default RandomFanart;
+}

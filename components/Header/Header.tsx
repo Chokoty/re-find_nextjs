@@ -1,7 +1,7 @@
 'use client';
 
 import HeaderComponent from '@/components/Header/HeaderComponent';
-import useHeader from '@/components/Header/useHeader';
+import useHeader from '@/hook/useHeader';
 
 export default function Header() {
   const {

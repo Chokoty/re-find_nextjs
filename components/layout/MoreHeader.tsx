@@ -14,13 +14,18 @@ import { useShowShadow } from '@/hook/useShowShadow';
 import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function MoreHeader({ title, isIndex }) {
+type Props = {
+  title: string;
+  isIndex: boolean;
+};
+
+export default function MoreHeader({ title, isIndex }: Props) {
   const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
 
-  const myDrawerRef = useRef<HTMLElement | null>(null);
+  const myDrawerRef = useRef<HTMLDivElement>(null);
 
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -38,18 +43,21 @@ export default function MoreHeader({ title, isIndex }) {
     if (!isOpenDrawer) {
       return;
     }
-    const handleClick = (e) => {
+    const handleClick = (e: globalThis.MouseEvent) => {
       if (
-        e.target.className === 'hamburger-react' ||
-        e.target.closest('.hamburger-react')
+        (e.target as HTMLDivElement).className === 'hamburger-react' ||
+        (e.target as HTMLDivElement).closest('.hamburger-react')
       ) {
         return;
       }
-      if (e.target.tagName.toLowerCase() === 'a') {
+      if ((e.target as HTMLDivElement).tagName.toLowerCase() === 'a') {
         console.log('a');
         return; // Return early if the clicked element is an <a> tag
       }
-      if (myDrawerRef.current && !myDrawerRef.current.contains(e.target)) {
+      if (
+        myDrawerRef.current &&
+        !myDrawerRef.current.contains(e.target as HTMLDivElement)
+      ) {
         // console.log("other");
         setIsOpenDrawer(false);
       }

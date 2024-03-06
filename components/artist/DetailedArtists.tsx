@@ -1,9 +1,9 @@
 'use client';
 
 import { Box, Center, Text, useToast } from '@chakra-ui/react';
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
@@ -13,9 +13,14 @@ import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ArtistHeader from '@/components/layout/ArtistHeader';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+import { getArtistInfo } from '@/lib/service/client/artists';
 
-// @ts-ignore
-export default function DetailedArtists({ nickname, artistInfo }) {
+type Props = {
+  nickname: string;
+  artistInfo: AuthorOverview;
+};
+
+export default function DetailedArtists({ nickname, artistInfo }: Props) {
   const toast = useToast();
   // const validSortOptions = menuItems.map((item) => item.id);
   // const validBoardOptions = viewTypes.map((item) =>
@@ -30,8 +35,8 @@ export default function DetailedArtists({ nickname, artistInfo }) {
   if (Array.isArray(nickname)) [actualNickname] = nickname;
   else actualNickname = nickname;
 
-  const [profile] = useState(artistInfo);
-  const [artworks, setArtworks] = useState([]);
+  // const [profile] = useState(artistInfo);
+  const [artworks, setArtworks] = useState<ArtworkList[]>([]);
   const [page, setPage] = useState(1);
   const [isLastPage, setIsLastPage] = useState(false);
   // const [selectedBoard, setSelectedBoard] = useState(null);
@@ -60,7 +65,6 @@ export default function DetailedArtists({ nickname, artistInfo }) {
 
   // react-spinners
   const [loadingData, setLoadingData] = useState(false);
-  const [, setLoadingImage] = useState(true);
 
   // useEffect(() => {
   //   // URL에 새로운 정렬 조건을 반영합니다.
@@ -117,12 +121,10 @@ export default function DetailedArtists({ nickname, artistInfo }) {
   }, []);
 
   // 이미지 로딩
-  // @ts-ignore
-  const handleLoading = useCallback((Loading) => {
-    setLoadingImage(Loading);
-  }, []);
-  // @ts-ignore
-  const handleViewTypeSelect = (value) => {
+  // const handleLoading = useCallback((Loading) => {
+  //   setLoadingImage(Loading);
+  // }, []);
+  const handleViewTypeSelect = (value: string) => {
     // 같은거 누르면 해제,토글
     // console.log(value.replace('_cnt', ''));
     if (value === sortCriteria.field) {
@@ -163,33 +165,26 @@ export default function DetailedArtists({ nickname, artistInfo }) {
   // }, [nickname]);
 
   const getArtistArtworks = useCallback(async () => {
-    // console.log('getArtistArtworks');
     if (isLastPage) return;
     if (loadingData) return;
 
     setLoadingData(true);
-    // console.log('artworks loading...');
 
     try {
-      let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
-      if (sortCriteria.field !== '') {
-        url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
-      }
-      // console.log(url); //!
-
-      const response = await axios.get(url).then((res) => res.data);
-      // console.log(response);
-      if (response.lastPage === true) {
+      const { list, lastPage } = await getArtistInfo({
+        nickname,
+        sortType,
+        page,
+        field: sortCriteria.field,
+      });
+      if (lastPage === true) {
         setIsLastPage(true);
       }
-      // @ts-ignore
-      if (page === 1) setArtworks([...response.list]);
-      // @ts-ignore
-      else setArtworks([...artworks, ...response.list]);
+      if (page === 1) setArtworks([...list]);
+      else setArtworks((prev) => [...prev, ...list]);
     } catch (error) {
+      if (!isAxiosError(error)) return;
       // 500에러 예외처리
-      // console.log(error.response);
-      // @ts-ignore
       if (error.response?.status === 500) {
         toast({
           title:
@@ -201,7 +196,6 @@ export default function DetailedArtists({ nickname, artistInfo }) {
         });
       }
       // 504 에러 예외처리, 504 에러는 서버가 불안정할 때 발생
-      // @ts-ignore
       else if (error.response?.status === 504) {
         toast({
           title:
@@ -259,7 +253,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
     <Box>
       <>
         <ArtistHeader title="" />
-        {profile?.author_nickname === '' && profile.num_artworks === 0 && (
+        {artistInfo.author_nickname === '' && artistInfo.num_artworks === 0 && (
           <Center
             w="100%"
             h="80vh"
@@ -285,7 +279,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
             />
           </Center>
         )}
-        {profile?.author_nickname !== '' && (
+        {artistInfo.author_nickname !== '' && (
           <Box
             display="flex"
             flexDirection="column"
@@ -295,7 +289,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
           >
             <AuthorProfileHead
               nickname={actualNickname}
-              profile={profile}
+              profile={artistInfo}
               boardType={boardType}
               handleViewTypeSelect={handleViewTypeSelect}
             />
@@ -332,7 +326,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
                         artworks={artworks}
                         isDeletedVisible={isDeletedVisible}
                         // loadingImage={loadingImage}
-                        handleLoading={handleLoading}
+                        // handleLoading={handleLoading}
                         isGallery={false}
                       />
                     )}

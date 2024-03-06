@@ -1,15 +1,13 @@
 import { create } from 'zustand';
 
-import type { Artist } from '@/types/artist';
-
 interface ArtistsStore {
-  artistsList: Artist[];
-  setArtistsList: (data: Artist[]) => void;
+  artistsList: AuthorList;
+  setArtistsList: (data: AuthorList) => void;
 }
 
 const useArtistsStore = create<ArtistsStore>((set) => ({
-  artistsList: [],
-  setArtistsList: (data) => set(() => ({ artistsList: data })),
+  artistsList: {},
+  setArtistsList: (data) => set((state) => ({ ...state, artistsList: data })),
 }));
 
 export default useArtistsStore;

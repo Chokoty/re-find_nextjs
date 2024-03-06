@@ -1,18 +1,21 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
-import React, { useState } from 'react';
 
 import SimpleCards from '@/components/card/SimpleCards';
 
-export default function SimpleView({ artworks, isDeletedVisible }) {
-  const [focusedArtworkId, setFocusedArtworkId] = useState(null);
-  console.log('artworks');
-  const handleToggleFocus = (id: any) => {
-    if (id === focusedArtworkId) {
-      setFocusedArtworkId(null); // Deselect the artwork if it's already focused
-    } else {
-      setFocusedArtworkId(id); // Set the focused artwork ID
-    }
-  };
+type Props = {
+  artworks: ArtworkList[];
+  isDeletedVisible: boolean;
+};
+
+export default function SimpleView({ artworks, isDeletedVisible }: Props) {
+  // const [focusedArtworkId, setFocusedArtworkId] = useState(null);
+  // const handleToggleFocus = (id: any) => {
+  //   if (id === focusedArtworkId) {
+  //     setFocusedArtworkId(null); // Deselect the artwork if it's already focused
+  //   } else {
+  //     setFocusedArtworkId(id); // Set the focused artwork ID
+  //   }
+  // };
 
   return (
     <Box
@@ -38,8 +41,8 @@ export default function SimpleView({ artworks, isDeletedVisible }) {
             <SimpleCards
               key={index}
               artwork={artwork}
-              isFocused={artwork.id === focusedArtworkId}
-              onToggleFocus={handleToggleFocus}
+              // isFocused={artwork.id === focusedArtworkId}
+              // onToggleFocus={handleToggleFocus}
             />
           ))}
         {!isDeletedVisible &&
@@ -49,8 +52,8 @@ export default function SimpleView({ artworks, isDeletedVisible }) {
                 <SimpleCards
                   key={index}
                   artwork={artwork}
-                  isFocused={artwork.id === focusedArtworkId}
-                  onToggleFocus={handleToggleFocus}
+                  // isFocused={artwork.id === focusedArtworkId}
+                  // onToggleFocus={handleToggleFocus}
                 />
               ) : null // Render null if deleted is true
           )}

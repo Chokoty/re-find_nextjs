@@ -19,7 +19,7 @@ import { LuAlertCircle, LuVote } from 'react-icons/lu';
 import { useCookie } from '@/hook/useCookie';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const MelonVoteModal = () => {
+export default function MelonVoteModal() {
   const { setCookie, getCookie, deleteCookie } = useCookie();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -228,6 +228,4 @@ const MelonVoteModal = () => {
       </Modal>
     </Box>
   );
-};
-
-export default MelonVoteModal;
+}

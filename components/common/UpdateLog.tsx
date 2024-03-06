@@ -1,19 +1,21 @@
-import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { Flex, useColorModeValue } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import React from 'react';
 
 import NoticeCard from '@/components/card/NoticeCard';
 // import TMI from '@/data/tmi';
 import updateLog from '@/data/updateLog';
-import { darkMode, lightMode } from '@/styles/theme';
 
-const UpdateLog = ({ count }) => {
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
+type Prop = {
+  count: number;
+};
 
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
+export default function UpdateLog({ count }: Prop) {
+  // const highlightColor = useColorModeValue(
+  //   lightMode.highlight,
+  //   darkMode.highlight
+  // );
+
+  // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
 
   return (
     <Flex
@@ -38,6 +40,4 @@ const UpdateLog = ({ count }) => {
         ))}
     </Flex>
   );
-};
-
-export default UpdateLog;
+}

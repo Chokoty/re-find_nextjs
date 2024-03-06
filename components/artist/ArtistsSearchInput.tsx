@@ -9,7 +9,12 @@ import { FaSearch } from 'react-icons/fa';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function ArtistsSearchInput({ nickname, handleSearch }) {
+type Props = {
+  nickname: string;
+  handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+export default function ArtistsSearchInput({ nickname, handleSearch }: Props) {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 

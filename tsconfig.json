@@ -1,45 +1,35 @@
 {
   "compilerOptions": {
-    "downlevelIteration": true, // useSearchParams
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    // "downlevelIteration": true, // useSearchParams
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
-    "forceConsistentCasingInFileNames": true,
+    "strict": true, // on
     "noEmit": true,
-    "incremental": true,
+    // "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    },
+    "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "paths": {
+      "@/*": ["./*"]
+    },
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.jsx",
     "**/*.tsx",
-    "pages/api/blurImage.js",
-    "components/MansonryView.tsx.back",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

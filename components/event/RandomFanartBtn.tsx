@@ -1,3 +1,4 @@
+import type { SystemProps } from '@chakra-ui/react';
 import {
   Box,
   Button,
@@ -6,58 +7,100 @@ import {
   Skeleton,
   Text,
   useBreakpointValue,
-  // useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
+import { eventsData } from '@/data/events';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
-// import { IoSettingsSharp } from 'react-icons/io5';
-// import { darkMode, lightMode } from '@/styles/theme';
+import { getUrlInfo } from '@/lib/service/client/events';
 
-const IsegyeFestivalFanart = ({ initialFanart }) => {
-  const [fanart, setFanart] = useState(null);
+type Props = {
+  initialFanart: null;
+  selectedEventKey: string;
+};
+
+export default function RandomFanartBtn({ selectedEventKey }: Props) {
+  const [fanart, setFanart] = useState<EventFanart | null>(null);
+  const [keywordUrl, setKeywordUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isvisible, setIsvisible] = useState(true);
   // const [isFocused, setIsFocused] = useState(false);
-  const [isBold, setIsBold] = useState(false);
+  // const [isBold, setIsBold] = useState(false);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsBold((prevIsBold) => !prevIsBold);
-    }, 1000); // Toggle bold every 1 second
-
-    return () => clearInterval(intervalId); // Clear interval on component unmount
-  }, []);
-  // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-  const direction = useBreakpointValue({ base: 'column', md: 'row' });
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url, 300);
+  const direction = useBreakpointValue({
+    base: 'column',
+    md: 'row',
+  }) as SystemProps['flexDirection'];
 
   const article_link = useResponsiveLink(
-    fanart?.url.split('/').pop(),
+    fanart?.url.split('/').pop() ?? '',
     'article'
   );
-  // const toggleFocus = () => {
-  //   setIsFocused(!isFocused);
-  // };
+
+  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
 
   useEffect(() => {
-    if (initialFanart == null) fetchRandomFanart();
-    setFanart(initialFanart);
-  }, []);
+    // console.log('selectedEventKey: ', selectedEventKey);
+
+    const selectedEvent = eventsData.find(
+      (event) => event.key === selectedEventKey
+    );
+    if (selectedEvent) {
+      setKeywordUrl(selectedEvent.url);
+    }
+
+    fetchRandomFanart();
+  }, [selectedEventKey]);
+
+  // useEffect(() => {
+  //   const intervalId = setInterval(() => {
+  //     setIsBold((prevIsBold) => !prevIsBold);
+  //   }, 1000); // Toggle bold every 1 second
+
+  //   return () => clearInterval(intervalId); // Clear interval on component unmount
+  // }, []);
+
+  // useEffect(() => {
+  //   if (initialFanart == null) fetchRandomFanart();
+  //   setFanart(initialFanart);
+  // }, []);
+
+  // const fetchRandomFanart = useCallback(async () => {
+  //   if (!keywordUrl) {
+  //     console.log('keywordUrl is null');
+  //     return;
+  //   }
+  //   try {
+  //     setIsLoading(true);
+  //     const res = await axios.get(keywordUrl);
+  //     setFanart(res.data);
+  //   } catch (error) {
+  //     if (error.response && error.response.status === 500) {
+  //       console.log('Server Error: ', error.response.status);
+  //     } else if (error.code === 'ERR_NETWORK') {
+  //       console.log('Network Error: ', error.code);
+  //     } else {
+  //       console.log(error);
+  //     }
+  //   }
+  // }, [keywordUrl, setIsLoading, setFanart]);
 
   const fetchRandomFanart = async () => {
+    if (!keywordUrl) {
+      // console.log('keywordUrl is null');
+      return;
+    }
     try {
       setIsLoading(true);
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/isegye_festival`
-      );
-      // console.log(res.data);
-      setFanart(res.data);
+      // console.log('keywordUrl: ', keywordUrl);
+      const result = await getUrlInfo(keywordUrl);
+      setFanart(result);
     } catch (error) {
+      if (!isAxiosError(error)) return;
       if (error.response && error.response.status === 500) {
         console.log('Server Error: ', error.response.status);
       } else if (error.code === 'ERR_NETWORK') {
@@ -68,33 +111,41 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
     }
   };
 
-  const handleLoad = async () => {
-    // await new Promise((r) => setTimeout(r, 1000));
-    await new Promise((resolve) => {
-      setTimeout(() => {
-        setIsLoading(false);
-        resolve();
-      }, 1000);
-    });
-    setIsLoading(false);
+  // const handleLoad = async () => {
+  //   // await new Promise((r) => setTimeout(r, 1000));
+  //   await new Promise((resolve, _) => {
+  //     setTimeout(() => {
+  //       setIsLoading(false);
+  //       resolve();
+  //     }, 100);
+  //   });
+  //   setIsLoading(false);
+  // };
+  const handleLoad = () => {
+    (async () => {
+      await new Promise((resolve, _) => {
+        setTimeout(() => {
+          setIsLoading(false);
+          resolve(undefined);
+        }, 100);
+      });
+      setIsLoading(false);
+    })();
   };
 
   const showRandomFanart = () => {
-    if (!isvisible) setIsvisible(true);
+    // if (!isvisible) setIsvisible(true);
     fetchRandomFanart();
   };
 
-  const previewContainer = {
+  const previewContainer: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     flexWrap: 'wrap',
-    // border: '1.5px solid #FE78BB',
-    // borderRadius: '0.2rem',
-    // padding: '1.5rem',
   };
-  const img = {
+  const img: React.CSSProperties = {
     display: 'flex',
     height: '100%',
     maxHeight: '400px',
@@ -105,7 +156,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
     marginBottom: '0.5rem',
   };
 
-  const linkDiv = {
+  const linkDiv: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -113,7 +164,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
     width: '100%',
   };
 
-  const guide = {
+  const guide: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'end',
@@ -122,13 +173,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
   };
 
   return (
-    <Box
-      // p="0.5rem"
-      w="100%"
-      //  maxW="540px"
-
-      borderRadius="lg"
-    >
+    <Box p="0.5rem" w="100%" borderRadius="lg">
       <div style={previewContainer} className="random-fanart">
         {!isvisible && (
           <div className="random-fanart__guide" style={guide}>
@@ -160,15 +205,6 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
         )}
         {isvisible && (
           <Box>
-            {/* <Text
-              fontSize="xl"
-              fontWeight="bold"
-              mb="1rem"
-              align="center"
-              color="#000"
-            >
-              이세계 페스티벌 특집 팬아트
-            </Text> */}
             <Skeleton isLoaded={!isLoading}>
               {fanart && (
                 <>
@@ -177,16 +213,15 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                     borderRadius="1rem"
                     overflow="hidden"
                     w="100%"
-                    pt="3rem"
-                    // mb="1rem"
+                    pt="2rem"
                   >
                     <Link
                       className="link-to-wakzoo"
                       href={article_link}
-                      passHref
+                      // passHref
                       isExternal
                       style={{
-                        linkDiv,
+                        ...linkDiv,
                         position: 'relative',
                       }}
                     >
@@ -196,8 +231,7 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                         width={475}
                         height={475}
                         src={modifiedUrl300}
-                        // src={fanart?.img_url}
-                        alt={`랜덤 팬아트 게시글 id: ${fanart?.id}`}
+                        alt={`랜덤 팬아트 게시글 id: ${fanart?.title}`}
                         onLoad={handleLoad}
                       />
                       <Box
@@ -226,23 +260,14 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                     <Box
                       as="a"
                       href={`/artists/${fanart?.nickname}`}
-                      passHref
+                      // passHref
                       style={linkDiv}
                     >
-                      <Text
-                        color="#1B1642"
-                        // as="b"
-                        // fontWeight={isBold ? 'bold' : 'normal'}
-                      >
+                      <Text>
+                        {/* color="#1B1642" */}
                         제목: {fanart?.title.slice(0, 20)}
                       </Text>
-                      <Text
-                        color="#1B1642"
-                        // as="b"
-                        // fontWeight={isBold ? 'bold' : 'normal'}
-                      >
-                        작가: {fanart?.nickname}
-                      </Text>
+                      <Text>작가: {fanart?.nickname}</Text>
                     </Box>
                   </Box>
                 </>
@@ -253,16 +278,11 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
         <Flex gap="2">
           <Button
             className="random-fanart-kidding"
-            // w="200px"
-            backgroundColor="#14532D"
-            // backgroundColor="#FE78BB"
-            _hover={{
-              bg: '#9BCC95',
-              // bg: '#e94396'
-            }}
-            color="#FFF"
+            colorScheme="yellow"
             size="md"
-            mt="1.5rem"
+            mt="1rem"
+            p="0 3rem"
+            borderRadius="4rem"
             onClick={showRandomFanart}
           >
             <FaDice
@@ -271,12 +291,10 @@ const IsegyeFestivalFanart = ({ initialFanart }) => {
                 height: '20px',
               }}
             />
-            &nbsp; 이세계 페스티벌 팬아트 랜덤가챠
+            &nbsp; 랜덤가챠 굴리기
           </Button>
         </Flex>
       </div>
     </Box>
   );
-};
-
-export default IsegyeFestivalFanart;
+}

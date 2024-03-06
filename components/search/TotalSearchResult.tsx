@@ -15,7 +15,21 @@ import React from 'react';
 import SearchBar2 from '@/components/search/SearchBar2';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function SearchResult({ result }) {
+type Prop = {
+  result: {
+    id: string;
+    title: string;
+    author: string;
+    content: string;
+    img_url: string;
+    img_url_list: string[];
+    view: number;
+    like: number;
+    comment: number;
+  }[];
+};
+
+export default function SearchResult({ result }: Prop) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const borderBottom = useColorModeValue(
     lightMode.borderBottom,

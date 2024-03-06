@@ -6,12 +6,15 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function ArtistHeader({ title }) {
+type Prop = {
+  title: string;
+};
+
+export default function ArtistHeader({ title }: Prop) {
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 

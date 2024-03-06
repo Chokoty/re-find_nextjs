@@ -2,13 +2,21 @@ import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
+import type { AuthorInfoWithName, View } from '@/types';
 
-const ViewTypeButtonGroup = ({
+type Props = {
+  filteredArtists: AuthorInfoWithName[];
+  viewTypes: View[];
+  selectedView: keyof AuthorCommon | null;
+  handleViewSelect: (value: keyof AuthorCommon) => void;
+};
+
+export default function ViewTypeButtonGroup({
   filteredArtists,
   viewTypes,
   selectedView,
   handleViewSelect,
-}) => {
+}: Props) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   return (
@@ -51,6 +59,4 @@ const ViewTypeButtonGroup = ({
       </ul>
     </Box>
   );
-};
-
-export default ViewTypeButtonGroup;
+}

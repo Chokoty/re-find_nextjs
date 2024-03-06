@@ -1,6 +1,13 @@
 import { Box, Text } from '@chakra-ui/react';
 
-const PageTitle = ({ topTitle }) => {
+type Prop = {
+  topTitle: {
+    title: string;
+    description: string;
+  };
+};
+
+export default function PageTitle({ topTitle }: Prop) {
   return (
     <Box>
       {/* <Text as="h2" fontSize="3xl" fontWeight="bold"> */}
@@ -15,6 +22,4 @@ const PageTitle = ({ topTitle }) => {
       <Text fontSize="md">{topTitle?.description}</Text>
     </Box>
   );
-};
-
-export default PageTitle;
+}

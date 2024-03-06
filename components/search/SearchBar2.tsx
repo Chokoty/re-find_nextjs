@@ -15,7 +15,11 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function SearchBar2({ isSearchPage }) {
+type Prop = {
+  isSearchPage: boolean;
+};
+
+export default function SearchBar2({ isSearchPage }: Prop) {
   const isMobile = useResponsive();
 
   const [input, setInput] = useState(''); // 검색어
@@ -34,13 +38,13 @@ export default function SearchBar2({ isSearchPage }) {
     // }
   };
 
-  const handleEnterKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleInputClick();
-    }
-  };
+  // const handleEnterKeyPress = (e) => {
+  //   if (e.key === 'Enter') {
+  //     handleInputClick();
+  //   }
+  // };
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     // console.log(e.target.value);
     setInput(e.target.value);
   };
@@ -92,7 +96,7 @@ export default function SearchBar2({ isSearchPage }) {
           value={input}
           onChange={handleSearch}
           onClick={handleInputClick}
-          onKeyPress={handleEnterKeyPress}
+          // onKeyPress={handleEnterKeyPress}
           focusBorderColor="#01BFA2"
           size="md"
           // value={nickname}

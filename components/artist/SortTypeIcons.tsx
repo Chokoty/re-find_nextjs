@@ -10,13 +10,14 @@ import {
 
 import { sortTypes } from '@/data/artists';
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
+import type { SortCriteria } from '@/types';
 
 const iconStyle = {
   width: '1rem',
   height: '1rem',
 };
 
-const IconComponent = ({ sortTypeName }) => {
+const IconComponent = ({ sortTypeName }: { sortTypeName: string }) => {
   switch (sortTypeName) {
     case '총 작품':
       return <FaImage style={iconStyle} />;
@@ -33,11 +34,17 @@ const IconComponent = ({ sortTypeName }) => {
   }
 };
 
-const SortTypeIcons = ({ sortCriteria, artist, component }) => {
-  let align = ['center', 'center', 'center'];
-  if (component === 'inIndex') {
-    align = ['center', 'center', 'flex-start'];
-  }
+type Props = {
+  sortCriteria: SortCriteria | null;
+  artist: AuthorCommon;
+  component: string;
+};
+
+export default function SortTypeIcons({ sortCriteria, artist }: Props) {
+  // let align = ['center', 'center', 'center'];
+  // if (component === 'inIndex') {
+  //   align = ['center', 'center', 'flex-start'];
+  // }
 
   if (!artist) {
     // artist가 null인 경우 예외 처리
@@ -106,6 +113,4 @@ const SortTypeIcons = ({ sortCriteria, artist, component }) => {
       </Box>
     </Box>
   );
-};
-
-export default SortTypeIcons;
+}

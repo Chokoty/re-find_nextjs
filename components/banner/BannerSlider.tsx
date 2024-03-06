@@ -21,7 +21,7 @@ const swiperSlideStyle = {
   width: '100%',
 };
 
-const BannerSlider = () => {
+export default function BannerSlider() {
   // const color = useColorModeValue(lightMode.color2, darkMode.bg);
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const width = useBreakpointValue({ base: '90%', md: '100%' });
@@ -70,6 +70,4 @@ const BannerSlider = () => {
       </Box>
     </Box>
   );
-};
-
-export default BannerSlider;
+}

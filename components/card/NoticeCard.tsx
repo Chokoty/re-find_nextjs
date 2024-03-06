@@ -7,23 +7,17 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface NoticeCardProps {
+type Props = {
   date: string;
   type?: string;
   content: string;
   directLink?: string;
-}
+};
 
-const NoticeCard: React.FC<NoticeCardProps> = ({
-  date,
-  type,
-  content,
-  directLink,
-}) => {
+export default function NoticeCard({ date, type, content, directLink }: Props) {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -65,6 +59,4 @@ const NoticeCard: React.FC<NoticeCardProps> = ({
       </CardFooter>
     </Card>
   );
-};
-
-export default NoticeCard;
+}

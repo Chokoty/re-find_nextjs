@@ -1,10 +1,13 @@
 import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
-import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function Title({ onTitleClick }) {
+type Prop = {
+  onTitleClick: () => void;
+};
+
+export default function Title({ onTitleClick }: Prop) {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight

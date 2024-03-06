@@ -8,11 +8,11 @@ import {
 } from '@chakra-ui/react';
 import { FiMoon } from 'react-icons/fi';
 
-type DarkModeToggleProps = {
+type Prop = {
   className?: string;
 };
 
-const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ className }) => {
+export default function DarkModeToggle({ className }: Prop) {
   // const { toggleColorMode } = useColorMode();
   const Icon = useColorModeValue(FiMoon, SunIcon);
 
@@ -38,6 +38,4 @@ const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ className }) => {
       p="0.5rem"
     />
   );
-};
-
-export default DarkModeToggle;
+}

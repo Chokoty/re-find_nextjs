@@ -6,7 +6,7 @@ import { useState } from 'react';
 export const useImageHash = () => {
   const [hash, setHash] = useState<string | null>(null);
 
-  const generateHashForImage = async (imageFile) => {
+  const generateHashForImage = async (imageFile: File) => {
     // console.log('generateHashForImage');
     const builder = new DifferenceHashBuilder();
     const objectURL = URL.createObjectURL(imageFile);

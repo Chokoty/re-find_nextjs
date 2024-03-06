@@ -8,12 +8,15 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 // import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
 
-const EventModal = ({ targetCount }) => {
+type Prop = {
+  targetCount: number;
+};
+
+export default function EventModal({ targetCount }: Prop) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalIsOpen, setModalIsOpen] = useState(true);
 
@@ -105,6 +108,4 @@ const EventModal = ({ targetCount }) => {
       )}
     </>
   );
-};
-
-export default EventModal;
+}

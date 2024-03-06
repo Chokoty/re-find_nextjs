@@ -1,9 +1,6 @@
-import { useColorModeValue } from '@chakra-ui/react';
 import Snowfall from 'react-snowfall';
 
-import { darkMode, lightMode } from '@/styles/theme';
-
-const MySnowfall = () => {
+export default function MySnowfall() {
   // const color = useColorModeValue(lightMode.snowfall, darkMode.snowfall);
 
   return (
@@ -22,6 +19,4 @@ const MySnowfall = () => {
       />
     </>
   );
-};
-
-export default MySnowfall;
+}

@@ -6,29 +6,29 @@ import {
   useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 import UpdateCardList from '@/components/card/UpdateCardList';
+import { getRecentUpdateInfos } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const UpdateBoard = () => {
+export default function UpdateBoard() {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const width = useBreakpointValue({ base: '100%', md: '100%' });
 
-  const [lastUpdateInfo, setLastUpdateInfo] = useState(null);
+  const [lastUpdateInfo, setLastUpdateInfo] = useState<
+    RecentBoardData[] | null
+  >(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchLastUpdateInfo = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/last_update_info`
-        );
-        setLastUpdateInfo(response.data);
+        const result = await getRecentUpdateInfos();
+        setLastUpdateInfo(result);
       } catch (error) {
         console.log('Error fetching last update info:', error);
         // 오류 처리 로직
@@ -101,6 +101,4 @@ const UpdateBoard = () => {
       </Box>
     </Box>
   );
-};
-
-export default UpdateBoard;
+}

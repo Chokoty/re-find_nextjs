@@ -1,4 +1,4 @@
-export const formatArtistValue = (value) => {
+export const formatArtistValue = (value: number) => {
   if (value >= 10000) {
     return `${(value / 10000).toFixed(1)}만`;
   }

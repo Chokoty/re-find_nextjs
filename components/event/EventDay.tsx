@@ -5,7 +5,7 @@ import { PiGiftBold } from 'react-icons/pi';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const EventDay = () => {
+export default function EventDay() {
   const color3 = useColorModeValue(lightMode.color2, darkMode.color3);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
@@ -57,6 +57,4 @@ const EventDay = () => {
       </Button>
     </Box>
   );
-};
-
-export default EventDay;
+}

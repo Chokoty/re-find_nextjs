@@ -1,19 +1,25 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import RandomFanartBtn from '@/components/event/RandomFanartBtn';
 import { eventsData } from '@/data/events';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const EventFanarts = ({ initialFanart, showCnt, width }) => {
+type Props = {
+  initialFanart: null;
+  showCnt: number;
+  width: string;
+};
+
+export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   const [selectedEventKey, setSelectedEventKey] = useState(
     eventsData[eventsData.length - 1].key
   );
 
-  const handleEventClick = (key) => {
+  const handleEventClick = (key: string) => {
     setSelectedEventKey(key);
   };
 
@@ -87,7 +93,9 @@ const EventFanarts = ({ initialFanart, showCnt, width }) => {
                   m="0.25rem"
                   key={index}
                   background={
-                    selectedEventKey === item.key ? item.backgroundColor : ''
+                    selectedEventKey === item.key
+                      ? item.backgroundColor
+                      : undefined
                   }
                   _hover={{
                     background: item.backgroundColor,
@@ -121,7 +129,9 @@ const EventFanarts = ({ initialFanart, showCnt, width }) => {
                   m="0.25rem"
                   key={index}
                   background={
-                    selectedEventKey === item.key ? item.backgroundColor : ''
+                    selectedEventKey === item.key
+                      ? item.backgroundColor
+                      : undefined
                   }
                   _hover={{
                     background: item.backgroundColor,
@@ -179,6 +189,4 @@ const EventFanarts = ({ initialFanart, showCnt, width }) => {
       />
     </Box>
   );
-};
-
-export default EventFanarts;
+}

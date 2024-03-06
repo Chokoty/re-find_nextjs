@@ -5,14 +5,18 @@ import BackButton from '@/components/common/BackButton';
 import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function SearchHeader({ title }) {
+type Prop = {
+  title: string;
+};
+
+export default function SearchHeader({ title }: Prop) {
   const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
     state.isOpen,
     state.setIsOpen,
   ]);
   // const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const myDrawerRef = useRef<HTMLElement | null>(null);
+  const myDrawerRef = useRef<HTMLDivElement>(null);
 
   // const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   // const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
@@ -31,19 +35,21 @@ export default function SearchHeader({ title }) {
     if (!isOpenDrawer) {
       return;
     }
-    const handleClick = (e) => {
-      // console.log(e.target);
+    const handleClick = (e: globalThis.MouseEvent) => {
       if (
-        e.target.className === 'hamburger-react' ||
-        e.target.closest('.hamburger-react')
+        (e.target as HTMLDivElement).className === 'hamburger-react' ||
+        (e.target as HTMLDivElement).closest('.hamburger-react')
       ) {
         return;
       }
-      if (e.target.tagName.toLowerCase() === 'a') {
+      if ((e.target as HTMLDivElement).tagName.toLowerCase() === 'a') {
         console.log('a');
         return; // Return early if the clicked element is an <a> tag
       }
-      if (myDrawerRef.current && !myDrawerRef.current.contains(e.target)) {
+      if (
+        myDrawerRef.current &&
+        !myDrawerRef.current.contains(e.target as HTMLDivElement)
+      ) {
         // console.log("other");
         setIsOpenDrawer(false);
       }

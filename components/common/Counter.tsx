@@ -5,36 +5,27 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 
+import { getCounters } from '@/lib/service/client/home';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface CounterData {
-  total_counter: number;
-  today_counter: number;
-}
+type Prop = {
+  data: Source | null;
+};
 
-const Counter = ({ data }) => {
-  const [counter, setCounter] = useState<CounterData | null>(null);
+export default function Counter({ data }: Prop) {
+  const [counter, setCounter] = useState<Counter | null>(null);
   const [counterLoading, setCounterLoading] = useState(false);
   const badge = useColorModeValue(lightMode.badge, darkMode.badge);
 
   // counter 가져오기
   const fetchCounter = async () => {
     try {
-      const timeout = 2000; // 2초
       setCounterLoading(true);
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/counter`,
-        {
-          timeout,
-        }
-      );
-      const ccounter = response?.data;
-      // console.log(ccounter);
-      setCounter(ccounter);
+      const result = await getCounters();
+      setCounter(result);
       setCounterLoading(false);
     } catch (err) {
       setCounterLoading(false);
@@ -72,11 +63,11 @@ const Counter = ({ data }) => {
             gap="0.2rem"
           >
             <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
-              <CountUp end={counter.total_counter} />
+              <CountUp end={parseInt(counter.total_counter)} />
             </Text>
             <Badge style={{ backgroundColor: badge }} fontSize="1rem">
               +
-              <CountUp end={counter.today_counter} duration={5} />
+              <CountUp end={parseInt(counter.today_counter)} duration={5} />
             </Badge>
             <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
               개의 출처를 찾았습니다.
@@ -86,6 +77,4 @@ const Counter = ({ data }) => {
       </Skeleton>
     </Box>
   );
-};
-
-export default Counter;
+}

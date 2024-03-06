@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Text, useToast } from '@chakra-ui/react';
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -9,10 +9,13 @@ import HashLoader from 'react-spinners/HashLoader';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+import { getArtistInfo } from '@/lib/service/client/artists';
 
-export default function DetailedEvent({ keyword }: { keyword: string }) {
+type Prop = { keyword: string };
+
+export default function DetailedEvent({ keyword }: Prop) {
   // { keyword_artworks }
-  const [artworks, setArtworks] = useState([]); // useState(artist_artworks_data?.list);
+  const [artworks, setArtworks] = useState<ArtworkList[]>([]); // useState(artist_artworks_data?.list);
 
   // infinite scroll
   const { ref, inView } = useInView({
@@ -55,10 +58,9 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
   }, []);
 
   // 이미지 로딩
-  // @ts-ignore
-  const handleLoading = useCallback((Loading) => {
-    setLoadingImage(Loading);
-  }, []);
+  // const handleLoading = useCallback((Loading) => {
+  //   setLoadingImage(Loading);
+  // }, []);
 
   const getArtistArtworks = useCallback(async () => {
     // console.log('getArtistArtworks');
@@ -69,24 +71,21 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
     // console.log('artworks loading...');
 
     try {
-      const response = await axios
-        .get(
-          // @ts-ignore
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${keyword}&type=${sortType}&page=${page}`
-        )
-        .then((res) => res.data);
+      const { list, lastPage } = await getArtistInfo({
+        nickname: keyword,
+        sortType,
+        page,
+        field: '',
+      });
 
-      if (response.lastPage === true) {
+      if (lastPage === true) {
         setIsLastPage(true);
       }
-      // @ts-ignore
-      if (page === 1) setArtworks([...response.list]);
-      // @ts-ignore
-      else setArtworks([...artworks, ...response.list]);
+      if (page === 1) setArtworks([...list]);
+      else setArtworks([...artworks, ...list]);
     } catch (error) {
       // 500에러 예외처리
-      // console.log(error.response);
-      // @ts-ignore
+      if (!isAxiosError(error)) return;
       if (error.response?.status === 500) {
         toast({
           title:
@@ -190,7 +189,7 @@ export default function DetailedEvent({ keyword }: { keyword: string }) {
                     artworks={artworks}
                     isDeletedVisible={isDeletedVisible}
                     // loadingImage={loadingImage}
-                    handleLoading={handleLoading}
+                    // handleLoading={handleLoading}
                     isGallery={true}
                   />
                 )}
