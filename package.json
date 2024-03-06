@@ -17,6 +17,8 @@
     "@chakra-ui/theme-tools": "^2.1.2",
     "@next/bundle-analyzer": "^14.1.0",
     "@next/third-parties": "^14.1.0",
+    "@tanstack/react-query": "^5.25.0",
+    "@tanstack/react-query-devtools": "^5.25.0",
     "axios": "^1.6.7",
     "browser-image-hash": "^0.0.5",
     "cross-env": "^7.0.3",
@@ -41,6 +43,7 @@
     "zustand": "^4.5.1"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.20.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
