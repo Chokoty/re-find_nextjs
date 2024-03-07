@@ -33,7 +33,7 @@ export default function ImageViewer({ hashs }: Prop) {
     } else if (source.ids[0]?.is_deleted) {
       toast.error('삭제된 게시글입니다.');
     } else {
-      toast.success(`검색 성공 - ${elapsedTime / 1000}s`);
+      toast.success(`검색 성공 (${elapsedTime / 1000}s)`);
     }
 
     // 5만 기념 이벤트
