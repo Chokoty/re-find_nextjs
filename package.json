@@ -32,6 +32,7 @@
     "react-countup": "^6.5.0",
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^5.0.1",
     "react-intersection-observer": "^9.8.1",
     "react-masonry-css": "^1.0.16",

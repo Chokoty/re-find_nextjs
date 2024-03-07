@@ -1,14 +1,15 @@
 import { Box } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useShallow } from 'zustand/react/shallow';
 
-import type { FileWithPreview } from '@/types';
+import { useImageUploadStore } from '@/store/imageUploadStore';
 
-type Prop = {
-  files: FileWithPreview[];
-};
-
-export default function Preview({ files }: Prop) {
-  const file = files[0];
+export default function Preview() {
+  const { files } = useImageUploadStore(
+    useShallow((state) => ({
+      files: state.uploadedfiles,
+    }))
+  );
   // const width = useBreakpointValue({ base: '90%', md: '100%' });
 
   const img = {
@@ -26,18 +27,20 @@ export default function Preview({ files }: Prop) {
       // width={width}
       width="100%"
     >
-      <Image
-        alt={file.name}
-        width={500}
-        height={500}
-        style={img}
-        src={file.preview}
-        // Revoke data uri after image is loaded
-        onLoad={() => {
-          URL.revokeObjectURL(file.preview);
-        }}
-        unoptimized
-      />
+      {files ? (
+        <Image
+          alt={files[0].name}
+          width={500}
+          height={500}
+          style={img}
+          src={files[0].preview}
+          // Revoke data uri after image is loaded
+          onLoad={() => {
+            URL.revokeObjectURL(files[0].preview);
+          }}
+          unoptimized
+        />
+      ) : null}
     </Box>
   );
 }

@@ -3,11 +3,7 @@ import Link from 'next/link';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-type Prop = {
-  onTitleClick: () => void;
-};
-
-export default function Title({ onTitleClick }: Prop) {
+export default function Title() {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -19,7 +15,7 @@ export default function Title({ onTitleClick }: Prop) {
   };
 
   return (
-    <Box className="title" onClick={onTitleClick}>
+    <Box className="title" onClick={handleTitleClick}>
       <Link href="/" className="content">
         <Heading className="title-main" fontFamily={'ONE-Mobile-POP'}>
           <span style={{ color: highlightColor }}>RE:</span>

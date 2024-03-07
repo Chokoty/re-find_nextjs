@@ -5,38 +5,15 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 
-import { getCounters } from '@/lib/service/client/home';
+import { useCounts } from '@/service/home/useHomeService';
 import { darkMode, lightMode } from '@/styles/theme';
 
-type Prop = {
-  data: Source | null;
-};
-
-export default function Counter({ data }: Prop) {
-  const [counter, setCounter] = useState<Counter | null>(null);
-  const [counterLoading, setCounterLoading] = useState(false);
+export default function Counter() {
   const badge = useColorModeValue(lightMode.badge, darkMode.badge);
-
-  // counter 가져오기
-  const fetchCounter = async () => {
-    try {
-      setCounterLoading(true);
-      const result = await getCounters();
-      setCounter(result);
-      setCounterLoading(false);
-    } catch (err) {
-      setCounterLoading(false);
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    fetchCounter();
-  }, [data]);
-
+  // TODO: 에러 처리 필요?
+  const { data: counts, isLoading } = useCounts();
   return (
     <Box
       maxW="360px"
@@ -49,8 +26,8 @@ export default function Counter({ data }: Prop) {
       border="2px solid #ccc"
       mb="0.5rem"
     >
-      <Skeleton isLoaded={!counterLoading} display="flex">
-        {counter === null ? (
+      <Skeleton isLoaded={!isLoading} display="flex">
+        {counts === undefined ? (
           <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
             현재 서버와의 연결이 불안정합니다.
           </Text>
@@ -63,11 +40,11 @@ export default function Counter({ data }: Prop) {
             gap="0.2rem"
           >
             <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
-              <CountUp end={parseInt(counter.total_counter)} />
+              <CountUp end={parseInt(counts.total_counter)} />
             </Text>
             <Badge style={{ backgroundColor: badge }} fontSize="1rem">
               +
-              <CountUp end={parseInt(counter.today_counter)} duration={5} />
+              <CountUp end={parseInt(counts.today_counter)} duration={5} />
             </Badge>
             <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
               개의 출처를 찾았습니다.

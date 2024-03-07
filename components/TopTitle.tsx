@@ -5,12 +5,7 @@ import SubTitle from '@/components/title/SubTitle';
 import Title from '@/components/title/Title';
 import { darkMode, lightMode } from '@/styles/theme';
 
-type Props = {
-  data: Source | null;
-  resetFiles: () => void;
-};
-
-export default function TopTitle({ data, resetFiles }: Props) {
+export default function TopTitle() {
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const width = useBreakpointValue({ base: '90%', md: '100%' });
 
@@ -30,8 +25,8 @@ export default function TopTitle({ data, resetFiles }: Props) {
       borderRadius="1rem"
       // mt="1rem"
     >
-      <Counter data={data} />
-      <Title onTitleClick={resetFiles} />
+      <Counter />
+      <Title />
       <SubTitle />
     </Box>
   );

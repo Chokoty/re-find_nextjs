@@ -23,7 +23,7 @@ class Service {
   private headers: Record<string, string>;
 
   constructor() {
-    this.baseURL = process.env.NEXT_PUBLIC_REDIRECT_URL!;
+    this.baseURL = process.env.NEXT_PUBLIC_SERVER_URL!;
     this.headers = {
       csrf: 'token',
       // Referer: this.baseURL,

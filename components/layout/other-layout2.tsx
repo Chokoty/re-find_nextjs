@@ -4,7 +4,6 @@ import type { ReactNode } from 'react';
 import React from 'react';
 
 import MobileHeader from '@/components/layout/MobileHeader';
-import Title from '@/components/title/Title';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface OtherLayoutProps {

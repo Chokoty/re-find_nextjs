@@ -12,15 +12,13 @@ import { useState } from 'react';
 // import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
 
-type Prop = {
-  targetCount: number;
-};
+import { TARGET_COUNT } from '@/lib/const';
 
-export default function EventModal({ targetCount }: Prop) {
+export default function EventModal() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [modalIsOpen, setModalIsOpen] = useState(true);
 
-  const targetCountText = targetCount.toString().slice(0, 1);
+  const targetCountText = TARGET_COUNT.toString().slice(0, 1);
   console.log(targetCountText);
 
   const handleCloseModal = () => {
@@ -78,7 +76,7 @@ export default function EventModal({ targetCount }: Prop) {
               <br />
               <br />
               메일 rerurureruru@gmail.com 또는 <br />
-              About의 개발자 프로필에서 왁물원 쪽지 또는 <br />
+              About의 초코널 밀크티 개발자 프로필에서 왁물원 쪽지 또는 <br />
               Support의 기타문의를 통해 보내주시면 감사하겠습니다. <br />
               <Divider orientation="horizontal" m="2" />
               <Text>
