@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react';
 import CountUp from 'react-countup';
 
-import { useCounts } from '@/service/home/useHomeService';
+import { useCounts } from '@/service/client/home/useHomeService';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function Counter() {

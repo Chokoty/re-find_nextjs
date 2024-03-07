@@ -7,7 +7,7 @@ import Loading from '@/components/common/Loading';
 import Preview from '@/components/common/Preview';
 import SearchResult from '@/components/search/SearchResult';
 import { TARGET_COUNT } from '@/lib/const';
-import { useImageInfo } from '@/service/home/useHomeService';
+import { useImageInfo } from '@/service/client/home/useHomeService';
 import { useImageUploadStore } from '@/store/imageUploadStore';
 
 type Prop = {

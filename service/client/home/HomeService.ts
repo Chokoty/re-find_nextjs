@@ -1,4 +1,4 @@
-import Service from '@/service/Service';
+import Service from '@/service';
 
 class HomeService extends Service {
   async getImageInfoByHash(hash: string) {

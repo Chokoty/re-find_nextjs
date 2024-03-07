@@ -8,7 +8,7 @@ import {
   useBreakpointValue,
 } from '@chakra-ui/react';
 
-import { useRecentUpdates } from '@/service/home/useHomeService';
+import { useRecentUpdates } from '@/service/client/home/useHomeService';
 
 import UpdateCard from './UpdateCard';
 
