@@ -62,7 +62,6 @@ export default function MasonryView({
   // };
 
   const content = () => {
-    console.log(artworks);
     if (isDeletedVisible) {
       return artworks.map((artwork, index) => (
         <MasonryCard

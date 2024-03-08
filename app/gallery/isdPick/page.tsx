@@ -15,9 +15,9 @@ import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
+import GalleryService from '@/service/client/gallery/GalleryService';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
-import GalleryService from '@/service/client/gallery/GalleryService';
 
 export default function Album() {
   const itemsPerPage = 30;

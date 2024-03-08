@@ -62,3 +62,9 @@ export type GetKeywordGalleryArtworksParams = {
   query: string;
   sortType: string;
 };
+
+export type GetArtistInfoParams = {
+  nickname: string;
+  sortType: string;
+  field: string;
+};

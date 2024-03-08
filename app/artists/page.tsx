@@ -13,6 +13,7 @@ import PageTitle from '@/components/common/PageTitle';
 import { sortTypes, viewTypes } from '@/data/artists';
 import { useDebounce } from '@/hook/useDebounce';
 import { getAuthorList } from '@/service/client/artists';
+import ArtistService from '@/service/client/artists/ArtistService';
 import useArtistsStore from '@/store/artistsStore';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { AuthorInfoWithName, SortCriteria } from '@/types';
@@ -136,7 +137,7 @@ export default function Artists() {
     if (Object.keys(artistsList).length === 0) {
       const fetchArtistsList = async () => {
         try {
-          const result = await getAuthorList();
+          const result = await ArtistService.getArtistList();
           setArtistsList(result);
         } catch (error) {
           console.error('Error fetching data:', error);
