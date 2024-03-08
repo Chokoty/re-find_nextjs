@@ -30,7 +30,7 @@ export default function EventDay() {
         fontWeight="bold"
         mb="1rem"
       >
-        비챤님 생일 축하드려요!!!
+        릴파님 생일 축하드려요!!!
       </Text>
       <Button
         // background="black"
@@ -51,8 +51,8 @@ export default function EventDay() {
             marginRight: '0.5rem',
           }}
         />
-        <NextLink href="/gallery/viichanBirthday">
-          비챤님 생일기념 팬아트 보러가기
+        <NextLink href="/gallery/lilpaBirthday">
+          릴파님 생일기념 팬아트 보러가기
         </NextLink>
       </Button>
     </Box>

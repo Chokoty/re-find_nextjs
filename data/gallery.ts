@@ -45,8 +45,14 @@ const gallery: Gallery[] = [
     subTitle: '🎂 비챤님 생일 팬아트 🎂',
     query: 'gallery?member=viichan&since=20240116&until=20240116',
   },
+  {
+    id: 6,
+    value: 'lilpaBirthday',
+    type: 'special',
+    title: '릴파님 생일 팬아트',
+    subTitle: '🎂 릴파님 생일 팬아트 🎂',
+    query: 'gallery?member=lilpa&since=20240309&until=20240309',
+  },
 ];
-
-// https://re-find.reruru.com/
 
 export default gallery;
