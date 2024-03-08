@@ -43,7 +43,10 @@ export default function IsegyeFestivalFanart({ initialFanart }: Prop) {
     base: 'column',
     md: 'row',
   }) as SystemProps['flexDirection'];
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
+  const modifiedUrl300 = useModifiedImageUrl({
+    url: fanart?.img_url ?? '',
+    size: 300,
+  });
 
   const article_link = useResponsiveLink(
     fanart?.url.split('/').pop() ?? '',

@@ -41,7 +41,10 @@ export default function RandomFanartBtn({ selectedEventKey }: Props) {
     'article'
   );
 
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
+  const modifiedUrl300 = useModifiedImageUrl({
+    url: fanart?.img_url ?? '',
+    size: 300,
+  });
 
   useEffect(() => {
     // console.log('selectedEventKey: ', selectedEventKey);

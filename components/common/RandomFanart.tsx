@@ -70,7 +70,10 @@ export default function RandomFanart() {
   // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
+  const modifiedUrl300 = useModifiedImageUrl({
+    url: fanart?.img_url ?? '',
+    size: 300,
+  });
 
   useEffect(() => {
     const intervalId = setInterval(() => {

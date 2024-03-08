@@ -45,7 +45,10 @@ export default function MasonryCard({
   // const isMobile = useResponsive();
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
+  const modifiedUrl300 = useModifiedImageUrl({
+    url: artwork.img_url_list[0],
+    size: 300,
+  });
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
   const handleImageLoad = (
@@ -54,7 +57,6 @@ export default function MasonryCard({
     setImageHeight((e.target as HTMLImageElement).height);
   };
 
-  // console.log(artwork);
   const authorName = 'author' in artwork ? artwork.author : '';
 
   return (

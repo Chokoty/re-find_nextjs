@@ -42,7 +42,10 @@ export default function KiddingFanart({ initialFanart }: Prop) {
     'article'
   );
 
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
+  const modifiedUrl300 = useModifiedImageUrl({
+    url: fanart?.img_url ?? '',
+    size: 300,
+  });
 
   // const toggleFocus = () => {
   //   setIsFocused(!isFocused);
