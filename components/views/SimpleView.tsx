@@ -17,6 +17,32 @@ export default function SimpleView({ artworks, isDeletedVisible }: Props) {
   //   }
   // };
 
+  const content = () => {
+    if (isDeletedVisible) {
+      return artworks.map((artwork, index) => (
+        <SimpleCards
+          key={index}
+          artwork={artwork}
+          // isFocused={artwork.id === focusedArtworkId}
+          // onToggleFocus={handleToggleFocus}
+        />
+      ));
+    }
+    if (!isDeletedVisible) {
+      return artworks.map(
+        (artwork, index) =>
+          !artwork.deleted ? (
+            <SimpleCards
+              key={index}
+              artwork={artwork}
+              // isFocused={artwork.id === focusedArtworkId}
+              // onToggleFocus={handleToggleFocus}
+            />
+          ) : null // Render null if deleted is true
+      );
+    }
+  };
+
   return (
     <Box
       w="94%"
@@ -36,27 +62,7 @@ export default function SimpleView({ artworks, isDeletedVisible }: Props) {
         placeItems="center"
         m="0 auto"
       >
-        {isDeletedVisible &&
-          artworks?.map((artwork, index) => (
-            <SimpleCards
-              key={index}
-              artwork={artwork}
-              // isFocused={artwork.id === focusedArtworkId}
-              // onToggleFocus={handleToggleFocus}
-            />
-          ))}
-        {!isDeletedVisible &&
-          artworks?.map(
-            (artwork, index) =>
-              !artwork.deleted ? (
-                <SimpleCards
-                  key={index}
-                  artwork={artwork}
-                  // isFocused={artwork.id === focusedArtworkId}
-                  // onToggleFocus={handleToggleFocus}
-                />
-              ) : null // Render null if deleted is true
-          )}
+        {content()}
       </SimpleGrid>
     </Box>
   );

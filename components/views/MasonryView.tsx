@@ -1,4 +1,9 @@
-import { Box, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Box,
+  Skeleton,
+  SkeletonText,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 import React, { useState } from 'react';
 import Masonry from 'react-masonry-css';
 
@@ -20,7 +25,7 @@ export default function MasonryView({
   const [focusedArtworkId, setFocusedArtworkId] = useState<number | null>(null);
 
   // const article_link = useResponsiveLink('', 'article');
-  // const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
+  const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const widthValue2 = useBreakpointValue({ base: '188px', sm: '252px' });
 
   const breakpointColumnsObj = {
@@ -56,6 +61,37 @@ export default function MasonryView({
   //   setHoveredIndices((prev) => prev.filter((i) => i !== index));
   // };
 
+  const content = () => {
+    console.log(artworks);
+    if (isDeletedVisible) {
+      return artworks.map((artwork, index) => (
+        <MasonryCard
+          key={index}
+          nickname={nickname}
+          artwork={artwork}
+          isFocused={artwork.id === focusedArtworkId}
+          onToggleFocus={handleToggleFocus}
+          isGallery={isGallery}
+        />
+      ));
+    }
+
+    if (!isDeletedVisible) {
+      return artworks.map((artwork, index) =>
+        !artwork.deleted ? (
+          <MasonryCard
+            key={index}
+            nickname={nickname}
+            artwork={artwork}
+            isFocused={artwork.id === focusedArtworkId}
+            onToggleFocus={handleToggleFocus}
+            isGallery={isGallery}
+          />
+        ) : null
+      );
+    }
+  };
+
   return (
     <Box w="100%" mx="auto" position="relative">
       <Box
@@ -80,30 +116,7 @@ export default function MasonryView({
           },
         }}
       >
-        {isDeletedVisible &&
-          artworks.map((artwork, index) => (
-            <MasonryCard
-              key={index}
-              nickname={nickname}
-              artwork={artwork}
-              isFocused={artwork.id === focusedArtworkId}
-              onToggleFocus={handleToggleFocus}
-              isGallery={isGallery}
-            />
-          ))}
-        {!isDeletedVisible &&
-          artworks?.map((artwork, index) =>
-            !artwork?.deleted ? (
-              <MasonryCard
-                key={index}
-                nickname={nickname}
-                artwork={artwork}
-                isFocused={artwork?.id === focusedArtworkId}
-                onToggleFocus={handleToggleFocus}
-                isGallery={isGallery}
-              />
-            ) : null
-          )}
+        {content()}
       </Box>
     </Box>
   );

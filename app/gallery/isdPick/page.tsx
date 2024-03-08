@@ -15,15 +15,15 @@ import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
-import { getIsdNotice } from '@/service/client/gallery';
 import useIsdPickStore from '@/store/isdPickStore';
 import { darkMode, lightMode } from '@/styles/theme';
+import GalleryService from '@/service/client/gallery/GalleryService';
 
 export default function Album() {
   const itemsPerPage = 30;
   const toast = useToast();
 
-  // infinite scroll
+  // TODO: infinite query 적용하기
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
@@ -131,7 +131,7 @@ export default function Album() {
     setLoadingData(true);
 
     try {
-      const { list } = await getIsdNotice();
+      const { list } = await GalleryService.getIsdNotices();
       // setTotal(total);
       setArtworks([...list]);
     } catch (error) {

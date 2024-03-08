@@ -47,6 +47,4 @@ const gallery: Gallery[] = [
   },
 ];
 
-// https://re-find.reruru.com/
-
 export default gallery;
