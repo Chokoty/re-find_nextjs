@@ -19,6 +19,5 @@ class HomeService extends Service {
   }
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
 // 항상 HomeService 동일한 인스턴스를 사용하도록 한다. (싱글톤)
 export default new HomeService();

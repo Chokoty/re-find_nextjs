@@ -12,7 +12,6 @@ import ViewTypeButtonGroup from '@/components/artist/ViewTypeButtonGroup';
 import PageTitle from '@/components/common/PageTitle';
 import { sortTypes, viewTypes } from '@/data/artists';
 import { useDebounce } from '@/hook/useDebounce';
-import { getAuthorList } from '@/service/client/artists';
 import ArtistService from '@/service/client/artists/ArtistService';
 import useArtistsStore from '@/store/artistsStore';
 import { darkMode, lightMode } from '@/styles/theme';
