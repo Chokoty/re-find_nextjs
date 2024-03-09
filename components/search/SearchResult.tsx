@@ -9,11 +9,13 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { MdArrowForwardIos } from 'react-icons/md';
+import { useShallow } from 'zustand/react/shallow';
 
 import AuthorProfileCard2 from '@/components/card/AuthorProfileCard2';
 import Description from '@/components/common/Description';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
+import { useImageUploadStore } from '@/store/imageUploadStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 // const data2 = {
@@ -41,26 +43,24 @@ import { darkMode, lightMode } from '@/styles/theme';
 type Props = {
   searchTime: number;
   data: Source;
-  ids: ID[];
-  resetFiles: () => void;
 };
 
-export default function SearchResult({
-  searchTime,
-  data,
-  ids,
-  resetFiles,
-}: Props) {
+export default function SearchResult({ searchTime, data }: Props) {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
   );
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
-
   const color = useColorModeValue(lightMode.color, darkMode.color);
   // const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const uploadTimeDiff = useUploadTimeDiff(data.upload_date);
   const article_link = useResponsiveLink('', 'article');
+  const ids = data.ids.slice(0, 15); // 검색결과 10~15개 제한
+  const { resetFiles } = useImageUploadStore(
+    useShallow((state) => ({
+      resetFiles: state.resetFiles,
+    }))
+  );
 
   return (
     <Box
@@ -306,6 +306,7 @@ export default function SearchResult({
       <Text fontSize="xl" m="20px" textAlign="center">
         검색시간: {searchTime / 1000}s
       </Text>
+      {/* TODO: zustand state로 변경 */}
       <Button onClick={resetFiles} size="lg" colorScheme="blue" w={200}>
         다른 이미지 검색
       </Button>

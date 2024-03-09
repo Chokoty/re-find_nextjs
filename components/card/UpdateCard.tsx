@@ -36,7 +36,10 @@ export default function UpdateCard({ update }: Prop) {
 
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
-  const modifiedUrl100 = useModifiedImageUrl(update.info.img_url, 100);
+  const modifiedUrl100 = useModifiedImageUrl({
+    url: update.info.img_url,
+    size: 100,
+  });
   const uploadTimeDiff = useUploadTimeDiff(update.date);
   const article_link = useResponsiveLink(update.id, 'article');
   const menu_link = useResponsiveLink(

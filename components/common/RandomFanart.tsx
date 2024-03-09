@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Card,
   Checkbox,
   Flex,
   Heading,
@@ -19,7 +18,6 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { isAxiosError } from 'axios';
 import NextImage from 'next/image';
 import React, { useEffect, useState } from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
@@ -27,7 +25,7 @@ import { IoSettingsSharp } from 'react-icons/io5';
 
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { getRandomFanart } from '@/lib/service/client/events';
+import { useRandomFanart } from '@/service/client/events/useEventService';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { CheckBoxType } from '@/types';
 
@@ -53,32 +51,26 @@ const getLocalStorage = (key: string) => {
 };
 
 export default function RandomFanart() {
-  const [fanart, setFanart] = useState<EventFanart | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isvisible, setIsvisible] = useState(false);
   const [checkboxValues, setCheckboxValues] = useState<CheckBoxType>({
     isd: true,
     wak: true,
     gomem: true,
   });
-  const [isBold, setIsBold] = useState(false);
+  // const [isBold, setIsBold] = useState(false);
+  const { data, isLoading, isFetching, refetch } =
+    useRandomFanart(checkboxValues);
+
   const article_link = useResponsiveLink(
-    fanart?.url.split('/').pop() ?? '',
+    data?.url.split('/').pop() ?? '',
     'article'
   );
 
+  const modifiedUrl300 = useModifiedImageUrl({
+    url: data?.img_url ?? '',
+    size: 300,
+  });
   // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-
-  const modifiedUrl300 = useModifiedImageUrl(fanart?.img_url ?? '', 300);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setIsBold((prevIsBold) => !prevIsBold);
-    }, 1000); // Toggle bold every 1 second
-
-    return () => clearInterval(intervalId); // Clear interval on component unmount
-  }, []);
 
   useEffect(() => {
     // 로컬 스토리지에서 체크박스 값 불러오기
@@ -86,39 +78,12 @@ export default function RandomFanart() {
     if (savedCheckboxValues) {
       setCheckboxValues(savedCheckboxValues);
     }
-    fetchRandomFanart();
   }, []);
 
-  const handleLoad = async () => {
-    await new Promise((r) => {
-      setTimeout(r, 1000);
-    });
-    setIsLoading(false);
-  };
-
-  const showRandomFanart = () => {
-    if (!isvisible) setIsvisible(true);
-    fetchRandomFanart();
-  };
-
-  const fetchRandomFanart = async () => {
-    try {
-      setIsLoading(true);
-      const result = await getRandomFanart(checkboxValues);
-      setFanart(result);
-    } catch (error) {
-      if (!isAxiosError(error)) return;
-      if (error.response && error.response.status === 500) {
-        console.log('Server Error: ', error.response.status);
-      } else if (error.code === 'ERR_NETWORK') {
-        console.log('Network Error: ', error.code);
-      } else {
-        console.log(error);
-      }
-    }
-    // 0.5초 대기
-    // await new Promise((r) => setTimeout(r, 500));
-    // setIsLoading(false);
+  const showRandomFanart = async () => {
+    // disabled에서 막혀야하지만 이렇게도 막을 수 있음
+    if (isFetching) return;
+    await refetch();
   };
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -177,6 +142,100 @@ export default function RandomFanart() {
     justifyContent: 'end',
     alignItems: 'center',
     height: '100px',
+  };
+
+  const content = () => {
+    if (isLoading || isFetching) {
+      return (
+        <Skeleton
+          mt="2rem"
+          maxW="420px"
+          minH="420px"
+          w="90%"
+          h="90%"
+          borderRadius="1rem"
+        />
+      );
+    }
+
+    if (!data) {
+      return (
+        <div className="random-fanart__guide" style={guide}>
+          <Text fontSize="xl" fontWeight="bold" mb="1rem">
+            아래 버튼을 누르면 랜덤 팬아트가 나와요!
+          </Text>
+          <FaArrowDown />
+        </div>
+      );
+    }
+
+    const { title, nickname } = data;
+
+    return (
+      <>
+        <Box
+          position="relative"
+          borderRadius="1rem"
+          overflow="hidden"
+          w="100%"
+          pt="2rem"
+          // mb="1rem"
+        >
+          <Link
+            className="link-to-akzoo"
+            href={article_link}
+            // passHref
+            isExternal
+            style={linkDiv}
+          >
+            <NextImage
+              unoptimized
+              style={img}
+              width={475}
+              height={475}
+              // src={fanart.img_url}
+              src={modifiedUrl300}
+              alt={`랜덤 팬아트 게시글 title: ${title}`}
+              // onLoad={handleLoad}
+            />
+            <Box
+              position="absolute"
+              top={0}
+              right={0}
+              bottom={0}
+              left={0}
+              borderRadius="1rem"
+              zIndex={1}
+              _hover={{
+                backgroundColor: 'rgba(0, 0, 0, 0.3)',
+                cursor: 'pointer',
+              }}
+              pointerEvents="none" // 이 줄을 추가합니다.
+            ></Box>{' '}
+          </Link>
+        </Box>
+        <Box
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          mb="1rem"
+        >
+          <Box
+            as="a"
+            href={`/artists/${nickname}`}
+            // passHref
+            style={linkDiv}
+            // fontWeight={isBold ? 'bold' : 'normal'}
+            fontWeight="bold"
+          >
+            {/* <Text>랜덤 팬아트 id: {fanart.id}</Text> */}
+            <Text>제목: {title.slice(0, 20)}</Text>
+            <Text>작가: {nickname}</Text>
+          </Box>
+        </Box>
+      </>
+    );
   };
 
   return (
@@ -269,84 +328,7 @@ export default function RandomFanart() {
           </PopoverContent>
         </Popover>
       </Box>
-
-      {!isvisible && (
-        <div className="random-fanart__guide" style={guide}>
-          <Text fontSize="xl" fontWeight="bold" mb="1rem">
-            아래 버튼을 누르면 랜덤 팬아트가 나와요!
-          </Text>
-          <FaArrowDown />
-        </div>
-      )}
-      {isvisible && (
-        <Skeleton isLoaded={!isLoading}>
-          {fanart && (
-            <>
-              <Box
-                position="relative"
-                borderRadius="1rem"
-                overflow="hidden"
-                w="100%"
-                pt="2rem"
-                // mb="1rem"
-              >
-                <Link
-                  className="link-to-akzoo"
-                  href={article_link}
-                  // passHref
-                  isExternal
-                  style={linkDiv}
-                >
-                  <NextImage
-                    unoptimized
-                    style={img}
-                    width={475}
-                    height={475}
-                    // src={fanart?.img_url}
-                    src={modifiedUrl300}
-                    alt={`랜덤 팬아트 게시글 title: ${fanart?.title}`}
-                    onLoad={handleLoad}
-                  />
-                  <Box
-                    position="absolute"
-                    top={0}
-                    right={0}
-                    bottom={0}
-                    left={0}
-                    borderRadius="1rem"
-                    zIndex={1}
-                    _hover={{
-                      backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                      cursor: 'pointer',
-                    }}
-                    pointerEvents="none" // 이 줄을 추가합니다.
-                  ></Box>{' '}
-                </Link>
-              </Box>
-              <Box
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
-                alignItems="center"
-                mb="1rem"
-              >
-                <Box
-                  as="a"
-                  href={`/artists/${fanart?.nickname}`}
-                  // passHref
-                  style={linkDiv}
-                  // fontWeight={isBold ? 'bold' : 'normal'}
-                  fontWeight="bold"
-                >
-                  {/* <Text>랜덤 팬아트 id: {fanart?.id}</Text> */}
-                  <Text>제목: {fanart?.title.slice(0, 20)}</Text>
-                  <Text>작가: {fanart?.nickname}</Text>
-                </Box>
-              </Box>
-            </>
-          )}
-        </Skeleton>
-      )}
+      {content()}
       <Flex gap="2">
         <Spacer />
         <Button
@@ -358,6 +340,7 @@ export default function RandomFanart() {
           p="0 3rem"
           borderRadius="4rem"
           onClick={showRandomFanart}
+          disabled={isFetching} // 여러 번 클릭시 중복 요청 방지
         >
           <FaDice
             style={{

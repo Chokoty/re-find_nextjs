@@ -15,9 +15,18 @@ export default function SimpleCard({ artwork }: Prop) {
   // const [imageHeight, setImageHeight] = useState(null);
   const uploadTimeDiff = useUploadTimeDiff(artwork.date);
 
-  const modifiedUrl100List1 = useModifiedImageUrl(artwork.img_url_list[1], 100);
-  const modifiedUrl100List2 = useModifiedImageUrl(artwork.img_url_list[2], 100);
-  const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
+  const modifiedUrl100List1 = useModifiedImageUrl({
+    url: artwork.img_url_list[1],
+    size: 100,
+  });
+  const modifiedUrl100List2 = useModifiedImageUrl({
+    url: artwork.img_url_list[2],
+    size: 100,
+  });
+  const modifiedUrl300 = useModifiedImageUrl({
+    url: artwork.img_url_list[0],
+    size: 300,
+  });
   // const handleImageLoad = (e) => {
   //   setImageHeight(e.target.height);
   // };

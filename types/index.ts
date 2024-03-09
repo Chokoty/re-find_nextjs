@@ -55,3 +55,16 @@ export interface Gallery {
   description?: string;
   query?: string;
 }
+
+// service (api)
+
+export type GetKeywordGalleryArtworksParams = {
+  query: string;
+  sortType: string;
+};
+
+export type GetArtistInfoParams = {
+  nickname: string;
+  sortType: string;
+  field: string;
+};

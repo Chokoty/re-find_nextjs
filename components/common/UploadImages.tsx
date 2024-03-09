@@ -6,24 +6,24 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 import { useUpload } from '@/hook/useUpload';
 import UploadImage from '@/public/static/images/refind-1.webp';
 import UploadHoverImage from '@/public/static/images/refind-2.webp';
+import { useImageUploadStore } from '@/store/imageUploadStore';
 import { darkMode, lightMode } from '@/styles/theme';
-import type { FileWithPreview } from '@/types';
 
-interface Props {
-  getDataFromChild: (files: FileWithPreview[]) => void;
-  getHashFromChild: (hashes: string[]) => void;
-}
-export default function UploadImages({
-  getDataFromChild,
-  getHashFromChild,
-}: Props) {
+export default function UploadImages() {
+  const { setHashs, setUploadedFiles } = useImageUploadStore(
+    useShallow((state) => ({
+      setHashs: state.setHashs,
+      setUploadedFiles: state.setUploadedFiles,
+    }))
+  );
   const { getRootProps, getInputProps, isDragActive } = useUpload({
-    getDataFromChild,
-    getHashFromChild,
+    getDataFromChild: setUploadedFiles,
+    getHashFromChild: setHashs,
   });
   const [hover, setHover] = useState(false);
   const [isClick, setIsClick] = useState(false);

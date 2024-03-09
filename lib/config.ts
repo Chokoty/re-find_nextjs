@@ -43,10 +43,11 @@ export const siteConfig = {
       url: '/artists',
     },
     detailed(nickname: string) {
+      const decodedNickname = decodeURIComponent(nickname);
       return {
-        title: `리파인드 | ${nickname} 작가님 갤러리`,
-        description: `왁물원에 올라온 ${nickname} 작가님의 팬아트를 모아놓은 갤러리입니다.`,
-        url: `/artists/${nickname}`,
+        title: `리파인드 | ${decodedNickname} 작가님 갤러리`,
+        description: `왁물원에 올라온 ${decodedNickname} 작가님의 팬아트를 모아놓은 갤러리입니다.`,
+        url: `/artists/${decodedNickname}`,
       };
     },
   },

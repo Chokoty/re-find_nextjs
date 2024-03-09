@@ -88,7 +88,7 @@ export default function EventFanarts({ initialFanart }: Prop) {
             "
           >
             <Box border="1.5px solid #FE78BB" borderRadius="0.2rem" w="100%">
-              <KiddingFanart initialFanart={null} />
+              <KiddingFanart />
             </Box>
           </AccordionPanel>
         </AccordionItem>
@@ -141,7 +141,7 @@ export default function EventFanarts({ initialFanart }: Prop) {
               padding="1.5rem"
               w="100%"
             >
-              <IsegyeFestivalFanart initialFanart={initialFanart} />
+              <IsegyeFestivalFanart />
             </Box>
           </AccordionPanel>
         </AccordionItem>
