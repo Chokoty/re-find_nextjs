@@ -1,5 +1,6 @@
 // 1. import `extendTheme` function
 import { extendTheme } from '@chakra-ui/react';
+import type { StyleFunctionProps } from '@chakra-ui/styled-system';
 import { mode } from '@chakra-ui/theme-tools';
 
 // 2. Add your color mode config
@@ -12,7 +13,7 @@ const config = {
 const theme = extendTheme({
   config,
   styles: {
-    global: (props) => ({
+    global: (props: StyleFunctionProps) => ({
       body: {
         backgroundColor: mode('#F5F6FB', '#0D0F1D')(props), // opgg #1C1C1F  hoyo #0D0F1D
         color: mode('gray.900', 'gray.50')(props),

@@ -1,10 +1,8 @@
 import { create } from 'zustand';
 
-import type { Artwork } from '@/types/artwork';
-
 interface isdPickStore {
-  artworks: Artwork[];
-  setArtworks: (data: Artwork[]) => void;
+  artworks: IsdArtworkList[];
+  setArtworks: (data: IsdArtworkList[]) => void;
 }
 
 const useIsdPickStore = create<isdPickStore>((set) => ({

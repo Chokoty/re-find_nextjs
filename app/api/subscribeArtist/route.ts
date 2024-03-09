@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { isAxiosError } from 'axios';
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
@@ -66,16 +66,14 @@ export async function GET(req: NextRequest) {
     // console.log(writerJSON);
     return NextResponse.json(writer, { status: 200 });
   } catch (error) {
-    // @ts-ignore
+    if (!isAxiosError(error)) return;
     if (error.response && error.response.status === 401) {
       // 401 Unauthorized 에러 처리
       NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-      // @ts-ignore
     } else if (error.response && error.response.status === 404) {
       // 404 Not Found 에러 처리
       NextResponse.json({ error: 'Not Found' }, { status: 404 });
     } else {
-      // console.log("Error fetching data:", error);
       NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
   }

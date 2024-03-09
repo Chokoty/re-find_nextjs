@@ -4,15 +4,15 @@ import { useDisclosure } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
-const useHeader = () => {
+export default function useHeader() {
   const [hideHeader, sethideHeader] = useState(false);
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const myDrawerRef = useRef<HTMLElement | null>(null);
+  const myDrawerRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname && pathname.startsWith('/more')) {
+    if (pathname.startsWith('/more')) {
       sethideHeader(true);
     } else {
       sethideHeader(false);
@@ -20,11 +20,11 @@ const useHeader = () => {
   }, [pathname]);
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = (e: globalThis.MouseEvent) => {
       if (
         myDrawerRef.current &&
-        !myDrawerRef.current.contains(e.target) &&
-        !e.target.closest('.hamburger-react')
+        !myDrawerRef.current.contains(e.target as HTMLDivElement) &&
+        !(e.target as HTMLDivElement).closest('.hamburger-react')
       ) {
         setIsOpenDrawer(false);
       }
@@ -50,6 +50,4 @@ const useHeader = () => {
     onClose,
     myDrawerRef,
   };
-};
-
-export default useHeader;
+}

@@ -1,7 +1,6 @@
 import { Box, Spinner, Text } from '@chakra-ui/react';
-import React from 'react';
 
-const Loading = () => {
+export default function Loading() {
   return (
     <Box
       className="loading"
@@ -18,6 +17,4 @@ const Loading = () => {
       <Spinner size="md" />
     </Box>
   );
-};
-
-export default Loading;
+}

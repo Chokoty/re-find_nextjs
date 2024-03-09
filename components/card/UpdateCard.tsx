@@ -13,14 +13,18 @@ import NextLink from 'next/link';
 import React from 'react';
 import { MdArrowForwardIos, MdPerson } from 'react-icons/md';
 
-import boardData from '@/data/board.ts';
+import boardData from '@/data/board';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsive } from '@/hook/useResponsive';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const UpdateCard = ({ update }) => {
+type Prop = {
+  update: RecentBoardData;
+};
+
+export default function UpdateCard({ update }: Prop) {
   const isMobile = useResponsive();
 
   const highlightColor = useColorModeValue(
@@ -32,16 +36,19 @@ const UpdateCard = ({ update }) => {
 
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
-  const modifiedUrl100 = useModifiedImageUrl(update?.info.img_url, 100);
-  const uploadTimeDiff = useUploadTimeDiff(update?.date);
-  const article_link = useResponsiveLink(update?.id, 'article');
+  const modifiedUrl100 = useModifiedImageUrl({
+    url: update.info.img_url,
+    size: 100,
+  });
+  const uploadTimeDiff = useUploadTimeDiff(update.date);
+  const article_link = useResponsiveLink(update.id, 'article');
   const menu_link = useResponsiveLink(
-    boardData.find((item) => item.board === update?.board)?.id,
+    boardData.find((item) => item.board === update.board)?.id ?? '',
     'menu'
   );
 
   function getImageSrc() {
-    const boardItem = boardData.find((item) => item.board === update?.board);
+    const boardItem = boardData.find((item) => item.board === update.board);
     if (boardItem?.state === '-관-') {
       return '/static/images/icons/close.jpeg';
     }
@@ -247,6 +254,4 @@ const UpdateCard = ({ update }) => {
       </Box>
     </Box>
   );
-};
-
-export default UpdateCard;
+}

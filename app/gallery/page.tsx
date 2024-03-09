@@ -6,8 +6,6 @@ import { useEffect } from 'react';
 import AlbumGrid from '@/components/artwork/albumGrid';
 import MemberButtonList from '@/components/artwork/MemberButtonList';
 import PageTitle from '@/components/common/PageTitle';
-import gallery from '@/data/gallery';
-import members from '@/data/members';
 import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -62,7 +60,6 @@ export default function Gallery() {
         alignItems="center"
       >
         <MemberButtonList
-          members={members}
           type="link"
           range={{ start: 0, end: 7 }}
           selected={null}
@@ -70,7 +67,7 @@ export default function Gallery() {
           isdPick={false}
         />
       </Box>
-      <AlbumGrid gallery={gallery} />
+      <AlbumGrid />
     </Box>
   );
 }

@@ -1,8 +1,4 @@
-interface View {
-  name: string;
-  value: string;
-  colorScheme: string;
-}
+import type { Sort, View } from '@/types';
 
 export const viewTypes: View[] = [
   { name: '베스트', value: 'best_cnt', colorScheme: 'red' },
@@ -11,11 +7,6 @@ export const viewTypes: View[] = [
   { name: '고멤/교멤', value: 'gomem_cnt', colorScheme: 'teal' },
   { name: '이세돌', value: 'isd_cnt', colorScheme: 'pink' }, // 추천
 ];
-
-interface Sort {
-  name: string;
-  value: string;
-}
 
 export const sortTypes: Sort[] = [
   { name: '총 조회', value: 'total_views' },

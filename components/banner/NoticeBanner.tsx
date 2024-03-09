@@ -5,7 +5,7 @@ import React from 'react';
 import updateLog from '@/data/updateLog';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const NoticeBanner = () => {
+export default function NoticeBanner() {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const highlightColor = useColorModeValue(
     lightMode.highlight,
@@ -64,6 +64,4 @@ const NoticeBanner = () => {
       </Box>
     </Box>
   );
-};
-
-export default NoticeBanner;
+}

@@ -15,7 +15,8 @@
     "react",
     "react-hooks",
     "simple-import-sort",
-    "import"
+    "import",
+    "@tanstack/query"
     // "no-null",
   ],
   "extends": [
@@ -29,7 +30,8 @@
     "plugin:storybook/recommended",
     "airbnb-base",
     "airbnb-typescript/base",
-    "prettier"
+    "prettier",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }], // Delete `␍` prettier/prettier 해결 방법
@@ -73,8 +75,11 @@
     "react/prop-types": "off",
     "curly": ["error", "multi-line", "consistent"],
     "nonblock-statement-body-position": ["error", "beside"],
-    "no-use-before-define": "off"
+    "no-use-before-define": "off",
     // "no-null/no-null": 2,
+    "@tanstack/query/exhaustive-deps": "error",
+    "@tanstack/query/no-rest-destructuring": "warn",
+    "@tanstack/query/stable-query-client": "error"
   },
 
   "settings": {

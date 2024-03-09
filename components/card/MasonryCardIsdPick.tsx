@@ -8,9 +8,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextImage from 'next/image';
-import NextLink from 'next/link';
 import React, { useState } from 'react';
-import { FaComment, FaEye, FaImage, FaThumbsUp } from 'react-icons/fa';
+import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
@@ -28,24 +27,34 @@ const iconStyle = {
   height: '1rem',
 };
 
-const MasonryCardIsdPick = ({
-  nickname,
+type Props = {
+  nickname: string;
+  artwork: IsdArtworkList;
+  isFocused: boolean;
+  onToggleFocus: (id: number | null) => void;
+  isGallery: boolean;
+};
+
+export default function MasonryCardIsdPick({
   artwork,
   isFocused,
   onToggleFocus,
   isGallery,
-}) => {
-  const [imageHeight, setImageHeight] = useState(0);
+}: Props) {
+  const [imageHeight, setImageHeight] = useState<number | null>(null);
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  const modifiedUrl300 = useModifiedImageUrl(artwork?.img_url_list[0], 300);
+  const modifiedUrl300 = useModifiedImageUrl({
+    url: artwork.img_url_list[0],
+    size: 300,
+  });
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
-  const handleImageLoad = (e) => {
-    setImageHeight(e.target.height);
+  const handleImageLoad = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
+    setImageHeight((e.target as HTMLImageElement).height);
   };
-
-  // console.log(artwork);
 
   return (
     <Box
@@ -133,7 +142,7 @@ const MasonryCardIsdPick = ({
             >
               {artwork.board}
             </Text>
-            {imageHeight >= 212 && (
+            {imageHeight && imageHeight >= 212 && (
               <>
                 <Flex
                   flexDir="column"
@@ -205,13 +214,13 @@ const MasonryCardIsdPick = ({
                   >
                     <FaComment style={iconStyle} />
                     <Text fontSize={['sm', 'xl']} fontWeight="400">
-                      {formatArtistValue(artwork.comments)}
+                      {formatArtistValue(artwork.comment)}
                     </Text>
                   </Box>
                 </Flex>
               </>
             )}
-            {imageHeight < 212 && (
+            {imageHeight && imageHeight < 212 && (
               <>
                 {imageHeight > 140 && (
                   <Text
@@ -249,7 +258,7 @@ const MasonryCardIsdPick = ({
                   <Box>
                     <FaComment style={iconStyle} />
                     <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      {formatArtistValue(artwork.comments)}
+                      {formatArtistValue(artwork.comment)}
                     </Text>
                   </Box>
                 </Flex>
@@ -313,6 +322,4 @@ const MasonryCardIsdPick = ({
       </Box>
     </Box>
   );
-};
-
-export default MasonryCardIsdPick;
+}

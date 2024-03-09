@@ -14,7 +14,7 @@ type ColorScheme = {
   highlight2: string;
 };
 
-type ThemeState = {
+type ThemeStore = {
   theme: Theme;
   toggleTheme: () => void;
   colors: {
@@ -23,32 +23,35 @@ type ThemeState = {
   };
 };
 
-const themeStore = create((set) => ({
-  theme: 'light',
-  toggleTheme: () =>
-    set((state) => ({
-      theme: state.theme === 'light' ? 'dark' : 'light',
-    })),
-  colors: {
-    light: {
-      bg: '#FFFFFF',
-      color: '#1B1642',
-      color2: '#E8EAEC',
-      footerColor: '#575A7B',
-      highlight: '#01bda1',
-      badge: '#c1eadf',
-      highlight2: '#008080',
+export const useThemeStore = create<
+  ThemeStore,
+  [['zustand/devtools', ThemeStore]]
+>(
+  devtools((set) => ({
+    theme: 'light',
+    toggleTheme: () =>
+      set((state) => ({
+        theme: state.theme === 'light' ? 'dark' : 'light',
+      })),
+    colors: {
+      light: {
+        bg: '#FFFFFF',
+        color: '#1B1642',
+        color2: '#E8EAEC',
+        footerColor: '#575A7B',
+        highlight: '#01bda1',
+        badge: '#c1eadf',
+        highlight2: '#008080',
+      },
+      dark: {
+        bg: '#0F0F0F',
+        color: '#E8EAEC',
+        color2: '#1B1642',
+        footerColor: '#ced4da9a',
+        highlight: '#ef5a9a',
+        badge: '#FC719F',
+        highlight2: '#FED6D7',
+      },
     },
-    dark: {
-      bg: '#0F0F0F',
-      color: '#E8EAEC',
-      color2: '#1B1642',
-      footerColor: '#ced4da9a',
-      highlight: '#ef5a9a',
-      badge: '#FC719F',
-      highlight2: '#FED6D7',
-    },
-  },
-}));
-
-export const useThemeStore = create(devtools(themeStore));
+  }))
+);

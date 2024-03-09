@@ -5,7 +5,7 @@ import { PiGiftBold } from 'react-icons/pi';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const EventDay = () => {
+export default function EventDay() {
   const color3 = useColorModeValue(lightMode.color2, darkMode.color3);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
@@ -30,7 +30,7 @@ const EventDay = () => {
         fontWeight="bold"
         mb="1rem"
       >
-        비챤님 생일 축하드려요!!!
+        릴파님 생일 축하드려요!!!
       </Text>
       <Button
         // background="black"
@@ -51,12 +51,10 @@ const EventDay = () => {
             marginRight: '0.5rem',
           }}
         />
-        <NextLink href="/gallery/viichanBirthday">
-          비챤님 생일기념 팬아트 보러가기
+        <NextLink href="/gallery/lilpaBirthday">
+          릴파님 생일기념 팬아트 보러가기
         </NextLink>
       </Button>
     </Box>
   );
-};
-
-export default EventDay;
+}

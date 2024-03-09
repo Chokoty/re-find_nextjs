@@ -1,10 +1,9 @@
 import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
-import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function Title({ onTitleClick }) {
+export default function Title() {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
@@ -16,7 +15,7 @@ export default function Title({ onTitleClick }) {
   };
 
   return (
-    <Box className="title" onClick={onTitleClick}>
+    <Box className="title" onClick={handleTitleClick}>
       <Link href="/" className="content">
         <Heading className="title-main" fontFamily={'ONE-Mobile-POP'}>
           <span style={{ color: highlightColor }}>RE:</span>

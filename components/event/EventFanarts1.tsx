@@ -8,18 +8,19 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React from 'react';
-
-import { darkMode, lightMode } from '@/styles/theme';
 
 import IsegyeFestivalFanart from './IsegyeFestivalFanart';
 import KiddingFanart from './KiddingFanart';
 
-const EventFanarts = ({ initialFanart }) => {
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
+type Prop = {
+  initialFanart: EventFanart | null;
+};
+
+export default function EventFanarts({ initialFanart }: Prop) {
+  // const highlightColor = useColorModeValue(
+  //   lightMode.highlight,
+  //   darkMode.highlight
+  // );
 
   return (
     <Box
@@ -87,7 +88,7 @@ const EventFanarts = ({ initialFanart }) => {
             "
           >
             <Box border="1.5px solid #FE78BB" borderRadius="0.2rem" w="100%">
-              <KiddingFanart initialFanart={null} />
+              <KiddingFanart />
             </Box>
           </AccordionPanel>
         </AccordionItem>
@@ -140,13 +141,11 @@ const EventFanarts = ({ initialFanart }) => {
               padding="1.5rem"
               w="100%"
             >
-              <IsegyeFestivalFanart initialFanart={initialFanart} />
+              <IsegyeFestivalFanart />
             </Box>
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
     </Box>
   );
-};
-
-export default EventFanarts;
+}

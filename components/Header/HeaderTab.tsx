@@ -3,7 +3,11 @@ import NextLink from 'next/link';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const HeaderTab = ({ isCurrentPath }) => {
+type Prop = {
+  isCurrentPath: (path: string) => boolean;
+};
+
+export default function HeaderTab({ isCurrentPath }: Prop) {
   const color5 = useColorModeValue(lightMode.color, darkMode.color5);
   const color6 = useColorModeValue(lightMode.color, darkMode.color6);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
@@ -79,6 +83,4 @@ const HeaderTab = ({ isCurrentPath }) => {
       </Box>
     </>
   );
-};
-
-export default HeaderTab;
+}

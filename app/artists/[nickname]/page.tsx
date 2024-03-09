@@ -1,8 +1,8 @@
-import axios from 'axios';
 import type { Metadata } from 'next';
 
 import DetailedArtists from '@/components/artist/DetailedArtists';
 import { siteConfig } from '@/lib/config';
+import { getAuthorInfo } from '@/service/server/artists';
 
 type Params = {
   params: { nickname: string };
@@ -36,10 +36,6 @@ export function generateMetadata({ params: { nickname } }: Params): Metadata {
 
 export default async function page({ params: { nickname } }: Params) {
   const decodedNickname = decodeURIComponent(nickname);
-  const artistInfo = await axios
-    .get(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/author_name2info?name=${nickname}`
-    )
-    .then((res) => res.data);
-  return <DetailedArtists nickname={decodedNickname} artistInfo={artistInfo} />;
+  const result = await getAuthorInfo(nickname);
+  return <DetailedArtists nickname={decodedNickname} artistInfo={result} />;
 }

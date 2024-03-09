@@ -26,7 +26,7 @@ export default function OtherLayout({ children, title }: OtherLayoutProps) {
           justifyContent="center"
           mb="48px"
         >
-          <Title onTitleClick={null} />
+          <Title />
         </Button>
       </NextLink>
       <Heading

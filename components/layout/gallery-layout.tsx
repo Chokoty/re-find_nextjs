@@ -4,15 +4,12 @@ import type { ReactNode } from 'react';
 import GalleryHeader from '@/components/layout/GalleryHeader';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface OtherLayoutProps {
+type Props = {
   children: ReactNode;
   title: string;
-}
+};
 
-export default function DetailedGalleryLayout({
-  children,
-  title,
-}: OtherLayoutProps) {
+export default function DetailedGalleryLayout({ children, title }: Props) {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (

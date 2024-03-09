@@ -40,5 +40,5 @@ export default function page({ params }: Params) {
     members.find((item) => item.value === name)?.query ||
     gallery.find((item) => item.value === name)?.query;
   // gallery.find((item) => item.id.toString() === id)?.keyword;
-  return <DetailedGallery value={name} query={query} />;
+  return <DetailedGallery value={name} query={query ?? ''} />;
 }

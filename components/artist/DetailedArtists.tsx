@@ -1,22 +1,33 @@
 'use client';
 
-import { Box, Center, Text, useToast } from '@chakra-ui/react';
-import axios from 'axios';
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  Box,
+  Center,
+  Text,
+} from '@chakra-ui/react';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import HashLoader from 'react-spinners/HashLoader';
+import { HashLoader } from 'react-spinners';
 
 import AuthorProfileHead from '@/components/artist/AuthorProfileHead';
-import LoadButton from '@/components/common/LoadButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ArtistHeader from '@/components/layout/ArtistHeader';
+import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+import { useArtistInfo } from '@/service/client/artists/useArtistService';
 
-// @ts-ignore
-export default function DetailedArtists({ nickname, artistInfo }) {
-  const toast = useToast();
+type Props = {
+  nickname: string;
+  artistInfo: AuthorOverview;
+};
+
+export default function DetailedArtists({ nickname, artistInfo }: Props) {
   // const validSortOptions = menuItems.map((item) => item.id);
   // const validBoardOptions = viewTypes.map((item) =>
   //   item.value.replace('_cnt', '')
@@ -24,22 +35,21 @@ export default function DetailedArtists({ nickname, artistInfo }) {
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
-    rootMargin: '600px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+    rootMargin: '600px 0px', // 상단에서 600px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
   let actualNickname = '';
   if (Array.isArray(nickname)) [actualNickname] = nickname;
   else actualNickname = nickname;
 
-  const [profile] = useState(artistInfo);
-  const [artworks, setArtworks] = useState([]);
-  const [page, setPage] = useState(1);
-  const [isLastPage, setIsLastPage] = useState(false);
-  // const [selectedBoard, setSelectedBoard] = useState(null);
+  // const [profile] = useState(artistInfo);
+  // const [artworks, setArtworks] = useState<ArtworkList[]>([]);
+  // const [page, setPage] = useState(1);
+  // const [isLastPage, setIsLastPage] = useState(false);
+  // const [selectedBoard, setSelectedBoard]setArtworks = useState(null);
   const [sortCriteria, setSortCriteria] = useState({
     field: '',
     order: 'descending', // 'ascending' 또는 'descending'
   });
-
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   const [boardType, setBoardType] = useState(
@@ -56,43 +66,9 @@ export default function DetailedArtists({ nickname, artistInfo }) {
   // );
   const [sortType, setSortType] = useState('latest'); // TODO: 이전 부분 삭제 (query가 들어갈 수 있는 상황이 없는 것 같아서)
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
-  const [isInitialRender, setIsInitialRender] = useState(true);
 
-  // react-spinners
-  const [loadingData, setLoadingData] = useState(false);
-  const [, setLoadingImage] = useState(true);
-
-  // useEffect(() => {
-  //   // URL에 새로운 정렬 조건을 반영합니다.
-  //   const currentPath = router.pathname;
-  //   const { board, ...restQuery } = router.query;
-  //   const currentQuery: { [key: string]: string } = {
-  //     ...restQuery,
-  //     sort: sortType,
-  //   };
-  //   // if (boardType !== '') {
-  //   //   currentQuery = { ...currentQuery, board: boardType };
-  //   // }
-  //   router.push(
-  //     {
-  //       pathname: currentPath,
-  //       query: currentQuery,
-  //     },
-  //     undefined,
-  //     { shallow: true }
-  //   );
-  // }, [sortType, boardType, router]);
-
-  const loadData = () => {
-    console.log('loadData');
-    getArtistArtworks();
-  };
-
-  const resetArtworks = useCallback(() => {
-    setArtworks([]);
-    setPage(1);
-    setIsLastPage(false);
-  }, []);
+  const { fetchNextPage, artworks, isError, isFetchingNextPage, isLoading } =
+    useArtistInfo({ nickname, sortType, field: sortCriteria.field });
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
@@ -100,9 +76,8 @@ export default function DetailedArtists({ nickname, artistInfo }) {
       // console.log(menuText);
       if (menuText === sortType) return;
       setSortType(menuText);
-      resetArtworks();
     },
-    [sortType, resetArtworks] // useCallback 문제였음...
+    [sortType]
   );
 
   // 뷰 선택하기
@@ -116,13 +91,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
     setIsDeletedVisible((prev) => !prev);
   }, []);
 
-  // 이미지 로딩
-  // @ts-ignore
-  const handleLoading = useCallback((Loading) => {
-    setLoadingImage(Loading);
-  }, []);
-  // @ts-ignore
-  const handleViewTypeSelect = (value) => {
+  const handleViewTypeSelect = (value: string) => {
     // 같은거 누르면 해제,토글
     // console.log(value.replace('_cnt', ''));
     if (value === sortCriteria.field) {
@@ -137,7 +106,6 @@ export default function DetailedArtists({ nickname, artistInfo }) {
         return { ...prevState, field: value, order: 'descending' };
       });
     }
-    resetArtworks();
   };
 
   // useEffect(() => {
@@ -146,106 +114,29 @@ export default function DetailedArtists({ nickname, artistInfo }) {
   //   }
   // }, [router, handleViewTypeSelect]);
 
-  // const getArtistInfo = useCallback(async () => {
-  //   try {
-  //     const response = await axios
-  //       .get(
-  //         `${process.env.NEXT_PUBLIC_SERVER_URL}/author_name2info?name=${nickname}`
-  //       )
-  //       .then((res) => res.data);
-  //     setProfile(response);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //     // 404 페이지로 이동
-  //     router.push('/404');
-  //   }
-  // }, [nickname]);
-
-  const getArtistArtworks = useCallback(async () => {
-    // console.log('getArtistArtworks');
-    if (isLastPage) return;
-    if (loadingData) return;
-
-    setLoadingData(true);
-    // console.log('artworks loading...');
-
-    try {
-      let url = `${process.env.NEXT_PUBLIC_SERVER_URL}/author_artworks?name=${nickname}&type=${sortType}&page=${page}`;
-      if (sortCriteria.field !== '') {
-        url += `&board=${sortCriteria.field.replace('_cnt', '')}`;
-      }
-      // console.log(url); //!
-
-      const response = await axios.get(url).then((res) => res.data);
-      // console.log(response);
-      if (response.lastPage === true) {
-        setIsLastPage(true);
-      }
-      // @ts-ignore
-      if (page === 1) setArtworks([...response.list]);
-      // @ts-ignore
-      else setArtworks([...artworks, ...response.list]);
-    } catch (error) {
-      // 500에러 예외처리
-      // console.log(error.response);
-      // @ts-ignore
-      if (error.response?.status === 500) {
-        toast({
-          title:
-            '현재 작가 프로필 쪽 서버가 점검중 입니다. 잠시 후 다시 시도해주세요.',
-          description: '500 error',
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-      // 504 에러 예외처리, 504 에러는 서버가 불안정할 때 발생
-      // @ts-ignore
-      else if (error.response?.status === 504) {
-        toast({
-          title:
-            '현재 작가 프로필 쪽 서버가 불안정합니다. 잠시 후 다시 시도해주세요.',
-          description: '504 error',
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-      console.error('Error fetching more data:', error);
-      setIsLastPage(true);
-    } finally {
-      setLoadingData(false); // Set loading state to false regardless of success or failure
-    }
-  }, [sortType, page, nickname, sortCriteria.field]);
-
   // useEffect(() => {
   //   // router.push(`/artists/${nickname}?view=${activeView}&sort=${sortType}`);
   // }, [activeView, sortType]);
 
-  useEffect(() => {
-    resetArtworks();
-    getArtistArtworks();
-  }, [sortCriteria, sortCriteria.field]);
+  // useEffect(() => {
+  //   resetArtworks();
+  //   getArtistArtworks();
+  // }, [sortCriteria, sortCriteria.field]);
 
-  useEffect(() => {
-    if (isInitialRender) {
-      setIsInitialRender(false);
-      return;
-    }
-    getArtistArtworks();
-  }, [sortType, page]);
+  // useEffect(() => {
+  //   if (isInitialRender) {
+  //     setIsInitialRender(false);
+  //     return;
+  //   }
+  //   getArtistArtworks();
+  // }, [sortType, page]);
 
   // 무한 스크롤
   useEffect(() => {
-    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    // if (inView) console.log('inView: ', inView);
-    if (inView && !isLastPage && !loadingData) {
-      // !loadingData: 작가페이지 카운트 버그 수정
-      // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
-      setPage((prevState) => prevState + 1);
+    if (inView) {
+      fetchNextPage();
     }
-  }, [inView, isLastPage]);
+  }, [inView]);
 
   // 초기 작가 artworks 렌더링
   // useEffect(() => {
@@ -255,11 +146,77 @@ export default function DetailedArtists({ nickname, artistInfo }) {
   //   }
   // }, [nickname]);
 
+  const content = () => {
+    if (isLoading) {
+      return <ViewSkeleton view={activeView} />;
+    }
+
+    if (isError) {
+      return (
+        <Alert
+          status="error"
+          w="100%"
+          borderRadius="1rem"
+          justifyContent="center"
+        >
+          <AlertIcon />
+          <AlertTitle>서버 에러</AlertTitle>
+          <AlertDescription>
+            현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
+            빠른 시일 내에 해결하겠습니다.
+          </AlertDescription>
+        </Alert>
+      );
+    }
+
+    if (!artworks || artworks.length === 0) return;
+
+    return (
+      <Box
+        w="100%"
+        overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+      >
+        {activeView === 'masonry' && (
+          <MasonryView
+            nickname={nickname}
+            artworks={artworks}
+            isDeletedVisible={isDeletedVisible}
+            // loadingImage={loadingImage}
+            // handleLoading={handleLoading}
+            isGallery={false}
+          />
+        )}
+        {activeView === 'grid' && (
+          <SimpleView
+            artworks={artworks}
+            isDeletedVisible={isDeletedVisible}
+            // handleLoading={handleLoading}
+          />
+        )}
+        {isFetchingNextPage ? (
+          <Box
+            w="100%"
+            mt="1.5rem"
+            mb="1.5rem"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <HashLoader color="#01BFA2" />
+          </Box>
+        ) : (
+          // Observer를 위한 div
+          <Box ref={ref} w="100%" h="5rem" />
+        )}
+      </Box>
+    );
+  };
+
   return (
     <Box>
       <>
         <ArtistHeader title="" />
-        {profile?.author_nickname === '' && profile.num_artworks === 0 && (
+        {artistInfo.author_nickname === '' && artistInfo.num_artworks === 0 && (
           <Center
             w="100%"
             h="80vh"
@@ -285,7 +242,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
             />
           </Center>
         )}
-        {profile?.author_nickname !== '' && (
+        {artistInfo.author_nickname !== '' && (
           <Box
             display="flex"
             flexDirection="column"
@@ -295,7 +252,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
           >
             <AuthorProfileHead
               nickname={actualNickname}
-              profile={profile}
+              profile={artistInfo}
               boardType={boardType}
               handleViewTypeSelect={handleViewTypeSelect}
             />
@@ -309,55 +266,7 @@ export default function DetailedArtists({ nickname, artistInfo }) {
               topOffset={59}
               isdPick={false}
             />
-            {!artworks && (
-              <Box
-                w="100%"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-              >
-                <HashLoader color="#01BFA2" />
-              </Box>
-            )}
-            {artworks && (
-              <>
-                {artworks?.length !== 0 && (
-                  <Box
-                    w="100%"
-                    overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-                  >
-                    {activeView === 'masonry' && (
-                      <MasonryView
-                        nickname={nickname}
-                        artworks={artworks}
-                        isDeletedVisible={isDeletedVisible}
-                        // loadingImage={loadingImage}
-                        handleLoading={handleLoading}
-                        isGallery={false}
-                      />
-                    )}
-                    {activeView === 'grid' && (
-                      <SimpleView
-                        artworks={artworks}
-                        isDeletedVisible={isDeletedVisible}
-                        // handleLoading={handleLoading}
-                      />
-                    )}
-                    {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
-                    {/* Observer를 위한 div */}
-                    {<Box ref={ref} w="100%" h="5rem"></Box>}
-                  </Box>
-                )}
-              </>
-            )}
-            {loadingData && (
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <HashLoader color="#01BFA2" />
-              </Box>
-            )}
-            {/* Observer를 위한 div */}
-            {<Box ref={ref} w="100%" h="5rem"></Box>}
-            {!loadingData && <LoadButton loadData={loadData} />}
+            {content()}
           </Box>
         )}
       </>

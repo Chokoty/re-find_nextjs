@@ -9,7 +9,9 @@ import { FaSearch } from 'react-icons/fa';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function BackButton({ onOpen }) {
+type Prop = { onOpen: () => void };
+
+export default function BackButton({ onOpen }: Prop) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);

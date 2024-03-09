@@ -2,7 +2,7 @@ import { Button } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-const BackButton = () => {
+export default function BackButton() {
   const router = useRouter();
 
   const goBack = () => {
@@ -22,6 +22,4 @@ const BackButton = () => {
       <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
     </Button>
   );
-};
-
-export default BackButton;
+}

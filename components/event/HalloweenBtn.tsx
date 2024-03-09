@@ -4,7 +4,7 @@ import React from 'react';
 
 import { darkMode, lightMode } from '@/styles/theme';
 
-const HalloweenBtn = () => {
+export default function HalloweenBtn() {
   const color3 = useColorModeValue(lightMode.color2, darkMode.color3);
 
   return (
@@ -34,6 +34,4 @@ const HalloweenBtn = () => {
       </Button>
     </Box>
   );
-};
-
-export default HalloweenBtn;
+}

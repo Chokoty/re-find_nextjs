@@ -1,16 +1,45 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
-import React, { useState } from 'react';
 
 import SimpleCards from '@/components/card/SimpleCards';
 
-export default function SimpleView({ artworks, isDeletedVisible }) {
-  const [focusedArtworkId, setFocusedArtworkId] = useState(null);
-  console.log('artworks');
-  const handleToggleFocus = (id: any) => {
-    if (id === focusedArtworkId) {
-      setFocusedArtworkId(null); // Deselect the artwork if it's already focused
-    } else {
-      setFocusedArtworkId(id); // Set the focused artwork ID
+type Props = {
+  artworks: ArtworkList[];
+  isDeletedVisible: boolean;
+};
+
+export default function SimpleView({ artworks, isDeletedVisible }: Props) {
+  // const [focusedArtworkId, setFocusedArtworkId] = useState(null);
+  // const handleToggleFocus = (id: any) => {
+  //   if (id === focusedArtworkId) {
+  //     setFocusedArtworkId(null); // Deselect the artwork if it's already focused
+  //   } else {
+  //     setFocusedArtworkId(id); // Set the focused artwork ID
+  //   }
+  // };
+
+  const content = () => {
+    if (isDeletedVisible) {
+      return artworks.map((artwork, index) => (
+        <SimpleCards
+          key={index}
+          artwork={artwork}
+          // isFocused={artwork.id === focusedArtworkId}
+          // onToggleFocus={handleToggleFocus}
+        />
+      ));
+    }
+    if (!isDeletedVisible) {
+      return artworks.map(
+        (artwork, index) =>
+          !artwork.deleted ? (
+            <SimpleCards
+              key={index}
+              artwork={artwork}
+              // isFocused={artwork.id === focusedArtworkId}
+              // onToggleFocus={handleToggleFocus}
+            />
+          ) : null // Render null if deleted is true
+      );
     }
   };
 
@@ -33,27 +62,7 @@ export default function SimpleView({ artworks, isDeletedVisible }) {
         placeItems="center"
         m="0 auto"
       >
-        {isDeletedVisible &&
-          artworks?.map((artwork, index) => (
-            <SimpleCards
-              key={index}
-              artwork={artwork}
-              isFocused={artwork.id === focusedArtworkId}
-              onToggleFocus={handleToggleFocus}
-            />
-          ))}
-        {!isDeletedVisible &&
-          artworks?.map(
-            (artwork, index) =>
-              !artwork.deleted ? (
-                <SimpleCards
-                  key={index}
-                  artwork={artwork}
-                  isFocused={artwork.id === focusedArtworkId}
-                  onToggleFocus={handleToggleFocus}
-                />
-              ) : null // Render null if deleted is true
-          )}
+        {content()}
       </SimpleGrid>
     </Box>
   );

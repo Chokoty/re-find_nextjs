@@ -1,33 +1,30 @@
 import { Avatar, Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import React from 'react';
 
 import SortTypeIcons from '@/components/artist/SortTypeIcons';
 import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface AuthorProfileCardProps {
-  author: any;
+  author: SourceAuthor;
   writerURL: string;
   profURL: string;
   nickname: string;
 }
 
-const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
+export default function AuthorProfileCard2({
   author,
-  writerURL,
   profURL,
   nickname,
-}) => {
+}: AuthorProfileCardProps) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
-  const member_link = useResponsiveLink(
-    writerURL?.split('/').pop() || 'default',
-    'member'
-  );
+  // const member_link = useResponsiveLink(
+  //   writerURL?.split('/').pop() || 'default',
+  //   'member'
+  // );
 
   return (
     <NextLink
@@ -116,6 +113,4 @@ const AuthorProfileCard2: React.FC<AuthorProfileCardProps> = ({
       </Button>
     </NextLink>
   );
-};
-
-export default AuthorProfileCard2;
+}
