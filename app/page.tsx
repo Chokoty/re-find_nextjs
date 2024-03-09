@@ -211,6 +211,11 @@ export default function Home() {
     onToggle();
   };
 
+  const titleText = {
+    title: '팬아트 갤러리',
+    description: '왁물원에 올라온 팬아트들을 모아놓은 갤러리입니다.',
+  };
+
   return (
     <Box
       className="home_body"
@@ -238,7 +243,12 @@ export default function Home() {
         justifyContent="center"
       >
         <BannerSlider />
-        <TopTitle data={data} resetFiles={resetFiles} />
+        <TopTitle
+          data={data}
+          resetFiles={resetFiles}
+          titleText={titleText}
+          isMember={false}
+        />
         {/* 업로드 전 */}
         {uploadedfiles.length === 0 && (
           <Box

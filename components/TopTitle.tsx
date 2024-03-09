@@ -6,7 +6,25 @@ import SubTitle from '@/components/title/SubTitle';
 import Title from '@/components/title/Title';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function TopTitle({ data, resetFiles }) {
+interface Data {
+  total_counter: string;
+  ids: Array<{ is_deleted: boolean }>;
+}
+
+interface Props {
+  data: Data | null;
+  resetFiles: () => void;
+  titleText: Record<string, string | undefined>;
+  isMember: boolean;
+}
+
+export default function TopTitle({
+  data,
+  resetFiles,
+  titleText,
+  isMember,
+}: Props) {
+  console.log(titleText, isMember);
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const width = useBreakpointValue({ base: '90%', md: '100%' });
 
