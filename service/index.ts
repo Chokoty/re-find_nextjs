@@ -20,22 +20,22 @@ class Service {
 
   private baseURL: string;
 
-  private headers: Record<string, string>;
+  // private headers: Record<string, string>;
 
   constructor() {
     this.baseURL = process.env.NEXT_PUBLIC_SERVER_URL!;
-    this.headers = {
-      csrf: 'token',
-      // Referer: this.baseURL,
-    };
+    // this.headers = {
+    //   csrf: 'token',
+    //   // Referer: this.baseURL,
+    // };
 
     const axiosInstance: AxiosInstance = axios.create({
       baseURL: this.baseURL,
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        ...this.headers,
-      },
+      // withCredentials: true,
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   ...this.headers,
+      // },
     });
     this.http = {
       get: <T>(url: string, config?: AxiosRequestConfig): Promise<T> =>
