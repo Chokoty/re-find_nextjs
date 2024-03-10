@@ -1,4 +1,5 @@
-import { CheckBoxType } from '@/types';
+import type { CheckBoxType } from '@/types';
+
 import EventService from './EventService';
 
 const queryKeys = {
