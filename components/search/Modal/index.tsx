@@ -12,8 +12,8 @@ import {
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-import SearchBar2 from '@/components/search/SearchBar2';
-import SearchOptions from '@/components/search/SearchOptions';
+import SearchBar from '@/components/search/SearchBar';
+import SearchOptions from '@/components/search/Modal/SearchOptions';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
@@ -65,7 +65,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
           pl={1}
           pr={1}
         >
-          <SearchBar2 isSearchPage={false} />
+          <SearchBar isSearchPage={false} />
         </ModalHeader>
         <ModalBody
           pb={6}

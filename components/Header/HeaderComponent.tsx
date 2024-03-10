@@ -16,11 +16,11 @@ import { RiMenu2Line } from 'react-icons/ri';
 
 import MyDrawer from '@/components/common/MyDrawer';
 import HeaderTab from '@/components/Header/HeaderTab';
-import SearchBar from '@/components/search/SearchBar';
+import SearchModalOpener from '@/components/search/SearchModalOpener';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchModal = dynamic(() => import('@/components/search/SearchModal'), {
+const SearchModal = dynamic(() => import('@/components/search/Modal'), {
   ssr: false,
 });
 
@@ -89,7 +89,7 @@ export default function HeaderComponent({
         </Button>
         {!isMobile && <HeaderTab isCurrentPath={isCurrentPath} />}
       </Box>
-      {!isSearchPage && <SearchBar onOpen={onOpen} />}
+      {!isSearchPage && <SearchModalOpener onOpen={onOpen} />}
       <Flex>
         {/* <DarkModeToggle className="dark-mode-toggle" /> */}
 
