@@ -5,7 +5,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import Loading from '@/components/common/Loading';
 import Preview from '@/components/common/Preview';
-import SearchResult from '@/components/search/SearchResult';
+import SearchResult from '@/components/upload/SearchResult';
 import { TARGET_COUNT } from '@/lib/const';
 import { useImageInfo } from '@/service/client/home/useHomeService';
 import { useImageUploadStore } from '@/store/imageUploadStore';

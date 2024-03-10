@@ -65,7 +65,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
           pl={1}
           pr={1}
         >
-          <SearchBar isSearchPage={false} />
+          <SearchBar />
         </ModalHeader>
         <ModalBody
           pb={6}

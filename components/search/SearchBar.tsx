@@ -8,7 +8,7 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
@@ -16,102 +16,46 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
-type Prop = {
-  isSearchPage: boolean;
-};
-
-export default function SearchBar({ isSearchPage }: Prop) {
+export default function SearchBar() {
   const isMobile = useResponsive();
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
-  const keyword = searchParams.get('keyword') ?? 'ㄱㅇㅇ';
-
-  const [input, setInput] = useState(''); // 검색어
+  const keyword = searchParams.get('keyword') ?? '';
+  const [input, setInput] = useState(keyword); // 검색어
   const [isHover, setIsHover] = useState(false);
-  const [width, setWidth] = useState(['100%', '90%', '90%']);
+
+  const isSearchPage = pathname === '/search';
+  const width = isSearchPage ? ['100%', '80%'] : ['100%', '90%', '90%'];
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
-  const searchByKeyword = async () => {
-    // if (keyword === '') return;
-    // try {
-    //   const url = `
-    //   https://re-find.reruru.com/artworks?query=${keyword}&ranktype=${sortType}&per_page=30&page=${page}`;
-    //   console.log(url);
-    //   const response = await axios.get(url).then((res) => res.data);
-    //   setResult(response);
-    //   console.log(response);
-    // } catch (error) {
-    //   console.error('Error fetching data:', error);
-    //   setResult([]);
-    //   // 404 페이지로 이동
-    //   // router.push('/404');
-    // }
+  const onBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const q = e.target.value;
+    setInput(q);
   };
 
-  // const searchByKeyword2 = useCallback(async () => {
-  //   try {
-  //     const url = `
-  //     https://re-find.reruru.com/artworks?query=${input}&ranktype=latest&per_page=30&page=1`;
-  //     console.log(url);
-
-  //     const response = await axios.get(url).then((res) => res.data);
-  //     setResult(response);
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.error('Error fetching data:', error);
-  //     setResult(null);
-  //     // 404 페이지로 이동
-  //     // router.push('/404');
-  //   }
-  // }, [input]);
-
-  // const handleSearch = (event) => {
-  const handleSearch = () => {
-    // setInput(event.target.value);
-    // console.log(event.target.value);
+  const onSearchButtonClick = () => {
+    if (input.length === 0) return;
+    router.push(`/search?keyword=${encodeURIComponent(input)}`);
   };
 
-  const handleInputClick = () => {
-    console.log('handleInputClick');
-    // '/search' 경로로 이동하면서 쿼리 파라미터로 입력 값을 전달합니다.
-    // router.push({
-    //   pathname: '/search',
-    //   query: { query: input },
-    // });
-    if (input?.length > 0) {
-      // '/search' 경로로 이동하면서 쿼리 파라미터 keyword로 입력 값을 전달합니다.
-      router.push(`/search?keyword=${encodeURIComponent(input)}`);
+  const onBarKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      router.push('/search?keyword=' + encodeURIComponent(input));
     }
-    // if (isSearchPage) searchByKeyword();
-    // else searchByKeyword2();
   };
-
-  // const handleEnterKeyPress = (e) => {
-  //   if (e.key === 'Enter') {
-  //     handleInputClick();
-  //   }
-  // };
-
-  // const handleEnterKeyPress = (e) => {
-  //   if (e.key === 'Enter') {
-  //     handleInputClick();
-  //   }
-  // };
 
   const handleClear = () => {
     setInput('');
   };
 
   useEffect(() => {
-    if (isSearchPage === true) {
-      setWidth(['100%', '80%']);
-    }
-    setInput(keyword);
-    if (isSearchPage && keyword !== '') searchByKeyword();
-  }, []);
+    if (!keyword) return;
+    console.log('useEffect', keyword);
+  }, [keyword]);
 
   return (
     <Box
@@ -148,13 +92,10 @@ export default function SearchBar({ isSearchPage }: Prop) {
           bg={bg3}
           alignItems="center"
           value={input}
-          onChange={handleSearch}
-          onClick={handleInputClick}
-          // onKeyPress={handleEnterKeyPress}
+          onChange={onBarChange}
+          onKeyDown={onBarKeyDown}
           focusBorderColor="#01BFA2"
           size="md"
-          // value={nickname}
-          // onChange={handleSearch}
           _hover={{
             backgroundColor: bg2,
             borderColor: '#01BFA2',
@@ -203,7 +144,7 @@ export default function SearchBar({ isSearchPage }: Prop) {
           <Button
             variant="ghost"
             borderRadius="50%"
-            onClick={handleInputClick}
+            onClick={onSearchButtonClick}
             p="0"
             _hover={{}}
             _active={{}}
@@ -231,7 +172,7 @@ export default function SearchBar({ isSearchPage }: Prop) {
           minW="4rem"
           h="36px"
           backgroundColor="#7dedda"
-          onClick={handleInputClick}
+          onClick={onSearchButtonClick}
           _hover={{
             backgroundColor: '#01BFA2',
             color: 'white',
