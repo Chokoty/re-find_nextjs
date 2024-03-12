@@ -21,8 +21,8 @@ export default function SearchBar() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const keyword = searchParams.get('keyword') ?? '';
-  const [input, setInput] = useState(keyword); // 검색어
+  const q = searchParams.get('q') ?? '';
+  const [input, setInput] = useState(q); // 검색어
   const [isHover, setIsHover] = useState(false);
 
   const isSearchPage = pathname === '/search';
@@ -39,12 +39,12 @@ export default function SearchBar() {
 
   const onSearchButtonClick = () => {
     if (input.length === 0) return;
-    router.push(`/search?keyword=${encodeURIComponent(input)}`);
+    router.push(`/search?q=${encodeURIComponent(input)}`);
   };
 
   const onBarKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      router.push('/search?keyword=' + encodeURIComponent(input));
+      router.push('/search?q=' + encodeURIComponent(input));
     }
   };
 
@@ -53,9 +53,9 @@ export default function SearchBar() {
   };
 
   useEffect(() => {
-    if (!keyword) return;
-    console.log('useEffect', keyword);
-  }, [keyword]);
+    if (!q) return;
+    console.log('useEffect', q);
+  }, [q]);
 
   return (
     <Box
@@ -171,16 +171,15 @@ export default function SearchBar() {
           p="0 1.25rem"
           minW="4rem"
           h="36px"
-          backgroundColor="#7dedda"
+          backgroundColor="#21e7ca"
+          color="#1a202c"
           onClick={onSearchButtonClick}
           _hover={{
-            backgroundColor: '#01BFA2',
-            color: 'white',
+            backgroundColor: '#64f3de',
+            // color: 'white',
           }}
         >
-          <Text fontSize="1rem" fontWeight="700" color="#01BFA2">
-            검색
-          </Text>
+          검색
         </Button>
       )}
     </Box>

@@ -18,34 +18,12 @@ import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
 import { useImageUploadStore } from '@/store/imageUploadStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-// const data2 = {
-//   ids: [
-//     {
-//       id: '12570067',
-//       is_deleted: false,
-//       is_shukkou: false,
-//     },
-//   ],
-//   author: {
-//     author_nickname: '시한',
-//     author_url:
-//       'https://cafe.naver.com/ca-fe/cafes/27842958/members/P-REb7i9cxxaj4zLYMd92Q',
-//     author_prof_url:
-//       'https://cafeptthumb-phinf.pstatic.net/MjAyMTEyMjZfMjgw/MDAxNjQwNDYwMTEzNjY0.3z-udtYJX4WD-skhXMqGEEH8Lyv8ahgvGQ9dcDFRTWgg.1KlFPIwso90DtrGXL1Bp72B83KCJ3qLu-3bmsYYU2Xsg.PNG/23525263737.png',
-//   },
-//   upload_date: '2023.08.21. 14:56',
-//   title: '세구넴 키딩',
-//   board: '🎨 이세돌┃팬아트',
-//   total_counter: '45130',
-//   today_counter: '104',
-// };
-
 type Props = {
   searchTime: number;
   data: Source;
 };
 
-export default function SearchResult({ searchTime, data }: Props) {
+export default function ImageSearchResult({ searchTime, data }: Props) {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight

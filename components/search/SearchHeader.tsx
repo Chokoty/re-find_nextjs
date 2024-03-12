@@ -20,7 +20,7 @@ type Props = {
 export default function SearchHeader({ total }: Props) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const searchParams = useSearchParams();
-  const keyword = searchParams.get('keyword') ?? '';
+  const q = searchParams.get('q') ?? '';
 
   return (
     <>
@@ -39,7 +39,8 @@ export default function SearchHeader({ total }: Props) {
                   flexDir={['column', 'row', 'row']}
                   justifyContent="space-between"
                   alignItems={['flex-end', 'center', 'center']}
-                  p="0 1rem"
+                  p="1.7rem 1.5rem 1rem"
+                  _hover={{backgroundColor: 'none'}}
                 >
                   <Text
                     m="1rem 0"
@@ -49,7 +50,10 @@ export default function SearchHeader({ total }: Props) {
                     textAlign="left"
                     // w="500px"
                   >
-                    {keyword}에 대한 검색 결과입니다. 총{total}개
+                    <Text display="inline-block" color="#01BFA2">
+                      {q}
+                    </Text>
+                    에 대한 검색 결과입니다. 총{total}개
                   </Text>
                   <Box
                     display="flex"
@@ -57,7 +61,8 @@ export default function SearchHeader({ total }: Props) {
                     justifyContent="flex-end"
                     alignItems="center"
                     gap="0.5rem"
-                    p="1rem 0"
+                    p="0.5rem"
+                    borderRadius="0.5rem"
                     _hover={{
                       backgroundColor: bg2,
                       borderColor: '#01BFA2',

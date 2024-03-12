@@ -86,6 +86,7 @@ import SearchHeader from '@/components/search/SearchHeader';
 
 export default function Search() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  // TODO: 데이터 가져오고 props로 넘겨주기
   return (
     <Box mb="10px" p="1rem" textAlign="center" w="100%">
       <Box
@@ -98,7 +99,7 @@ export default function Search() {
         borderRadius="1rem"
         boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
       >
-        <SearchHeader total={10}/>
+        <SearchHeader total={10} />
         <Suspense>
           <SearchResult />
         </Suspense>
