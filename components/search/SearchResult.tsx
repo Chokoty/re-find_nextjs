@@ -14,6 +14,8 @@ import { useSearchParams } from 'next/navigation';
 import { darkMode, lightMode } from '@/styles/theme';
 import { result } from './constant/search';
 import SearchCard from './SearchCard';
+import Image from 'next/image';
+import NotSearch from '@/public/static/images/original_18.png';
 
 export default function SearchResult() {
   const borderBottom = useColorModeValue(
@@ -25,17 +27,28 @@ export default function SearchResult() {
   const q = searchParams.get('q') ?? '';
 
   return q === '' ? (
-    <Box>
+    <Box
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+      minH="350px"
+    >
+      <Image
+        src={NotSearch}
+        alt="찾을 수 없음을 표시"
+        width={222}
+        height={192}
+      />
       <Text
         pl="1rem"
         m="1rem 0"
         as="h3"
-        fontSize="1.5rem"
-        fontWeight="bold"
+        fontSize="1rem"
         textAlign="left"
         // w="500px"
       >
-        검색 결과가 없습니다. 다른 키워드로 검색해 보세요~
+        검색 결과가 없습니다. 다른 키워드로 검색해 보세요
       </Text>
     </Box>
   ) : (

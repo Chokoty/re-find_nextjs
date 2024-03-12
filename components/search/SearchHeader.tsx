@@ -4,6 +4,8 @@ import {
   AccordionIcon,
   AccordionItem,
   Box,
+  HStack,
+  Heading,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -25,37 +27,32 @@ export default function SearchHeader({ total }: Props) {
   return (
     <>
       <SearchBar />
-      <Accordion allowMultiple>
-        <AccordionItem
-          border="none"
-          _focus={{ boxShadow: 'none' }}
-          _hover={{ boxShadow: 'none' }}
-        >
-          {({ isExpanded }) => (
-            <>
-              <h2>
-                <AccordionButton
+      <Box p="1.7rem 1rem 1rem">
+        <Accordion allowMultiple flex="1">
+          <AccordionItem
+            border="none"
+            _focus={{ boxShadow: 'none' }}
+            _hover={{ boxShadow: 'none' }}
+          >
+            {({ isExpanded }) => (
+              <>
+                <Box
                   display="flex"
                   flexDir={['column', 'row', 'row']}
                   justifyContent="space-between"
                   alignItems={['flex-end', 'center', 'center']}
-                  p="1.7rem 1.5rem 1rem"
-                  _hover={{backgroundColor: 'none'}}
                 >
-                  <Text
-                    m="1rem 0"
-                    as="h3"
-                    fontSize="1.5rem"
-                    fontWeight="bold"
-                    textAlign="left"
-                    // w="500px"
-                  >
-                    <Text display="inline-block" color="#01BFA2">
-                      {q}
-                    </Text>
-                    에 대한 검색 결과입니다. 총{total}개
-                  </Text>
-                  <Box
+                  {total > 0 && (
+                    <HStack w="100%">
+                      <Heading as="h4" size="md" color="#01BFA2">
+                        {q}
+                      </Heading>
+                      <Heading as="h4" size="md">
+                        에 대한 검색 결과입니다. 총{total}개
+                      </Heading>
+                    </HStack>
+                  )}
+                  <AccordionButton
                     display="flex"
                     flexDirection="row"
                     justifyContent="flex-end"
@@ -80,14 +77,14 @@ export default function SearchHeader({ total }: Props) {
                         <CgOptions fontSize="1rem" />
                       </>
                     )}
-                  </Box>
-                </AccordionButton>
-              </h2>
-              <MainOptions />
-            </>
-          )}
-        </AccordionItem>
-      </Accordion>
+                  </AccordionButton>
+                </Box>
+                <MainOptions />
+              </>
+            )}
+          </AccordionItem>
+        </Accordion>
+      </Box>
     </>
   );
 }
