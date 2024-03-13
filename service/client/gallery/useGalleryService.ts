@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 import type { GetKeywordGalleryArtworksParams } from '@/types';
 
-import queryOptions from './queires';
+import queryOptions from './queries';
 
 // 이세돌 공지사항 모든 글 가져오기
 // 아래처럼 lastpage를 받고 page를 주는 형태로 변경 요청
