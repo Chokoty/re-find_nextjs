@@ -1,5 +1,12 @@
 import { DeleteIcon } from '@chakra-ui/icons';
-import { Box, Button, Heading, IconButton, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Heading,
+  IconButton,
+  Text,
+  useColorMode,
+} from '@chakra-ui/react';
 import Link from 'next/link';
 
 type Props = {
@@ -13,6 +20,7 @@ export default function SearchHistory({
   deleteHistoryKeyword,
   deleteHistoryKeywords,
 }: Props) {
+  const { colorMode } = useColorMode();
   return (
     <Box w="100%" p="1rem" mt="2rem">
       <Box display="flex" justifyContent="space-between" alignItems="center ">
@@ -32,7 +40,9 @@ export default function SearchHistory({
           alignItems="center"
           px="0.5rem"
           key={index}
-          _hover={{ background: 'gray.700' }}
+          _hover={{
+            background: colorMode === 'dark' ? 'gray.700' : 'gray.100',
+          }}
           borderRadius="0.5rem"
         >
           <Link style={{ flex: 1 }} href={`/search?q=${q}`} prefetch={false}>

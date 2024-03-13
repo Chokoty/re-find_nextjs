@@ -62,6 +62,7 @@ export default function SearchCard({ item }: Props) {
       overflow="hidden"
       variant="unstyled"
       gap="2rem"
+      background="none"
     >
       <Stack w="100%">
         <CardBody display="flex" flexDir="column" alignItems="flex-start">
