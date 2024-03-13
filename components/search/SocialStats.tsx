@@ -1,5 +1,3 @@
-import { sortTypes } from '@/data/artists';
-import { formatArtistValue } from '@/hook/useFormatArtistValue';
 import { Box, Text } from '@chakra-ui/react';
 import {
   FaBookmark,
@@ -8,6 +6,8 @@ import {
   FaImage,
   FaThumbsUp,
 } from 'react-icons/fa';
+
+import { formatArtistValue } from '@/hook/useFormatArtistValue';
 
 const iconStyle = {
   width: '1rem',

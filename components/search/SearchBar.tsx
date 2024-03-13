@@ -33,8 +33,8 @@ export default function SearchBar() {
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   const onBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const q = e.target.value;
-    setInput(q);
+    const query = e.target.value;
+    setInput(query);
   };
 
   const onSearchButtonClick = () => {
@@ -44,7 +44,7 @@ export default function SearchBar() {
 
   const onBarKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      router.push('/search?q=' + encodeURIComponent(input));
+      router.push(`/search?q=${encodeURIComponent(input)}`);
     }
   };
 

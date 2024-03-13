@@ -4,16 +4,18 @@ import {
   Card,
   CardBody,
   CardFooter,
-  HStack,
   Heading,
+  HStack,
   Stack,
   Text,
   useColorMode,
 } from '@chakra-ui/react';
 import Image from 'next/image';
-import SocialStats from './SocialStats';
 import Link from 'next/link';
+
 import styles from '@/styles/SearchCard.module.scss';
+
+import SocialStats from './SocialStats';
 
 type Props = {
   item: {
@@ -97,7 +99,7 @@ export default function SearchCard({ item }: Props) {
             </Text>
           </HStack>
           <Text py="1" textAlign="start" className={styles.content}>
-            {content.length > 100 ? content.slice(0, 250) + '...' : content}
+            {content.length > 100 ? `${content.slice(0, 250)}...` : content}
           </Text>
         </CardBody>
 
@@ -106,9 +108,7 @@ export default function SearchCard({ item }: Props) {
         </CardFooter>
       </Stack>
       <Link href={url} prefetch={false}>
-        <Box
-          className={styles.imageWrapper}
-        >
+        <Box className={styles.imageWrapper}>
           <Image
             width="400"
             height="190"

@@ -9,13 +9,14 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 
+import NotSearch from '@/public/static/images/original_18.png';
 import { darkMode, lightMode } from '@/styles/theme';
+
 import { result } from './constant/search';
 import SearchCard from './SearchCard';
-import Image from 'next/image';
-import NotSearch from '@/public/static/images/original_18.png';
 
 export default function SearchResult() {
   const borderBottom = useColorModeValue(

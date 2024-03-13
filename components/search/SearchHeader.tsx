@@ -4,14 +4,16 @@ import {
   AccordionIcon,
   AccordionItem,
   Box,
-  HStack,
   Heading,
+  HStack,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useSearchParams } from 'next/navigation';
 import { CgOptions } from 'react-icons/cg';
+
 import { darkMode, lightMode } from '@/styles/theme';
+
 import MainOptions from './MainOptions';
 import SearchBar from './SearchBar';
 

@@ -13,9 +13,10 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
+import React, { useReducer, useState } from 'react';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
+
 import HelpPopOver from './HelpPopOver';
-import { ChangeEvent, useReducer, useState } from 'react';
 
 const boardMap: Record<string, string[]> = {
   isd: [
@@ -215,7 +216,7 @@ export default function MainOptions() {
   const [category, setCategory] = useState<string[]>([]);
   const [state, dispatch] = useReducer(optionsReducer, initialOptions);
 
-  const handleChangeBoard = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeBoard = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     // 선택 안했을 때(전체 게시판 선택) > 빈 문자열
     if (val === '') {
@@ -228,13 +229,13 @@ export default function MainOptions() {
     setCategory(boardMap[val as keyof typeof boardMap]);
   };
 
-  const handleChangeCategory = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     // 전체 카테고리 선택시 빈 문자열이 들어옴
     dispatch({ type: 'select_category', category: val });
   };
 
-  const handleChangeDateType = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeDateType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     if (val === '') {
       dispatch({ type: 'select_dateType', dateType: 'all' });
@@ -243,7 +244,7 @@ export default function MainOptions() {
     dispatch({ type: 'select_dateType', dateType: val });
   };
 
-  const handleChangeRankType = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChangeRankType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     if (val === '') {
       dispatch({ type: 'select_rankType', rankType: 'latest' });
@@ -252,31 +253,37 @@ export default function MainOptions() {
     dispatch({ type: 'select_rankType', rankType: val });
   };
 
-  const handleCheckSensitiveCase = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCheckSensitiveCase = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'check_sensitiveCase' });
   };
 
-  const handleCheckTitle = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCheckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'check_title' });
   };
 
-  const handleCheckContent = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCheckContent = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'check_content' });
   };
 
-  const handleCheckAuthor = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCheckAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
     dispatch({ type: 'check_author' });
   };
 
-  const handleCheckViewCountLimit = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCheckViewCountLimit = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     dispatch({ type: 'check_viewCountLimit' });
   };
 
-  const handleCheckLikeCountLimit = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCheckLikeCountLimit = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     dispatch({ type: 'check_likeCountLimit' });
   };
 
-  const handleCheckCommentCountLimit = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleCheckCommentCountLimit = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     dispatch({ type: 'check_commentCountLimit' });
   };
 
@@ -344,6 +351,7 @@ export default function MainOptions() {
     });
   };
 
+  // TODO: 삭제
   console.log(state);
 
   return (
@@ -413,7 +421,7 @@ export default function MainOptions() {
       </Box>
       <Divider />
       <Box display="flex" flexDir={['column', 'row']} gap="1rem" m="1rem">
-        {/* 각 게시판을 눌렀을 때 해당 카테고리 활성*/}
+        {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
         <Select placeholder="전체 게시판" onChange={handleChangeBoard}>
           <option value="isd">이세돌┃팬아트</option>
           <option value="goldhand">금손 작가들의 방</option>

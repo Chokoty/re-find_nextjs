@@ -4,16 +4,15 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   ModalOverlay,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-import SearchBar from '@/components/search/SearchBar';
 import SearchOptions from '@/components/search/Modal/SearchOptions';
+import SearchBar from '@/components/search/SearchBar';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
@@ -90,13 +89,13 @@ export default function SearchModal({ isOpen, onClose }: Props) {
           </Box> */}
           <SearchOptions />
         </ModalBody>
-        <ModalFooter
+        {/* <ModalFooter
           display="flex"
           justifyContent="center"
           alignItems="flex-start"
         >
           현재 작가닉네임 검색만 가능합니다!
-        </ModalFooter>
+        </ModalFooter> */}
       </ModalContent>
     </Modal>
   );

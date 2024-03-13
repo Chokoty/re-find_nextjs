@@ -3,9 +3,9 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import { Suspense } from 'react';
 
+import SearchHeader from '@/components/search/SearchHeader';
 import SearchResult from '@/components/search/SearchResult';
 import { darkMode, lightMode } from '@/styles/theme';
-import SearchHeader from '@/components/search/SearchHeader';
 
 // const data = [
 //   {
@@ -99,7 +99,9 @@ export default function Search() {
         borderRadius="1rem"
         // boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
       >
-        <SearchHeader total={0} />
+        <Suspense>
+          <SearchHeader total={0} />
+        </Suspense>
         <Suspense>
           <SearchResult />
         </Suspense>
