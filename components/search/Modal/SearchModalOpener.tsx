@@ -17,15 +17,11 @@ export default function SearchModalOpener({ onOpen }: Prop) {
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   const handleInputClick = () => {
-    // console.log('handleInputClick');
-    // if (router.pathname !== '/search') {
-    //   router.push('/search');
-    // }
     onOpen();
   };
 
   return (
-    <InputGroup m="0 " w="70%">
+    <InputGroup m="0 " w="70%" onClick={handleInputClick}>
       <InputLeftElement pointerEvents="none" color="gray.300" fontSize="1.2em">
         <span
           style={{
@@ -40,13 +36,13 @@ export default function SearchModalOpener({ onOpen }: Prop) {
         ></span>
       </InputLeftElement>
       <Input
+        cursor="pointer"
         placeholder="키워드 검색"
         h="2.25rem"
         pl="3rem"
         borderRadius="2rem"
         bg={bg3}
         alignItems="center"
-        onClick={handleInputClick}
         focusBorderColor="#01BFA2"
         size="md"
         // value={nickname}
@@ -55,7 +51,7 @@ export default function SearchModalOpener({ onOpen }: Prop) {
           backgroundColor: bg2,
           borderColor: '#01BFA2',
         }}
-        _focus={{ backgroundColor: bg2 }}
+        // _focus={{ backgroundColor: bg2 }}
         sx={{
           'input::placeholder': {
             textOverflow: 'ellipsis',

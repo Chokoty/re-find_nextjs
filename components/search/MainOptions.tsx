@@ -16,6 +16,9 @@ import {
 import React, { useReducer, useState } from 'react';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
 
+import queryOptions from '@/service/client/search/queires';
+import type { CountLimit } from '@/types';
+
 import HelpPopOver from './HelpPopOver';
 
 const boardMap: Record<string, string[]> = {
@@ -47,12 +50,6 @@ const boardMap: Record<string, string[]> = {
   gomem_behind: [],
   notice: [],
   ai: ['우왁굳', '고멤', '이세돌', '그 외 혹은 종합'],
-};
-
-type CountLimit = {
-  check: boolean;
-  min: number;
-  max: number;
 };
 
 type StateType = {
@@ -352,7 +349,21 @@ export default function MainOptions() {
   };
 
   // TODO: 삭제
-  console.log(state);
+  // queryOptions.searchResults({
+  //   q: 'test',
+  //   title: state.checkTitle,
+  //   content: state.checkContent,
+  //   author: state.checkAuthor,
+  //   page: 1,
+  //   sensitive: state.checkSensitiveCase,
+  //   board: state.board,
+  //   category: state.category,
+  //   dateType: state.dateType,
+  //   rankType: state.rankType,
+  //   viewCountLimit: state.viewCountLimit,
+  //   likeCountLimit: state.likeCountLimit,
+  //   commentCountLimit: state.commentCountLimit,
+  // });
 
   return (
     <AccordionPanel pb={4}>
@@ -430,7 +441,7 @@ export default function MainOptions() {
           <option value="gomem">고멤┃팬아트</option>
           <option value="isd_behind">이세돌┃작업후기</option>
           <option value="gomem_behind">고멤┃작업 후기</option>
-          <option value="notice">이세돌 공지글</option>
+          <option value="notice">전체 공지사항</option>
           <option value="ai">AI 팬아트</option>
         </Select>
         {/* 카테고리 */}

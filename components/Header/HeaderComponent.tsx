@@ -16,7 +16,7 @@ import { RiMenu2Line } from 'react-icons/ri';
 
 import MyDrawer from '@/components/common/MyDrawer';
 import HeaderTab from '@/components/Header/HeaderTab';
-import SearchModalOpener from '@/components/search/SearchModalOpener';
+import SearchModalOpener from '@/components/search/Modal/SearchModalOpener';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 

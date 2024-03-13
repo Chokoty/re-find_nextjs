@@ -1,6 +1,8 @@
 import {
   Box,
   Divider,
+  Heading,
+  HStack,
   Tab,
   TabList,
   TabPanel,
@@ -19,6 +21,7 @@ import { result } from './constant/search';
 import SearchCard from './SearchCard';
 
 export default function SearchResult() {
+  const total = 10;
   const borderBottom = useColorModeValue(
     lightMode.borderBottom,
     darkMode.borderBottom
@@ -53,57 +56,80 @@ export default function SearchResult() {
       </Text>
     </Box>
   ) : (
-    <Tabs>
-      <TabList>
-        <Tab p="0.5rem 1.5rem" color="#01BFA2">
-          전체({result.length})
-        </Tab>
-        {/* <Tab>작가(20)</Tab>
+    <Box
+      w="100%"
+      display="flex"
+      flexDir="column"
+      alignItems="center"
+      justifyContent="center"
+    >
+      {total > 0 && (
+        <HStack w="100%" p="1rem" alignItems="baseline" flexWrap="wrap">
+          <Heading as="h4" size="md">
+            {`'${q}'`}
+          </Heading>
+          <Heading as="h4" size="md">
+            에 대한 검색결과 입니다.
+          </Heading>
+          <HStack gap="0.3rem">
+            <Text color="gray.400">총</Text>
+            <Text color="#01BFA2">{total}</Text>
+            <Text color="gray.400">개의 팬아트가 검색되었습니다.</Text>
+          </HStack>
+        </HStack>
+      )}
+      <Tabs>
+        <TabList>
+          <Tab p="0.5rem 1.5rem" color="#01BFA2">
+            전체({result.length})
+          </Tab>
+          {/* <Tab>작가(20)</Tab>
               <Tab>작품(680)</Tab> */}
-      </TabList>
+        </TabList>
 
-      <TabPanels>
-        <TabPanel p="0">
-          <Box
-            w="100%"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            p="1.5rem"
-          >
-            {result.map((item) => (
-              // <Box key={item.id} w="100%" p="0 1.5rem">
-              //   <Box
-              //     w="100%"
-              //     h="100px"
-              //     p="1rem 0"
-              //     display="flex"
-              //     flexDirection="column"
-              //     justifyContent="flex-start"
-              //     alignItems="center"
-              //     gap="1rem"
-              //   >
-              //     <Text>{item.title}</Text>
-              //   </Box>
-              //   <Box w="100%" borderBottom={`1px solid ${borderBottom}`}>
-              //     {item.content}
-              //   </Box>
-              // </Box>
-              <>
-                <SearchCard item={item} />
-                <Divider />
-              </>
-            ))}
-          </Box>
-        </TabPanel>
-        {/* <TabPanel>
+        <TabPanels>
+          <TabPanel p="0">
+            <Box
+              w="100%"
+              display="flex"
+              flexDirection="column"
+              justifyContent="center"
+              alignItems="center"
+              p="1.5rem"
+            >
+              {result.map((item) => (
+                // <Box key={item.id} w="100%" p="0 1.5rem">
+                //   <Box
+                //     w="100%"
+                //     h="100px"
+                //     p="1rem 0"
+                //     display="flex"
+                //     flexDirection="column"
+                //     justifyContent="flex-start"
+                //     alignItems="center"
+                //     gap="1rem"
+                //   >
+                //     <Text>{item.title}</Text>
+                //   </Box>
+                //   <Box w="100%" borderBottom={`1px solid ${borderBottom}`}>
+                //     {item.content}
+                //   </Box>
+                // </Box>
+                <>
+                  <SearchCard item={item} />
+                  <Divider />
+                </>
+              ))}
+            </Box>
+          </TabPanel>
+          {/* <TabPanel>
           <p>two!</p>
         </TabPanel>
         <TabPanel>
           <p>three!</p>
         </TabPanel> */}
-      </TabPanels>
-    </Tabs>
+        </TabPanels>
+      </Tabs>
+    </Box>
   );
 }

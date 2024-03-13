@@ -9,11 +9,13 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { usePathname } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-import SearchOptions from '@/components/search/Modal/SearchOptions';
-import SearchBar from '@/components/search/SearchBar';
 import { darkMode, lightMode } from '@/styles/theme';
+
+import SearchHistory from '../SearchHistory';
+import { useLocalStorage } from '../useLocalStorage';
+import ModalSearchBar from './ModalSearchBar';
 
 type Props = {
   isOpen: boolean;
@@ -21,17 +23,28 @@ type Props = {
 };
 
 export default function SearchModal({ isOpen, onClose }: Props) {
-  const pathname = usePathname();
-
   // modal
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
+  const initialRef = useRef(null);
+  const finalRef = useRef(null);
+  const pathname = usePathname();
 
   // color
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-
+  const {
+    recentSearches,
+    setRecentSearches,
+    addHistoryKeyword,
+    deleteHistoryKeyword,
+    deleteHistoryKeywords,
+  } = useLocalStorage();
   const searchBgColor = useColorModeValue('#E1E1E1', '#303134');
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const searches = localStorage.getItem('recentSearches');
+    setRecentSearches(JSON.parse(searches ?? '[]'));
+  }, [isOpen]);
 
   useEffect(() => {
     if (pathname === '/search') {
@@ -64,7 +77,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
           pl={1}
           pr={1}
         >
-          <SearchBar />
+          <ModalSearchBar addHistoryKeyword={addHistoryKeyword} />
         </ModalHeader>
         <ModalBody
           pb={6}
@@ -73,21 +86,11 @@ export default function SearchModal({ isOpen, onClose }: Props) {
           justifyContent="center"
           alignItems="flex-start"
         >
-          {/* <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="flex-start"
-            mb="1rem"
-            gap="0.5rem"
-          >
-            <Text>검색에 포함할 대상을 선택하세요.</Text>
-            <Stack spacing={5} direction="row">
-              <Checkbox defaultChecked>작품</Checkbox>
-              <Checkbox defaultChecked>작가</Checkbox>
-            </Stack>
-          </Box> */}
-          <SearchOptions />
+          <SearchHistory
+            recentSearches={recentSearches}
+            deleteHistoryKeyword={deleteHistoryKeyword}
+            deleteHistoryKeywords={deleteHistoryKeywords}
+          />
         </ModalBody>
         {/* <ModalFooter
           display="flex"
