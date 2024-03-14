@@ -63,7 +63,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
       <ModalContent
         maxW={['100%', '80%', '70%']}
         // maxW={['100%', '66%']}
-        mt={0}
+        my="0"
         boxShadow="none"
         border={`1px solid ${color7}`}
         borderRadius="1rem"
@@ -72,6 +72,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
       >
         <ModalHeader
           display="flex"
+          flexDirection="column"
           justifyContent="center"
           alignItems="center"
           pl={1}
@@ -81,6 +82,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
         </ModalHeader>
         <ModalBody
           pb={6}
+          px="0.5rem"
           display="flex"
           flexDirection="column"
           justifyContent="center"
@@ -91,6 +93,7 @@ export default function SearchModal({ isOpen, onClose }: Props) {
             deleteHistoryKeyword={deleteHistoryKeyword}
             deleteHistoryKeywords={deleteHistoryKeywords}
           />
+          {/* <OptionContainer /> */}
         </ModalBody>
         {/* <ModalFooter
           display="flex"

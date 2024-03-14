@@ -40,8 +40,7 @@ export default function SearchHeader() {
       w="100%"
       h="100%"
       zIndex="200"
-      borderTopLeftRadius="1rem"
-      borderTopRightRadius="1rem"
+      borderRadius="1rem"
     >
       <Suspense>
         <SearchBar />

@@ -2,16 +2,14 @@ import {
   Box,
   Button,
   Collapse,
-  Fade,
   Input,
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 
@@ -41,7 +39,7 @@ export default function SearchBar() {
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   const handleSearch = () => {
-    setFocused(false);
+    handleCloseSearchHistory();
     addHistoryKeyword(input);
     router.push(`/search?q=${encodeURIComponent(input)}`);
   };
@@ -68,14 +66,13 @@ export default function SearchBar() {
   };
 
   const handleClear = () => {
-    setFocused(false);
+    handleCloseSearchHistory();
     setInput('');
   };
 
-  useEffect(() => {
-    if (!q) return;
-    console.log('useEffect', q);
-  }, [q]);
+  const handleCloseSearchHistory = () => {
+    setFocused(false);
+  };
 
   return (
     <Box display="flex" flexDir="column" w="100%">
@@ -211,11 +208,14 @@ export default function SearchBar() {
         )}
       </Box>
       <Collapse in={focused} animateOpacity>
-        <SearchHistory
-          recentSearches={recentSearches}
-          deleteHistoryKeyword={deleteHistoryKeyword}
-          deleteHistoryKeywords={deleteHistoryKeywords}
-        />
+        <Box mt="1rem">
+          <SearchHistory
+            recentSearches={recentSearches}
+            deleteHistoryKeyword={deleteHistoryKeyword}
+            deleteHistoryKeywords={deleteHistoryKeywords}
+            close={handleCloseSearchHistory}
+          />
+        </Box>
       </Collapse>
     </Box>
   );
