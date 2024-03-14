@@ -120,7 +120,7 @@ export default function SearchCard({ item }: Props) {
             height="190"
             src={img_url}
             alt={title}
-            className={styles.image}
+            className={`${styles.image} ${colorMode === 'dark' && styles.dark}`}
             unoptimized
           />
         </Box>
