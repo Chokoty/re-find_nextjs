@@ -13,15 +13,17 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import React, { useReducer, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
+import { useShallow } from 'zustand/react/shallow';
 
-import queryOptions from '@/service/client/search/queires';
-import type { CountLimit } from '@/types';
+import { useSearchFilterStore } from '@/store/searchFilerStore';
 
 import HelpPopOver from './HelpPopOver';
 
 const boardMap: Record<string, string[]> = {
+  all: [],
   isd: [
     '아이네',
     '징버거',
@@ -52,155 +54,6 @@ const boardMap: Record<string, string[]> = {
   ai: ['우왁굳', '고멤', '이세돌', '그 외 혹은 종합'],
 };
 
-type StateType = {
-  board: string;
-  category: string;
-  dateType: string;
-  rankType: string;
-  checkSensitiveCase: boolean;
-  checkTitle: boolean;
-  checkContent: boolean;
-  checkAuthor: boolean;
-  viewCountLimit: CountLimit;
-  likeCountLimit: CountLimit;
-  commentCountLimit: CountLimit;
-};
-
-type ActionType =
-  | { type: 'select_board'; board: string }
-  | {
-      type: 'select_category';
-      category: string;
-    }
-  | { type: 'select_dateType'; dateType: string }
-  | { type: 'select_rankType'; rankType: string }
-  | { type: 'check_sensitiveCase' }
-  | { type: 'check_title' }
-  | { type: 'check_content' }
-  | { type: 'check_author' }
-  | { type: 'check_viewCountLimit' }
-  | { type: 'check_likeCountLimit' }
-  | { type: 'check_commentCountLimit' }
-  | { type: 'limit_viewCount'; min: number; max: number }
-  | { type: 'limit_likeCount'; min: number; max: number }
-  | { type: 'limit_commentCount'; min: number; max: number };
-
-// state는 현재 선택된 옵션들을 담고 있는 객체, action은 어떤 옵션을 선택했는지, 전달 받았는지에 대한 정보를 담고 있는 객체
-function optionsReducer(state: StateType, action: ActionType) {
-  switch (action.type) {
-    case 'select_board': {
-      return { ...state, board: action.board };
-    }
-    case 'select_category': {
-      return { ...state, category: action.category };
-    }
-    case 'select_dateType': {
-      return { ...state, dateType: action.dateType };
-    }
-    case 'select_rankType': {
-      return { ...state, rankType: action.rankType };
-    }
-    case 'check_sensitiveCase': {
-      return { ...state, checkSensitiveCase: !state.checkSensitiveCase };
-    }
-    case 'check_title': {
-      return { ...state, checkTitle: !state.checkTitle };
-    }
-    case 'check_content': {
-      return { ...state, checkContent: !state.checkContent };
-    }
-    case 'check_author': {
-      return { ...state, checkAuthor: !state.checkAuthor };
-    }
-    case 'check_viewCountLimit': {
-      return {
-        ...state,
-        viewCountLimit: {
-          ...state.viewCountLimit,
-          check: !state.viewCountLimit.check,
-        },
-      };
-    }
-    case 'check_likeCountLimit': {
-      return {
-        ...state,
-        likeCountLimit: {
-          ...state.likeCountLimit,
-          check: !state.likeCountLimit.check,
-        },
-      };
-    }
-    case 'check_commentCountLimit': {
-      return {
-        ...state,
-        commentCountLimit: {
-          ...state.commentCountLimit,
-          check: !state.commentCountLimit.check,
-        },
-      };
-    }
-    case 'limit_viewCount': {
-      return {
-        ...state,
-        viewCountLimit: {
-          check: state.viewCountLimit.check,
-          min: action.min,
-          max: action.max,
-        },
-      };
-    }
-    case 'limit_likeCount': {
-      return {
-        ...state,
-        likeCountLimit: {
-          check: state.likeCountLimit.check,
-          min: action.min,
-          max: action.max,
-        },
-      };
-    }
-    case 'limit_commentCount': {
-      return {
-        ...state,
-        commentCountLimit: {
-          check: state.commentCountLimit.check,
-          min: action.min,
-          max: action.max,
-        },
-      };
-    }
-    default: {
-      throw new Error(`Unhandled action type: ${action}`);
-    }
-  }
-}
-
-const initialOptions = {
-  board: 'all',
-  category: '',
-  dateType: 'all',
-  rankType: 'latest',
-  checkSensitiveCase: false,
-  checkTitle: false,
-  checkContent: false,
-  checkAuthor: false,
-  viewCountLimit: {
-    check: false,
-    min: 0,
-    max: 100,
-  },
-  likeCountLimit: {
-    check: false,
-    min: 0,
-    max: 100,
-  },
-  commentCountLimit: {
-    check: false,
-    min: 0,
-    max: 100,
-  },
-};
-
 const MIN_COUNT = 0;
 const MAX_COUNT = 100;
 
@@ -209,168 +62,171 @@ export default function MainOptions() {
     width: '1rem',
     height: '1rem',
   };
+  // const searchParams = useSearchParams();
+  // const searchParamsObj = Object.fromEntries(searchParams.entries());
 
-  const [category, setCategory] = useState<string[]>([]);
-  const [state, dispatch] = useReducer(optionsReducer, initialOptions);
+  const [categories, setCategories] = useState<string[]>([]);
+  const {
+    board,
+    category,
+    dateType,
+    rankType,
+    hasSensitiveCase,
+    hasTitle,
+    hasContent,
+    hasAuthor,
+    viewCountLimit,
+    likeCountLimit,
+    commentCountLimit,
+    selectBoard,
+    selectCategory,
+    selectDateType,
+    selectRankType,
+    checkSensitive,
+    checkTitle,
+    checkContent,
+    checkAuthor,
+    checkViewCountLimit,
+    checkLikeCountLimit,
+    checkCommentCountLimit,
+    setViewCountLimit,
+    setLikeCountLimit,
+    setCommentCountLimit,
+  } = useSearchFilterStore(
+    useShallow((state) => ({
+      board: state.board,
+      category: state.category,
+      dateType: state.dateType,
+      rankType: state.rankType,
+      hasSensitiveCase: state.hasSensitiveCase,
+      hasTitle: state.hasTitle,
+      hasContent: state.hasContent,
+      hasAuthor: state.hasAuthor,
+      viewCountLimit: state.viewCountLimit,
+      likeCountLimit: state.likeCountLimit,
+      commentCountLimit: state.commentCountLimit,
+      selectBoard: state.selectBoard,
+      selectCategory: state.selectCategory,
+      selectDateType: state.selectDateType,
+      selectRankType: state.selectRankType,
+      checkSensitive: state.checkSensitive,
+      checkTitle: state.checkTitle,
+      checkContent: state.checkContent,
+      checkAuthor: state.checkAuthor,
+      checkViewCountLimit: state.checkViewCountLimit,
+      checkLikeCountLimit: state.checkLikeCountLimit,
+      checkCommentCountLimit: state.checkCommentCountLimit,
+      setViewCountLimit: state.setViewCountLimit,
+      setLikeCountLimit: state.setLikeCountLimit,
+      setCommentCountLimit: state.setCommentCountLimit,
+    }))
+  );
 
   const handleChangeBoard = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     // 선택 안했을 때(전체 게시판 선택) > 빈 문자열
     if (val === '') {
-      setCategory([]);
-      dispatch({ type: 'select_board', board: 'all' });
-      // dispatch({ type: 'select_category', board: '' }); > (request 로직에서 처리) TODO: reqeust 보낼 때 category가 all이라면 board를 비워줘야함
+      setCategories([]);
+      selectBoard('all');
       return;
     }
-    dispatch({ type: 'select_board', board: val });
-    setCategory(boardMap[val as keyof typeof boardMap]);
+    selectBoard(val);
+    setCategories(boardMap[val as keyof typeof boardMap]);
   };
 
   const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
-    // 전체 카테고리 선택시 빈 문자열이 들어옴
-    dispatch({ type: 'select_category', category: val });
+    if (val === '') {
+      selectCategory('all');
+      return;
+    }
+    selectCategory(val);
   };
 
   const handleChangeDateType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     if (val === '') {
-      dispatch({ type: 'select_dateType', dateType: 'all' });
+      selectDateType('all');
       return;
     }
-    dispatch({ type: 'select_dateType', dateType: val });
+    selectDateType(val);
   };
 
   const handleChangeRankType = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
     if (val === '') {
-      dispatch({ type: 'select_rankType', rankType: 'latest' });
+      selectRankType('latest');
       return;
     }
-    dispatch({ type: 'select_rankType', rankType: val });
+    selectRankType(val);
   };
 
   const handleCheckSensitiveCase = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'check_sensitiveCase' });
+    checkSensitive(e.target.checked);
   };
 
   const handleCheckTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'check_title' });
+    checkTitle(e.target.checked);
   };
 
   const handleCheckContent = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'check_content' });
+    checkContent(e.target.checked);
   };
 
   const handleCheckAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch({ type: 'check_author' });
+    checkAuthor(e.target.checked);
   };
 
   const handleCheckViewCountLimit = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch({ type: 'check_viewCountLimit' });
+    checkViewCountLimit(e.target.checked);
   };
 
   const handleCheckLikeCountLimit = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch({ type: 'check_likeCountLimit' });
+    checkLikeCountLimit(e.target.checked);
   };
 
   const handleCheckCommentCountLimit = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch({ type: 'check_commentCountLimit' });
+    checkCommentCountLimit(e.target.checked);
   };
 
-  const handleChangeViewLowerCount = (
-    valueAsString: string,
-    valueAsNumber: number
-  ) => {
-    dispatch({
-      type: 'limit_viewCount',
-      min: valueAsNumber,
-      max: state.viewCountLimit.max,
-    });
+  const handleChangeViewLowerCount = (_: string, valueAsNumber: number) => {
+    setViewCountLimit({ min: valueAsNumber, max: viewCountLimit.max });
   };
-  const handleChangeViewUpperCount = (
-    valueAsString: string,
-    valueAsNumber: number
-  ) => {
-    dispatch({
-      type: 'limit_viewCount',
-      min: state.viewCountLimit.min,
-      max: valueAsNumber,
-    });
+  const handleChangeViewUpperCount = (_: string, valueAsNumber: number) => {
+    setViewCountLimit({ min: viewCountLimit.min, max: valueAsNumber });
   };
 
-  const handleChangeLikeLowerCount = (
-    valueAsString: string,
-    valueAsNumber: number
-  ) => {
-    dispatch({
-      type: 'limit_likeCount',
-      min: valueAsNumber,
-      max: state.likeCountLimit.max,
-    });
+  const handleChangeLikeLowerCount = (_: string, valueAsNumber: number) => {
+    setLikeCountLimit({ min: valueAsNumber, max: likeCountLimit.max });
   };
-  const handleChangeLikeUpperCount = (
-    valueAsString: string,
-    valueAsNumber: number
-  ) => {
-    dispatch({
-      type: 'limit_likeCount',
-      min: state.likeCountLimit.min,
-      max: valueAsNumber,
-    });
+  const handleChangeLikeUpperCount = (_: string, valueAsNumber: number) => {
+    setLikeCountLimit({ min: likeCountLimit.min, max: valueAsNumber });
   };
 
-  const handleChangeCommentLowerCount = (
-    valueAsString: string,
-    valueAsNumber: number
-  ) => {
-    dispatch({
-      type: 'limit_commentCount',
-      min: valueAsNumber,
-      max: state.commentCountLimit.max,
-    });
+  const handleChangeCommentLowerCount = (_: string, valueAsNumber: number) => {
+    setCommentCountLimit({ min: valueAsNumber, max: commentCountLimit.max });
   };
 
-  const handleChangeCommentUpperCount = (
-    valueAsString: string,
-    valueAsNumber: number
-  ) => {
-    dispatch({
-      type: 'limit_commentCount',
-      min: state.commentCountLimit.min,
-      max: valueAsNumber,
-    });
+  const handleChangeCommentUpperCount = (_: string, valueAsNumber: number) => {
+    setCommentCountLimit({ min: commentCountLimit.min, max: valueAsNumber });
   };
-
-  // TODO: 삭제
-  // queryOptions.searchResults({
-  //   q: 'test',
-  //   title: state.checkTitle,
-  //   content: state.checkContent,
-  //   author: state.checkAuthor,
-  //   page: 1,
-  //   sensitive: state.checkSensitiveCase,
-  //   board: state.board,
-  //   category: state.category,
-  //   dateType: state.dateType,
-  //   rankType: state.rankType,
-  //   viewCountLimit: state.viewCountLimit,
-  //   likeCountLimit: state.likeCountLimit,
-  //   commentCountLimit: state.commentCountLimit,
-  // });
 
   return (
     <AccordionPanel pb={4}>
       <Divider />
       <Box display="flex" flexDir={['column', 'row']} gap="1rem" m="1rem">
         {/* 업로드날짜 (유튜브 참고) -> 시작 ~ 끝 */}
-        <Select placeholder="전체기간" onChange={handleChangeDateType}>
+        <Select
+          placeholder="전체기간"
+          onChange={handleChangeDateType}
+          defaultValue={dateType}
+        >
           <option value="day">1일</option>
           <option value="week">1주</option>
           <option value="mon">1개월</option>
@@ -378,7 +234,11 @@ export default function MainOptions() {
           <option value="year">1년</option>
         </Select>
         {/* 정렬기준 */}
-        <Select placeholder="최신순" onChange={handleChangeRankType}>
+        <Select
+          placeholder="최신순"
+          onChange={handleChangeRankType}
+          defaultValue={rankType}
+        >
           {/* <option value="option1">최신순</option> */}
           <option value="comment">댓글수</option>
           <option value="like">좋아요</option>
@@ -397,13 +257,25 @@ export default function MainOptions() {
       >
         <CheckboxGroup colorScheme="teal">
           <Stack spacing={[1, 5]} direction={['column', 'row']}>
-            <Checkbox value="title" onChange={handleCheckTitle}>
+            <Checkbox
+              value="title"
+              onChange={handleCheckTitle}
+              defaultChecked={hasTitle}
+            >
               제목
             </Checkbox>
-            <Checkbox value="content" onChange={handleCheckContent}>
+            <Checkbox
+              value="content"
+              onChange={handleCheckContent}
+              defaultChecked={hasContent}
+            >
               본문
             </Checkbox>
-            <Checkbox value="author" onChange={handleCheckAuthor}>
+            <Checkbox
+              value="author"
+              onChange={handleCheckAuthor}
+              defaultChecked={hasAuthor}
+            >
               작가
             </Checkbox>
           </Stack>
@@ -423,6 +295,7 @@ export default function MainOptions() {
           colorScheme="teal"
           value="sensitive"
           onChange={handleCheckSensitiveCase}
+          defaultChecked={hasSensitiveCase}
         >
           대소문자 구분
         </Checkbox>
@@ -433,7 +306,11 @@ export default function MainOptions() {
       <Divider />
       <Box display="flex" flexDir={['column', 'row']} gap="1rem" m="1rem">
         {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
-        <Select placeholder="전체 게시판" onChange={handleChangeBoard}>
+        <Select
+          placeholder="전체 게시판"
+          onChange={handleChangeBoard}
+          defaultValue={board}
+        >
           <option value="isd">이세돌┃팬아트</option>
           <option value="goldhand">금손 작가들의 방</option>
           <option value="best">BEST 유머 정보</option>
@@ -447,10 +324,11 @@ export default function MainOptions() {
         {/* 카테고리 */}
         <Select
           placeholder="전체 카테고리"
-          disabled={category.length === 0}
+          disabled={categories.length === 0}
           onChange={handleChangeCategory}
+          defaultValue={category}
         >
-          {category.map((item, idx) => (
+          {categories.map((item, idx) => (
             <option value={item} key={idx}>
               {item}
             </option>
@@ -507,15 +385,16 @@ export default function MainOptions() {
             colorScheme="teal"
             value="viewLimit"
             onChange={handleCheckViewCountLimit}
+            defaultChecked={viewCountLimit.check}
           >
             <FaEye style={iconStyle} />
           </Checkbox>
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={MIN_COUNT}
+            defaultValue={viewCountLimit.min}
             min={MIN_COUNT}
-            max={state.viewCountLimit.max}
+            max={viewCountLimit.max}
             onChange={handleChangeViewLowerCount}
           >
             <NumberInputField />
@@ -528,8 +407,8 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={MAX_COUNT}
-            min={state.viewCountLimit.min}
+            defaultValue={viewCountLimit.max}
+            min={viewCountLimit.min}
             onChange={handleChangeViewUpperCount}
           >
             <NumberInputField />
@@ -550,15 +429,16 @@ export default function MainOptions() {
             colorScheme="teal"
             value="likeLimit"
             onChange={handleCheckLikeCountLimit}
+            defaultChecked={likeCountLimit.check}
           >
             <FaThumbsUp style={iconStyle} />
           </Checkbox>
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={MIN_COUNT}
+            defaultValue={likeCountLimit.min}
             min={MIN_COUNT}
-            max={state.likeCountLimit.max}
+            max={likeCountLimit.max}
             onChange={handleChangeLikeLowerCount}
           >
             <NumberInputField />
@@ -571,8 +451,8 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={MAX_COUNT}
-            min={state.likeCountLimit.min}
+            defaultValue={likeCountLimit.max}
+            min={likeCountLimit.min}
             onChange={handleChangeLikeUpperCount}
           >
             <NumberInputField />
@@ -593,15 +473,16 @@ export default function MainOptions() {
             colorScheme="teal"
             value="commentLimit"
             onChange={handleCheckCommentCountLimit}
+            defaultChecked={commentCountLimit.check}
           >
             <FaComment style={iconStyle} />
           </Checkbox>
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={MIN_COUNT}
+            defaultValue={commentCountLimit.min}
             min={MIN_COUNT}
-            max={state.commentCountLimit.max}
+            max={commentCountLimit.max}
             onChange={handleChangeCommentLowerCount}
           >
             <NumberInputField />
@@ -614,8 +495,8 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={MAX_COUNT}
-            min={state.commentCountLimit.min}
+            defaultValue={commentCountLimit.max}
+            min={commentCountLimit.min}
             onChange={handleChangeCommentUpperCount}
           >
             <NumberInputField />

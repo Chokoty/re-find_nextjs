@@ -13,8 +13,10 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
+import { useShallow } from 'zustand/react/shallow';
 
 import NotSearch from '@/public/static/images/original_18.png';
+import { useSearchFilterStore } from '@/store/searchFilerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import { result } from './constant/search';
@@ -29,6 +31,48 @@ export default function SearchResult() {
 
   const searchParams = useSearchParams();
   const q = searchParams.get('q') ?? '';
+
+  const {
+    board,
+    category,
+    dateType,
+    rankType,
+    hasSensitiveCase,
+    hasTitle,
+    hasContent,
+    hasAuthor,
+    viewCountLimit,
+    likeCountLimit,
+    commentCountLimit,
+  } = useSearchFilterStore(
+    useShallow((state) => ({
+      board: state.board,
+      category: state.category,
+      dateType: state.dateType,
+      rankType: state.rankType,
+      hasSensitiveCase: state.hasSensitiveCase,
+      hasTitle: state.hasTitle,
+      hasContent: state.hasContent,
+      hasAuthor: state.hasAuthor,
+      viewCountLimit: state.viewCountLimit,
+      likeCountLimit: state.likeCountLimit,
+      commentCountLimit: state.commentCountLimit,
+    }))
+  );
+
+  console.log('searchResult', {
+    board,
+    category,
+    dateType,
+    rankType,
+    hasSensitiveCase,
+    hasTitle,
+    hasContent,
+    hasAuthor,
+    viewCountLimit,
+    likeCountLimit,
+    commentCountLimit,
+  });
 
   return q === '' ? (
     <Box
@@ -116,7 +160,7 @@ export default function SearchResult() {
                 //   </Box>
                 // </Box>
                 <>
-                  <SearchCard item={item} />
+                  <SearchCard item={item} key={item.id} />
                   <Divider />
                 </>
               ))}
