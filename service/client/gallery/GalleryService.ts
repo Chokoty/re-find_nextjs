@@ -1,7 +1,7 @@
 import Service from '@/service';
 import type { GetKeywordGalleryArtworksParams } from '@/types';
 
-const ROWS_PER_PAGE = 30; // 한 페이지당 불러올 상품개수
+const ROWS_PER_PAGE = 30; // 한 페이지당 불러올 아이템 개수
 
 class GalleryService extends Service {
   // 키워드 갤러리 작품들 가져오기

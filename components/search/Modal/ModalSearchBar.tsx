@@ -5,70 +5,68 @@ import {
   InputGroup,
   InputLeftElement,
   InputRightElement,
-  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 
-import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Prop = {
-  isSearchPage: boolean;
+  addHistoryKeyword: (keyword: string) => void;
 };
 
-export default function SearchBar2({ isSearchPage }: Prop) {
-  const isMobile = useResponsive();
-
+export default function ModalSearchBar({ addHistoryKeyword }: Prop) {
+  const router = useRouter();
   const [input, setInput] = useState(''); // 검색어
   const [isHover, setIsHover] = useState(false);
-  const [width, setWidth] = useState(['100%', '90%', '90%']);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
-  const handleInputClick = () => {
-    console.log('handleInputClick');
-    // handleSearch2();
-    // if (input.length > 0) {
-    //   router.push(`/search?keyword=${encodeURIComponent(input)}`);
-    // }
+  const handleSearch = () => {
+    addHistoryKeyword(input);
+    router.push(`/search?q=${encodeURIComponent(input)}`);
   };
 
-  // const handleEnterKeyPress = (e) => {
-  //   if (e.key === 'Enter') {
-  //     handleInputClick();
-  //   }
-  // };
+  const onBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const query = e.target.value;
+    setInput(query);
+  };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(e.target.value);
-    setInput(e.target.value);
+  const onSearchButtonClick = () => {
+    if (input.length === 0) return;
+    handleSearch();
+  };
+
+  const onBarKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (input === '' || input.trim() === '') return;
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
   };
 
   const handleClear = () => {
     setInput('');
   };
 
-  useEffect(() => {
-    if (isSearchPage === true) {
-      setWidth(['100%', '80%']);
-    }
-  }, []);
-
   return (
     <Box
       display="flex"
-      justifyContent={isSearchPage === true ? 'flex-start' : 'center'}
+      justifyContent="center"
       alignItems="center"
       gap="1rem"
       p="0 1rem"
-      w={width}
+      w="100%"
+      // w={width}
     >
-      <InputGroup m="0 " w={width}>
+      <InputGroup
+        m="0 "
+        // w={width}
+      >
         <InputLeftElement
           pointerEvents="none"
           color="gray.300"
@@ -90,17 +88,15 @@ export default function SearchBar2({ isSearchPage }: Prop) {
           placeholder="키워드 검색"
           h="2.25rem"
           pl="3rem"
+          pr="100px"
           borderRadius="2rem"
           bg={bg3}
           alignItems="center"
           value={input}
-          onChange={handleSearch}
-          onClick={handleInputClick}
-          // onKeyPress={handleEnterKeyPress}
+          onChange={onBarChange}
+          onKeyDown={onBarKeyDown}
           focusBorderColor="#01BFA2"
           size="md"
-          // value={nickname}
-          // onChange={handleSearch}
           _hover={{
             backgroundColor: bg2,
             borderColor: '#01BFA2',
@@ -149,7 +145,7 @@ export default function SearchBar2({ isSearchPage }: Prop) {
           <Button
             variant="ghost"
             borderRadius="50%"
-            onClick={handleInputClick}
+            onClick={onSearchButtonClick}
             p="0"
             _hover={{}}
             _active={{}}
@@ -169,25 +165,6 @@ export default function SearchBar2({ isSearchPage }: Prop) {
           </Button>
         </InputRightElement>
       </InputGroup>
-      {isSearchPage && !isMobile && (
-        <Button
-          // colorScheme="green"
-          borderRadius="2rem"
-          p="0 1.25rem"
-          minW="4rem"
-          h="36px"
-          backgroundColor="#7dedda"
-          onClick={handleInputClick}
-          _hover={{
-            backgroundColor: '#01BFA2',
-            color: 'white',
-          }}
-        >
-          <Text fontSize="1rem" fontWeight="700" color="#01BFA2">
-            검색
-          </Text>
-        </Button>
-      )}
     </Box>
   );
 }

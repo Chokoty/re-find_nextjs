@@ -1,5 +1,5 @@
 import Service from '@/service';
-import { CheckBoxType } from '@/types';
+import type { CheckBoxType } from '@/types';
 
 class EventService extends Service {
   async getRandomFanart(checkboxValues: CheckBoxType) {
