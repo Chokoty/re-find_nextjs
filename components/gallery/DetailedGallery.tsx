@@ -122,7 +122,7 @@ export default function DetailedGallery({ value, query }: Props) {
             artworks={
               isDeletedVisible && gallery !== null
                 ? artworks
-                : artworks.filter((artwork) => artwork.is_hyum === false)
+                : artworks.filter((artwork) => artwork?.is_hyum === false)
             }
             isDeletedVisible={isDeletedVisible}
             // loadingImage={loadingImage}
@@ -135,7 +135,7 @@ export default function DetailedGallery({ value, query }: Props) {
             artworks={
               isDeletedVisible && gallery !== null
                 ? artworks
-                : artworks.filter((artwork) => artwork.is_hyum === false)
+                : artworks.filter((artwork) => artwork?.is_hyum === false)
             }
             isDeletedVisible={isDeletedVisible}
             // handleLoading={handleLoading}
