@@ -121,6 +121,7 @@ export default function SearchCard({ item }: Props) {
             src={img_url}
             alt={title}
             className={styles.image}
+            unoptimized
           />
         </Box>
       </Link>
