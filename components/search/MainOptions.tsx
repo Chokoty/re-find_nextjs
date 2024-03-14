@@ -13,8 +13,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react';
-import { useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { useShallow } from 'zustand/react/shallow';
 
@@ -64,8 +63,6 @@ export default function MainOptions() {
   };
   // const searchParams = useSearchParams();
   // const searchParamsObj = Object.fromEntries(searchParams.entries());
-
-  const [categories, setCategories] = useState<string[]>([]);
   const {
     board,
     category,
@@ -89,9 +86,6 @@ export default function MainOptions() {
     checkViewCountLimit,
     checkLikeCountLimit,
     checkCommentCountLimit,
-    setViewCountLimit,
-    setLikeCountLimit,
-    setCommentCountLimit,
   } = useSearchFilterStore(
     useShallow((state) => ({
       board: state.board,
@@ -116,11 +110,22 @@ export default function MainOptions() {
       checkViewCountLimit: state.checkViewCountLimit,
       checkLikeCountLimit: state.checkLikeCountLimit,
       checkCommentCountLimit: state.checkCommentCountLimit,
-      setViewCountLimit: state.setViewCountLimit,
-      setLikeCountLimit: state.setLikeCountLimit,
-      setCommentCountLimit: state.setCommentCountLimit,
     }))
   );
+  const [categories, setCategories] = useState<string[]>([]);
+  // view, like, comment up, down 이벤트는 state로 해당 컴포넌트에서 관리하고 check할 때, 비로소 store에 저장
+  const [likeCount, setLikeCount] = useState({
+    min: MIN_COUNT,
+    max: MAX_COUNT,
+  });
+  const [viewCount, setViewCount] = useState({
+    min: MIN_COUNT,
+    max: MAX_COUNT,
+  });
+  const [commentCount, setCommentCount] = useState({
+    min: MIN_COUNT,
+    max: MAX_COUNT,
+  });
 
   const handleChangeBoard = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const val = e.target.value;
@@ -180,41 +185,62 @@ export default function MainOptions() {
   const handleCheckViewCountLimit = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    checkViewCountLimit(e.target.checked);
+    const { min, max } = viewCount;
+    checkViewCountLimit({
+      check: e.target.checked,
+      min,
+      max,
+    });
   };
 
   const handleCheckLikeCountLimit = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    checkLikeCountLimit(e.target.checked);
+    const { min, max } = likeCount;
+    checkLikeCountLimit({
+      check: e.target.checked,
+      min,
+      max,
+    });
   };
 
   const handleCheckCommentCountLimit = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    checkCommentCountLimit(e.target.checked);
+    const { min, max } = commentCount;
+    checkCommentCountLimit({
+      check: e.target.checked,
+      min,
+      max,
+    });
   };
 
   const handleChangeViewLowerCount = (_: string, valueAsNumber: number) => {
-    setViewCountLimit({ min: valueAsNumber, max: viewCountLimit.max });
+    // setViewCountLimit({ min: valueAsNumber, max: viewCountLimit.max });
+    setViewCount({ min: valueAsNumber, max: viewCount.max });
   };
   const handleChangeViewUpperCount = (_: string, valueAsNumber: number) => {
-    setViewCountLimit({ min: viewCountLimit.min, max: valueAsNumber });
+    // setViewCountLimit({ min: viewCountLimit.min, max: valueAsNumber });
+    setViewCount({ min: viewCount.min, max: valueAsNumber });
   };
 
   const handleChangeLikeLowerCount = (_: string, valueAsNumber: number) => {
-    setLikeCountLimit({ min: valueAsNumber, max: likeCountLimit.max });
+    // setLikeCountLimit({ min: valueAsNumber, max: likeCountLimit.max });
+    setLikeCount({ min: valueAsNumber, max: likeCount.max });
   };
   const handleChangeLikeUpperCount = (_: string, valueAsNumber: number) => {
-    setLikeCountLimit({ min: likeCountLimit.min, max: valueAsNumber });
+    // setLikeCountLimit({ min: likeCountLimit.min, max: valueAsNumber });
+    setLikeCount({ min: likeCount.min, max: valueAsNumber });
   };
 
   const handleChangeCommentLowerCount = (_: string, valueAsNumber: number) => {
-    setCommentCountLimit({ min: valueAsNumber, max: commentCountLimit.max });
+    // setCommentCountLimit({ min: valueAsNumber, max: commentCountLimit.max });
+    setCommentCount({ min: valueAsNumber, max: commentCount.max });
   };
 
   const handleChangeCommentUpperCount = (_: string, valueAsNumber: number) => {
-    setCommentCountLimit({ min: commentCountLimit.min, max: valueAsNumber });
+    // setCommentCountLimit({ min: commentCountLimit.min, max: valueAsNumber });
+    setCommentCount({ min: commentCount.min, max: valueAsNumber });
   };
 
   return (
@@ -392,9 +418,9 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={viewCountLimit.min}
+            defaultValue={viewCount.min}
             min={MIN_COUNT}
-            max={viewCountLimit.max}
+            max={viewCount.max}
             onChange={handleChangeViewLowerCount}
           >
             <NumberInputField />
@@ -407,8 +433,8 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={viewCountLimit.max}
-            min={viewCountLimit.min}
+            defaultValue={viewCount.max}
+            min={viewCount.min}
             onChange={handleChangeViewUpperCount}
           >
             <NumberInputField />
@@ -436,9 +462,9 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={likeCountLimit.min}
+            defaultValue={likeCount.min}
             min={MIN_COUNT}
-            max={likeCountLimit.max}
+            max={likeCount.max}
             onChange={handleChangeLikeLowerCount}
           >
             <NumberInputField />
@@ -451,8 +477,8 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={likeCountLimit.max}
-            min={likeCountLimit.min}
+            defaultValue={likeCount.max}
+            min={likeCount.min}
             onChange={handleChangeLikeUpperCount}
           >
             <NumberInputField />
@@ -480,9 +506,9 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={commentCountLimit.min}
+            defaultValue={commentCount.min}
             min={MIN_COUNT}
-            max={commentCountLimit.max}
+            max={commentCount.max}
             onChange={handleChangeCommentLowerCount}
           >
             <NumberInputField />
@@ -495,8 +521,8 @@ export default function MainOptions() {
           <NumberInput
             maxW="200px"
             w="100%"
-            defaultValue={commentCountLimit.max}
-            min={commentCountLimit.min}
+            defaultValue={commentCount.max}
+            min={commentCount.min}
             onChange={handleChangeCommentUpperCount}
           >
             <NumberInputField />

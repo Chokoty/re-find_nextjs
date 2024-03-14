@@ -1,4 +1,4 @@
-import { DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon, TimeIcon } from '@chakra-ui/icons';
 import {
   Box,
   Button,
@@ -60,7 +60,10 @@ export default function SearchHistory({
           borderRadius="0.5rem"
         >
           <Link style={{ flex: 1 }} href={`/search?q=${q}`} prefetch={false}>
-            <Text textAlign="start">{q}</Text>
+            <Box display="flex" flexDir="row" alignItems="center" gap="0.5rem">
+              <TimeIcon color="gray.500" />
+              <Text textAlign="start">{q}</Text>
+            </Box>
           </Link>
           <Box onClick={(e) => deleteHistoryKeyword(q)}>
             <IconButton

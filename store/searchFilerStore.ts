@@ -2,8 +2,6 @@ import { create } from 'zustand';
 
 import type { CountLimit } from '@/types';
 
-type CountLimitWithoutCheck = Omit<CountLimit, 'check'>;
-
 type SearchFilterStore = {
   board: string;
   category: string;
@@ -25,12 +23,9 @@ type SearchFilterStore = {
   checkTitle: (check: boolean) => void;
   checkContent: (check: boolean) => void;
   checkAuthor: (check: boolean) => void;
-  checkViewCountLimit: (check: boolean) => void;
-  checkLikeCountLimit: (check: boolean) => void;
-  checkCommentCountLimit: (check: boolean) => void;
-  setViewCountLimit: (limit: CountLimitWithoutCheck) => void;
-  setLikeCountLimit: (limit: CountLimitWithoutCheck) => void;
-  setCommentCountLimit: (limit: CountLimitWithoutCheck) => void;
+  checkViewCountLimit: (limitInfo: CountLimit) => void;
+  checkLikeCountLimit: (limitInfo: CountLimit) => void;
+  checkCommentCountLimit: (limitInfo: CountLimit) => void;
   resetFilter: () => void;
 };
 
@@ -69,26 +64,10 @@ export const useSearchFilterStore = create<
   checkTitle: (check) => set({ hasTitle: check }),
   checkContent: (check) => set({ hasContent: check }),
   checkAuthor: (check) => set({ hasAuthor: check }),
-  checkViewCountLimit: (check) =>
-    set((state) => ({
-      viewCountLimit: { ...state.viewCountLimit, check },
-    })),
-  checkLikeCountLimit: (check) =>
-    set((state) => ({
-      likeCountLimit: { ...state.likeCountLimit, check },
-    })),
-  checkCommentCountLimit: (check) =>
-    set((state) => ({
-      commentCountLimit: { ...state.commentCountLimit, check },
-    })),
-  setViewCountLimit: (limit) =>
-    set((state) => ({ viewCountLimit: { ...state.viewCountLimit, ...limit } })),
-  setLikeCountLimit: (limit) =>
-    set((state) => ({ likeCountLimit: { ...state.likeCountLimit, ...limit } })),
-  setCommentCountLimit: (limit) =>
-    set((state) => ({
-      commentCountLimit: { ...state.commentCountLimit, ...limit },
-    })),
+  checkViewCountLimit: (limitInfo) => set({ viewCountLimit: { ...limitInfo } }),
+  checkLikeCountLimit: (limitInfo) => set({ likeCountLimit: { ...limitInfo } }),
+  checkCommentCountLimit: (limitInfo) =>
+    set({ commentCountLimit: { ...limitInfo } }),
   resetFilter: () =>
     set({
       board: 'all',

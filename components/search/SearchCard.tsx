@@ -1,10 +1,8 @@
 import {
   Box,
-  Button,
   Card,
   CardBody,
   CardFooter,
-  Heading,
   HStack,
   Stack,
   Text,
@@ -66,19 +64,25 @@ export default function SearchCard({ item }: Props) {
     >
       <Stack w="100%">
         <CardBody display="flex" flexDir="column" alignItems="flex-start">
-          <Link href={url} prefetch={false}>
-            <Heading size="md" _hover={{ color: 'gray.500' }}>
+          <Link href={url} prefetch={false} target="_blank">
+            <Text
+              size="md"
+              _hover={{ color: 'gray.500' }}
+              textAlign="start"
+              className={styles.mainTitle}
+            >
               {title}
-            </Heading>
+            </Text>
           </Link>
           <HStack mt="1" gap="0.3rem">
-            <Link href={`/artists/${author}`} prefetch={false}>
+            <Link href={`/artists/${author}`} prefetch={false} target="_blank">
               <Text
                 color={colorMode === 'light' ? 'gray.600' : 'gray.400'}
                 fontSize="s"
                 _hover={{
                   color: colorMode === 'light' ? 'gray.500' : 'gray.300',
                 }}
+                className={styles.subTitle}
               >
                 {author}
               </Text>
@@ -89,13 +93,14 @@ export default function SearchCard({ item }: Props) {
             <Text
               color={colorMode === 'light' ? 'gray.600' : 'gray.400'}
               fontSize="s"
+              className={styles.subTitle}
             >
               {board.includes('이세돌┃팬아트') ? '이세돌┃팬아트' : board}
             </Text>
             <Text color="gray.500" fontSize="s">
               ·
             </Text>
-            <Text color="gray.500" fontSize="s">
+            <Text color="gray.500" fontSize="s" className={styles.subTitle}>
               {date.split(' ')[0]}
             </Text>
           </HStack>
@@ -108,7 +113,7 @@ export default function SearchCard({ item }: Props) {
           <SocialStats view={view} like={like} comment={comment} />
         </CardFooter>
       </Stack>
-      <Link href={url} prefetch={false}>
+      <Link href={url} prefetch={false} target="_blank">
         <Box className={styles.imageWrapper}>
           <Image
             width="400"

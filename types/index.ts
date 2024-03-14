@@ -56,6 +56,13 @@ export interface Gallery {
   query?: string;
 }
 
+// search
+export type CountLimit = {
+  check: boolean;
+  min: number;
+  max: number;
+};
+
 // service (api)
 
 export type GetKeywordGalleryArtworksParams = {
@@ -67,4 +74,19 @@ export type GetArtistInfoParams = {
   nickname: string;
   sortType: string;
   field: string;
+};
+
+export type GetSearchResultParams = {
+  q: string;
+  title: boolean;
+  content: boolean;
+  author: boolean;
+  sensitive: boolean;
+  board: string;
+  category: string;
+  dateType: string;
+  rankType: string;
+  viewCountLimit: CountLimit;
+  likeCountLimit: CountLimit;
+  commentCountLimit: CountLimit;
 };
