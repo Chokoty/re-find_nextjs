@@ -78,7 +78,10 @@ export default function SearchModal({ isOpen, onClose }: Props) {
           pl={1}
           pr={1}
         >
-          <ModalSearchBar addHistoryKeyword={addHistoryKeyword} />
+          <ModalSearchBar
+            addHistoryKeyword={addHistoryKeyword}
+            onClose={onClose}
+          />
         </ModalHeader>
         <ModalBody
           pb={6}

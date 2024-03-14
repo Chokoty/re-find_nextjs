@@ -16,9 +16,10 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 type Prop = {
   addHistoryKeyword: (keyword: string) => void;
+  onClose: () => void;
 };
 
-export default function ModalSearchBar({ addHistoryKeyword }: Prop) {
+export default function ModalSearchBar({ addHistoryKeyword, onClose }: Prop) {
   const router = useRouter();
   const [input, setInput] = useState(''); // 검색어
   const [isHover, setIsHover] = useState(false);
@@ -28,6 +29,7 @@ export default function ModalSearchBar({ addHistoryKeyword }: Prop) {
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   const handleSearch = () => {
+    onClose();
     addHistoryKeyword(input);
     router.push(`/search?q=${encodeURIComponent(input)}`);
   };
