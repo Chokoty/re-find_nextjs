@@ -5,7 +5,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import Loading from '@/components/common/Loading';
 import Preview from '@/components/common/Preview';
-import SearchResult from '@/components/search/SearchResult';
+import ImageSearchResult from '@/components/upload/ImageSearchResult';
 import { TARGET_COUNT } from '@/lib/const';
 import { useImageInfo } from '@/service/client/home/useHomeService';
 import { useImageUploadStore } from '@/store/imageUploadStore';
@@ -56,7 +56,9 @@ export default function ImageViewer({ hashs }: Prop) {
         </Button>
       );
     }
-    return <SearchResult searchTime={data.elapsedTime} data={data.source} />;
+    return (
+      <ImageSearchResult searchTime={data.elapsedTime} data={data.source} />
+    );
   };
 
   return (

@@ -1,315 +1,273 @@
-import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
-  Badge,
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
   Box,
-  Button,
   Divider,
-  Link,
+  Heading,
+  HStack,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { MdArrowForwardIos } from 'react-icons/md';
+import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
+import { PuffLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
 
-import AuthorProfileCard2 from '@/components/card/AuthorProfileCard2';
-import Description from '@/components/common/Description';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
-import { useImageUploadStore } from '@/store/imageUploadStore';
+import NotSearch from '@/public/static/images/original_18.png';
+import { useSearchResults } from '@/service/client/search/useSearchService';
+import { useSearchFilterStore } from '@/store/searchFilerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-// const data2 = {
-//   ids: [
-//     {
-//       id: '12570067',
-//       is_deleted: false,
-//       is_shukkou: false,
-//     },
-//   ],
-//   author: {
-//     author_nickname: '시한',
-//     author_url:
-//       'https://cafe.naver.com/ca-fe/cafes/27842958/members/P-REb7i9cxxaj4zLYMd92Q',
-//     author_prof_url:
-//       'https://cafeptthumb-phinf.pstatic.net/MjAyMTEyMjZfMjgw/MDAxNjQwNDYwMTEzNjY0.3z-udtYJX4WD-skhXMqGEEH8Lyv8ahgvGQ9dcDFRTWgg.1KlFPIwso90DtrGXL1Bp72B83KCJ3qLu-3bmsYYU2Xsg.PNG/23525263737.png',
-//   },
-//   upload_date: '2023.08.21. 14:56',
-//   title: '세구넴 키딩',
-//   board: '🎨 이세돌┃팬아트',
-//   total_counter: '45130',
-//   today_counter: '104',
-// };
+import { result } from './constant/search';
+import SearchCard from './SearchCard';
 
-type Props = {
-  searchTime: number;
-  data: Source;
-};
-
-export default function SearchResult({ searchTime, data }: Props) {
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
+export default function SearchResult() {
+  const borderBottom = useColorModeValue(
+    lightMode.borderBottom,
+    darkMode.borderBottom
   );
-  const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-  // const color7 = useColorModeValue(lightMode.color, darkMode.color7);
-  const uploadTimeDiff = useUploadTimeDiff(data.upload_date);
-  const article_link = useResponsiveLink('', 'article');
-  const ids = data.ids.slice(0, 15); // 검색결과 10~15개 제한
-  const { resetFiles } = useImageUploadStore(
+
+  const searchParams = useSearchParams();
+  const q = searchParams.get('q') ?? '';
+
+  const { ref, inView } = useInView({
+    threshold: 0,
+    rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+  });
+
+  const {
+    board,
+    category,
+    dateType,
+    rankType,
+    hasSensitiveCase,
+    hasTitle,
+    hasContent,
+    hasAuthor,
+    viewCountLimit,
+    likeCountLimit,
+    commentCountLimit,
+  } = useSearchFilterStore(
     useShallow((state) => ({
-      resetFiles: state.resetFiles,
+      board: state.board,
+      category: state.category,
+      dateType: state.dateType,
+      rankType: state.rankType,
+      hasSensitiveCase: state.hasSensitiveCase,
+      hasTitle: state.hasTitle,
+      hasContent: state.hasContent,
+      hasAuthor: state.hasAuthor,
+      viewCountLimit: state.viewCountLimit,
+      likeCountLimit: state.likeCountLimit,
+      commentCountLimit: state.commentCountLimit,
     }))
   );
 
+  const {
+    fetchNextPage,
+    total,
+    searchResults,
+    isError,
+    isFetchingNextPage,
+    isLoading,
+  } = useSearchResults({
+    q,
+    board,
+    category,
+    dateType,
+    rankType,
+    sensitive: hasSensitiveCase,
+    title: hasTitle,
+    content: hasContent,
+    author: hasAuthor,
+    viewCountLimit,
+    likeCountLimit,
+    commentCountLimit,
+  });
+
+  // console.log('searchResult', {
+  //   board,
+  //   category,
+  //   dateType,
+  //   rankType,
+  //   hasSensitiveCase,
+  //   hasTitle,
+  //   hasContent,
+  //   hasAuthor,
+  //   viewCountLimit,
+  //   likeCountLimit,
+  //   commentCountLimit,
+  // });
+
+  // 무한 스크롤
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView) {
+      fetchNextPage();
+    }
+  }, [inView]);
+
+  if (isLoading) {
+    return (
+      <Box
+        w="100%"
+        mt="1.5rem"
+        mb="1.5rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minH="500px"
+        borderBottomRadius="1rem"
+      >
+        <PuffLoader color="#01BFA2" />
+      </Box>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Alert
+        status="error"
+        w="100%"
+        borderRadius="1rem"
+        justifyContent="center"
+      >
+        <AlertIcon />
+        <AlertTitle>서버 에러</AlertTitle>
+        <AlertDescription>
+          현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다. 빠른
+          시일 내에 해결하겠습니다.
+        </AlertDescription>
+      </Alert>
+    );
+  }
+
+  if (!searchResults || searchResults.length === 0 || (total ?? 0) === 0) {
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        minH="350px"
+      >
+        <Image
+          src={NotSearch}
+          alt="찾을 수 없음을 표시"
+          width={222}
+          height={192}
+        />
+        <Text
+          pl="1rem"
+          m="1rem 0"
+          as="h3"
+          fontSize="1rem"
+          textAlign="left"
+          // w="500px"
+        >
+          검색 결과가 없습니다. 다른 키워드로 검색해 보세요
+        </Text>
+      </Box>
+    );
+  }
+
   return (
     <Box
-      className="result"
+      w="100%"
       display="flex"
-      flexDirection="column"
+      flexDir="column"
       alignItems="center"
-      width="100%"
-      maxW="500px"
+      justifyContent="center"
     >
-      {ids?.length === 0 ? (
-        <div className="notFound">
-          <Description />
-        </div>
-      ) : (
-        <Box
-          className="found"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          width="100%"
-          gap="1rem"
-          m="0 auto"
-        >
-          <Box
-            w="100%"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            width="100%"
-            gap="1rem"
-            background={bgColor}
-            borderRadius="0 0 1rem 1rem"
-            p="1rem"
-          >
-            {/* {data?.board !== '' && ( */}
+      <HStack w="100%" p="1rem" alignItems="baseline" flexWrap="wrap">
+        <Heading as="h4" size="md">
+          {`'${q}'`}
+        </Heading>
+        <Heading as="h4" size="md">
+          에 대한 검색결과 입니다.
+        </Heading>
+        <HStack gap="0.3rem">
+          <Text color="gray.400">총</Text>
+          <Text color="#01BFA2">{total ?? 0}</Text>
+          <Text color="gray.400">개의 팬아트가 검색되었습니다.</Text>
+        </HStack>
+      </HStack>
+      <Tabs>
+        <TabList>
+          <Tab p="0.5rem 1.5rem" color="#01BFA2">
+            전체({total ?? 0})
+          </Tab>
+          {/* <Tab>작가(20)</Tab>
+              <Tab>작품(680)</Tab> */}
+        </TabList>
+
+        <TabPanels>
+          <TabPanel p="0">
             <Box
+              w="100%"
               display="flex"
               flexDirection="column"
               justifyContent="center"
               alignItems="center"
-              width="100%"
-              gap="0.5rem"
+              p="1.5rem"
             >
-              <Box
-                display="flex"
-                flexDirection="row"
-                justifyContent="space-between"
-                alignItems="center"
-                gap="0.5rem"
-                w="100%"
-              >
-                <Box
-                  display="flex"
-                  flexDirection="row"
-                  justifyContent="flex-start"
-                  alignItems="center"
-                  gap="0.5rem"
-                  w="100%"
-                >
-                  <Text fontSize={['lg', 'xl']} textAlign="start">
-                    {/* {author?.board || ''} */}
-                    {data.board}
-                  </Text>
-                  <MdArrowForwardIos
-                    style={{
-                      // marginLeft: '0.5rem',
-                      fontSize: '0.8rem',
-                    }}
-                  />
-                </Box>
-                <Badge
-                  variant="subtle"
-                  colorScheme="green"
-                  borderRadius="6px"
-                  p="0 0.5rem"
-                  h="2rem"
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Box w="1rem" h="1rem" mr="0.3rem">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      strokeWidth="1.5"
-                      stroke="currentColor"
-                      className="w-6 h-6"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                  </Box>
-                  <Text fontSize="lg" textAlign="center" color={color}>
-                    {uploadTimeDiff}
-                  </Text>
-                </Badge>
-              </Box>
-              <Link
-                w="100%"
-                fontSize={['xl', '2xl']}
-                fontWeight="bold"
-                textAlign="start"
-                color={highlightColor}
-                className="link-to-wakzoo"
-                href={article_link + ids[0].id}
-                isExternal
-              >
-                <Text>
-                  {data.title}
-                  <ExternalLinkIcon mx="2px" />
-                </Text>
-              </Link>
-            </Box>
-            {/* )} */}
-            <AuthorProfileCard2
-              author={data.author}
-              writerURL={data.author?.author_url}
-              profURL={data.author?.author_prof_url}
-              nickname={data.author?.author_nickname}
-            />
-            <Divider />
-            <Box as="span" flex="1" textAlign="left" fontSize="xl">
-              <Text>관련 게시글 링크</Text>
-            </Box>
-            <Box
-              display="flex"
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              width="100%"
-              gap="0.5rem"
-              p="1rem"
-            >
-              {ids.map((item, index) => (
-                <Link
-                  key={index}
-                  fontSize="xl"
-                  mb="20px"
-                  textAlign="center"
-                  // color="#01bda1"
-                  color={highlightColor}
-                  className="link"
-                  href={article_link + item.id}
-                  isExternal
-                  w="100%"
-                >
-                  {item.is_deleted === true ? (
-                    <Text fontSize="xl" mb="20px" textAlign="center">
-                      삭제된 게시글입니다.
-                    </Text>
-                  ) : (
-                    <Text
-                      fontSize="xl"
-                      mb="20px"
-                      textAlign="center"
-                      noOfLines={1}
-                      w="90%"
-                    >
-                      {article_link + item.id}
-                      <ExternalLinkIcon mx="2px" />
-                    </Text>
-                  )}
-                  {item.is_shukkou === true && (
-                    <Text fontSize="xl" mb="20px" textAlign="center">
-                      `(슛코당한 팬아트일 확률이 높습니다.)`
-                    </Text>
-                  )}
-                </Link>
+              {searchResults.map((item) => (
+                // <Box key={item.id} w="100%" p="0 1.5rem">
+                //   <Box
+                //     w="100%"
+                //     h="100px"
+                //     p="1rem 0"
+                //     display="flex"
+                //     flexDirection="column"
+                //     justifyContent="flex-start"
+                //     alignItems="center"
+                //     gap="1rem"
+                //   >
+                //     <Text>{item.title}</Text>
+                //   </Box>
+                //   <Box w="100%" borderBottom={`1px solid ${borderBottom}`}>
+                //     {item.content}
+                //   </Box>
+                // </Box>
+                <>
+                  <SearchCard item={item} key={item.id} />
+                  <Divider />
+                </>
               ))}
             </Box>
-            {/* <Accordion allowMultiple w="100%">
-              <AccordionItem
-                border="none"
-                _focus={{ boxShadow: 'none' }}
-                _hover={{ boxShadow: 'none' }}
+            {isFetchingNextPage ? (
+              <Box
+                w="100%"
+                mt="1.5rem"
+                mb="1.5rem"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
               >
-                <AccordionButton p="1rem 0">
-                  <AccordionIcon />
-                  <Box as="span" flex="1" textAlign="left" fontSize="xl">
-                    <Text>관련 게시글 링크</Text>
-                  </Box>
-                </AccordionButton>
-                <AccordionPanel pb={4} w="100%">
-                  <Box
-                    display="flex"
-                    flexDirection="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    width="100%"
-                    gap="0.5rem"
-                    p="1rem"
-                  >
-                    {ids?.map((item, index) => (
-                      <Link
-                        key={index}
-                        fontSize="xl"
-                        mb="20px"
-                        textAlign="center"
-                        // color="#01bda1"
-                        color={highlightColor}
-                        className="link"
-                        href={article_link + item.id}
-                        isExternal
-                        w="100%"
-                      >
-                        {item.is_deleted === true ? (
-                          <Text fontSize="xl" mb="20px" textAlign="center">
-                            삭제된 게시글입니다.
-                          </Text>
-                        ) : (
-                          <Text
-                            fontSize="xl"
-                            mb="20px"
-                            textAlign="center"
-                            noOfLines={1}
-                            w="90%"
-                          >
-                            {article_link + item.id}
-                            <ExternalLinkIcon mx="2px" />
-                          </Text>
-                        )}
-                        {item.is_shukkou === true && (
-                          <Text fontSize="xl" mb="20px" textAlign="center">
-                            `(슛코당한 팬아트일 확률이 높습니다.)`
-                          </Text>
-                        )}
-                      </Link>
-                    ))}
-                  </Box>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion> */}
-          </Box>
-        </Box>
-      )}
-      <Text fontSize="xl" m="20px" textAlign="center">
-        검색시간: {searchTime / 1000}s
-      </Text>
-      {/* TODO: zustand state로 변경 */}
-      <Button onClick={resetFiles} size="lg" colorScheme="blue" w={200}>
-        다른 이미지 검색
-      </Button>
+                <PuffLoader color="#01BFA2" />
+              </Box>
+            ) : (
+              // Observer를 위한 div
+              <Box ref={ref} w="100%" h="5rem" />
+            )}
+          </TabPanel>
+          {/* <TabPanel>
+          <p>two!</p>
+        </TabPanel>
+        <TabPanel>
+          <p>three!</p>
+        </TabPanel> */}
+        </TabPanels>
+      </Tabs>
     </Box>
   );
 }

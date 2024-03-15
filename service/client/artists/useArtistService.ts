@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 
 import type { GetArtistInfoParams } from '@/types';
 
-import queryOptions from './queires';
+import queryOptions from './queries';
 
 // {"lastPage": true, "list": []}
 export function useArtistInfo({

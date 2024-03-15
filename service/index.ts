@@ -75,7 +75,6 @@ class Service {
     config?: AxiosRequestConfig
   ): Promise<T> {
     try {
-      console.log(this.baseURL + url);
       const response = await axiosInstance.request<T>({
         url,
         method,

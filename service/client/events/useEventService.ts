@@ -1,7 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
 
+import type { CheckBoxType } from '@/types';
+
 import queryOptions from './queries';
-import { CheckBoxType } from '@/types';
 
 // 랜덤 팬아트 가져오기
 export function useRandomFanart(checkboxValues: CheckBoxType) {
