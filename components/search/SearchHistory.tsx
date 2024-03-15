@@ -28,8 +28,13 @@ export default function SearchHistory({
   const isSearchPage = pathname === '/search';
   return (
     <Box w="100%" p="1rem">
-      <Box display="flex" justifyContent="space-between" alignItems="center ">
-        <Heading pl="0.5rem" mb="1.5rem" as="h5" size="sm">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        mb="1.5rem"
+      >
+        <Heading pl="0.5rem" as="h5" size="sm">
           최근검색어
         </Heading>
         <Box>

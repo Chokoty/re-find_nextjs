@@ -1,0 +1,13 @@
+.panel {
+  @media (width < 515px) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+.row {
+  @media (width < 515px) {
+    gap: 0.5rem !important;
+    margin: 0.5rem !important;
+  }
+}

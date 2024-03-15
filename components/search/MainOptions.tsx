@@ -18,6 +18,7 @@ import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useSearchFilterStore } from '@/store/searchFilerStore';
+import styles from '@/styles/MainOptions.module.scss';
 
 import HelpPopOver from './HelpPopOver';
 
@@ -244,9 +245,15 @@ export default function MainOptions() {
   };
 
   return (
-    <AccordionPanel pb={4}>
+    <AccordionPanel pb={4} className={styles.panel}>
       <Divider />
-      <Box display="flex" flexDir={['column', 'row']} gap="1rem" m="1rem">
+      <Box
+        display="flex"
+        flexDir={['column', 'row']}
+        gap="1rem"
+        m="1rem"
+        className={styles.row}
+      >
         {/* 업로드날짜 (유튜브 참고) -> 시작 ~ 끝 */}
         <Select
           placeholder="전체기간"
@@ -280,9 +287,14 @@ export default function MainOptions() {
         alignItems="center"
         // justifyContent={['space-between', 'unset']}
         justifyContent="space-between"
+        className={styles.row}
       >
         <CheckboxGroup colorScheme="teal">
-          <Stack spacing={[1, 5]} direction={['column', 'row']}>
+          <Stack
+            direction="row"
+            spacing={[3, 5]}
+            // direction={['column', 'row']}
+          >
             <Checkbox
               value="title"
               onChange={handleCheckTitle}
@@ -316,6 +328,7 @@ export default function MainOptions() {
         alignItems="center"
         // justifyContent={['space-between', 'unset']}
         justifyContent="space-between"
+        className={styles.row}
       >
         <Checkbox
           colorScheme="teal"
@@ -330,7 +343,13 @@ export default function MainOptions() {
         />
       </Box>
       <Divider />
-      <Box display="flex" flexDir={['column', 'row']} gap="1rem" m="1rem">
+      <Box
+        display="flex"
+        flexDir={['column', 'row']}
+        gap="1rem"
+        m="1rem"
+        className={styles.row}
+      >
         {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
         <Select
           placeholder="전체 게시판"
@@ -399,6 +418,7 @@ export default function MainOptions() {
         flexWrap="wrap"
         gap="1rem"
         m="1rem"
+        className={styles.row}
       >
         <Box
           display="flex"
