@@ -1,4 +1,3 @@
-import { RepeatIcon } from '@chakra-ui/icons';
 import {
   Accordion,
   AccordionButton,
@@ -11,6 +10,7 @@ import {
 import { usePathname } from 'next/navigation';
 import { CgOptions } from 'react-icons/cg';
 
+import styles from '@/styles/OptionContainer.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import MainOptions from './MainOptions';
@@ -19,7 +19,12 @@ export default function OptionContainer() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const isSearchPage = usePathname() === '/search';
   return (
-    <Accordion allowMultiple w="100%" p="1.5rem 1rem 0">
+    <Accordion
+      className={styles.accordion}
+      allowMultiple
+      w="100%"
+      p="1.5rem 1rem 0"
+    >
       <AccordionItem
         border="none"
         _focus={{ boxShadow: 'none' }}

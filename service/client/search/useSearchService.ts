@@ -1,7 +1,9 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import queryOptions from './queries';
 import { useMemo } from 'react';
-import { GetSearchResultParams } from '@/types';
+
+import type { GetSearchResultParams } from '@/types';
+
+import queryOptions from './queries';
 
 // 검색 결과 가져오기 (검색페이지 무한 스크롤)
 export function useSearchResults({
