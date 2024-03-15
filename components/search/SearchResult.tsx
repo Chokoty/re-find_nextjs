@@ -27,7 +27,6 @@ import { useSearchResults } from '@/service/client/search/useSearchService';
 import { useSearchFilterStore } from '@/store/searchFilerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-import { result } from './constant/search';
 import SearchCard from './SearchCard';
 
 export default function SearchResult() {
@@ -163,8 +162,9 @@ export default function SearchResult() {
         <Image
           src={NotSearch}
           alt="찾을 수 없음을 표시"
-          width={222}
-          height={192}
+          width={202}
+          height={172}
+          unoptimized
         />
         <Text
           pl="1rem"

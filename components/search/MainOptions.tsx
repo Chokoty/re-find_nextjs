@@ -349,7 +349,7 @@ export default function MainOptions() {
         </Select>
         {/* 카테고리 */}
         <Select
-          placeholder="전체 카테고리"
+          placeholder="말머리"
           disabled={categories.length === 0}
           onChange={handleChangeCategory}
           defaultValue={category}
