@@ -50,8 +50,7 @@ export default function SearchCard({
 
   const highlightText = (text: string, ableHightlight: boolean) => {
     const regex = new RegExp(searchText, 'gi');
-
-    if (!searchText) return text;
+    if (!searchText || !text) return '알 수 없음';
     if (isAllHightlight || ableHightlight) {
       return text.replace(
         regex,
