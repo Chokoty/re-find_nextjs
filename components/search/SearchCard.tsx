@@ -52,21 +52,14 @@ export default function SearchCard({
     const regex = new RegExp(searchText, 'gi');
 
     if (!searchText) return text;
-    if (isAllHightlight) {
+    if (isAllHightlight || ableHightlight) {
       return text.replace(
         regex,
         (match) => `<span style="color: #01BFA2">${match}</span>`
       );
-    } else if (ableHightlight) {
-      // title에 대해서만 하이라이팅
-      return text.replace(
-        regex,
-        (match) => `<span style="color: #01BFA2">${match}</span>`
-      );
-    } else {
-      // 모든 경우가 아니면 그냥 반환
-      return text;
     }
+    // 모든 경우가 아니면 그냥 반환
+    return text;
   };
   return (
     <Card
