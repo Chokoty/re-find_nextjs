@@ -239,7 +239,7 @@ export default function SearchResult() {
                 //   </Box>
                 // </Box>
                 <>
-                  <SearchCard item={item} key={item.id} />
+                  <SearchCard item={item} searchText={q} key={item.id} />
                   <Divider />
                 </>
               ))}
