@@ -158,6 +158,7 @@ export default function SearchResult() {
         justifyContent="center"
         alignItems="center"
         minH="350px"
+        width="100%"
       >
         <Image
           src={NotSearch}
@@ -201,7 +202,7 @@ export default function SearchResult() {
           <Text color="gray.400">개의 팬아트가 검색되었습니다.</Text>
         </HStack>
       </HStack>
-      <Tabs>
+      <Tabs w="100%">
         <TabList>
           <Tab p="0.5rem 1.5rem" color="#01BFA2">
             전체({total ?? 0})
