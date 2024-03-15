@@ -18,10 +18,19 @@ import SocialStats from './SocialStats';
 type Props = {
   item: SearchItem;
   searchText: string;
+  isTitleSearch: boolean;
+  isContentSearch: boolean;
+  isAuthorSearch: boolean;
 };
 
 // danerouslySetInnerHTML을 사용하여 검색어를 하이라이팅할 때, dompurify를 고려하여 sanitized HTML 사용할 것
-export default function SearchCard({ item, searchText }: Props) {
+export default function SearchCard({
+  item,
+  searchText,
+  isTitleSearch,
+  isAuthorSearch,
+  isContentSearch,
+}: Props) {
   const {
     title,
     content,
@@ -35,13 +44,29 @@ export default function SearchCard({ item, searchText }: Props) {
     url,
   } = item;
   const { colorMode } = useColorMode();
+  const isAllHightlight =
+    (isTitleSearch && isAuthorSearch && isContentSearch) ||
+    (!isTitleSearch && !isAuthorSearch && !isContentSearch);
 
-  const highlightText = (text: string) => {
+  const highlightText = (text: string, ableHightlight: boolean) => {
     const regex = new RegExp(searchText, 'gi');
-    return text.replace(
-      regex,
-      (match) => `<span style="color: #01BFA2">${match}</span>`
-    );
+
+    if (!searchText) return text;
+    if (isAllHightlight) {
+      return text.replace(
+        regex,
+        (match) => `<span style="color: #01BFA2">${match}</span>`
+      );
+    } else if (ableHightlight) {
+      // title에 대해서만 하이라이팅
+      return text.replace(
+        regex,
+        (match) => `<span style="color: #01BFA2">${match}</span>`
+      );
+    } else {
+      // 모든 경우가 아니면 그냥 반환
+      return text;
+    }
   };
   return (
     <Card
@@ -63,7 +88,7 @@ export default function SearchCard({ item, searchText }: Props) {
               textAlign="start"
               className={styles.mainTitle}
               dangerouslySetInnerHTML={{
-                __html: highlightText(title),
+                __html: highlightText(title, isTitleSearch),
               }}
             />
           </Link>
@@ -77,7 +102,7 @@ export default function SearchCard({ item, searchText }: Props) {
                 }}
                 className={styles.subTitle}
                 dangerouslySetInnerHTML={{
-                  __html: highlightText(author),
+                  __html: highlightText(author, isAuthorSearch),
                 }}
               />
             </Link>
@@ -104,7 +129,8 @@ export default function SearchCard({ item, searchText }: Props) {
             className={styles.content}
             dangerouslySetInnerHTML={{
               __html: highlightText(
-                content.length > 100 ? `${content.slice(0, 250)}...` : content
+                content.length > 100 ? `${content.slice(0, 250)}...` : content,
+                isContentSearch
               ),
             }}
           />

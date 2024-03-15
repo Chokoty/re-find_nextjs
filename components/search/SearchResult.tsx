@@ -239,7 +239,14 @@ export default function SearchResult() {
                 //   </Box>
                 // </Box>
                 <>
-                  <SearchCard item={item} searchText={q} key={item.id} />
+                  <SearchCard
+                    item={item}
+                    searchText={q}
+                    isTitleSearch={hasTitle}
+                    isContentSearch={hasContent}
+                    isAuthorSearch={hasAuthor}
+                    key={item.id}
+                  />
                   <Divider />
                 </>
               ))}
