@@ -1,5 +1,8 @@
 import Service from '@/service';
-import type { GetKeywordGalleryArtworksParams } from '@/types';
+import type {
+  GetIsdNoticeArtworksParams,
+  GetKeywordGalleryArtworksParams,
+} from '@/types';
 
 const ROWS_PER_PAGE = 30; // 한 페이지당 불러올 아이템 개수
 
@@ -10,16 +13,23 @@ class GalleryService extends Service {
     sortType,
     page,
   }: GetKeywordGalleryArtworksParams & PageNum) {
-    return this.http.get<GalleryArtworks>(
-      `/${query}&ranktype=${sortType}&per_page=${ROWS_PER_PAGE}&page=${page}`
-    );
+    const url = `/${query}&ranktype=${sortType}&per_page=${ROWS_PER_PAGE}&page=${page}`;
+    return this.http.get<GalleryArtworks>(url);
   }
 
-  // 이세돌 공지사항 모든 글 가져오기
-  // 위처럼 lastpage를 받고 page를 주는 형태로 변경 요청
-  // TODO: infinite scroll 적용하기
-  getIsdNotices() {
-    return this.http.get<IsdNotice>(`/isd_notice`);
+  // 이세돌 공지사항에 이세돌 멤버들이 직접 골라서 업로드한 팬아트들을 확인할 수 있습니다.
+  // ranktype Type 만들어서 사용하기
+  getIsdNoticesArtworks({
+    member,
+    ranktype,
+    page,
+  }: GetIsdNoticeArtworksParams & PageNum) {
+    const memberQuery = member !== 'isd' ? `&member=${member}` : '';
+    const url =
+      `/isd_notice_per_page?ranktype=${ranktype}&per_page=${ROWS_PER_PAGE}&page=${page}`.concat(
+        memberQuery
+      );
+    return this.http.get<IsdNoticeArtworks>(url);
   }
 }
 

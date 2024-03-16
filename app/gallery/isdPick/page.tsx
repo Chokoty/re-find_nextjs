@@ -1,8 +1,16 @@
 'use client';
 
-import { Box, Text, useColorModeValue, useToast } from '@chakra-ui/react';
-import { isAxiosError } from 'axios';
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  Box,
+  Text,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import React, { useCallback, useEffect, useState } from 'react';
+import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
@@ -11,102 +19,51 @@ import PageTitle from '@/components/common/PageTitle';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import GalleryLayout from '@/components/layout/gallery-layout';
+import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
-import members from '@/data/members';
-import GalleryService from '@/service/client/gallery/GalleryService';
-import useIsdPickStore from '@/store/isdPickStore';
+import { useNoticeArtworks } from '@/service/client/gallery/useGalleryService';
 import { darkMode, lightMode } from '@/styles/theme';
 
-export default function Album() {
-  const itemsPerPage = 30;
-  const toast = useToast();
+// type Member = 'ine' | 'jingburger' | 'lilpa' | 'jururu' | 'gosegu' | 'viichan';
 
-  // TODO: infinite query 적용하기
+export default function Album() {
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
 
-  // const [, setTotal] = useState(0);
-  const { artworks, setArtworks } = useIsdPickStore();
-  const [filteredArtworks, setFilteredArtworks] = useState<IsdArtworkList[]>(
-    []
-  );
-  const [visibleArtworks, setVisibleArtworks] = useState<IsdArtworkList[]>([]);
-  const [page, setPage] = useState(1);
-
-  const [selected, setSelected] = useState('isd');
-  // const [member, setMember] = useState(null);
-  const [isLastPage, setIsLastPage] = useState(false); // useState(artist_artworks_data?.lastPage);
+  const [selected, setSelected] = useState('isd'); // 멤버 선택
 
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
   const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
-  const [isDeletedVisible, setIsDeletedVisible] = useState(false);
-  // const [isInitialRender, setIsInitialRender] = useState(true);
-
-  // react-spinners
-  const [loadingData, setLoadingData] = useState(false);
-  // const [, setLoadingImage] = useState(true);
-
-  // const resetArtworks = useCallback(() => {
-  //   setVisibleArtworks([]);
-  //   setPage(1);
-  //   setIsLastPage(false);
-  // }, []);
+  const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 | 가리기
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
-  // useEffect(() => {
-  //   // URL에 새로운 정렬 조건을 반영합니다.
-  //   const currentPath = router.pathname;
-  //   const { subTitle, ...restQuery } = router.query;
-  //   const currentQuery = { ...restQuery, sort: sortType };
-  //   router.push({
-  //     pathname: currentPath,
-  //     query: currentQuery,
-  //   });
-  // }, [sortType]);
+  const {
+    fetchNextPage,
+    total,
+    artworks,
+    isError,
+    isFetchingNextPage,
+    isLoading,
+  } = useNoticeArtworks({ member: selected, ranktype: sortType });
+
   const album = {
     title: gallery[0].title,
     description: gallery[0].description!,
   };
 
-  // 정렬 로직
-  const sortArtworks = (_artworks: IsdArtworkList[], _sortType: string) => {
-    return _artworks.sort((a, b) => {
-      if (_sortType === 'latest') {
-        // 내림차순
-      }
-      if (_sortType === 'oldest') {
-        // 오름차순
-      }
-      if (_sortType === 'view') {
-        return b.view - a.view;
-      }
-      if (_sortType === 'like') {
-        return b.like - a.like;
-      }
-      if (_sortType === 'comment') {
-        return b.comment - a.comment;
-      }
-      return b.id - a.id;
-    });
-  };
-
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
     (menuText: string) => {
-      // console.log(menuText);
       if (menuText === sortType) return;
       setSortType(menuText);
-      // resetArtworks();
-      setPage(1);
-      setIsLastPage(false);
     },
-    [sortType] // useCallback 문제였음...
+    [sortType]
   );
 
   // 뷰 선택하기
@@ -120,111 +77,96 @@ export default function Album() {
     setIsDeletedVisible((prev) => !prev);
   }, []);
 
-  // 이미지 로딩
-  // const handleLoading = useCallback((Loading) => {
-  //   setLoadingImage(Loading);
-  // }, []);
-
-  const getFanartAlbum = useCallback(async () => {
-    if (loadingData) return;
-
-    setLoadingData(true);
-
-    try {
-      const { list } = await GalleryService.getIsdNotices();
-      // setTotal(total);
-      setArtworks([...list]);
-    } catch (error) {
-      // 500에러 예외처리
-      if (!isAxiosError(error)) return;
-      if (error.response?.status === 500) {
-        toast({
-          title:
-            '현재 작가 프로필 쪽 서버가 점검중 입니다. 잠시 후 다시 시도해주세요.',
-          description: '500 error',
-          status: 'error',
-          duration: 3000,
-          isClosable: true,
-        });
-      }
-      console.error('Error fetching more data:', error);
-      setIsLastPage(true);
-    } finally {
-      setLoadingData(false); // Set loading state to false regardless of success or failure
-    }
-  }, []);
-
-  // useEffect(() => {
-  //   resetArtworks();
-  //   // ??
-  //   // sort type에 따라 artworks 정렬
-  // }, [sortType]);
-
-  // useEffect(() => {
-  //   console.log(visibleArtworks);
-  // }, [visibleArtworks]);
-
-  // 페이지 변경에 따른 visibleArtists 업데이트
-  useEffect(() => {
-    if (isLastPage) return;
-
-    if (visibleArtworks.length >= filteredArtworks.length) {
-      setIsLastPage(true);
-    } else {
-      setIsLastPage(false);
-    }
-
-    setVisibleArtworks((prev) => [
-      ...prev,
-      ...filteredArtworks.slice(prev.length, page * itemsPerPage),
-    ]);
-  }, [page, filteredArtworks]);
-
-  // 정렬, 뷰 선택에 따른 filteredArtists 업데이트
-  useEffect(() => {
-    let updatedArtworks = artworks;
-
-    const m = members.find((item) => item.value === selected);
-
-    updatedArtworks =
-      selected === 'isd'
-        ? artworks
-        : artworks.filter((item) => item.author === m?.author);
-    // 정렬
-    let sortedArtworks = sortArtworks(updatedArtworks, sortType);
-    if (sortType === 'latest') {
-      sortedArtworks = updatedArtworks;
-    } else if (sortType === 'oldest') {
-      sortedArtworks = updatedArtworks.reverse();
-    }
-
-    setFilteredArtworks(sortedArtworks);
-    // setTotal(sortedArtworks.length);
-    setVisibleArtworks(sortedArtworks.slice(0, itemsPerPage));
-    setPage(1);
-    setIsLastPage(false);
-  }, [artworks, selected, sortType]);
-
   // 무한 스크롤
   useEffect(() => {
     // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-    if (inView) console.log('inView: ', inView);
-    if (inView && !isLastPage && !loadingData) {
-      // !loadingData: 작가페이지 카운트 버그 수정
-      // throttledGetArtistArtworks(); // 1초 동안 한 번만 요청을 보냅니다.
-      setPage((prev) => prev + 1);
-      console.log('page: ', page);
+    if (inView) {
+      fetchNextPage();
     }
-  }, [inView, isLastPage]);
+  }, [inView]);
 
-  // 1회 실행
-  useEffect(() => {
-    console.log('loading...');
-    if (artworks.length === 0) {
-      console.log('getFanartAlbum');
-      getFanartAlbum();
+  const content = () => {
+    if (isLoading) {
+      return <ViewSkeleton view={activeView} />;
     }
-  }, [artworks]);
+
+    if (isError) {
+      return (
+        <Alert
+          status="error"
+          w="100%"
+          borderRadius="1rem"
+          justifyContent="center"
+        >
+          <AlertIcon />
+          <AlertTitle>서버 에러</AlertTitle>
+          <AlertDescription>
+            현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
+            빠른 시일 내에 해결하겠습니다.
+          </AlertDescription>
+        </Alert>
+      );
+    }
+
+    if (!artworks || artworks.length === 0) return;
+
+    return (
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        margin="0 auto"
+        mb="2rem"
+      >
+        <Box
+          w="100%"
+          overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
+        >
+          {activeView === 'masonry' && (
+            <MasonryView2
+              nickname={''}
+              artworks={
+                isDeletedVisible && gallery !== null
+                  ? artworks
+                  : artworks.filter((artwork) => artwork.is_hyum === false)
+              }
+              isDeletedVisible={isDeletedVisible}
+              // loadingImage={loadingImage}
+              // handleLoading={handleLoading}
+              isGallery={true}
+            />
+          )}
+          {activeView === 'grid' && (
+            <SimpleView
+              artworks={
+                isDeletedVisible && gallery !== null
+                  ? artworks
+                  : artworks.filter((artwork) => artwork.is_hyum === false)
+              }
+              isDeletedVisible={isDeletedVisible}
+              // handleLoading={handleLoading}
+            />
+          )}
+          {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
+          {isFetchingNextPage ? (
+            <Box
+              w="100%"
+              mt="1.5rem"
+              mb="1.5rem"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+            >
+              <HashLoader color="#01BFA2" />
+            </Box>
+          ) : (
+            // Observer를 위한 div
+            <Box ref={ref} w="100%" h="5rem" />
+          )}
+        </Box>
+      </Box>
+    );
+  };
 
   return (
     <Box>
@@ -242,7 +184,10 @@ export default function Album() {
           background={bg2}
           borderRadius="1rem"
         >
-          <Text>총 {filteredArtworks.length}</Text>
+          <Text>
+            총 {total ? <CountUp end={total ?? 0} /> : ''}
+            개의 팬아트가 있습니다.
+          </Text>
           <MemberButtonList
             type="sort"
             range={{ start: 1, end: 7 }}
@@ -263,55 +208,7 @@ export default function Album() {
           topOffset={47}
           isdPick={true}
         />
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          margin="0 auto"
-          mb="2rem"
-        >
-          {visibleArtworks && (
-            <>
-              {visibleArtworks?.length !== 0 && (
-                <Box
-                  w="100%"
-                  overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-                >
-                  {activeView === 'masonry' && (
-                    <MasonryView2
-                      nickname={''}
-                      artworks={visibleArtworks}
-                      isDeletedVisible={isDeletedVisible}
-                      // loadingImage={loadingImage}
-                      // handleLoading={handleLoading}
-                      isGallery={true}
-                    />
-                  )}
-                  {activeView === 'grid' && (
-                    <SimpleView
-                      artworks={visibleArtworks}
-                      isDeletedVisible={isDeletedVisible}
-                      // handleLoading={handleLoading}
-                    />
-                  )}
-                  {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
-                  {/* Observer를 위한 div */}
-                  {<Box ref={ref} w="100%" h="5rem"></Box>}
-                </Box>
-              )}
-            </>
-          )}
-          {(!artworks || loadingData) && (
-            <Box
-              w="100%"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <HashLoader color="#01BFA2" />
-            </Box>
-          )}
-        </Box>
+        {content()}
       </GalleryLayout>
     </Box>
   );

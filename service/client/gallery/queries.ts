@@ -1,11 +1,15 @@
-import type { GetKeywordGalleryArtworksParams } from '@/types';
+import type {
+  GetIsdNoticeArtworksParams,
+  GetKeywordGalleryArtworksParams,
+} from '@/types';
 
 import GalleryService from './GalleryService';
 
 const queryKeys = {
   galleryArtworks: ({ query, sortType }: GetKeywordGalleryArtworksParams) =>
     ['galleryArtworks', query, sortType] as const,
-  isdNotices: ['isdNotices'] as const,
+  isdNotices: ({ member, ranktype }: GetIsdNoticeArtworksParams) =>
+    ['isdNotices', member, ranktype] as const,
 };
 
 const queryOptions = {
@@ -28,9 +32,24 @@ const queryOptions = {
       return lastPageParam + 1;
     },
   }),
-  isdNotices: () => ({
-    queryKey: queryKeys.isdNotices,
-    queryFn: () => GalleryService.getIsdNotices(),
+  isdNoticeArtworks: ({ member, ranktype }: GetIsdNoticeArtworksParams) => ({
+    queryKey: queryKeys.isdNotices({ member, ranktype }),
+    queryFn: ({ pageParam }: { pageParam: number }) =>
+      GalleryService.getIsdNoticesArtworks({
+        member,
+        ranktype,
+        page: pageParam,
+      }),
+    initialPageParam: 1,
+    getNextPageParam: (
+      lastPage: IsdNoticeArtworks,
+      allPages: IsdNoticeArtworks[],
+      lastPageParam: number,
+      allPageParams: number[]
+    ) => {
+      if (lastPage.lastPage) return;
+      return lastPageParam + 1;
+    },
   }),
 };
 

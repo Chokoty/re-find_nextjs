@@ -195,7 +195,7 @@ export default function DetailedGallery({ value, query }: Props) {
           // member는 팬아트 개수 안 보이게
           album && (
             <Text>
-              총 <CountUp end={total ?? 0} />
+              총 {total ? <CountUp end={total ?? 0} /> : ''}
               개의 팬아트가 있습니다.
             </Text>
           )
