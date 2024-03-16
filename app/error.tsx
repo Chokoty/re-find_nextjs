@@ -44,6 +44,9 @@ export default function Error({
           // Attempt to recover by trying to re-render the segment
           () => reset()
         }
+        style={{
+          marginTop: '20px',
+        }}
       >
         다시 시도하기
       </button>

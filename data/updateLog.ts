@@ -233,7 +233,9 @@ const updateLog: UpdateLog[] = [
     id: 36,
     date: '2024.3.15',
     type: '[안내]',
-    content: '검색 기능이 추가되었습니다. 이제 팬아트를 검색할 수 있습니다.',
+    content:
+      '검색 기능이 추가되었습니다. 상단바를 이용하여 원하는 팬아트를 찾아보세요.',
+    directLink: 'https://cafe.naver.com/steamindiegame/15527371',
   },
 ];
 
