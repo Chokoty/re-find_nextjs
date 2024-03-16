@@ -17,6 +17,7 @@ export default function Search() {
         w="100%"
         background={bg2}
         mb="1rem"
+        pb="1rem"
         borderRadius="1rem"
         // boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
       >

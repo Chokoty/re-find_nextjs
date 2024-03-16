@@ -27,7 +27,6 @@ import { useSearchResults } from '@/service/client/search/useSearchService';
 import { useSearchFilterStore } from '@/store/searchFilerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-import { result } from './constant/search';
 import SearchCard from './SearchCard';
 
 export default function SearchResult() {
@@ -159,12 +158,14 @@ export default function SearchResult() {
         justifyContent="center"
         alignItems="center"
         minH="350px"
+        width="100%"
       >
         <Image
           src={NotSearch}
           alt="찾을 수 없음을 표시"
-          width={222}
-          height={192}
+          width={202}
+          height={172}
+          unoptimized
         />
         <Text
           pl="1rem"
@@ -201,7 +202,7 @@ export default function SearchResult() {
           <Text color="gray.400">개의 팬아트가 검색되었습니다.</Text>
         </HStack>
       </HStack>
-      <Tabs>
+      <Tabs w="100%">
         <TabList>
           <Tab p="0.5rem 1.5rem" color="#01BFA2">
             전체({total ?? 0})
@@ -239,7 +240,14 @@ export default function SearchResult() {
                 //   </Box>
                 // </Box>
                 <>
-                  <SearchCard item={item} key={item.id} />
+                  <SearchCard
+                    item={item}
+                    searchText={q}
+                    isTitleSearch={hasTitle}
+                    isContentSearch={hasContent}
+                    isAuthorSearch={hasAuthor}
+                    key={item.id}
+                  />
                   <Divider />
                 </>
               ))}
