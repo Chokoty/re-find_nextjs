@@ -57,8 +57,9 @@ declare global {
   // }
 
   // gallery.ts
-  export interface IsdNotice {
+  export interface IsdNoticeArtworks {
     total: number;
+    lastPage: boolean;
     list: IsdArtworkList[];
   }
 

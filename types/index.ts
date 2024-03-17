@@ -70,6 +70,11 @@ export type GetKeywordGalleryArtworksParams = {
   sortType: string;
 };
 
+export type GetIsdNoticeArtworksParams = {
+  member: string;
+  ranktype: string;
+};
+
 export type GetArtistInfoParams = {
   nickname: string;
   sortType: string;
