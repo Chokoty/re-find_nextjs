@@ -52,7 +52,6 @@ export default function Gallery() {
 
   return (
     <Box
-      p="1rem"
       display="flex"
       flexDirection="column"
       alignItems="center"
