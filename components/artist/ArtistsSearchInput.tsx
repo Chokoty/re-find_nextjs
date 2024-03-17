@@ -76,6 +76,7 @@ export default function ArtistsSearchInput() {
         onChange={handleSearch}
         // onKeyDown={handleKeyPress}
         backgroundColor={bg3}
+        borderWidth="2px"
         borderRadius="2rem"
         _hover={{
           backgroundColor: bg,
