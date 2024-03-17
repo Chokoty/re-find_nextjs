@@ -49,7 +49,7 @@ export default function TabBarComponent({ tab, setTab }: Props) {
   return (
     <Box
       position="sticky"
-      bottom="4"
+      bottom="4rem"
       zIndex="200"
       display="flex"
       justifyContent="center"

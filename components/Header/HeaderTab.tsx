@@ -5,9 +5,10 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 type Prop = {
   isCurrentPath: (path: string) => boolean;
+  isAlbumPage: boolean;
 };
 
-export default function HeaderTab({ isCurrentPath }: Prop) {
+export default function HeaderTab({ isCurrentPath, isAlbumPage }: Prop) {
   const color5 = useColorModeValue(lightMode.color, darkMode.color5);
   const color6 = useColorModeValue(lightMode.color, darkMode.color6);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
@@ -21,14 +22,13 @@ export default function HeaderTab({ isCurrentPath }: Prop) {
         alignItems="center"
         position="relative"
         w="60px"
-        // m="0 1rem"
       >
         <NextLink href="/gallery" passHref>
           <Text
             w="3rem"
             fontWeight="700"
             textAlign="center"
-            color={isCurrentPath('/gallery') ? color6 : color5}
+            color={isCurrentPath('/gallery') || isAlbumPage ? color6 : color5}
             _hover={{
               color: color6,
             }}
@@ -36,7 +36,7 @@ export default function HeaderTab({ isCurrentPath }: Prop) {
             갤러리
           </Text>
         </NextLink>
-        {isCurrentPath('/gallery') && (
+        {isAlbumPage && (
           <Box
             w="1rem"
             h="0.25rem"

@@ -18,6 +18,7 @@ import MyDrawer from '@/components/common/MyDrawer';
 import HeaderTab from '@/components/Header/HeaderTab';
 import SearchModalOpener from '@/components/search/Modal/SearchModalOpener';
 import { useResponsive } from '@/hook/useResponsive';
+import { useScroll } from '@/hook/useScroll';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const SearchModal = dynamic(() => import('@/components/search/Modal'), {
@@ -48,6 +49,7 @@ export default function HeaderComponent({
   const isAlbumPage = pathname.includes('/gallery');
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
+  const isScrolling = useScroll(60);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -64,7 +66,12 @@ export default function HeaderComponent({
       alignItems="center"
       justifyContent="space-between"
       style={{
-        backgroundColor: bg2,
+        backgroundImage: 'none',
+        // backgroundImage: isScrolling
+        //   ? 'none' // 스크롤 시에만 그라데이션 배경 적용
+        //   : `linear-gradient(90deg, ${bg2} 0%, rgba(0, 0, 0, 0) 50%, ${bg2} 100%)`,
+        backgroundColor: isScrolling ? bg2 : 'transparent', // 스크롤이 없을 때는 배경색을 bg2로 설정
+        transition: 'background-color 0.3s, background-image 0.3s',
         color,
       }}
     >
@@ -87,7 +94,9 @@ export default function HeaderComponent({
             />
           </Link>
         </Button>
-        {!isMobile && <HeaderTab isCurrentPath={isCurrentPath} />}
+        {!isMobile && (
+          <HeaderTab isCurrentPath={isCurrentPath} isAlbumPage={isAlbumPage} />
+        )}
       </Box>
       {!isSearchPage && <SearchModalOpener onOpen={onOpen} />}
       <Flex>

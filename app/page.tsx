@@ -1,45 +1,19 @@
 'use client';
 
-import {
-  Box,
-  Flex,
-  Heading,
-  Skeleton,
-  useColorModeValue,
-  useDisclosure,
-  useToast,
-} from '@chakra-ui/react';
-import axios from 'axios';
+import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
-import React, { useEffect, useRef, useState } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
-import Loading from '@/components/common/Loading';
 import MoreButtons from '@/components/common/MoreButtons';
-import Preview from '@/components/common/Preview';
-import UpdateBoard from '@/components/common/UpdateBoard';
 import UpdateLogBoard from '@/components/common/UpdateLogBoard';
 import EventFanarts from '@/components/event/EventFanarts';
 import Footer from '@/components/layout/Footer';
-import SearchResult from '@/components/search/SearchResult';
 import BannerSkeleton from '@/components/skeleton/BannerSkeleton';
-import UploadImageSkeleton from '@/components/skeleton/UploadImageSkeleton';
 import TopTitle from '@/components/TopTitle';
+import Upload from '@/components/upload';
 import { useResponsive } from '@/hook/useResponsive';
+import { useImageUploadStore } from '@/store/imageUploadStore';
 import { darkMode, lightMode } from '@/styles/theme';
-
-interface Data {
-  total_counter: string;
-  ids: Array<{ is_deleted: boolean }>;
-}
-
-const targetCount = 50000; // 이벤트 타겟 카운트
-const DynamicUploadImages = dynamic(
-  () => import('@/components/common/UploadImages'),
-  {
-    ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
-    loading: () => <UploadImageSkeleton />,
-  }
-);
 
 const BannerSlider = dynamic(() => import('@/components/banner/BannerSlider'), {
   ssr: false,
@@ -53,168 +27,19 @@ const EventModal = dynamic(() => import('@/components/event/EventModal'), {
 export default function Home() {
   // { last_update_info }: HomeProps
   const isMobile = useResponsive();
-
-  const toast = useToast();
-  const targetRef = useRef(null);
-  const { onToggle } = useDisclosure();
-  const [uploadedfiles, setUploadedFiles] = useState([]); // 파일 업로드
-  const [data, setData] = useState<Data | null>(null);
-  // const [data, setData] = useState(null); // fetch를 통해 받아온 데이터를 저장할 상태
-  // const [author, setAuthor] = useState(null);
-  const [hash, setHash] = useState(null); // fetch를 통해 받아온 hash데이터를 저장할 상태
-  const [ids, setIds] = useState([]); // 게시글 여러 개
-  const [hasSearchResult, setHasSearchResult] = useState(false); // 재검색 방지
-  const [isSearchingData, setIsSearchingData] = useState(false);
   // const [isSearchingAuthor, setIsSearchingAuthor] = useState(false);
   // const [author, setAuthor] = useState(null);
-  const [searchTime, setSearchTime] = useState(0);
+  // const [author, setAuthor] = useState(null);
 
   // Theme
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-
-  // event
-  const [congrat, setCongrat] = useState(false);
-  const [isInitialRender, setIsInitialRender] = useState(true);
-
-  // 이미지 업로드, 해시값 받기
-  const getDataFromChild = (childData) => {
-    setUploadedFiles(childData);
-  };
-  const getHashFromChild = (childHashData) => {
-    setHash(childHashData);
-    console.log(hash);
-  };
-
-  useEffect(() => {
-    if (hash) {
-      // console.log(hash);
-      fetchOriginalUrl();
-    }
-  }, [hash]);
-
-  // 이미지 검색하기
-  const fetchOriginalUrl = async () => {
-    try {
-      setIsSearchingData(true); // 검색중
-      const body = new FormData();
-      body.append('file', uploadedfiles[0]);
-
-      if (!hasSearchResult) {
-        // 재검색 방지
-        const startTime = new Date().getTime(); // 시작시간 기록
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}/receive?dhash=${
-            (hash && hash[0]) || ''
-          }`
-        );
-        // const response = await axios.post(
-        //   'https://re-find.reruru.com/receive',
-        //   body
-        // );
-        const endTime = new Date().getTime(); // 종료시간 기록
-        console.log(`Image search time: ${endTime - startTime}ms`); // 차이값 출력
-        const diffTime = endTime - startTime; // ms
-        setSearchTime(diffTime); // 차이값 저장
-
-        // console.log(response.data); // >>>테스트용
-
-        // setAuthor(response.data.author);
-        setData(response.data);
-        setIds(response.data.ids.slice(0, 15)); // 검색결과 10~15개 제한
-        // fetchAuthorProfile(response.data.id[0]); // 첫번째 게시글의 작가 프로필 가져오기
-      }
-      setIsSearchingData(false); //  검색 완료
-      setHasSearchResult(true); // 재검색을 방지
-    } catch (error) {
-      if (error.response && error.response.status === 500) {
-        console.log('Server Error: ', error.response.status);
-        toast({
-          title: `현재 서버와 연결이 원활하지 않습니다. 잠시 후 다시 시도해주세요.`,
-          status: `error`,
-          isClosable: true,
-        });
-      } else if (error.code === 'ERR_NETWORK') {
-        console.log('Network Error: ', error.code);
-        toast({
-          title: `${error.code}`,
-          status: `error`,
-          isClosable: true,
-        });
-      } else {
-        console.log(error);
-      }
-      setData(null);
-      setIsSearchingData(false); //  검색 완료
-      setHasSearchResult(true); // 재검색을 방지
-    }
-  };
-
-  // 결과 안내 메시지
-  useEffect(() => {
-    if (uploadedfiles.length > 0) {
-      toast({
-        title:
-          data?.ids?.length === 0
-            ? 'Search Failed'
-            : `Searching Time: ${searchTime / 1000}s`,
-        description:
-          data?.ids[0]?.is_deleted === true ? '아! 삭제된 게시글입니다.' : '',
-        status: `${
-          data?.ids?.length === 0 || data?.ids[0]?.is_deleted === true
-            ? 'error'
-            : 'success'
-        }`,
-        isClosable: true,
-      });
-    }
-  }, [data, searchTime]);
-
-  const handleClick = () => {
-    const headerHeight = 108;
-    const targetElement = targetRef.current;
-
-    if (targetElement !== null) {
-      // targetElement가 null이 아닌지 확인
-      const topPosition =
-        (targetElement as HTMLElement).offsetTop - headerHeight;
-
-      window.scrollTo({
-        top: topPosition,
-        behavior: 'smooth', // 부드럽게 스크롤하기 위해 'smooth' 옵션 사용
-      });
-    }
-  };
-
-  // 5만 이벤트
-  useEffect(() => {
-    if (isInitialRender) {
-      setIsInitialRender(false);
-      return;
-    }
-
-    if (data?.total_counter === targetCount.toString()) {
-      setCongrat(true); // targetCount 번째 검색 시 축하메시지
-      console.log('축하합니다!');
-    }
-  }, [data]);
-
-  // files 을 [] 로 초기화
-  const resetFiles = () => {
-    console.log('resetFiles');
-    setUploadedFiles([]);
-    setData(null);
-    // setAuthor(null);
-    setHasSearchResult(false);
-    handleClick();
-    onToggle();
-  };
-
-  const titleText = {
-    title: '팬아트 갤러리',
-    description: '왁물원에 올라온 팬아트들을 모아놓은 갤러리입니다.',
-  };
+  // const color = useColorModeValue(lightMode.color, darkMode.color);
+  const { congrat } = useImageUploadStore(
+    useShallow((state) => ({
+      congrat: state.isEventActive,
+    }))
+  );
 
   return (
     <Box
@@ -228,11 +53,11 @@ export default function Home() {
       flexWrap="wrap"
       gap="1.5rem"
       margin="1rem auto"
-      ref={targetRef}
       backgroundColor={bgColor}
     >
       {/* <MySnowfall /> */}
-      {congrat && <EventModal targetCount={targetCount} />}
+      {/* TODO: congrat을 전역변수로 만들기 */}
+      {congrat && <EventModal />}
       <Box
         w="100%"
         minH="100vh"
@@ -243,58 +68,8 @@ export default function Home() {
         justifyContent="center"
       >
         <BannerSlider />
-        <TopTitle
-          data={data}
-          resetFiles={resetFiles}
-          titleText={titleText}
-          isMember={false}
-        />
-        {/* 업로드 전 */}
-        {uploadedfiles.length === 0 && (
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            w="100%"
-          >
-            <DynamicUploadImages
-              getDataFromChild={getDataFromChild}
-              getHashFromChild={getHashFromChild}
-            />
-            {/* <UploadImages
-            getDataFromChild={getDataFromChild}
-            getHashFromChild={getHashFromChild}
-          /> */}
-            <UpdateBoard />
-          </Box>
-        )}
-        {/* 업로드 후 */}
-        {uploadedfiles.length !== 0 && hash !== null && (
-          <Box
-            className="result-area"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-            borderRadius="1rem"
-            w={['90%', '90%', '100%']}
-            m="1rem 0 10rem 0"
-          >
-            <Preview files={uploadedfiles} />
-            {isSearchingData && <Loading />}
-            {!isSearchingData && (
-              <SearchResult
-                searchTime={searchTime}
-                data={data}
-                ids={ids}
-                // isSearchingAuthor={isSearchingAuthor}
-                // author={author}
-                resetFiles={resetFiles}
-              />
-            )}
-          </Box>
-        )}
+        <TopTitle />
+        <Upload />
       </Box>
       <Box
         w="100%"
