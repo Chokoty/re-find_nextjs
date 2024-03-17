@@ -1,17 +1,16 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 
+import { sortTypes } from '@/data/artists';
 import { darkMode, lightMode } from '@/styles/theme';
-import type { Sort, SortCriteria } from '@/types';
+import type { SortCriteria } from '@/types';
 
 type Props = {
   sortCriteria: SortCriteria;
-  sortTypes: Sort[];
   handleChangeSortCriteria: (field: keyof AuthorCommon) => void;
 };
 
 export default function SortTypeButtonGroup({
   sortCriteria,
-  sortTypes,
   handleChangeSortCriteria,
 }: Props) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -62,8 +61,7 @@ export default function SortTypeButtonGroup({
                 viewBox="0 -960 960 960"
                 style={{
                   transform:
-                    sortCriteria.field === sortType.value &&
-                    sortCriteria.order === 'descending'
+                    sortCriteria.field === sortType.value && sortCriteria.active
                       ? 'rotate(0deg)'
                       : 'rotate(180deg)',
                   transition: 'transform 0.1s ease-in-out',

@@ -1,19 +1,17 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import React from 'react';
+import CountUp from 'react-countup';
 
+import { viewTypes } from '@/data/artists';
 import { darkMode, lightMode } from '@/styles/theme';
-import type { AuthorInfoWithName, View } from '@/types';
 
 type Props = {
-  filteredArtists: AuthorInfoWithName[];
-  viewTypes: View[];
+  total?: number;
   selectedView: keyof AuthorCommon | null;
   handleViewSelect: (value: keyof AuthorCommon) => void;
 };
 
 export default function ViewTypeButtonGroup({
-  filteredArtists,
-  viewTypes,
+  total,
   selectedView,
   handleViewSelect,
 }: Props) {
@@ -32,7 +30,9 @@ export default function ViewTypeButtonGroup({
       backgroundColor={bg2}
       borderRadius="1rem"
     >
-      <Text mb="1rem">{filteredArtists.length}명의 작가님들이 있어요.</Text>
+      <Text mb="1rem">
+        총 {total ? <CountUp end={total ?? 0} /> : ''}명의 작가님들이 있어요.
+      </Text>
       <ul
         style={{
           listStyle: 'none',

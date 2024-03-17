@@ -1,13 +1,22 @@
 import Service from '@/service';
-import type { GetArtistInfoParams } from '@/types';
+import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
 
 // TODO: 네이밍 통일하기 (artists vs authors)
+const ROWS_PER_PAGE = 20; // 한 페이지당 불러올 아이템 개수
+
 class ArtistService extends Service {
-  // 역대 작가 리스트 가져오기
-  // 아래처럼 lastpage를 받고 page를 주는 형태로 변경 요청
-  // TODO: infinite scroll 적용하기
-  getArtistList() {
-    return this.http.get<AuthorList>('/author_list');
+  // 왁타버스 작가 리스트 가져오기
+  getArtistList({
+    q,
+    ranktype,
+    board,
+    page,
+  }: GetArtistListParams & { page: number }) {
+    const url =
+      `/author_list_per_page?query=${q}&ranktype=${ranktype}&page=${page}&per_page=${ROWS_PER_PAGE}`.concat(
+        board ? `&board=${board}` : ''
+      );
+    return this.http.get<AuthorList>(url);
   }
 
   // 작가의 작품들 가져오기

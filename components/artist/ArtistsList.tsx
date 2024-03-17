@@ -1,8 +1,4 @@
 import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
   Box,
   Button,
   Text,
@@ -17,22 +13,18 @@ import SortTypeIcons from '@/components/artist/SortTypeIcons';
 import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
-import type { AuthorInfoWithName, Sort, SortCriteria, View } from '@/types';
+import type { SortCriteria } from '@/types';
 
 type Props = {
-  visibleArtists: AuthorInfoWithName[];
+  artists: AuthorInfo[];
   sortCriteria: SortCriteria;
-  sortTypes: Sort[];
-  viewTypes: View[];
   selectedView: keyof AuthorCommon | null;
-  alert: boolean;
 };
 
 export default function ArtistsList({
-  visibleArtists,
+  artists,
   sortCriteria,
   selectedView,
-  alert,
 }: Props) {
   const isMobile = useResponsive();
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -56,12 +48,12 @@ export default function ArtistsList({
       {/* {filteredArtists.map((artist, index) => (
             <div key={index}>{highlightText(artist.name, searchTerm)}</div>
           ))} */}
-      {visibleArtists.map(
+      {artists.map(
         (artist, index) =>
-          !artist.name.includes('탈퇴회원') && (
+          !artist.nick.includes('탈퇴회원') && (
             <Link
-              key={index}
-              href={`/artists/${artist.name}`}
+              key={`${artist.nick}-${index}`}
+              href={`/artists/${artist.nick}`}
               passHref
               style={{
                 width: '100%',
@@ -100,10 +92,12 @@ export default function ArtistsList({
                   <Text fontSize="lg" fontWeight="bold">
                     {index <= 100 ? index + 1 : '-'}
                   </Text>
-                  <Box w={imgValue} h={imgValue} pos="relative">
+                  <Box w={imgValue} h={imgValue}>
                     <NextImage
-                      fill
-                      sizes="(min-width: 767px) 66px, 100px"
+                      // fill
+                      // sizes="(min-width: 767px) 66px, 100px"
+                      width={100}
+                      height={100}
                       style={{
                         borderRadius: '50%',
                         objectFit: 'cover',
@@ -112,7 +106,7 @@ export default function ArtistsList({
                         // marginRight: '1rem',
                       }}
                       src={artist.prof_url}
-                      alt={artist.name}
+                      alt={artist.nick}
                       unoptimized
                     />
                   </Box>
@@ -124,7 +118,7 @@ export default function ArtistsList({
                     gap="0.5rem"
                   >
                     <Text fontSize="lg" fontWeight="bold">
-                      {artist.name}
+                      {artist.nick}
                     </Text>
                     {!isMobile && (
                       <SortTypeIcons
@@ -163,17 +157,6 @@ export default function ArtistsList({
               </Button>
             </Link>
           )
-      )}
-      {/* Observer를 위한 div
-      {<Box ref={ref} w="100%" h="2rem"></Box>} */}
-      {alert === true && (
-        <Alert status="error" w="100%" borderRadius="1rem" maxW="500px">
-          <AlertIcon />
-          <AlertTitle></AlertTitle>
-          <AlertDescription textAlign="start">
-            현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
-          </AlertDescription>
-        </Alert>
       )}
     </Box>
   );
