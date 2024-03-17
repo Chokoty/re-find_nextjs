@@ -6,6 +6,7 @@ import {
 } from '@tanstack/react-query';
 
 import Artists from '@/components/artist/Artists';
+import ArtistsSearchInput from '@/components/artist/ArtistsSearchInput';
 import PageTitle from '@/components/common/PageTitle';
 import queryOptions from '@/service/client/artists/queries';
 
@@ -56,6 +57,7 @@ export default async function ArtistsPage() {
         maxW="1024px"
         gap="1rem"
       >
+        <ArtistsSearchInput />
         <HydrationBoundary state={{ queries }}>
           <Artists />
         </HydrationBoundary>

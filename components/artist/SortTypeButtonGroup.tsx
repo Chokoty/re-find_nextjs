@@ -17,7 +17,6 @@ export default function SortTypeButtonGroup({
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-
   return (
     <Box
       display="flex"

@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Button,
   Input,
@@ -6,30 +8,45 @@ import {
   InputRightElement,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { useDebounce } from 'react-use';
+import { useShallow } from 'zustand/react/shallow';
 
+import { useArtistSearchInfoStore } from '@/store/artistSearchInfoStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import HelpPopOver from '../search/HelpPopOver';
 
-type Props = {
-  nickname: string;
-  handleClear: () => void;
-  handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
 const helpMessage = '대소문자 구분: 검색은 대소문자를 구분합니다.';
 
-export default function ArtistsSearchInput({
-  nickname,
-  handleClear,
-  handleSearch,
-}: Props) {
+export default function ArtistsSearchInput() {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
+  const [input, setInput] = useState('');
+  const { setDebounceValue } = useArtistSearchInfoStore(
+    useShallow((state) => ({
+      setDebounceValue: state.setDebounceValue,
+    }))
+  );
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const handleClearInputText = () => {
+    setInput('');
+  };
+
+  useDebounce(
+    () => {
+      setDebounceValue(input);
+    },
+    600,
+    [input]
+  );
 
   return (
     <InputGroup
@@ -55,7 +72,7 @@ export default function ArtistsSearchInput({
         placeholder="왁물원 닉네임"
         focusBorderColor="#01BFA2"
         size="md"
-        value={nickname}
+        value={input}
         onChange={handleSearch}
         // onKeyDown={handleKeyPress}
         backgroundColor={bg3}
@@ -79,11 +96,11 @@ export default function ArtistsSearchInput({
         //   cursor: 'default',
         // }}
       >
-        {nickname.length > 0 ? (
+        {input.length > 0 ? (
           <Button
             variant="ghost"
             borderRadius="50%"
-            onClick={handleClear}
+            onClick={handleClearInputText}
             p="0"
             _hover={{}}
             _active={{}}
