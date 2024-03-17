@@ -1,0 +1,21 @@
+.box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewTypeIconsContainer {
+  width: auto;
+  @media (width >= 768px) {
+    width: 169px;
+  }
+
+  @media (width >= 830px) {
+    width: 227px;
+  }
+
+  @media (width >= 984px) {
+    width: auto;
+  }
+}

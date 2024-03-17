@@ -1,8 +1,9 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import React from 'react';
 import { PiGiftBold } from 'react-icons/pi';
 
+import styles from '@/styles/EventDay.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function EventDay() {
@@ -32,29 +33,30 @@ export default function EventDay() {
       >
         릴파님 생일 축하드려요!!!
       </Text>
-      <Button
-        // background="black"
-        colorScheme="green"
-        // color="white"
-        w="60%"
-        // h="40px"
-        // mb="2rem"
-        p="0.5rem"
-        borderRadius="1rem"
-        _hover={{ background: '#ddd', color: 'black' }}
-      >
-        {' '}
-        <PiGiftBold
-          style={{
-            width: '1.5rem',
-            height: '1.5rem',
-            marginRight: '0.5rem',
-          }}
-        />
-        <NextLink href="/gallery/lilpaBirthday">
+      <NextLink href="/gallery/lilpaBirthday" className={styles.linkBtn}>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          bg="#9ae6b4"
+          color="black"
+          w="100%"
+          // h="40px"
+          // mb="2rem"
+          p="0.5rem"
+          borderRadius="1rem"
+          _hover={{ background: '#ddd', color: 'black' }}
+        >
+          <PiGiftBold
+            style={{
+              width: '1.5rem',
+              height: '1.5rem',
+              marginRight: '0.5rem',
+            }}
+          />
           릴파님 생일기념 팬아트 보러가기
-        </NextLink>
-      </Button>
+        </Box>
+      </NextLink>
     </Box>
   );
 }
