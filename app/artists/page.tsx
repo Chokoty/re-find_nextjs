@@ -1,15 +1,37 @@
 import { Box } from '@chakra-ui/react';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 
 import Artists from '@/components/artist/Artists';
 import PageTitle from '@/components/common/PageTitle';
+import queryOptions from '@/service/client/artists/queries';
 
 const topTitle = {
   title: '왁타버스 작가',
   description: '왁물원에서 활동중인 작가님의 작품을 모아서 볼 수 있어요',
 };
 
-export default function ArtistsPage() {
+export default async function ArtistsPage() {
   // const bg = useColorModeValue(lightMode.bg, darkMode.bg);
+
+  const { queryKey, queryFn } = queryOptions.artistList({
+    q: '',
+    ranktype: 'like',
+    board: null,
+  });
+
+  // const query = await getDehydratedQuery({ queryKey, queryFn });
+  const queryClient = new QueryClient();
+  await queryClient.prefetchInfiniteQuery({
+    queryKey,
+    queryFn,
+    initialPageParam: 1,
+  });
+
+  const { queries } = dehydrate(queryClient);
 
   return (
     <Box
@@ -34,7 +56,9 @@ export default function ArtistsPage() {
         maxW="1024px"
         gap="1rem"
       >
-        <Artists />
+        <HydrationBoundary state={{ queries }}>
+          <Artists />
+        </HydrationBoundary>
       </Box>
     </Box>
   );
