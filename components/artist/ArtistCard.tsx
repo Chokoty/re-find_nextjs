@@ -11,6 +11,7 @@ import Link from 'next/link';
 import SortTypeIcons from '@/components/artist/SortTypeIcons';
 import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
 import { useResponsive } from '@/hook/useResponsive';
+import styles from '@/styles/ArtistCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { SortCriteria } from '@/types';
 
@@ -35,18 +36,8 @@ export default function ArtistCard({
   const { nick, prof_url } = artist;
   const isMobile = useResponsive();
   return (
-    <Link
-      href={`/artists/${nick}`}
-      passHref
-      prefetch={false}
-      style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <Button
+    <Link href={`/artists/${nick}`} prefetch={false} className={styles.box}>
+      <Box
         backgroundColor={bg2}
         _hover={{
           backgroundColor: bg3,
@@ -123,7 +114,7 @@ export default function ArtistCard({
           alignItems="center"
           justifyContent="space-between"
           gap="1rem"
-          w="100%"
+          className={styles.viewTypeIconsContainer}
         >
           {isMobile && (
             <SortTypeIcons
@@ -141,7 +132,7 @@ export default function ArtistCard({
             onSelectViewType={null}
           />
         </Box>
-      </Button>
+      </Box>
     </Link>
   );
 }
