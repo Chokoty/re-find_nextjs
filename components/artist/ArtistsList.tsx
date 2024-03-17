@@ -16,12 +16,14 @@ import { darkMode, lightMode } from '@/styles/theme';
 import type { SortCriteria } from '@/types';
 
 type Props = {
+  q: string;
   artists: AuthorInfo[];
   sortCriteria: SortCriteria;
   selectedView: keyof AuthorCommon | null;
 };
 
 export default function ArtistsList({
+  q,
   artists,
   sortCriteria,
   selectedView,
@@ -30,6 +32,15 @@ export default function ArtistsList({
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
   const imgValue = useBreakpointValue({ base: '4rem', md: '6rem' });
+
+  const highlightText = (text: string) => {
+    const regex = new RegExp(q, 'gi');
+
+    return text.replace(
+      regex,
+      (match) => `<span style="color: #01BFA2">${match}</span>`
+    );
+  };
 
   return (
     <Box
@@ -45,16 +56,15 @@ export default function ArtistsList({
       backgroundColor={bg2}
       borderRadius="1rem"
     >
-      {/* {filteredArtists.map((artist, index) => (
-            <div key={index}>{highlightText(artist.name, searchTerm)}</div>
-          ))} */}
-      {artists.map(
-        (artist, index) =>
-          !artist.nick.includes('탈퇴회원') && (
+      {artists.map((artist, index) => {
+        const { nick, prof_url } = artist;
+        return (
+          !nick.includes('탈퇴회원') && (
             <Link
-              key={`${artist.nick}-${index}`}
-              href={`/artists/${artist.nick}`}
+              key={`${nick}-${index}`}
+              href={`/artists/${nick}`}
               passHref
+              prefetch={false}
               style={{
                 width: '100%',
                 display: 'flex',
@@ -105,8 +115,8 @@ export default function ArtistsList({
                         height: imgValue,
                         // marginRight: '1rem',
                       }}
-                      src={artist.prof_url}
-                      alt={artist.nick}
+                      src={prof_url}
+                      alt={nick}
                       unoptimized
                     />
                   </Box>
@@ -117,9 +127,13 @@ export default function ArtistsList({
                     justifyContent="center"
                     gap="0.5rem"
                   >
-                    <Text fontSize="lg" fontWeight="bold">
-                      {artist.nick}
-                    </Text>
+                    <Text
+                      fontSize="lg"
+                      fontWeight="bold"
+                      dangerouslySetInnerHTML={{
+                        __html: highlightText(nick),
+                      }}
+                    />
                     {!isMobile && (
                       <SortTypeIcons
                         sortCriteria={sortCriteria}
@@ -157,7 +171,8 @@ export default function ArtistsList({
               </Button>
             </Link>
           )
-      )}
+        );
+      })}
     </Box>
   );
 }

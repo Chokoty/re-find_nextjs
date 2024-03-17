@@ -24,22 +24,16 @@ import { useArtistList } from '@/service/client/artists/useArtistService';
 import type { SortCriteria } from '@/types';
 
 export default function Artists() {
-  const [nickname, setNickname] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
+  const [inputText, setInputText] = useState('');
   const [selectedView, setSelectedView] = useState<keyof AuthorCommon | null>(
     null
-  ); // board: best, goldhand, wak, isd, gomem
+  );
   const [sortCriteria, setSortCriteria] = useState<SortCriteria>({
-    // ranktype: view, like, comment, num, subscriber
     field: 'total_likes',
     active: true,
   });
-  // const [prevSortCriteria, setPrevSortCriteria] = useState({
-  //   field: '',
-  //   order: '',
-  // });
 
-  const debouncedSearchTerm = useDebounce<string>(searchTerm, 1000); // 500ms 지연
+  const debouncedSearchTerm = useDebounce<string>(inputText, 600); // 600ms 지연
   const { ref, inView } = useInView({
     threshold: 0,
     // 상단에서 1200px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
@@ -59,8 +53,7 @@ export default function Artists() {
     ranktype: convertRankTypeParams(sortCriteria.field),
   });
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNickname(e.target.value);
-    setSearchTerm(e.target.value);
+    setInputText(e.target.value);
   };
 
   const handleViewSelect = (value: keyof AuthorCommon) => {
@@ -79,6 +72,10 @@ export default function Artists() {
     setSortCriteria((prevState) => {
       return { ...prevState, field, active: true };
     });
+  };
+
+  const handleClearInputText = () => {
+    setInputText('');
   };
 
   // 무한 스크롤
@@ -161,6 +158,7 @@ export default function Artists() {
         overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
         <ArtistsList
+          q={debouncedSearchTerm}
           artists={artists}
           sortCriteria={sortCriteria}
           selectedView={selectedView}
@@ -185,7 +183,11 @@ export default function Artists() {
 
   return (
     <>
-      <ArtistsSearchInput nickname={nickname} handleSearch={handleSearch} />
+      <ArtistsSearchInput
+        nickname={inputText}
+        handleSearch={handleSearch}
+        handleClear={handleClearInputText}
+      />
       <ViewTypeButtonGroup
         total={total}
         selectedView={selectedView}

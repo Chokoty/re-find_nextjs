@@ -31,7 +31,7 @@ export default function ViewTypeButtonGroup({
       borderRadius="1rem"
     >
       <Text mb="1rem">
-        총 {total ? <CountUp end={total ?? 0} /> : ''}명의 작가님들이 있어요.
+        {`총 ${total ? <CountUp end={total ?? 0} style={{ color: '#01BFA2' }} /> : ''}명의 작가님들이 있어요.`}
       </Text>
       <ul
         style={{
