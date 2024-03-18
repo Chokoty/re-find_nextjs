@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import { useEffect } from 'react';
 
 import AlbumGrid from '@/components/artwork/albumGrid';
@@ -8,6 +8,9 @@ import MemberButtonList from '@/components/artwork/MemberButtonList';
 // import PageTitle from '@/components/common/PageTitle';
 import TopBackground from '@/components/common/TopBackground';
 import GalleryTitle from '@/components/gallery/GalleryTitle';
+import MemberAlbumSection from '@/components/gallery/MemberAlbumSection';
+import RefindPickSection from '@/components/gallery/RefindPickSection';
+import ThisWeekTopSection from '@/components/gallery/ThisWeekTopSection';
 import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -17,7 +20,7 @@ export default function Gallery() {
 
   const topTitle = {
     title: '팬아트 갤러리',
-    description: '왁물원에 올라온 팬아트들을 모아놓은 갤러리입니다.',
+    description: '왁물원에 올라온 모든 팬아트들을 이 곳에서 찾아보세요!',
   };
 
   const hexToRGBA = (hex: string, alpha: number) => {
@@ -64,6 +67,10 @@ export default function Gallery() {
         <GalleryTitle titleText={topTitle} isMember={false} />
       </TopBackground>
       <Box position="absolute" top="20rem" w="95%" zIndex="1">
+        <ThisWeekTopSection />
+        {/* <RefindPickSection />
+        <MemberAlbumSection /> */}
+
         <Box
           p="0 2rem"
           // background={bg2}
