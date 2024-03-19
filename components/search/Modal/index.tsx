@@ -40,8 +40,11 @@ export default function SearchModal() {
   };
 
   useEffect(() => {
-    const closeOnEscapeKey = (e: KeyboardEvent) =>
-      e.key === 'Escape' ? onClose() : null;
+    const closeOnEscapeKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
     const htmlElement = document.documentElement;
     htmlElement.style.overflowY = 'hidden';
     document.body.addEventListener('keydown', closeOnEscapeKey);

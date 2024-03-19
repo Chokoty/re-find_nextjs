@@ -37,8 +37,6 @@ export default function Home() {
     }))
   );
 
-  console.log('home');
-
   return (
     <Box
       className="home_body"

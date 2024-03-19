@@ -10,6 +10,7 @@ export default function ReactPortal() {
   const { isOpen } = useModalStore(
     useShallow((state) => ({ isOpen: state.isOpen }))
   );
+
   useEffect(() => {
     const mE = document.getElementById('overlays');
     setMountElement(mE);
