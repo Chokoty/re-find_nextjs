@@ -49,7 +49,7 @@ export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
           fontWeight="bold"
           textAlign="left"
           w="100%"
-          p="0 1rem"
+          pl="1.5rem"
         >
           특집 팬아트 가챠
         </Text>

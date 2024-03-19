@@ -17,6 +17,7 @@ export default function OtherLayout({ children, title }: OtherLayoutProps) {
 
   return (
     <div className="body">
+      {/* TODO: NextLink와 Button이 직접 연결되면 클릭에 문제 */}
       <NextLink href="/" legacyBehavior>
         <Button
           variant="ghost"

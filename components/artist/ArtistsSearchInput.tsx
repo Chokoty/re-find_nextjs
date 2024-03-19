@@ -97,26 +97,27 @@ export default function ArtistsSearchInput() {
         //   cursor: 'default',
         // }}
       >
-        {input.length > 0 ? (
-          <Button
-            variant="ghost"
-            borderRadius="50%"
-            onClick={handleClearInputText}
-            p="0"
-            _hover={{}}
-            _active={{}}
-          >
-            <IoIosCloseCircle
-              style={{
-                color: color7,
-                width: '20px',
-                height: '20px',
-              }}
-            />
-          </Button>
+        <Button
+          variant="ghost"
+          borderRadius="50%"
+          onClick={handleClearInputText}
+          p="0"
+          _hover={{}}
+          _active={{}}
+        >
+          <IoIosCloseCircle
+            style={{
+              color: color7,
+              width: '20px',
+              height: '20px',
+            }}
+          />
+        </Button>
+        {/* {input.length > 0 ? (
+          
         ) : (
-          <HelpPopOver description={helpMessage} />
-        )}
+          <HelpPopOver description={helpMessage} placement="left" />
+        )} */}
       </InputRightElement>
     </InputGroup>
   );

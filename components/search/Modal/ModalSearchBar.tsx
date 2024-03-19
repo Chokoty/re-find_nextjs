@@ -15,11 +15,16 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Prop = {
+  inputRef: React.RefObject<HTMLInputElement>;
   addHistoryKeyword: (keyword: string) => void;
   onClose: () => void;
 };
 
-export default function ModalSearchBar({ addHistoryKeyword, onClose }: Prop) {
+export default function ModalSearchBar({
+  addHistoryKeyword,
+  onClose,
+  inputRef,
+}: Prop) {
   const router = useRouter();
   const [input, setInput] = useState(''); // 검색어
   const [isHover, setIsHover] = useState(false);
@@ -87,6 +92,7 @@ export default function ModalSearchBar({ addHistoryKeyword, onClose }: Prop) {
           ></span>
         </InputLeftElement>
         <Input
+          ref={inputRef}
           placeholder="키워드 검색"
           h="2.25rem"
           pl="3rem"
@@ -114,11 +120,14 @@ export default function ModalSearchBar({ addHistoryKeyword, onClose }: Prop) {
         />
         <InputRightElement
           pointerEvents="auto"
+          width="auto"
+          height="100%"
           display="flex"
-          justifyContent="flex-end"
+          justifyContent="space-between"
           alignItems="center"
           padding="0.5rem"
-          w="5rem"
+          gap="0.5rem"
+          marginRight="0.5rem"
           _hover={{
             cursor: 'default',
           }}
@@ -129,16 +138,16 @@ export default function ModalSearchBar({ addHistoryKeyword, onClose }: Prop) {
               borderRadius="50%"
               onClick={handleClear}
               p="0"
+              height="100%"
+              minH="30px"
+              minW="30px"
               _hover={{}}
               _active={{}}
             >
               <IoIosCloseCircle
                 style={{
-                  position: 'relative',
-                  top: '-0.1rem',
-                  right: '0.3rem',
-                  width: '1.2rem',
-                  height: '1.2rem',
+                  width: '19px',
+                  height: '19px',
                   color: color7,
                 }}
               />
@@ -149,6 +158,9 @@ export default function ModalSearchBar({ addHistoryKeyword, onClose }: Prop) {
             borderRadius="50%"
             onClick={onSearchButtonClick}
             p="0"
+            height="100%"
+            minH="30px"
+            minW="30px"
             _hover={{}}
             _active={{}}
             onMouseEnter={() => setIsHover(true)}
@@ -156,11 +168,8 @@ export default function ModalSearchBar({ addHistoryKeyword, onClose }: Prop) {
           >
             <FaSearch
               style={{
-                position: 'relative',
-                top: '-0.1rem',
-                right: '0.3rem',
-                width: '1.2rem',
-                height: '1.2rem',
+                width: '19px',
+                height: '19px',
                 color: isHover ? '#01BFA2' : color7,
               }}
             />

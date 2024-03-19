@@ -4,7 +4,7 @@ import '@/styles/general.scss';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 
-import Header from '@/components/Header/Header';
+import Header from '@/components/Header';
 import TabBar from '@/components/TabBar/TabBar';
 import { siteConfig } from '@/lib/config';
 import { Providers } from '@/lib/Providers';
@@ -53,6 +53,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <TabBar />
+          <div id="overlays" />
         </Providers>
       </body>
       <GoogleAnalytics gaId={GA_ID} />

@@ -16,7 +16,6 @@ import { FaSearch } from 'react-icons/fa';
 
 import DarkModeToggle from '@/components/common/DarkModeToggle';
 import MyDrawer from '@/components/common/MyDrawer';
-import SearchModal from '@/components/search/Modal';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -182,7 +181,7 @@ export default function NavBar() {
           </Box>
         </Flex>
       </Flex>
-      <SearchModal isOpen={isOpen} onClose={onClose} />
+      {/* <SearchModal isOpen={isOpen} onClose={onClose} /> */}
     </Box>
   );
 }
