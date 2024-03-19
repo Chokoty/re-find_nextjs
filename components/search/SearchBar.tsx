@@ -136,10 +136,13 @@ export default function SearchBar() {
           <InputRightElement
             pointerEvents="auto"
             display="flex"
-            justifyContent="flex-end"
+            height="100%"
+            width="auto"
+            justifyContent="space-between"
             alignItems="center"
             padding="0.5rem"
-            w="5rem"
+            gap="0.5rem"
+            marginRight="0.5rem"
             _hover={{
               cursor: 'default',
             }}
@@ -150,14 +153,14 @@ export default function SearchBar() {
                 borderRadius="50%"
                 onClick={handleClear}
                 p="0"
+                height="100%"
+                minH="30px"
+                minW="30px"
                 _hover={{}}
                 _active={{}}
               >
                 <IoIosCloseCircle
                   style={{
-                    position: 'relative',
-                    top: '-0.1rem',
-                    right: '0.3rem',
                     width: '1.2rem',
                     height: '1.2rem',
                     color: color7,
@@ -170,6 +173,9 @@ export default function SearchBar() {
               borderRadius="50%"
               onClick={onSearchButtonClick}
               p="0"
+              height="100%"
+              minH="30px"
+              minW="30px"
               _hover={{}}
               _active={{}}
               onMouseEnter={() => setIsHover(true)}
@@ -177,9 +183,6 @@ export default function SearchBar() {
             >
               <FaSearch
                 style={{
-                  position: 'relative',
-                  top: '-0.1rem',
-                  right: '0.3rem',
                   width: '1.2rem',
                   height: '1.2rem',
                   color: isHover ? '#01BFA2' : color7,
