@@ -177,7 +177,8 @@ export default function ArtistList({ sortCriteria, selectedView }: Props) {
       {isFetchingNextPage ? (
         <Box
           w="100%"
-          m="2rem"
+          mt="2rem"
+          mb="2rem"
           display="flex"
           justifyContent="center"
           alignItems="center"
