@@ -27,7 +27,7 @@ export default function DetailedArtists({ nickname, artistInfo }: Props) {
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
-    rootMargin: '1000px 0px', // 상단에서 1000px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+    rootMargin: '1300px 0px', // 상단에서 1000px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
   let actualNickname = '';
   if (Array.isArray(nickname)) [actualNickname] = nickname;
