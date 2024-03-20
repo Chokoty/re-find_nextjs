@@ -34,9 +34,12 @@ export default function ModalSearchBar({
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   const handleSearch = () => {
+    const trimedInput = input.trim();
     onClose();
-    addHistoryKeyword(input);
-    router.push(`/search?q=${encodeURIComponent(input)}`);
+    if (trimedInput.length > 0) {
+      addHistoryKeyword(trimedInput);
+    }
+    router.push(`/search?q=${encodeURIComponent(trimedInput)}`);
   };
 
   const onBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +53,6 @@ export default function ModalSearchBar({
   };
 
   const onBarKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (input === '' || input.trim() === '') return;
     if (e.key === 'Enter') {
       handleSearch();
     }
@@ -93,7 +95,7 @@ export default function ModalSearchBar({
         </InputLeftElement>
         <Input
           ref={inputRef}
-          placeholder="키워드 검색"
+          placeholder="키워드 검색 (빈 칸은 전체 검색)"
           h="2.25rem"
           pl="3rem"
           pr="100px"
