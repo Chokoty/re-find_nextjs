@@ -9,11 +9,12 @@ class HomeService extends Service {
     return { source, elapsedTime };
   }
 
-  // TODO: timeout: 2000 > 필요?
+  // TODO: 개발시 proxy를 쓰므로 개발환경에서 서버용 api 요청 필요
   getCounts() {
     return this.http.get<Counter>(`/counter`);
   }
 
+  // TODO: 개발시 proxy를 쓰므로 개발환경에서 서버용 api 요청 필요
   getRecentUpdates() {
     return this.http.get<RecentBoardData[]>(`/last_update_info`);
   }

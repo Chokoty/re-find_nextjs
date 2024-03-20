@@ -15,6 +15,20 @@
   margin: 0;
   padding: 0;
 }
+
+// swiper pagination bullet customize
+.swiper-pagination .swiper-pagination-bullet {
+  background-color: #d1d6db;
+}
+
+.swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #9ae6b4;
+}
+
+.swiper-wrapper {
+  align-items: center;
+}
+
 html {
   // 사파리적용
   overflow-x: hidden;
