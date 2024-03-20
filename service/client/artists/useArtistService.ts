@@ -20,7 +20,12 @@ export function useArtistInfo({
   } = useInfiniteQuery(queryOptions.artistInfo({ nickname, sortType, field }));
 
   const artworks = useMemo(() => {
-    return data?.pages.flatMap((page) => page.list);
+    return data?.pages.flatMap((page) => {
+      return page.list.map((artwork) => ({
+        ...artwork,
+        board: artwork.board.replace(/&#\d+;/g, '').trim(),
+      }));
+    });
   }, [data]);
 
   return {
@@ -32,6 +37,7 @@ export function useArtistInfo({
   };
 }
 
+// TODO: 위 api 네이밍과 아래 result type이 헷갈림. 수정필요
 export function useArtistList({ q, ranktype, board }: GetArtistListParams) {
   const { data, fetchNextPage, isFetchingNextPage, isLoading, isError } =
     useInfiniteQuery(
