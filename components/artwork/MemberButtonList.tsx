@@ -1,5 +1,5 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 import members from '@/data/members';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -18,23 +18,9 @@ export default function MemberButtonList({
   selected,
   setSelected,
 }: Props) {
-  const router = useRouter();
   const bg4 = useColorModeValue(lightMode.bg4, darkMode.bg4);
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-
-  const onClick = (value: string) => {
-    if (type === 'link') {
-      onClickLink(value);
-    } else if (type === 'sort') {
-      onClickSort(value);
-    }
-  };
-  const onClickLink = (value: string) => {
-    // console.log(value);
-
-    router.push(`/gallery/${value}`);
-  };
 
   const onClickSort = (value: string) => {
     if (!setSelected) return;
@@ -110,62 +96,74 @@ export default function MemberButtonList({
               justifyContent="center"
               alignItems="center"
             >
-              <Button
-                key={index}
-                p="1rem"
-                borderRadius="1rem"
-                onClick={() => onClick(member.value)}
-                background={
-                  selected === member.value ? member.personalColor : ''
-                }
-                color={selected === member.value ? color2 : ''}
-                // _hover={getButtonHoverStyles(member)}
-                _hover={
-                  selected === member.value
-                    ? {
-                        background: member.personalColor,
-                        color,
-                      }
-                    : {
-                        background: member.personalColor2,
-                        color: color2,
-                      }
-                }
-                variant="outline"
-              >
-                <Text
-                  fontSize={['md', 'xl']}
-                  fontWeight="bold"
-                  textAlign="left"
+              {type === 'link' ? (
+                <Link href={`/gallery/${member.value}`} key={index}>
+                  <Box
+                    py="0.4rem"
+                    px="0.9rem"
+                    border="1px solid #ffffff29"
+                    borderRadius="1rem"
+                    transition="all 0.2s ease-in-out"
+                    background={
+                      selected === member.value ? member.personalColor : ''
+                    }
+                    color={selected === member.value ? color2 : ''}
+                    _hover={
+                      selected === member.value
+                        ? {
+                            background: member.personalColor,
+                            color,
+                          }
+                        : {
+                            background: member.personalColor2,
+                            color: color2,
+                          }
+                    }
+                    // variant="outline"
+                  >
+                    <Text
+                      fontSize={['md', 'xl']}
+                      fontWeight="bold"
+                      textAlign="left"
+                    >
+                      {member.name}
+                    </Text>
+                  </Box>
+                </Link>
+              ) : (
+                <Button
+                  key={index}
+                  p="1rem"
+                  borderRadius="1rem"
+                  onClick={() => onClickSort(member.value)}
+                  background={
+                    selected === member.value ? member.personalColor : ''
+                  }
+                  color={selected === member.value ? color2 : ''}
+                  // _hover={getButtonHoverStyles(member)}
+                  _hover={
+                    selected === member.value
+                      ? {
+                          background: member.personalColor,
+                          color,
+                        }
+                      : {
+                          background: member.personalColor2,
+                          color: color2,
+                        }
+                  }
+                  variant="outline"
                 >
-                  {member.name}
-                </Text>
-              </Button>
+                  <Text
+                    fontSize={['md', 'xl']}
+                    fontWeight="bold"
+                    textAlign="left"
+                  >
+                    {member.name}
+                  </Text>
+                </Button>
+              )}
             </Box>
-          ))}
-        {!range &&
-          members.map((member, index) => (
-            // <NextLink key={index} href={`/artworks/${member.value}`}>
-            <Box
-              as="li"
-              key={index}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Button
-                key={index}
-                p="1rem"
-                borderRadius="1rem"
-                onClick={() => onClick(member.value)}
-              >
-                <Text fontSize="xl" fontWeight="bold" textAlign="left">
-                  {member.name}
-                </Text>
-              </Button>
-            </Box>
-
-            // </NextLink>
           ))}
       </Box>
     </Box>
