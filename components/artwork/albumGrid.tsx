@@ -60,7 +60,7 @@ export default function AlbumGrid() {
               boxShadow="md"
               onClick={() => onClick(item.value)}
             >
-              <Text fontSize="xl" fontWeight="bold" textAlign="left">
+              <Text fontSize={['md', 'xl']} fontWeight="bold" textAlign="left">
                 {item.title}
               </Text>
             </Button>
