@@ -119,7 +119,7 @@ const TopTitle = ({ titleText, isMember }: Props) => {
     >
       {titleText.title === '팬아트 갤러리' ? (
         <>
-          <Text fontSize={['sm', 'md', 'xl']}>{titleText?.description}</Text>
+          <Text fontSize={['xs', 'md', 'xl']}>{titleText?.description}</Text>
           <GalleryIndexTitle />
         </>
       ) : (

@@ -26,6 +26,7 @@ export default function GalleryHeader({ title }: Prop) {
   const myDrawerRef = useRef<HTMLDivElement>(null);
 
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   // const boxShadowLight =
@@ -77,7 +78,7 @@ export default function GalleryHeader({ title }: Prop) {
       <Flex
         as="header"
         style={{
-          backgroundColor: bgColor2,
+          // backgroundColor: bg,
           color,
           padding: '0 1rem',
           display: 'flex',

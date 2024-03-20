@@ -15,6 +15,7 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import PageTitle from '@/components/common/PageTitle';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
+import TopBackground from '@/components/common/TopBackground';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import DetailedGalleryLayout from '@/components/layout/gallery-layout';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
@@ -161,8 +162,11 @@ export default function DetailedGallery({ value, query }: Props) {
     );
   };
 
+  const backgroundImageUrl =
+    '/static/images/gallery/크리스마스커버일러스트_1920x1080.jpg'; // 배경 이미지 URL
+
   return (
-    <DetailedGalleryLayout title="팬아트 갤러리">
+    <DetailedGalleryLayout title="">
       <Box
         display="flex"
         flexDirection="column"
@@ -189,7 +193,10 @@ export default function DetailedGallery({ value, query }: Props) {
             {album?.subTitle}
           </Text>
         )} */}
+        {/* <TopBackground backgroundImageUrl={backgroundImageUrl} isAlbum={false}> */}
+        {/* <GalleryTitle titleText={topTitle} isMember={false} /> */}
         <PageTitle topTitle={topTitle} />
+        {/* </TopBackground> */}
         {album?.description && <Text m="0 auto">{album.description}</Text>}
         {
           // member는 팬아트 개수 안 보이게

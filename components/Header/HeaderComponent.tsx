@@ -76,6 +76,7 @@ export default function HeaderComponent({
       }}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
+        {/* {isScrolling && ( */}
         <Button
           w="3rem"
           h="3rem"
@@ -94,6 +95,8 @@ export default function HeaderComponent({
             />
           </Link>
         </Button>
+        {/* )} */}
+
         {!isMobile && (
           <HeaderTab isCurrentPath={isCurrentPath} isAlbumPage={isAlbumPage} />
         )}

@@ -37,7 +37,8 @@ export default function ThisWeekBtnList({
   return (
     <Box
       w="100%"
-      mb="1rem"
+      mb={['1rem', '2rem']}
+      p="0 0.5rem"
       display="flex"
       justifyContent="flex-start"
       alignItems="center"
@@ -56,7 +57,7 @@ export default function ThisWeekBtnList({
       {btnList.slice(range.start, range.end).map((item, index) => (
         <Box key={index}>
           <Button
-            h="36px"
+            h={['30px', '36px']}
             borderRadius="2rem"
             border={selected === item ? 'none' : `0.3px solid ${color}`}
             onClick={() => onClick(item)}
@@ -68,7 +69,7 @@ export default function ThisWeekBtnList({
             }}
           >
             <Text
-              fontSize="md"
+              fontSize={['sm', 'md']}
               fontWeight="bold"
               textAlign="left"
               color={color}
