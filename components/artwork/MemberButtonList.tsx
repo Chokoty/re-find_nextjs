@@ -75,97 +75,99 @@ export default function MemberButtonList({
 
   return (
     <Box
-      m="2rem auto"
-      mb="2rem"
       display="flex"
-      justifyContent="flex-start"
-      alignItems="center"
-      // w="100%"
-      // maxW="680px"
-      gap="0.5rem"
-      as="ul"
-      overflowX="scroll" // 가로 스크롤 적용
-      sx={{
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-        '-ms-overflow-style': 'none' /* IE and Edge */,
-        'scrollbar-width': 'none' /* Firefox */,
-      }}
+      alignContent="center"
+      justifyContent="center"
+      paddingY="2rem"
+      paddingX="1rem"
+      width="100%"
     >
-      {range &&
-        members
-          .slice(0, range.start)
-          .map((member, index) => (
+      <Box
+        // m="2rem auto"
+        // mb="2rem"
+        display="flex"
+        justifyContent="flex-start"
+        alignItems="center"
+        // w="100%"
+        // maxW="680px"
+        gap="0.5rem"
+        as="ul"
+        overflowX="scroll" // 가로 스크롤 적용
+        sx={{
+          '&::-webkit-scrollbar': {
+            display: 'none',
+          },
+          '-ms-overflow-style': 'none' /* IE and Edge */,
+          'scrollbar-width': 'none' /* Firefox */,
+        }}
+      >
+        {range &&
+          members.slice(range.start, range.end).map((member, index) => (
             <Box
-              w="60px"
               as="li"
               key={index}
               display="flex"
               justifyContent="center"
               alignItems="center"
-            ></Box>
+            >
+              <Button
+                key={index}
+                p="1rem"
+                borderRadius="1rem"
+                onClick={() => onClick(member.value)}
+                background={
+                  selected === member.value ? member.personalColor : ''
+                }
+                color={selected === member.value ? color2 : ''}
+                // _hover={getButtonHoverStyles(member)}
+                _hover={
+                  selected === member.value
+                    ? {
+                        background: member.personalColor,
+                        color,
+                      }
+                    : {
+                        background: member.personalColor2,
+                        color: color2,
+                      }
+                }
+                variant="outline"
+              >
+                <Text
+                  fontSize={['md', 'xl']}
+                  fontWeight="bold"
+                  textAlign="left"
+                >
+                  {member.name}
+                </Text>
+              </Button>
+            </Box>
           ))}
-      {range &&
-        members.slice(range.start, range.end).map((member, index) => (
-          <Box
-            as="li"
-            key={index}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Button
+        {!range &&
+          members.map((member, index) => (
+            // <NextLink key={index} href={`/artworks/${member.value}`}>
+            <Box
+              as="li"
               key={index}
-              p="1rem"
-              borderRadius="1rem"
-              onClick={() => onClick(member.value)}
-              background={selected === member.value ? member.personalColor : ''}
-              color={selected === member.value ? color2 : ''}
-              // _hover={getButtonHoverStyles(member)}
-              _hover={
-                selected === member.value
-                  ? {
-                      background: member.personalColor,
-                      color,
-                    }
-                  : {
-                      background: member.personalColor2,
-                      color: color2,
-                    }
-              }
-              variant="outline"
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
             >
-              <Text fontSize={['md', 'xl']} fontWeight="bold" textAlign="left">
-                {member.name}
-              </Text>
-            </Button>
-          </Box>
-        ))}
-      {!range &&
-        members.map((member, index) => (
-          // <NextLink key={index} href={`/artworks/${member.value}`}>
-          <Box
-            as="li"
-            key={index}
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <Button
-              key={index}
-              p="1rem"
-              borderRadius="1rem"
-              onClick={() => onClick(member.value)}
-            >
-              <Text fontSize="xl" fontWeight="bold" textAlign="left">
-                {member.name}
-              </Text>
-            </Button>
-          </Box>
+              <Button
+                key={index}
+                p="1rem"
+                borderRadius="1rem"
+                onClick={() => onClick(member.value)}
+              >
+                <Text fontSize="xl" fontWeight="bold" textAlign="left">
+                  {member.name}
+                </Text>
+              </Button>
+            </Box>
 
-          // </NextLink>
-        ))}
+            // </NextLink>
+          ))}
+      </Box>
     </Box>
   );
 }
