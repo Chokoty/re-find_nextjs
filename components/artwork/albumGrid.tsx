@@ -1,11 +1,5 @@
-import {
-  Box,
-  Button,
-  SimpleGrid,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
+import { Box, SimpleGrid, Text, useColorModeValue } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import gallery from '@/data/gallery';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -13,12 +7,6 @@ import { darkMode, lightMode } from '@/styles/theme';
 export default function AlbumGrid() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const highlight2 = useColorModeValue(lightMode.highlight, darkMode.highlight);
-  const router = useRouter();
-
-  const onClick = (value: string) => {
-    // const { subTitle } = gallery.find((item) => item.id === id);
-    router.push(`/gallery/${value}`);
-  };
 
   return (
     <Box
@@ -43,28 +31,34 @@ export default function AlbumGrid() {
           .slice()
           .reverse()
           .map((item, index) => (
-            // <NextLink key={index} href={`/artworks/${item.id}`}>
-            <Button
-              key={index}
-              p="1rem"
-              m={['0', '0.5rem']}
-              mb=" 1rem"
-              w={['158px', '200px']}
-              h={['158px', '200px']}
-              display="flex"
-              flexDirection="column"
-              justifyContent="flex-start"
-              alignItems="center"
-              background={item.type === 'special' ? highlight2 : bg2}
-              borderRadius="1rem"
-              boxShadow="md"
-              onClick={() => onClick(item.value)}
-            >
-              <Text fontSize={['md', 'xl']} fontWeight="bold" textAlign="left">
-                {item.title}
-              </Text>
-            </Button>
-            // </NextLink>
+            <Link href={`/gallery/${item.value}`} key={index}>
+              <Box
+                p="1rem"
+                m={['0', '0.5rem']}
+                mb=" 1rem"
+                w={['158px', '200px']}
+                h={['158px', '200px']}
+                display="flex"
+                flexDirection="column"
+                justifyContent="flex-start"
+                alignItems="center"
+                background={item.type === 'special' ? highlight2 : bg2}
+                borderRadius="1rem"
+                boxShadow="md"
+                _hover={{
+                  background: '#ffffff29',
+                }}
+                transition="all 0.2s ease-in-out"
+              >
+                <Text
+                  fontSize={['md', 'xl']}
+                  fontWeight="bold"
+                  textAlign="left"
+                >
+                  {item.title}
+                </Text>
+              </Box>
+            </Link>
           ))}
       </SimpleGrid>
     </Box>

@@ -3,6 +3,7 @@ import '@/styles/general.scss';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
+import NextTopLoader from 'nextjs-toploader';
 
 import Header from '@/components/Header';
 import TabBar from '@/components/TabBar/TabBar';
@@ -50,6 +51,7 @@ export default function RootLayout({
       {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
       <body>
         <Providers>
+          <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />
           <main>{children}</main>
           <TabBar />
