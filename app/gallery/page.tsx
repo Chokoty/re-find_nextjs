@@ -40,7 +40,7 @@ export default function IsdPage() {
       >
         <MemberButtonList
           type="link"
-          range={{ start: 0, end: 7 }}
+          range={{ start: 0, end: 8 }}
           selected={null}
           setSelected={null}
           isdPick={false}

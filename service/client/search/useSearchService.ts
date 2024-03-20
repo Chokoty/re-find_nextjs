@@ -45,7 +45,12 @@ export function useSearchResults({
   );
 
   const searchResults = useMemo(() => {
-    return data?.pages.flatMap((page) => page.list);
+    return data?.pages.flatMap((page) => {
+      return page.list.map((artwork) => ({
+        ...artwork,
+        board: artwork.board.replace(/&#\d+;/g, '').trim(),
+      }));
+    });
   }, [data]);
 
   const total = data?.pages[0].total;

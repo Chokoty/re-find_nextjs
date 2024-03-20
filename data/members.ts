@@ -78,6 +78,7 @@ const members: Member[] = [
     author: '고멤',
     query: 'gallery?member=gomem',
     personalColor: 'green',
+    personalColor2: '#ef5a5a',
   },
   // { id: 10, name: '뢴트게늄', value: 'rt' },
 ];

@@ -1,5 +1,7 @@
 import type { OpenGraphType } from 'next/dist/lib/metadata/types/opengraph-types';
 
+import { GalleryMap } from './const';
+
 export const siteConfig = {
   mainDomain: 'https://re-find.xyz',
   image:
@@ -29,9 +31,10 @@ export const siteConfig = {
       url: '/gallery/isdPick',
     },
     detailed(name: string) {
+      const mappedName = GalleryMap[name as keyof typeof GalleryMap] || name;
       return {
-        title: `리파인드 | ${name} 갤러리`,
-        description: `왁물원에 올라온 ${name} 팬아트를 모아놓은 갤러리입니다.`,
+        title: `리파인드 | ${mappedName} 갤러리`,
+        description: `왁물원에 올라온 ${mappedName} 팬아트를 모아놓은 갤러리입니다.`,
         url: `/gallery/${name}`,
       };
     },
@@ -59,10 +62,11 @@ export const siteConfig = {
       url: '/events',
     },
     detailed(name: string) {
+      const decodedNickname = decodeURIComponent(name);
       return {
-        title: `리파인드 | ${name} 이벤트`,
-        description: `${name}에 관한 갤러리를 확인할 수 있습니다.`,
-        url: `/events/${name}`,
+        title: `리파인드 | ${decodedNickname} 이벤트`,
+        description: `${decodedNickname}에 관한 갤러리를 확인할 수 있습니다.`,
+        url: `/events/${decodedNickname}`,
       };
     },
   },

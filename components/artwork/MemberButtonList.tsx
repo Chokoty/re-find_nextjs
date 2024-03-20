@@ -76,15 +76,15 @@ export default function MemberButtonList({
   return (
     <Box
       m="2rem auto"
-      w="100%"
       mb="2rem"
       display="flex"
       justifyContent="flex-start"
       alignItems="center"
-      maxW="680px"
-      overflowX="scroll" // 세로 스크롤 적용
+      // w="100%"
+      // maxW="680px"
       gap="0.5rem"
       as="ul"
+      overflowX="scroll" // 가로 스크롤 적용
       sx={{
         '&::-webkit-scrollbar': {
           display: 'none',
@@ -136,7 +136,7 @@ export default function MemberButtonList({
               }
               variant="outline"
             >
-              <Text fontSize="xl" fontWeight="bold" textAlign="left">
+              <Text fontSize={['md', 'xl']} fontWeight="bold" textAlign="left">
                 {member.name}
               </Text>
             </Button>

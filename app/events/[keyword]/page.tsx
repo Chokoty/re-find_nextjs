@@ -1,7 +1,13 @@
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 import type { Metadata } from 'next';
 
 import DetailedEvent from '@/components/event/DetailedEvent';
 import { siteConfig } from '@/lib/config';
+import queryOptions from '@/service/client/artists/queries';
 
 type Params = { params: { keyword: string } };
 
@@ -31,7 +37,24 @@ export function generateMetadata({ params: { keyword } }: Params): Metadata {
   };
 }
 
-export default function page({ params }: Params) {
-  const { keyword } = params;
-  return <DetailedEvent keyword={keyword} />;
+export default async function page({ params: { keyword } }: Params) {
+  const decodedKeyword = decodeURIComponent(keyword);
+
+  const { queryKey, queryFn } = queryOptions.artistInfo({
+    nickname: decodedKeyword,
+    sortType: 'latest',
+    field: '',
+  });
+  const queryClient = new QueryClient();
+  await queryClient.prefetchInfiniteQuery({
+    queryKey,
+    queryFn,
+    initialPageParam: 1,
+  });
+  const { queries } = dehydrate(queryClient);
+  return (
+    <HydrationBoundary state={{ queries }}>
+      <DetailedEvent keyword={decodedKeyword} />;
+    </HydrationBoundary>
+  );
 }
