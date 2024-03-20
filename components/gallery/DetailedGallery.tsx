@@ -26,10 +26,10 @@ import { useGalleryArtworks } from '@/service/client/gallery/useGalleryService';
 
 type Props = {
   value: string;
-  query: string;
+  endpoint: string;
 };
 
-export default function DetailedGallery({ value, query }: Props) {
+export default function DetailedGallery({ value, endpoint }: Props) {
   // infinite scroll
   const { ref, inView } = useInView({
     threshold: 0,
@@ -51,7 +51,7 @@ export default function DetailedGallery({ value, query }: Props) {
     isError,
     isFetchingNextPage,
     isLoading,
-  } = useGalleryArtworks({ query, sortType });
+  } = useGalleryArtworks({ query: endpoint, sortType });
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(

@@ -1,9 +1,15 @@
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 import type { Metadata } from 'next';
 
 import DetailedGallery from '@/components/gallery/DetailedGallery';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { siteConfig } from '@/lib/config';
+import queryOptions from '@/service/client/gallery/queries';
 
 type Params = { params: { name: string } };
 
@@ -33,12 +39,30 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
   };
 }
 
-export default function page({ params }: Params) {
+export default async function page({ params }: Params) {
   const { name } = params;
 
-  const query =
+  const endpoint =
     members.find((item) => item.value === name)?.query ||
     gallery.find((item) => item.value === name)?.query;
-  // gallery.find((item) => item.id.toString() === id)?.keyword;
-  return <DetailedGallery value={name} query={query ?? ''} />;
+
+  const { queryKey, queryFn } = queryOptions.galleryArtworks({
+    query: endpoint ?? '',
+    sortType: 'alzaltak',
+  });
+
+  const queryClient = new QueryClient();
+  await queryClient.prefetchInfiniteQuery({
+    queryKey,
+    queryFn,
+    initialPageParam: 1,
+  });
+
+  const { queries } = dehydrate(queryClient);
+
+  return (
+    <HydrationBoundary state={{ queries }}>
+      <DetailedGallery value={name} endpoint={endpoint ?? ''} />;
+    </HydrationBoundary>
+  );
 }
