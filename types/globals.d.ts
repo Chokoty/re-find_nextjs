@@ -57,8 +57,9 @@ declare global {
   // }
 
   // gallery.ts
-  export interface IsdNotice {
+  export interface IsdNoticeArtworks {
     total: number;
+    lastPage: boolean;
     list: IsdArtworkList[];
   }
 
@@ -104,10 +105,13 @@ declare global {
 
   export interface AuthorInfo extends AuthorCommon {
     prof_url: string;
+    nick: string;
   }
 
   export interface AuthorList {
-    [key: string]: AuthorInfo;
+    lastPage: boolean;
+    list: AuthorInfo[];
+    total: number;
   }
 
   export interface Artist {

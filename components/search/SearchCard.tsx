@@ -50,7 +50,7 @@ export default function SearchCard({
 
   const highlightText = (text: string, ableHightlight: boolean) => {
     const regex = new RegExp(searchText, 'gi');
-    if (!searchText || !text) return '알 수 없음';
+    if (!text) return '알 수 없음';
     if (isAllHightlight || ableHightlight) {
       return text.replace(
         regex,
@@ -106,7 +106,7 @@ export default function SearchCard({
               fontSize="s"
               className={styles.subTitle}
             >
-              {board.includes('이세돌┃팬아트') ? '이세돌┃팬아트' : board}
+              {board}
             </Text>
             <Text color="gray.500" fontSize="s">
               ·

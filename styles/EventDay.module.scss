@@ -1,0 +1,10 @@
+.linkBtn {
+  width: 88%;
+
+  @media (width > 490px) {
+    width: 69%;
+  }
+  @media (width > 600px) {
+    width: 60%;
+  }
+}

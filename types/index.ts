@@ -15,14 +15,7 @@ export type FileWithPreview = File & {
 };
 
 // artists
-
-export interface AuthorInfoWithName extends AuthorInfo {
-  name: string;
-}
-
-type Order = 'ascending' | 'descending';
-
-export type SortCriteria = { field: keyof AuthorCommon; order: Order };
+export type SortCriteria = { field: keyof AuthorCommon; active: boolean };
 
 export interface View {
   name: string;
@@ -70,10 +63,21 @@ export type GetKeywordGalleryArtworksParams = {
   sortType: string;
 };
 
+export type GetIsdNoticeArtworksParams = {
+  member: string;
+  ranktype: string;
+};
+
 export type GetArtistInfoParams = {
   nickname: string;
   sortType: string;
   field: string;
+};
+
+export type GetArtistListParams = {
+  q: string;
+  ranktype: string;
+  board: string | null;
 };
 
 export type GetSearchResultParams = {

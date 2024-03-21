@@ -27,14 +27,14 @@ import { useGalleryArtworks } from '@/service/client/gallery/useGalleryService';
 
 type Props = {
   value: string;
-  query: string;
+  endpoint: string;
 };
 
-export default function DetailedGallery({ value, query }: Props) {
+export default function DetailedGallery({ value, endpoint }: Props) {
   // infinite scroll
   const { ref, inView } = useInView({
     threshold: 0,
-    rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
+    rootMargin: '1300px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
 
   const album = gallery.find((item) => item.value === value);
@@ -52,7 +52,7 @@ export default function DetailedGallery({ value, query }: Props) {
     isError,
     isFetchingNextPage,
     isLoading,
-  } = useGalleryArtworks({ query, sortType });
+  } = useGalleryArtworks({ query: endpoint, sortType });
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
@@ -202,7 +202,7 @@ export default function DetailedGallery({ value, query }: Props) {
           // member는 팬아트 개수 안 보이게
           album && (
             <Text>
-              총 <CountUp end={total ?? 0} />
+              총 {total ? <CountUp end={total ?? 0} /> : ''}
               개의 팬아트가 있습니다.
             </Text>
           )

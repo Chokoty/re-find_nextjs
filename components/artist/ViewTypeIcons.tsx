@@ -33,7 +33,7 @@ export default function ViewTypeIcons({
       flexDirection="row"
       justifyContent={align}
       // justifyContent={['center', 'center', 'flex-end']}
-      w="100%"
+      w="auto"
       flexWrap="wrap"
       gap="0.5rem"
       // pl={['1rem', '0', '0']}

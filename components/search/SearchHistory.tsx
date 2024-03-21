@@ -7,8 +7,10 @@ import {
   Text,
   useColorMode,
 } from '@chakra-ui/react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useShallow } from 'zustand/react/shallow';
+
+import { useModalStore } from '@/store/modalStore';
 
 type Props = {
   recentSearches: string[];
@@ -25,7 +27,24 @@ export default function SearchHistory({
 }: Props) {
   const { colorMode } = useColorMode();
   const pathname = usePathname();
+  const router = useRouter();
   const isSearchPage = pathname === '/search';
+  const { setIsOpen } = useModalStore(
+    useShallow((state) => ({
+      setIsOpen: state.setIsOpen,
+    }))
+  );
+
+  const modalClose = () => {
+    setIsOpen(false);
+  };
+
+  const moveSearchResult = (q: string) => {
+    if (!isSearchPage) {
+      modalClose();
+    }
+    router.push(`/search?q=${q}`);
+  };
   return (
     <Box w="100%" p="1rem">
       <Box
@@ -59,18 +78,23 @@ export default function SearchHistory({
           alignItems="center"
           px="0.5rem"
           key={index}
-          _hover={{
-            background: colorMode === 'dark' ? 'gray.700' : 'gray.100',
-          }}
+          // _hover={{
+          //   background: colorMode === 'dark' ? 'gray.700' : 'gray.100',
+          // }}
           borderRadius="0.5rem"
         >
-          <Link style={{ flex: 1 }} href={`/search?q=${q}`} prefetch={false}>
+          <Button
+            flex="1"
+            background="none"
+            justifyContent="flex-start"
+            onClick={() => moveSearchResult(q)}
+          >
             <Box display="flex" flexDir="row" alignItems="center" gap="0.5rem">
               <TimeIcon color="gray.500" />
               <Text textAlign="start">{q}</Text>
             </Box>
-          </Link>
-          <Box onClick={(e) => deleteHistoryKeyword(q)}>
+          </Button>
+          <Box onClick={() => deleteHistoryKeyword(q)}>
             <IconButton
               // colorScheme="#01BFA2"
               aria-label="delete button"

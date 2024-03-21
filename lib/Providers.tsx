@@ -19,8 +19,8 @@ export function Providers({ children }: React.PropsWithChildren) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            // With SSR, we usually want to set some default staleTime
-            // above 0 to avoid refetching immediately on the client
+            // SSR에서는 클라이언트에서 즉시 재요청하는 것을 피하기 위해,
+            // default staleTime을 0보다 높게 설정하는 것이 일반적입니다.
             staleTime: 60 * 1000, // 60sec(1min)
           },
         },

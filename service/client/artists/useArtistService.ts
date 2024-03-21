@@ -1,11 +1,10 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
-import type { GetArtistInfoParams } from '@/types';
+import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
 
 import queryOptions from './queries';
 
-// {"lastPage": true, "list": []}
 export function useArtistInfo({
   nickname,
   sortType,
@@ -21,7 +20,16 @@ export function useArtistInfo({
   } = useInfiniteQuery(queryOptions.artistInfo({ nickname, sortType, field }));
 
   const artworks = useMemo(() => {
-    return data?.pages.flatMap((page) => page.list);
+    return data?.pages.flatMap((page) => {
+      if (Array.isArray(page.list)) {
+        return page.list.map((artwork) => ({
+          ...artwork,
+          board: artwork.board.replace(/&#\d+;/g, '').trim(),
+        }));
+      } else {
+        return [];
+      }
+    });
   }, [data]);
 
   return {
@@ -33,7 +41,28 @@ export function useArtistInfo({
   };
 }
 
-// TODO: 위처럼 변경 필요
-export function useArtistList() {
-  return useQuery(queryOptions.artistList());
+// TODO: 위 api 네이밍과 아래 result type이 헷갈림. 수정필요
+export function useArtistList({ q, ranktype, board }: GetArtistListParams) {
+  const { data, fetchNextPage, isFetchingNextPage, isLoading, isError } =
+    useInfiniteQuery(
+      queryOptions.artistList({
+        q,
+        ranktype,
+        board,
+      })
+    );
+
+  const artists = useMemo(() => {
+    return data?.pages.flatMap((page) => page.list);
+  }, [data]);
+
+  const total = data?.pages[0].total;
+  return {
+    artists,
+    fetchNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+    total,
+  };
 }

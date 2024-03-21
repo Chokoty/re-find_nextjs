@@ -1,12 +1,14 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
-import type { GetKeywordGalleryArtworksParams } from '@/types';
+import type {
+  GetIsdNoticeArtworksParams,
+  GetKeywordGalleryArtworksParams,
+} from '@/types';
 
 import queryOptions from './queries';
 
-// 이세돌 공지사항 모든 글 가져오기
-// 아래처럼 lastpage를 받고 page를 주는 형태로 변경 요청
+// 갤러리에서 왁굳님, 이세돌 분들의 갤러리용 팬아트를 확인할 수 있습니다.(더불어, 비챤님, 릴파님 생일 요청으로도 사용됩니다.)
 export function useGalleryArtworks({
   query,
   sortType,
@@ -23,7 +25,16 @@ export function useGalleryArtworks({
   } = useInfiniteQuery(queryOptions.galleryArtworks({ query, sortType }));
 
   const artworks = useMemo(() => {
-    return data?.pages.flatMap((page) => page.list);
+    return data?.pages.flatMap((page) => {
+      if (Array.isArray(page.list)) {
+        return page.list.map((artwork) => ({
+          ...artwork,
+          board: artwork.board.replace(/&#\d+;/g, '').trim(),
+        }));
+      } else {
+        return [];
+      }
+    });
   }, [data]);
 
   const total = data?.pages[0].total;
@@ -38,8 +49,25 @@ export function useGalleryArtworks({
   };
 }
 
-// 키워드 갤러리 작품들 가져오기
-// {"lastPage": true, "total": 22011, "list": []}
-export function useIsdNotices() {
-  return useQuery(queryOptions.isdNotices());
+export function useNoticeArtworks({
+  member,
+  ranktype,
+}: GetIsdNoticeArtworksParams) {
+  const { data, fetchNextPage, isFetchingNextPage, isLoading, isError } =
+    useInfiniteQuery(queryOptions.isdNoticeArtworks({ member, ranktype }));
+
+  const artworks = useMemo(() => {
+    return data?.pages.flatMap((page) => page.list);
+  }, [data]);
+
+  const total = data?.pages[0].total;
+
+  return {
+    total,
+    artworks,
+    fetchNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+  };
 }

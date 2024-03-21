@@ -1,3 +1,5 @@
+'use client';
+
 import {
   Box,
   Button,
@@ -6,47 +8,24 @@ import {
   Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
-import type { RefObject } from 'react';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
-import MyDrawer from '@/components/common/MyDrawer';
 import HeaderTab from '@/components/Header/HeaderTab';
 import SearchModalOpener from '@/components/search/Modal/SearchModalOpener';
 import { useResponsive } from '@/hook/useResponsive';
 import { useScroll } from '@/hook/useScroll';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const SearchModal = dynamic(() => import('@/components/search/Modal'), {
-  ssr: false,
-});
-
-type Props = {
-  toggleDrawer: () => void;
-  isOpenDrawer: boolean;
-  myDrawerRef: RefObject<HTMLDivElement>;
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-};
-
-export default function HeaderComponent({
-  toggleDrawer,
-  isOpenDrawer,
-  myDrawerRef,
-  isOpen,
-  onOpen,
-  onClose,
-}: Props) {
+export default function Header() {
   const pathname = usePathname();
+  const isMorePath = pathname.startsWith('/more');
+
   const isCurrentPath = (path: string) => pathname === path;
-  const isSearchPage = pathname === '/search';
-  const isGalleryPage = pathname === '/gallery';
-  const isAlbumPage = pathname.includes('/gallery');
+  const isSearchPage = pathname.startsWith('/search');
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
   const isScrolling = useScroll(60);
@@ -54,9 +33,11 @@ export default function HeaderComponent({
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
+  if (isMorePath) return null;
+
   return (
     <Flex
-      position={isAlbumPage && !isGalleryPage ? 'static' : 'sticky'}
+      position="sticky"
       zIndex="200"
       as="header"
       h="60px"
@@ -101,7 +82,7 @@ export default function HeaderComponent({
           <HeaderTab isCurrentPath={isCurrentPath} isAlbumPage={isAlbumPage} />
         )}
       </Box>
-      {!isSearchPage && <SearchModalOpener onOpen={onOpen} />}
+      {!isSearchPage && <SearchModalOpener />}
       <Flex>
         {/* <DarkModeToggle className="dark-mode-toggle" /> */}
 
@@ -116,12 +97,11 @@ export default function HeaderComponent({
             p="0 1rem"
           ></Box>
         )}
-
-        <MyDrawer
+        {/* <MyDrawer
           isOpen={isOpenDrawer}
           toggleDrawer={toggleDrawer}
           ref={myDrawerRef}
-        />
+        /> */}
         <NextLink href="/events">
           <Tooltip label="이벤트관" aria-label="A tooltip">
             <Button
@@ -166,7 +146,6 @@ export default function HeaderComponent({
         </NextLink>
         {/* )} */}
       </Flex>
-      <SearchModal isOpen={isOpen} onClose={onClose} />
     </Flex>
   );
 }

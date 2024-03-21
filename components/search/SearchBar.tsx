@@ -39,9 +39,12 @@ export default function SearchBar() {
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   const handleSearch = () => {
+    const trimedInput = input.trim();
     handleCloseSearchHistory();
-    addHistoryKeyword(input);
-    router.push(`/search?q=${encodeURIComponent(input)}`);
+    if (trimedInput.length > 0) {
+      addHistoryKeyword(trimedInput);
+    }
+    router.push(`/search?q=${encodeURIComponent(trimedInput)}`);
   };
 
   const onBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +58,6 @@ export default function SearchBar() {
   };
 
   const onBarKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (input === '' || input.trim() === '') return;
     if (e.key === 'Enter') {
       handleSearch();
     }
@@ -107,7 +109,7 @@ export default function SearchBar() {
             ></span>
           </InputLeftElement>
           <Input
-            placeholder="키워드 검색"
+            placeholder="키워드 검색 (빈 칸은 전체 검색)"
             h="2.25rem"
             pl="3rem"
             pr="100px"
@@ -136,10 +138,13 @@ export default function SearchBar() {
           <InputRightElement
             pointerEvents="auto"
             display="flex"
-            justifyContent="flex-end"
+            height="100%"
+            width="auto"
+            justifyContent="space-between"
             alignItems="center"
             padding="0.5rem"
-            w="5rem"
+            gap="0.5rem"
+            marginRight="0.5rem"
             _hover={{
               cursor: 'default',
             }}
@@ -150,14 +155,14 @@ export default function SearchBar() {
                 borderRadius="50%"
                 onClick={handleClear}
                 p="0"
+                height="100%"
+                minH="30px"
+                minW="30px"
                 _hover={{}}
                 _active={{}}
               >
                 <IoIosCloseCircle
                   style={{
-                    position: 'relative',
-                    top: '-0.1rem',
-                    right: '0.3rem',
                     width: '1.2rem',
                     height: '1.2rem',
                     color: color7,
@@ -170,6 +175,9 @@ export default function SearchBar() {
               borderRadius="50%"
               onClick={onSearchButtonClick}
               p="0"
+              height="100%"
+              minH="30px"
+              minW="30px"
               _hover={{}}
               _active={{}}
               onMouseEnter={() => setIsHover(true)}
@@ -177,9 +185,6 @@ export default function SearchBar() {
             >
               <FaSearch
                 style={{
-                  position: 'relative',
-                  top: '-0.1rem',
-                  right: '0.3rem',
                   width: '1.2rem',
                   height: '1.2rem',
                   color: isHover ? '#01BFA2' : color7,

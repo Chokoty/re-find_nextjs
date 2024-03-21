@@ -1,13 +1,12 @@
 import { Box } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
 
 import UpdateBoard from '@/components/common/UpdateBoard';
-import UploadImageSkeleton from '@/components/skeleton/UploadImageSkeleton';
+import UploadImages from '@/components/common/UploadImages';
 
-const UploadImages = dynamic(() => import('@/components/common/UploadImages'), {
-  ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
-  loading: () => <UploadImageSkeleton />,
-});
+// const UploadImages = dynamic(() => import('@/components/common/UploadImages'), {
+//   ssr: false, // 이 옵션은 서버 사이드 렌더링을 비활성화합니다.
+//   loading: () => <UploadImageSkeleton />,
+// });
 
 export default function BeforeUpload() {
   return (

@@ -1,7 +1,16 @@
+import { Box, Center, Text } from '@chakra-ui/react';
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
 import type { Metadata } from 'next';
+import Image from 'next/image';
 
 import DetailedArtists from '@/components/artist/DetailedArtists';
+import ArtistHeader from '@/components/layout/ArtistHeader';
 import { siteConfig } from '@/lib/config';
+import queryOptions from '@/service/client/artists/queries';
 import { getAuthorInfo } from '@/service/server/artists';
 
 type Params = {
@@ -37,5 +46,67 @@ export function generateMetadata({ params: { nickname } }: Params): Metadata {
 export default async function page({ params: { nickname } }: Params) {
   const decodedNickname = decodeURIComponent(nickname);
   const result = await getAuthorInfo(nickname);
-  return <DetailedArtists nickname={decodedNickname} artistInfo={result} />;
+  const { author_nickname, num_artworks } = result;
+  const { queryKey, queryFn } = queryOptions.artistInfo({
+    nickname: decodedNickname,
+    sortType: 'latest',
+    field: '',
+  });
+  const queryClient = new QueryClient();
+  await queryClient.prefetchInfiniteQuery({
+    queryKey,
+    queryFn,
+    initialPageParam: 1,
+  });
+
+  const { queries } = dehydrate(queryClient);
+  return (
+    <Box>
+      <ArtistHeader title="" />
+      {author_nickname === '' && num_artworks === 0 ? (
+        <NotFount nickname={decodedNickname} />
+      ) : (
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          margin="0 auto"
+          mb="2rem"
+        >
+          <HydrationBoundary state={{ queries }}>
+            <DetailedArtists nickname={decodedNickname} artistInfo={result} />;
+          </HydrationBoundary>
+        </Box>
+      )}
+    </Box>
+  );
 }
+
+const NotFount = ({ nickname }: { nickname: string }) => {
+  return (
+    <Center
+      w="100%"
+      h="80vh"
+      p="3rem 0"
+      display="flex"
+      flexDirection="column"
+      justifyContent="flex-start"
+      alignItems="center"
+    >
+      <Text fontSize={['2xl', '4xl']} fontWeight="600" mb="4rem">
+        {`'${nickname}' 님의 프로필`}
+      </Text>
+      <Text fontSize={['xl', '3xl']}>존재하지 않는 아이디 이거나</Text>
+      <Text fontSize={['xl', '3xl']} mb="2rem">
+        아직 업로드한 작품이 없는 것 같네요
+      </Text>
+      <Image
+        src="/static/images/original_18.png"
+        alt="이파리티콘-추워"
+        width={200}
+        height={200}
+        unoptimized
+      />
+    </Center>
+  );
+};

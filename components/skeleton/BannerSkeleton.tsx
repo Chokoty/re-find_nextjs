@@ -1,4 +1,9 @@
-import { Box, Skeleton, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Box,
+  Skeleton,
+  SkeletonCircle,
+  useBreakpointValue,
+} from '@chakra-ui/react';
 
 export default function BannerSkeleton() {
   const width = useBreakpointValue({ base: '90%', md: '100%' });
@@ -6,12 +11,24 @@ export default function BannerSkeleton() {
   return (
     <Box
       maxW="700px"
-      mb="1rem"
       w={width}
+      h="170px"
+      mb="1rem"
+      p="1rem"
       background="gray.700"
       borderRadius="1rem"
+      display="flex"
+      flexDir="column"
+      justifyContent="center"
+      alignItems="center"
+      gap="1rem"
     >
-      <Skeleton height="170px" />
+      <Skeleton w="97%" height="100px" borderRadius="1rem" />
+      <Box display="flex" gap="8px" justifyContent="center" alignItems="center">
+        <SkeletonCircle size="3" />
+        <SkeletonCircle size="3" />
+        <SkeletonCircle size="3" />
+      </Box>
     </Box>
   );
 }
