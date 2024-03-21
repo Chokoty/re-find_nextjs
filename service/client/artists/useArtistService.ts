@@ -21,10 +21,14 @@ export function useArtistInfo({
 
   const artworks = useMemo(() => {
     return data?.pages.flatMap((page) => {
-      return page.list.map((artwork) => ({
-        ...artwork,
-        board: artwork.board.replace(/&#\d+;/g, '').trim(),
-      }));
+      if (Array.isArray(page.list)) {
+        return page.list.map((artwork) => ({
+          ...artwork,
+          board: artwork.board.replace(/&#\d+;/g, '').trim(),
+        }));
+      } else {
+        return [];
+      }
     });
   }, [data]);
 
