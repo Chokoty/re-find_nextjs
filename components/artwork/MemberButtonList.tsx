@@ -99,6 +99,7 @@ export default function MemberButtonList({
               {type === 'link' ? (
                 <Link href={`/gallery/${member.value}`} key={index}>
                   <Box
+                    whiteSpace="nowrap"
                     py="0.4rem"
                     px="0.9rem"
                     border="1px solid #ffffff29"
