@@ -12,6 +12,7 @@ export default async function HomePage() {
   await queryClient.prefetchQuery({
     queryKey: uKey,
     queryFn: uFn, // request 함수 내부에서 에러를 발생하면 prefetch만 실패하고 페이지는 렌더링 (따로 에러처리 x)
+    // ..
   });
 
   await queryClient.prefetchQuery({
