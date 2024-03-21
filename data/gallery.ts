@@ -57,10 +57,10 @@ const gallery: Gallery[] = [
     id: 7,
     value: 'kissingYou',
     type: 'special',
-    title: '이세돌 키씽유 팬아트',
-    subTitle: '🍭 이세돌 키씽유 팬아트 🍭',
+    title: '이세돌 키싱유 팬아트',
+    subTitle: '🍭 이세돌 키싱유 팬아트 🍭',
     query:
-      'artworks?query=kissing you&query=키싱유&query=키씽&case_sensitive=false&board=isd&board=best',
+      'artworks?query=kissing you&query=키싱&query=키씽&case_sensitive=false&board=isd&board=best',
   },
 ];
 

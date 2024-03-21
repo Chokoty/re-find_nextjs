@@ -15,5 +15,5 @@ export const GalleryMap = {
   christmas: '크리스마스',
   viichanBirthday: '비챤님 생일',
   lilpaBirthday: '릴파님 생일',
-  kissingYou: '키씽유 커버',
+  kissingYou: '키싱유 커버',
 } as const;
