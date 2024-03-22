@@ -29,7 +29,7 @@ export default function MemberAlbumSection() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   return (
-    <Box>
+    <Box padding="0 2rem">
       <Box
         display="flex"
         flexDirection="row"
@@ -76,7 +76,7 @@ export default function MemberAlbumSection() {
       >
         <MemberButtonList
           type="link"
-          range={{ start: 0, end: 7 }}
+          range={{ start: 0, end: 8 }}
           selected={null}
           setSelected={null}
           isdPick={false}

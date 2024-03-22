@@ -1,37 +1,35 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
+import Image from 'next/image';
 import type { ReactNode } from 'react';
 
+import Background from '@/public/static/images/gallery/christmasCover.webp';
 // import Image from 'next/image';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface TopBackgroundProps {
   children: ReactNode;
-  backgroundImageUrl: string;
   isAlbum: boolean;
 }
 
-const TopBackground = ({
-  children,
-  backgroundImageUrl,
-  isAlbum,
-}: TopBackgroundProps) => {
+const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
-  const backgroundStyle = {
-    background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, ${bg} 100%), linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'top', // 'center',
-    backgroundSize: '140%', // 'cover', // 'contain',
-  };
-  const backgroundStyle2 = {
-    background: `linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'top', // 'center',
-    backgroundSize: '140%', // 'cover', // 'contain',
-  };
+  // const backgroundStyle = {
+  //   background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, ${bg} 100%), linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
+  //   backgroundRepeat: 'no-repeat',
+  //   backgroundPosition: 'top', // 'center',
+  //   backgroundSize: '140%', // 'cover', // 'contain',
+  // };
+  // const backgroundStyle2 = {
+  //   background: `linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
+  //   backgroundRepeat: 'no-repeat',
+  //   backgroundPosition: 'top', // 'center',
+  //   backgroundSize: '140%', // 'cover', // 'contain',
+  // };
 
   return (
     <Box
+      as="section"
       w="100%"
       display="flex"
       flexDirection="column"
@@ -41,22 +39,15 @@ const TopBackground = ({
     >
       <Box
         w="100%"
-        position="absolute"
-        top={['2rem', '4rem', '6rem']}
-        p={['0 1rem', '0 2rem', '0 2rem']}
-        zIndex="2"
-      >
-        {children}
-      </Box>
-      <Box
-        w="100%"
-        paddingTop="56.25%" // 16:9
+        // paddingTop="56.25%" // 16:9
         position="relative"
         top="-60px"
-        style={isAlbum ? backgroundStyle2 : backgroundStyle}
+        // style={isAlbum ? backgroundStyle2 : backgroundStyle}
+        // aspectRatio="16/9"
+        aspectRatio="1200/675"
         zIndex="1"
       >
-        <Box
+        {/* <Box
           position="relative"
           // top={['-8rem', '-12.5rem', '-16rem']}
           top="100px"
@@ -68,26 +59,46 @@ const TopBackground = ({
           alignItems="flex-start"
           textAlign="center"
           zIndex="-1"
-        ></Box>
-        {/* <Box
-        position="absolute"
-        top="0px"
-        left="0"
-        right="0"
-        bottom="0"
-        zIndex="-2"
-      >
+        ></Box> */}
         <Image
-          src={backgroundImageUrl}
+          src={Background}
           // layout="fill"
           // objectFit="cover"
-          layout="responsive"
-          objectFit="cover"
+          // layout="responsive"
+          // objectFit="cover"
           alt="Background Image"
-          width={1920} // 이미지의 너비 설정
-          height={1080} // 이미지의 높이 설정
+          width={1920}
+          height={1080}
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
         />
-      </Box> */}
+      </Box>
+      <Box
+        position="absolute"
+        width="100%"
+        height="100%"
+        top="-60px"
+        zIndex="2"
+        background="linear-gradient(
+          270deg,
+          hsla(0,0%,7%,.8),
+          hsla(0,0%,7%,.4) 10.88%,
+          hsla(0,0%,7%,0) 20.67%,
+          hsla(0,0%,7%,0) 51.23%,
+          hsla(0,0%,7%,.64) 68.23%,
+          #121212 94.07%
+        )"
+      />
+      <Box
+        w="100%"
+        position="absolute"
+        top={['2rem', '4rem', '6rem']}
+        p={['0 1rem', '0 2rem', '0 2rem']}
+        zIndex="2"
+      >
+        {children}
       </Box>
     </Box>
   );

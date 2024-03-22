@@ -18,6 +18,18 @@
     &:hover {
       background-color: rgba(0, 0, 0, 0.5);
     }
+
+    svg {
+      margin-bottom: 32px;
+    }
+
+    @media (width < 875px) {
+      padding: 7px;
+    }
+
+    @media (width < 513px) {
+      padding: 3px;
+    }
   }
 
   .swiper_prev_btn {

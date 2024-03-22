@@ -19,7 +19,7 @@ type Props = {
 
 export default function RefindPickSection() {
   return (
-    <Box>
+    <Box padding="0 2rem">
       <Box
         display="flex"
         flexDirection="row"

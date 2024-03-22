@@ -1,18 +1,14 @@
 'use client';
 
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 
 import { useState } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import { Navigation, Pagination, A11y } from 'swiper/modules';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 
 import styles from '@/styles/GallerySlider.module.scss';
-import { darkMode, lightMode } from '@/styles/theme';
 
-import GalleryCard1 from '../card/GalleryCard1';
+import GalleryCard from '../card/GalleryCard';
 
 type List = {
   id: number;
@@ -26,7 +22,7 @@ type List = {
   date: string;
   view: number;
   like: number;
-  comments: number;
+  comment: number;
   is_shukkou: boolean;
   deleted: boolean;
   is_hyum: boolean;
@@ -48,15 +44,13 @@ export default function GallerySlider({ dataList }: Props) {
   };
 
   const swiperParams = {
+    // centerInsufficientSlides
     style: {
       width: '100%',
       padding: '0 2rem',
     },
     allowTouchMove: true,
     className: 'mySwiper2',
-    // direction: 'horizontal',
-    // navigation={true}
-    modules: [Navigation, Pagination, A11y],
     slidesPerView: 1.5,
     spaceBetween: 8,
     breakpoints: {
@@ -75,13 +69,10 @@ export default function GallerySlider({ dataList }: Props) {
     },
   };
   return (
-    <Swiper
-      {...swiperParams}
-      // centerInsufficientSlides
-    >
+    <Swiper {...swiperParams}>
       {dataList.map((data, index) => (
         <SwiperSlide key={data.id}>
-          <GalleryCard1
+          <GalleryCard
             key={index}
             artwork={data}
             isFocused={data.id === focusedArtworkId}

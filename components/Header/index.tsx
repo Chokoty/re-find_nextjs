@@ -26,6 +26,8 @@ export default function Header() {
 
   const isCurrentPath = (path: string) => pathname === path;
   const isSearchPage = pathname.startsWith('/search');
+  const isGalleryPage = pathname === '/gallery';
+  const isAlbumPage = pathname.includes('/gallery');
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
   const isScrolling = useScroll(60);
@@ -37,7 +39,7 @@ export default function Header() {
 
   return (
     <Flex
-      position="sticky"
+      position={isAlbumPage && !isGalleryPage ? 'static' : 'sticky'}
       zIndex="200"
       as="header"
       h="60px"

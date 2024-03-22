@@ -41,7 +41,7 @@ const GalleryIndexTitle = () => {
       display="flex"
       flexDirection="row"
       alignItems="center"
-      justifyContent="flex-start"
+      justifyContent={['center', 'flex-start']}
       w="100%"
       m="0 auto"
     >
@@ -113,7 +113,7 @@ const TopTitle = ({ titleText, isMember }: Props) => {
     <Box
       display="flex"
       flexDirection="column"
-      alignItems="flex-start"
+      alignItems={['center', 'flex-start']}
       justifyContent="center"
       textAlign="center"
     >

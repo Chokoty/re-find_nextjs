@@ -1,0 +1,241 @@
+// media: 아래로 내려가면서 이전의 것이 적용
+
+.hoverContainer {
+  // board , view, like, uploadDate
+  // .body {
+  //   // flex-direction: flex-start;
+  //   // flex: none;
+  // }
+
+  // buttons
+  .footer {
+    flex-direction: row;
+    // flex: none;
+
+    .btns {
+      width: 100%;
+
+      &.authorBtn {
+        flex: 0.5;
+      }
+
+      &.wakBtn {
+        flex: 1;
+      }
+
+      .textBox {
+        padding: 8px 18px;
+        font-size: 16px;
+        align-items: center;
+
+        span {
+          display: contents;
+        }
+      }
+    }
+  }
+
+  @media (width < 1472px) {
+    // .body {
+    //   padding-bottom: 0;
+    //   padding-top: 0;
+    //   justify-content: center;
+    //   flex: 1;
+    // }
+
+    // .footer {
+    //   flex: 0.5;
+    //   flex-direction: column;
+
+    //   .btns {
+    //     .textBox {
+    //       padding: 8px 10px;
+    //     }
+    //   }
+    // }
+
+    .footer {
+      .btns {
+        .textBox {
+          padding: 8px 10px;
+        }
+      }
+    }
+  }
+
+  @media (width < 1332px) {
+    .footer {
+      .btns {
+        .textBox {
+          padding: 8px 9px;
+          gap: 4px;
+
+          svg {
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (width < 1251px) {
+    .body {
+      .info {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+    }
+
+    .footer {
+      .btns {
+        .textBox {
+          svg {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  @media (width < 1142px) {
+    .footer {
+      .btns {
+        .textBox {
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  @media (width < 959px) {
+    .footer {
+      .btns {
+        .textBox {
+          span {
+            display: contents;
+          }
+        }
+      }
+    }
+  }
+
+  @media (width < 875px) {
+    .body {
+      padding-bottom: 0;
+      padding-top: 0;
+      justify-content: center;
+      flex: 1;
+      gap: 6px;
+
+      .board {
+        text-align: center;
+      }
+
+      .info {
+        align-items: center;
+      }
+    }
+
+    .footer {
+      flex: 0.5;
+      flex-direction: column;
+      .btns {
+        .textBox {
+          gap: 3px;
+
+          span {
+            display: none;
+          }
+          svg {
+            display: block;
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (width < 769px) {
+    .body {
+      .board {
+        font-size: 16px;
+      }
+
+      .info {
+        gap: 0.1rem;
+
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+
+    .footer {
+      flex: 0.5;
+      flex-direction: column;
+      padding-right: 8px;
+      padding-left: 8px;
+
+      .btns {
+        .textBox {
+          font-size: 13px;
+
+          span {
+            display: contents;
+          }
+        }
+      }
+    }
+  }
+
+  @media (width < 480px) {
+    .footer {
+      flex: 0;
+      flex-direction: row;
+      padding-bottom: 8px;
+
+      .btns {
+        .textBox {
+          svg {
+            display: block;
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (width < 395px) {
+    .footer {
+      .btns {
+        &.authorBtn {
+          flex: 1;
+        }
+
+        .textBox {
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  @media (width < 335px) {
+    .footer {
+      .btns {
+        .textBox {
+          svg {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

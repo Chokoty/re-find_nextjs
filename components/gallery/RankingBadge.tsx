@@ -1,6 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
-import React from 'react';
 import { FaBookmark } from 'react-icons/fa';
+
+import styles from '@/styles/RankingBadge.module.scss';
 
 type Prop = {
   num: number;
@@ -22,12 +23,10 @@ const connectUrl = (num: number) => {
 export default function RankingBadge({ num }: Prop) {
   return (
     <Box
+      className={styles.container}
       display="flex"
       justifyContent="center"
       alignItems="center"
-      position="absolute"
-      top="-1"
-      left="2"
       zIndex={3}
       filter="drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.20))"
       // w="0px"
@@ -58,14 +57,19 @@ export default function RankingBadge({ num }: Prop) {
           <stop stopColor="#43E97B" offset="100%" />
         </linearGradient>
       </svg>
-      <FaBookmark size="40" style={{ fill: `url(#${connectUrl(num)})` }} />
+      <FaBookmark
+        className={styles.badge}
+        size="40"
+        style={{ fill: `url(#${connectUrl(num)})` }}
+      />
       <Text
+        className={styles.text}
         position="absolute"
         top="50%"
         left="50%"
         transform="translate(-50%, -50%)"
       >
-        {num}
+        {`0${num}`}
       </Text>
     </Box>
   );
