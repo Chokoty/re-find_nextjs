@@ -1,0 +1,30 @@
+.swiper_nav_btns {
+  // width: 100%;
+  // display: flex;
+  // justify-content: space-between;
+
+  button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  .swiper_prev_btn {
+    left: 0px;
+  }
+
+  .swiper_next_btn {
+    right: 0px;
+  }
+}
