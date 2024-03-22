@@ -26,9 +26,8 @@ export function useArtistInfo({
           ...artwork,
           board: artwork.board.replace(/&#\d+;/g, '').trim(),
         }));
-      } else {
-        return [];
       }
+      return [];
     });
   }, [data]);
 
