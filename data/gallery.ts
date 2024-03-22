@@ -60,7 +60,7 @@ const gallery: Gallery[] = [
     title: '이세돌 키싱유 팬아트',
     subTitle: '🍭 이세돌 키싱유 팬아트 🍭',
     query:
-      'artworks?query=kissing you&query=키싱&query=키씽&case_sensitive=false&board=isd&board=best',
+      'artworks?query=kissing&query=키싱&query=키씽&query=뚜뚜뚜&query=뚜두루&query=고마워 사랑해&query=사랑해 한마디&query=너만을 사랑해&case_sensitive=false&board=isd&board=best&title=',
   },
 ];
 

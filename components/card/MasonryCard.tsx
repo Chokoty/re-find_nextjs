@@ -229,7 +229,7 @@ export default function MasonryCard({
                       }
                     />
                     <Text fontSize={['xs', 'lg']} fontWeight="400">
-                      {formatArtistValue(artwork.comments)}
+                      {formatArtistValue(artwork.comment)}
                     </Text>
                   </Box>
                 </Flex>
@@ -273,7 +273,7 @@ export default function MasonryCard({
                   <Box>
                     <FaComment style={iconStyle} />
                     <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      {formatArtistValue(artwork.comments)}
+                      {formatArtistValue(artwork.comment)}
                     </Text>
                   </Box>
                 </Flex>
