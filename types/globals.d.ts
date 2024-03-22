@@ -66,7 +66,7 @@ declare global {
   export interface IsdArtworkList extends ArtworkList {
     author: string;
     content: string;
-    comment: number; // TODO: comments로 통일시켜 달라고하기
+    comment: number;
     source: number[];
     is_shukkou: boolean;
     is_hyum: boolean;
@@ -130,7 +130,7 @@ declare global {
     date: string;
     view: number;
     like: number;
-    comments: number;
+    comment: number;
     deleted: boolean;
   }
 
