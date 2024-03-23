@@ -15,7 +15,7 @@ import { MdPerson } from 'react-icons/md';
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import styles from '@/styles/GalleryCard.module.scss';
+import styles from '@/styles/GalleryFanartCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import RankingBadge from '../gallery/RankingBadge';
@@ -36,7 +36,7 @@ type Props = {
   num: number;
 };
 
-export default function GalleryCard({
+export default function GalleryFanartCard({
   artwork,
   isFocused,
   onToggleFocus,
@@ -62,7 +62,7 @@ export default function GalleryCard({
   const authorName = 'author' in artwork ? artwork.author : '';
 
   return (
-    <Box key={artwork?.id} m="0 1rem" w="100%">
+    <Box m="0 1rem" w="100%">
       <Box position="relative" w="100%">
         <Box
           position="relative"
@@ -81,35 +81,6 @@ export default function GalleryCard({
             }}
           />
         </Box>
-        {/* <Box
-          width={widthValue}
-          maxHeight="800px"
-          h="360px"
-          overflow="hidden"
-          borderRadius="1rem"
-          position="relative"
-        >
-          <Image
-            alt={artwork?.title}
-            width={width}
-            height={236}
-            style={{
-              objectFit: 'cover',
-              objectPosition: 'center top',
-              width: '100%',
-              height: '100%',
-              borderRadius: '1rem',
-              filter: artwork?.deleted ? 'blur(6px)' : 'none', // 블러 처리
-            }}
-            src={
-              artwork?.img_url === ''
-                ? 'http://via.placeholder.com/236x236'
-                : modifiedUrl300
-            }
-            onLoad={handleImageLoad}
-            unoptimized
-          />
-        </Box> */}
         <Box
           position="absolute"
           top={0}

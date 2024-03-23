@@ -1,5 +1,6 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { MdOutlineArrowForwardIos } from 'react-icons/md';
 
 import MemberButtonList from '@/components/gallery/MemberButtonList';
@@ -16,6 +17,7 @@ type Props = {
 };
 
 export default function MemberAlbumSection() {
+  const [selectedItem, setSelectedItem] = useState('전체');
   const hexToRGBA = (hex: string, alpha: number) => {
     // 헥사코드를 2자리씩 나누어 각각의 R, G, B 값을 추출
     const r = parseInt(hex.slice(1, 3), 16);
@@ -29,7 +31,7 @@ export default function MemberAlbumSection() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   return (
-    <Box padding="0 2rem">
+    <Box padding="0 2rem" mt="120px">
       <Box
         display="flex"
         flexDirection="row"
@@ -40,14 +42,10 @@ export default function MemberAlbumSection() {
         h="80px"
         p="0 0.5rem"
       >
-        <Text
-          textAlign="left"
-          fontWeight="bold"
-          fontSize={['md', '2xl', '4xl']}
-        >
+        <Text textAlign="left" fontWeight="800" fontSize={['xl', 'xl', '40px']}>
           멤버별 앨범 모아보기
         </Text>
-        <Box
+        {/* <Box
           w={['2rem', '2.5rem', '3rem']}
           h={['2rem', '2.5rem', '3rem']}
           display="flex"
@@ -61,8 +59,15 @@ export default function MemberAlbumSection() {
               height: '2rem',
             }}
           />
-        </Box>
+        </Box> */}
       </Box>
+      <ThisWeekBtnList
+        // type="link"
+        range={{ start: 0, end: 7 }}
+        selected={selectedItem}
+        setSelected={setSelectedItem}
+        isdPick={false}
+      />
       <Box
         p="0 2rem"
         // background={bg2}

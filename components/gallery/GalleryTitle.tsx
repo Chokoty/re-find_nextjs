@@ -48,7 +48,7 @@ const GalleryIndexTitle = () => {
       <Text
         m="0"
         as="h1"
-        fontSize={['3xl', '5xl', '4rem']}
+        fontSize={['3xl', '5xl', '80px']}
         fontFamily={'ONE-Mobile-POP'}
       >
         팬아트
@@ -78,7 +78,7 @@ const GalleryIndexTitle = () => {
       <Text
         m="0"
         as="h1"
-        fontSize={['3xl', '5xl', '4rem']}
+        fontSize={['3xl', '5xl', '80px']}
         fontFamily={'ONE-Mobile-POP'}
         color={highlightColor}
       >
@@ -119,7 +119,9 @@ const TopTitle = ({ titleText, isMember }: Props) => {
     >
       {titleText.title === '팬아트 갤러리' ? (
         <>
-          <Text fontSize={['xs', 'md', 'xl']}>{titleText?.description}</Text>
+          <Text fontSize={['xs', 'md', 'xl']} fontWeight="600">
+            {titleText?.description}
+          </Text>
           <GalleryIndexTitle />
         </>
       ) : (

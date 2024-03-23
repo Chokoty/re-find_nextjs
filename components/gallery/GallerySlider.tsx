@@ -2,13 +2,15 @@
 
 import 'swiper/css';
 
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import type { SwiperOptions } from 'swiper/types';
 
 import styles from '@/styles/GallerySlider.module.scss';
 
-import GalleryCard from '../card/GalleryCard';
+import GalleryAlbumCard from '../card/GalleryAlbumCard';
+import GalleryFanartCard from '../card/GalleryFanartCard';
 
 type List = {
   id: number;
@@ -28,11 +30,24 @@ type List = {
   is_hyum: boolean;
 }[];
 
+interface CustomSwiperParams extends SwiperOptions {
+  // 다른 타입을 추가하거나 필요에 따라 수정
+  style: Record<string, string>;
+}
+
+type SliderType = 'fanart' | 'album';
+
 type Props = {
   dataList: List;
+  customSwiperOptions?: CustomSwiperParams;
+  type?: SliderType;
 };
 
-export default function GallerySlider({ dataList }: Props) {
+export default function GallerySlider({
+  dataList,
+  customSwiperOptions,
+  type = 'fanart',
+}: Props) {
   const [focusedArtworkId, setFocusedArtworkId] = useState<number | null>(null);
 
   const handleToggleFocus = (id: number | null) => {
@@ -42,12 +57,14 @@ export default function GallerySlider({ dataList }: Props) {
       setFocusedArtworkId(id); // Set the focused artwork ID
     }
   };
+  const { style: customStyle, ...customOptions } = customSwiperOptions || {};
 
   const swiperParams = {
     // centerInsufficientSlides
     style: {
       width: '100%',
-      padding: '0 2rem',
+      padding: '0 1rem',
+      ...(customStyle || {}),
     },
     allowTouchMove: true,
     className: 'mySwiper2',
@@ -67,18 +84,23 @@ export default function GallerySlider({ dataList }: Props) {
         spaceBetween: 20,
       },
     },
+    ...customOptions,
   };
   return (
     <Swiper {...swiperParams}>
       {dataList.map((data, index) => (
         <SwiperSlide key={data.id}>
-          <GalleryCard
-            key={index}
-            artwork={data}
-            isFocused={data.id === focusedArtworkId}
-            onToggleFocus={handleToggleFocus}
-            num={index < 3 ? index + 1 : -1}
-          />
+          {type === 'fanart' ? (
+            <GalleryFanartCard
+              key={index}
+              artwork={data}
+              isFocused={data.id === focusedArtworkId}
+              onToggleFocus={handleToggleFocus}
+              num={index < 3 ? index + 1 : -1}
+            />
+          ) : (
+            <GalleryAlbumCard artwork={data} />
+          )}
         </SwiperSlide>
       ))}
       <SlideNavButtons />

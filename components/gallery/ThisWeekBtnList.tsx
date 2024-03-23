@@ -40,7 +40,6 @@ export default function ThisWeekBtnList({
   return (
     <Box
       w="100%"
-      mb={['1rem', '2rem']}
       padding="0 2rem"
       display="flex"
       justifyContent="flex-start"

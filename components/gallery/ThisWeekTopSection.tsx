@@ -139,7 +139,7 @@ export default function ThisWeekTopSection() {
   const [selectedItem, setSelectedItem] = useState('전체');
 
   return (
-    <Box w="100%" mb="2rem" display="flex" flexDir="column">
+    <Box w="100%" display="flex" flexDir="column" gap="30px">
       <Box
         padding="0 2rem"
         display="flex"
@@ -149,9 +149,8 @@ export default function ThisWeekTopSection() {
         textAlign="center"
         w="100%"
         // h="80px"
-        mb="1rem"
       >
-        <Text textAlign="left" fontWeight="bold" fontSize={['xl', 'xl', '2xl']}>
+        <Text textAlign="left" fontWeight="800" fontSize={['xl', 'xl', '40px']}>
           이 주의 왁물원 인기 팬아트!
         </Text>
       </Box>
