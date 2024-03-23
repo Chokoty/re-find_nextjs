@@ -4,6 +4,8 @@ import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import Home from '@/components/home/Home';
 import queryOptions from '@/service/client/home/queries';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const { queryKey: uKey, queryFn: uFn } = queryOptions.updates();
   const { queryKey: cKey, queryFn: cFn } = queryOptions.counts();
