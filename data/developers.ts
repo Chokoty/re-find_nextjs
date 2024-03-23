@@ -107,7 +107,7 @@ const developers: Developer[] = [
   },
   {
     group: 'member',
-    nickname: '아르키',
+    nickname: '아르키메트리스',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/0toml42cSQFNZFvU0Ex4Kw',
     profURL:
