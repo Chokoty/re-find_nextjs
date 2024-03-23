@@ -105,7 +105,15 @@ const developers: Developer[] = [
       'https://cafeptthumb-phinf.pstatic.net/MjAyNDAyMjVfMTQg/MDAxNzA4ODI1OTc0NDkx.JgD5-XssP94bZSMZpKDZiGKPOFAy3ewmEHYu8i4I9HMg.SydE_wsSgCVjf9NLfys88sADxT-FKeTXGcU9-p-OBeEg.PNG/%25ED%2586%25B0.png?type=s3',
     contribute: ['UX 디자인', '프론트엔드 개발'],
   },
+  {
+    group: 'member',
+    nickname: '아르키',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/0toml42cSQFNZFvU0Ex4Kw',
+    profURL:
+      'https://cafeptthumb-phinf.pstatic.net/MjAyMzEyMjVfMjI3/MDAxNzAzNTE1NzkwNTM5.KDMFpay8W3nx67NGcqAXMzQg6IwQolNNInOZLJgjwyIg.piaxZx1HQLukxmg1JvSmZp2yA8V3rlPEz1_Z1F-AXD8g.JPEG/IMG_6353.jpeg?type=s3',
+    contribute: ['QA'],
+  },
 ];
-// https://m.cafe.naver.com/ca-fe/web/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA/articles
 
 export default developers;
