@@ -1,6 +1,15 @@
 import { Box, Text } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 
-import GallerySlider from './GallerySlider';
+import GalleryAlbumSliderSkeleton from '../skeleton/GalleryAlbumSliderSkeleton';
+
+const GallerySlider = dynamic(
+  () => import('@/components/gallery/GallerySlider'),
+  {
+    ssr: false,
+    loading: () => <GalleryAlbumSliderSkeleton />,
+  }
+);
 
 export default function RefindPickSection() {
   return (

@@ -2,7 +2,6 @@
 
 import { Box } from '@chakra-ui/react';
 
-import BannerSlider from '@/components/banner/BannerSlider';
 import TopBackground from '@/components/common/TopBackground';
 import GalleryTitle from '@/components/gallery/GalleryTitle';
 import MemberAlbumSection from '@/components/gallery/MemberAlbumSection';

@@ -1,11 +1,20 @@
 'use client';
 
 import { Box, Text } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
 import ThisWeekBtnList from '@/components/gallery/ThisWeekBtnList';
 
-import GallerySlider from './GallerySlider';
+import GalleryFanartSliderSkeleton from '../skeleton/GalleryFanartSliderSkeleton';
+
+const GallerySlider = dynamic(
+  () => import('@/components/gallery/GallerySlider'),
+  {
+    ssr: false,
+    loading: () => <GalleryFanartSliderSkeleton />,
+  }
+);
 
 export default function ThisWeekTopSection() {
   const [selectedItem, setSelectedItem] = useState('전체');
