@@ -237,6 +237,13 @@ const updateLog: UpdateLog[] = [
       '검색 기능이 추가되었습니다. 상단바를 이용하여 원하는 팬아트를 찾아보세요.',
     directLink: 'https://cafe.naver.com/steamindiegame/15527371',
   },
+  {
+    id: 37,
+    date: '2024.3.24',
+    type: '[안내]',
+    content:
+      '게시판 업데이트 현황 서비스는 점검 중입니다. 이용에 불편을 드려 죄송합니다.',
+  },
 ];
 
 export default updateLog;

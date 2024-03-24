@@ -20,7 +20,7 @@ export default function BeforeUpload() {
       {/* 이미지 업로드 */}
       <UploadImages />
       {/* 게시판 업데이트 현황 */}
-      <UpdateBoard />
+      {/* <UpdateBoard /> */}
     </Box>
   );
 }
