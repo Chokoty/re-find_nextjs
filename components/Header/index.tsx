@@ -23,23 +23,22 @@ import { darkMode, lightMode } from '@/styles/theme';
 export default function Header() {
   const pathname = usePathname();
   const isMorePath = pathname.startsWith('/more');
-
-  const isCurrentPath = (path: string) => pathname === path;
   const isSearchPage = pathname.startsWith('/search');
-  const isGalleryPage = pathname === '/gallery';
-  const isAlbumPage = pathname.includes('/gallery');
+  const isGalleryPage = pathname.includes('/gallery');
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
   const isScrolling = useScroll(60);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+  // gallery page이면 기본적으로 transparent이지만, 스크롤할 때는 bg2로 변경 하지만, 이외에 page라면 bg2로 고정
+  const backgroundColor = isGalleryPage && !isScrolling ? 'transparent' : bg2;
 
   if (isMorePath) return null;
 
   return (
     <Flex
-      position={isAlbumPage && !isGalleryPage ? 'static' : 'sticky'}
+      position="sticky"
       zIndex="200"
       as="header"
       h="60px"
@@ -53,13 +52,12 @@ export default function Header() {
         // backgroundImage: isScrolling
         //   ? 'none' // 스크롤 시에만 그라데이션 배경 적용
         //   : `linear-gradient(90deg, ${bg2} 0%, rgba(0, 0, 0, 0) 50%, ${bg2} 100%)`,
-        backgroundColor: isScrolling ? bg2 : 'transparent', // 스크롤이 없을 때는 배경색을 bg2로 설정
+        backgroundColor,
         transition: 'background-color 0.3s, background-image 0.3s',
         color,
       }}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        {/* {isScrolling && ( */}
         <Button
           w="3rem"
           h="3rem"
@@ -78,11 +76,7 @@ export default function Header() {
             />
           </Link>
         </Button>
-        {/* )} */}
-
-        {!isMobile && (
-          <HeaderTab isCurrentPath={isCurrentPath} isAlbumPage={isAlbumPage} />
-        )}
+        {!isMobile && <HeaderTab />}
       </Box>
       {!isSearchPage && <SearchModalOpener />}
       <Flex>

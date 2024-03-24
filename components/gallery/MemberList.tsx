@@ -1,13 +1,14 @@
-import members from '@/data/members2';
-import { getStaticImage } from '@/lib/getStaticImage';
-import { Member } from '@/types';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import members from '@/data/members2';
+import { getStaticImage } from '@/lib/getStaticImage';
+import type { Member as MemberType } from '@/types';
+
 export default function MemberList() {
   return (
-    <Flex h="100%" as="ul" display="flex" flexWrap="wrap" gap="20px">
+    <Flex h="100%" as="ul" display="flex" flexWrap="wrap" gap="10px">
       {members.map((member) => (
         <Member key={member.id} member={member} />
       ))}
@@ -15,7 +16,7 @@ export default function MemberList() {
   );
 }
 
-const Member = ({ member }: { member: Member }) => {
+const Member = ({ member }: { member: MemberType }) => {
   const { value, name, greetings } = member;
   const staticImage = getStaticImage(value);
   return (

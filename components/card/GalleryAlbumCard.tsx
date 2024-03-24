@@ -1,4 +1,4 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box, Text, useColorMode } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
@@ -15,6 +15,11 @@ export default function GalleryAlbumCard({
   album: { title, value, description },
 }: Prop) {
   const staticImage = getStaticImage(value);
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === 'dark';
+  const imageBackgroundShadow = isDarkMode
+    ? 'linear-gradient(180deg, hsla(0, 0%, 7%, .8), hsla(0, 0%, 7%, .4) 0%, hsla(0, 0%, 7%, 0) 0%, hsla(0, 0%, 7%, 0%) 12.23%, hsla(0, 0%, 7%, .64) 86.23%, #121212 101.07% )'
+    : 'linear-gradient(180deg, hsla(0, 0%, 7%, .8), hsla(0, 0%, 7%, .4) 0%, hsla(0, 0%, 7%, 0) 0%, hsla(0, 0%, 7%, 0%) 47.23%, hsla(0, 0%, 7%, .64) 100.23%, #121212 100.07%)';
   return (
     <Box
       position="relative"
@@ -54,15 +59,7 @@ export default function GalleryAlbumCard({
           left={0}
           borderRadius="1rem"
           zIndex={1}
-          background="linear-gradient(
-          180deg,
-          hsla(0, 0%, 7%, .8),
-          hsla(0, 0%, 7%, .4) 0%,
-          hsla(0, 0%, 7%, 0) 0%,
-          hsla(0, 0%, 7%, 0%) 12.23%,
-          hsla(0, 0%, 7%, .64) 86.23%,
-          #121212 101.07%
-        )"
+          background={imageBackgroundShadow}
           display="flex"
           flexDir="column"
           alignItems="flex-end"

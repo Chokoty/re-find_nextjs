@@ -1,4 +1,4 @@
-import { Box, useColorModeValue } from '@chakra-ui/react';
+import { Box, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 
@@ -26,6 +26,11 @@ const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
   //   backgroundPosition: 'top', // 'center',
   //   backgroundSize: '140%', // 'cover', // 'contain',
   // };
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === 'dark';
+  const imageBackgroundShadow = isDarkMode
+    ? 'linear-gradient(180deg, hsl(233deg 38% 8% / 80%), hsl(233deg 38% 8% / 40%) 10.88%, hsl(233deg 38% 8% / 0%) 20.67%, hsl(233deg 38% 8% / 0%) 51.23%, hsl(233deg 38% 8% / 64%) 79.23%, hsl(233 38% 8% / 1) 100.07%)'
+    : 'linear-gradient(180deg, rgb(245 246 251 / 80%), hsl(0deg 0% 100% / 40%) 0%, hsl(0deg 0% 100% / 0%) 60%, #f5f6fb 87.23%, #f5f6fb 82.23%, #f5f6fb 23.07%)';
 
   return (
     <Box
@@ -75,6 +80,7 @@ const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
             width: '100%',
             height: '100%',
             objectFit: 'cover',
+            opacity: 0.5,
           }}
         />
       </Box>
@@ -84,15 +90,7 @@ const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
         height="100%"
         top="-60px"
         zIndex="2"
-        background="linear-gradient(
-          270deg,
-          hsla(0,0%,7%,.8),
-          hsla(0,0%,7%,.4) 10.88%,
-          hsla(0,0%,7%,0) 20.67%,
-          hsla(0,0%,7%,0) 51.23%,
-          hsla(0,0%,7%,.64) 79.23%,
-          #121212 100.07%
-        )"
+        background={imageBackgroundShadow}
       />
       <Box
         w="100%"

@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import MemberButtonList from '@/components/gallery/MemberButtonList';
 import { darkMode, lightMode } from '@/styles/theme';
+
 import MemberList from './MemberList';
 
 type Props = {

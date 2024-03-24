@@ -29,7 +29,9 @@ export default function ThisWeekBtnList({
   // const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const { colorMode } = useColorMode();
   const isDarkMode = colorMode === 'dark';
-  const highlight = isDarkMode ? 'white' : '#ffffff1a';
+  const highlight = isDarkMode ? 'white' : '#01bda1';
+  const backgroundColor = isDarkMode ? '#ffffff57' : '#00000080';
+  const hoverColor = isDarkMode ? '#ffffff3c' : '#000000b3';
 
   const onClick = (value: string) => {
     if (setSelected) {
@@ -45,7 +47,7 @@ export default function ThisWeekBtnList({
       justifyContent="flex-start"
       alignItems="center"
       maxW="680px"
-      overflowX="scroll"
+      flexWrap="wrap"
       gap="0.5rem"
       as="ul"
       sx={{
@@ -65,10 +67,10 @@ export default function ThisWeekBtnList({
             onClick={() => onClick(item)}
             // variant={selected === item ? 'solid' : 'outline'}
             variant="solid"
-            bg={selected === item ? highlight : '#ffffff57'}
+            bg={selected === item ? highlight : backgroundColor}
             color={selected === item ? 'black' : 'white'}
             _hover={{
-              background: selected === item ? highlight : '#ffffff3c',
+              background: selected === item ? highlight : hoverColor,
             }}
             fontSize={['sm', 'md']}
             fontWeight="bold"

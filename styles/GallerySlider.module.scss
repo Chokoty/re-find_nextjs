@@ -9,14 +9,14 @@
     transform: translateY(-50%);
     z-index: 10;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
     border: none;
     color: white;
     padding: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
     &:hover {
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.3);
     }
 
     svg {
@@ -29,6 +29,15 @@
 
     @media (width < 513px) {
       padding: 3px;
+    }
+  }
+
+  &.dark {
+    button {
+      background-color: rgba(0, 0, 0, 0.2);
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.5);
+      }
     }
   }
 

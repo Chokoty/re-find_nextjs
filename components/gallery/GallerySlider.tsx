@@ -2,6 +2,7 @@
 
 import 'swiper/css';
 
+import { useColorMode } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
@@ -100,6 +101,8 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
 
 const SlideNavButtons = () => {
   const swiper = useSwiper();
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === 'dark';
 
   const handlePrevClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -116,7 +119,9 @@ const SlideNavButtons = () => {
   };
 
   return (
-    <div className={styles.swiper_nav_btns}>
+    <div
+      className={`${styles.swiper_nav_btns} ${isDarkMode ? styles.dark : ''}`}
+    >
       <button
         className={styles.swiper_prev_btn}
         type="button"
