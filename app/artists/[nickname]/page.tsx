@@ -60,9 +60,6 @@ export default async function page({ params: { nickname } }: Params) {
   });
 
   const { queries } = dehydrate(queryClient);
-  if (decodedNickname === 'NoBrand') {
-    throw new Error('현재 해당 작가님 페이지는 준비중입니다.');
-  }
   return (
     <Box>
       <ArtistHeader title="" />
@@ -77,7 +74,7 @@ export default async function page({ params: { nickname } }: Params) {
           mb="2rem"
         >
           <HydrationBoundary state={{ queries }}>
-            <DetailedArtists nickname={decodedNickname} artistInfo={result} />;
+            <DetailedArtists nickname={decodedNickname} artistInfo={result} />
           </HydrationBoundary>
         </Box>
       )}
