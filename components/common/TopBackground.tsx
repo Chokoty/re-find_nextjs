@@ -2,7 +2,7 @@ import { Box, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 
-import Background from '@/public/static/images/gallery/christmasCover.webp';
+import { Isd } from '@/data/vectors';
 // import Image from 'next/image';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -61,17 +61,20 @@ const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
           zIndex="-1"
         ></Box> */}
         <Image
-          src={Background}
+          src={Isd}
           // layout="fill"
           // objectFit="cover"
           // layout="responsive"
           // objectFit="cover"
           alt="Background Image"
+          priority
+          quality={100}
           width={1920}
           height={1080}
           style={{
             width: '100%',
             height: '100%',
+            objectFit: 'cover',
           }}
         />
       </Box>
@@ -87,8 +90,8 @@ const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
           hsla(0,0%,7%,.4) 10.88%,
           hsla(0,0%,7%,0) 20.67%,
           hsla(0,0%,7%,0) 51.23%,
-          hsla(0,0%,7%,.64) 68.23%,
-          #121212 94.07%
+          hsla(0,0%,7%,.64) 79.23%,
+          #121212 100.07%
         )"
       />
       <Box

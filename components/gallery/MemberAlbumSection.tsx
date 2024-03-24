@@ -1,11 +1,7 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import { useState } from 'react';
-import { MdOutlineArrowForwardIos } from 'react-icons/md';
 
 import MemberButtonList from '@/components/gallery/MemberButtonList';
-import ThisWeekBtnList from '@/components/gallery/ThisWeekBtnList';
-import members from '@/data/members';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
@@ -61,13 +57,6 @@ export default function MemberAlbumSection() {
           />
         </Box> */}
       </Box>
-      <ThisWeekBtnList
-        // type="link"
-        range={{ start: 0, end: 7 }}
-        selected={selectedItem}
-        setSelected={setSelectedItem}
-        isdPick={false}
-      />
       <Box
         p="0 2rem"
         // background={bg2}
@@ -87,6 +76,7 @@ export default function MemberAlbumSection() {
           isdPick={false}
         />
       </Box>
+      {/* <AlbumGrid /> */}
     </Box>
   );
 }

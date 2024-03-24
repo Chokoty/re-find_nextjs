@@ -3,32 +3,36 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
+import { getStaticImage } from '@/lib/getStaticImage';
 import styles from '@/styles/GalleryAlbumCard.module.scss';
+import type { Gallery } from '@/types';
 
 type Prop = {
-  artwork: ArtworkList | GalleryArtworkList;
+  album: Gallery;
 };
 
-// TODO: artwork 로컬에서 받고? title, description 커스텀마이징
-export default function GalleryAlbumCard({ artwork }: Prop) {
+export default function GalleryAlbumCard({
+  album: { title, value, description },
+}: Prop) {
+  const staticImage = getStaticImage(value);
   return (
     <Box
       position="relative"
       w="100%"
       transition=" all 0.2s ease-in-out"
       _hover={{
-        transform: 'scale(1.07)',
+        transform: 'scale(1.05)',
       }}
     >
       {/* TODO: 수정 필요 */}
-      <Link href={`/gallery/${artwork.id}`}>
+      <Link href={`/gallery/${value}`}>
         <Box
           position="relative"
           w="100%"
           h={['200px', '230px', '280px', '350px', '400px']}
         >
           <Image
-            src={artwork.img_url}
+            src={staticImage}
             alt="test"
             fill
             priority
@@ -85,10 +89,8 @@ export default function GalleryAlbumCard({ artwork }: Prop) {
             alignItems="center"
           >
             <Box className={styles.textBox}>
-              <Text className={styles.title}>{`${artwork.title}`}</Text>
-              <Text className={styles.description}>
-                이세돌과 함께 메리 크리스마스!
-              </Text>
+              <Text className={styles.title}>{title}</Text>
+              <Text className={styles.description}>{description}</Text>
             </Box>
             <FaArrowRightLong size={40} color="white" />
           </Box>

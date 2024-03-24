@@ -42,22 +42,22 @@ export default function GalleryFanartCard({
   onToggleFocus,
   num,
 }: Props) {
-  const [imageHeight, setImageHeight] = useState<number | null>(null);
+  // const [imageHeight, setImageHeight] = useState<number | null>(null);
   // const isMobile = useResponsive();
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '200px', sm: '249px' });
-  const width = useBreakpointValue({ base: 200, sm: 249 });
-  const modifiedUrl300 = useModifiedImageUrl({
-    url: artwork.img_url_list[0],
-    size: 300,
-  });
-  const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
+  // const width = useBreakpointValue({ base: 200, sm: 249 });
+  // const modifiedUrl300 = useModifiedImageUrl({
+  //   url: artwork.img_url_list[0],
+  //   size: 300,
+  // });
+  // const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
-  const handleImageLoad = (
-    e: React.SyntheticEvent<HTMLImageElement, Event>
-  ) => {
-    setImageHeight((e.target as HTMLImageElement).height);
-  };
+  // const handleImageLoad = (
+  //   e: React.SyntheticEvent<HTMLImageElement, Event>
+  // ) => {
+  //   setImageHeight((e.target as HTMLImageElement).height);
+  // };
 
   const authorName = 'author' in artwork ? artwork.author : '';
 

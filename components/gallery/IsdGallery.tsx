@@ -52,9 +52,13 @@ export default function IsdGallery() {
     isLoading,
   } = useNoticeArtworks({ member: selected, ranktype: sortType });
 
+  const { title, description } = gallery.find(
+    (item) => item.value === 'isdPick'
+  )!;
+
   const album = {
-    title: gallery[0].title,
-    description: gallery[0].description!,
+    title,
+    description,
   };
 
   // 정렬 선택하기

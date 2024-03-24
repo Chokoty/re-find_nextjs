@@ -65,7 +65,7 @@ export default function ThisWeekBtnList({
             onClick={() => onClick(item)}
             // variant={selected === item ? 'solid' : 'outline'}
             variant="solid"
-            bg={selected === item ? highlight : '#ffffff1a'}
+            bg={selected === item ? highlight : '#ffffff57'}
             color={selected === item ? 'black' : 'white'}
             _hover={{
               background: selected === item ? highlight : '#ffffff3c',

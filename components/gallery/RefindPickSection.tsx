@@ -1,115 +1,8 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { MdOutlineArrowForwardIos } from 'react-icons/md';
-
-import AlbumGrid from '@/components/artwork/albumGrid';
-import ThisWeekBtnList from '@/components/gallery/ThisWeekBtnList';
-import members from '@/data/members';
-import { darkMode, lightMode } from '@/styles/theme';
+import { Box, Text } from '@chakra-ui/react';
 
 import GallerySlider from './GallerySlider';
 
-const data = [
-  {
-    id: 15438532,
-    url: 'https://cafe.naver.com/steamindiegame/15438532',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfMjIy/MDAxNzA5OTUxMjQ5NzQy.PZcTgqOD3ShHgkDpsD2LSWAabfQHf6KVb1iILUuiOKwg.3E8C7FlT1D6_5bCFu2YSz4j_nKdghtxZ8sWIomb0wPUg.PNG/llllliaa.png?type=w800',
-    img_url_list: [
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfMjIy/MDAxNzA5OTUxMjQ5NzQy.PZcTgqOD3ShHgkDpsD2LSWAabfQHf6KVb1iILUuiOKwg.3E8C7FlT1D6_5bCFu2YSz4j_nKdghtxZ8sWIomb0wPUg.PNG/llllliaa.png?type=w800',
-    ],
-    board: '&#127912; 이세돌┃팬아트',
-    category: '릴파',
-    title: '이세계아이돌 크리스마스 팬아트',
-    author: 'sei9',
-    date: '2024.03.09. 11:29',
-    view: 7470,
-    like: 1156,
-    comment: 219,
-    is_shukkou: false,
-    deleted: false,
-    is_hyum: false,
-  },
-  {
-    id: 15449023,
-    url: 'https://cafe.naver.com/steamindiegame/15449023',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfNzEg/MDAxNzA5OTg2NzgwODk2.7ikmZeKB-Fk_vej5_4dsoQjbZ4NawijXP5HIjBgB7uYg.eXWY9FmceIJwvLp_09QXMcvBKSrp_IeRBxz4STy9XH4g.JPEG/0225_%EB%A6%B4%ED%8C%8C_%EC%83%9D%EC%9D%BC_%ED%8C%AC%EC%95%84%ED%8A%B8_%EC%A0%84%EC%8B%9C%EA%B4%802.jpg?type=w800',
-    img_url_list: [
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfNzEg/MDAxNzA5OTg2NzgwODk2.7ikmZeKB-Fk_vej5_4dsoQjbZ4NawijXP5HIjBgB7uYg.eXWY9FmceIJwvLp_09QXMcvBKSrp_IeRBxz4STy9XH4g.JPEG/0225_%EB%A6%B4%ED%8C%8C_%EC%83%9D%EC%9D%BC_%ED%8C%AC%EC%95%84%ED%8A%B8_%EC%A0%84%EC%8B%9C%EA%B4%802.jpg?type=w800',
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfMTc3/MDAxNzA5OTg2Nzk5MDM5.EcszZgGgDp_Ew8RnrWjMbTgJHRYP72Rc06Ew64q2z8wg.8JIghL0VShzD2oDl-xt33WEPyOcVpR2C2Tak3U3IR5cg.JPEG/0214_%EB%A6%B4%ED%8C%8C_%EC%83%9D%EC%9D%BC_%ED%8C%AC%EC%95%84%ED%8A%B8_%EC%A0%84%EC%8B%9C%EA%B4%80_%EB%B0%9C%ED%8C%901.jpg?type=w800',
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfNjUg/MDAxNzA5OTg2Nzk5MDM0.PLF8tEheNooffuCNCs83yuyLfV9pwGDqkMHbT3g0Fpog.TgtB5kUWakgZJ3nTsACMhTchywlc3SRVCHOuDgcGJ28g.JPEG/0214_%EB%A6%B4%ED%8C%8C_%EC%83%9D%EC%9D%BC_%ED%8C%AC%EC%95%84%ED%8A%B8_%EC%A0%84%EC%8B%9C%EA%B4%80_%EB%B0%9C%ED%8C%902.jpg?type=w800',
-    ],
-    board: '&#127912; 이세돌┃팬아트',
-    category: '릴파',
-    title: '이세계아이돌 할로윈 팬아트',
-    author: '유꾜꾜',
-    date: '2024.03.09. 21:21',
-    view: 6050,
-    like: 780,
-    comment: 132,
-    is_shukkou: false,
-    deleted: false,
-    is_hyum: false,
-  },
-  {
-    id: 15447701,
-    url: 'https://cafe.naver.com/steamindiegame/15447701',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfMjUg/MDAxNzA5OTg0MDcwOTA0.nlyZw7pP0-7JbXy2Wks1TYoRkM7U-JcfpXePHB34Xecg.2OO4oAUTDLuWSij60dSmkeDvZRqcI4yhI4dGJwYITjUg.PNG/2024%EC%83%9D%EC%9D%BC.png?type=w800',
-    img_url_list: [
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfMjUg/MDAxNzA5OTg0MDcwOTA0.nlyZw7pP0-7JbXy2Wks1TYoRkM7U-JcfpXePHB34Xecg.2OO4oAUTDLuWSij60dSmkeDvZRqcI4yhI4dGJwYITjUg.PNG/2024%EC%83%9D%EC%9D%BC.png?type=w800',
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfMjc4/MDAxNzA5OTg0MDgyODM3.uvxvr8Y4-FkqoRR1Oq5pxFKawUmzVZql_meRj5g6VCIg.C6BNaZPB8BeIPu4YYwmGB2pZ20wXM0nsEWK9KJrkmkkg.JPEG/%EC%96%91%EB%91%90%EB%82%98_A4_%EC%9D%B4%EB%B2%A4%ED%8A%B8_%EB%A7%88%EC%84%B8%EB%8F%8C_%EB%A6%B4%ED%8C%8C.jpg?type=w800',
-    ],
-    board: '&#127912; 이세돌┃팬아트',
-    category: '릴파',
-    title: '이세계아이돌 2주년 팬아트',
-    author: '양두나',
-    date: '2024.03.09. 20:36',
-    view: 368,
-    like: 132,
-    comment: 27,
-    is_shukkou: false,
-    deleted: false,
-    is_hyum: false,
-  },
-  {
-    id: 15429946,
-    url: 'https://cafe.naver.com/steamindiegame/15429946',
-    img_url:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfNjQg/MDAxNzA5OTEwMTM2ODA0.T1HjTwCdE5EKPVQaA_8Q3wY3fKJSXOCZRE7wB2_POnUg.X6FWHiLEb-NzsTtK21aqdsCiLgIGH7s5DqMZmu0PM0Ag.JPEG/IMG_1961.jpeg?type=w800',
-    img_url_list: [
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfNjQg/MDAxNzA5OTEwMTM2ODA0.T1HjTwCdE5EKPVQaA_8Q3wY3fKJSXOCZRE7wB2_POnUg.X6FWHiLEb-NzsTtK21aqdsCiLgIGH7s5DqMZmu0PM0Ag.JPEG/IMG_1961.jpeg?type=w800',
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfMjgx/MDAxNzA5OTEwMTM2ODEw.rAml5ydObeiYkDW90xZ9sXzp6yzDdOI2AYSYdosVng8g.oLenlX-PqgEmCFfVzHsEyrhKEL_IbgNa8f1bHZlDvwAg.JPEG/IMG_1959.jpeg?type=w800',
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDlfNDMg/MDAxNzA5OTEwMTM2ODQ4.eY5cSnO1fWTTZeJmaUFVPisZ_bKJhuOZh27TSpRnbxIg.Z56GX7vtNTUvZzRCtbs_scvbOVmFdp6BIB76UDWSKi8g.JPEG/IMG_1960.jpeg?type=w800',
-    ],
-    board: '&#127912; 이세돌┃팬아트',
-    category: '릴파',
-    title: '이세돌 키싱유 팬아트',
-    author: '펭찌부',
-    date: '2024.03.09. 00:08',
-    view: 2408,
-    like: 661,
-    comment: 126,
-    is_shukkou: false,
-    deleted: false,
-    is_hyum: false,
-  },
-];
-
-const thisWeekTop = ['전체', '이세돌', '고멤', '우왁굳', '금손 작가들의 방'];
-
-type Props = {
-  type: string;
-  range: { start: number; end: number };
-  selected: string | null;
-  setSelected: ((value: string) => void) | null;
-  isdPick: boolean;
-};
-
 export default function RefindPickSection() {
-  const [selectedItem, setSelectedItem] = useState('전체');
   return (
     <Box w="100%" display="flex" flexDir="column" gap="30px" mt="120px">
       <Box
@@ -125,31 +18,8 @@ export default function RefindPickSection() {
         <Text textAlign="left" fontWeight="800" fontSize={['xl', 'xl', '40px']}>
           리파인드 추천 앨범
         </Text>
-        {/* <Box
-          w={['2rem', '2rem', '2.5rem']}
-          h={['2rem', '2rem', '2.5rem']}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          p="0.6rem"
-        >
-          <MdOutlineArrowForwardIos
-            style={{
-              width: '2rem',
-              height: '2rem',
-            }}
-          />
-        </Box> */}
       </Box>
-      <ThisWeekBtnList
-        // type="link"
-        range={{ start: 0, end: 7 }}
-        selected={selectedItem}
-        setSelected={setSelectedItem}
-        isdPick={false}
-      />
       <GallerySlider
-        dataList={data}
         type="album"
         customSwiperOptions={{
           style: {
@@ -171,7 +41,6 @@ export default function RefindPickSection() {
           },
         }}
       />
-      {/* <AlbumGrid /> */}
     </Box>
   );
 }
