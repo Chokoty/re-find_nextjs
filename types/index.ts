@@ -37,6 +37,7 @@ export interface Member {
   query?: string;
   personalColor?: string;
   personalColor2?: string;
+  greetings?: string;
 }
 
 export interface Gallery {
