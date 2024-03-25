@@ -57,8 +57,9 @@ export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
           fontSize="lg"
           fontWeight="bold"
           textAlign="right"
-          w="50%"
-          p="0 2rem"
+          w="60%"
+          // p="0 2rem"
+          pr="2rem"
         >
           총 {eventsData.length} 개
         </Text>
