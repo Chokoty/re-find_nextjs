@@ -84,7 +84,7 @@ export default function ArtistList({ sortCriteria, selectedView }: Props) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        minH="500px"
+        // minH="500px"
         borderBottomRadius="1rem"
       >
         <PuffLoader color="#01BFA2" />
