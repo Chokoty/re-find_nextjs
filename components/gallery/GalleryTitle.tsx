@@ -66,12 +66,15 @@ const GalleryIndexTitle = () => {
         <Image
           src="/static/images/4.png"
           alt="애기뺑띠"
-          width={imageWidth}
-          height={imageWidth}
+          fill
+          priority
+          sizes="(max-width: 479px) 15vw, (max-width: 500px) 40vw, 60vw"
           style={{
             position: 'absolute',
-            top,
-            left,
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            objectFit: 'cover',
           }}
         />
       </Box>

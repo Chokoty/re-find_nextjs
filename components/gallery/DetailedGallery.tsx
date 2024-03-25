@@ -17,7 +17,6 @@ import PageTitle from '@/components/common/PageTitle';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
 import TopBackground from '@/components/common/TopBackground';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
-import DetailedGalleryLayout from '@/components/layout/gallery-layout';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
@@ -166,7 +165,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     '/static/images/gallery/크리스마스커버일러스트_1920x1080.jpg'; // 배경 이미지 URL
 
   return (
-    <DetailedGalleryLayout title="">
+    <>
       <Box
         display="flex"
         flexDirection="column"
@@ -179,22 +178,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         // background={bg2}
         // borderRadius="1rem"
       >
-        {/* {router.query?.subTitle ? (
-            <Text  m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'>{router.query.subTitle}</Text>
-          ) : (
-            album?.subTitle
-          )} */}
-        {/* {member?.name ? (
-          <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-            {member.name} 팬아트
-          </Text>
-        ) : (
-          <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-            {album?.subTitle}
-          </Text>
-        )} */}
-        {/* <TopBackground backgroundImageUrl={backgroundImageUrl} isAlbum={false}> */}
-        {/* <GalleryTitle titleText={topTitle} isMember={false} /> */}
         <PageTitle topTitle={topTitle} />
         {/* </TopBackground> */}
         {album?.description && <Text m="0 auto">{album.description}</Text>}
@@ -207,19 +190,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
             </Text>
           )
         }
-        {/* <Text>총 {total}개의 팬아트가 있습니다.</Text> */}
-        {/* <Tooltip label="프로필 공유">
-            <Button
-              w="3rem"
-              h="3rem"
-              variant="ghost"
-              borderRadius="full"
-              p="0"
-              onClick={handleCopyLink}
-            >
-              <ImLink />
-            </Button>
-          </Tooltip> */}
         <ShareLinkButton />
       </Box>
       <ViewSelectBar
@@ -233,7 +203,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         isdPick={false}
       />
       {content()}
-    </DetailedGalleryLayout>
+    </>
   );
 }
 

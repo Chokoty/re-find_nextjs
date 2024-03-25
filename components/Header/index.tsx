@@ -24,7 +24,8 @@ export default function Header() {
   const pathname = usePathname();
   const isMorePath = pathname.startsWith('/more');
   const isSearchPage = pathname.startsWith('/search');
-  const isGalleryPage = pathname.includes('/gallery');
+  // const isGalleryPage = pathname.includes('/gallery');
+  const isGalleryPage = pathname === '/gallery';
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
   const isScrolling = useScroll(60);

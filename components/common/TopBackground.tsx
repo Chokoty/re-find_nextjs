@@ -1,41 +1,32 @@
+'use client';
+
 import { Box, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 
-import { Isd } from '@/data/vectors';
-// import Image from 'next/image';
+import { getStaticImage } from '@/lib/getStaticImage';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface TopBackgroundProps {
   children: ReactNode;
-  isAlbum: boolean;
 }
 
-const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
-  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-
-  // const backgroundStyle = {
-  //   background: `linear-gradient(180deg, rgba(0, 0, 0, 0) 60%, ${bg} 100%), linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundPosition: 'top', // 'center',
-  //   backgroundSize: '140%', // 'cover', // 'contain',
-  // };
-  // const backgroundStyle2 = {
-  //   background: `linear-gradient(90deg, ${bg} 16%, rgba(15, 15, 15, 0) 72%), url(${backgroundImageUrl})`,
-  //   backgroundRepeat: 'no-repeat',
-  //   backgroundPosition: 'top', // 'center',
-  //   backgroundSize: '140%', // 'cover', // 'contain',
-  // };
+const TopBackground = ({ children }: TopBackgroundProps) => {
   const { colorMode } = useColorMode();
   const isDarkMode = colorMode === 'dark';
+  const pathname = usePathname().replace('/gallery', '');
+  const bgStaticSrc = getStaticImage(pathname.slice(1));
   const imageBackgroundShadow = isDarkMode
     ? 'linear-gradient(180deg, hsl(233deg 38% 8% / 80%), hsl(233deg 38% 8% / 40%) 10.88%, hsl(233deg 38% 8% / 0%) 20.67%, hsl(233deg 38% 8% / 0%) 51.23%, hsl(233deg 38% 8% / 64%) 79.23%, hsl(233 38% 8% / 1) 100.07%)'
-    : 'linear-gradient(180deg, rgb(245 246 251 / 80%), hsl(0deg 0% 100% / 40%) 0%, hsl(0deg 0% 100% / 0%) 60%, #f5f6fb 87.23%, #f5f6fb 82.23%, #f5f6fb 23.07%)';
+    : 'linear-gradient(rgba(245, 246, 251, 0.8), rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 30%, rgb(245, 246, 251) 98.23%, rgb(245, 246, 251) 89.23%, rgb(245, 246, 251) 24.07%)';
 
   return (
     <Box
       as="section"
       w="100%"
+      h="100%"
+      maxH="751px"
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -66,7 +57,7 @@ const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
           zIndex="-1"
         ></Box> */}
         <Image
-          src={Isd}
+          src={bgStaticSrc}
           // layout="fill"
           // objectFit="cover"
           // layout="responsive"
@@ -78,6 +69,7 @@ const TopBackground = ({ children, isAlbum }: TopBackgroundProps) => {
           height={1080}
           style={{
             width: '100%',
+            maxHeight: '751px',
             height: '100%',
             objectFit: 'cover',
             opacity: 0.5,

@@ -1,9 +1,11 @@
+import { Box } from '@chakra-ui/react';
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
 
+import TopBackground from '@/components/common/TopBackground';
 import IsdGallery from '@/components/gallery/IsdGallery';
 import queryOptions from '@/service/client/gallery/queries';
 
@@ -24,8 +26,24 @@ export default async function IsdPage() {
   const { queries } = dehydrate(queryClient);
 
   return (
-    <HydrationBoundary state={{ queries }}>
-      <IsdGallery />
-    </HydrationBoundary>
+    <Box className="body" minH="240vh" w="100%" m="0 auto">
+      {/* <GalleryHeader title={팬아트 갤러리} /> */}
+      <TopBackground>
+        {/* <GalleryTitle titleText={topTitle} isMember={false} /> */}
+        {/* <PageTitle topTitle={topTitle} /> */}
+        <></>
+      </TopBackground>
+      <Box
+        w="100%"
+        className="layout"
+        position="relative"
+        top="-460px"
+        zIndex="2"
+      >
+        <HydrationBoundary state={{ queries }}>
+          <IsdGallery />
+        </HydrationBoundary>
+      </Box>
+    </Box>
   );
 }

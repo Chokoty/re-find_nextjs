@@ -1,3 +1,4 @@
+import { Box } from '@chakra-ui/react';
 import {
   dehydrate,
   HydrationBoundary,
@@ -5,7 +6,9 @@ import {
 } from '@tanstack/react-query';
 import type { Metadata } from 'next';
 
+import TopBackground from '@/components/common/TopBackground';
 import DetailedGallery from '@/components/gallery/DetailedGallery';
+import GalleryHeader from '@/components/layout/GalleryHeader';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { siteConfig } from '@/lib/config';
@@ -61,8 +64,24 @@ export default async function page({ params }: Params) {
   const { queries } = dehydrate(queryClient);
 
   return (
-    <HydrationBoundary state={{ queries }}>
-      <DetailedGallery value={name} endpoint={endpoint ?? ''} />;
-    </HydrationBoundary>
+    <Box className="body" minH="240vh" w="100%" m="0 auto">
+      <GalleryHeader title="팬아트 갤러리" />
+      <TopBackground>
+        {/* <GalleryTitle titleText={topTitle} isMember={false} /> */}
+        {/* <PageTitle topTitle={topTitle} /> */}
+        <></>
+      </TopBackground>
+      <Box
+        w="100%"
+        className="layout"
+        position="relative"
+        top="-460px"
+        zIndex="2"
+      >
+        <HydrationBoundary state={{ queries }}>
+          <DetailedGallery value={name} endpoint={endpoint ?? ''} />;
+        </HydrationBoundary>
+      </Box>
+    </Box>
   );
 }

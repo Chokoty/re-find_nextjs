@@ -40,18 +40,20 @@ const Member = ({ member }: { member: MemberType }) => {
           alignItems: 'center',
         }}
       >
-        <Image
-          src={staticImage}
-          alt={name}
-          width={93}
-          height={93}
-          style={{
-            objectFit: 'cover',
-            borderRadius: '50%',
-            width: '100px',
-            height: '100px',
-          }}
-        />
+        <Box position="relative" width="100px" height="100px">
+          <Image
+            src={staticImage}
+            alt={name}
+            fill
+            sizes="(max-width: 1000px) 10vw, 15vw"
+            quality={100}
+            priority
+            style={{
+              objectFit: 'cover',
+              borderRadius: '50%',
+            }}
+          />
+        </Box>
         <Text textAlign="center">{name}</Text>
         <Text fontSize="12px">{`"${greetings}"`}</Text>
       </Link>

@@ -17,7 +17,7 @@ export default function Gallery() {
   return (
     <Box w="100%">
       {/* <PageTitle topTitle={topTitle} /> */}
-      <TopBackground isAlbum={false}>
+      <TopBackground>
         <GalleryTitle titleText={topTitle} isMember={false} />
       </TopBackground>
       <Box

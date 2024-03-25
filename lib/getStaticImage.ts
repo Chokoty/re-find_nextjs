@@ -6,14 +6,12 @@ import {
   Ine,
   Isd,
   Jingburger,
-  Jingburger2,
   Jururu,
   KissingYou,
   Lilpa,
   LilpaBirthday,
   Rewind2Year,
   Viichan,
-  Viichan2,
   ViichanBirthday,
   Wakgood,
 } from '@/data/vectors';
@@ -37,7 +35,7 @@ export const getStaticImage = (cover: string) => {
     case 'ine':
       return Ine;
     case 'jingburger':
-      return Jingburger2;
+      return Jingburger;
     case 'lilpa':
       return Lilpa;
     case 'jururu':
@@ -45,12 +43,12 @@ export const getStaticImage = (cover: string) => {
     case 'gosegu':
       return Gosegu;
     case 'viichan':
-      return Viichan2;
+      return Viichan;
     case 'gomem':
       return Gomem;
     case 'woowakgood':
       return Wakgood;
     default:
-      throw new Error('Invalid static image');
+      return Isd;
   }
 };

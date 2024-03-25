@@ -10,7 +10,6 @@ export default function HeaderTab() {
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const pathname = usePathname();
   const isCurrentPath = (path: string) => pathname === path;
-  const isGalleryPage = pathname.includes('/gallery');
 
   return (
     <>
@@ -27,7 +26,7 @@ export default function HeaderTab() {
             w="3rem"
             fontWeight="700"
             textAlign="center"
-            color={isGalleryPage ? color6 : color5}
+            color={isCurrentPath('/gallery') ? color6 : color5}
             _hover={{
               color: color6,
             }}
@@ -35,7 +34,7 @@ export default function HeaderTab() {
             갤러리
           </Text>
         </NextLink>
-        {isGalleryPage && (
+        {isCurrentPath('/gallery') && (
           <Box
             w="1rem"
             h="0.25rem"
@@ -61,6 +60,7 @@ export default function HeaderTab() {
             w="2rem"
             color={isCurrentPath('/artists') ? color6 : color5}
             fontWeight="700"
+            textAlign="center"
             _hover={{
               color: color6,
             }}

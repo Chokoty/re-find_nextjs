@@ -53,8 +53,6 @@ export function useSearchResults({
             ...artwork,
             board: artwork.board.replace(/&#\d+;/g, '').trim(),
           }));
-      } else {
-        return [];
       }
       return [];
     });
