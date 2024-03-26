@@ -18,9 +18,9 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
   const pathname = usePathname().replace('/gallery', '');
   const bgStaticSrc = getStaticImage(pathname.slice(1));
   const imageBackgroundShadow = isDarkMode
-    ? 'linear-gradient(180deg, hsl(233deg 38% 8% / 80%), hsl(233deg 38% 8% / 40%) 10.88%, hsl(233deg 38% 8% / 0%) 20.67%, hsl(233deg 38% 8% / 0%) 51.23%, hsl(233deg 38% 8% / 64%) 79.23%, hsl(233 38% 8% / 1) 100.07%)'
-    : 'linear-gradient(rgba(245, 246, 251, 0.8), rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 30%, rgb(245, 246, 251) 98.23%, rgb(245, 246, 251) 89.23%, rgb(245, 246, 251) 24.07%)';
-
+    ? 'linear-gradient(180deg, rgba(18, 18, 18, 0.5) 51.43%, #121212 100%),linear-gradient(75deg, #121212 0%, rgba(18, 18, 18, 0.00) 45.72%)'
+    : 'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 31.43%, #ffffff 86%), linear-gradient(91deg, #ffffff 0%, rgb(255 255 255 / 0%) 57.72%)';
+  const imageOpacity = isDarkMode ? 0.8 : 0.7;
   return (
     <Box
       as="section"
@@ -72,7 +72,7 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
             maxHeight: '751px',
             height: '100%',
             objectFit: 'cover',
-            opacity: 0.5,
+            opacity: imageOpacity,
           }}
         />
       </Box>

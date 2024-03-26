@@ -172,9 +172,7 @@ export default function IsdGallery() {
 
   return (
     <>
-      <PageTitle topTitle={album} />
-      <ShareLinkButton />
-      <Box
+      {/* <Box
         display="flex"
         flexDirection="column"
         justifyContent="center"
@@ -196,8 +194,7 @@ export default function IsdGallery() {
           setSelected={setSelected}
           isdPick={true}
         />
-        {/* <Text>총 {total}</Text> */}
-      </Box>
+      </Box> */}
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}

@@ -16,6 +16,8 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { BiSolidDashboard } from 'react-icons/bi';
+import { IoGrid } from 'react-icons/io5';
 import {
   MdMoreHoriz,
   MdOutlineDashboard,
@@ -24,6 +26,7 @@ import {
 } from 'react-icons/md';
 
 import { menuItems } from '@/data/artists';
+import { useScroll } from '@/hook/useScroll';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { darkMode, lightMode } from '@/styles/theme';
 
@@ -49,11 +52,11 @@ export default function ViewSelectBar({
   isdPick,
 }: Props) {
   // const isMobile = useResponsive();
-
-  // const [topPosition, setTopPosition] = useState(0);
-  // const [isOpen, setIsOpen] = useState(false);
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   const [label, setLabel] = useState('알잘딱순');
+  // 현재 topbackground가 화면의 크기만큼 유동적으로 변하기 때문에 background를 상황에따라 주기 에매하다
+  // const isScrolling = useScroll(520);
+  // const showShadow = useShowShadow(520, 0);
 
   // const selectedLabel = menuItems.find(
   //   (item) => item.id === selectedMenu
@@ -71,6 +74,7 @@ export default function ViewSelectBar({
   const { onClose } = useDisclosure();
 
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const popoverBg = useColorModeValue(lightMode.bg2, darkMode.bg3);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   const boxShadowLight =
@@ -78,8 +82,6 @@ export default function ViewSelectBar({
   const boxShadowDark =
     '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
-
-  const showShadow = useShowShadow(386, 0);
 
   // useEffect(() => {
   //   if (usingPage === 'gallery') {
@@ -104,114 +106,138 @@ export default function ViewSelectBar({
     <Flex // 뷰 선택 버튼
       flexDirection="row"
       alignItems="center"
-      justifyContent="center"
-      p="0.5rem 1rem"
+      justifyContent="space-between"
+      p="0.5rem 2rem"
       mb="1rem"
-      gap="2rem"
-      position="sticky"
+      // position=""
       // top={isMobile ? '0' : '57px'}
-      top={`${topOffset}px`}
-      zIndex="90"
+      // top={`${topOffset}px`}
+      // zIndex="90"
       w="100%"
-      boxShadow={showShadow ? boxShadow : 'none'}
-      style={{
-        backgroundColor: bgColor,
-        color,
-      }}
+      // boxShadow={showShadow ? boxShadow : 'none'}
+      // style={{
+      //   backgroundColor: isScrolling ? bgColor : 'unset',
+      //   color: isScrolling ? color : 'unset',
+      // }}
     >
+      <Box display="flex" flexDir="row" gap="5px">
+        <Button
+          variant={activeView === 'masonry' ? 'solid' : 'ghost'}
+          onClick={() => onViewChange('masonry')}
+          borderRadius="30px"
+        >
+          <BiSolidDashboard
+            size="26px"
+            color={
+              activeView === 'masonry' ? 'white' : 'rgba(255, 255, 255, 0.20)'
+            }
+          />
+        </Button>
+        <Button
+          variant={activeView === 'grid' ? 'solid' : 'ghost'}
+          onClick={() => onViewChange('grid')}
+          borderRadius="30px"
+        >
+          <IoGrid
+            size="24px"
+            color={
+              activeView === 'grid' ? 'white' : 'rgba(255, 255, 255, 0.20)'
+            }
+          />
+        </Button>
+      </Box>
       <Box
-        w={isSmallerThan370 ? '40px' : '120px'}
         display="flex"
-        justifyContent="flex-end"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        gap="1rem"
       >
-        <Menu>
-          <MenuButton
-            variant="ghost"
-            as={Button}
-            rightIcon={<MdOutlineKeyboardArrowDown />}
-          >
-            {!isSmallerThan370 && label}
-          </MenuButton>
-          <MenuList>
-            {isdPick === true &&
-              menuItems
-                .filter((item) => item.isdPick === true)
-                .map((item) => (
+        <Box
+          w={isSmallerThan370 ? '40px' : '120px'}
+          display="flex"
+          justifyContent="flex-end"
+        >
+          <Menu>
+            <MenuButton
+              variant="solid"
+              borderRadius="800px"
+              as={Button}
+              iconSpacing={isSmallerThan370 ? 'unset' : '2'}
+              rightIcon={<MdOutlineKeyboardArrowDown />}
+            >
+              {!isSmallerThan370 && label}
+            </MenuButton>
+            <MenuList bg={popoverBg}>
+              {isdPick === true &&
+                menuItems
+                  .filter((item) => item.isdPick === true)
+                  .map((item) => (
+                    <MenuItem
+                      bg={popoverBg}
+                      _hover={{
+                        bg: '#ffffff14',
+                      }}
+                      key={item.id}
+                      onClick={() => onMenuItemClick(item.id)}
+                    >
+                      {item.label}
+                    </MenuItem>
+                  ))}
+              {isdPick === false &&
+                menuItems.map((item) => (
                   <MenuItem
+                    bg={popoverBg}
                     key={item.id}
+                    _hover={{
+                      bg: '#ffffff14',
+                    }}
                     onClick={() => onMenuItemClick(item.id)}
                   >
                     {item.label}
                   </MenuItem>
                 ))}
-            {isdPick === false &&
-              menuItems.map((item) => (
-                <MenuItem
-                  key={item.id}
-                  onClick={() => onMenuItemClick(item.id)}
-                >
-                  {item.label}
-                </MenuItem>
-              ))}
-          </MenuList>
-        </Menu>
-      </Box>
-      <Box>
-        <Button
-          variant={activeView === 'masonry' ? 'solid' : 'ghost'}
-          onClick={() => onViewChange('masonry')}
-        >
-          <MdOutlineDashboard size="24px" />
-        </Button>
-        <Button
-          variant={activeView === 'grid' ? 'solid' : 'ghost'}
-          onClick={() => onViewChange('grid')}
-        >
-          <MdOutlineGridView size="24px" />
-        </Button>
-      </Box>
-      <Popover onClose={onClose}>
-        <PopoverTrigger>
-          <Box
-            w={isSmallerThan370 ? '40px' : '120px'}
-            display="flex"
-            justifyContent="flex-start"
-          >
-            <Button
-              w="2.5rem"
-              h="2.5rem"
-              p="0"
-              borderRadius="full"
-              variant="ghost"
+            </MenuList>
+          </Menu>
+        </Box>
+        <Popover onClose={onClose}>
+          <PopoverTrigger>
+            <Box w="40px">
+              <Button
+                w="2.5rem"
+                h="2.5rem"
+                p="0"
+                variant="solid"
+                borderRadius="full"
+              >
+                <MdMoreHoriz size="24px" />
+              </Button>
+            </Box>
+          </PopoverTrigger>
+          <PopoverContent w="200px" bg={popoverBg}>
+            <PopoverBody
+              display="flex"
+              flexDirection="column"
+              alignItems="flex-start"
+              justifyContent="center"
+              p="0.5rem"
             >
-              <MdMoreHoriz size="24px" />
-            </Button>
-          </Box>
-        </PopoverTrigger>
-        <PopoverContent w="200px">
-          <PopoverBody
-            display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
-            justifyContent="center"
-            p="0.5rem"
-          >
-            <Text p="0.5rem 1rem" fontSize="sm">
-              뷰 옵션
-            </Text>
-            <Button
-              w="100%"
-              variant="ghost"
-              textAlign="left"
-              onClick={() => {
-                handleShowDeleted();
-              }}
-            >
-              <Text w="100%" textAlign="left">
-                혐잘딱 게시글 {isDeletedVisible ? '가리기' : '보이기'}
+              <Text p="0.5rem 1rem" fontSize="sm">
+                뷰 옵션
               </Text>
-            </Button>
-            {/* <Button
+              <Button
+                w="100%"
+                variant="ghost"
+                textAlign="left"
+                onClick={() => {
+                  handleShowDeleted();
+                }}
+              >
+                <Text w="100%" textAlign="left">
+                  혐잘딱 게시글 {isDeletedVisible ? '가리기' : '보이기'}
+                </Text>
+              </Button>
+              {/* <Button
               w="100%"
               variant="ghost"
               textAlign="left"
@@ -223,15 +249,10 @@ export default function ViewSelectBar({
                 삭제된 게시글 {isDeletedVisible ? '가리기' : '보이기'}
               </Text>
             </Button> */}
-          </PopoverBody>
-        </PopoverContent>
-      </Popover>
-      {/* <Button
-    variant={activeView === 'listView' ? 'solid' : 'ghost'}
-    onClick={() => handleViewChange('listView')}
-  >
-    <MdOutlineViewDay size="24px" />
-  </Button> */}
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </Box>
     </Flex>
   );
 }

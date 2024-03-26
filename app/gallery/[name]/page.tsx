@@ -8,9 +8,9 @@ import type { Metadata } from 'next';
 
 import TopBackground from '@/components/common/TopBackground';
 import DetailedGallery from '@/components/gallery/DetailedGallery';
-import GalleryHeader from '@/components/layout/GalleryHeader';
+import GalleryTitle from '@/components/gallery/GalleryTitle';
 import gallery from '@/data/gallery';
-import members from '@/data/members';
+import members2 from '@/data/members2';
 import { siteConfig } from '@/lib/config';
 import queryOptions from '@/service/client/gallery/queries';
 
@@ -42,11 +42,9 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
   };
 }
 
-export default async function page({ params }: Params) {
-  const { name } = params;
-
+export default async function page({ params: { name } }: Params) {
   const endpoint =
-    members.find((item) => item.value === name)?.query ||
+    members2.find((item) => item.value === name)?.query ||
     gallery.find((item) => item.value === name)?.query;
 
   const { queryKey, queryFn } = queryOptions.galleryArtworks({
@@ -65,17 +63,16 @@ export default async function page({ params }: Params) {
 
   return (
     <Box className="body" minH="240vh" w="100%" m="0 auto">
-      <GalleryHeader title="팬아트 갤러리" />
       <TopBackground>
-        {/* <GalleryTitle titleText={topTitle} isMember={false} /> */}
-        {/* <PageTitle topTitle={topTitle} /> */}
+        <GalleryTitle pageType={name} />
         <></>
       </TopBackground>
       <Box
+        as="section"
         w="100%"
         className="layout"
         position="relative"
-        top="-460px"
+        top={['-60px', '-90px', '-120px', '-180px', '-220px']} // -220px(-60px + -160px)
         zIndex="2"
       >
         <HydrationBoundary state={{ queries }}>

@@ -40,7 +40,7 @@ const Member = ({ member }: { member: MemberType }) => {
           alignItems: 'center',
         }}
       >
-        <Box position="relative" width="100px" height="100px">
+        <Box position="relative" width="120px" height="120px">
           <Image
             src={staticImage}
             alt={name}

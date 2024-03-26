@@ -24,8 +24,7 @@ export default function Header() {
   const pathname = usePathname();
   const isMorePath = pathname.startsWith('/more');
   const isSearchPage = pathname.startsWith('/search');
-  // const isGalleryPage = pathname.includes('/gallery');
-  const isGalleryPage = pathname === '/gallery';
+  const isGalleryPage = pathname.includes('/gallery');
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
   const isScrolling = useScroll(60);
@@ -33,7 +32,9 @@ export default function Header() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
   // gallery page이면 기본적으로 transparent이지만, 스크롤할 때는 bg2로 변경 하지만, 이외에 page라면 bg2로 고정
-  const backgroundColor = isGalleryPage && !isScrolling ? 'transparent' : bg2;
+  const backgroundColor =
+    isGalleryPage && !isScrolling ? 'rgba(0, 0, 0, 0.30)' : bg2;
+  const backdropFilter = isGalleryPage && !isScrolling ? 'blur(6px)' : 'none';
 
   if (isMorePath) return null;
 
@@ -54,6 +55,7 @@ export default function Header() {
         //   ? 'none' // 스크롤 시에만 그라데이션 배경 적용
         //   : `linear-gradient(90deg, ${bg2} 0%, rgba(0, 0, 0, 0) 50%, ${bg2} 100%)`,
         backgroundColor,
+        backdropFilter,
         transition: 'background-color 0.3s, background-image 0.3s',
         color,
       }}

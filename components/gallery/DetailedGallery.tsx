@@ -15,7 +15,6 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import PageTitle from '@/components/common/PageTitle';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
-import TopBackground from '@/components/common/TopBackground';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
@@ -113,6 +112,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     return (
       <Box
         w="100%"
+        p="0 1.5rem"
         overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
         {activeView === 'masonry' && (
@@ -161,12 +161,9 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     );
   };
 
-  const backgroundImageUrl =
-    '/static/images/gallery/크리스마스커버일러스트_1920x1080.jpg'; // 배경 이미지 URL
-
   return (
     <>
-      <Box
+      {/* <Box
         display="flex"
         flexDirection="column"
         justifyContent="center"
@@ -178,9 +175,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         // background={bg2}
         // borderRadius="1rem"
       >
-        <PageTitle topTitle={topTitle} />
-        {/* </TopBackground> */}
-        {album?.description && <Text m="0 auto">{album.description}</Text>}
         {
           // member는 팬아트 개수 안 보이게
           album && (
@@ -190,8 +184,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
             </Text>
           )
         }
-        <ShareLinkButton />
-      </Box>
+      </Box> */}
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}
@@ -199,7 +192,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         onMenuItemClick={handleMenuItemClick}
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
-        topOffset={47}
+        topOffset={59}
         isdPick={false}
       />
       {content()}

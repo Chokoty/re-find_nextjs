@@ -9,18 +9,14 @@ import RefindPickSection from '@/components/gallery/RefindPickSection';
 import ThisWeekTopSection from '@/components/gallery/ThisWeekTopSection';
 
 export default function Gallery() {
-  const topTitle = {
-    title: '팬아트 갤러리',
-    description: '왁물원에 올라온 모든 팬아트들을 한 곳에서!',
-  };
-
   return (
     <Box w="100%">
       {/* <PageTitle topTitle={topTitle} /> */}
       <TopBackground>
-        <GalleryTitle titleText={topTitle} isMember={false} />
+        <GalleryTitle pageType="galleryHome" />
       </TopBackground>
       <Box
+        as="section"
         w="100%"
         // padding="0 1rem"
         position="relative"

@@ -1,49 +1,110 @@
-import { Box, Text, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
-import Image from 'next/image';
-import NextLink from 'next/link';
-import React from 'react';
+'use client';
 
+import {
+  Box,
+  Button,
+  Text,
+  useColorModeValue,
+  useMediaQuery,
+} from '@chakra-ui/react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+import { FaAngleLeft } from 'react-icons/fa6';
+import { MdShare } from 'react-icons/md';
+
+import gallery from '@/data/gallery';
+import members2 from '@/data/members2';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface Props {
-  titleText: Record<string, string | undefined>;
-  isMember: boolean;
+import ShareLinkButton from '../common/ShareLinkButton';
+
+const getTitleInfo = (type: string) => {
+  if (type === 'galleryHome') {
+    return {
+      title: '팬아트 갤러리',
+      description: '왁물원에 올라온 모든 팬아트들을 한 곳에서!',
+    };
+  }
+
+  const album = gallery.find((item) => item.value === type);
+  const member = members2.find((item) => item.value === type);
+
+  return {
+    title: album?.title || `${member?.name ?? ''} 팬아트`,
+    description: album?.description || '',
+  };
+};
+
+export default function GalleryTitle({ pageType }: { pageType: string }) {
+  const router = useRouter();
+  const { title, description } = getTitleInfo(pageType);
+  const handleBackButton = () => {
+    router.back();
+  };
+
+  return (
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems={['center', 'flex-start']}
+      justifyContent={['center', 'flex-start']}
+      w="100%"
+    >
+      {pageType === 'galleryHome' ? (
+        <>
+          <Text fontSize={['xs', 'md', 'xl']} fontWeight="600">
+            {description}
+          </Text>
+          <GalleryHomeTitle />
+        </>
+      ) : (
+        <>
+          <Button
+            variant="link"
+            display="flex"
+            alignItems="center"
+            flexDir="row"
+            gap="5px"
+            color="rgba(255, 255, 255, 0.50)"
+            onClick={handleBackButton}
+            mb="0.5rem"
+          >
+            <FaAngleLeft />
+            <Text color="rgba(255, 255, 255, 0.50)">
+              팬아트 갤러리로 돌아가기
+            </Text>
+          </Button>
+          <Text
+            m="0"
+            as="h1"
+            fontSize={['2xl', '4xl', '5xl', '4rem']}
+            fontFamily={'ONE-Mobile-POP'}
+          >
+            {title}
+          </Text>
+          <Box mb="1.5rem">
+            <Text fontWeight="bold" fontSize={['sm', 'md', 'xl']}>
+              {description}
+            </Text>
+          </Box>
+          <ShareLinkButton />
+        </>
+      )}
+    </Box>
+  );
 }
 
-const GalleryIndexTitle = () => {
-  const [isLargerThanSmall] = useMediaQuery('(min-width: 30em)');
-  const [isLargerThanMedium] = useMediaQuery('(min-width: 48em)');
-  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-
+const GalleryHomeTitle = () => {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
     darkMode.highlight
   );
-
-  let imageWidth = 150; // 기본 이미지 너비
-  let top = '-2rem'; // 기본 이미지 왼쪽으로 이동
-  let left = '0.3rem'; // 기본 이미지 왼쪽으로 이동
-
-  if (isLargerThanMedium) {
-    imageWidth = 150; // 화면 크기가 48em 이상인 경우
-  } else if (isLargerThanSmall) {
-    imageWidth = 75; // 화면 크기가 30em 이상인 경우
-    top = '-1rem'; // 이미지 왼쪽으로 이동
-    left = '0.6rem'; // 이미지 왼쪽으로 이동
-  } else {
-    imageWidth = 50; // 화면 크기가 30em 미만인 경우
-    top = '-0.7rem'; // 이미지 왼쪽으로 이동
-    left = '0.3rem'; // 이미지 왼쪽으로 이동
-  }
-
   return (
     <Box
       display="flex"
       flexDirection="row"
       alignItems="center"
-      justifyContent={['center', 'flex-start']}
-      w="100%"
-      m="0 auto"
+      justifyContent="center"
     >
       <Text
         m="0"
@@ -90,78 +151,3 @@ const GalleryIndexTitle = () => {
     </Box>
   );
 };
-
-const TopTitle = ({ titleText, isMember }: Props) => {
-  const [isLargerThanSmall] = useMediaQuery('(min-width: 30em)');
-  const [isLargerThanMedium] = useMediaQuery('(min-width: 48em)');
-  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-
-  let imageWidth = 150; // 기본 이미지 너비
-  let top = '-2rem'; // 기본 이미지 왼쪽으로 이동
-  let left = '0.3rem'; // 기본 이미지 왼쪽으로 이동
-
-  if (isLargerThanMedium) {
-    imageWidth = 150; // 화면 크기가 48em 이상인 경우
-  } else if (isLargerThanSmall) {
-    imageWidth = 75; // 화면 크기가 30em 이상인 경우
-    top = '-1rem'; // 이미지 왼쪽으로 이동
-    left = '0.6rem'; // 이미지 왼쪽으로 이동
-  } else {
-    imageWidth = 50; // 화면 크기가 30em 미만인 경우
-    top = '-0.7rem'; // 이미지 왼쪽으로 이동
-    left = '0.3rem'; // 이미지 왼쪽으로 이동
-  }
-
-  return (
-    <Box
-      display="flex"
-      flexDirection="column"
-      alignItems={['center', 'flex-start']}
-      justifyContent="center"
-      textAlign="center"
-    >
-      {titleText.title === '팬아트 갤러리' ? (
-        <>
-          <Text fontSize={['xs', 'md', 'xl']} fontWeight="600">
-            {titleText?.description}
-          </Text>
-          <GalleryIndexTitle />
-        </>
-      ) : (
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="flex-start"
-          justifyContent="flex-start"
-          w="100%"
-          m="0 auto"
-          gap="1rem"
-        >
-          <Text
-            m="0"
-            as="h1"
-            fontSize={['2xl', '4xl', '5xl', '4rem']}
-            fontFamily={'ONE-Mobile-POP'}
-          >
-            {titleText.title}
-          </Text>
-          {isMember === false && (
-            <Box
-              display="flex"
-              flexDirection="row"
-              alignItems="center"
-              justifyContent="flex-start"
-            >
-              <Text fontWeight="bold" fontSize={['sm', 'md', 'xl']}>
-                {titleText?.description}
-              </Text>
-              <Text fontSize={['sm', 'md', 'xl']}>가 있어요.</Text>
-            </Box>
-          )}
-        </Box>
-      )}
-    </Box>
-  );
-};
-
-export default TopTitle;

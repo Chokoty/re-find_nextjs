@@ -58,12 +58,12 @@ export default function TabBarComponent({ tab, setTab }: Props) {
       <Flex
         background="#292929"
         // p="0.5rem"
-        width="300px"
+        width="250px"
         height="60px"
         justifyContent="center"
         alignItems="center"
         borderRadius="2rem"
-        gap="2rem"
+        gap="1.5rem"
         boxShadow="dark-lg"
       >
         {Object.keys(routerList).map((router) => (
