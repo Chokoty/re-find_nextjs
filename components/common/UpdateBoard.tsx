@@ -13,7 +13,7 @@ export default function UpdateBoard() {
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-  const width = useBreakpointValue({ base: '100%', md: '100%' });
+  const width = useBreakpointValue({ base: '90%', md: '100%' });
 
   return (
     <Box
