@@ -69,11 +69,11 @@ export default function MelonVoteModal() {
     return () => clearInterval(interval); // 컴포넌트가 언마운트될 때 인터벌 제거
   }, []);
 
-  const modalStyles = {
-    bg: 'gray.800', // 배경색 지정
-    color: 'white', // 텍스트 색상 지정
-    borderRadius: '8px', // 모서리 둥글게
-  };
+  // const modalStyles = {
+  //   bg: 'gray.800', // 배경색 지정
+  //   color: 'white', // 텍스트 색상 지정
+  //   borderRadius: '8px', // 모서리 둥글게
+  // };
 
   return (
     <Box

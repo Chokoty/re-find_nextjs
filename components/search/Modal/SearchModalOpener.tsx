@@ -17,7 +17,7 @@ const ReactPortal = dynamic(() => import('@/components/common/ReactPortal'));
 
 export default function SearchModalOpener() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
+  const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   const { setIsOpen } = useModalStore(
@@ -32,11 +32,7 @@ export default function SearchModalOpener() {
   return (
     <>
       <InputGroup m="0 " w="70%" onClick={handleInputClick}>
-        <InputLeftElement
-          pointerEvents="none"
-          color="gray.300"
-          fontSize="1.2em"
-        >
+        <InputLeftElement pointerEvents="none" color={color7} fontSize="1.2em">
           <span
             style={{
               width: '1px',

@@ -6,9 +6,11 @@ import {
   Box,
   Skeleton,
   useBreakpointValue,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
 import { useRecentUpdates } from '@/service/client/home/useHomeService';
+import { darkMode, lightMode } from '@/styles/theme';
 
 import UpdateCard from './UpdateCard';
 
@@ -49,12 +51,13 @@ export default function UpdateCardList() {
 
 const Loading = () => {
   const width = useBreakpointValue({ base: '100%', md: '100%' });
+  const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
   return (
     <Box
       maxW="700px"
       mb="1rem"
       w={width}
-      background="gray.700"
+      background={bgColor}
       borderRadius="1rem"
     >
       <Skeleton height="600px" />
