@@ -12,9 +12,9 @@ import {
 // import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
 import { useShallow } from 'zustand/react/shallow';
-import { useImageUploadStore } from '@/store/imageUploadStore';
 
 import { TARGET_COUNT } from '@/lib/const';
+import { useImageUploadStore } from '@/store/imageUploadStore';
 
 export default function EventModal() {
   const targetCountText = TARGET_COUNT.toString().slice(0, 1);
