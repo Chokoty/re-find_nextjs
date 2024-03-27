@@ -1,4 +1,4 @@
-export const TARGET_COUNT = 50000; // 이벤트 타겟 카운트
+export const TARGET_COUNT = 60000; // 이벤트 타겟 카운트
 
 export const GalleryMap = {
   woowakgood: '우왁굳',

@@ -35,8 +35,7 @@ export default function ImageViewer({ hashs }: Prop) {
     } else {
       toast.success(`검색 성공 (${elapsedTime / 1000}s)`);
     }
-
-    // 5만 기념 이벤트
+    // 6만 기념 이벤트
     if (source.total_counter === TARGET_COUNT.toString()) {
       setCongrat(true); // targetCount 번째 검색 시 축하메시지
     }
