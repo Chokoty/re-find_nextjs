@@ -43,7 +43,7 @@ export default function Preview({ data, isLoading }: Props) {
           width={500}
           height={500}
           style={
-            (files && isLoading) || (files && data.ids.length === 0)
+            (files && isLoading) || (files && data?.ids?.length === 0)
               ? imgLoading
               : img
           }
