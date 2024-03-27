@@ -1,0 +1,35 @@
+.hoverContainer {
+  .footer {
+    .btns {
+      .textBox {
+        span {
+          display: contents;
+        }
+      }
+    }
+  }
+
+  @media (width < 484px) {
+    .body {
+      .info {
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+    }
+
+    .footer {
+      .btns {
+        .textBox {
+          svg {
+            display: none;
+          }
+
+          span {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -168,7 +168,7 @@ export default function ViewSelectBar({
             >
               {!isSmallerThan370 && label}
             </MenuButton>
-            <MenuList bg={popoverBg}>
+            <MenuList bg={popoverBg} zIndex="4">
               {isdPick === true &&
                 menuItems
                   .filter((item) => item.isdPick === true)

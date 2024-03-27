@@ -11,11 +11,13 @@ import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { useState } from 'react';
 import { FaComment, FaEye, FaImage, FaThumbsUp } from 'react-icons/fa';
-import { HiOutlineExternalLink } from 'react-icons/hi';
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { MdPerson } from 'react-icons/md';
 
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import styles from '@/styles/MasonryCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const iconStyle = {
@@ -74,7 +76,7 @@ export default function MasonryCard({
           width={widthValue}
           maxHeight="800px"
           overflow="hidden"
-          borderRadius="1rem"
+          borderRadius="20px"
           position="relative"
         >
           <NextImage
@@ -86,7 +88,7 @@ export default function MasonryCard({
               objectPosition: 'center top',
               width: '100%',
               height: '100%',
-              borderRadius: '1rem',
+              borderRadius: '20px',
               filter: artwork?.deleted ? 'blur(6px)' : 'none', // 블러 처리
             }}
             src={
@@ -104,10 +106,10 @@ export default function MasonryCard({
           right={0}
           bottom={0}
           left={0}
-          borderRadius="1rem"
+          borderRadius="20px"
           zIndex={1}
           background={isFocused ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.0)'}
-          onClick={() => onToggleFocus(artwork.id)}
+          // onClick={() => onToggleFocus(artwork.id)}
           onMouseEnter={() => onToggleFocus(artwork.id)}
         />
         {isFocused && (
@@ -117,221 +119,241 @@ export default function MasonryCard({
           //   isExternal
           // >
           <Flex
+            className={styles.hoverContainer}
+            style={
+              imageHeight && imageHeight <= 200
+                ? {
+                    padding: 0,
+                  }
+                : undefined
+            }
             flexDir="column"
             position="absolute"
             top={0}
             right={0}
             bottom={0}
             left={0}
-            borderRadius="1rem"
+            borderRadius="20px"
+            border="1px solid rgba(255, 255, 255, 0.70)"
             zIndex={2}
-            background="rgba(0, 0, 0, 0.3)"
+            background="rgba(0, 0, 0, 0.5)"
             justifyContent="space-between"
             alignItems="center"
             color="white"
             fontSize="2rem"
             fontWeight="bold"
-            cursor="pointer"
-            p={['0.5rem ', '1rem 0']}
+            // cursor="pointer"
+            p={['0.5rem 0', '1rem 0']}
             onMouseLeave={() => onToggleFocus(null)}
           >
-            <Text
-              fontSize={['sm', 'xl']}
-              fontWeight="600"
-              whiteSpace="nowrap"
-              overflow="hidden"
-              textOverflow="ellipsis"
-              maxWidth="100%"
+            <Box
+              style={
+                imageHeight && imageHeight <= 200
+                  ? {
+                      display: imageHeight <= 55 ? 'none' : 'flex',
+                      paddingBottom: '5px',
+                      paddingTop: 0,
+                      flex: 1,
+                    }
+                  : undefined
+              }
+              className={styles.body}
+              width="100%"
+              display="flex"
+              flexDir="column"
+              justifyContent="flex-end"
+              alignItems="center"
+              h="80%"
+              borderBottom="1px solid rgba(255, 255, 255, 0.70)"
+              p="1rem"
             >
-              {artwork.board}
-            </Text>
-
-            {imageHeight && imageHeight >= 212 && (
-              <>
-                <Flex
-                  flexDir="column"
-                  justifyContent="center"
-                  alignItems="center"
-                >
-                  <Text
-                    fontSize={['sm', 'xl']}
-                    fontWeight="400"
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    maxWidth="100%"
-                    textAlign="center"
-                  >
-                    {authorName}
-                  </Text>
-                  <Text
-                    fontSize={['sm', 'xl']}
-                    fontWeight="400"
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    maxWidth="100%"
-                    textAlign="center"
-                  >
-                    {artwork?.date?.split(' ')[0].slice(0, -1)}
-                  </Text>
-                </Flex>
-                <Flex
+              <Text
+                className={styles.board}
+                w="100%"
+                textAlign="left"
+                fontSize={['sm', 'lg']}
+                fontWeight="600"
+                whiteSpace="nowrap"
+                overflow="hidden"
+                textOverflow="ellipsis"
+              >
+                {artwork.board.replace(/&#\d+;/g, '').trim()}
+              </Text>
+              <Flex
+                className={styles.info}
+                flexDir="row"
+                w="100%"
+                justifyContent="flex-start"
+                alignItems="center"
+                gap="0.5rem"
+              >
+                <Box
+                  display="flex"
                   flexDir="row"
                   justifyContent="center"
                   alignItems="center"
-                  textAlign="center"
-                  // w="90%"
-                  gap="1rem"
+                  gap="0.3rem"
+                  whiteSpace="nowrap"
+                  overflow="hidden"
+                  textOverflow="ellipsis"
+                  maxWidth="100%"
                 >
-                  <Box
-                    display="flex"
-                    flexDir="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    gap="0.3rem"
-                  >
-                    <FaEye
-                      style={
-                        widthValue === '180px' ? iconStyleMobile : iconStyle
-                      }
-                    />
-                    <Text fontSize={['xs', 'lg']} fontWeight="400">
-                      {formatArtistValue(artwork.view)}
-                    </Text>
+                  <Box w="14px" h="14px">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      strokeWidth="1.5"
+                      stroke="currentColor"
+                      className="w-6 h-6"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
                   </Box>
-                  <Box
-                    display="flex"
-                    flexDir="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    gap="0.3rem"
-                  >
-                    <FaThumbsUp
-                      style={
-                        widthValue === '180px' ? iconStyleMobile : iconStyle
-                      }
-                    />
-                    <Text fontSize={['xs', 'lg']} fontWeight="400">
-                      {formatArtistValue(artwork.like)}
-                    </Text>
-                  </Box>
-                  <Box
-                    display="flex"
-                    flexDir="row"
-                    justifyContent="center"
-                    alignItems="center"
-                    gap="0.3rem"
-                  >
-                    <FaComment
-                      style={
-                        widthValue === '180px' ? iconStyleMobile : iconStyle
-                      }
-                    />
-                    <Text fontSize={['xs', 'lg']} fontWeight="400">
-                      {formatArtistValue(artwork.comment)}
-                    </Text>
-                  </Box>
-                </Flex>
-              </>
-            )}
-            {imageHeight && imageHeight < 212 && (
-              <>
-                {imageHeight && imageHeight > 170 && (
                   <Text
-                    fontSize={['xs', 'sm']}
+                    fontSize={['xs', 'sm', '15px']}
                     fontWeight="400"
-                    whiteSpace="nowrap"
-                    overflow="hidden"
-                    textOverflow="ellipsis"
-                    maxWidth="100%"
+                    color="#FFFFFFB3"
                     textAlign="center"
                   >
-                    {artwork?.date?.split(' ')[0].slice(0, -1)}
+                    {artwork?.date?.split(' ')[0].slice(2, -1)}
                   </Text>
-                )}
-                <Flex
+                </Box>
+                <Box
+                  display="flex"
                   flexDir="row"
                   justifyContent="center"
                   alignItems="center"
-                  textAlign="center"
-                  // w="100%"
-                  gap="1rem"
+                  gap="0.3rem"
                 >
-                  <Box>
-                    <FaEye style={iconStyle} />
-                    <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      {formatArtistValue(artwork.view)}
-                    </Text>
-                  </Box>
-                  <Box>
-                    <FaThumbsUp style={iconStyle} />
-                    <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      {formatArtistValue(artwork.like)}
-                    </Text>
-                  </Box>
-                  <Box>
-                    <FaComment style={iconStyle} />
-                    <Text fontSize={['xs', 'sm']} fontWeight="400">
-                      {formatArtistValue(artwork.comment)}
-                    </Text>
-                  </Box>
-                </Flex>
-              </>
-            )}
-            <Flex
-              w="100%"
+                  <FaEye
+                    size="14px"
+                    // style={widthValue === '180px' ? iconStyleMobile : iconStyle}
+                    color="#FFFFFFB3"
+                  />
+                  <Text
+                    fontSize={['xs', 'sm', '15px']}
+                    fontWeight="400"
+                    color="#FFFFFFB3"
+                  >
+                    {formatArtistValue(artwork.view)}
+                  </Text>
+                </Box>
+                <Box
+                  display="flex"
+                  flexDir="row"
+                  justifyContent="center"
+                  alignItems="center"
+                  gap="0.3rem"
+                >
+                  <FaThumbsUp
+                    size="14px"
+                    // style={widthValue === '180px' ? iconStyleMobile : iconStyle}
+                    color="#FFFFFFB3"
+                  />
+                  <Text
+                    fontSize={['xs', 'sm', '15px']}
+                    fontWeight="400"
+                    color="#FFFFFFB3"
+                  >
+                    {formatArtistValue(artwork.like)}
+                  </Text>
+                </Box>
+              </Flex>
+            </Box>
+            <Box
+              style={
+                imageHeight && imageHeight <= 200
+                  ? {
+                      paddingTop: 0,
+                      flex: imageHeight <= 120 ? 1 : 0.5,
+                    }
+                  : undefined
+              }
+              className={styles.footer}
+              display="flex"
               flexDir="row"
+              gap="0.5rem"
               justifyContent="center"
               alignItems="center"
+              w="100%"
+              h="20%"
+              pt="1rem"
+              px="1rem"
             >
-              {isGallery && (
-                <Button
+              <NextLink
+                className={styles.btns}
+                href={`/artists/${authorName}`}
+                style={{
+                  flex: 0.5,
+                }}
+                prefetch={false}
+              >
+                <Box
+                  className={styles.textBox}
+                  w="100%"
+                  display="flex"
+                  flexDir="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  gap="4px"
                   _hover={{
                     textDecoration: 'none',
                     cursor: 'pointer',
-                    backgroundColor: 'cyan.400',
+                    backgroundColor: 'black',
+                    color: 'white',
                   }}
-                  // target="_blank"
                   // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-                  colorScheme="cyan"
-                  borderRadius="1rem"
-                  w="30%"
-                  h={['2.5rem', '3rem']}
-                  mr="1rem"
+                  borderRadius="800px"
+                  background="white"
+                  padding="8px 10px"
+                  fontSize="xs"
+                  color="black"
+                  transition="all 0.2s ease-in-out"
                 >
-                  <NextLink href={`/artists/${authorName}`} passHref>
-                    <Text
-                      textAlign="center"
-                      alignItems="center"
-                      fontSize={['xs', 'md']}
-                    >
-                      작가
-                    </Text>
-                  </NextLink>
-                </Button>
-              )}
-              <Button
-                as={Link}
-                className="link_to_wakzoo"
+                  <MdPerson />
+                  작가
+                </Box>
+              </NextLink>
+              <NextLink
+                className={styles.btns}
                 href={article_link + artwork.id}
-                isExternal
-                _hover={{
-                  textDecoration: 'none',
-                  cursor: 'pointer',
-                  backgroundColor: 'green.400',
-                }}
                 target="_blank"
-                rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-                colorScheme="green"
-                borderRadius="1rem"
-                w="40%"
-                h={['2.5rem', '3rem']}
+                style={{
+                  flex: 1,
+                }}
               >
-                <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
-                <HiOutlineExternalLink />
-              </Button>
-            </Flex>
+                <Box
+                  className={styles.textBox}
+                  w="100%"
+                  display="flex"
+                  flexDir="row"
+                  alignItems="center"
+                  justifyContent="center"
+                  gap="10px"
+                  _hover={{
+                    textDecoration: 'none',
+                    cursor: 'pointer',
+                    backgroundColor: 'pink.400',
+                    color: 'rgba(0, 0, 0, 0.7)',
+                  }}
+                  // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+                  borderRadius="800px"
+                  background="linear-gradient(92deg, #FF4195 0%, #FF72B0 100%)"
+                  padding="8px 10px"
+                  fontSize="xs"
+                  color="white"
+                  transition="all 0.2s ease-in-out"
+                >
+                  왁물원<span>에서 보기</span>
+                  <FaArrowRightLong />
+                </Box>
+              </NextLink>
+            </Box>
           </Flex>
           // </Link>
         )}
@@ -341,19 +363,31 @@ export default function MasonryCard({
         display="flex"
         flexDir="column"
         justifyContent="center"
-        alignItems="center"
+        alignItems="start"
         mt="0.5rem"
       >
-        <Text fontWeight={500} noOfLines={1} w="100%">
+        <Text
+          fontSize="md"
+          textAlign="left"
+          fontWeight={500}
+          noOfLines={1}
+          w="100%"
+        >
           {artwork?.title}
         </Text>
-        {isGallery && (
-          <NextLink href={`/artists/${authorName}`} passHref>
-            <Text color={highlight} fontWeight={500}>
-              작가: {authorName}
-            </Text>
-          </NextLink>
-        )}
+        <NextLink href={`/artists/${authorName}`} passHref>
+          <Text
+            fontSize="sm"
+            textAlign="left"
+            color="#FFFFFFB3"
+            fontWeight={500}
+            _hover={{
+              color: highlight,
+            }}
+          >
+            작가: {authorName}
+          </Text>
+        </NextLink>
       </Box>
     </Box>
   );

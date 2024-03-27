@@ -76,7 +76,7 @@ export default async function page({ params: { name } }: Params) {
         zIndex="2"
       >
         <HydrationBoundary state={{ queries }}>
-          <DetailedGallery value={name} endpoint={endpoint ?? ''} />;
+          <DetailedGallery value={name} endpoint={endpoint ?? ''} />
         </HydrationBoundary>
       </Box>
     </Box>

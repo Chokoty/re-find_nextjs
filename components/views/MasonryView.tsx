@@ -23,19 +23,17 @@ export default function MasonryView({
   isGallery,
 }: Props) {
   const [focusedArtworkId, setFocusedArtworkId] = useState<number | null>(null);
-
   // const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const widthValue2 = useBreakpointValue({ base: '188px', sm: '252px' });
-
   const breakpointColumnsObj = {
     default: 7,
     1792: 6,
     1528: 5,
-    1260: 4,
-    1008: 3,
-    756: 2,
-    300: 1,
+    1290: 4,
+    1036: 3,
+    792: 2,
+    556: 1,
   };
 
   const handleToggleFocus = (id: number | null) => {
@@ -100,20 +98,7 @@ export default function MasonryView({
         columnClassName="my-masonry-grid_column"
         display="flex"
         justifyContent="center"
-        margin="0 -0.5rem"
-        // marginLeft="-1rem"
-        width="auto"
-        sx={{
-          '.my-masonry-grid_column': {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            padding: '0 0.5rem',
-            // paddingLeft: '1rem',
-            backgroundClip: 'padding-box',
-            maxW: widthValue2,
-          },
-        }}
+        width="100%"
       >
         {content()}
       </Box>

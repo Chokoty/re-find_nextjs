@@ -58,7 +58,7 @@ export default function GalleryFanartCard({
   // ) => {
   //   setImageHeight((e.target as HTMLImageElement).height);
   // };
-
+  const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const authorName = 'author' in artwork ? artwork.author : '';
 
   return (
@@ -71,14 +71,15 @@ export default function GalleryFanartCard({
         >
           <Image
             src={artwork.img_url}
-            alt="test"
+            alt={artwork.title}
             fill
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             style={{
               objectFit: 'cover',
-              borderRadius: '1rem',
+              borderRadius: '20px',
             }}
+            unoptimized
           />
         </Box>
         <Box
@@ -87,7 +88,7 @@ export default function GalleryFanartCard({
           right={0}
           bottom={0}
           left={0}
-          borderRadius="1rem"
+          borderRadius="20px"
           zIndex={1}
           background={isFocused ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.0)'}
           // onClick={() => onToggleFocus(artwork.id)}
@@ -321,6 +322,9 @@ export default function GalleryFanartCard({
             textAlign="left"
             color="#FFFFFFB3"
             fontWeight={500}
+            _hover={{
+              color: highlight,
+            }}
           >
             작가: {authorName}
           </Text>
