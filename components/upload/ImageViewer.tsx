@@ -78,7 +78,7 @@ export default function ImageViewer({ hashs }: Prop) {
       w={['90%', '90%', '100%']}
       m="1rem 0 10rem 0"
     >
-      <Preview />
+      <Preview data={data} isLoading={isLoading} />
       {isLoading ? <Loading /> : getResult()}
     </Box>
   );

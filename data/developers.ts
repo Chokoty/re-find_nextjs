@@ -84,7 +84,7 @@ const developers: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/zUv2yd9ckk1pVYViXRZ-tg',
     profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzAxMDZfMTAw/MDAxNjcyOTM1MDc0NDc5.LLONlWN-rW80EYN4FI-H8OurQUxeROqFXJfUVnewaaMg.ifTDGSee2lhRZSsmwdPdgS_ekbmbiAu4cUP6hGQeOYEg.JPEG/1667746385387.jpg?type=s3',
+      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMTlfOTcg/MDAxNzEwODExMjAzNTEw.ISuLxAfO2tZoKscxlCYlQX-Sm7UyD6tvbyjSjD_9xH4g.qd7AN3ioVvvlRQWRAUqU5dID0XxTLMyM9MokD8SCeiwg.PNG/%25EC%25BB%25AC%25EB%259F%25AC%25EC%25B2%25B4%25EC%259D%25B8%25EC%25A7%2580.png?type=s3',
     contribute: ['UX 디자인'],
   },
   {
@@ -93,7 +93,7 @@ const developers: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/pOPKPO_oxEcNS6b1i73B2g',
     profURL:
-      'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png',
+      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDZfMTQ1/MDAxNzA5NzMxMDQ5NDc4.qnnwengsJRA_77cigQ90BeSTEm5u5Gfqy0XJ2sBEI8Ug.dyiXa3pUBlXpcfKZg-HcS-237TmRyby68wMoiBq8LZkg.JPEG/externalFile.jpeg?type=s3',
     contribute: ['프론트엔드 개발'],
   },
   {
@@ -113,6 +113,15 @@ const developers: Developer[] = [
     profURL:
       'https://cafeptthumb-phinf.pstatic.net/MjAyMzEyMjVfMjI3/MDAxNzAzNTE1NzkwNTM5.KDMFpay8W3nx67NGcqAXMzQg6IwQolNNInOZLJgjwyIg.piaxZx1HQLukxmg1JvSmZp2yA8V3rlPEz1_Z1F-AXD8g.JPEG/IMG_6353.jpeg?type=s3',
     contribute: ['QA'],
+  },
+  {
+    group: 'member',
+    nickname: '청춘은지금이다',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/T8zKwDjv8_CiE3Pvo-FHVw',
+    profURL:
+      'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png',
+    contribute: ['백엔드, AI연구'],
   },
 ];
 
