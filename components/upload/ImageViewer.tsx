@@ -9,6 +9,8 @@ import ImageSearchResult from '@/components/upload/ImageSearchResult';
 import { TARGET_COUNT } from '@/lib/const';
 import { useImageInfo } from '@/service/client/home/useHomeService';
 import { useImageUploadStore } from '@/store/imageUploadStore';
+import { useQueryClient } from '@tanstack/react-query';
+import queryOptions from '@/service/client/home/queries';
 
 type Prop = {
   hashs: string[];
@@ -22,9 +24,13 @@ export default function ImageViewer({ hashs }: Prop) {
       setCongrat: state.setIsEventActive,
     }))
   );
+  const queryClient = useQueryClient();
+  const { queryKey } = queryOptions.counts();
 
   useEffect(() => {
     if (!data) return;
+    // 검색 결과가 있을 때만 count refetch
+    queryClient.invalidateQueries({ queryKey });
     // react-query 특성상 stale time이 지나면 다시 toast(60초)
     const { source, elapsedTime } = data;
     if (source.ids?.length === 0) {
@@ -35,6 +41,7 @@ export default function ImageViewer({ hashs }: Prop) {
     } else {
       toast.success(`검색 성공 (${elapsedTime / 1000}s)`);
     }
+
     // 6만 기념 이벤트
     if (source.total_counter === TARGET_COUNT.toString()) {
       setCongrat(true); // targetCount 번째 검색 시 축하메시지
