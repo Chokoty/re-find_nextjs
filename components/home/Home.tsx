@@ -18,9 +18,18 @@ const BannerSlider = dynamic(() => import('@/components/banner/BannerSlider'), {
   loading: () => <BannerSkeleton />,
 });
 
-const EventModal = dynamic(() => import('@/components/event/EventModal'), {
-  ssr: false,
-});
+const EventModal = dynamic(
+  () => import('@/components/event/TotalCounterPopup'),
+  {
+    ssr: false,
+  }
+);
+const AprilFoolEventModal = dynamic(
+  () => import('@/components/event/AprilFoolPopup'),
+  {
+    ssr: false,
+  }
+);
 
 export default function Home() {
   const isMobile = useResponsive();

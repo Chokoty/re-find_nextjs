@@ -69,6 +69,11 @@ export const siteConfig = {
         url: `/events/${decodedNickname}`,
       };
     },
+    AprilFool: {
+      title: '리파인드 | 왁티홀의 문',
+      description: '3종류의 팬아트 기회는 단 2번 여러분의 선택은!',
+      url: '/events/WaktyHallDoor',
+    },
   },
   more: {
     main: {
