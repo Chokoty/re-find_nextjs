@@ -4,6 +4,9 @@ import { GalleryMap } from './const';
 
 export const siteConfig = {
   mainDomain: 'https://re-find.xyz',
+  verification: {
+    google: 'LN-wcIeRNThLBp0YH95yNxBu3WF1vS1oBWma9e4DLxM',
+  },
   image:
     'https://raw.githubusercontent.com/Chokoty/re-find_nextjs/main/public/android-chrome-192x192.png',
   siteName: '@refind',
