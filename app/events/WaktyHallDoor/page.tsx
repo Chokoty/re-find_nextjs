@@ -3,6 +3,7 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import {
   Box,
+  Button,
   Flex,
   Heading,
   Link,
@@ -10,6 +11,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 import PageTitle from '@/components/common/PageTitle';
 import GalleryLayout from '@/components/layout/gallery-layout';
@@ -25,6 +27,8 @@ const topTitle = {
 };
 
 export default function WaktyHallDoor() {
+  const [totalChanceCnt, setTotalChanceCnt] = useState(10);
+  const [chanceCnt, setChanceCnt] = useState(2);
   // const setIsOpen = useStore((state) => state.setIsOpen);
   const isMobile = useResponsive();
 
@@ -32,15 +36,22 @@ export default function WaktyHallDoor() {
     lightMode.highlight,
     darkMode.highlight
   );
-
-  // useEffect(() => {
-  //   setIsOpen(false);
-  // }, [setIsOpen]);
-
-  const isMemberCountOdd =
-    developers.filter((item) => item.group === 'member').length % 2 !== 0;
-  const isCreditCountOdd =
-    developers.filter((item) => item.group === 'credit').length % 2 !== 0;
+  const handleDoorClick = () => {
+    // Show confirmation dialog
+    // const isConfirmed = confirm('정말 이걸로 하시겠어요?');
+    if (isConfirmed) {
+      // Decrease chance count if confirmed
+      setChanceCnt((prev) => prev - 1);
+      // Optionally, show a toast notification for feedback
+      // toast({
+      //   title: 'Door selected!',
+      //   description: "You've chosen a door. Your chances have decreased.",
+      //   status: 'info',
+      //   duration: 5000,
+      //   isClosable: true,
+      // });
+    }
+  };
 
   return (
     <GalleryLayout title="Events">
@@ -82,7 +93,11 @@ export default function WaktyHallDoor() {
           textAlign="center"
         >
           <Text as="h1" fontSize="2xl" m="3rem 0 1rem 0">
-            문 선택시 확률 표시, hover시 빼꼼
+            문 선택시 확률 표시, hover시 빼꼼 혐잘딱 팬아트를 피해서 귀여운
+            팬아트를 찾으세요.
+          </Text>
+          <Text mt="3rem" as="h1" fontSize="2xl">
+            고를 기회 앞으로 {chanceCnt}회
           </Text>
           <Flex
             w="90%"
@@ -95,6 +110,18 @@ export default function WaktyHallDoor() {
             margin="0 auto"
             p="0"
           >
+            {[door, door, door].map((doorSrc, index) => (
+              <Button key={index} onClick={handleDoorClick} variant="unstyled">
+                <Image
+                  src={doorSrc}
+                  alt="door"
+                  width={200}
+                  height={200}
+                  unoptimized
+                  // placeholder="blur"
+                />
+              </Button>
+            ))}
             <Box>
               <Image
                 src={door}
@@ -137,7 +164,7 @@ export default function WaktyHallDoor() {
           textAlign="center"
         >
           <Text mt="3rem" as="h1" fontSize="2xl">
-            남은 기회 10/10
+            남은 기회 {totalChanceCnt} /10
           </Text>
           <Text mt="3rem" as="h1" fontSize="2xl">
             남은 기회가 다 소진되었을 시에는 문을 열 수 없습니다.기회를 충전하기
