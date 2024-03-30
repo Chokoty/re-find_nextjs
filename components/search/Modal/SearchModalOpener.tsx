@@ -9,11 +9,14 @@ import dynamic from 'next/dynamic';
 import { FaSearch } from 'react-icons/fa';
 import { useShallow } from 'zustand/react/shallow';
 
-// import ReactPortal from '@/components/common/ReactPortal';
 import { useModalStore } from '@/store/modalStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-const ReactPortal = dynamic(() => import('@/components/common/ReactPortal'));
+import SearchModal from '.';
+
+const ReactPortal = dynamic(
+  () => import('@/components/common/Modal/ReactPortal')
+);
 
 export default function SearchModalOpener() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
@@ -93,7 +96,9 @@ export default function SearchModalOpener() {
           />
         </InputRightElement>
       </InputGroup>
-      <ReactPortal />
+      <ReactPortal>
+        <SearchModal />
+      </ReactPortal>
     </>
   );
 }

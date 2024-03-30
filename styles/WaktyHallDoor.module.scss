@@ -1,0 +1,39 @@
+.table {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.description {
+  width: 50%;
+  margin: auto;
+}
+
+.score {
+  min-width: 212px;
+
+  td,
+  th {
+    width: 4rem;
+    height: 2rem;
+    border: 1px solid gray;
+    text-align: center;
+  }
+  th {
+    background: lightgray;
+    border-color: white;
+    color: black;
+  }
+  // .empty {
+  //   background: black;
+  //   border-top: none;
+  //   border-bottom: none;
+  // }
+  caption {
+    font-size: 24px;
+    text-align: center;
+    font-weight: bold;
+    outline: 1px solid white;
+    margin: 0 2px;
+    height: 2rem;
+  }
+}

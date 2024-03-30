@@ -2,21 +2,24 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useShallow } from 'zustand/react/shallow';
 
-import SearchModal from '@/components/search/Modal';
-import { useModalStore } from '@/store/modalStore';
+import { usePromptStore } from '@/store/promptStore';
 
-export default function ReactPortal() {
+export default function PromptPortal({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [mountElement, setMountElement] = useState<HTMLElement | null>(null);
-  const { isOpen } = useModalStore(
+  const { isOpen } = usePromptStore(
     useShallow((state) => ({ isOpen: state.isOpen }))
   );
 
   useEffect(() => {
-    const mE = document.getElementById('overlays');
+    const mE = document.getElementById('promptOverlays');
     setMountElement(mE);
   }, []);
 
   if (!mountElement) return null;
 
-  return createPortal(<>{isOpen && <SearchModal />}</>, mountElement);
+  return createPortal(<>{isOpen && children}</>, mountElement);
 }

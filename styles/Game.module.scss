@@ -1,0 +1,32 @@
+.results {
+  text-align: center;
+  font-size: 16px;
+}
+.win {
+  color: goldenrod;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-variant: small-caps;
+}
+.lose {
+  color: red;
+  font-weight: bold;
+  font-variant: small-caps;
+  letter-spacing: 2px;
+  font-size: 20px;
+}
+
+.doors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+@media screen and (max-width: 700px) {
+  .doors {
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+  }
+}
