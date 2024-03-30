@@ -15,24 +15,23 @@ import { useState } from 'react';
 
 import PageTitle from '@/components/common/PageTitle';
 import Game from '@/components/event/montyHall/Game';
-import GalleryLayout from '@/components/layout/gallery-layout';
-import developers from '@/data/developers';
-import { useResponsive } from '@/hook/useResponsive';
-import door from '@/public/door.webp';
+import EventLayout from '@/components/layout/event-layout';
+// import { useResponsive } from '@/hook/useResponsive';
+// import door from '@/public/door.webp';
 import waktyhall1 from '@/public/waktyhall1.webp';
 import { darkMode, lightMode } from '@/styles/theme';
 import styles from '@/styles/WaktyHallDoor.module.scss';
 
 const topTitle = {
   title: '왁티홀의 역설',
-  description: '문 뒤에는 3종류의 팬아트, 2번의 기회, 당신의 선택은?',
+  description: '문 뒤에는 고퀄팬아트와 혐잘딱팬아트가 있습니다, 당신의 선택은?',
 };
 
 export default function WaktyHallDoor() {
-  const [totalChanceCnt, setTotalChanceCnt] = useState(10);
-  const [chanceCnt, setChanceCnt] = useState(2);
+  // const [totalChanceCnt, setTotalChanceCnt] = useState(10);
+  // const [chanceCnt, setChanceCnt] = useState(2);
   // const setIsOpen = useStore((state) => state.setIsOpen);
-  const isMobile = useResponsive();
+  // const isMobile = useResponsive();
 
   const [score, setScore] = useState(0);
   const [gamesPlayed, setGamesPlayed] = useState(0);
@@ -43,26 +42,19 @@ export default function WaktyHallDoor() {
     lightMode.highlight,
     darkMode.highlight
   );
-  const handleDoorClick = () => {
-    // Show confirmation dialog
-    // eslint-disable-next-line no-restricted-globals
-    const isConfirmed = confirm('정말 이걸로 하시겠어요?');
-    if (isConfirmed) {
-      // Decrease chance count if confirmed
-      setChanceCnt((prev) => prev - 1);
-      // Optionally, show a toast notification for feedback
-      // toast({
-      //   title: 'Door selected!',
-      //   description: "You've chosen a door. Your chances have decreased.",
-      //   status: 'info',
-      //   duration: 5000,
-      //   isClosable: true,
-      // });
-    }
-  };
+  // const handleDoorClick = () => {
+  //   // Show confirmation dialog
+  //   // eslint-disable-next-line no-restricted-globals
+  //   const isConfirmed = confirm('정말 이걸로 하시겠어요?');
+  //   if (isConfirmed) {
+  //     // Decrease chance count if confirmed
+  //     setChanceCnt((prev) => prev - 1);
+
+  //   }
+  // };
 
   return (
-    <GalleryLayout title="Events">
+    <EventLayout title="Events">
       <Box
         w="100%"
         p="1rem"
@@ -100,14 +92,14 @@ export default function WaktyHallDoor() {
           justifyContent="center"
           textAlign="center"
         >
-          <Text as="h1" fontSize="2xl" m="3rem 0 1rem 0">
+          {/* <Text as="h1" fontSize="2xl" m="3rem 0 1rem 0">
             문 선택시 확률 표시, hover시 빼꼼 혐잘딱 팬아트를 피해서 귀여운
             팬아트를 찾으세요.
           </Text>
           <Text mt="3rem" as="h1" fontSize="2xl">
             고를 기회 앞으로 {chanceCnt}회
-          </Text>
-          <Flex
+          </Text> */}
+          {/* <Flex
             w="90%"
             flexDirection="row"
             display="flex"
@@ -160,9 +152,9 @@ export default function WaktyHallDoor() {
                 // placeholder="blur"
               />
             </Box>
-          </Flex>
+          </Flex> */}
         </Box>
-        <Box
+        {/* <Box
           w="100%"
           p="1rem"
           display="flex"
@@ -178,7 +170,7 @@ export default function WaktyHallDoor() {
             남은 기회가 다 소진되었을 시에는 문을 열 수 없습니다.기회를 충전하기
             위해서는 왁물원 팬아트 링크를 10개 이상 접속하세요.
           </Text>
-        </Box>
+        </Box> */}
       </Box>
       <Game
         setScore={setScore}
@@ -253,6 +245,6 @@ export default function WaktyHallDoor() {
           ''
         )}
       </div>
-    </GalleryLayout>
+    </EventLayout>
   );
 }

@@ -89,14 +89,14 @@ export default function PromptModal({ keep, change }: Props) {
           p="2rem"
         >
           <Heading as="h2" size="md" mb="1rem">
-            당신은 문을 바꾸시겠습니까?{' '}
+            처음 선택한 문을 바꾸시겠습니까?{' '}
           </Heading>
           <Box mt="2rem" display="flex" flexDir="row" gap="1rem">
-            <Button tabIndex={0} onClick={keepDoor}>
-              내 선택을 유지
+            <Button tabIndex={0} colorScheme="green" onClick={keepDoor}>
+              그대로 긔
             </Button>
-            <Button tabIndex={0} onClick={changeDoor}>
-              선택을 바꾸기
+            <Button tabIndex={0} colorScheme="yellow" onClick={changeDoor}>
+              바꾸기
             </Button>
           </Box>
         </Box>

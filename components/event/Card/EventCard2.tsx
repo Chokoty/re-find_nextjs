@@ -6,7 +6,6 @@ import { PiGiftBold } from 'react-icons/pi';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function EventBtn2() {
-  const color3 = useColorModeValue(lightMode.color2, darkMode.color3);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   return (
@@ -25,25 +24,19 @@ export default function EventBtn2() {
       // boxShadow="md"
     >
       <Text
-        // color={color3}
         fontSize={['1.2rem', '1.5rem', '1.7rem']}
         fontWeight="bold"
         mb="1rem"
       >
-        기간한정 슛코 팬아트 보러가기
+        4월1일 단 하루 슛코팬아트 갤러리 공개합니다
       </Text>
       <Button
-        // background="black"
         colorScheme="purple"
-        // color="white"
         w="60%"
-        // h="40px"
         p="0.5rem"
         borderRadius="1rem"
-        // mb="2rem"
         _hover={{ background: '#ddd', color: 'black' }}
       >
-        {' '}
         <PiGiftBold
           style={{
             width: '1.5rem',
@@ -52,7 +45,7 @@ export default function EventBtn2() {
           }}
         />
         <NextLink href="/gallery/AprilFool">
-          슛코팬아트 갤러리 보러가기
+          슛코☆팬아트 갤러리 보러가기
         </NextLink>
       </Button>
     </Box>

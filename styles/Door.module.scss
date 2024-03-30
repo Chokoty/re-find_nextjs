@@ -34,7 +34,10 @@
   transform-origin: left;
   transition: transform 1s;
 }
-
+.door:hover {
+  transform: scale(1.05); // 문을 5% 확대합니다.
+  transition: transform 0.1s ease-in-out; // 부드러운 전환 효과를 위해 transition을 추가합니다.
+}
 .door.show--front {
   transform: translateZ(0) rotateY(0deg);
 }
