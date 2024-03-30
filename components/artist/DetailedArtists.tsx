@@ -119,20 +119,12 @@ export default function DetailedArtists({ nickname, artistInfo }: Props) {
       >
         {activeView === 'masonry' && (
           <MasonryView
-            nickname={nickname}
             artworks={artworks}
             isDeletedVisible={isDeletedVisible}
-            // loadingImage={loadingImage}
-            // handleLoading={handleLoading}
-            isGallery={false}
           />
         )}
         {activeView === 'grid' && (
-          <SimpleView
-            artworks={artworks}
-            isDeletedVisible={isDeletedVisible}
-            // handleLoading={handleLoading}
-          />
+          <SimpleView artworks={artworks} isDeletedVisible={isDeletedVisible} />
         )}
         {isFetchingNextPage ? (
           <Box

@@ -92,12 +92,8 @@ export default function DetailedEvent({ keyword }: Prop) {
       >
         {activeView === 'masonry' && (
           <MasonryView
-            nickname={''}
             artworks={artworks}
             isDeletedVisible={isDeletedVisible}
-            // loadingImage={loadingImage}
-            // handleLoading={handleLoading}
-            isGallery={true}
           />
         )}
         {activeView === 'grid' && (

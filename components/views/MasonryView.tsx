@@ -1,28 +1,14 @@
-import {
-  Box,
-  Skeleton,
-  SkeletonText,
-  useBreakpointValue,
-} from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Box, useBreakpointValue } from '@chakra-ui/react';
 import Masonry from 'react-masonry-css';
 
 import MasonryCard from '@/components/card/MasonryCard';
 
 type Props = {
-  nickname: string;
   artworks: ArtworkList[];
   isDeletedVisible: boolean;
-  isGallery: boolean;
 };
 
-export default function MasonryView({
-  nickname,
-  artworks,
-  isDeletedVisible,
-  isGallery,
-}: Props) {
-  const [focusedArtworkId, setFocusedArtworkId] = useState<number | null>(null);
+export default function MasonryView({ artworks, isDeletedVisible }: Props) {
   // const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
   const widthValue2 = useBreakpointValue({ base: '188px', sm: '252px' });
@@ -36,55 +22,16 @@ export default function MasonryView({
     556: 1,
   };
 
-  const handleToggleFocus = (id: number | null) => {
-    if (id === focusedArtworkId) {
-      setFocusedArtworkId(null); // Deselect the artwork if it's already focused
-    } else {
-      setFocusedArtworkId(id); // Set the focused artwork ID
-    }
-  };
-
-  // const [showButton, setShowButton] = useState(
-  //   Array(artworks?.length).fill(false)
-  // ); // 각 이미지에 대한 버튼 표시 여부를 배열로 관리
-
-  // const [hoveredIndices, setHoveredIndices] = useState([]);
-  // const [clickedIndex, setClickedIndex] = useState(null);
-
-  // const handleMouseEnter = (index) => {
-  //   setHoveredIndices((prev) => [...prev, index]);
-  // };
-
-  // const handleMouseLeave = (index) => {
-  //   setHoveredIndices((prev) => prev.filter((i) => i !== index));
-  // };
-
   const content = () => {
     if (isDeletedVisible) {
       return artworks.map((artwork, index) => (
-        <MasonryCard
-          key={index}
-          nickname={nickname}
-          artwork={artwork}
-          isFocused={artwork.id === focusedArtworkId}
-          onToggleFocus={handleToggleFocus}
-          isGallery={isGallery}
-        />
+        <MasonryCard key={index} artwork={artwork} />
       ));
     }
 
     if (!isDeletedVisible) {
       return artworks.map((artwork, index) =>
-        !artwork.deleted ? (
-          <MasonryCard
-            key={index}
-            nickname={nickname}
-            artwork={artwork}
-            isFocused={artwork.id === focusedArtworkId}
-            onToggleFocus={handleToggleFocus}
-            isGallery={isGallery}
-          />
-        ) : null
+        !artwork.deleted ? <MasonryCard key={index} artwork={artwork} /> : null
       );
     }
   };

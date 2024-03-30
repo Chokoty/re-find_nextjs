@@ -117,17 +117,12 @@ export default function DetailedGallery({ value, endpoint }: Props) {
       >
         {activeView === 'masonry' && (
           <MasonryView
-            nickname={''}
-            // artworks={artworks}
             artworks={
               isDeletedVisible && gallery !== null
                 ? artworks
                 : artworks.filter((artwork) => artwork?.is_hyum === false)
             }
             isDeletedVisible={isDeletedVisible}
-            // loadingImage={loadingImage}
-            // handleLoading={handleLoading}
-            isGallery={true}
           />
         )}
         {activeView === 'grid' && (
