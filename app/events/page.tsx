@@ -1,7 +1,7 @@
 'use client';
 
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import NextLink from 'next/link';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import { BsCalendarEventFill, BsDoorOpenFill } from 'react-icons/bs';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
@@ -13,7 +13,8 @@ import { darkMode, lightMode } from '@/styles/theme';
 const events = [
   {
     title: '팬아트 랜덤가챠 굴리기',
-    buttonColorScheme: 'yellow',
+    // buttonColorScheme: 'yellow',
+    buttonColorScheme: '#faf089',
     hoverBackground: '#ddd',
     hoverColor: 'black',
     icon: (
@@ -26,7 +27,8 @@ const events = [
   },
   {
     title: '기간한정 슛코☆팬아트 갤러리 공개',
-    buttonColorScheme: 'green',
+    // buttonColorScheme: 'green',
+    buttonColorScheme: '#9ae6b4',
     hoverBackground: '#ddd',
     hoverColor: 'black',
     icon: (
@@ -39,7 +41,8 @@ const events = [
   },
   {
     title: '왁티홀의 문 체험하기 (신규!)',
-    buttonColorScheme: 'red',
+    // buttonColorScheme: 'red',
+    buttonColorScheme: '#feb2b2',
     hoverBackground: '#ddd',
     hoverColor: 'black',
     icon: (
@@ -96,19 +99,23 @@ export default function Events() {
             >
               {event.title}
             </Text>
-            <Button
-              colorScheme={event.buttonColorScheme}
-              w="60%"
-              p="0.5rem"
-              borderRadius="1rem"
-              _hover={{
-                background: event.hoverBackground,
-                color: event.hoverColor,
+            <Link
+              href={event.link}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                background: event.buttonColorScheme,
+                color: '#1a202c',
+                width: '60%',
+                padding: '0.5rem',
+                borderRadius: '1rem',
+                fontWeight: 600,
+                // _hover={{ background: '#ddd', color: 'black' }}
               }}
             >
               {event.icon}
-              <NextLink href={event.link}>{event.linkText}</NextLink>
-            </Button>
+              {event.linkText}
+            </Link>
           </Box>
         </Box>
       ))}

@@ -1,5 +1,5 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import NextLink from 'next/link';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import Link from 'next/link';
 import React from 'react';
 import { BsDoorOpenFill } from 'react-icons/bs';
 
@@ -30,12 +30,19 @@ export default function EventBtn2() {
       >
         왁티홀의 문 체험하기
       </Text>
-      <Button
-        colorScheme="red"
-        w="60%"
-        p="0.5rem"
-        borderRadius="1rem"
-        _hover={{ background: '#ddd', color: 'black' }}
+      <Link
+        href="/events/WaktyHallDoor"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          background: '#FEB2B2',
+          color: '#1a202c',
+          width: '60%',
+          padding: '0.5rem',
+          borderRadius: '1rem',
+          fontWeight: 600,
+          // _hover={{ background: '#ddd', color: 'black' }}
+        }}
       >
         <BsDoorOpenFill
           style={{
@@ -44,8 +51,8 @@ export default function EventBtn2() {
             marginRight: '0.5rem',
           }}
         />
-        <NextLink href="/events/WaktyHallDoor">선택을 바꾸시겠습니까?</NextLink>
-      </Button>
+        선택을 바꾸시겠습니까?
+      </Link>
     </Box>
   );
 }

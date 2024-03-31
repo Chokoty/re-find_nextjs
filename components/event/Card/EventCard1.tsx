@@ -1,6 +1,5 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import NextLink from 'next/link';
-import React from 'react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import Link from 'next/link';
 import { PiGiftBold } from 'react-icons/pi';
 
 import { darkMode, lightMode } from '@/styles/theme';
@@ -32,18 +31,20 @@ export default function EventBtn() {
       >
         이벤트 페이지 개설!
       </Text>
-      <Button
-        // background="black"
-        colorScheme="purple"
-        // color="white"
-        w="60%"
-        // h="40px"
-        p="0.5rem"
-        borderRadius="1rem"
-        // mb="2rem"
-        _hover={{ background: '#ddd', color: 'black' }}
+      <Link
+        href="/events"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          background: '#d6bcfa',
+          color: '#1a202c',
+          width: '60%',
+          padding: '0.5rem',
+          borderRadius: '1rem',
+          fontWeight: 600,
+          // _hover={{ background: '#ddd', color: 'black' }}
+        }}
       >
-        {' '}
         <PiGiftBold
           style={{
             width: '1.5rem',
@@ -51,8 +52,8 @@ export default function EventBtn() {
             marginRight: '0.5rem',
           }}
         />
-        <NextLink href="/events/">팬아트 가챠 하러가기</NextLink>
-      </Button>
+        팬아트 가챠 하러가기
+      </Link>
     </Box>
   );
 }

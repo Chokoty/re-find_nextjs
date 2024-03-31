@@ -1,6 +1,5 @@
-import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
-import NextLink from 'next/link';
-import React from 'react';
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import Link from 'next/link';
 import { PiGiftBold } from 'react-icons/pi';
 
 import { darkMode, lightMode } from '@/styles/theme';
@@ -30,12 +29,19 @@ export default function EventBtn2() {
       >
         4월1일 단 하루 슛코팬아트 갤러리 공개합니다
       </Text>
-      <Button
-        colorScheme="purple"
-        w="60%"
-        p="0.5rem"
-        borderRadius="1rem"
-        _hover={{ background: '#ddd', color: 'black' }}
+      <Link
+        href="/gallery/AprilFool"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          background: '#d6bcfa',
+          color: '#1a202c',
+          width: '60%',
+          padding: '0.5rem',
+          borderRadius: '1rem',
+          fontWeight: 600,
+          // _hover={{ background: '#ddd', color: 'black' }}
+        }}
       >
         <PiGiftBold
           style={{
@@ -44,10 +50,8 @@ export default function EventBtn2() {
             marginRight: '0.5rem',
           }}
         />
-        <NextLink href="/gallery/AprilFool">
-          슛코☆팬아트 갤러리 보러가기
-        </NextLink>
-      </Button>
+        슛코☆팬아트 갤러리 보러가기
+      </Link>
     </Box>
   );
 }
