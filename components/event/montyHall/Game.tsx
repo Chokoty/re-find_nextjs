@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Button, Heading } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { PuffLoader } from 'react-spinners';
@@ -8,14 +10,9 @@ import styles from '@/styles/Game.module.scss';
 
 import { Door } from './Door';
 import DetailedImageViewer from './Modal';
+import ScoreResult from './ScoreResult';
 
-type Props = {
-  setScore: React.Dispatch<React.SetStateAction<number>>;
-  setGamesPlayed: React.Dispatch<React.SetStateAction<number>>;
-  setSwitched: React.Dispatch<React.SetStateAction<number>>;
-};
-
-export default function Game({ setScore, setGamesPlayed, setSwitched }: Props) {
+export default function Game() {
   // const [promptOpen, setPromptOpen] = useState(false);
   const [result, setResult] = useState<string[]>([]);
   const [game, setGame] = useState<MontyHall | null>(null);
@@ -23,25 +20,43 @@ export default function Game({ setScore, setGamesPlayed, setSwitched }: Props) {
   const [prizeOrGoat, setPrizeOrGoat] = useState<number | null>(null);
   const [isInProgress, setIsInProgress] = useState(false);
 
+  const [records, setRecords] = useState<number[]>(() => {
+    const scoreRecords = localStorage.getItem('waktyHall');
+    return scoreRecords ? JSON.parse(scoreRecords) : [0, 0, 0];
+  });
+  const [score, setScore] = useState(records[0]);
+  const [gamesPlayed, setGamesPlayed] = useState(records[1]);
+  const [switched, setSwitched] = useState(records[2]);
   const {
     data: fanartsBehindDoor,
     isLoading,
     isFetching,
     refetch,
   } = useWaktyHallArts();
-  // score, game 진행 횟수
 
-  console.log(fanartsBehindDoor);
+  const handleScore = () => {
+    localStorage.setItem(
+      'waktyHall',
+      JSON.stringify([score + 1, gamesPlayed, switched])
+    );
+    setScore(score + 1);
+  };
 
-  useEffect(() => {
-    if (!game) return;
-    if (game.win === true) {
-      setScore((score) => score + 1);
-    }
-    if (game.win === true || game.win === false) {
-      setGamesPlayed((gamesPlayed) => gamesPlayed + 1);
-    }
-  }, [game?.win, setScore, setGamesPlayed]);
+  const handleGamePlayed = () => {
+    localStorage.setItem(
+      'waktyHall',
+      JSON.stringify([score, gamesPlayed + 1, switched])
+    );
+    setGamesPlayed(gamesPlayed + 1);
+  };
+
+  const handleSwitched = () => {
+    localStorage.setItem(
+      'waktyHall',
+      JSON.stringify([score, gamesPlayed, switched + 1])
+    );
+    setSwitched(switched + 1);
+  };
 
   // 문을 선택한다.
   const handleSelection = (door: number) => {
@@ -63,7 +78,7 @@ export default function Game({ setScore, setGamesPlayed, setSwitched }: Props) {
   const changeDoor = () => {
     if (!game) return;
     setResult(game.changeAnswer());
-    setSwitched((switched) => switched + 1);
+    handleSwitched();
     // setPromptOpen(false);
     setSelected(false);
   };
@@ -78,6 +93,24 @@ export default function Game({ setScore, setGamesPlayed, setSwitched }: Props) {
     setIsInProgress(false);
   };
 
+  // score, game 진행 횟수
+  useEffect(() => {
+    if (!game) return;
+    if (game.win === true) {
+      handleScore();
+    }
+    if (game.win === true || game.win === false) {
+      handleGamePlayed();
+    }
+  }, [game?.win]);
+
+  useEffect(() => {
+    const scoreRecords = localStorage.getItem('waktyHall');
+    if (scoreRecords) {
+      setRecords(JSON.parse(scoreRecords));
+    }
+  }, []);
+
   if (isLoading || isFetching) {
     return (
       <div className={styles.loading}>
@@ -85,6 +118,11 @@ export default function Game({ setScore, setGamesPlayed, setSwitched }: Props) {
         <p className={styles.loadingText}>
           새로운 팬아트를 가져오고 있습니다. 잠시만 기다려주세요...
         </p>
+        <ScoreResult
+          score={score}
+          gamesPlayed={gamesPlayed}
+          switched={switched}
+        />
       </div>
     );
   }
@@ -191,6 +229,11 @@ export default function Game({ setScore, setGamesPlayed, setSwitched }: Props) {
           </Button>
         </>
       )}
+      <ScoreResult
+        score={score}
+        gamesPlayed={gamesPlayed}
+        switched={switched}
+      />
     </Box>
   );
 }
