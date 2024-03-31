@@ -9,7 +9,6 @@ type Props = {
 };
 
 export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
-  console.log(score, gamesPlayed, switched);
   return (
     <div className={styles.table}>
       {!score && !gamesPlayed ? (
@@ -81,8 +80,8 @@ export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
               </tr>
             </tbody>
           </table>
-          <p>{`변경시 승리 확률: ${score === 0 ? 0 : ((switched / score) * 100).toFixed(2)}%`}</p>
-          <p>{`유지시 승리 확률: ${score === 0 ? 0 : ((gamesPlayed - switched / score) * 100).toFixed(2)}%`}</p>
+          {/* <p>{`변경시 승리 확률: ${score === 0 ? 0 : ((score / switched) * 100).toFixed(2)}%`}</p>
+          <p>{`유지시 승리 확률: ${score === 0 ? 0 : ((score / (gamesPlayed - switched)) * 100).toFixed(2)}%`}</p> */}
         </div>
       ) : (
         ''

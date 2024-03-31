@@ -12,6 +12,12 @@ import { Door } from './Door';
 import DetailedImageViewer from './Modal';
 import ScoreResult from './ScoreResult';
 
+const initStorageObj = {
+  score: 0,
+  gamesPlayed: 0,
+  switched: 0,
+};
+
 export default function Game() {
   // const [promptOpen, setPromptOpen] = useState(false);
   const [result, setResult] = useState<string[]>([]);
@@ -20,16 +26,16 @@ export default function Game() {
   const [prizeOrGoat, setPrizeOrGoat] = useState<number | null>(null);
   const [isInProgress, setIsInProgress] = useState(false);
 
-  const [records, setRecords] = useState<number[]>(() => {
+  const [records, setRecords] = useState(() => {
     if (typeof window === 'undefined') {
-      return [0, 0, 0];
+      return initStorageObj;
     }
     const scoreRecords = localStorage.getItem('waktyHall');
-    return scoreRecords ? JSON.parse(scoreRecords) : [0, 0, 0];
+    return scoreRecords ? JSON.parse(scoreRecords) : initStorageObj;
   });
-  const [score, setScore] = useState(records[0]);
-  const [gamesPlayed, setGamesPlayed] = useState(records[1]);
-  const [switched, setSwitched] = useState(records[2]);
+  const [score, setScore] = useState(records.score);
+  const [gamesPlayed, setGamesPlayed] = useState(records.gamesPlayed);
+  const [switched, setSwitched] = useState(records.switched);
   const {
     data: fanartsBehindDoor,
     isLoading,
@@ -38,28 +44,36 @@ export default function Game() {
   } = useWaktyHallArts();
 
   const handleScore = () => {
-    console.log(score + 1);
+    const newScore = score + 1;
+    setScore(newScore);
+    const data = localStorage.getItem('waktyHall');
+    if (!data) return;
     localStorage.setItem(
       'waktyHall',
-      JSON.stringify([score + 1, gamesPlayed, switched])
+      JSON.stringify({ ...JSON.parse(data), score: newScore })
     );
-    setScore(score + 1);
   };
 
   const handleGamePlayed = () => {
+    const newGamesPlayed = gamesPlayed + 1;
+    setGamesPlayed(newGamesPlayed);
+    const data = localStorage.getItem('waktyHall');
+    if (!data) return;
     localStorage.setItem(
       'waktyHall',
-      JSON.stringify([score, gamesPlayed + 1, switched])
+      JSON.stringify({ ...JSON.parse(data), gamesPlayed: newGamesPlayed })
     );
-    setGamesPlayed(gamesPlayed + 1);
   };
 
   const handleSwitched = () => {
+    const newSwitched = switched + 1;
+    setSwitched(newSwitched);
+    const data = localStorage.getItem('waktyHall');
+    if (!data) return;
     localStorage.setItem(
       'waktyHall',
-      JSON.stringify([score, gamesPlayed, switched + 1])
+      JSON.stringify({ ...JSON.parse(data), switched: newSwitched })
     );
-    setSwitched(switched + 1);
   };
 
   // 문을 선택한다.
@@ -112,6 +126,8 @@ export default function Game() {
     const scoreRecords = localStorage.getItem('waktyHall');
     if (scoreRecords) {
       setRecords(JSON.parse(scoreRecords));
+    } else {
+      localStorage.setItem('waktyHall', JSON.stringify(initStorageObj));
     }
   }, []);
 
