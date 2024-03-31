@@ -1,42 +1,25 @@
 'use client';
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  Link,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Link, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
-import { useState } from 'react';
 
 import PageTitle from '@/components/common/PageTitle';
 import Game from '@/components/event/montyHall/Game';
 import EventLayout from '@/components/layout/event-layout';
-// import { useResponsive } from '@/hook/useResponsive';
-// import door from '@/public/door.webp';
 import waktyhall1 from '@/public/waktyhall1.webp';
 import { darkMode, lightMode } from '@/styles/theme';
-import styles from '@/styles/WaktyHallDoor.module.scss';
 
 const topTitle = {
   title: '왁티홀의 역설',
   description: '문 뒤에는 고퀄팬아트와 혐잘딱팬아트가 있습니다, 당신의 선택은?',
 };
 
-export default function WaktyHallDoor() {
+export default function WaktyHallDoorPage() {
   // const [totalChanceCnt, setTotalChanceCnt] = useState(10);
   // const [chanceCnt, setChanceCnt] = useState(2);
   // const setIsOpen = useStore((state) => state.setIsOpen);
   // const isMobile = useResponsive();
-
-  const [score, setScore] = useState(0);
-  const [gamesPlayed, setGamesPlayed] = useState(0);
-  const [switched, setSwitched] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const highlightColor = useColorModeValue(
     lightMode.highlight,
@@ -54,7 +37,7 @@ export default function WaktyHallDoor() {
   // };
 
   return (
-    <EventLayout title="Events">
+    <EventLayout title="왁티홀">
       <Box
         w="100%"
         p="1rem"
@@ -172,79 +155,7 @@ export default function WaktyHallDoor() {
           </Text>
         </Box> */}
       </Box>
-      <Game
-        setScore={setScore}
-        setGamesPlayed={setGamesPlayed}
-        setSwitched={setSwitched}
-        setModalOpen={setModalOpen}
-      />
-      {!modalOpen && <h2>게임 시작을 원하신다면 문을 선택해주세요... </h2>}
-      <div className={styles.table}>
-        {!score && !gamesPlayed ? (
-          <div className={styles.description}>
-            <Text textAlign="start">
-              세 개의 문이 제시됩니다. 두 개의 문 뒤에는 꽝인 팬아트가 있습니다.
-              세 번째 뒤에는 기대되는 팬아트가 있습니다. <br />세 개의 문 중
-              어느 문에 상품이 들어 있는지 추측해야 합니다. <br />
-              몬티 홀(진행자)은 문 중 하나를 열어 꽝 팬아트를 드러냅니다. 원래
-              문에 선택을 유지하거나 문 선택을 변경할 수 있는 옵션이 제공됩니다.
-            </Text>
-            <Text textAlign="start" pt="1rem">
-              어느 쪽이 이길 가능성이 더 높을까요?
-            </Text>
-          </div>
-        ) : null}
-        {score || gamesPlayed ? (
-          <table className={styles.score}>
-            <caption>결과</caption>
-            <thead>
-              <tr>
-                <th>{gamesPlayed}번째 게임</th>
-                <th>횟수</th>
-                <th>확률</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>승리</th>
-                <td>{score}</td>
-                <td>
-                  {gamesPlayed === 0
-                    ? '0.00'
-                    : ((score / gamesPlayed) * 100).toFixed(2)}
-                  %
-                </td>
-              </tr>
-              <tr>
-                <th>변경</th>
-                <td>{switched}</td>
-                <td>
-                  {' '}
-                  {gamesPlayed === 0
-                    ? '0.00'
-                    : ((switched / gamesPlayed) * 100).toFixed(2)}
-                  %
-                </td>
-              </tr>
-              <tr>
-                <th>유지</th>
-                <td>{gamesPlayed - switched}</td>
-                <td>
-                  {' '}
-                  {gamesPlayed === 0
-                    ? '0.00'
-                    : (((gamesPlayed - switched) / gamesPlayed) * 100).toFixed(
-                        2
-                      )}
-                  %
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        ) : (
-          ''
-        )}
-      </div>
+      <Game />
     </EventLayout>
   );
 }

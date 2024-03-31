@@ -4,7 +4,8 @@ import { devtools } from 'zustand/middleware';
 interface ImageViewerStore {
   isOpen: boolean;
   setIsOpen: (value: boolean) => void;
-  imageSrc: string;
+  fanart: DoorBehindFanart | null;
+  setFanart: (value: DoorBehindFanart | null) => void;
 }
 
 export const useImageViewerStore = create<
@@ -14,6 +15,7 @@ export const useImageViewerStore = create<
   devtools((set) => ({
     isOpen: false,
     setIsOpen: (value) => set({ isOpen: value }),
-    imageSrc: '',
+    fanart: null,
+    setFanart: (value) => set({ fanart: value }),
   }))
 );

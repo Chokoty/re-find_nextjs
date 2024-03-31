@@ -14,12 +14,12 @@
   height: 245px;
   // margin: 90px 0;
   perspective: 1200px;
-  background-color: black;
+  background-color: white;
 }
 .goat {
   position: absolute;
-  width: 201px;
-  height: 240px;
+  width: 205px;
+  height: 245px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -28,9 +28,7 @@
 .goat img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
-.goat svg {
+  object-fit: contain;
 }
 
 .door {

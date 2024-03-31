@@ -33,9 +33,26 @@
   margin-left: 1rem;
 }
 
+.loading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  height: 100%;
+}
+
+.loadingText {
+  padding-top: 2rem;
+}
+
 @media screen and (max-width: 1098px) {
   .doors {
     gap: 60px;
+  }
+
+  .loading {
+    min-height: 550px;
   }
 }
 

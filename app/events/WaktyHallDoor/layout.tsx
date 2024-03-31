@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   icons: siteConfig.icons,
 };
 
+export const dynamic = 'force-dynamic';
+
 export default function AboutLayout({
   children,
 }: Readonly<{
