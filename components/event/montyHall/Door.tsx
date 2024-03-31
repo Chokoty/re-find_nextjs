@@ -6,7 +6,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import type MontyHall from '@/lib/montyhall';
 import KeyDoor from '@/public/real-wakgood.webp';
-import BoomDoor from '@/public/이세페애니굳.webp';
+import BoomDoor from '@/public/염소굳.webp';
 import { useImageViewerStore } from '@/store/imageViewerStore';
 import styles from '@/styles/Door.module.scss';
 

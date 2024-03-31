@@ -30,7 +30,7 @@ export default function EventBtn2() {
         4월1일 단 하루 슛코팬아트 갤러리 공개합니다
       </Text>
       <Link
-        href="/gallery/AprilFool"
+        href="/gallery"
         style={{
           display: 'flex',
           justifyContent: 'center',
