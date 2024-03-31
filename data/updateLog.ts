@@ -244,6 +244,12 @@ const updateLog: UpdateLog[] = [
     content:
       '게시판 업데이트 현황 서비스는 점검 중입니다. 이용에 불편을 드려 죄송합니다.',
   },
+  {
+    id: 38,
+    date: '2024.3.31',
+    type: '[점검완료]',
+    content: '게시판 업데이트 현황 서비스를 이용하실 수 있습니다.',
+  },
 ];
 
 export default updateLog;

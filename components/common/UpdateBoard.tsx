@@ -49,12 +49,8 @@ export default function UpdateBoard() {
           게시판 업데이트 현황
         </Heading>
       </Box>
-      {/* <UpdateCardList />
-       */}
-      <Box py="1rem">
-        <Text>현재 서비스 점검 중입니다...</Text>
-      </Box>
-      {/* <Box
+      <UpdateCardList />
+      <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
@@ -65,7 +61,7 @@ export default function UpdateBoard() {
         <Text whiteSpace="normal">
           명시된 게시판에 있는 원본만 찾을 수 있습니다.
         </Text>
-      </Box> */}
+      </Box>
     </Box>
   );
 }

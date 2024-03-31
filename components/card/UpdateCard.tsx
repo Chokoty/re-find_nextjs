@@ -43,7 +43,9 @@ export default function UpdateCard({ update }: Prop) {
   const uploadTimeDiff = useUploadTimeDiff(update.date);
   const article_link = useResponsiveLink(update.id, 'article');
   const menu_link = useResponsiveLink(
-    boardData.find((item) => item.board === update.board)?.id ?? '',
+    boardData.find(
+      (item) => item.board === update.board.replace(/&#\d+;/g, '').trim()
+    )?.id ?? '',
     'menu'
   );
 
@@ -141,7 +143,7 @@ export default function UpdateCard({ update }: Prop) {
                   alignItems: 'center',
                 }}
               >
-                {update.board}
+                {update.board.replace(/&#\d+;/g, '').trim()}
                 <MdArrowForwardIos
                   style={{
                     marginLeft: '0.5rem',
