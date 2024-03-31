@@ -93,7 +93,11 @@ export default function AlbumGrid() {
                   <ModalOverlay />
                   <ModalContent>
                     <ModalHeader>
-                      <Text fontSize={['md', 'xl']} color="red">
+                      <Text
+                        textAlign="center"
+                        fontSize={['md', 'xl']}
+                        color="red"
+                      >
                         잠깐!!!!!! 단속 나왔스빈다
                       </Text>
                     </ModalHeader>
@@ -110,6 +114,7 @@ export default function AlbumGrid() {
                         width={300}
                         height={300}
                         unoptimized
+                        priority
                       />
                     </Box>
                     <ModalCloseButton />
@@ -117,7 +122,7 @@ export default function AlbumGrid() {
                       <Text
                         fontSize={['md', 'xl']}
                         fontWeight="bold"
-                        textAlign="left"
+                        textAlign="center"
                       >
                         앗 단속구를 마주쳤다! 당신의 선택은?
                       </Text>
@@ -152,6 +157,7 @@ export default function AlbumGrid() {
                             height={100}
                             objectFit="cover"
                             unoptimized
+                            priority
                           />
                         </Link>
                         <Link
@@ -176,6 +182,7 @@ export default function AlbumGrid() {
                             height={100}
                             objectFit="cover"
                             unoptimized
+                            priority
                           />
                         </Link>
                       </Box>

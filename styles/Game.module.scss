@@ -38,12 +38,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 250px;
-  height: 100%;
 }
 
 .loadingText {
-  padding-top: 2rem;
+  padding-top: 11rem;
 }
 
 @media screen and (max-width: 1098px) {
@@ -51,8 +49,8 @@
     gap: 60px;
   }
 
-  .loading {
-    min-height: 550px;
+  .loadingText {
+    padding-top: 13rem;
   }
 }
 

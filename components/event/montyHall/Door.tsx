@@ -97,6 +97,10 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
               src={certainDoorSrc()}
               width={250}
               height={250}
+              style={{
+                backgroundColor: 'white',
+                objectFit: 'contain',
+              }}
               alt={
                 game && game.prizeDoor === +id
                   ? 'Door opens to reveal prize'
@@ -128,7 +132,7 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
           <Button
             gap="0.5rem"
             marginTop="0.5rem"
-            background={game && game.prizeDoor === +id ? '#faf089' : '#feb2b2'}
+            background={game && game.prizeDoor === +id ? '#48BB78' : '#F56565'}
             onClick={onOpen}
           >
             <MdOutlineImageSearch />

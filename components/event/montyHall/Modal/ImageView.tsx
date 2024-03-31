@@ -144,54 +144,48 @@ export default function ImageView({
               alignItems="center"
             >
               {isGallery && (
-                <Button
-                  _hover={{
-                    textDecoration: 'none',
-                    cursor: 'pointer',
-                    backgroundColor: 'cyan.400',
+                <NextLink
+                  href={`https://re-find.xyz/artists/${nickname}`}
+                  target="_blank"
+                  style={{
+                    background: 'cyan',
+                    borderRadius: '1rem',
+                    width: '30%',
+                    height: '3rem',
+                    marginRight: '1rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                   }}
-                  // target="_blank"
-                  // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-                  colorScheme="cyan"
-                  borderRadius="1rem"
-                  w="30%"
-                  h={['2.5rem', '3rem']}
-                  mr="1rem"
                 >
-                  <NextLink
-                    href={`https://re-find.xyz/artists/${nickname}`}
-                    target="_blank"
+                  <Text
+                    textAlign="center"
+                    alignItems="center"
+                    fontSize={['xs', 'md']}
                   >
-                    <Text
-                      textAlign="center"
-                      alignItems="center"
-                      fontSize={['xs', 'md']}
-                    >
-                      작가
-                    </Text>
-                  </NextLink>
-                </Button>
+                    작가
+                  </Text>
+                </NextLink>
               )}
-              <Button
-                as={Link}
-                className="link_to_wakzoo"
+              <NextLink
                 href={article_link + url.split('/').at(-1)}
-                isExternal
-                _hover={{
-                  textDecoration: 'none',
-                  cursor: 'pointer',
-                  backgroundColor: 'green.400',
-                }}
                 target="_blank"
-                rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-                colorScheme="green"
-                borderRadius="1rem"
-                w="40%"
-                h={['2.5rem', '3rem']}
+                style={{
+                  background: '#48bb78',
+                  borderRadius: '1rem',
+                  width: '40%',
+                  height: '3rem',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                }}
               >
-                <Text fontSize={['xs', 'md']}>왁물원</Text> &nbsp;
-                <HiOutlineExternalLink />
-              </Button>
+                <Text fontSize={['xs', 'md']}>왁물원</Text>
+                <HiOutlineExternalLink size="1rem" />
+              </NextLink>
             </Flex>
           </Flex>
           // </Link>
