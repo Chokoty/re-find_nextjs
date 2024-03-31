@@ -28,6 +28,7 @@ export default function AlbumGrid() {
         m="0 auto"
       >
         {gallery
+          .filter((item) => item.value !== 'AprilFool')
           .slice()
           .reverse()
           .map((item, index) => (
