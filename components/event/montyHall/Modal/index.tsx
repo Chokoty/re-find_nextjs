@@ -1,21 +1,21 @@
 import {
+  Button,
   Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
   ModalBody,
   ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   useColorModeValue,
-  Button,
 } from '@chakra-ui/react';
-
 import { useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useResponsive } from '@/hook/useResponsive';
 import { useImageViewerStore } from '@/store/imageViewerStore';
 import { darkMode, lightMode } from '@/styles/theme';
+
 import ImageCard from './ImageCard';
 
 const artwork = {

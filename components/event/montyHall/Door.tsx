@@ -1,14 +1,14 @@
+import { Button } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
+import { MdOutlineImageSearch } from 'react-icons/md';
+import { useShallow } from 'zustand/react/shallow';
 
 import type MontyHall from '@/lib/montyhall';
 import KeyDoor from '@/public/real-wakgood.webp';
 import BoomDoor from '@/public/이세페애니굳.webp';
-import styles from '@/styles/Door.module.scss';
-import { Button } from '@chakra-ui/react';
-import { MdOutlineImageSearch } from 'react-icons/md';
-import { useShallow } from 'zustand/react/shallow';
 import { useImageViewerStore } from '@/store/imageViewerStore';
+import styles from '@/styles/Door.module.scss';
 
 type Props = {
   handleSelection: (id: number) => void;
