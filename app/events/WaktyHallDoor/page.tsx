@@ -178,7 +178,7 @@ export default function WaktyHallDoor() {
         setSwitched={setSwitched}
         setModalOpen={setModalOpen}
       />
-      {!modalOpen && <h2>게음을 시작을 원한다면 문을 선택해주세요... </h2>}
+      {!modalOpen && <h2>게임 시작을 원하신다면 문을 선택해주세요... </h2>}
       <div className={styles.table}>
         {!score && !gamesPlayed ? (
           <div className={styles.description}>

@@ -87,38 +87,41 @@ export default function Game({
   };
 
   return (
-    <main>
+    <>
       <PromptPortal>
         <PromptModal keep={keepDoor} change={changeDoor} />
       </PromptPortal>
-      <div className={styles.doors}>
-        <Door
-          id="1"
-          prizeOrGoat={prizeOrGoat === 1}
-          // isOpen={promptOpen}
-          game={game}
-          handleSelection={handleSelection}
-        />
-        <Door
-          id="2"
-          prizeOrGoat={prizeOrGoat === 2}
-          // isOpen={promptOpen}
-          game={game}
-          handleSelection={handleSelection}
-        />
-        <Door
-          id="3"
-          prizeOrGoat={prizeOrGoat === 3}
-          // isOpen={promptOpen}
-          game={game}
-          handleSelection={handleSelection}
-        />
+      <div className={styles.doorsContainer}>
+        <div className={styles.doors}>
+          <Door
+            id="1"
+            prizeOrGoat={prizeOrGoat === 1}
+            // isOpen={promptOpen}
+            game={game}
+            handleSelection={handleSelection}
+          />
+          <Door
+            id="2"
+            prizeOrGoat={prizeOrGoat === 2}
+            // isOpen={promptOpen}
+            game={game}
+            handleSelection={handleSelection}
+          />
+          <Door
+            id="3"
+            prizeOrGoat={prizeOrGoat === 3}
+            // isOpen={promptOpen}
+            game={game}
+            handleSelection={handleSelection}
+          />
+        </div>
       </div>
       <br />
       {/* 1. 유저는 처음 1개의 문을 "선택"했을 때, 바꿀 권리를 줄 버튼 생성  */}
       {selected ? (
         <Button
           // disabled={promptOpen}
+          mt="1rem"
           onClick={onOpen}
         >
           다음 결정은??
@@ -143,6 +146,6 @@ export default function Game({
           </Button>
         </>
       )}
-    </main>
+    </>
   );
 }
