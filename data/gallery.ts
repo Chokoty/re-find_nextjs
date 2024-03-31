@@ -64,12 +64,20 @@ const gallery: Gallery[] = [
   },
   {
     id: 8,
+    value: 'Shuko',
+    type: 'special',
+    title: '기간한정 슛코☆팬아트',
+    subTitle: '기간한정 슛코☆팬아트', // '😉 응 없어~ 😉',
+    query: 'wakdu_list?',
+  },
+  {
+    id: 9,
     value: 'AprilFool',
     type: 'special',
-    title: '만우절 팬아트',
-    subTitle: '😉 만우절 팬아트 😉',
-    query:
-      'artworks?query=이세계f6&query=f6&case_sensitive=false&board=isd&board=best&title=',
+    title: '진짜 만우절 팬아트',
+    subTitle: '😉 진짜 만우절 팬아트 😉',
+    query: 'april_fools?',
+    isHidden: true,
   },
 ];
 
