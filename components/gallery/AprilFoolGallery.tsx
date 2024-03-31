@@ -29,7 +29,7 @@ type Props = {
   endpoint: string;
 };
 
-export default function DetailedGallery({ value, endpoint }: Props) {
+export default function AprilFoolGallery({ value, endpoint }: Props) {
   // infinite scroll
   const { ref, inView } = useInView({
     threshold: 0,
@@ -82,10 +82,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
 
   const topTitle = {
     title: album?.subTitle || `${member?.name ?? ''} 팬아트`,
-    description: album?.description ?? '',
-  };
-  const topTitleAprilFool = {
-    title: '응 없어~',
     description: album?.description ?? '',
   };
 
@@ -193,18 +189,14 @@ export default function DetailedGallery({ value, endpoint }: Props) {
             {album?.subTitle}
           </Text>
         )} */}
-        <PageTitle
-          topTitle={value === 'Shuko' ? topTitleAprilFool : topTitle}
-        />
+        <PageTitle topTitle={topTitle} />
         {album?.description && <Text m="0 auto">{album.description}</Text>}
         {
           // member는 팬아트 개수 안 보이게
           album && (
             <Text>
               총 {total ? <CountUp end={total ?? 0} /> : ''}
-              개의
-              {value === 'Shuko' && ' 왁두'}
-              팬아트가 있습니다.
+              개의 팬아트가 있습니다.
             </Text>
           )
         }

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 
 import RandomFanartBtn from '@/components/event/RandomFanartBtn';
-import { eventsData } from '@/data/events';
+import { randomFanartData } from '@/data/randomFanarts';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
@@ -16,7 +16,7 @@ export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   const [selectedEventKey, setSelectedEventKey] = useState(
-    eventsData[eventsData.length - 1].key
+    randomFanartData[randomFanartData.length - 1].key
   );
 
   const handleEventClick = (key: string) => {
@@ -61,7 +61,7 @@ export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
           // p="0 2rem"
           pr="2rem"
         >
-          총 {eventsData.length} 개
+          총 {randomFanartData.length} 개
         </Text>
       </Box>
       <Box
@@ -86,7 +86,7 @@ export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
       >
         {showCnt === 0 && (
           <Box w="90%" p="0 0.5rem">
-            {eventsData
+            {randomFanartData
               .slice()
               .reverse()
               .map((item, index) => (
@@ -122,7 +122,7 @@ export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
         )}
         {showCnt !== 0 && (
           <Box w="100%" p="0 0.5rem">
-            {eventsData
+            {randomFanartData
               .slice(-showCnt) // This will take the last `showCnt` elements from the array
               .reverse()
               .map((item, index) => (

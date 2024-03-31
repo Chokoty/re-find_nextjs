@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, useColorModeValue } from '@chakra-ui/react';
+import { useState } from 'react';
 
 import AlbumGrid from '@/components/artwork/albumGrid';
 import MemberButtonList from '@/components/artwork/MemberButtonList';
@@ -14,6 +15,7 @@ const topTitle = {
 
 export default function IsdPage() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const isAprilFool = useState(false);
 
   return (
     <Box

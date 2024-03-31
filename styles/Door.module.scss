@@ -2,10 +2,17 @@
   fill: url('#doorknobGradient');
 }
 
+.sceneContainer {
+  width: 33.2%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .scene {
   width: 205px;
   height: 245px;
-  margin: 90px 0;
+  // margin: 90px 0;
   perspective: 1200px;
   background-color: black;
 }
@@ -34,7 +41,10 @@
   transform-origin: left;
   transition: transform 1s;
 }
-
+.door:hover {
+  transform: scale(1.05); // 문을 5% 확대합니다.
+  transition: transform 0.1s ease-in-out; // 부드러운 전환 효과를 위해 transition을 추가합니다.
+}
 .door.show--front {
   transform: translateZ(0) rotateY(0deg);
 }
@@ -90,10 +100,10 @@
 }
 
 .door--front {
-  transform: rotateY(0deg) translateZ(25px);
+  transform: rotateY(0deg) translateZ(20px);
 }
 .door--back {
-  transform: rotateY(180deg) translateZ(25px);
+  transform: rotateY(180deg) translateZ(20px);
 }
 
 .door--right {
@@ -110,14 +120,119 @@
   .scene,
   .goat,
   .goat img,
-  .door {
-    max-width: 70%;
-  }
+  // .door {
+  //   max-width: 70%;
+  // }
   .scene {
-    margin: 25px 0;
+    // margin: 25px 0;
     perspective: 2000px;
   }
   .modal {
     width: 75vw;
   }
+}
+
+// @media screen and (max-width: 460px) {
+//   .scene {
+//     perspective: 3000px;
+//   }
+//   .modal {
+//     width: 90vw;
+//   }
+// }
+
+@media (max-width: 785px) {
+  .sceneContainer {
+    width: 33.2%;
+  }
+}
+
+@media (max-width: 715px) {
+  .scene {
+    width: 155px;
+    height: 195px;
+  }
+
+  .goat {
+    width: 151px;
+    height: 190px;
+  }
+
+  .goat img {
+    width: 99%;
+  }
+
+  .door {
+    width: 130px;
+    height: 190px;
+  }
+
+  .door--front,
+  .door--back {
+    width: 150px;
+    height: 190px;
+  }
+
+  .door--right,
+  .door--left {
+    width: 40px;
+    height: 190px;
+    left: -22px;
+  }
+}
+
+@media (max-width: 500px) {
+  .sceneContainer {
+    width: unset;
+  }
+}
+
+@media (max-width: 475px) {
+  .sceneContainer {
+    width: 33.3%;
+  }
+
+  .scene {
+    width: 105px;
+    height: 145px;
+  }
+
+  .goat {
+    width: 101px;
+    height: 140px;
+  }
+
+  .goat img {
+    width: 99%;
+  }
+
+  .door {
+    width: 80px;
+    height: 140px;
+  }
+
+  .door--front,
+  .door--back {
+    width: 100px;
+    height: 140px;
+  }
+
+  .door--right,
+  .door--left {
+    width: 22px;
+    height: 140px;
+    left: -61px;
+  }
+
+  .door--front {
+    transform: rotateY(0deg) translateZ(7px);
+  }
+
+  .door--back {
+    transform: rotateY(181deg) translateZ(7px);
+  }
+
+  //   .door--right {
+  //   transform: rotateY(90deg) translateZ(150px);
+  // }
 }
