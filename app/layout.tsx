@@ -56,7 +56,6 @@ export default function RootLayout({
           <main>{children}</main>
           <TabBar />
           <div id="overlays" />
-          <div id="promptOverlays" />
         </Providers>
       </body>
       <GoogleAnalytics gaId={GA_ID} />

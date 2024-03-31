@@ -1,18 +1,10 @@
-import { Button } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
+import { Box, Button, Heading } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
-import { useShallow } from 'zustand/react/shallow';
 
 import MontyHall from '@/lib/montyhall';
-import { usePromptStore } from '@/store/promptStore';
 import styles from '@/styles/Game.module.scss';
 
 import { Door } from './Door';
-import PromptModal from './Modal';
-
-const PromptPortal = dynamic(
-  () => import('@/components/common/Modal/PromptPortal')
-);
 
 type Props = {
   setScore: React.Dispatch<React.SetStateAction<number>>;
@@ -77,20 +69,14 @@ export default function Game({
     setModalOpen(false);
   };
 
-  const { setIsOpen } = usePromptStore(
-    useShallow((state) => ({
-      setIsOpen: state.setIsOpen,
-    }))
-  );
-  const onOpen = () => {
-    setIsOpen(true);
-  };
-
   return (
-    <>
-      <PromptPortal>
-        <PromptModal keep={keepDoor} change={changeDoor} />
-      </PromptPortal>
+    <Box
+      display="flex"
+      flexDir="column"
+      alignItems="center"
+      justifyContent="center"
+      w="100%"
+    >
       <div className={styles.doorsContainer}>
         <div className={styles.doors}>
           <Door
@@ -116,16 +102,31 @@ export default function Game({
           />
         </div>
       </div>
-      <br />
       {/* 1. 유저는 처음 1개의 문을 "선택"했을 때, 바꿀 권리를 줄 버튼 생성  */}
       {selected ? (
-        <Button
-          // disabled={promptOpen}
-          mt="1rem"
-          onClick={onOpen}
-        >
-          다음 결정은??
-        </Button>
+        <Box display="flex" flexDir="column">
+          <Heading as="h2" size="md" mb="1rem">
+            처음 선택한 문을 바꾸시겠습니까?
+          </Heading>
+          <Box display="flex" flexDir="row" gap="1rem">
+            <Button
+              flex={1}
+              tabIndex={0}
+              colorScheme="green"
+              onClick={keepDoor}
+            >
+              그대로 ㄱ
+            </Button>
+            <Button
+              flex={1}
+              tabIndex={0}
+              colorScheme="yellow"
+              onClick={changeDoor}
+            >
+              바꾸기
+            </Button>
+          </Box>
+        </Box>
       ) : null}
       {result.length > 0 && (
         <>
@@ -146,6 +147,6 @@ export default function Game({
           </Button>
         </>
       )}
-    </>
+    </Box>
   );
 }
