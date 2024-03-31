@@ -33,6 +33,11 @@ export const siteConfig = {
       description: '왁물원에 올라온 이세돌 팬아트를 모아놓은 갤러리입니다.',
       url: '/gallery/isdPick',
     },
+    Shuko: {
+      title: '리파인드 | 기간한정 슛코☆ 갤러리',
+      description: '4월1일 한정 슛코☆팬아트를 모아놓은 갤러리입니다.',
+      url: '/gallery/Shuko',
+    },
     detailed(name: string) {
       const mappedName = GalleryMap[name as keyof typeof GalleryMap] || name;
       return {
@@ -72,7 +77,7 @@ export const siteConfig = {
         url: `/events/${decodedNickname}`,
       };
     },
-    AprilFool: {
+    WaktyHallDoor: {
       title: '리파인드 | 왁티홀의 문',
       description: '3종류의 팬아트 기회는 단 2번 여러분의 선택은!',
       url: '/events/WaktyHallDoor',

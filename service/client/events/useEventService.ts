@@ -23,3 +23,7 @@ export function useKidingArtworks() {
 export function useUrlInfo(url: string) {
   return useQuery(queryOptions.urlInfo(url));
 }
+
+export function useWaktyHallArts() {
+  return useQuery(queryOptions.waktyHallArts());
+}

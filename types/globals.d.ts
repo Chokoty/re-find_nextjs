@@ -205,4 +205,22 @@ declare global {
     is_shukkou: boolean;
     is_hyum: boolean;
   }
+
+  export interface WaktyHall {
+    hyum: DoorBehindFanart;
+    best: DoorBehindFanart;
+    wakdu: DoorBehindFanart;
+  }
+
+  export interface DoorBehindFanart {
+    url: string;
+    img_url: string;
+    board: string;
+    category: string;
+    title: string;
+    nickname: string;
+    nicklevel: string;
+    author_url: string;
+    date: string;
+  }
 }

@@ -1,38 +1,37 @@
-import { Box, Button, Heading, useColorModeValue } from '@chakra-ui/react';
-import { useEffect } from 'react';
-import FocusLock from 'react-focus-lock';
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useResponsive } from '@/hook/useResponsive';
-import { usePromptStore } from '@/store/promptStore';
+import { useImageViewerStore } from '@/store/imageViewerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-type Props = {
-  keep: () => void;
-  change: () => void;
-};
+import ImageView from './ImageView';
 
-export default function PromptModal({ keep, change }: Props) {
+export default function DetailedImageViewer() {
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const isMobile = useResponsive(); // 모바일 환경인지 체크
 
-  const { setIsOpen } = usePromptStore(
+  const { fanart, isOpen, setIsOpen } = useImageViewerStore(
     useShallow((state) => ({
+      fanart: state.fanart,
+      isOpen: state.isOpen,
       setIsOpen: state.setIsOpen,
     }))
   );
   const onClose = () => {
     setIsOpen(false);
-  };
-
-  const keepDoor = () => {
-    keep();
-    onClose();
-  };
-  const changeDoor = () => {
-    change();
-    onClose();
   };
 
   useEffect(() => {
@@ -41,66 +40,48 @@ export default function PromptModal({ keep, change }: Props) {
         onClose();
       }
     };
-    const htmlElement = document.documentElement;
-    htmlElement.style.overflowY = 'hidden';
+    // const htmlElement = document.documentElement;
+    // htmlElement.style.overflowY = 'hidden';
     document.body.addEventListener('keydown', closeOnEscapeKey);
     return () => {
-      htmlElement.style.overflowY = 'scroll';
+      // htmlElement.style.overflowY = 'scroll';
       document.body.removeEventListener('keydown', closeOnEscapeKey);
     };
   }, [onClose]);
 
+  const [isFocused, setFocuised] = useState(false);
+
+  const handleToggleFocus = (id: number | null) => {
+    setFocuised(!isFocused);
+  };
+
   return (
-    <FocusLock>
-      <Box
-        zIndex={201} // overlay > header보다 위
-        position="fixed"
-        left="0"
-        top="0"
-        width="100%"
-        height="100%"
-        background="rgba(0 0 0 / 48%)"
-        onClick={onClose}
-      />
-      <Box
-        zIndex={1000} // modal content > header, overlay보다 위
-        position="fixed"
-        top="50%"
-        left="50%"
-        transform={`translate(-50%, -50%)`}
-        maxW={isMobile ? '100%' : '75%'}
-        width="auto"
-        // height="100dvh"
-        overflow="auto"
-        overscrollBehaviorY="none"
-      >
-        <Box
-          display="flex"
-          flexDir="column"
-          as="section"
-          // width="100%"
-          // maxW={['100%', '66%']}
-          my="0"
-          boxShadow="none"
-          border={`1px solid ${color7}`}
-          borderTopRadius={isMobile ? '0' : '1rem'}
-          borderBottomRadius="1rem"
-          background={bg2}
-          p="2rem"
-        >
-          <Heading as="h2" size="md" mb="1rem">
-            당신은 문을 바꾸시겠습니까?{' '}
-          </Heading>
-          <Box mt="2rem" display="flex" flexDir="row" gap="1rem">
-            <Button tabIndex={0} onClick={keepDoor}>
-              내 선택을 유지
+    <>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          {/* <ModalHeader>이미지 제목</ModalHeader> */}
+          <ModalCloseButton />
+          <ModalBody display="flex" justifyContent="center" my="2rem">
+            {fanart && (
+              <ImageView
+                width={350}
+                nickname={''}
+                artwork={fanart}
+                isFocused={isFocused}
+                onToggleFocus={handleToggleFocus}
+                isGallery={true}
+              />
+            )}
+          </ModalBody>
+          {/* <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
             </Button>
-            <Button tabIndex={0} onClick={changeDoor}>
-              선택을 바꾸기
-            </Button>
-          </Box>
-        </Box>
-      </Box>
-    </FocusLock>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter> */}
+        </ModalContent>
+      </Modal>
+    </>
   );
 }

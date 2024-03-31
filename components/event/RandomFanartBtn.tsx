@@ -12,7 +12,7 @@ import NextImage from 'next/image';
 import React from 'react';
 import { FaArrowDown, FaDice } from 'react-icons/fa';
 
-import { eventsData } from '@/data/events';
+import { randomFanartData } from '@/data/randomFanarts';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import { useUrlInfo } from '@/service/client/events/useEventService';
@@ -23,7 +23,7 @@ type Props = {
 };
 
 export default function RandomFanartBtn({ selectedEventKey }: Props) {
-  const selectedEvent = eventsData.find(
+  const selectedEvent = randomFanartData.find(
     (event) => event.key === selectedEventKey
   );
 

@@ -60,22 +60,27 @@ class MontyHall {
   // 게임 결과를 확인합니다.
   checkWinning(guess = this.contestantGuess): string[] {
     const response: string[] = [];
-    if (guess === this.contestantGuess) {
-      response.push(`처음 ${guess}번째 문이었습니다. 당신의 결정이 맞았군요`);
-    } else {
-      response.push(
-        `처음 ${this.contestantGuess}번째 문을 결정 후`,
-        `${guess}번째 문으로 변경하였습니다. 몬티홀의 역설이 맞았군요`
-      );
-    }
-    response.push(`${this.prizeDoor}번째 문에 상품이 있었습니다.`);
     if (guess === this.prizeDoor) {
       this.win = true;
-      response.push('축하드립니다. 당첨되었습니다!');
+      response.push('축하드립니다. 고퀄팬아트에 당첨되셨습니다!');
     } else {
       this.win = false;
-      response.push('다음에 다시 도전해보세요!');
+      response.push('아! 당신은 혐잘딱팬아트를 뽑으셨습니다.');
     }
+    if (guess === this.contestantGuess) {
+      if (this.win === false) {
+        response.push(`처음 고른 ${guess}번째 문이 아니었군요(애쉽쓰~)`);
+      } else {
+        response.push(`처음 고른 ${guess}번째 문이 맞았군요(킹애~)`);
+      }
+    } else if (this.win === false) {
+      response.push(`처음 고른 ${guess}번째 문이 맞았군요(바꾼스듄~)`);
+    } else {
+      response.push(
+        `${this.contestantGuess}번째 문에서 ${guess}번째 문으로 변경하셨습니다.(킹애~)`
+      );
+    }
+
     return response;
   }
 }
