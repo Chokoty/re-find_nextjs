@@ -30,13 +30,13 @@ const iconStyleMobile = {
 type Props = {
   width: number;
   nickname: string;
-  artwork: ArtworkList | GalleryArtworkList;
+  artwork: DoorBehindFanart;
   isFocused: boolean;
   onToggleFocus: (id: number | null) => void;
   isGallery: boolean;
 };
 
-export default function ImageCard({
+export default function ImageView({
   width,
   artwork,
   isFocused,
@@ -47,10 +47,6 @@ export default function ImageCard({
   // const isMobile = useResponsive();
   const article_link = useResponsiveLink('', 'article');
   // const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  const modifiedUrl300 = useModifiedImageUrl({
-    url: artwork.img_url_list[0],
-    size: 300,
-  });
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
 
   const handleImageLoad = (
@@ -59,7 +55,7 @@ export default function ImageCard({
     setImageHeight((e.target as HTMLImageElement).height);
   };
 
-  const authorName = 'author' in artwork ? artwork.author : '';
+  const { img_url, nickname, title, url, board } = artwork;
 
   return (
     <Box
@@ -68,7 +64,6 @@ export default function ImageCard({
       pb="16px"
       display="inline-block"
       position="relative"
-      key={artwork?.id}
       m="0 1rem"
     >
       <Box position="relative">
@@ -80,7 +75,7 @@ export default function ImageCard({
           position="relative"
         >
           <NextImage
-            alt={artwork?.title}
+            alt={title}
             width={236}
             height={236}
             style={{
@@ -89,13 +84,8 @@ export default function ImageCard({
               width: '100%',
               height: '100%',
               borderRadius: '1rem',
-              filter: artwork?.deleted ? 'blur(6px)' : 'none', // 블러 처리
             }}
-            src={
-              artwork?.img_url === ''
-                ? 'http://via.placeholder.com/236x236'
-                : modifiedUrl300
-            }
+            src={img_url ?? 'http://via.placeholder.com/236x236'}
             onLoad={handleImageLoad}
             unoptimized
           />
@@ -109,8 +99,8 @@ export default function ImageCard({
           borderRadius="1rem"
           zIndex={1}
           background={isFocused ? 'rgba(0, 0, 0, 0.3)' : 'rgba(0, 0, 0, 0.0)'}
-          onClick={() => onToggleFocus(artwork.id)}
-          onMouseEnter={() => onToggleFocus(artwork.id)}
+          onClick={() => onToggleFocus(0)}
+          onMouseEnter={() => onToggleFocus(0)}
         />
         {isFocused && (
           // <Link
@@ -145,7 +135,7 @@ export default function ImageCard({
               textOverflow="ellipsis"
               maxWidth="100%"
             >
-              {artwork.board}
+              {board}
             </Text>
             <Flex
               w="100%"
@@ -168,7 +158,10 @@ export default function ImageCard({
                   h={['2.5rem', '3rem']}
                   mr="1rem"
                 >
-                  <NextLink href={`/artists/${authorName}`} passHref>
+                  <NextLink
+                    href={`https://re-find.xyz/artists/${nickname}`}
+                    target="_blank"
+                  >
                     <Text
                       textAlign="center"
                       alignItems="center"
@@ -182,7 +175,7 @@ export default function ImageCard({
               <Button
                 as={Link}
                 className="link_to_wakzoo"
-                href={article_link + artwork.id}
+                href={article_link + url.split('/').at(-1)}
                 isExternal
                 _hover={{
                   textDecoration: 'none',
@@ -212,13 +205,16 @@ export default function ImageCard({
         alignItems="center"
         mt="0.5rem"
       >
-        <Text fontWeight={500} noOfLines={1} w="100%">
-          {artwork?.title}
+        <Text textAlign="center" fontWeight={500} noOfLines={1} w="100%">
+          {title}
         </Text>
         {isGallery && (
-          <NextLink href={`/artists/${authorName}`} passHref>
+          <NextLink
+            href={`https://re-find.xyz/artists/${nickname}`}
+            target="_blank"
+          >
             <Text textAlign="center" color={highlight} fontWeight={500}>
-              작가: {authorName}
+              작가: {nickname}
             </Text>
           </NextLink>
         )}

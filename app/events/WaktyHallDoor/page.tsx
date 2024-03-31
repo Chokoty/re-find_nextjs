@@ -36,7 +36,6 @@ export default function WaktyHallDoor() {
   const [score, setScore] = useState(0);
   const [gamesPlayed, setGamesPlayed] = useState(0);
   const [switched, setSwitched] = useState(0);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const highlightColor = useColorModeValue(
     lightMode.highlight,
@@ -54,7 +53,7 @@ export default function WaktyHallDoor() {
   // };
 
   return (
-    <EventLayout title="Events">
+    <EventLayout title="왁티홀">
       <Box
         w="100%"
         p="1rem"
@@ -176,9 +175,7 @@ export default function WaktyHallDoor() {
         setScore={setScore}
         setGamesPlayed={setGamesPlayed}
         setSwitched={setSwitched}
-        setModalOpen={setModalOpen}
       />
-      {!modalOpen && <h2>게임 시작을 원하신다면 문을 선택해주세요... </h2>}
       <div className={styles.table}>
         {!score && !gamesPlayed ? (
           <div className={styles.description}>

@@ -5,8 +5,8 @@ import { MdOutlineImageSearch } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
 import type MontyHall from '@/lib/montyhall';
-import KeyDoor from '@/public/real-wakgood.webp';
-import BoomDoor from '@/public/이세페애니굳.webp';
+import BoomDoor from '@/public/염소굳.webp';
+import KeyDoor from '@/public/페리도두.webp';
 import { useImageViewerStore } from '@/store/imageViewerStore';
 import styles from '@/styles/Door.module.scss';
 
@@ -16,16 +16,48 @@ type Props = {
   game: MontyHall | null;
   // isOpen: boolean;
   prizeOrGoat: boolean;
+  fanart: WaktyHall;
 };
 
-const Door = ({ handleSelection, id, game, prizeOrGoat }: Props) => {
-  const { setIsOpen } = useImageViewerStore(
+const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
+  const { setFanart, setIsOpen } = useImageViewerStore(
     useShallow((state) => ({
       setIsOpen: state.setIsOpen,
+      setFanart: state.setFanart,
     }))
   );
   const onOpen = () => {
+    const artwork = getFanart();
     setIsOpen(true);
+    setFanart(artwork);
+  };
+
+  const certainDoorSrc = () => {
+    if (!game) return BoomDoor;
+    const { prizeDoor } = game;
+    if (prizeDoor) {
+      if (prizeDoor === +id) {
+        return KeyDoor;
+      }
+      return BoomDoor;
+    }
+
+    if (prizeOrGoat) {
+      return KeyDoor;
+    }
+    return BoomDoor;
+  };
+
+  const getFanart = () => {
+    if (!game) return null;
+    if (game.prizeDoor === +id) {
+      return fanart.best;
+    }
+    // 정답이 아닌 문을 선택했을 때,
+    if (game.montyDoor === +id) {
+      return fanart.hyum;
+    }
+    return fanart.wakdu;
   };
 
   const handleClick = (
@@ -51,22 +83,6 @@ const Door = ({ handleSelection, id, game, prizeOrGoat }: Props) => {
     }
   };
 
-  const certainDoorSrc = () => {
-    if (!game) return BoomDoor;
-    const { prizeDoor } = game;
-    if (prizeDoor) {
-      if (prizeDoor === +id) {
-        return KeyDoor;
-      }
-      return BoomDoor;
-    }
-
-    if (prizeOrGoat) {
-      return KeyDoor;
-    }
-    return BoomDoor;
-  };
-
   // 게임이 끝났을 때
   if (game && game.win !== '') {
     return (
@@ -79,8 +95,8 @@ const Door = ({ handleSelection, id, game, prizeOrGoat }: Props) => {
           <div className={styles.goat}>
             <Image
               src={certainDoorSrc()}
-              width={180}
-              height={180}
+              width={250}
+              height={250}
               alt={
                 game && game.prizeDoor === +id
                   ? 'Door opens to reveal prize'
@@ -112,7 +128,7 @@ const Door = ({ handleSelection, id, game, prizeOrGoat }: Props) => {
           <Button
             gap="0.5rem"
             marginTop="0.5rem"
-            colorScheme={game && game.prizeDoor === +id ? 'yellow' : 'red'}
+            background={game && game.prizeDoor === +id ? '#faf089' : '#feb2b2'}
             onClick={onOpen}
           >
             <MdOutlineImageSearch />
@@ -171,8 +187,8 @@ const Door = ({ handleSelection, id, game, prizeOrGoat }: Props) => {
         >
           <div className={styles.goat}>
             <Image
-              width={180}
-              height={180}
+              width={250}
+              height={250}
               src={BoomDoor}
               alt="Door opens to reveal goat"
             />
@@ -217,8 +233,8 @@ const Door = ({ handleSelection, id, game, prizeOrGoat }: Props) => {
       >
         <div className={styles.goat}>
           <Image
-            width={180}
-            height={180}
+            width={250}
+            height={250}
             src={certainDoorSrc()}
             alt={
               (game && game.prizeDoor) === +id
