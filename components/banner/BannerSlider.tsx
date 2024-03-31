@@ -9,7 +9,9 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner2 from '@/components/banner/Banner2';
-import EventBtn from '@/components/event/EventBtn';
+import EventCard1 from '@/components/event/Card/EventCard1';
+import EventCard2 from '@/components/event/Card/EventCard2';
+import EventCard3 from '@/components/event/Card/EventCard3';
 import EventDay from '@/components/event/EventDay';
 // import MelonVoteModal from '@/components/events/MelonVoteModal';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -57,15 +59,21 @@ export default function BannerSlider() {
           <SwiperSlide style={swiperSlideStyle}>
             <Banner2 />
           </SwiperSlide>
+          <SwiperSlide style={swiperSlideStyle}>
+            <EventCard1 />
+          </SwiperSlide>
+          <SwiperSlide style={swiperSlideStyle}>
+            <EventCard2 />
+          </SwiperSlide>
+          <SwiperSlide style={swiperSlideStyle}>
+            <EventCard3 />
+          </SwiperSlide>
           {/* <SwiperSlide style={swiperSlideStyle}>
             <MelonVoteModal />
           </SwiperSlide> */}
-          <SwiperSlide style={swiperSlideStyle}>
-            <EventBtn />
-          </SwiperSlide>
-          <SwiperSlide style={swiperSlideStyle}>
+          {/* <SwiperSlide style={swiperSlideStyle}>
             <EventDay />
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
       </Box>
     </Box>

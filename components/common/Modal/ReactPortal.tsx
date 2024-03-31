@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useShallow } from 'zustand/react/shallow';
 
-import SearchModal from '@/components/search/Modal';
 import { useModalStore } from '@/store/modalStore';
 
-export default function ReactPortal() {
+export default function ReactPortal({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [mountElement, setMountElement] = useState<HTMLElement | null>(null);
   const { isOpen } = useModalStore(
     useShallow((state) => ({ isOpen: state.isOpen }))
@@ -18,5 +21,5 @@ export default function ReactPortal() {
 
   if (!mountElement) return null;
 
-  return createPortal(<>{isOpen && <SearchModal />}</>, mountElement);
+  return createPortal(<>{isOpen && children}</>, mountElement);
 }

@@ -29,7 +29,7 @@ type Props = {
   endpoint: string;
 };
 
-export default function DetailedGallery({ value, endpoint }: Props) {
+export default function AprilFoolGallery({ value, endpoint }: Props) {
   // infinite scroll
   const { ref, inView } = useInView({
     threshold: 0,
@@ -84,10 +84,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     title: album?.subTitle || `${member?.name ?? ''} 팬아트`,
     description: album?.description ?? '',
   };
-  const topTitleAprilFool = {
-    title: '응 없어~',
-    description: album?.description ?? '',
-  };
 
   const content = () => {
     if (isLoading) {
@@ -114,43 +110,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
 
     if (!artworks || artworks.length === 0) return;
 
-    const getArtworks = () => {
-      if (isDeletedVisible && gallery !== null) {
-        return value === 'Shuko'
-          ? artworks.map((artwork) => ({
-              id: artwork.id,
-              url: artwork.url,
-              img_url: artwork.img_url,
-              img_url_list: artwork.img_url_list,
-              board: artwork.board,
-              category: artwork.category,
-              title: artwork.title,
-              date: artwork.date,
-              view: artwork.view,
-              like: artwork.like,
-              comment: artwork.comment,
-              deleted: false,
-            }))
-          : artworks;
-      }
-      return value === 'Shuko'
-        ? artworks.map((artwork) => ({
-            id: artwork.id,
-            url: artwork.url,
-            img_url: artwork.img_url,
-            img_url_list: artwork.img_url_list,
-            board: artwork.board,
-            category: artwork.category,
-            title: artwork.title,
-            date: artwork.date,
-            view: artwork.view,
-            like: artwork.like,
-            comment: artwork.comment,
-            deleted: false,
-          }))
-        : artworks.filter((artwork) => artwork.is_hyum === false);
-    };
-
     return (
       <Box
         w="100%"
@@ -160,7 +119,11 @@ export default function DetailedGallery({ value, endpoint }: Props) {
           <MasonryView
             nickname={''}
             // artworks={artworks}
-            artworks={getArtworks()}
+            artworks={
+              isDeletedVisible && gallery !== null
+                ? artworks
+                : artworks.filter((artwork) => artwork.is_hyum === false)
+            }
             isDeletedVisible={isDeletedVisible}
             // loadingImage={loadingImage}
             // handleLoading={handleLoading}
@@ -169,7 +132,11 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         )}
         {activeView === 'grid' && (
           <SimpleView
-            artworks={getArtworks()}
+            artworks={
+              isDeletedVisible && gallery !== null
+                ? artworks
+                : artworks.filter((artwork) => artwork.is_hyum === false)
+            }
             isDeletedVisible={isDeletedVisible}
             // handleLoading={handleLoading}
           />
@@ -222,18 +189,14 @@ export default function DetailedGallery({ value, endpoint }: Props) {
             {album?.subTitle}
           </Text>
         )} */}
-        <PageTitle
-          topTitle={value === 'Shuko' ? topTitleAprilFool : topTitle}
-        />
+        <PageTitle topTitle={topTitle} />
         {album?.description && <Text m="0 auto">{album.description}</Text>}
         {
           // member는 팬아트 개수 안 보이게
           album && (
             <Text>
               총 {total ? <CountUp end={total ?? 0} /> : ''}
-              개의
-              {value === 'Shuko' && ' 왁두'}
-              팬아트가 있습니다.
+              개의 팬아트가 있습니다.
             </Text>
           )
         }
