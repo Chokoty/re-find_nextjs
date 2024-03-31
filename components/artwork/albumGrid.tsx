@@ -130,47 +130,53 @@ export default function AlbumGrid() {
                         m="1rem auto"
                         w="100%"
                       >
-                        <Link href={'/gallery/Shuko'} passHref>
-                          <Button w="6rem" h="6rem">
-                            <Box
-                              w="6rem"
-                              m="0 auto"
-                              display="flex"
-                              flexDirection="column"
-                              justifyContent="center"
-                              alignItems="center"
-                            >
-                              <Image
-                                src={SoWhat}
-                                alt="어쩔"
-                                width={100}
-                                height={100}
-                                objectFit="cover"
-                                unoptimized
-                              />
-                            </Box>
-                          </Button>
+                        <Link
+                          style={{
+                            background: '#e2e8f0',
+                            width: '6rem',
+                            height: '6rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderRadius: '6px',
+                            paddingLeft: '1rem',
+                            paddingRight: '1rem',
+                          }}
+                          href={'/gallery/Shuko'}
+                        >
+                          <Image
+                            src={SoWhat}
+                            alt="어쩔"
+                            width={100}
+                            height={100}
+                            objectFit="cover"
+                            unoptimized
+                          />
                         </Link>
-                        <Link href={'/gallery/AprilFool'} passHref>
-                          <Button w="6rem" h="6rem">
-                            <Box
-                              w="6rem"
-                              m="0 auto"
-                              display="flex"
-                              flexDirection="column"
-                              justifyContent="center"
-                              alignItems="center"
-                            >
-                              <Image
-                                src={DomHwangCha}
-                                alt="돔황챠"
-                                width={100}
-                                height={100}
-                                objectFit="cover"
-                                unoptimized
-                              />
-                            </Box>
-                          </Button>
+                        <Link
+                          href={'/gallery/AprilFool'}
+                          style={{
+                            background: '#e2e8f0',
+                            width: '6rem',
+                            height: '6rem',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            borderRadius: '6px',
+                            paddingLeft: '1rem',
+                            paddingRight: '1rem',
+                          }}
+                        >
+                          <Image
+                            src={DomHwangCha}
+                            alt="돔황챠"
+                            width={100}
+                            height={100}
+                            objectFit="cover"
+                            unoptimized
+                          />
                         </Link>
                       </Box>
                     </ModalBody>

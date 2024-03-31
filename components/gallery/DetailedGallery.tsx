@@ -114,6 +114,43 @@ export default function DetailedGallery({ value, endpoint }: Props) {
 
     if (!artworks || artworks.length === 0) return;
 
+    const getArtworks = () => {
+      if (isDeletedVisible && gallery !== null) {
+        return value === 'Shuko'
+          ? artworks.map((artwork) => ({
+              id: artwork.id,
+              url: artwork.url,
+              img_url: artwork.img_url,
+              img_url_list: artwork.img_url_list,
+              board: artwork.board,
+              category: artwork.category,
+              title: artwork.title,
+              date: artwork.date,
+              view: artwork.view,
+              like: artwork.like,
+              comment: artwork.comment,
+              deleted: false,
+            }))
+          : artworks;
+      }
+      return value === 'Shuko'
+        ? artworks.map((artwork) => ({
+            id: artwork.id,
+            url: artwork.url,
+            img_url: artwork.img_url,
+            img_url_list: artwork.img_url_list,
+            board: artwork.board,
+            category: artwork.category,
+            title: artwork.title,
+            date: artwork.date,
+            view: artwork.view,
+            like: artwork.like,
+            comment: artwork.comment,
+            deleted: false,
+          }))
+        : artworks.filter((artwork) => artwork.is_hyum === false);
+    };
+
     return (
       <Box
         w="100%"
@@ -123,11 +160,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
           <MasonryView
             nickname={''}
             // artworks={artworks}
-            artworks={
-              isDeletedVisible && gallery !== null
-                ? artworks
-                : artworks.filter((artwork) => artwork.is_hyum === false)
-            }
+            artworks={getArtworks()}
             isDeletedVisible={isDeletedVisible}
             // loadingImage={loadingImage}
             // handleLoading={handleLoading}
@@ -136,11 +169,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         )}
         {activeView === 'grid' && (
           <SimpleView
-            artworks={
-              isDeletedVisible && gallery !== null
-                ? artworks
-                : artworks.filter((artwork) => artwork.is_hyum === false)
-            }
+            artworks={getArtworks()}
             isDeletedVisible={isDeletedVisible}
             // handleLoading={handleLoading}
           />

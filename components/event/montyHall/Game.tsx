@@ -21,6 +21,9 @@ export default function Game() {
   const [isInProgress, setIsInProgress] = useState(false);
 
   const [records, setRecords] = useState<number[]>(() => {
+    if (typeof window === 'undefined') {
+      return [0, 0, 0];
+    }
     const scoreRecords = localStorage.getItem('waktyHall');
     return scoreRecords ? JSON.parse(scoreRecords) : [0, 0, 0];
   });
@@ -35,6 +38,7 @@ export default function Game() {
   } = useWaktyHallArts();
 
   const handleScore = () => {
+    console.log(score + 1);
     localStorage.setItem(
       'waktyHall',
       JSON.stringify([score + 1, gamesPlayed, switched])
