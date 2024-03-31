@@ -5,6 +5,10 @@ import type MontyHall from '@/lib/montyhall';
 import KeyDoor from '@/public/real-wakgood.webp';
 import BoomDoor from '@/public/이세페애니굳.webp';
 import styles from '@/styles/Door.module.scss';
+import { Button } from '@chakra-ui/react';
+import { MdOutlineImageSearch } from 'react-icons/md';
+import { useShallow } from 'zustand/react/shallow';
+import { useImageViewerStore } from '@/store/imageViewerStore';
 
 type Props = {
   handleSelection: (id: number) => void;
@@ -15,6 +19,15 @@ type Props = {
 };
 
 const Door = ({ handleSelection, id, game, prizeOrGoat }: Props) => {
+  const { setIsOpen } = useImageViewerStore(
+    useShallow((state) => ({
+      setIsOpen: state.setIsOpen,
+    }))
+  );
+  const onOpen = () => {
+    setIsOpen(true);
+  };
+
   const handleClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
     id1: number
@@ -96,6 +109,15 @@ const Door = ({ handleSelection, id, game, prizeOrGoat }: Props) => {
               className={`${styles['door--face']} ${styles['door--right']}`}
             ></div>
           </div>
+          <Button
+            gap="0.5rem"
+            marginTop="0.5rem"
+            colorScheme={game && game.prizeDoor === +id ? 'yellow' : 'red'}
+            onClick={onOpen}
+          >
+            <MdOutlineImageSearch />
+            자세히 보기
+          </Button>
         </div>
       </div>
     );

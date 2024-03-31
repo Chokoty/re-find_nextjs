@@ -21,7 +21,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
 }
 
 .doors {
@@ -35,7 +35,7 @@
 
 @media screen and (max-width: 1098px) {
   .doors {
-    gap: 36px;
+    gap: 60px;
   }
 }
 
@@ -47,6 +47,6 @@
 
 @media (max-width: 475px) {
   .doors {
-    gap: 36px;
+    gap: 47px;
   }
 }

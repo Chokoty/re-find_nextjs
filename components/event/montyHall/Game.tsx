@@ -5,6 +5,7 @@ import MontyHall from '@/lib/montyhall';
 import styles from '@/styles/Game.module.scss';
 
 import { Door } from './Door';
+import DetailedImageViewer from './Modal';
 
 type Props = {
   setScore: React.Dispatch<React.SetStateAction<number>>;
@@ -77,6 +78,7 @@ export default function Game({
       justifyContent="center"
       w="100%"
     >
+      <DetailedImageViewer />
       <div className={styles.doorsContainer}>
         <div className={styles.doors}>
           <Door
