@@ -50,10 +50,6 @@ export default function UpdateBoard() {
         </Heading>
       </Box>
       <UpdateCardList />
-
-      {/* <Box py="1rem">
-        <Text>현재 서비스 점검 중입니다...</Text>
-      </Box> */}
       <Box
         display="flex"
         flexDirection="column"

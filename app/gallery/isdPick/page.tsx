@@ -7,6 +7,8 @@ import {
 import IsdGallery from '@/components/gallery/IsdGallery';
 import queryOptions from '@/service/client/gallery/queries';
 
+export const revalidate = 60;
+
 export default async function IsdPage() {
   const { queryKey, queryFn } = queryOptions.isdNoticeArtworks({
     member: 'all',
