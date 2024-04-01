@@ -69,15 +69,15 @@ class MontyHall {
     }
     if (guess === this.contestantGuess) {
       if (this.win === false) {
-        response.push(`처음 고른 ${guess}번째 문이 아니었군요(애쉽쓰~)`);
+        response.push(`처음 고른 ${guess}번째 문이 아니었군요.(애쉽쓰~)`);
       } else {
-        response.push(`처음 고른 ${guess}번째 문이 맞았군요(킹애~)`);
+        response.push(`처음 고른 ${guess}번째 문이 맞았군요.(킹애~)`);
       }
     } else if (this.win === false) {
       response.push(`처음 고른 ${guess}번째 문이 맞았군요(바꾼스듄~)`);
     } else {
       response.push(
-        `${this.contestantGuess}번째 문에서 ${guess}번째 문으로 변경하셨습니다.(킹애~)`
+        `${this.contestantGuess}번째 문에서 ${guess}번째 문으로 변경하셨어요.(킹애~)`
       );
     }
 

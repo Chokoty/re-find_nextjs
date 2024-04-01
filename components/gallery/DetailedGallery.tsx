@@ -85,7 +85,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     description: album?.description ?? '',
   };
   const topTitleAprilFool = {
-    title: '응 없어~',
+    title: '응 없어~ 왁두팬아트',
     description: album?.description ?? '',
   };
 

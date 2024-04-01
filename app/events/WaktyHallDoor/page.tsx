@@ -1,8 +1,9 @@
 'use client';
 
 import { ExternalLinkIcon } from '@chakra-ui/icons';
-import { Box, Link, useColorModeValue } from '@chakra-ui/react';
+import { Box, Link, Text, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 import PageTitle from '@/components/common/PageTitle';
 import Game from '@/components/event/montyHall/Game';
@@ -12,11 +13,12 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 const topTitle = {
   title: '왁티홀의 역설',
-  description: '문 뒤에는 고퀄팬아트와 혐잘딱팬아트가 있습니다, 당신의 선택은?',
+  description:
+    '문 뒤에는 고퀄팬아트와 혐잘딱팬아트, 왁두팬아트가 있습니다, 당신의 선택은?',
 };
 
 export default function WaktyHallDoorPage() {
-  // const [totalChanceCnt, setTotalChanceCnt] = useState(10);
+  const [totalChanceCnt, setTotalChanceCnt] = useState(10);
   // const [chanceCnt, setChanceCnt] = useState(2);
   // const setIsOpen = useStore((state) => state.setIsOpen);
   // const isMobile = useResponsive();
@@ -66,94 +68,23 @@ export default function WaktyHallDoorPage() {
           원본링크: 몬티홀의 역설의 현실(+왁굳님 반응 추가)
           <ExternalLinkIcon mx="2px" />
         </Link>
-        <Box
-          w="100%"
-          p="1rem"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          textAlign="center"
-        >
-          {/* <Text as="h1" fontSize="2xl" m="3rem 0 1rem 0">
-            문 선택시 확률 표시, hover시 빼꼼 혐잘딱 팬아트를 피해서 귀여운
-            팬아트를 찾으세요.
-          </Text>
-          <Text mt="3rem" as="h1" fontSize="2xl">
-            고를 기회 앞으로 {chanceCnt}회
-          </Text> */}
-          {/* <Flex
-            w="90%"
-            flexDirection="row"
-            display="flex"
-            flexWrap="wrap"
-            gap="3rem"
-            justifyContent="center"
-            alignItems="center"
-            margin="0 auto"
-            p="0"
-          >
-            {[door, door, door].map((doorSrc, index) => (
-              <Button key={index} onClick={handleDoorClick} variant="unstyled">
-                <Image
-                  src={doorSrc}
-                  alt="door"
-                  width={200}
-                  height={200}
-                  unoptimized
-                  // placeholder="blur"
-                />
-              </Button>
-            ))}
-            <Box>
-              <Image
-                src={door}
-                alt="door"
-                width={200}
-                height={200}
-                unoptimized
-                // placeholder="blur"
-              />
-            </Box>
-            <Box>
-              <Image
-                src={door}
-                alt="door"
-                width={200}
-                height={200}
-                unoptimized
-                // placeholder="blur"
-              />
-            </Box>
-            <Box>
-              <Image
-                src={door}
-                alt="door"
-                width={200}
-                height={200}
-                unoptimized
-                // placeholder="blur"
-              />
-            </Box>
-          </Flex> */}
-        </Box>
-        {/* <Box
-          w="100%"
-          p="1rem"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          textAlign="center"
-        >
-          <Text mt="3rem" as="h1" fontSize="2xl">
-            남은 기회 {totalChanceCnt} /10
-          </Text>
-          <Text mt="3rem" as="h1" fontSize="2xl">
-            남은 기회가 다 소진되었을 시에는 문을 열 수 없습니다.기회를 충전하기
-            위해서는 왁물원 팬아트 링크를 10개 이상 접속하세요.
-          </Text>
-        </Box> */}
+      </Box>
+      <Box
+        w="100%"
+        p="1rem"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center"
+      >
+        <Text mt="3rem" as="h1" fontSize="2xl">
+          남은 기회가 다 소진되었을 시에는 더 이상 문을 열 수 없습니다.기회를
+          충전하기 위해서는 왁물원 팬아트 링크를 10개 이상 접속하세요.
+        </Text>
+        <Text mt="3rem" as="h1" fontSize="2xl">
+          남은 기회 {totalChanceCnt} /10
+        </Text>
       </Box>
       <Game />
     </EventLayout>
