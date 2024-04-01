@@ -263,6 +263,13 @@ const updateLog: UpdateLog[] = [
     content:
       '비정상적인 지속적 외부 접근으로 인한 서버 지연 현상이 발생하고 있습니다. 일부 서비스가 응답하지 않을 수도 있습니다.',
   },
+  {
+    id: 41,
+    date: '2024.04.02',
+    type: '[안내]',
+    content:
+      '만우절 이벤트를 마무리하며, 왁티홀의 문이 닫히고 슛코 팬아트가 사라집니다.',
+  },
 ];
 
 export default updateLog;
