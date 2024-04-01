@@ -1,5 +1,7 @@
-import { Text } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Link, Text, useColorModeValue } from '@chakra-ui/react';
 
+import { darkMode, lightMode } from '@/styles/theme';
 import styles from '@/styles/WaktyHallDoor.module.scss';
 
 type Props = {
@@ -9,19 +11,32 @@ type Props = {
 };
 
 export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
+  const highlightColor = useColorModeValue(
+    lightMode.highlight,
+    darkMode.highlight
+  );
   return (
     <div className={styles.table}>
       {!score && !gamesPlayed ? (
         <div className={styles.description}>
+          <Link
+            color={highlightColor}
+            // className="link-to-wakzoo"
+            href={'https://youtu.be/9ZJf2M6ZoGU?si=j2dYhcLeUe33Ydnm'}
+            isExternal
+          >
+            링크: 몬티홀의 역설을 아십니까? - 왁굳의 노가리
+            <ExternalLinkIcon mx="2px" />
+          </Link>
           <Text textAlign="start">
-            세 개의 문이 제시됩니다. 두 개의 문 뒤에는 꽝인 팬아트가 있습니다.
-            세 번째 뒤에는 기대되는 팬아트가 있습니다. <br />세 개의 문 중 어느
-            문에 상품이 들어 있는지 추측해야 합니다. <br />
-            몬티 홀(진행자)은 문 중 하나를 열어 꽝 팬아트를 드러냅니다. 원래
-            문에 선택을 유지하거나 문 선택을 변경할 수 있는 옵션이 제공됩니다.
+            <br />
+            여기 3개의 문이 있습니다. 3개의 문 뒤에는 2개의 꽝인 팬아트가 있고
+            1개의 문 뒤에 기대되는 팬아트가 있습니다. <br />
+            왁티 홀(진행자)은 문 중 하나를 열어 꽝 팬아트를 공개하면서 다시
+            선택할 기회를 줍니다.
           </Text>
           <Text textAlign="start" pt="1rem">
-            어느 쪽이 이길 가능성이 더 높을까요?
+            이때 여러분은 선택한 문을 바꿔야 할까요?
           </Text>
         </div>
       ) : null}
@@ -61,7 +76,8 @@ export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
                   {' '}
                   {gamesPlayed === 0
                     ? '0.00'
-                    : ((switched / gamesPlayed) * 100).toFixed(2)}
+                    : // : ((switched / gamesPlayed) * 100).toFixed(2)}
+                      ((score / switched) * 100).toFixed(2)}
                   %
                 </td>
               </tr>
@@ -72,9 +88,10 @@ export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
                   {' '}
                   {gamesPlayed === 0
                     ? '0.00'
-                    : (((gamesPlayed - switched) / gamesPlayed) * 100).toFixed(
+                    : ((score / (gamesPlayed - switched)) * 100).toFixed(2)}
+                  {/* : (((gamesPlayed - switched) / gamesPlayed) * 100).toFixed(
                         2
-                      )}
+                      )} */}
                   %
                 </td>
               </tr>
