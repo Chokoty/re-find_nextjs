@@ -2,13 +2,38 @@ import { Text } from '@chakra-ui/react';
 
 import styles from '@/styles/WaktyHallDoor.module.scss';
 
+type CountResult = {
+  changeWin: number;
+  changeLose: number;
+  keepWin: number;
+  keepLose: number;
+};
+
 type Props = {
   score: number;
   gamesPlayed: number;
-  switched: number;
+  switched: boolean;
+  resultCount: CountResult;
 };
 
-export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
+export default function ScoreResult({
+  score,
+  gamesPlayed,
+  switched,
+  resultCount,
+}: Props) {
+  const { changeWin, changeLose, keepWin, keepLose } = resultCount;
+  const getChangeWinProbabilityInGame = () => {
+    return score === 0
+      ? 0
+      : (((changeWin + keepLose) / gamesPlayed) * 100).toFixed(2);
+  };
+  const getKeepWinProbabilityInGame = () => {
+    return score === 0
+      ? 0
+      : (((keepWin + changeLose) / gamesPlayed) * 100).toFixed(2);
+  };
+
   return (
     <div className={styles.table}>
       {!score && !gamesPlayed ? (
@@ -45,6 +70,21 @@ export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
             </thead>
             <tbody>
               <tr>
+                <th>변경시 이김</th>
+                <td>{changeWin}</td>
+                <td>
+                  {gamesPlayed === 0 ? '0.00' : getChangeWinProbabilityInGame()}
+                  %
+                </td>
+              </tr>
+              <tr>
+                <th>유지시 이김</th>
+                <td>{keepWin}</td>
+                <td>
+                  {gamesPlayed === 0 ? '0.00' : getKeepWinProbabilityInGame()}%
+                </td>
+              </tr>
+              <tr>
                 <th>정답</th>
                 <td>{score}</td>
                 <td>
@@ -54,34 +94,8 @@ export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
                   %
                 </td>
               </tr>
-              <tr>
-                <th>변경</th>
-                <td>{switched}</td>
-                <td>
-                  {' '}
-                  {gamesPlayed === 0
-                    ? '0.00'
-                    : ((switched / gamesPlayed) * 100).toFixed(2)}
-                  %
-                </td>
-              </tr>
-              <tr>
-                <th>유지</th>
-                <td>{gamesPlayed - switched}</td>
-                <td>
-                  {' '}
-                  {gamesPlayed === 0
-                    ? '0.00'
-                    : (((gamesPlayed - switched) / gamesPlayed) * 100).toFixed(
-                        2
-                      )}
-                  %
-                </td>
-              </tr>
             </tbody>
           </table>
-          {/* <p>{`변경시 승리 확률: ${score === 0 ? 0 : ((score / switched) * 100).toFixed(2)}%`}</p>
-          <p>{`유지시 승리 확률: ${score === 0 ? 0 : ((score / (gamesPlayed - switched)) * 100).toFixed(2)}%`}</p> */}
         </div>
       ) : (
         ''

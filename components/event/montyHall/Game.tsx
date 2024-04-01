@@ -15,7 +15,10 @@ import ScoreResult from './ScoreResult';
 const initStorageObj = {
   score: 0,
   gamesPlayed: 0,
-  switched: 0,
+  changeWin: 0,
+  changeLose: 0,
+  keepWin: 0,
+  keepLose: 0,
 };
 
 export default function Game() {
@@ -35,7 +38,14 @@ export default function Game() {
   });
   const [score, setScore] = useState(records.score);
   const [gamesPlayed, setGamesPlayed] = useState(records.gamesPlayed);
-  const [switched, setSwitched] = useState(records.switched);
+  const [switched, setSwitched] = useState(false);
+  // 변경해서 이긴횟수, 변경해서 진횟수, 유지해서 이긴횟수, 유지해서 진횟수
+  const [resultCount, setResultCount] = useState({
+    changeWin: records.changeWin,
+    changeLose: records.changeLose,
+    keepWin: records.keepWin,
+    keepLose: records.keepLose,
+  });
   const {
     data: fanartsBehindDoor,
     isLoading,
@@ -54,26 +64,41 @@ export default function Game() {
     );
   };
 
-  const handleGamePlayed = () => {
+  const handleGamePlayed = (isWin: boolean) => {
     const newGamesPlayed = gamesPlayed + 1;
+    let { changeWin, changeLose, keepWin, keepLose } = resultCount;
+    if (isWin) {
+      if (switched) {
+        changeWin += 1;
+      } else {
+        keepWin += 1;
+      }
+    } else {
+      if (switched) {
+        changeLose += 1;
+      } else {
+        keepLose += 1;
+      }
+    }
+    setResultCount({ changeWin, changeLose, keepWin, keepLose });
     setGamesPlayed(newGamesPlayed);
     const data = localStorage.getItem('waktyHall');
     if (!data) return;
     localStorage.setItem(
       'waktyHall',
-      JSON.stringify({ ...JSON.parse(data), gamesPlayed: newGamesPlayed })
+      JSON.stringify({
+        ...JSON.parse(data),
+        gamesPlayed: newGamesPlayed,
+        changeWin,
+        changeLose,
+        keepWin,
+        keepLose,
+      })
     );
   };
 
   const handleSwitched = () => {
-    const newSwitched = switched + 1;
-    setSwitched(newSwitched);
-    const data = localStorage.getItem('waktyHall');
-    if (!data) return;
-    localStorage.setItem(
-      'waktyHall',
-      JSON.stringify({ ...JSON.parse(data), switched: newSwitched })
-    );
+    setSwitched(!switched);
   };
 
   // 문을 선택한다.
@@ -109,6 +134,7 @@ export default function Game() {
     setPrizeOrGoat(game.prizeDoor); // 이전 정답 문 저장(표시용)
     setGame(null);
     setIsInProgress(false);
+    setSwitched(false);
   };
 
   // score, game 진행 횟수
@@ -118,7 +144,7 @@ export default function Game() {
       handleScore();
     }
     if (game.win === true || game.win === false) {
-      handleGamePlayed();
+      handleGamePlayed(game.win);
     }
   }, [game?.win]);
 
@@ -142,6 +168,7 @@ export default function Game() {
           score={score}
           gamesPlayed={gamesPlayed}
           switched={switched}
+          resultCount={resultCount}
         />
       </div>
     );
@@ -253,6 +280,7 @@ export default function Game() {
         score={score}
         gamesPlayed={gamesPlayed}
         switched={switched}
+        resultCount={resultCount}
       />
     </Box>
   );
