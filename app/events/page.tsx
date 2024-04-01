@@ -25,34 +25,34 @@ const events = [
     link: '/events/RandomGacha',
     linkText: '무슨 팬아트가 나올까요?',
   },
-  {
-    title: '기간한정 슛코☆팬아트 갤러리 공개',
-    // buttonColorScheme: 'green',
-    buttonColorScheme: '#9ae6b4',
-    hoverBackground: '#ddd',
-    hoverColor: 'black',
-    icon: (
-      <BsCalendarEventFill
-        style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
-      />
-    ),
-    link: '/gallery/AprilFool',
-    linkText: '이건 못참지',
-  },
-  {
-    title: '왁티홀의 문 체험하기 (신규!)',
-    // buttonColorScheme: 'red',
-    buttonColorScheme: '#feb2b2',
-    hoverBackground: '#ddd',
-    hoverColor: 'black',
-    icon: (
-      <BsDoorOpenFill
-        style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
-      />
-    ),
-    link: '/events/WaktyHallDoor',
-    linkText: '선택을 바꾸시겠습니까?',
-  },
+  // {
+  //   title: '기간한정 슛코☆팬아트 갤러리 공개',
+  //   // buttonColorScheme: 'green',
+  //   buttonColorScheme: '#9ae6b4',
+  //   hoverBackground: '#ddd',
+  //   hoverColor: 'black',
+  //   icon: (
+  //     <BsCalendarEventFill
+  //       style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
+  //     />
+  //   ),
+  //   link: '/gallery/AprilFool',
+  //   linkText: '이건 못참지',
+  // },
+  // {
+  //   title: '왁티홀의 문 체험하기 (신규!)',
+  //   // buttonColorScheme: 'red',
+  //   buttonColorScheme: '#feb2b2',
+  //   hoverBackground: '#ddd',
+  //   hoverColor: 'black',
+  //   icon: (
+  //     <BsDoorOpenFill
+  //       style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
+  //     />
+  //   ),
+  //   link: '/events/WaktyHallDoor',
+  //   linkText: '선택을 바꾸시겠습니까?',
+  // },
 ];
 
 export default function Events() {

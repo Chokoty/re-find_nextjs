@@ -62,23 +62,23 @@ const gallery: Gallery[] = [
     query:
       'artworks?query=kissing&query=키싱&query=키씽&query=뚜뚜뚜&query=뚜두루&query=고마워 사랑해&query=사랑해 한마디&query=너만을 사랑해&case_sensitive=false&board=isd&board=best&title=',
   },
-  {
-    id: 8,
-    value: 'Shuko',
-    type: 'special',
-    title: '기간한정 슛코☆팬아트',
-    subTitle: '기간한정 슛코☆팬아트', // '😉 응 없어~ 😉',
-    query: 'wakdu_list?',
-  },
-  {
-    id: 9,
-    value: 'AprilFool',
-    type: 'special',
-    title: '진짜 만우절 팬아트',
-    subTitle: '😉 진짜 만우절 팬아트 😉',
-    query: 'april_fools?',
-    isHidden: true,
-  },
+  // {
+  //   id: 8,
+  //   value: 'Shuko',
+  //   type: 'special',
+  //   title: '기간한정 슛코☆팬아트',
+  //   subTitle: '기간한정 슛코☆팬아트', // '😉 응 없어~ 😉',
+  //   query: 'wakdu_list?',
+  // },
+  // {
+  //   id: 9,
+  //   value: 'AprilFool',
+  //   type: 'special',
+  //   title: '진짜 만우절 팬아트',
+  //   subTitle: '😉 진짜 만우절 팬아트 😉',
+  //   query: 'april_fools?',
+  //   isHidden: true,
+  // },
 ];
 
 export default gallery;

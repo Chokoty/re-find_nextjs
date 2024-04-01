@@ -62,12 +62,12 @@ export default function BannerSlider() {
           <SwiperSlide style={swiperSlideStyle}>
             <EventCard1 />
           </SwiperSlide>
-          <SwiperSlide style={swiperSlideStyle}>
+          {/* <SwiperSlide style={swiperSlideStyle}>
             <EventCard2 />
           </SwiperSlide>
           <SwiperSlide style={swiperSlideStyle}>
             <EventCard3 />
-          </SwiperSlide>
+          </SwiperSlide> */}
           {/* <SwiperSlide style={swiperSlideStyle}>
             <MelonVoteModal />
           </SwiperSlide> */}
