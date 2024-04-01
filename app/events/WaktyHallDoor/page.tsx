@@ -13,7 +13,8 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 const topTitle = {
   title: '왁티홀의 역설',
-  description: '문 뒤에는 고퀄팬아트와 혐잘딱팬아트가 있습니다, 당신의 선택은?',
+  description:
+    '문 뒤에는 고퀄팬아트와 혐잘딱팬아트, 왁두팬아트가 있습니다, 당신의 선택은?',
 };
 
 export default function WaktyHallDoorPage() {

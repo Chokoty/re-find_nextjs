@@ -61,7 +61,9 @@ export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
             <tbody>
               <tr>
                 <th>정답</th>
-                <td>{score}</td>
+                <td>
+                  {score}/({gamesPlayed})
+                </td>
                 <td>
                   {gamesPlayed === 0
                     ? '0.00'
@@ -70,25 +72,23 @@ export default function ScoreResult({ score, gamesPlayed, switched }: Props) {
                 </td>
               </tr>
               <tr>
-                <th>변경</th>
+                <th>변경해서 정답</th>
                 <td>{switched}</td>
                 <td>
-                  {' '}
                   {gamesPlayed === 0
                     ? '0.00'
                     : // : ((switched / gamesPlayed) * 100).toFixed(2)}
-                      ((score / switched) * 100).toFixed(2)}
+                      ((switched / score) * 100).toFixed(2)}
                   %
                 </td>
               </tr>
               <tr>
-                <th>유지</th>
+                <th>유지해서 정답</th>
                 <td>{gamesPlayed - switched}</td>
                 <td>
-                  {' '}
                   {gamesPlayed === 0
                     ? '0.00'
-                    : ((score / (gamesPlayed - switched)) * 100).toFixed(2)}
+                    : (((gamesPlayed - switched) / score) * 100).toFixed(2)}
                   {/* : (((gamesPlayed - switched) / gamesPlayed) * 100).toFixed(
                         2
                       )} */}
