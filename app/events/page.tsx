@@ -69,7 +69,7 @@ export default function Events() {
       {events.map((event, index) => (
         <Box
           key={index}
-          m="0 auto"
+          margin="0 auto"
           mb="1rem"
           p="1rem 0"
           borderRadius="1rem"
@@ -93,7 +93,7 @@ export default function Events() {
             <Text
               fontSize="lg"
               fontWeight="bold"
-              textAlign="left"
+              textAlign="center"
               w="100%"
               p="0 1rem"
             >

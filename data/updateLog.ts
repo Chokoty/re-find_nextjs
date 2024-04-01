@@ -256,6 +256,13 @@ const updateLog: UpdateLog[] = [
     type: '[안내]',
     content: '만우절 기념 왁티홀의 문을 체험해보고 슛코 팬아트를 공개합니다!',
   },
+  {
+    id: 40,
+    date: '2024.04.01',
+    type: '[안내]',
+    content:
+      '비정상적인 지속적 외부 접근으로 인한 서버 지연 현상이 발생하고 있습니다. 일부 서비스가 응답하지 않을 수도 있습니다.',
+  },
 ];
 
 export default updateLog;

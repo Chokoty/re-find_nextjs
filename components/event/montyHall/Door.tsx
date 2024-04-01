@@ -133,13 +133,14 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
             ((game.win && game.prizeDoor === +id) ||
               game.montyDoor === +id) && (
               <Button
-                gap="0.5rem"
+                fontSize={['sm', 'md']}
+                gap="0.2rem"
                 marginTop="0.5rem"
                 background={game.prizeDoor === +id ? '#48BB78' : '#F56565'}
                 onClick={onOpen}
               >
                 <MdOutlineImageSearch />
-                자세히 보기
+                자세히 <span className={styles.secondaryText}>보기</span>
               </Button>
             )}
         </div>
@@ -225,13 +226,14 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
           </div>
           <p style={{ marginTop: '0.5rem' }}>{id}번째 문 오픈</p>
           <Button
-            gap="0.5rem"
+            fontSize={['sm', 'md']}
+            gap="0.2rem"
             marginTop="0.5rem"
             background="#F56565"
             onClick={onOpen}
           >
             <MdOutlineImageSearch />
-            자세히 보기
+            자세히 <span className={styles.secondaryText}>보기</span>
           </Button>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function MoreLayout({ children, title }: OtherLayoutProps) {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (
-    <Box className="body" background={bg} w="100%" m="0 auto">
+    <Box className="body" background={bg} w="100%" h="100%" m="0 auto">
       <SearchHeader title={title} />
       {/* <Divider
         className="divider"
@@ -26,7 +26,7 @@ export default function MoreLayout({ children, title }: OtherLayoutProps) {
           height: '5px',
         }}
       /> */}
-      <Box w="100%" className="layout">
+      <Box w="100%" paddingBottom="7rem" className="layout">
         {children}
       </Box>
     </Box>
