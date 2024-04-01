@@ -2,6 +2,7 @@ import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 import { PiGiftBold } from 'react-icons/pi';
 
+import styles from '@/styles/EventCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function EventBtn2() {
@@ -23,6 +24,7 @@ export default function EventBtn2() {
       // boxShadow="md"
     >
       <Text
+        className={styles.title}
         fontSize={['1.2rem', '1.5rem', '1.7rem']}
         fontWeight="bold"
         mb="1rem"
@@ -30,13 +32,13 @@ export default function EventBtn2() {
         4월1일 단 하루 슛코팬아트 갤러리 공개합니다
       </Text>
       <Link
+        className={styles.btn}
         href="/gallery"
         style={{
           display: 'flex',
           justifyContent: 'center',
           background: '#d6bcfa',
           color: '#1a202c',
-          width: '60%',
           padding: '0.5rem',
           borderRadius: '1rem',
           fontWeight: 600,
