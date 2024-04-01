@@ -33,7 +33,7 @@ export default function Game() {
     if (typeof window === 'undefined') {
       return initStorageObj;
     }
-    const scoreRecords = localStorage.getItem('waktyHall');
+    const scoreRecords = localStorage.getItem('waktyHall2');
     return scoreRecords ? JSON.parse(scoreRecords) : initStorageObj;
   });
   const [score, setScore] = useState(records.score);
@@ -56,10 +56,10 @@ export default function Game() {
   const handleScore = () => {
     const newScore = score + 1;
     setScore(newScore);
-    const data = localStorage.getItem('waktyHall');
+    const data = localStorage.getItem('waktyHall2');
     if (!data) return;
     localStorage.setItem(
-      'waktyHall',
+      'waktyHall2',
       JSON.stringify({ ...JSON.parse(data), score: newScore })
     );
   };
@@ -73,19 +73,17 @@ export default function Game() {
       } else {
         keepWin += 1;
       }
+    } else if (switched) {
+      changeLose += 1;
     } else {
-      if (switched) {
-        changeLose += 1;
-      } else {
-        keepLose += 1;
-      }
+      keepLose += 1;
     }
     setResultCount({ changeWin, changeLose, keepWin, keepLose });
     setGamesPlayed(newGamesPlayed);
-    const data = localStorage.getItem('waktyHall');
+    const data = localStorage.getItem('waktyHall2');
     if (!data) return;
     localStorage.setItem(
-      'waktyHall',
+      'waktyHall2',
       JSON.stringify({
         ...JSON.parse(data),
         gamesPlayed: newGamesPlayed,
@@ -149,11 +147,11 @@ export default function Game() {
   }, [game?.win]);
 
   useEffect(() => {
-    const scoreRecords = localStorage.getItem('waktyHall');
+    const scoreRecords = localStorage.getItem('waktyHall2');
     if (scoreRecords) {
       setRecords(JSON.parse(scoreRecords));
     } else {
-      localStorage.setItem('waktyHall', JSON.stringify(initStorageObj));
+      localStorage.setItem('waktyHall2', JSON.stringify(initStorageObj));
     }
   }, []);
 
@@ -167,7 +165,6 @@ export default function Game() {
         <ScoreResult
           score={score}
           gamesPlayed={gamesPlayed}
-          switched={switched}
           resultCount={resultCount}
         />
       </div>
@@ -279,7 +276,6 @@ export default function Game() {
       <ScoreResult
         score={score}
         gamesPlayed={gamesPlayed}
-        switched={switched}
         resultCount={resultCount}
       />
     </Box>

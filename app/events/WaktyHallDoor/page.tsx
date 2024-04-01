@@ -18,7 +18,7 @@ const topTitle = {
 };
 
 export default function WaktyHallDoorPage() {
-  const [totalChanceCnt, setTotalChanceCnt] = useState(10);
+  // const [totalChanceCnt, setTotalChanceCnt] = useState(10);
   // const [chanceCnt, setChanceCnt] = useState(2);
   // const setIsOpen = useStore((state) => state.setIsOpen);
   // const isMobile = useResponsive();
@@ -49,6 +49,7 @@ export default function WaktyHallDoorPage() {
         alignItems="center"
         justifyContent="center"
         textAlign="center"
+        pb="4rem"
       >
         <PageTitle topTitle={topTitle} />
         <Image
@@ -69,7 +70,7 @@ export default function WaktyHallDoorPage() {
           <ExternalLinkIcon mx="2px" />
         </Link>
       </Box>
-      <Box
+      {/* <Box
         w="100%"
         p="1rem"
         display="flex"
@@ -85,7 +86,7 @@ export default function WaktyHallDoorPage() {
         <Text mt="3rem" as="h1" fontSize="2xl">
           남은 기회 {totalChanceCnt} /10
         </Text>
-      </Box>
+      </Box> */}
       <Game />
     </EventLayout>
   );

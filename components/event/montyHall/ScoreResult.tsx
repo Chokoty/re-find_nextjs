@@ -14,24 +14,26 @@ type CountResult = {
 type Props = {
   score: number;
   gamesPlayed: number;
-  switched: boolean;
   resultCount: CountResult;
 };
 
 export default function ScoreResult({
   score,
   gamesPlayed,
-  switched,
   resultCount,
 }: Props) {
+  const highlightColor = useColorModeValue(
+    lightMode.highlight,
+    darkMode.highlight
+  );
   const { changeWin, changeLose, keepWin, keepLose } = resultCount;
   const getChangeWinProbabilityInGame = () => {
-    return score === 0
+    return gamesPlayed === 0
       ? 0
       : (((changeWin + keepLose) / gamesPlayed) * 100).toFixed(2);
   };
   const getKeepWinProbabilityInGame = () => {
-    return score === 0
+    return gamesPlayed === 0
       ? 0
       : (((keepWin + changeLose) / gamesPlayed) * 100).toFixed(2);
   };
@@ -99,7 +101,9 @@ export default function ScoreResult({
                 <th>정답</th>
                 <td>{score}</td>
                 <td>
-                  {gamesPlayed === 0 ? '0.00' : getChangeWinProbabilityInGame()}
+                  {gamesPlayed === 0
+                    ? '0.00'
+                    : ((score / gamesPlayed) * 100).toFixed(2)}
                   %
                 </td>
               </tr>

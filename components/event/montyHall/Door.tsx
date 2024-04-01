@@ -129,15 +129,19 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
               className={`${styles['door--face']} ${styles['door--right']}`}
             ></div>
           </div>
-          <Button
-            gap="0.5rem"
-            marginTop="0.5rem"
-            background={game && game.prizeDoor === +id ? '#48BB78' : '#F56565'}
-            onClick={onOpen}
-          >
-            <MdOutlineImageSearch />
-            자세히 보기
-          </Button>
+          {game && game.montyDoor !== +id && (
+            <Button
+              gap="0.5rem"
+              marginTop="0.5rem"
+              background={
+                game && game.prizeDoor === +id ? '#48BB78' : '#F56565'
+              }
+              onClick={onOpen}
+            >
+              <MdOutlineImageSearch />
+              자세히 보기
+            </Button>
+          )}
         </div>
       </div>
     );
