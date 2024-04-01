@@ -230,7 +230,7 @@ export default function Game() {
       )}
       {/* 1. 유저는 처음 1개의 문을 "선택"했을 때, 바꿀 권리를 줄 버튼 생성  */}
       {selected ? (
-        <Box display="flex" flexDir="column">
+        <Box mt="2rem" display="flex" flexDir="column">
           <Heading as="h2" size="md" mb="1rem">
             처음 선택한 문을 바꾸시겠습니까?
           </Heading>
