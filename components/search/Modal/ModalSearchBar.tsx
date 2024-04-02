@@ -48,7 +48,6 @@ export default function ModalSearchBar({
   };
 
   const onSearchButtonClick = () => {
-    if (input.length === 0) return;
     handleSearch();
   };
 
