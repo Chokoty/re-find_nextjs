@@ -23,6 +23,7 @@ export function Providers({ children }: React.PropsWithChildren) {
             // SSR에서는 클라이언트에서 즉시 재요청하는 것을 피하기 위해,
             // default staleTime을 0보다 높게 설정하는 것이 일반적입니다.
             staleTime: 60 * 1000, // 60sec(1min)
+            retry: false,
           },
         },
         /** useMutation 과 useQuery 훅의 에러를 한곳에서 공통적으로 처리할수 있도록 하였습니다. */
