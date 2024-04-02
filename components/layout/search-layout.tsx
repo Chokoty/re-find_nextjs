@@ -26,7 +26,7 @@ export default function MoreLayout({ children, title }: OtherLayoutProps) {
           height: '5px',
         }}
       /> */}
-      <Box w="100%" paddingBottom="7rem" className="layout">
+      <Box w="100%" minH="100vh" className="layout">
         {children}
       </Box>
     </Box>

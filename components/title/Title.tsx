@@ -2,7 +2,7 @@ import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import { darkMode, lightMode } from '@/styles/theme';
-// #AprilFool
+
 export default function Title() {
   const highlightColor = useColorModeValue(
     lightMode.highlight,
@@ -19,7 +19,7 @@ export default function Title() {
       <Link href="/" className="content">
         <Heading className="title-main" fontFamily={'ONE-Mobile-POP'}>
           <span style={{ color: highlightColor }}>RE:</span>
-          FINDU
+          FIND
         </Heading>
       </Link>
     </Box>

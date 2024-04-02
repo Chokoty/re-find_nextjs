@@ -24,13 +24,6 @@ const EventModal = dynamic(
     ssr: false,
   }
 );
-const AprilFoolEventModal = dynamic(
-  () => import('@/components/event/AprilFoolPopup'),
-  {
-    ssr: false,
-  }
-);
-
 export default function Home() {
   const isMobile = useResponsive();
 
