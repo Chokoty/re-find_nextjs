@@ -1,15 +1,11 @@
 import { Box, Center, Text } from '@chakra-ui/react';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
 import DetailedArtists from '@/components/artist/DetailedArtists';
 import ArtistHeader from '@/components/layout/ArtistHeader';
 import { siteConfig } from '@/lib/config';
+import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 import queryOptions from '@/service/client/artists/queries';
 import { getAuthorInfo } from '@/service/server/artists';
 
@@ -52,14 +48,11 @@ export default async function page({ params: { nickname } }: Params) {
     sortType: 'latest',
     field: '',
   });
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
+  const query = await getDehydratedInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam: 1,
   });
-
-  const { queries } = dehydrate(queryClient);
   return (
     <Box>
       <ArtistHeader title="" />
@@ -73,9 +66,9 @@ export default async function page({ params: { nickname } }: Params) {
           margin="0 auto"
           mb="2rem"
         >
-          <HydrationBoundary state={{ queries }}>
+          <Hydrate state={{ queries: [query] }}>
             <DetailedArtists nickname={decodedNickname} artistInfo={result} />
-          </HydrationBoundary>
+          </Hydrate>
         </Box>
       )}
     </Box>

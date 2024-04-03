@@ -1,33 +1,24 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
-
 import IsdGallery from '@/components/gallery/IsdGallery';
+import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 import queryOptions from '@/service/client/gallery/queries';
 
 export const revalidate = 60;
 
 export default async function IsdPage() {
   const { queryKey, queryFn } = queryOptions.isdNoticeArtworks({
-    member: 'all',
+    member: 'isd',
     ranktype: 'latest',
   });
 
-  // const query = await getDehydratedQuery({ queryKey, queryFn });
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
+  const query = await getDehydratedInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam: 1,
   });
 
-  const { queries } = dehydrate(queryClient);
-
   return (
-    <HydrationBoundary state={{ queries }}>
+    <Hydrate state={{ queries: [query] }}>
       <IsdGallery />
-    </HydrationBoundary>
+    </Hydrate>
   );
 }
