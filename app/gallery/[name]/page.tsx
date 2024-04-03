@@ -1,14 +1,10 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
 import type { Metadata } from 'next';
 
 import DetailedGallery from '@/components/gallery/DetailedGallery';
 import gallery from '@/data/gallery';
 import members from '@/data/members';
 import { siteConfig } from '@/lib/config';
+import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 import queryOptions from '@/service/client/gallery/queries';
 
 type Params = { params: { name: string } };
@@ -51,18 +47,15 @@ export default async function page({ params }: Params) {
     sortType: 'alzaltak',
   });
 
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
+  const query = await getDehydratedInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam: 1,
   });
 
-  const { queries } = dehydrate(queryClient);
-
   return (
-    <HydrationBoundary state={{ queries }}>
+    <Hydrate state={{ queries: [query] }}>
       <DetailedGallery value={name} endpoint={endpoint ?? ''} />;
-    </HydrationBoundary>
+    </Hydrate>
   );
 }

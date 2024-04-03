@@ -1,12 +1,8 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
 import type { Metadata } from 'next';
 
 import DetailedEvent from '@/components/event/DetailedEvent';
 import { siteConfig } from '@/lib/config';
+import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 import queryOptions from '@/service/client/artists/queries';
 
 type Params = { params: { keyword: string } };
@@ -45,16 +41,14 @@ export default async function page({ params: { keyword } }: Params) {
     sortType: 'latest',
     field: '',
   });
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
+  const query = await getDehydratedInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam: 1,
   });
-  const { queries } = dehydrate(queryClient);
   return (
-    <HydrationBoundary state={{ queries }}>
+    <Hydrate state={{ queries: [query] }}>
       <DetailedEvent keyword={decodedKeyword} />;
-    </HydrationBoundary>
+    </Hydrate>
   );
 }

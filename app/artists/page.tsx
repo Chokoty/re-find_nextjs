@@ -1,13 +1,9 @@
 import { Box } from '@chakra-ui/react';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
 
 import Artists from '@/components/artist/Artists';
 import ArtistsSearchInput from '@/components/artist/ArtistsSearchInput';
 import PageTitle from '@/components/common/PageTitle';
+import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 import queryOptions from '@/service/client/artists/queries';
 
 const topTitle = {
@@ -24,15 +20,11 @@ export default async function ArtistsPage() {
     board: null,
   });
 
-  // const query = await getDehydratedQuery({ queryKey, queryFn });
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
+  const query = await getDehydratedInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam: 1,
   });
-
-  const { queries } = dehydrate(queryClient);
 
   return (
     <Box
@@ -58,9 +50,9 @@ export default async function ArtistsPage() {
         gap="1rem"
       >
         <ArtistsSearchInput />
-        <HydrationBoundary state={{ queries }}>
+        <Hydrate state={{ queries: [query] }}>
           <Artists />
-        </HydrationBoundary>
+        </Hydrate>
       </Box>
     </Box>
   );
