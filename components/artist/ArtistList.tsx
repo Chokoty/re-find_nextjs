@@ -91,25 +91,28 @@ export default function ArtistList({ sortCriteria, selectedView }: Props) {
       </Box>
     );
   }
-
-  if (isError) {
+  // TODO: !total >> 작가 api 사용할 수 있을 때 없애기
+  if (isError || !total) {
     return (
       <Alert
         status="error"
         w="100%"
         borderRadius="1rem"
         justifyContent="center"
+        display="flex"
+        flexDir={['column', 'column', 'column', 'row']}
       >
-        <AlertIcon />
-        <AlertTitle>서버 에러</AlertTitle>
+        <Box display="flex">
+          <AlertIcon />
+          <AlertTitle>서버 에러</AlertTitle>
+        </Box>
         <AlertDescription>
-          현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다. 빠른
-          시일 내에 해결하겠습니다.
+          현재 해당 서비스를 점검 중입니다...이용에 불편을 드려 죄송합니다. 빠른
+          시일 내에 해결하겠습니다!
         </AlertDescription>
       </Alert>
     );
   }
-
   if (!artists || artists.length === 0 || (total ?? 0) === 0) {
     return (
       <Box

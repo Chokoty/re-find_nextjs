@@ -17,10 +17,21 @@ export default function NotFound() {
       height="80vh"
       width="80%"
     >
-      <Heading as="h1" size="md" mb="20px">
-        404 - 존재하지 않는 페이지입니다.
+      <Heading as="h1" size="md">
+        존재하지 않는 페이지입니다.
       </Heading>
-      <Link href="/">홈으로 이동하기</Link>
+      <Link
+        href="/"
+        style={{
+          fontSize: '16px',
+          fontWeight: 600,
+          padding: '0 16px',
+          color: '#01bda1',
+          margin: '10px 0 20px',
+        }}
+      >
+        홈으로 이동하기
+      </Link>
       <Image
         src={ErrorImage}
         alt="404-박쥐단"
