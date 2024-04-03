@@ -47,15 +47,12 @@ export function useSearchResults({
   const searchResults = useMemo(() => {
     return data?.pages.flatMap((page) => {
       if (Array.isArray(page.list)) {
-        return page.list
-          .filter((artwork) => !artwork.title.includes('마영택과 여름나기'))
-          .map((artwork) => ({
-            ...artwork,
-            board: artwork.board.replace(/&#\d+;/g, '').trim(),
-          }));
-      } else {
-        return [];
+        return page.list.map((artwork) => ({
+          ...artwork,
+          board: artwork.board.replace(/&#\d+;/g, '').trim(),
+        }));
       }
+      return [];
     });
   }, [data]);
 
