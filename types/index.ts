@@ -46,8 +46,9 @@ export interface Gallery {
   type: string;
   title: string;
   subTitle: string;
-  description: string;
-  query: string;
+  description?: string;
+  query?: string;
+  isHidden?: boolean;
 }
 
 // search

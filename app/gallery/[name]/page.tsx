@@ -1,9 +1,4 @@
 import { Box } from '@chakra-ui/react';
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
 import type { Metadata } from 'next';
 
 import TopBackground from '@/components/common/TopBackground';
@@ -12,6 +7,7 @@ import GalleryTitle from '@/components/gallery/GalleryTitle';
 import gallery from '@/data/gallery';
 import members2 from '@/data/members2';
 import { siteConfig } from '@/lib/config';
+import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 import queryOptions from '@/service/client/gallery/queries';
 
 type Params = { params: { name: string } };
@@ -52,14 +48,11 @@ export default async function page({ params: { name } }: Params) {
     sortType: 'alzaltak',
   });
 
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
+  const query = await getDehydratedInfiniteQuery({
     queryKey,
     queryFn,
     initialPageParam: 1,
   });
-
-  const { queries } = dehydrate(queryClient);
 
   return (
     <Box className="body" minH="240vh" w="100%" m="0 auto">
@@ -75,9 +68,9 @@ export default async function page({ params: { name } }: Params) {
         top={['-60px', '-90px', '-120px', '-180px', '-220px']} // -220px(-60px + -160px)
         zIndex="2"
       >
-        <HydrationBoundary state={{ queries }}>
+        <Hydrate state={{ queries: [query] }}>
           <DetailedGallery value={name} endpoint={endpoint ?? ''} />
-        </HydrationBoundary>
+        </Hydrate>
       </Box>
     </Box>
   );

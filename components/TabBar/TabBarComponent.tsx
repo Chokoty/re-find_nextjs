@@ -9,7 +9,7 @@ import { MdHomeFilled, MdPerson } from 'react-icons/md';
 
 const routerList = {
   home: '/',
-  search: '/search',
+  search: '/search?q=',
   gallery: '/gallery',
   artists: '/artists',
 };

@@ -1,4 +1,9 @@
-import { Box, Text, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Text,
+  useBreakpointValue,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import Link from 'next/link';
 
 import LinkBtns from '@/components/common/LinkBtn';
@@ -7,6 +12,7 @@ import { darkMode, lightMode } from '@/styles/theme';
 export default function Footer() {
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const color = useColorModeValue(lightMode.footerColor, darkMode.footerColor);
+  // const width = useBreakpointValue({ base: '90%', md: '100%' });
 
   return (
     <footer
@@ -14,6 +20,7 @@ export default function Footer() {
         backgroundColor: bgColor,
         color,
         paddingBottom: '3rem',
+        width: '100%',
       }}
     >
       <Box
@@ -21,10 +28,11 @@ export default function Footer() {
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
+        // w={width}
         w="100%"
       >
         <LinkBtns />
-        <Box pb="1rem">
+        <Box w="90%" pb="1rem">
           <Text fontSize="md" fontWeight="700" textAlign="left" mb="0.5rem">
             고객센터
           </Text>

@@ -7,7 +7,7 @@ export const links = {
   },
   pc: {
     article: 'https://cafe.naver.com/steamindiegame/',
-    menu: 'https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=',
+    menu: 'https://cafe.naver.com/ArticleList.nhn?search.clubid=27842958&search.menuid=',
     member: 'https://cafe.naver.com/ca-fe/cafes/27842958/members/',
   },
 };

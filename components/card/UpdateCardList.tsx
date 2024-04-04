@@ -32,9 +32,16 @@ export default function UpdateCardList() {
       // p="1em"
     >
       {updates === undefined || updates.length === 0 ? (
-        <Alert status="error" w="90%" borderRadius="1rem">
-          <AlertIcon />
-          <AlertTitle></AlertTitle>
+        <Alert
+          status="error"
+          w="90%"
+          borderRadius="1rem"
+          flexDir={['column', 'column', 'column', 'row']}
+        >
+          <Box display="flex">
+            <AlertIcon />
+            <AlertTitle>서버 에러</AlertTitle>
+          </Box>
           <AlertDescription>
             현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
             빠른 시일 내에 해결하겠습니다.

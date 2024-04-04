@@ -13,6 +13,7 @@ import { Providers } from '@/lib/Providers';
 export const metadata: Metadata = {
   title: siteConfig.home.title,
   description: siteConfig.home.description,
+  verification: siteConfig.verification,
   metadataBase: new URL(siteConfig.mainDomain),
   openGraph: {
     type: siteConfig.type,

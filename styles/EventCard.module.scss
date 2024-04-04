@@ -1,0 +1,19 @@
+.title {
+  font-size: 1.5rem;
+
+  @media (width < 500px) {
+    font-size: 1.2rem;
+  }
+
+  @media (width < 410px) {
+    font-size: 1rem;
+  }
+}
+
+.btn {
+  width: 60%;
+
+  @media (width < 500px) {
+    width: 92%;
+  }
+}

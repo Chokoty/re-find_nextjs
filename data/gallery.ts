@@ -68,6 +68,23 @@ const gallery: Gallery[] = [
     query:
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
   },
+  // {
+  //   id: 8,
+  //   value: 'Shuko',
+  //   type: 'special',
+  //   title: '기간한정 슛코☆팬아트',
+  //   subTitle: '기간한정 슛코☆팬아트', // '😉 응 없어~ 😉',
+  //   query: 'wakdu_list?',
+  // },
+  // {
+  //   id: 9,
+  //   value: 'AprilFool',
+  //   type: 'special',
+  //   title: '진짜 만우절 팬아트',
+  //   subTitle: '😉 진짜 만우절 팬아트 😉',
+  //   query: 'april_fools?',
+  //   isHidden: true,
+  // },
 ];
 
 export default gallery;

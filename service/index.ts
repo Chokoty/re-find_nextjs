@@ -31,6 +31,7 @@ class Service {
 
     const axiosInstance: AxiosInstance = axios.create({
       baseURL: this.baseURL,
+      timeout: 30000, // 30초동안 응답이 없으면 요청 중단
       // withCredentials: true,
       // headers: {
       //   'Content-Type': 'application/json',

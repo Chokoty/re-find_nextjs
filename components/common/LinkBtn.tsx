@@ -4,8 +4,33 @@ import React from 'react';
 import { FaYoutube } from 'react-icons/fa';
 
 import Afreeca from '@/public/static/icons/afreecatv-logo.webp';
+import Twitter from '@/public/static/icons/twitter-x-logo.webp';
 import Waksplorer from '@/public/static/icons/waksplorer-logo.webp';
 import Wakzoo from '@/public/static/icons/wakzoo-logo.webp';
+
+const XButton = () => (
+  <Button
+    href="https://twitter.com/RE_FIND_XYZ"
+    as="a"
+    borderRadius={8}
+    target="_blank"
+    width="32px"
+    mr="2.5"
+    p="0"
+    colorScheme="black"
+    bg="black"
+    shadow="md"
+  >
+    <NextImage
+      width={18}
+      height={18}
+      quality={90}
+      src={Twitter}
+      alt="twitter-x"
+      style={{ filter: 'invert(100%)' }}
+    />
+  </Button>
+);
 
 const AfreecaButton = () => (
   <Button
@@ -114,6 +139,7 @@ export default function LinkBtns() {
       <AfreecaButton />
       <YoutubeButton />
       <WaksplorerButton />
+      <XButton />
     </Flex>
   );
 }

@@ -2,7 +2,6 @@
 
 import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
-import { useShallow } from 'zustand/react/shallow';
 
 import MoreButtons from '@/components/common/MoreButtons';
 import UpdateLogBoard from '@/components/common/UpdateLogBoard';
@@ -12,7 +11,6 @@ import BannerSkeleton from '@/components/skeleton/BannerSkeleton';
 import TopTitle from '@/components/TopTitle';
 import Upload from '@/components/upload';
 import { useResponsive } from '@/hook/useResponsive';
-import { useImageUploadStore } from '@/store/imageUploadStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const BannerSlider = dynamic(() => import('@/components/banner/BannerSlider'), {
@@ -20,10 +18,12 @@ const BannerSlider = dynamic(() => import('@/components/banner/BannerSlider'), {
   loading: () => <BannerSkeleton />,
 });
 
-const EventModal = dynamic(() => import('@/components/event/EventModal'), {
-  ssr: false,
-});
-
+const EventModal = dynamic(
+  () => import('@/components/event/TotalCounterPopup'),
+  {
+    ssr: false,
+  }
+);
 export default function Home() {
   const isMobile = useResponsive();
 
@@ -31,11 +31,6 @@ export default function Home() {
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   // const color = useColorModeValue(lightMode.color, darkMode.color);
-  const { congrat } = useImageUploadStore(
-    useShallow((state) => ({
-      congrat: state.isEventActive,
-    }))
-  );
   return (
     <Box
       className="home_body"
@@ -50,8 +45,7 @@ export default function Home() {
       margin="1rem auto"
       backgroundColor={bgColor}
     >
-      {/* TODO: congrat을 전역변수로 만들기 */}
-      {congrat && <EventModal />}
+      <EventModal />
       <Box
         w="100%"
         minH="100vh"

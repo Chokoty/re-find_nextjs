@@ -53,7 +53,6 @@ export default function SearchBar() {
   };
 
   const onSearchButtonClick = () => {
-    if (input.length === 0) return;
     handleSearch();
   };
 

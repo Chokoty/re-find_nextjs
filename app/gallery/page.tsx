@@ -1,5 +1,3 @@
-'use client';
-
 import { Box } from '@chakra-ui/react';
 
 import TopBackground from '@/components/common/TopBackground';

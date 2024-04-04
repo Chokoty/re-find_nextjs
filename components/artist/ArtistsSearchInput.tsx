@@ -86,33 +86,35 @@ export default function ArtistsSearchInput() {
       />
 
       <InputRightElement
+        w="3rem"
         // mr="0.5rem"
         // pointerEvents="auto"
         // display="flex"
         // justifyContent="flex-end"
         // alignItems="center"
         // padding="0.5rem"
-        w="3rem"
         // _hover={{
         //   cursor: 'default',
         // }}
       >
-        <Button
-          variant="ghost"
-          borderRadius="50%"
-          onClick={handleClearInputText}
-          p="0"
-          _hover={{}}
-          _active={{}}
-        >
-          <IoIosCloseCircle
-            style={{
-              color: color7,
-              width: '20px',
-              height: '20px',
-            }}
-          />
-        </Button>
+        {input.length > 0 && (
+          <Button
+            variant="ghost"
+            borderRadius="50%"
+            onClick={handleClearInputText}
+            p="0"
+            _hover={{}}
+            _active={{}}
+          >
+            <IoIosCloseCircle
+              style={{
+                color: color7,
+                width: '20px',
+                height: '20px',
+              }}
+            />
+          </Button>
+        )}
         {/* {input.length > 0 ? (
           
         ) : (

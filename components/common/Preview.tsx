@@ -4,7 +4,12 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { useImageUploadStore } from '@/store/imageUploadStore';
 
-export default function Preview() {
+type Props = {
+  data: any;
+  isLoading: boolean;
+};
+
+export default function Preview({ data, isLoading }: Props) {
   const { files } = useImageUploadStore(
     useShallow((state) => ({
       files: state.uploadedfiles,
@@ -12,6 +17,11 @@ export default function Preview() {
   );
   // const width = useBreakpointValue({ base: '90%', md: '100%' });
 
+  const imgLoading = {
+    display: 'flex',
+    height: '100%',
+    borderRadius: '1rem',
+  };
   const img = {
     display: 'flex',
     height: '100%',
@@ -32,7 +42,11 @@ export default function Preview() {
           alt={files[0].name}
           width={500}
           height={500}
-          style={img}
+          style={
+            (files && isLoading) || (files && data?.ids?.length === 0)
+              ? imgLoading
+              : img
+          }
           src={files[0].preview}
           // Revoke data uri after image is loaded
           onLoad={() => {
