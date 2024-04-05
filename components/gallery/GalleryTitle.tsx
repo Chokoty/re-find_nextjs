@@ -44,7 +44,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
   };
   const { colorMode } = useColorMode();
   const isDarkMode = colorMode === 'dark';
-  const color = isDarkMode ? 'rgb(0 0 0 / 50%)' : 'rgb(255 255 255 / 50%)';
+  const color = isDarkMode ? 'rgb(255 255 255 / 60%)' : 'rgb(0 0 0 / 60%)';
 
   return (
     <Box

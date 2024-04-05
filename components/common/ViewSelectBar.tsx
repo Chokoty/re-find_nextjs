@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { BiSolidDashboard } from 'react-icons/bi';
+import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
 import {
   MdMoreHoriz,
@@ -27,6 +28,7 @@ import {
 } from 'react-icons/md';
 
 import { menuItems } from '@/data/artists';
+import members from '@/data/members2';
 import { useScroll } from '@/hook/useScroll';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -35,9 +37,11 @@ type Props = {
   activeView: string;
   onViewChange: (view: string) => void;
   selectedMenu: string;
+  selectedMember?: string;
   onMenuItemClick: (menuText: string) => void;
   isDeletedVisible: boolean;
   handleShowDeleted: () => void;
+  onMemberClick?: (member: string) => void;
   topOffset: number;
   isdPick: boolean;
 };
@@ -46,15 +50,16 @@ export default function ViewSelectBar({
   activeView,
   onViewChange,
   selectedMenu,
+  selectedMember,
   onMenuItemClick,
   isDeletedVisible,
   handleShowDeleted,
+  onMemberClick,
   topOffset,
   isdPick,
 }: Props) {
   // const isMobile = useResponsive();
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
-  const [label, setLabel] = useState('알잘딱순');
   // 현재 topbackground가 화면의 크기만큼 유동적으로 변하기 때문에 background를 상황에따라 주기 에매하다
   // const isScrolling = useScroll(520);
   // const showShadow = useShowShadow(520, 0);
@@ -76,6 +81,10 @@ export default function ViewSelectBar({
 
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const popoverBg = useColorModeValue(lightMode.bg2, darkMode.bg3);
+  const popoverHoverBg = useColorModeValue(
+    'rgb(0 0 0 / 8%)',
+    'rgb(255 255 255 / 8%)'
+  );
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const { colorMode } = useColorMode();
   const isDarkMode = colorMode === 'dark';
@@ -99,12 +108,14 @@ export default function ViewSelectBar({
   //   }
   // }, [usingPage]);
 
-  useEffect(() => {
-    const newLabel =
-      menuItems.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
-    setLabel(newLabel);
-  }, [selectedMenu]);
-
+  const sortLabel =
+    menuItems.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
+  const memberName =
+    members.find((item) => item.value === selectedMember)?.name ?? '전체';
+  const memberList = [
+    { id: 1, name: '전체', value: 'isd' },
+    ...members.slice(1, 7),
+  ];
   const getIconColor = (view: string) => {
     if (view === 'masonry') {
       return isDarkMode ? 'white' : 'rgba(0,0,0, 0.70)';
@@ -153,8 +164,43 @@ export default function ViewSelectBar({
         justifyContent="center"
         gap="1rem"
       >
+        {isdPick && (
+          <Box
+            // w={isSmallerThan370 ? '40px' : '120px'}
+            display="flex"
+            justifyContent="flex-end"
+          >
+            <Menu>
+              <MenuButton
+                variant="solid"
+                borderRadius="800px"
+                as={Button}
+                iconSpacing={isSmallerThan370 ? 'unset' : '2'}
+                rightIcon={
+                  isSmallerThan370 ? <FaUser /> : <MdOutlineKeyboardArrowDown />
+                }
+              >
+                {!isSmallerThan370 && memberName}
+              </MenuButton>
+              <MenuList bg={popoverBg} zIndex="4">
+                {memberList.map((member) => (
+                  <MenuItem
+                    bg={popoverBg}
+                    key={member.id}
+                    _hover={{
+                      bg: popoverHoverBg,
+                    }}
+                    onClick={() => onMemberClick?.(member.value)}
+                  >
+                    {member.name}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </Box>
+        )}
         <Box
-          w={isSmallerThan370 ? '40px' : '120px'}
+          // w={isSmallerThan370 ? '40px' : '120px'}
           display="flex"
           justifyContent="flex-end"
         >
@@ -166,7 +212,7 @@ export default function ViewSelectBar({
               iconSpacing={isSmallerThan370 ? 'unset' : '2'}
               rightIcon={<MdOutlineKeyboardArrowDown />}
             >
-              {!isSmallerThan370 && label}
+              {!isSmallerThan370 && sortLabel}
             </MenuButton>
             <MenuList bg={popoverBg} zIndex="4">
               {isdPick === true &&
@@ -176,7 +222,7 @@ export default function ViewSelectBar({
                     <MenuItem
                       bg={popoverBg}
                       _hover={{
-                        bg: '#ffffff14',
+                        bg: popoverHoverBg,
                       }}
                       key={item.id}
                       onClick={() => onMenuItemClick(item.id)}
@@ -190,7 +236,7 @@ export default function ViewSelectBar({
                     bg={popoverBg}
                     key={item.id}
                     _hover={{
-                      bg: '#ffffff14',
+                      bg: popoverHoverBg,
                     }}
                     onClick={() => onMenuItemClick(item.id)}
                   >

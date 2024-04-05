@@ -70,3 +70,22 @@ export function useNoticeArtworks({
     isError,
   };
 }
+
+export function useArtworks({
+  isIsdPick,
+  endpoint,
+  selected,
+  sortType,
+}: {
+  isIsdPick: boolean;
+  endpoint: string;
+  sortType: string;
+  selected: string;
+}) {
+  const galleryParams = { query: endpoint, sortType };
+  const isdPickParams = { member: selected, ranktype: sortType };
+
+  return isIsdPick
+    ? useNoticeArtworks(isdPickParams)
+    : useGalleryArtworks(galleryParams);
+}
