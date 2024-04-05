@@ -6,6 +6,7 @@ import {
   Flex,
   Link,
   Tooltip,
+  useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
@@ -28,6 +29,8 @@ export default function Header() {
 
   const isMobile = useResponsive(); // 모바일 환경인지 체크
   const isScrolling = useScroll(60);
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === 'dark';
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
@@ -57,19 +60,13 @@ export default function Header() {
         backgroundColor,
         backdropFilter,
         transition: 'background-color 0.3s, background-image 0.3s',
+        borderBottom:
+          isDarkMode || isGalleryPage ? 'none' : '1px solid #ececec',
         color,
       }}
     >
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Button
-          w="3rem"
-          h="3rem"
-          p="0.5rem"
-          mr="1rem"
-          variant="ghost"
-          borderRadius="50%"
-          flexShrink={0}
-        >
+        <Box w="3rem" h="3rem" p="0.5rem" mr="1rem" borderRadius="50%">
           <Link href="/">
             <Image
               alt="logo"
@@ -78,7 +75,7 @@ export default function Header() {
               src="/android-chrome-512x512.png"
             />
           </Link>
-        </Button>
+        </Box>
         {!isMobile && <HeaderTab />}
       </Box>
       {!isSearchPage && <SearchModalOpener />}

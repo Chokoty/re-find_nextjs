@@ -11,6 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
   Text,
+  useColorMode,
   useColorModeValue,
   useDisclosure,
   useMediaQuery,
@@ -76,6 +77,8 @@ export default function ViewSelectBar({
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const popoverBg = useColorModeValue(lightMode.bg2, darkMode.bg3);
   const color = useColorModeValue(lightMode.color, darkMode.color);
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === 'dark';
 
   const boxShadowLight =
     '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
@@ -102,6 +105,13 @@ export default function ViewSelectBar({
     setLabel(newLabel);
   }, [selectedMenu]);
 
+  const getIconColor = (view: string) => {
+    if (view === 'masonry') {
+      return isDarkMode ? 'white' : 'rgba(0,0,0, 0.70)';
+    }
+    return isDarkMode ? 'rgba(255, 255, 255, 0.20)' : 'rgba(0,0,0, 0.20)';
+  };
+
   return (
     <Flex // 뷰 선택 버튼
       flexDirection="row"
@@ -126,24 +136,14 @@ export default function ViewSelectBar({
           onClick={() => onViewChange('masonry')}
           borderRadius="30px"
         >
-          <BiSolidDashboard
-            size="26px"
-            color={
-              activeView === 'masonry' ? 'white' : 'rgba(255, 255, 255, 0.20)'
-            }
-          />
+          <BiSolidDashboard size="26px" color={getIconColor('masonry')} />
         </Button>
         <Button
           variant={activeView === 'grid' ? 'solid' : 'ghost'}
           onClick={() => onViewChange('grid')}
           borderRadius="30px"
         >
-          <IoGrid
-            size="24px"
-            color={
-              activeView === 'grid' ? 'white' : 'rgba(255, 255, 255, 0.20)'
-            }
-          />
+          <IoGrid size="24px" color={getIconColor('grid')} />
         </Button>
       </Box>
       <Box

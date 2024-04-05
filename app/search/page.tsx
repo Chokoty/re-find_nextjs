@@ -19,7 +19,7 @@ export default function Search() {
         mb="1rem"
         pb="1rem"
         borderRadius="1rem"
-        // boxShadow="0px 0px 10px rgba(0, 0, 0, 0.25)"
+        boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
       >
         <SearchHeader />
         <Suspense>

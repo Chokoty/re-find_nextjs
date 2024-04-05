@@ -23,6 +23,7 @@ export default function TopTitle() {
       background={bgColor}
       // p="1.5rem"
       borderRadius="1rem"
+      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
       // mt="1rem"
     >
       <Counter />

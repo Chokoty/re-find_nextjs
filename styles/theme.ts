@@ -15,7 +15,7 @@ const theme = extendTheme({
   styles: {
     global: (props: StyleFunctionProps) => ({
       body: {
-        backgroundColor: mode('#F5F6FB', '#121212')(props), // opgg #1C1C1F  hoyo #0D0F1D
+        backgroundColor: mode('#f8f9fa', '#121212')(props), // opgg #1C1C1F  hoyo #0D0F1D
         color: mode('gray.900', 'gray.50')(props),
       },
       '::selection': {
@@ -31,7 +31,7 @@ const theme = extendTheme({
       footer: '#ced4da9a',
     },
     lightmode: {
-      bg: '#FFFFFF',
+      bg: '#f8f9fa',
       color: '#1B1642',
       footer: '#222222',
     },
@@ -49,7 +49,7 @@ const theme = extendTheme({
 export default theme;
 
 export const lightMode = {
-  bg: '#F5F6FB', // basic #FFFFFF opgg #5383E8 hoyo #F5F6FB
+  bg: '#f8f9fa', // basic #FFFFFF opgg #5383E8 hoyo #F5F6FB
   bg2: '#FFFFFF',
   bg3: '#F1F4F8', // #E1E1E1 opgg #FFFFFF hoyo #F1F4F8
   bg4: '#262424',

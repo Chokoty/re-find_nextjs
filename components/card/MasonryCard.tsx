@@ -34,6 +34,7 @@ export default function MasonryCard({ artwork }: Props) {
     size: 300,
   });
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
+  const authorTextColor = useColorModeValue('rgb(23, 25, 35)', '#FFFFFFB3');
 
   const handleImageLoad = (
     e: React.SyntheticEvent<HTMLImageElement, Event>
@@ -350,7 +351,7 @@ export default function MasonryCard({ artwork }: Props) {
           <Text
             fontSize="sm"
             textAlign="left"
-            color="#FFFFFFB3"
+            color={authorTextColor}
             fontWeight={500}
             _hover={{
               color: highlight,
