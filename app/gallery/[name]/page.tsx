@@ -43,11 +43,16 @@ export default async function page({ params: { name } }: Params) {
     members2.find((item) => item.value === name)?.query ||
     gallery.find((item) => item.value === name)?.query;
 
-  const { queryKey, queryFn } = queryOptions.galleryArtworks({
-    query: endpoint ?? '',
-    sortType: 'alzaltak',
-  });
+  // name이 isdPick이면 isdNoticeArtworks를 호출하고, 그렇지 않으면 galleryArtworks를 호출한다.
+  const { queryKey, queryFn } =
+    name === 'isdPick'
+      ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
+      : queryOptions.galleryArtworks({
+          query: endpoint ?? '',
+          sortType: 'alzaltak',
+        });
 
+  // 쿼리 생성
   const query = await getDehydratedInfiniteQuery({
     queryKey,
     queryFn,

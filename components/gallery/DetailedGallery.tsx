@@ -38,6 +38,8 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   const album = gallery.find((item) => item.value === value);
   const member = members.find((item) => item.value === value);
 
+  // const [selected, setSelected] = useState('isd'); // 멤버 선택 > isdPick일 경우
+
   // 뷰 선택 메뉴
   // TODO: 추후 URL 쿼리스트링으로 받아오는 값에 따라 초기 뷰와 상태 설정
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
@@ -79,11 +81,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     }
   }, [inView]);
 
-  const topTitle = {
-    title: album?.subTitle || `${member?.name ?? ''} 팬아트`,
-    description: album?.description ?? '',
-  };
-
   const content = () => {
     if (isLoading) {
       return <ViewSkeleton view={activeView} />;
@@ -96,9 +93,12 @@ export default function DetailedGallery({ value, endpoint }: Props) {
           w="100%"
           borderRadius="1rem"
           justifyContent="center"
+          flexDir={['column', 'column', 'column', 'row']}
         >
-          <AlertIcon />
-          <AlertTitle>서버 에러</AlertTitle>
+          <Box display="flex">
+            <AlertIcon />
+            <AlertTitle>서버 에러</AlertTitle>
+          </Box>
           <AlertDescription>
             현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
             빠른 시일 내에 해결하겠습니다.
@@ -110,11 +110,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     if (!artworks || artworks.length === 0) return;
 
     return (
-      <Box
-        w="100%"
-        p="0 1.5rem"
-        overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-      >
+      <Box w="100%" p="0 1.5rem" overflow="hidden">
         {activeView === 'masonry' && (
           <MasonryView
             artworks={
@@ -179,6 +175,14 @@ export default function DetailedGallery({ value, endpoint }: Props) {
             </Text>
           )
         }
+        // isdPick 일경우
+        <MemberButtonList
+          type="sort"
+          range={{ start: 1, end: 7 }}
+          selected={selected}
+          setSelected={setSelected}
+          isdPick={true}
+        />
       </Box> */}
       <ViewSelectBar
         activeView={activeView}
