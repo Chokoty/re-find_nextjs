@@ -37,7 +37,7 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
         w="100%"
         // paddingTop="56.25%" // 16:9
         position="relative"
-        top="-60px"
+        top={['0px', '-60px']}
         // style={isAlbum ? backgroundStyle2 : backgroundStyle}
         // aspectRatio="16/9"
         aspectRatio="1200/675"
@@ -80,14 +80,14 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
         position="absolute"
         width="100%"
         height="100%"
-        top="-60px"
+        top={['0px', '-60px']}
         zIndex="2"
         background={imageBackgroundShadow}
       />
       <Box
         w="100%"
         position="absolute"
-        top={['2rem', '4rem', '6rem']}
+        bottom={['1rem', '8rem', '10rem', '14rem', '20rem']}
         p={['0 1rem', '0 2rem', '0 2rem']}
         zIndex="2"
       >

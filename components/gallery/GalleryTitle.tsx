@@ -4,6 +4,7 @@ import {
   Box,
   Button,
   Text,
+  useColorMode,
   useColorModeValue,
   useMediaQuery,
 } from '@chakra-ui/react';
@@ -41,6 +42,9 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
   const handleBackButton = () => {
     router.back();
   };
+  const { colorMode } = useColorMode();
+  const isDarkMode = colorMode === 'dark';
+  const color = isDarkMode ? 'rgb(0 0 0 / 50%)' : 'rgb(255 255 255 / 50%)';
 
   return (
     <Box
@@ -65,14 +69,12 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
             alignItems="center"
             flexDir="row"
             gap="5px"
-            color="rgba(255, 255, 255, 0.50)"
+            color={color}
             onClick={handleBackButton}
             mb="0.5rem"
           >
             <FaAngleLeft />
-            <Text color="rgba(255, 255, 255, 0.50)">
-              팬아트 갤러리로 돌아가기
-            </Text>
+            <Text color={color}>팬아트 갤러리로 돌아가기</Text>
           </Button>
           <Text
             m="0"

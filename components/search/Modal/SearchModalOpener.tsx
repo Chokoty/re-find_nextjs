@@ -53,6 +53,7 @@ export default function SearchModalOpener() {
           placeholder="키워드 검색"
           h="2.25rem"
           pl="3rem"
+          pr={['0px', '3rem']}
           borderRadius="2rem"
           bg={bg3}
           alignItems="center"
@@ -75,7 +76,7 @@ export default function SearchModalOpener() {
         />
         <InputRightElement
           pointerEvents="none"
-          display="flex"
+          display={['none', 'flex']}
           justifyContent="center"
           alignItems="center"
           padding="0.5rem"

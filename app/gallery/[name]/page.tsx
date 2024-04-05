@@ -53,11 +53,11 @@ export default async function page({ params: { name } }: Params) {
         });
 
   // 쿼리 생성
-  const query = await getDehydratedInfiniteQuery({
-    queryKey,
-    queryFn,
-    initialPageParam: 1,
-  });
+  // const query = await getDehydratedInfiniteQuery({
+  //   queryKey,
+  //   queryFn,
+  //   initialPageParam: 1,
+  // });
 
   return (
     <Box className="body" minH="240vh" w="100%" m="0 auto">
@@ -70,12 +70,12 @@ export default async function page({ params: { name } }: Params) {
         w="100%"
         className="layout"
         position="relative"
-        top={['-60px', '-90px', '-120px', '-180px', '-220px']} // -220px(-60px + -160px)
+        top={['0px', '-100px', '-108px', '-180px', '-220px']} // -220px(-60px + -160px)
         zIndex="2"
       >
-        <Hydrate state={{ queries: [query] }}>
-          <DetailedGallery value={name} endpoint={endpoint ?? ''} />
-        </Hydrate>
+        <DetailedGallery value={name} endpoint={endpoint ?? ''} />
+        {/* <Hydrate state={{ queries: [query] }}>
+        </Hydrate> */}
       </Box>
     </Box>
   );

@@ -2,6 +2,7 @@ import { Button, Text, Tooltip, useColorModeValue } from '@chakra-ui/react';
 import toast from 'react-hot-toast';
 import { MdShare } from 'react-icons/md';
 
+import styles from '@/styles/ShareLinkButton.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function ShareLinkButton() {
@@ -22,12 +23,15 @@ export default function ShareLinkButton() {
 
   return (
     <Button
+      className={styles.button}
       style={{ background: highlightColor, borderRadius: '80px' }}
       variant="solid"
       onClick={handleCopyLink}
     >
-      <Text color="white">갤러리 공유하기</Text>
-      <MdShare color="white" />
+      <Text className={styles.text} color="white">
+        <span className={styles.gallery}>갤러리</span> 공유하기
+      </Text>
+      <MdShare className={styles.icon} color="white" />
     </Button>
   );
 }

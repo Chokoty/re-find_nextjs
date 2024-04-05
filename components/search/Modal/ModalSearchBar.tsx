@@ -93,7 +93,7 @@ export default function ModalSearchBar({
           placeholder="키워드 검색 (빈 칸은 전체 검색)"
           h="2.25rem"
           pl="3rem"
-          pr="100px"
+          pr={['56px', '100px']}
           borderRadius="2rem"
           bg={bg3}
           alignItems="center"
