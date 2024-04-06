@@ -44,6 +44,7 @@
     "react-use": "^17.5.0",
     "sharp": "^0.33.2",
     "swiper": "^11.0.6",
+    "uuid": "^9.0.1",
     "zustand": "^4.5.1"
   },
   "devDependencies": {
@@ -51,6 +52,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.57.0",

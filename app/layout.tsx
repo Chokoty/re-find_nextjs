@@ -56,7 +56,7 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <TabBar />
-          <div id="overlays" />
+          <div id="modal-root" />
         </Providers>
       </body>
       <GoogleAnalytics gaId={GA_ID} />

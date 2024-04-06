@@ -9,9 +9,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { usePathname, useRouter } from 'next/navigation';
-import { useShallow } from 'zustand/react/shallow';
 
-import { useModalStore } from '@/store/modalStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
@@ -19,6 +17,7 @@ type Props = {
   deleteHistoryKeyword: (value: string) => void;
   deleteHistoryKeywords: () => void;
   close?: () => void;
+  modalClose?: () => void;
 };
 
 export default function SearchHistory({
@@ -26,25 +25,17 @@ export default function SearchHistory({
   deleteHistoryKeyword,
   deleteHistoryKeywords,
   close,
+  modalClose,
 }: Props) {
   const { colorMode } = useColorMode();
   const pathname = usePathname();
   const router = useRouter();
   const color = useColorModeValue(lightMode.color7, darkMode.color9);
   const isSearchPage = pathname === '/search';
-  const { setIsOpen } = useModalStore(
-    useShallow((state) => ({
-      setIsOpen: state.setIsOpen,
-    }))
-  );
-
-  const modalClose = () => {
-    setIsOpen(false);
-  };
 
   const moveSearchResult = (q: string) => {
     if (!isSearchPage) {
-      modalClose();
+      modalClose?.();
     }
     router.push(`/search?q=${q}`);
   };

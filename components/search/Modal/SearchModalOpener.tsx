@@ -5,32 +5,28 @@ import {
   InputRightElement,
   useColorModeValue,
 } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
 import { FaSearch } from 'react-icons/fa';
-import { useShallow } from 'zustand/react/shallow';
 
-import { useModalStore } from '@/store/modalStore';
+import useModal from '@/hook/useModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import SearchModal from '.';
-
-const ReactPortal = dynamic(
-  () => import('@/components/common/Modal/ReactPortal')
-);
 
 export default function SearchModalOpener() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
-  const { setIsOpen } = useModalStore(
-    useShallow((state) => ({
-      setIsOpen: state.setIsOpen,
-    }))
-  );
+  // const { setIsOpen } = useModalStore(
+  //   useShallow((state) => ({
+  //     setIsOpen: state.setIsOpen,
+  //   }))
+  // );
   const handleInputClick = () => {
-    setIsOpen(true);
+    show();
+    // setIsOpen(true);
   };
+  const { show } = useModal(SearchModal);
 
   return (
     <>
@@ -93,9 +89,6 @@ export default function SearchModalOpener() {
           />
         </InputRightElement>
       </InputGroup>
-      <ReactPortal>
-        <SearchModal />
-      </ReactPortal>
     </>
   );
 }

@@ -15,6 +15,7 @@ import { usePathname } from 'next/navigation';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
+import Modals from '@/components/common/Modal/Modals';
 import HeaderTab from '@/components/Header/HeaderTab';
 import SearchModalOpener from '@/components/search/Modal/SearchModalOpener';
 import { useResponsive } from '@/hook/useResponsive';
@@ -140,6 +141,7 @@ export default function Header() {
             />
           </Box>
         </NextLink>
+        <Modals />
         {/* )} */}
       </Flex>
     </Flex>
