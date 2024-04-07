@@ -44,8 +44,10 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
 
 export default function RootLayout({
   children,
+  ArtworkModal,
 }: Readonly<{
   children: React.ReactNode;
+  ArtworkModal: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -54,9 +56,11 @@ export default function RootLayout({
         <Providers>
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />
+          {ArtworkModal}
           <main>{children}</main>
           <TabBar />
           <div id="modal-root" />
+          <div id="artwork-modal-root" />
         </Providers>
       </body>
       <GoogleAnalytics gaId={GA_ID} />

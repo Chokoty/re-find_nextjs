@@ -259,7 +259,7 @@ export default function MasonryCard({ artwork }: Props) {
             pt="1rem"
             px="1rem"
           >
-            <NextLink
+            {/* <NextLink
               className={styles.btns}
               href={`/artists/${authorName}`}
               style={{
@@ -292,11 +292,12 @@ export default function MasonryCard({ artwork }: Props) {
                 <MdPerson />
                 작가
               </Box>
-            </NextLink>
+            </NextLink> */}
             <NextLink
               className={styles.btns}
-              href={article_link + artwork.id}
-              target="_blank"
+              // href={article_link + artwork.id}
+              href={`/artwork/${artwork.id}`}
+              // target="_blank"
               style={{
                 flex: 1,
               }}
@@ -323,7 +324,8 @@ export default function MasonryCard({ artwork }: Props) {
                 color="white"
                 transition="all 0.2s ease-in-out"
               >
-                왁물원<span>에서 보기</span>
+                {/* 왁물원<span>에서 보기</span> */}
+                자세히보기
                 <FaArrowRightLong />
               </Box>
             </NextLink>
