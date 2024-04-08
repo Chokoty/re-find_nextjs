@@ -1,6 +1,7 @@
 'use client';
 
 import { Box, Button, Heading, Text, useColorMode } from '@chakra-ui/react';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -12,7 +13,8 @@ import SocialStats from '@/components/search/SocialStats';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 import RecommendArtworks from './RecommendArtworks';
-import ImageSlider from './ImageSlider';
+
+const ImageSlider = dynamic(() => import('./ImageSlider'), { ssr: false });
 
 export default function Artwork({ data }: { data: ArtworkDetail }) {
   const {
@@ -194,9 +196,9 @@ export default function Artwork({ data }: { data: ArtworkDetail }) {
                 unoptimized
               />
             ) : (
-              <FaCircleUser size="3rem" />
+              <FaCircleUser color="#c7c6c6" size="3rem" />
             )}
-            <Text>{author ?? '알 수 없음'}</Text>
+            <Text>{!author?.length ? '알 수 없음' : author}</Text>
           </Box>
           <Box mt="12px">
             <SocialStats view={view} like={like} comment={comment} />

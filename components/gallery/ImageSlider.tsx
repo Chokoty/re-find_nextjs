@@ -1,7 +1,8 @@
+import 'swiper/css';
+
+import { useColorMode } from '@chakra-ui/react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { useColorMode } from '@chakra-ui/react';
 
 interface Props {
   urls: string[];
