@@ -32,6 +32,7 @@ const Member = ({ member }: { member: MemberType }) => {
     >
       <Link
         href={`/gallery/${value}`}
+        prefetch={false}
         style={{
           display: 'flex',
           flexDirection: 'column',

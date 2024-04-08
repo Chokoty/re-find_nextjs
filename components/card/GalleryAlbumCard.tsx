@@ -30,7 +30,7 @@ export default function GalleryAlbumCard({
       }}
     >
       {/* TODO: 수정 필요 */}
-      <Link href={`/gallery/${value}`}>
+      <Link href={`/gallery/${value}`} prefetch={false}>
         <Box
           position="relative"
           w="100%"
