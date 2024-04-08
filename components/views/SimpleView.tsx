@@ -45,22 +45,19 @@ export default function SimpleView({ artworks, isDeletedVisible }: Props) {
 
   return (
     <Box
-      w="94%"
-      m="0 auto"
-      mt="1rem"
-      mb="2rem"
+      w="100%"
+      m="1rem auto 2rem"
       display="flex"
       justifyContent="center"
       alignItems="center"
     >
       <SimpleGrid
-        w={['100%', '90%']}
+        w="100%"
         minChildWidth={['170px', '236px']} // 모바일에서는 150px, 그 외에서는 252px
         spacing={['0.5rem', '0.75rem']}
         justifyContent="center"
         alignItems="center"
         placeItems="center"
-        m="0 auto"
       >
         {content()}
       </SimpleGrid>

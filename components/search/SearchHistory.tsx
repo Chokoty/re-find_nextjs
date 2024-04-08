@@ -6,17 +6,18 @@ import {
   IconButton,
   Text,
   useColorMode,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { usePathname, useRouter } from 'next/navigation';
-import { useShallow } from 'zustand/react/shallow';
 
-import { useModalStore } from '@/store/modalStore';
+import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
   recentSearches: string[];
   deleteHistoryKeyword: (value: string) => void;
   deleteHistoryKeywords: () => void;
   close?: () => void;
+  modalClose?: () => void;
 };
 
 export default function SearchHistory({
@@ -24,24 +25,17 @@ export default function SearchHistory({
   deleteHistoryKeyword,
   deleteHistoryKeywords,
   close,
+  modalClose,
 }: Props) {
   const { colorMode } = useColorMode();
   const pathname = usePathname();
   const router = useRouter();
+  const color = useColorModeValue(lightMode.color7, darkMode.color9);
   const isSearchPage = pathname === '/search';
-  const { setIsOpen } = useModalStore(
-    useShallow((state) => ({
-      setIsOpen: state.setIsOpen,
-    }))
-  );
-
-  const modalClose = () => {
-    setIsOpen(false);
-  };
 
   const moveSearchResult = (q: string) => {
     if (!isSearchPage) {
-      modalClose();
+      modalClose?.();
     }
     router.push(`/search?q=${q}`);
   };
@@ -59,13 +53,13 @@ export default function SearchHistory({
         <Box>
           {isSearchPage && (
             <Button onClick={close} size="xs" background="none">
-              <Text color="gray.500" fontSize="13px">
+              <Text color={color} fontSize="13px">
                 닫기
               </Text>
             </Button>
           )}
           <Button onClick={deleteHistoryKeywords} size="xs" background="none">
-            <Text color="gray.500" fontSize="13px">
+            <Text color={color} fontSize="13px">
               전체 삭제
             </Text>
           </Button>
@@ -90,7 +84,7 @@ export default function SearchHistory({
             onClick={() => moveSearchResult(q)}
           >
             <Box display="flex" flexDir="row" alignItems="center" gap="0.5rem">
-              <TimeIcon color="gray.500" />
+              <TimeIcon color={color} />
               <Text textAlign="start">{q}</Text>
             </Box>
           </Button>
@@ -99,7 +93,7 @@ export default function SearchHistory({
               // colorScheme="#01BFA2"
               aria-label="delete button"
               bg="none"
-              color="gray.500"
+              color={color}
               variant={'ghost'}
               borderRadius="50%"
               icon={<DeleteIcon />}

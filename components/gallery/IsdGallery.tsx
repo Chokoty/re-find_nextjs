@@ -18,7 +18,6 @@ import MemberButtonList from '@/components/artwork/MemberButtonList';
 import PageTitle from '@/components/common/PageTitle';
 import ShareLinkButton from '@/components/common/ShareLinkButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
-import GalleryLayout from '@/components/layout/gallery-layout';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView2 from '@/components/views/MasonryView2';
 import SimpleView from '@/components/views/SimpleView';
@@ -52,9 +51,13 @@ export default function IsdGallery() {
     isLoading,
   } = useNoticeArtworks({ member: selected, ranktype: sortType });
 
+  const { title, description } = gallery.find(
+    (item) => item.value === 'isdPick'
+  )!;
+
   const album = {
-    title: gallery[0].title,
-    description: gallery[0].description!,
+    title,
+    description,
   };
 
   // 정렬 선택하기
@@ -171,47 +174,42 @@ export default function IsdGallery() {
   };
 
   return (
-    <Box>
-      <GalleryLayout title="팬아트 갤러리">
-        <PageTitle topTitle={album} />
-        <ShareLinkButton />
-        <Box
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          m="1.5rem 1rem"
-          mt="1rem"
-          p="1rem"
-          background={bg2}
-          borderRadius="1rem"
-        >
-          <Text>
-            총 {total ? <CountUp end={total ?? 0} /> : ''}
-            개의 팬아트가 있습니다.
-          </Text>
-          <MemberButtonList
-            type="sort"
-            range={{ start: 1, end: 7 }}
-            selected={selected}
-            setSelected={setSelected}
-            isdPick={true}
-          />
-          {/* <Text>총 {total}</Text> */}
-        </Box>
-        <ViewSelectBar
-          activeView={activeView}
-          onViewChange={handleViewChange}
-          selectedMenu={sortType}
-          onMenuItemClick={handleMenuItemClick}
-          isDeletedVisible={isDeletedVisible}
-          handleShowDeleted={handleShowDeleted}
-          // topOffset={48}
-          topOffset={47}
+    <>
+      {/* <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        m="1.5rem 1rem"
+        mt="1rem"
+        p="1rem"
+        background={bg2}
+        borderRadius="1rem"
+      >
+        <Text>
+          총 {total ? <CountUp end={total ?? 0} /> : ''}
+          개의 팬아트가 있습니다.
+        </Text>
+        <MemberButtonList
+          type="sort"
+          range={{ start: 1, end: 7 }}
+          selected={selected}
+          setSelected={setSelected}
           isdPick={true}
         />
-        {content()}
-      </GalleryLayout>
-    </Box>
+      </Box> */}
+      <ViewSelectBar
+        activeView={activeView}
+        onViewChange={handleViewChange}
+        selectedMenu={sortType}
+        onMenuItemClick={handleMenuItemClick}
+        isDeletedVisible={isDeletedVisible}
+        handleShowDeleted={handleShowDeleted}
+        // topOffset={48}
+        topOffset={47}
+        isdPick={true}
+      />
+      {content()}
+    </>
   );
 }

@@ -1,0 +1,19 @@
+.container {
+  @media (width < 960px) {
+    .skeleton:nth-child(4) {
+      display: none;
+    }
+  }
+
+  @media (width < 653px) {
+    .skeleton:nth-child(3) {
+      display: none;
+    }
+  }
+
+  @media (width < 480px) {
+    .skeleton:nth-child(2) {
+      display: none;
+    }
+  }
+}

@@ -81,6 +81,7 @@ export default function Events() {
           w="100%"
           maxW="540px"
           minH="120px"
+          boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
         >
           <Box
             display="flex"

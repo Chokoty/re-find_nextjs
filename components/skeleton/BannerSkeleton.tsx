@@ -3,9 +3,13 @@ import {
   Skeleton,
   SkeletonCircle,
   useBreakpointValue,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
+import { darkMode, lightMode } from '@/styles/theme';
+
 export default function BannerSkeleton() {
+  const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const width = useBreakpointValue({ base: '90%', md: '100%' });
 
   return (
@@ -15,7 +19,7 @@ export default function BannerSkeleton() {
       h="170px"
       mb="1rem"
       p="1rem"
-      background="gray.700"
+      background={bgColor}
       borderRadius="1rem"
       display="flex"
       flexDir="column"

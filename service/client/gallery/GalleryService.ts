@@ -2,6 +2,7 @@ import Service from '@/service';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
+  GetRecommendArtworksParams,
 } from '@/types';
 
 const ROWS_PER_PAGE = 30; // 한 페이지당 불러올 아이템 개수
@@ -30,6 +31,18 @@ class GalleryService extends Service {
         memberQuery
       );
     return this.http.get<IsdNoticeArtworks>(url);
+  }
+
+  // 작품(게시글)의 상세 정보를 가져옵니다.
+  getArtworkDetail(artworkId: number) {
+    const url = `/fanart_info?id=${artworkId}`;
+    return this.http.get<ArtworkDetail>(url);
+  }
+
+  // 작품(게시글)에 대한 추천 작품들을 가져옵니다. 추천은 좋아요 기반이며, 파라미터로 조정 가능합니다.
+  getRecommendArtworks({ artworkId, ap = 1.0 }: GetRecommendArtworksParams) {
+    const url = `/recommend_on_article_using_likes?id=${artworkId}&ap=${ap}`;
+    return this.http.get<RecommendArtworks>(url);
   }
 }
 

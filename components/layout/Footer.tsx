@@ -21,6 +21,7 @@ export default function Footer() {
         color,
         paddingBottom: '3rem',
         width: '100%',
+        borderRadius: '1rem',
       }}
     >
       <Box
@@ -28,6 +29,7 @@ export default function Footer() {
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
+        borderRadius="1rem"
         // w={width}
         w="100%"
       >

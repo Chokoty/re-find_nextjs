@@ -77,6 +77,7 @@ export default function ImageViewer({ hashs }: Prop) {
       borderRadius="1rem"
       w={['90%', '90%', '100%']}
       m="1rem 0 10rem 0"
+      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
     >
       <Preview data={data} isLoading={isLoading} />
       {isLoading ? <Loading /> : getResult()}

@@ -1,3 +1,5 @@
+'use client';
+
 import {
   AccordionPanel,
   Box,
@@ -12,6 +14,7 @@ import {
   Select,
   Stack,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
@@ -19,6 +22,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { useSearchFilterStore } from '@/store/searchFilerStore';
 import styles from '@/styles/MainOptions.module.scss';
+import { darkMode, lightMode } from '@/styles/theme';
 
 import HelpPopOver from './HelpPopOver';
 
@@ -58,6 +62,7 @@ const MIN_COUNT = 0;
 const MAX_COUNT = 100;
 
 export default function MainOptions() {
+  const selectBg = useColorModeValue(lightMode.bg2, darkMode.bg3);
   const iconStyle = {
     width: '1rem',
     height: '1rem',
@@ -259,6 +264,12 @@ export default function MainOptions() {
           placeholder="전체기간"
           onChange={handleChangeDateType}
           defaultValue={dateType}
+          sx={{
+            '> option': {
+              background: selectBg,
+              color: 'white',
+            },
+          }}
         >
           <option value="day">1일</option>
           <option value="week">1주</option>
@@ -271,6 +282,12 @@ export default function MainOptions() {
           placeholder="최신순"
           onChange={handleChangeRankType}
           defaultValue={rankType}
+          sx={{
+            '> option': {
+              background: selectBg,
+              color: 'white',
+            },
+          }}
         >
           {/* <option value="option1">최신순</option> */}
           <option value="comment">댓글수</option>
@@ -355,6 +372,12 @@ export default function MainOptions() {
           placeholder="전체 게시판"
           onChange={handleChangeBoard}
           defaultValue={board}
+          sx={{
+            '> option': {
+              background: selectBg,
+              color: 'white',
+            },
+          }}
         >
           <option value="isd">이세돌┃팬아트</option>
           <option value="goldhand">금손 작가들의 방</option>
@@ -372,6 +395,12 @@ export default function MainOptions() {
           disabled={categories.length === 0}
           onChange={handleChangeCategory}
           defaultValue={category}
+          sx={{
+            '> option': {
+              background: selectBg,
+              color: 'white',
+            },
+          }}
         >
           {categories.map((item, idx) => (
             <option value={item} key={idx}>

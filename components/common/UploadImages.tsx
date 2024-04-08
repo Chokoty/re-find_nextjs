@@ -63,6 +63,7 @@ export default function UploadImages() {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
+      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
     >
       <Box
         className={`uploader ${isDragActive ? 'active' : ''} ${

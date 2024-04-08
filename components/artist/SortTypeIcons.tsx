@@ -1,4 +1,6 @@
-import { Box, Text } from '@chakra-ui/react';
+'use client';
+
+import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
 import {
   FaBookmark,
@@ -10,6 +12,7 @@ import {
 
 import { sortTypes } from '@/data/artists';
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
+import { darkMode, lightMode } from '@/styles/theme';
 import type { SortCriteria } from '@/types';
 
 const iconStyle = {
@@ -45,6 +48,7 @@ export default function SortTypeIcons({ sortCriteria, artist }: Props) {
   // if (component === 'inIndex') {
   //   align = ['center', 'center', 'flex-start'];
   // }
+  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
 
   if (!artist) {
     // artist가 null인 경우 예외 처리
@@ -66,7 +70,7 @@ export default function SortTypeIcons({ sortCriteria, artist }: Props) {
                 key={index2}
                 color={
                   !sortCriteria || sortCriteria?.field !== sortType.value
-                    ? 'gray.500'
+                    ? color7
                     : 'pink.500'
                 }
                 size="sm"
@@ -94,9 +98,7 @@ export default function SortTypeIcons({ sortCriteria, artist }: Props) {
               <Text
                 key={index2}
                 color={
-                  sortCriteria?.field === sortType.value
-                    ? 'pink.500'
-                    : 'gray.500'
+                  sortCriteria?.field === sortType.value ? 'pink.500' : color7
                 }
                 size="sm"
                 display="flex"

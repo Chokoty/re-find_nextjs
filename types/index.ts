@@ -37,6 +37,7 @@ export interface Member {
   query?: string;
   personalColor?: string;
   personalColor2?: string;
+  greetings?: string;
 }
 
 export interface Gallery {
@@ -67,6 +68,11 @@ export type GetKeywordGalleryArtworksParams = {
 export type GetIsdNoticeArtworksParams = {
   member: string;
   ranktype: string;
+};
+
+export type GetRecommendArtworksParams = {
+  artworkId: number;
+  ap?: number;
 };
 
 export type GetArtistInfoParams = {

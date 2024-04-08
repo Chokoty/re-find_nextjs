@@ -208,15 +208,27 @@ export default function SimpleCard({ artwork }: Prop) {
         </Box>
       </Box>
       <Box>
-        <Text fontSize={['md', 'xl']} fontWeight={600} p="0 1rem">
+        <Text
+          fontSize={['md', 'xl']}
+          fontWeight={600}
+          textAlign="start"
+          p="0 1rem"
+          mt="0.5rem"
+        >
           {artwork.title.length > 10
             ? `${artwork.title.slice(0, 10)}...`
             : artwork.title}
         </Text>
-        <Flex p="0 1rem" gap="0.5rem">
+        <Flex
+          p="0 1rem"
+          gap="0.5rem"
+          justifyContent="flex-start"
+          alignItems="center"
+        >
           <Text fontSize={['xs', 'sm']} fontWeight={300}>
             팬아트 {artwork.img_url_list.length}개
           </Text>
+          <Text>·</Text>
           <Text fontSize={['xs', 'sm']} fontWeight={300}>
             {uploadTimeDiff}
           </Text>

@@ -200,9 +200,9 @@ export default function SearchResult() {
           에 대한 검색결과 입니다.
         </Heading>
         <HStack gap="0.3rem">
-          <Text color="gray.400">총</Text>
+          <Text color={darkMode.color8}>총</Text>
           <Text color="#01BFA2">{total ?? 0}</Text>
-          <Text color="gray.400">개의 팬아트가 검색되었습니다.</Text>
+          <Text color={darkMode.color8}>개의 팬아트가 검색되었습니다.</Text>
         </HStack>
       </HStack>
       <Tabs w="100%">

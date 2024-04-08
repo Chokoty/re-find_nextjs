@@ -36,6 +36,7 @@ export default function EventFanarts({ initialFanart, showCnt, width }: Props) {
       alignItems="center"
       borderRadius="1rem"
       p="1rem 0"
+      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
     >
       <Box
         display="flex"
