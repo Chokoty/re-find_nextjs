@@ -231,7 +231,7 @@ export default function UpdateCard({ update }: Prop) {
               alignItems="center"
               justifyContent="center"
             >
-              <Box w="1rem" h="1rem" mr="0.3rem">
+              <Box w="1rem" h="1rem">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -247,7 +247,13 @@ export default function UpdateCard({ update }: Prop) {
                   />
                 </svg>
               </Box>
-              <Text color={color} fontSize={['xs', 'md', 'lg']}>
+              <Text
+                color={color}
+                fontSize={['xs', 'md', 'lg']}
+                ml="0.2rem"
+                noOfLines={1}
+                maxW="8rem"
+              >
                 {uploadTimeDiff}
               </Text>
             </Badge>
