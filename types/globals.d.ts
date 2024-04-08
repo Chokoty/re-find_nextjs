@@ -84,6 +84,15 @@ declare global {
     is_hyum: boolean;
   }
 
+  export interface ArtworkDetail extends GalleryArtworkList {
+    prof_url: null | string;
+  }
+
+  export interface RecommendArtworks {
+    total: number;
+    list: ArtworkDetail[];
+  }
+
   // export enum Board {
   //   우왁굳팬아트 = '우왁굳 팬아트',
   // }

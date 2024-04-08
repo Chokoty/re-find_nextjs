@@ -1,9 +1,10 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
+  GetRecommendArtworksParams,
 } from '@/types';
 
 import queryOptions from './queries';
@@ -71,6 +72,17 @@ export function useNoticeArtworks({
   };
 }
 
+export function useArtworkDetail(artworkId: number) {
+  return useQuery(queryOptions.artworkDetail(artworkId));
+}
+
+export function useRecommendArtwork({
+  artworkId,
+  ap,
+}: GetRecommendArtworksParams) {
+  return useQuery(queryOptions.recommendArtwoks({ artworkId, ap }));
+}
+
 export function useArtworks({
   isIsdPick,
   endpoint,
@@ -82,10 +94,15 @@ export function useArtworks({
   sortType: string;
   selected: string;
 }) {
-  const galleryParams = { query: endpoint, sortType };
-  const isdPickParams = { member: selected, ranktype: sortType };
+  let artworkHook;
+  // TODO: api 통합해달라고 요청하기
+  if (isIsdPick) {
+    const isdPickParams = { member: selected, ranktype: sortType };
+    artworkHook = useNoticeArtworks(isdPickParams);
+  } else {
+    const galleryParams = { query: endpoint, sortType };
+    artworkHook = useGalleryArtworks(galleryParams);
+  }
 
-  return isIsdPick
-    ? useNoticeArtworks(isdPickParams)
-    : useGalleryArtworks(galleryParams);
+  return artworkHook;
 }

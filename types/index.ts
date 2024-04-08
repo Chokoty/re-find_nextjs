@@ -70,6 +70,11 @@ export type GetIsdNoticeArtworksParams = {
   ranktype: string;
 };
 
+export type GetRecommendArtworksParams = {
+  artworkId: number;
+  ap?: number;
+};
+
 export type GetArtistInfoParams = {
   nickname: string;
   sortType: string;

@@ -1,4 +1,5 @@
 import Artwork from '@/components/gallery/Artwork';
+import { getArtworkDetail } from '@/service/server/gallery';
 
 import { Modal } from './modal';
 
@@ -30,11 +31,12 @@ type Params = { params: { id: string } };
 //   };
 // }
 
-export default function ArtworkModal({ params: { id } }: Params) {
-  // 기존 모달 시스템과 달리 page용 모달을 return해줘야하므로 따로 작성
+// 기존 모달 시스템과 달리 page용 모달을 return해줘야하므로 따로 작성
+export default async function ArtworkModal({ params: { id } }: Params) {
+  const artwork = await getArtworkDetail(parseInt(id));
   return (
     <Modal>
-      <Artwork />
+      <Artwork data={artwork} />
     </Modal>
   );
 }

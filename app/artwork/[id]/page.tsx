@@ -1,9 +1,7 @@
-import { Box, Heading, Text } from '@chakra-ui/react';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import { redirect } from 'next/navigation';
 
 import Artwork from '@/components/gallery/Artwork';
+import { getArtworkDetail } from '@/service/server/gallery';
 
 type Params = { params: { id: string } };
 
@@ -33,7 +31,7 @@ type Params = { params: { id: string } };
 //   };
 // }
 
-export default function ArtworkPage({ params: { id } }: Params) {
-  console.log(id);
-  return <Artwork />;
+export default async function ArtworkPage({ params: { id } }: Params) {
+  const artwork = await getArtworkDetail(parseInt(id));
+  return <Artwork data={artwork} />;
 }
