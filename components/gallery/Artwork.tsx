@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, Heading, Text } from '@chakra-ui/react';
+import { Box, Button, Heading, Text, useColorMode } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -12,6 +12,7 @@ import SocialStats from '@/components/search/SocialStats';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 import RecommendArtworks from './RecommendArtworks';
+import ImageSlider from './ImageSlider';
 
 export default function Artwork({ data }: { data: ArtworkDetail }) {
   const {
@@ -32,6 +33,7 @@ export default function Artwork({ data }: { data: ArtworkDetail }) {
   } = data;
   const [imgUrl, setImageUrl] = useState(img_url);
   const article_link = useResponsiveLink('', 'article');
+  const { colorMode } = useColorMode();
   const handleCopyLink = () => {
     // 복사하려는 링크를 여기에 입력하세요.
     // const linkToCopy = `https://re-find.xyz/gallery/${value}`;
@@ -79,37 +81,20 @@ export default function Artwork({ data }: { data: ArtworkDetail }) {
               objectFit: 'cover',
               borderRadius: '20px',
               background: '#f5f5f5',
+              border:
+                colorMode === 'dark' ? 'none' : '1px solid rgba(0,0,0,.102)',
             }}
             // unoptimized
           />
           <Box
-            display="flex"
-            flexDir="row"
-            gap="0.5rem"
+            w="100%"
+            // gap="0.5rem"
             mt="0.5rem"
-            justifyContent="center"
-            alignItems="center"
           >
-            {img_url_list.map((src, idx) => (
-              <button key={idx} onClick={() => handleClickOtherImage(src)}>
-                <Image
-                  // fill
-                  priority
-                  width={100}
-                  height={130}
-                  src={src}
-                  alt={title}
-                  style={{
-                    width: '100px',
-                    height: '130px',
-                    borderRadius: '20px',
-                    objectFit: 'cover',
-                    background: '#f5f5f5',
-                  }}
-                  unoptimized
-                />
-              </button>
-            ))}
+            <ImageSlider
+              urls={img_url_list}
+              handleClickImage={handleClickOtherImage}
+            />
           </Box>
         </Box>
         {/* 우측 세부 정보 */}
