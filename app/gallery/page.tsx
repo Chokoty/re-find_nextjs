@@ -22,7 +22,7 @@ export default function Gallery() {
         top={['-60px', '-90px', '-120px', '-180px', '-220px']} // -220px(-60px + -160px)
         zIndex="2"
       >
-        <ThisWeekTopSection />
+        {/* <ThisWeekTopSection /> */}
         <RefindPickSection />
         <MemberAlbumSection />
       </Box>
