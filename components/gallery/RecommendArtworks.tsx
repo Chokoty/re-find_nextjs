@@ -92,7 +92,7 @@ export default function RecommendArtworks() {
                 height={buttonStyle[i].size}
                 onClick={() => handleButtonClick(buttonStyle[i].location)}
               >
-                <FaCheck size={buttonStyle[i].iconSize} />
+                {paramStep[i] && <FaCheck size={buttonStyle[i].iconSize} />}
               </Button>
             ))}
           </Box>
