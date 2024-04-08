@@ -222,6 +222,8 @@ export default function UpdateCard({ update }: Prop) {
               </Text>
             </Badge>
             <Badge
+              w="6rem"
+              // maxW="6rem"
               variant="subtle"
               colorScheme="green"
               borderRadius="6px"
