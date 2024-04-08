@@ -12,7 +12,8 @@ export const useUploadTimeDiff = (writeDate: string): string => {
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
     const nowKR = new Date(nowUTC + KR_TIME_DIFF);
 
-    const uploadedDate = new Date(writeDate);
+    // const uploadedDate = new Date(writeDate);
+    const uploadedDate = new Date(writeDate.replace(/-/g, '/'));
 
     const timeDifference = nowKR.getTime() - uploadedDate.getTime();
     const secondsDifference = Math.floor(timeDifference / 1000);
