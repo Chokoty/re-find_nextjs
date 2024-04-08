@@ -222,6 +222,8 @@ export default function UpdateCard({ update }: Prop) {
               </Text>
             </Badge>
             <Badge
+              // w="6rem"
+              // maxW="6rem"
               variant="subtle"
               colorScheme="green"
               borderRadius="6px"
@@ -231,24 +233,37 @@ export default function UpdateCard({ update }: Prop) {
               alignItems="center"
               justifyContent="center"
             >
-              <Box w="1rem" h="1rem" mr="0.3rem">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="w-6 h-6"
+              <Text
+                fontSize={['xs', 'md', 'lg']}
+                display="flex"
+                alignItems="center"
+                justifyContent="center"
+              >
+                <Box w="1rem" h="1rem">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </Box>
+                <Text
+                  color={color}
+                  // fontSize={['xs', 'md', 'lg']}
+                  ml="0.2rem"
+                  noOfLines={1}
+                  maxW="8rem"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </Box>
-              <Text color={color} fontSize={['xs', 'md', 'lg']}>
-                {uploadTimeDiff}
+                  {uploadTimeDiff}
+                </Text>
               </Text>
             </Badge>
           </Box>
