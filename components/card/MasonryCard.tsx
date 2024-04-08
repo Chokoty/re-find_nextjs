@@ -73,6 +73,7 @@ export default function MasonryCard({ artwork }: Props) {
               height: '100%',
               borderRadius: '20px',
               filter: artwork?.deleted ? 'blur(6px)' : 'none', // 블러 처리
+              background: 'rgb(245, 245, 245)',
             }}
             src={
               artwork?.img_url === ''
@@ -317,7 +318,7 @@ export default function MasonryCard({ artwork }: Props) {
                   color: 'rgba(0, 0, 0, 0.7)',
                 }}
                 // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-                borderRadius="800px"
+                borderRadius="11px"
                 background="linear-gradient(92deg, #FF4195 0%, #FF72B0 100%)"
                 padding="8px 10px"
                 fontSize="xs"

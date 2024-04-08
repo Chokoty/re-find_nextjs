@@ -68,7 +68,7 @@ export function Modal({ children }: { children: React.ReactNode }) {
         overflow="auto"
         // overscrollBehaviorY="none"
       >
-        <Box padding="1rem 3rem">
+        <Box padding={['1rem', '1rem', '1rem 3rem']}>
           <Box position="relative" background={bg} borderRadius="1rem">
             <Box position="absolute" right="9px" top="9px">
               <button onClick={onDismiss}>

@@ -13,7 +13,13 @@ const GallerySlider = dynamic(
 
 export default function RefindPickSection() {
   return (
-    <Box w="100%" display="flex" flexDir="column" gap="30px" mt="120px">
+    <Box
+      w="100%"
+      display="flex"
+      flexDir="column"
+      gap="30px"
+      // mt="120px"
+    >
       <Box
         display="flex"
         flexDirection="row"
