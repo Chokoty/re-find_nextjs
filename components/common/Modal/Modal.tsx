@@ -1,5 +1,6 @@
-import { Box, FocusLock } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import { createContext, useEffect, useRef } from 'react';
+import FocusLock from 'react-focus-lock';
 
 type Props = {
   Component: React.ComponentType<any>;
