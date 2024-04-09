@@ -53,6 +53,7 @@ const Member = ({ member }: { member: MemberType }) => {
               objectFit: 'cover',
               borderRadius: '50%',
             }}
+            unoptimized
           />
         </Box>
         <Text textAlign="center">{name}</Text>

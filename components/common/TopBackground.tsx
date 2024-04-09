@@ -74,6 +74,7 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
             objectFit: 'cover',
             opacity: imageOpacity,
           }}
+          unoptimized
         />
       </Box>
       <Box

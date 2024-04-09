@@ -80,13 +80,14 @@ export default function Artwork({ data }: { data: ArtworkDetail }) {
             src={imgUrl}
             alt={title}
             style={{
+              maxHeight: '750px',
               objectFit: 'cover',
               borderRadius: '20px',
               background: '#f5f5f5',
               border:
                 colorMode === 'dark' ? 'none' : '1px solid rgba(0,0,0,.102)',
             }}
-            // unoptimized
+            unoptimized
           />
           <Box
             w="100%"

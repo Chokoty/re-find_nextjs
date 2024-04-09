@@ -46,6 +46,7 @@ export default function GalleryAlbumCard({
               objectFit: 'cover',
               borderRadius: '1rem', // 10px;
             }}
+            unoptimized
           />
         </Box>
         <Box
