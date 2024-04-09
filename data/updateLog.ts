@@ -270,6 +270,13 @@ const updateLog: UpdateLog[] = [
     content:
       '만우절 이벤트를 마무리하며, 왁티홀의 문이 닫히고 슛코 팬아트가 사라집니다.',
   },
+  {
+    id: 42,
+    date: '2024.04.10',
+    type: '[안내]',
+    content:
+      '갤러리 페이지가 리뉴얼 되었습니다. 더불어 추가된 팬아트 세부 페이지에서 추천 시스템(beta)을 이용할 수 있습니다.',
+  },
 ];
 
 export default updateLog;
