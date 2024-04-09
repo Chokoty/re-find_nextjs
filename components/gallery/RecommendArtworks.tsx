@@ -1,5 +1,7 @@
+'use client';
+
 import { Box, Button, Heading, Text, Tooltip } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
 import RecommendList from './RecommendList';

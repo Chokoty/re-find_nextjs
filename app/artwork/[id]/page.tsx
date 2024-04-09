@@ -1,6 +1,7 @@
-import { redirect } from 'next/navigation';
+import { Box } from '@chakra-ui/react';
 
 import Artwork from '@/components/gallery/Artwork';
+import RecommendArtworks from '@/components/gallery/RecommendArtworks';
 import { getArtworkDetail } from '@/service/server/gallery';
 
 type Params = { params: { id: string } };
@@ -33,5 +34,23 @@ type Params = { params: { id: string } };
 
 export default async function ArtworkPage({ params: { id } }: Params) {
   const artwork = await getArtworkDetail(parseInt(id));
-  return <Artwork data={artwork} />;
+  return (
+    <Box w="100%" h="100%" display="flex" flexDir="column" px="20px" py="50px">
+      {/* 상단(정보 - 제목,작가,날짜,게시판, 말머리, vlc) */}
+      <Box
+        w="100%"
+        minH="40vh"
+        display="flex"
+        flexDir={['column', 'column', 'row']}
+        gap="1rem"
+        justifyContent="center"
+        alignItems={['center', 'center', 'flex-start']}
+        padding={['1rem', '0']}
+      >
+        <Artwork data={artwork} />
+      </Box>
+      {/* 하단(유사이미지 추천) */}
+      <RecommendArtworks />
+    </Box>
+  );
 }
