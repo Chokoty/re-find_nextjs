@@ -1,36 +1,40 @@
 import { Box } from '@chakra-ui/react';
+import type { Metadata } from 'next';
 
 import Artwork from '@/components/gallery/Artwork';
 import RecommendArtworks from '@/components/gallery/RecommendArtworks';
+import { siteConfig } from '@/lib/config';
 import { getArtworkDetail } from '@/service/server/gallery';
 
 type Params = { params: { id: string } };
 
-// // Image url 고민
-// export function generateMetadata({ params: { id } }: Params): Metadata {
-//   const { title, description, url } = siteConfig.gallery.detailed(name);
-//   return {
-//     title,
-//     description,
-//     openGraph: {
-//       title,
-//       description,
-//       url,
-//       type: siteConfig.type,
-//       images: siteConfig.image,
-//       siteName: siteConfig.siteName,
-//     },
-//     twitter: {
-//       title,
-//       description,
-//       card: 'summary_large_image',
-//       site: siteConfig.siteName,
-//       creator: siteConfig.creator,
-//       images: siteConfig.image,
-//     },
-//     icons: siteConfig.icons,
-//   };
-// }
+export async function generateMetadata({
+  params: { id },
+}: Params): Promise<Metadata> {
+  const itemData = await getArtworkDetail(parseInt(id));
+  const { title, description, imageUrl, path } = siteConfig.artwork(itemData);
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: path,
+      type: siteConfig.type,
+      images: imageUrl,
+      siteName: siteConfig.siteName,
+    },
+    twitter: {
+      title,
+      description,
+      card: 'summary_large_image',
+      site: siteConfig.siteName,
+      creator: siteConfig.creator,
+      images: imageUrl,
+    },
+    icons: siteConfig.icons,
+  };
+}
 
 export default async function ArtworkPage({ params: { id } }: Params) {
   const artwork = await getArtworkDetail(parseInt(id));

@@ -109,4 +109,18 @@ export const siteConfig = {
     },
     // 추후 업데이트
   },
+  artwork(item: ArtworkDetail) {
+    const { title, board, img_url, author, id } = item;
+    return {
+      title,
+      description: board,
+      imageUrl: img_url ?? `http://via.placeholder.com/236x236`,
+      type: 'article' as OpenGraphType,
+      authors: !author?.length ? '알 수 없음' : author,
+      path: `${this.mainDomain}/artwork/${id}`,
+      // publishedTime: item.createdAt,
+      // modifiedTime: item.updatedAt,
+      // section: item.tags[0] ?? '기타',
+    };
+  },
 };
