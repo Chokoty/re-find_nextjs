@@ -84,18 +84,6 @@ export function useRecommendArtwork({
   const { data, fetchNextPage, isFetchingNextPage, isLoading, isError } =
     useInfiniteQuery(queryOptions.recommendArtwoks({ artworkId, ap }));
 
-  // TODO: 200이면서 cannot find article id를 반환하는 경우 > 서버에 에러 응답 요청하기
-  const res = data?.pages?.[0];
-  if (!res || typeof res === 'string') {
-    return {
-      artworks: [],
-      fetchNextPage: () => {},
-      isFetchingNextPage: false,
-      isLoading: false,
-      isError: true,
-    };
-  }
-
   const artworks = useMemo(() => {
     return data?.pages.flatMap((page) => page.list);
   }, [data]);

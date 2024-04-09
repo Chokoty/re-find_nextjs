@@ -38,7 +38,7 @@ export default function RecommentList({ getAp }: { getAp: () => number }) {
 
   const contents = () => {
     if (isLoading) return <ViewSkeleton view="masonry" />;
-    if (isError || !artworks || artworks.length === 0) {
+    if (isError || !artworks || artworks.length === 0 || !artworks?.[0]) {
       return (
         <Alert status="error" w="90%" borderRadius="1rem" flexDir="column">
           <Box display="flex">
