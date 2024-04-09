@@ -139,6 +139,7 @@ const GalleryHomeTitle = () => {
             transform: 'translate(-50%, -50%)',
             objectFit: 'cover',
           }}
+          unoptimized
         />
       </Box>
       <Text
