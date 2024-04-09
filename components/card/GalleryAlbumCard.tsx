@@ -25,9 +25,7 @@ export default function GalleryAlbumCard({
       position="relative"
       w="100%"
       transition=" all 0.2s ease-in-out"
-      _hover={{
-        transform: 'scale(1.05)',
-      }}
+      className={styles.cardWrapper}
     >
       {/* TODO: 수정 필요 */}
       <Link href={`/gallery/${value}`} prefetch={false}>
@@ -85,6 +83,7 @@ export default function GalleryAlbumCard({
             flexDir="row"
             justifyContent="space-between"
             alignItems="center"
+            className={styles.textBoxWrapper}
           >
             <Box className={styles.textBox}>
               <Text className={styles.title}>{title}</Text>

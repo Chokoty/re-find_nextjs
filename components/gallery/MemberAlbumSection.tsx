@@ -37,7 +37,7 @@ export default function MemberAlbumSection() {
       display="flex"
       flexDir="column"
       gap="30px"
-      mt="120px"
+      mt={['30px', '30px', '110px']}
       p="0 2rem"
     >
       <Box

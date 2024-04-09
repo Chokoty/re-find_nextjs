@@ -1,3 +1,11 @@
+.cardWrapper {
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
 .overlay {
   // .recommendationBox {
   //   p {
@@ -11,23 +19,25 @@
   // }
   padding: 20px 20px 28px 20px;
 
-  .textBox {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 20px;
-    padding-right: 30px;
+  .textBoxWrapper {
+    .textBox {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      padding-right: 30px;
 
-    .title {
-      font-size: 28px;
-      font-weight: 700;
-      color: white;
-    }
+      .title {
+        font-size: 28px;
+        font-weight: 700;
+        color: white;
+      }
 
-    .description {
-      font-size: 16px;
-      font-weight: 400;
-      color: white;
+      .description {
+        font-size: 16px;
+        font-weight: 400;
+        color: white;
+      }
     }
   }
 
@@ -86,17 +96,22 @@
         font-size: 12px;
       }
     }
+    .textBoxWrapper {
+      .textBox {
+        gap: 10px;
+        padding-right: 0;
 
-    .textBox {
-      gap: 10px;
-      padding-right: 8px;
+        .title {
+          font-size: 20px;
+        }
 
-      .title {
-        font-size: 20px;
+        .description {
+          font-size: 14px;
+        }
       }
 
-      .description {
-        font-size: 14px;
+      svg {
+        display: none;
       }
     }
   }

@@ -87,6 +87,8 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
       />
       <Box
         w="100%"
+        h={['100%', 'unset']}
+        display={['flex', 'block']}
         position="absolute"
         bottom={['1rem', '8rem', '10rem', '14rem', '20rem']}
         p={['0 1rem', '0 2rem', '0 2rem']}
