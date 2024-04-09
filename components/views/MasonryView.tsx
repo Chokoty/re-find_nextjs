@@ -47,12 +47,13 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
   return (
     <ResponsiveMasonry
       columnsCountBreakPoints={{
-        300: 2,
-        756: 3,
-        1008: 4,
-        1260: 5,
-        1528: 6,
-        1792: 7,
+        350: 2,
+        590: 3,
+        830: 4,
+        1110: 5,
+        1350: 6,
+        1528: 7,
+        1792: 8,
       }}
     >
       <Masonry gutter="10px">{content()}</Masonry>
