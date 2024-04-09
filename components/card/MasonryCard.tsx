@@ -1,6 +1,8 @@
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
+
 import { darkMode, lightMode } from '@/styles/theme';
+
 import CardImage from './MasonryCard/CardImage';
 
 type Props = {

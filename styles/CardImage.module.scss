@@ -1,3 +1,27 @@
+.linkCardContainer {
+  display: inline-block;
+
+  @media (hover: hover) {
+    &:hover {
+      .overlay {
+        background: rgba(0, 0, 0, 0.3);
+      }
+
+      .hoverContainer {
+        display: flex;
+      }
+    }
+  }
+
+  .overlay {
+    background: rgba(0, 0, 0, 0);
+  }
+
+  .hoverContainer {
+    display: none;
+  }
+}
+
 .cardContainer {
   display: inline-block; /* Ensure container only takes as much space as necessary */
 
@@ -27,7 +51,7 @@
         }
       }
     }
-  
+
     @media (width < 484px) {
       .body {
         .info {
@@ -36,14 +60,14 @@
           align-items: flex-start;
         }
       }
-  
+
       .footer {
         .btns {
           .textBox {
             svg {
               display: none;
             }
-  
+
             span {
               display: none;
             }
@@ -53,5 +77,3 @@
     }
   }
 }
-
-

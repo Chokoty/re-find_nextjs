@@ -1,13 +1,13 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import styles from '@/styles/MasonryCard.module.scss';
 import { useResponsive } from '@/hook/useResponsive';
-import Image from 'next/image';
-import Link from 'next/link';
+import styles from '@/styles/CardImage.module.scss';
 
 type Props = {
   data: ArtworkList | GalleryArtworkList;
@@ -37,24 +37,54 @@ export default function CardImage({ data }: Props) {
   if (isMobile) {
     return (
       <Link href={`/artwork/${id}`}>
-        <Image
-          width={236}
-          height={236}
-          src={
-            img_url === ''
-              ? 'http://via.placeholder.com/236x236'
-              : modifiedUrl300
-          }
-          alt={title}
-          style={{
-            maxHeight: '430px',
-            objectFit: 'cover',
-            borderRadius: '20px',
-            filter: deleted ? 'blur(6px)' : 'none', // 블러 처리
-            background: 'rgb(245, 245, 245)',
-          }}
-          unoptimized
-        />
+        <Box className={styles.linkCardContainer} position="relative">
+          <Image
+            width={236}
+            height={236}
+            src={
+              img_url === ''
+                ? 'http://via.placeholder.com/236x236'
+                : modifiedUrl300
+            }
+            alt={title}
+            style={{
+              maxHeight: '430px',
+              objectFit: 'cover',
+              borderRadius: '20px',
+              filter: deleted ? 'blur(6px)' : 'none', // 블러 처리
+              background: 'rgb(245, 245, 245)',
+            }}
+            unoptimized
+          />
+          <Box
+            className={styles.overlay}
+            position="absolute"
+            top={0}
+            right={0}
+            bottom={0}
+            left={0}
+            borderRadius="20px"
+            zIndex={1}
+          />
+          <Box
+            className={styles.hoverContainer}
+            position="absolute"
+            top={0}
+            right={0}
+            bottom={0}
+            left={0}
+            borderRadius="20px"
+            zIndex={2}
+            background="rgba(0, 0, 0, 0.5)"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Text color="white" fontSize="1.2rem" fontWeight="600">
+              자세히
+            </Text>
+          </Box>
+        </Box>
       </Link>
     );
   }
