@@ -2,7 +2,7 @@ import { Box, Button, Heading, Text, Tooltip } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-import RecommentList from './RecommentList';
+import RecommendList from './RecommendList';
 
 const AP = [0.5, 1.0, 1.5];
 
@@ -101,7 +101,7 @@ export default function RecommendArtworks() {
           </Tooltip>
         </Box>
       </Box>
-      <RecommentList getAp={getAp} />
+      <RecommendList getAp={getAp} />
     </Box>
   );
 }

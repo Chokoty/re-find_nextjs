@@ -14,7 +14,7 @@ import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
 import { useRecommendArtwork } from '@/service/client/gallery/useGalleryService';
 
-export default function RecommentList({ getAp }: { getAp: () => number }) {
+export default function RecommendList({ getAp }: { getAp: () => number }) {
   const params = useParams<{ id: string }>();
   // infinite scroll
   const { ref, inView } = useInView({
@@ -37,7 +37,7 @@ export default function RecommentList({ getAp }: { getAp: () => number }) {
   }, [inView]);
 
   const contents = () => {
-    if (isLoading) return <ViewSkeleton view="masonry" />;
+    if (isLoading) return <HashLoader color="#01BFA2" />;
     if (isError || !artworks || artworks.length === 0 || !artworks?.[0]) {
       return (
         <Alert status="error" w="90%" borderRadius="1rem" flexDir="column">
