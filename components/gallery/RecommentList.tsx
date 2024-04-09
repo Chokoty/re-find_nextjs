@@ -53,10 +53,27 @@ export default function RecommentList({ getAp }: { getAp: () => number }) {
     }
 
     return (
-      <MasonryView
-        artworks={artworks.filter((artwork) => artwork.is_hyum === false)}
-        isDeletedVisible={false}
-      />
+      <>
+        <MasonryView
+          artworks={artworks.filter((artwork) => artwork.is_hyum === false)}
+          isDeletedVisible={false}
+        />
+        {isFetchingNextPage ? (
+          <Box
+            w="100%"
+            mt="1.5rem"
+            mb="1.5rem"
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+          >
+            <HashLoader color="#01BFA2" />
+          </Box>
+        ) : (
+          // Observer를 위한 div
+          <Box ref={ref} w="100%" h="5rem" />
+        )}
+      </>
     );
   };
 
@@ -72,21 +89,6 @@ export default function RecommentList({ getAp }: { getAp: () => number }) {
       alignItems="center"
     >
       {contents()}
-      {isFetchingNextPage ? (
-        <Box
-          w="100%"
-          mt="1.5rem"
-          mb="1.5rem"
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-        >
-          <HashLoader color="#01BFA2" />
-        </Box>
-      ) : (
-        // Observer를 위한 div
-        <Box ref={ref} w="100%" h="5rem" />
-      )}
     </Box>
   );
 }
