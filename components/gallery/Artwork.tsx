@@ -24,14 +24,14 @@ export default function Artwork({ data }: { data: ArtworkDetail }) {
     img_url_list,
     author,
     board,
-    category,
-    comment,
     date,
-    deleted,
     prof_url,
-    url,
-    like,
     view,
+    like,
+    comment,
+    category,
+    deleted,
+    url,
   } = data;
   const [imgUrl, setImageUrl] = useState(img_url);
   const article_link = useResponsiveLink('', 'article');

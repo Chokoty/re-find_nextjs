@@ -90,6 +90,7 @@ declare global {
 
   export interface RecommendArtworks {
     total: number;
+    lastPage: boolean;
     list: ArtworkDetail[];
   }
 

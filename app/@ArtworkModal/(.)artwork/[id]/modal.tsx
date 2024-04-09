@@ -20,7 +20,6 @@ export function Modal({ children }: { children: React.ReactNode }) {
   }
 
   useEffect(() => {
-    console.log('onDeismiss');
     const closeOnEscapeKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onDismiss();

@@ -61,7 +61,18 @@ const queryOptions = {
   }),
   recommendArtwoks: ({ artworkId, ap }: GetRecommendArtworksParams) => ({
     queryKey: queryKeys.recommendArtworks({ artworkId, ap }),
-    queryFn: () => GalleryService.getRecommendArtworks({ artworkId, ap }),
+    queryFn: ({ pageParam }: { pageParam: number }) =>
+      GalleryService.getRecommendArtworks({ artworkId, ap, page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: (
+      lastPage: RecommendArtworks,
+      allPages: RecommendArtworks[],
+      lastPageParam: number,
+      allPageParams: number[]
+    ) => {
+      if (lastPage.lastPage) return;
+      return lastPageParam + 1;
+    },
   }),
 };
 
