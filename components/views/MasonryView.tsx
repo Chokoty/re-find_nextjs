@@ -55,6 +55,9 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
         1528: 7,
         1792: 8,
       }}
+      style={{
+        width: '100%',
+      }}
     >
       <Masonry gutter="10px">{content()}</Masonry>
     </ResponsiveMasonry>

@@ -35,7 +35,7 @@ export default function UpdateBoard() {
         flexDirection="column"
         alignItems="center"
         w="90%"
-        p="2rem 0 0"
+        p="2rem 0 1rem"
         borderBottom="1px solid"
         borderColor={bg}
       >
