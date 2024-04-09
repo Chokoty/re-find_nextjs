@@ -116,8 +116,9 @@ export default function ViewSelectBar({
     { id: 1, name: '전체', value: 'isd' },
     ...members.slice(1, 7),
   ];
-  const getIconColor = (view: string) => {
-    if (view === 'masonry') {
+
+  const getIconColor = (isActive: boolean) => {
+    if (isActive) {
       return isDarkMode ? 'white' : 'rgba(0,0,0, 0.70)';
     }
     return isDarkMode ? 'rgba(255, 255, 255, 0.20)' : 'rgba(0,0,0, 0.20)';
@@ -147,14 +148,17 @@ export default function ViewSelectBar({
           onClick={() => onViewChange('masonry')}
           borderRadius="30px"
         >
-          <BiSolidDashboard size="26px" color={getIconColor('masonry')} />
+          <BiSolidDashboard
+            size="26px"
+            color={getIconColor(activeView === 'masonry')}
+          />
         </Button>
         <Button
           variant={activeView === 'grid' ? 'solid' : 'ghost'}
           onClick={() => onViewChange('grid')}
           borderRadius="30px"
         >
-          <IoGrid size="24px" color={getIconColor('grid')} />
+          <IoGrid size="24px" color={getIconColor(activeView === 'grid')} />
         </Button>
       </Box>
       <Box
