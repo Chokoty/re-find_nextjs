@@ -6,26 +6,18 @@ import {
   AlertIcon,
   AlertTitle,
   Box,
-  Text,
 } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
-import PageTitle from '@/components/common/PageTitle';
-import ShareLinkButton from '@/components/common/ShareLinkButton';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
 import gallery from '@/data/gallery';
-import members from '@/data/members';
-import {
-  useArtworks,
-  useGalleryArtworks,
-  useNoticeArtworks,
-} from '@/service/client/gallery/useGalleryService';
+import { useArtworks } from '@/service/client/gallery/useGalleryService';
 
 type Props = {
   value: string;
@@ -126,7 +118,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     if (!artworks || artworks.length === 0) return;
 
     return (
-      <Box w="100%" p="0 1.5rem" overflow="hidden">
+      <Box w="100%" p={['0 0.5rem', '0 1.5rem']} overflow="hidden">
         {activeView === 'masonry' && (
           <MasonryView
             artworks={
@@ -170,36 +162,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
 
   return (
     <>
-      {/* <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        // m=" 3rem"
-        m="1.5rem 1rem"
-        mt="1rem"
-        p="1rem"
-        // background={bg2}
-        // borderRadius="1rem"
-      >
-        {
-          // member는 팬아트 개수 안 보이게
-          album && (
-            <Text>
-              총 {total ? <CountUp end={total ?? 0} /> : ''}
-              개의 팬아트가 있습니다.
-            </Text>
-          )
-        }
-        // isdPick 일경우
-        <MemberButtonList
-          type="sort"
-          range={{ start: 1, end: 7 }}
-          selected={selected}
-          setSelected={setSelected}
-          isdPick={true}
-        />
-      </Box> */}
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}

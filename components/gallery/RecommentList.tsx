@@ -64,7 +64,7 @@ export default function RecommentList({ getAp }: { getAp: () => number }) {
     <Box
       mt="2rem"
       w="100%"
-      p="0 1.5rem"
+      p={['0 0.5rem', '0 1.5rem']}
       overflow="hidden"
       display="flex"
       flexDir="column"

@@ -118,6 +118,7 @@ export default function DetailedArtists({ nickname, artistInfo }: Props) {
     return (
       <Box
         w="100%"
+        p={['0 0.5rem', '0 1.5rem']}
         overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
       >
         {activeView === 'masonry' && (
