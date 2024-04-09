@@ -59,8 +59,8 @@ export function Providers({ children }: React.PropsWithChildren) {
           빠른 시일내에 복구하겠습니다.`
         );
       }
-      toast.error(`알 수 없는 에러가 발생했습니다. 
-      다시 시도해주세요.`);
+      // toast.error(`알 수 없는 에러가 발생했습니다.
+      // 다시 시도해주세요.`);
     }
     // if (error instanceof AuthError) {
     //   Toast.error(error.message);
