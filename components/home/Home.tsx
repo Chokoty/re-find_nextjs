@@ -66,16 +66,20 @@ export default function Home() {
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
+        boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
+        borderRadius="1rem"
       >
         {!isMobile && (
           <Box
             w="90%"
+            mt="1rem"
             display="flex"
             flexDirection="column"
             alignItems="center"
             background={bgColor2}
             borderRadius="1rem"
             p="1rem 0"
+            boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
           >
             <Flex
               pt="0.5rem"

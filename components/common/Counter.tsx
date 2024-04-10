@@ -3,6 +3,7 @@ import {
   Box,
   Skeleton,
   Text,
+  Tooltip,
   useColorModeValue,
 } from '@chakra-ui/react';
 import CountUp from 'react-countup';
@@ -40,12 +41,19 @@ export default function Counter() {
             gap="0.2rem"
           >
             <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
-              <CountUp end={parseInt(counts.total_counter)} />
+              <CountUp end={parseInt(counts.total_counter)} duration={2} />
             </Text>
-            <Badge style={{ backgroundColor: badge }} fontSize="1rem">
-              +
-              <CountUp end={parseInt(counts.today_counter)} duration={5} />
-            </Badge>
+            <Tooltip
+              hasArrow
+              label="오늘 발견한 이미지 출처 수"
+              bg="gray.300"
+              color="black"
+            >
+              <Badge style={{ backgroundColor: badge }} fontSize="1rem">
+                +
+                <CountUp end={parseInt(counts.today_counter)} duration={5} />
+              </Badge>
+            </Tooltip>
             <Text fontSize={['0.8rem', '0.9rem', '1rem', '1.1rem']}>
               개의 출처를 찾았습니다.
             </Text>

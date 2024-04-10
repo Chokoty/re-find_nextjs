@@ -30,8 +30,8 @@ export default function ModalSearchBar({
   const [isHover, setIsHover] = useState(false);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
+  const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
 
   const handleSearch = () => {
     const trimedInput = input.trim();
@@ -75,11 +75,7 @@ export default function ModalSearchBar({
         m="0 "
         // w={width}
       >
-        <InputLeftElement
-          pointerEvents="none"
-          color="gray.300"
-          fontSize="1.2em"
-        >
+        <InputLeftElement pointerEvents="none" color={color7} fontSize="1.2em">
           <span
             style={{
               width: '1px',
@@ -97,7 +93,7 @@ export default function ModalSearchBar({
           placeholder="키워드 검색 (빈 칸은 전체 검색)"
           h="2.25rem"
           pl="3rem"
-          pr="100px"
+          pr={['56px', '100px']}
           borderRadius="2rem"
           bg={bg3}
           alignItems="center"

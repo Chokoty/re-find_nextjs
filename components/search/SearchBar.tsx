@@ -35,7 +35,7 @@ export default function SearchBar() {
   const [focused, setFocused] = useState(false);
 
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
+  const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   const handleSearch = () => {
@@ -92,7 +92,7 @@ export default function SearchBar() {
         >
           <InputLeftElement
             pointerEvents="none"
-            color="gray.300"
+            color={color7}
             fontSize="1.2em"
           >
             <span

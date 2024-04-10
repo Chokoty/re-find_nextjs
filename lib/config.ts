@@ -28,11 +28,6 @@ export const siteConfig = {
       description: '왁물원에 올라온 팬아트를 모아놓은 갤러리입니다.',
       url: '/gallery',
     },
-    isd: {
-      title: '리파인드 | 이세돌 갤러리',
-      description: '왁물원에 올라온 이세돌 팬아트를 모아놓은 갤러리입니다.',
-      url: '/gallery/isdPick',
-    },
     Shuko: {
       title: '리파인드 | 기간한정 슛코☆ 갤러리',
       description: '4월1일 한정 슛코☆팬아트를 모아놓은 갤러리입니다.',
@@ -113,5 +108,19 @@ export const siteConfig = {
       url: '/search',
     },
     // 추후 업데이트
+  },
+  artwork(item: ArtworkDetail) {
+    const { title, board, img_url, author, id } = item;
+    return {
+      title,
+      description: board,
+      imageUrl: img_url ?? `http://via.placeholder.com/236x236`,
+      type: 'article' as OpenGraphType,
+      authors: !author?.length ? '알 수 없음' : author,
+      path: `${this.mainDomain}/artwork/${id}`,
+      // publishedTime: item.createdAt,
+      // modifiedTime: item.updatedAt,
+      // section: item.tags[0] ?? '기타',
+    };
   },
 };

@@ -1,9 +1,10 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
+  GetRecommendArtworksParams,
 } from '@/types';
 
 import queryOptions from './queries';
@@ -69,4 +70,53 @@ export function useNoticeArtworks({
     isLoading,
     isError,
   };
+}
+
+export function useArtworkDetail(artworkId: number) {
+  return useQuery(queryOptions.artworkDetail(artworkId));
+}
+
+export function useRecommendArtwork({
+  artworkId,
+  ap,
+}: GetRecommendArtworksParams) {
+  // return useQuery(queryOptions.recommendArtwoks({ artworkId, ap }));
+  const { data, fetchNextPage, isFetchingNextPage, isLoading, isError } =
+    useInfiniteQuery(queryOptions.recommendArtwoks({ artworkId, ap }));
+
+  const artworks = useMemo(() => {
+    return data?.pages.flatMap((page) => page.list);
+  }, [data]);
+
+  return {
+    artworks,
+    fetchNextPage,
+    isFetchingNextPage,
+    isLoading,
+    isError,
+  };
+}
+
+export function useArtworks({
+  isIsdPick,
+  endpoint,
+  selected,
+  sortType,
+}: {
+  isIsdPick: boolean;
+  endpoint: string;
+  sortType: string;
+  selected: string;
+}) {
+  let artworkHook;
+  // TODO: api 통합해달라고 요청하기
+  if (isIsdPick) {
+    const isdPickParams = { member: selected, ranktype: sortType };
+    artworkHook = useNoticeArtworks(isdPickParams);
+  } else {
+    const galleryParams = { query: endpoint, sortType };
+    artworkHook = useGalleryArtworks(galleryParams);
+  }
+
+  return artworkHook;
 }

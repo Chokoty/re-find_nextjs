@@ -71,6 +71,7 @@ export default function RandomFanart() {
   });
   // const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const popoverBg = useColorModeValue(lightMode.bg2, darkMode.bg3);
 
   useEffect(() => {
     // 로컬 스토리지에서 체크박스 값 불러오기
@@ -290,8 +291,8 @@ export default function RandomFanart() {
               />
             </Button>
           </PopoverTrigger>
-          <PopoverContent w="300px" p="0.5rem">
-            <PopoverArrow />
+          <PopoverContent w="300px" p="0.5rem" bg={popoverBg}>
+            <PopoverArrow bg={popoverBg} />
             <PopoverCloseButton />
             <PopoverBody>
               <Heading as="h5" size="sm">

@@ -5,41 +5,33 @@ import {
   InputRightElement,
   useColorModeValue,
 } from '@chakra-ui/react';
-import dynamic from 'next/dynamic';
 import { FaSearch } from 'react-icons/fa';
-import { useShallow } from 'zustand/react/shallow';
 
-import { useModalStore } from '@/store/modalStore';
+import useModal from '@/hook/useModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import SearchModal from '.';
 
-const ReactPortal = dynamic(
-  () => import('@/components/common/Modal/ReactPortal')
-);
-
 export default function SearchModalOpener() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
+  const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
-  const { setIsOpen } = useModalStore(
-    useShallow((state) => ({
-      setIsOpen: state.setIsOpen,
-    }))
-  );
+  // const { setIsOpen } = useModalStore(
+  //   useShallow((state) => ({
+  //     setIsOpen: state.setIsOpen,
+  //   }))
+  // );
   const handleInputClick = () => {
-    setIsOpen(true);
+    show();
+    // setIsOpen(true);
   };
+  const { show } = useModal(SearchModal);
 
   return (
     <>
       <InputGroup m="0 " w="70%" onClick={handleInputClick}>
-        <InputLeftElement
-          pointerEvents="none"
-          color="gray.300"
-          fontSize="1.2em"
-        >
+        <InputLeftElement pointerEvents="none" color={color7} fontSize="1.2em">
           <span
             style={{
               width: '1px',
@@ -57,6 +49,7 @@ export default function SearchModalOpener() {
           placeholder="키워드 검색"
           h="2.25rem"
           pl="3rem"
+          pr={['0px', '3rem']}
           borderRadius="2rem"
           bg={bg3}
           alignItems="center"
@@ -79,7 +72,7 @@ export default function SearchModalOpener() {
         />
         <InputRightElement
           pointerEvents="none"
-          display="flex"
+          display={['none', 'flex']}
           justifyContent="center"
           alignItems="center"
           padding="0.5rem"
@@ -96,9 +89,6 @@ export default function SearchModalOpener() {
           />
         </InputRightElement>
       </InputGroup>
-      <ReactPortal>
-        <SearchModal />
-      </ReactPortal>
     </>
   );
 }

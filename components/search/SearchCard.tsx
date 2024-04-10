@@ -7,11 +7,13 @@ import {
   Stack,
   Text,
   useColorMode,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import styles from '@/styles/SearchCard.module.scss';
+import { darkMode, lightMode } from '@/styles/theme';
 
 import SocialStats from './SocialStats';
 
@@ -48,6 +50,10 @@ export default function SearchCard({
     (isTitleSearch && isAuthorSearch && isContentSearch) ||
     (!isTitleSearch && !isAuthorSearch && !isContentSearch);
 
+  const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
+  const color8 = useColorModeValue(lightMode.color8, darkMode.color8);
+  const color9 = useColorModeValue(lightMode.color9, darkMode.color9);
+
   const highlightText = (text: string, ableHightlight: boolean) => {
     const regex = new RegExp(searchText, 'gi');
     if (!text) return '알 수 없음';
@@ -60,6 +66,7 @@ export default function SearchCard({
     // 모든 경우가 아니면 그냥 반환
     return text;
   };
+
   return (
     <Card
       className={styles.card}
@@ -76,7 +83,7 @@ export default function SearchCard({
           <Link href={url} prefetch={false} target="_blank">
             <Text
               size="md"
-              _hover={{ color: 'gray.500' }}
+              _hover={{ color: color9 }}
               textAlign="start"
               className={styles.mainTitle}
               dangerouslySetInnerHTML={{
@@ -87,10 +94,10 @@ export default function SearchCard({
           <HStack mt="1" gap="0.3rem">
             <Link href={`/artists/${author}`} prefetch={false} target="_blank">
               <Text
-                color={colorMode === 'light' ? 'gray.600' : 'gray.400'}
+                color={color7}
                 fontSize="s"
                 _hover={{
-                  color: colorMode === 'light' ? 'gray.500' : 'gray.300',
+                  color: color9,
                 }}
                 className={styles.subTitle}
                 dangerouslySetInnerHTML={{
@@ -98,20 +105,16 @@ export default function SearchCard({
                 }}
               />
             </Link>
-            <Text color="gray.500" fontSize="s">
+            <Text color={color9} fontSize="s">
               ·
             </Text>
-            <Text
-              color={colorMode === 'light' ? 'gray.600' : 'gray.400'}
-              fontSize="s"
-              className={styles.subTitle}
-            >
+            <Text color={color7} fontSize="s" className={styles.subTitle}>
               {board}
             </Text>
-            <Text color="gray.500" fontSize="s">
+            <Text color={color9} fontSize="s">
               ·
             </Text>
-            <Text color="gray.500" fontSize="s" className={styles.subTitle}>
+            <Text color={color8} fontSize="s" className={styles.subTitle}>
               {date.split(' ')[0]}
             </Text>
           </HStack>

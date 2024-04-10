@@ -25,7 +25,8 @@ export default function GalleryHeader({ title }: Prop) {
   // TODO: 등록이 안되어있는데...? > 물어보기
   const myDrawerRef = useRef<HTMLDivElement>(null);
 
-  const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
   // const boxShadowLight =
@@ -73,16 +74,18 @@ export default function GalleryHeader({ title }: Prop) {
       w="100%"
       h="60px"
       zIndex="200"
+      // background={bg}
     >
       <Flex
         as="header"
         style={{
-          backgroundColor: bgColor2,
+          backgroundColor: bg2,
           color,
           padding: '0 1rem',
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
+          height: '100%',
         }}
       >
         <Box w="3rem" h="3rem">

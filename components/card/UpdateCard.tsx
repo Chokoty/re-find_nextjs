@@ -209,7 +209,12 @@ export default function UpdateCard({ update }: Prop) {
                       height: '1rem',
                     }}
                   />
-                  <Text ml="0.2rem" noOfLines={1} maxW="8rem">
+                  <Text
+                    ml="0.2rem"
+                    noOfLines={1}
+                    maxW="8rem"
+                    textTransform="none"
+                  >
                     {update.info.nickname}
                   </Text>
                   <ExternalLinkIcon

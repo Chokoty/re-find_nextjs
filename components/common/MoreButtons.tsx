@@ -46,6 +46,7 @@ export default function MoreButtons() {
           alignItems="center"
           gap="1rem"
           borderRadius="1rem"
+          boxShadow="base"
           background={bg}
         >
           <Box p="0.5rem">
@@ -71,6 +72,7 @@ export default function MoreButtons() {
           alignItems="center"
           gap="1rem"
           borderRadius="1rem"
+          boxShadow="base"
           background={bg}
         >
           <Box p="0.5rem">
@@ -93,6 +95,7 @@ export default function MoreButtons() {
           alignItems="center"
           gap="1rem"
           borderRadius="1rem"
+          boxShadow="base"
           background={bg}
         >
           <Box p="0.5rem">
@@ -112,6 +115,7 @@ export default function MoreButtons() {
         alignItems="center"
         gap="1rem"
         borderRadius="1rem"
+        boxShadow="base"
         background={bg}
         onClick={handleButtonClick}
       >

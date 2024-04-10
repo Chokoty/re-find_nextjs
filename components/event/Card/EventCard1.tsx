@@ -6,7 +6,7 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 export default function EventBtn() {
   const color3 = useColorModeValue(lightMode.color2, darkMode.color3);
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const bg2 = useColorModeValue(lightMode.bg3, darkMode.bg2);
 
   return (
     <Box

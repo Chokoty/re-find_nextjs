@@ -1,0 +1,118 @@
+.cardWrapper {
+  @media (hover: hover) {
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}
+
+.overlay {
+  // .recommendationBox {
+  //   p {
+  //   }
+  // }
+
+  // .title {
+  // }
+
+  // .description {
+  // }
+  padding: 20px 20px 28px 20px;
+
+  .textBoxWrapper {
+    .textBox {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      padding-right: 30px;
+
+      .title {
+        font-size: 28px;
+        font-weight: 700;
+        color: white;
+      }
+
+      .description {
+        font-size: 16px;
+        font-weight: 400;
+        color: white;
+      }
+    }
+  }
+
+  @media (width < 1600px) {
+    .textBox {
+      gap: 18px;
+      padding-right: 25px;
+
+      .title {
+        font-size: 24px;
+      }
+    }
+  }
+
+  @media (width < 1400px) {
+    .textBox {
+      gap: 15px;
+      padding-right: 20px;
+
+      .title {
+        font-size: 20px;
+      }
+
+      .description {
+        font-size: 15px;
+      }
+    }
+  }
+
+  @media (width < 1055px) {
+    padding: 12px 12px 16px 12px;
+
+    .recommendationBox {
+      padding: 10px 14px;
+      p {
+        font-size: 13px;
+      }
+    }
+
+    .textBox {
+      gap: 10px;
+      padding-right: 8px;
+
+      .title {
+        font-size: 20px;
+      }
+    }
+  }
+
+  @media (width < 840px) {
+    padding: 10px 10px 14px 10px;
+
+    .recommendationBox {
+      padding: 8px 12px;
+      p {
+        font-size: 12px;
+      }
+    }
+    .textBoxWrapper {
+      .textBox {
+        gap: 10px;
+        padding-right: 0;
+
+        .title {
+          font-size: 20px;
+        }
+
+        .description {
+          font-size: 14px;
+        }
+      }
+
+      svg {
+        display: none;
+      }
+    }
+  }
+}

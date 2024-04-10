@@ -19,7 +19,7 @@ export default function UpdateBoard() {
     <Box
       className="update-info"
       m="0 auto"
-      mt="3rem"
+      // mt="1rem"
       mb="1rem"
       display="grid"
       alignItems="center"
@@ -28,13 +28,14 @@ export default function UpdateBoard() {
       maxW="700px"
       background={bg2}
       borderRadius="1rem"
+      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
     >
       <Box
         display="flex"
         flexDirection="column"
         alignItems="center"
-        w="100%"
-        p="1em 0"
+        w="90%"
+        p="2rem 0 1rem"
         borderBottom="1px solid"
         borderColor={bg}
       >
@@ -44,7 +45,7 @@ export default function UpdateBoard() {
           color={color}
           textAlign="left"
           w="100%"
-          pl="1em"
+          // pl="1em"
         >
           게시판 업데이트 현황
         </Heading>

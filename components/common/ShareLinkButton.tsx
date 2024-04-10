@@ -1,8 +1,15 @@
-import { Button, Tooltip, useToast } from '@chakra-ui/react';
-import { ImLink } from 'react-icons/im';
+import { Button, Text, Tooltip, useColorModeValue } from '@chakra-ui/react';
+import toast from 'react-hot-toast';
+import { MdShare } from 'react-icons/md';
+
+import styles from '@/styles/ShareLinkButton.module.scss';
+import { darkMode, lightMode } from '@/styles/theme';
 
 export default function ShareLinkButton() {
-  const toast = useToast();
+  const highlightColor = useColorModeValue(
+    lightMode.highlight,
+    darkMode.highlight
+  );
 
   const handleCopyLink = () => {
     // 복사하려는 링크를 여기에 입력하세요.
@@ -10,28 +17,21 @@ export default function ShareLinkButton() {
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast({
-        title: '갤러리 링크 복사됨',
-        description: '링크가 클립보드에 복사되었습니다.',
-        // status: 'success',
-        duration: 1500,
-        isClosable: true,
-      });
+      toast.success('갤러리 링크 복사됨');
     });
   };
 
   return (
-    <Tooltip label="링크 공유">
-      <Button
-        w="3rem"
-        h="3rem"
-        variant="ghost"
-        borderRadius="full"
-        p="0"
-        onClick={handleCopyLink}
-      >
-        <ImLink />
-      </Button>
-    </Tooltip>
+    <Button
+      className={styles.button}
+      style={{ background: highlightColor, borderRadius: '80px' }}
+      variant="solid"
+      onClick={handleCopyLink}
+    >
+      <Text className={styles.text} color="white">
+        <span className={styles.gallery}>갤러리</span> 공유하기
+      </Text>
+      <MdShare className={styles.icon} color="white" />
+    </Button>
   );
 }
