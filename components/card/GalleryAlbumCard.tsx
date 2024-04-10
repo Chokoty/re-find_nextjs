@@ -11,8 +11,25 @@ type Prop = {
   album: Gallery;
 };
 
+const getBadgeText = ({
+  badgeValue,
+  badgeType,
+}: {
+  badgeValue: string;
+  badgeType: string;
+}) => {
+  if (badgeType === 'special') {
+    if (badgeValue === 'isdPick') {
+      return '이세돌픽';
+    }
+    return '특집 팬아트';
+  }
+  // badgeType === 'keyword'
+  return '추천 키워드';
+};
+
 export default function GalleryAlbumCard({
-  album: { title, value, description },
+  album: { title, value, description, type },
 }: Prop) {
   const staticImage = getStaticImage(value);
   const { colorMode } = useColorMode();
@@ -74,7 +91,7 @@ export default function GalleryAlbumCard({
             background="rgba(0, 0, 0, 0.40)"
           >
             <Text fontWeight="400" fontSize="14px" color="white">
-              리파인드 추천
+              {getBadgeText({ badgeType: type, badgeValue: value })}
             </Text>
           </Box>
           <Box

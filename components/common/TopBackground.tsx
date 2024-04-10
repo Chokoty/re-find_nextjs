@@ -81,7 +81,7 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
         position="absolute"
         width="100%"
         height="100%"
-        top={['0px', '-60px']}
+        top={['0px', '-59px']} // 4k screen으로가면 +1을 해주어 shadow를 아래로 내려줘야 뜨는 현상이 없어진다.
         zIndex="2"
         background={imageBackgroundShadow}
       />

@@ -3,6 +3,15 @@ import type { Gallery } from '@/types';
 const gallery: Gallery[] = [
   {
     id: 0,
+    value: 'isdPick',
+    type: 'special',
+    title: '이세돌픽 팬아트',
+    subTitle: '이세돌이 고른 팬아트',
+    description: '이세계아이돌이 고른 공지사항 팬아트',
+    query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
+  },
+  {
+    id: 1,
     value: 'kissingYou',
     type: 'special',
     title: '이세돌 키싱유 팬아트',
@@ -10,15 +19,6 @@ const gallery: Gallery[] = [
     subTitle: '🍭 이세돌 키싱유 팬아트 🍭',
     query:
       'artworks?query=kissing&query=키싱&query=키씽&query=뚜뚜뚜&query=뚜두루&query=고마워 사랑해&query=사랑해 한마디&query=너만을 사랑해&case_sensitive=false&board=isd&board=best&title=',
-  },
-  {
-    id: 1,
-    value: 'isdPick',
-    type: 'special',
-    title: '이세돌픽 팬아트',
-    subTitle: '이세돌이 고른 팬아트',
-    description: '이세계아이돌이 고른 공지사항 팬아트',
-    query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
   },
   {
     id: 2,
