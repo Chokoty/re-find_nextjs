@@ -99,7 +99,7 @@ export default function RecommendArtworks() {
             ))}
           </Box>
           <Tooltip label="좋아요 패턴이 잘 안 겹치는 게시글을 추천">
-            <Text fontSize={['sm', 'md']}>홍머픽</Text>
+            <Text fontSize={['sm', 'md']}>나작픽</Text>
           </Tooltip>
         </Box>
       </Box>
