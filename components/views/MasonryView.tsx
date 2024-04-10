@@ -54,6 +54,7 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
         1350: 6,
         1528: 7,
         1792: 8,
+        2020: 9,
       }}
       style={{
         width: '100%',
