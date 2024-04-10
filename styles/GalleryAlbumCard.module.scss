@@ -24,7 +24,7 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 20px;
+      gap: 2px;
       padding-right: 30px;
 
       .title {
@@ -43,7 +43,6 @@
 
   @media (width < 1600px) {
     .textBox {
-      gap: 18px;
       padding-right: 25px;
 
       .title {
@@ -54,7 +53,6 @@
 
   @media (width < 1400px) {
     .textBox {
-      gap: 15px;
       padding-right: 20px;
 
       .title {
@@ -78,7 +76,6 @@
     }
 
     .textBox {
-      gap: 10px;
       padding-right: 8px;
 
       .title {
@@ -98,7 +95,6 @@
     }
     .textBoxWrapper {
       .textBox {
-        gap: 10px;
         padding-right: 0;
 
         .title {
