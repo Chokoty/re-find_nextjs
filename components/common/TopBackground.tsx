@@ -14,12 +14,13 @@ interface TopBackgroundProps {
 
 const TopBackground = ({ children }: TopBackgroundProps) => {
   const { colorMode } = useColorMode();
+  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
   const isDarkMode = colorMode === 'dark';
   const pathname = usePathname().replace('/gallery', '');
   const bgStaticSrc = getStaticImage(pathname.slice(1));
   const imageBackgroundShadow = isDarkMode
-    ? 'linear-gradient(180deg, rgba(18, 18, 18, 0.5) 51.43%, #121212 100%),linear-gradient(75deg, #121212 0%, rgba(18, 18, 18, 0.00) 45.72%)'
-    : 'linear-gradient(180deg, rgba(255, 255, 255, 0.00) 31.43%, #ffffff 86%), linear-gradient(91deg, #ffffff 0%, rgb(255 255 255 / 0%) 57.72%)';
+    ? `linear-gradient(180deg, ${bg}80 51.43%, ${bg} 100%),linear-gradient(75deg, ${bg} 0%, ${bg}00 45.72%)`
+    : `linear-gradient(180deg, ${bg}00 31.43%, ${bg} 86%),linear-gradient(91deg, ${bg} 0%, ${bg}00 57.72%)`;
   const imageOpacity = isDarkMode ? 0.8 : 0.7;
   return (
     <Box

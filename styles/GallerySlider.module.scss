@@ -3,6 +3,10 @@
   // display: flex;
   // justify-content: space-between;
 
+  @media(width < 875px) {
+    display: none;
+  }
+
   button {
     position: absolute;
     top: 50%;

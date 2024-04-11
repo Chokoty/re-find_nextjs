@@ -73,7 +73,7 @@ export default function GalleryAlbumCard({
           right={0}
           bottom={0}
           left={0}
-          borderRadius="1rem"
+          borderRadius="0.9rem" // image 1rem 보다 작게 설정해야 아래 이미지 뜨는 현상 방지
           zIndex={1}
           background={imageBackgroundShadow}
           display="flex"
