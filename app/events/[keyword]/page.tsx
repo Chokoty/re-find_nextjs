@@ -36,19 +36,23 @@ export function generateMetadata({ params: { keyword } }: Params): Metadata {
 export default async function page({ params: { keyword } }: Params) {
   const decodedKeyword = decodeURIComponent(keyword);
 
-  const { queryKey, queryFn } = queryOptions.artistInfo({
-    nickname: decodedKeyword,
-    sortType: 'latest',
-    field: '',
-  });
-  const query = await getDehydratedInfiniteQuery({
-    queryKey,
-    queryFn,
-    initialPageParam: 1,
-  });
-  return (
-    <Hydrate state={{ queries: [query] }}>
-      <DetailedEvent keyword={decodedKeyword} />;
-    </Hydrate>
-  );
+  if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+    const { queryKey, queryFn } = queryOptions.artistInfo({
+      nickname: decodedKeyword,
+      sortType: 'latest',
+      field: '',
+    });
+    const query = await getDehydratedInfiniteQuery({
+      queryKey,
+      queryFn,
+      initialPageParam: 1,
+    });
+    return (
+      <Hydrate state={{ queries: [query] }}>
+        <DetailedEvent keyword={decodedKeyword} />
+      </Hydrate>
+    );
+  }
+
+  return <DetailedEvent keyword={decodedKeyword} />;
 }

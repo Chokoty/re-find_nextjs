@@ -14,17 +14,50 @@ const topTitle = {
 export default async function ArtistsPage() {
   // const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
-  const { queryKey, queryFn } = queryOptions.artistList({
-    q: '',
-    ranktype: 'like',
-    board: null,
-  });
+  if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+    const { queryKey, queryFn } = queryOptions.artistList({
+      q: '',
+      ranktype: 'like',
+      board: null,
+    });
 
-  const query = await getDehydratedInfiniteQuery({
-    queryKey,
-    queryFn,
-    initialPageParam: 1,
-  });
+    const query = await getDehydratedInfiniteQuery({
+      queryKey,
+      queryFn,
+      initialPageParam: 1,
+    });
+
+    return (
+      <Box
+        mt="10px"
+        mb="10px"
+        p="1rem"
+        textAlign="center"
+        w="100%"
+        // backgroundColor={bg}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <PageTitle topTitle={topTitle} />
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          mt="3rem"
+          w="100%"
+          maxW="1024px"
+          gap="1rem"
+        >
+          <ArtistsSearchInput />
+          <Hydrate state={{ queries: [query] }}>
+            <Artists />
+          </Hydrate>
+        </Box>
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -50,9 +83,7 @@ export default async function ArtistsPage() {
         gap="1rem"
       >
         <ArtistsSearchInput />
-        <Hydrate state={{ queries: [query] }}>
-          <Artists />
-        </Hydrate>
+        <Artists />
       </Box>
     </Box>
   );

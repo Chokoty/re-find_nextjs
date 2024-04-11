@@ -28,7 +28,7 @@ const queryOptions = {
   artistInfo: ({ nickname, sortType, field }: GetArtistInfoParams) => ({
     queryKey: queryKeys.artistInfo({ nickname, sortType, field }),
     queryFn: ({ pageParam }: { pageParam: number }) =>
-      ArtistService.getArtistInfo({
+      ArtistService.getArtistArtworks({
         nickname,
         sortType,
         page: pageParam,

@@ -21,7 +21,7 @@ class ArtistService extends Service {
 
   // 작가의 작품들 가져오기
   // {"lastPage": true, "list": []}
-  async getArtistInfo({
+  async getArtistArtworks({
     nickname,
     sortType,
     page,
