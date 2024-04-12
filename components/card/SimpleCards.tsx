@@ -11,8 +11,6 @@ type Prop = {
 
 export default function SimpleCard({ artwork }: Prop) {
   const article_link = useResponsiveLink('', 'article');
-  // const widthValue = useBreakpointValue({ base: '180px', sm: '236px' });
-  // const [imageHeight, setImageHeight] = useState(null);
   const uploadTimeDiff = useUploadTimeDiff(artwork.date);
 
   const modifiedUrl100List1 = useModifiedImageUrl({
@@ -27,9 +25,6 @@ export default function SimpleCard({ artwork }: Prop) {
     url: artwork.img_url_list[0],
     size: 300,
   });
-  // const handleImageLoad = (e) => {
-  //   setImageHeight(e.target.height);
-  // };
   return (
     <Link
       className="link-to-wakzoo-from-profile"

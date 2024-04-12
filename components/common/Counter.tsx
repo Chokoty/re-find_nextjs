@@ -13,7 +13,6 @@ import { darkMode, lightMode } from '@/styles/theme';
 
 export default function Counter() {
   const badge = useColorModeValue(lightMode.badge, darkMode.badge);
-  // TODO: 에러 처리 필요?
   const { data: counts, isLoading } = useCounts();
   return (
     <Box

@@ -15,7 +15,7 @@ import { darkMode, lightMode } from '@/styles/theme';
 import UpdateCard from './UpdateCard';
 
 export default function UpdateCardList() {
-  // TODO: 에러 처리 필요? (length가 0인 경우 다른 처리 필요?)
+  // TODO: 에러 처리 필요? (length가 0인 경우 다른 처리 필요한가?)
   const { data: updates, isLoading } = useRecentUpdates();
 
   if (isLoading) {

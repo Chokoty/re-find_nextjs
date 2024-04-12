@@ -14,7 +14,7 @@ export default function SearchModal() {
   const inputRef = useRef<HTMLInputElement>(null);
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const isMobile = useResponsive(); // 모바일 환경인지 체크
+  const isMobile = useResponsive();
   const {
     recentSearches,
     setRecentSearches,
@@ -42,17 +42,12 @@ export default function SearchModal() {
       top="0"
       maxW={isMobile ? '100%' : '75%'}
       width="100%"
-      // height="100dvh"
-      // display="flex"
-      // justifyContent="center"
-      // alignItems="flex-start"
       overflow="auto"
       overscrollBehaviorY="none"
     >
       <Box
         as="section"
         width="100%"
-        // maxW={['100%', '66%']}
         my="0"
         boxShadow="none"
         border={`1px solid ${color7}`}
@@ -91,13 +86,6 @@ export default function SearchModal() {
           />
           {/* <OptionContainer /> */}
         </Box>
-        {/* <ModalFooter
-          display="flex"
-          justifyContent="center"
-          alignItems="flex-start"
-        >
-          현재 작가닉네임 검색만 가능합니다!
-        </ModalFooter> */}
       </Box>
     </Box>
   );

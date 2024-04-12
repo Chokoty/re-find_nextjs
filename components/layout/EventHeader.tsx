@@ -8,61 +8,15 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React, { useEffect, useRef } from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Prop = { title: string };
 
 export default function GalleryHeader({ title }: Prop) {
-  const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
-    state.isOpen,
-    state.setIsOpen,
-  ]);
-
-  // TODO: 등록이 안되어있는데...? > 물어보기
-  const myDrawerRef = useRef<HTMLDivElement>(null);
-
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
-
-  // const boxShadowLight =
-  //   '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
-  // const boxShadowDark =
-  //   '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
-
-  useEffect(() => {
-    if (!isOpenDrawer) {
-      return;
-    }
-    const handleClick = (e: globalThis.MouseEvent) => {
-      if (
-        (e.target as HTMLDivElement).className === 'hamburger-react' ||
-        (e.target as HTMLDivElement).closest('.hamburger-react')
-      ) {
-        return;
-      }
-      if ((e.target as HTMLDivElement).tagName.toLowerCase() === 'a') {
-        console.log('a');
-        return; // Return early if the clicked element is an <a> tag
-      }
-      if (
-        myDrawerRef.current &&
-        !myDrawerRef.current.contains(e.target as HTMLDivElement)
-      ) {
-        // console.log("other");
-        setIsOpenDrawer(false);
-      }
-    };
-    window.addEventListener('mousedown', handleClick);
-    return () => window.removeEventListener('mousedown', handleClick);
-  }, [isOpenDrawer]);
-
-  // const toggleDrawer = () => {
-  //   setIsOpenDrawer(!isOpenDrawer);
-  // };
 
   return (
     <Box

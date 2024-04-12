@@ -265,40 +265,6 @@ export default function CardImage({ data }: Props) {
           pt="1rem"
           px="1rem"
         >
-          {/* <NextLink
-              className={styles.btns}
-              href={`/artists/${authorName}`}
-              style={{
-                flex: 0.5,
-              }}
-              prefetch={false}
-            >
-              <Box
-                className={styles.textBox}
-                w="100%"
-                display="flex"
-                flexDir="row"
-                alignItems="center"
-                justifyContent="center"
-                gap="4px"
-                _hover={{
-                  textDecoration: 'none',
-                  cursor: 'pointer',
-                  backgroundColor: 'black',
-                  color: 'white',
-                }}
-                // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-                borderRadius="800px"
-                background="white"
-                padding="8px 10px"
-                fontSize="xs"
-                color="black"
-                transition="all 0.2s ease-in-out"
-              >
-                <MdPerson />
-                작가
-              </Box>
-            </NextLink> */}
           <Link
             className={styles.btns}
             href={`/artwork/${id}`}

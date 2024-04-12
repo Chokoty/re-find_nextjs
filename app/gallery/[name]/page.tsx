@@ -5,7 +5,7 @@ import TopBackground from '@/components/common/TopBackground';
 import DetailedGallery from '@/components/gallery/DetailedGallery';
 import GalleryTitle from '@/components/gallery/GalleryTitle';
 import gallery from '@/data/gallery';
-import members2 from '@/data/members2';
+import members from '@/data/members';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 import queryOptions from '@/service/client/gallery/queries';
@@ -40,7 +40,7 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
 
 export default async function page({ params: { name } }: Params) {
   const endpoint =
-    members2.find((item) => item.value === name)?.query ||
+    members.find((item) => item.value === name)?.query ||
     gallery.find((item) => item.value === name)?.query;
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {

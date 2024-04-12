@@ -119,7 +119,6 @@ export default function MoreButtons() {
         background={bg}
         onClick={handleButtonClick}
       >
-        {/* <DarkModeToggle className="icon" /> */}
         <Box p="0.5rem">
           <Icon
             style={{

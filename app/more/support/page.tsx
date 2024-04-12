@@ -1,12 +1,10 @@
 'use client';
 
 import { Box, Button, Text } from '@chakra-ui/react';
-import { useEffect } from 'react';
 import { BsChatDots } from 'react-icons/bs';
 import { FaBug } from 'react-icons/fa';
 
 import MoreLayout from '@/components/layout/more-layout';
-import { useDrawerStore } from '@/store/drawerStore';
 
 const data = [
   {
@@ -20,13 +18,6 @@ const data = [
 ];
 
 export default function Support() {
-  const setIsOpen = useDrawerStore((state) => state.setIsOpen);
-  // const color = useColorModeValue(lightMode.color, darkMode.color);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, []);
-
   return (
     <MoreLayout title="Support">
       <Box className="toLink" pb="15rem">

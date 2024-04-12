@@ -6,15 +6,13 @@ import {
   Text,
   useColorMode,
   useColorModeValue,
-  useMediaQuery,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FaAngleLeft } from 'react-icons/fa6';
-import { MdShare } from 'react-icons/md';
 
 import gallery from '@/data/gallery';
-import members2 from '@/data/members2';
+import members from '@/data/members';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import ShareLinkButton from '../common/ShareLinkButton';
@@ -28,7 +26,7 @@ const getTitleInfo = (type: string) => {
   }
 
   const album = gallery.find((item) => item.value === type);
-  const member = members2.find((item) => item.value === type);
+  const member = members.find((item) => item.value === type);
 
   return {
     title: album?.title || `${member?.name ?? ''} 팬아트`,

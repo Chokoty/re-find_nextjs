@@ -2,13 +2,11 @@ import { useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
-// import KungYaDu from '@/public/이세페애니굳.webp';
 import WakGood from '@/public/real-wakgood.webp';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const data = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
 
-// #AprilFool
 export default function SubTitle() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -32,15 +30,6 @@ export default function SubTitle() {
       </p>
       <p className="title-text">팬아트</p>
       <div className="bg-crop">
-        {/* <Image
-          src="/쿵야굳.jpg"
-          alt="실사왁굳"
-          className="bg-wakdoo"
-          width={100}
-          height={100}
-          // unoptimized
-          // placeholder="blur"
-        /> */}
         <Image
           src={WakGood}
           alt="실사왁굳"

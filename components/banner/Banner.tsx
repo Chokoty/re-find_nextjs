@@ -5,7 +5,7 @@ import React from 'react';
 
 import MainBanner from '@/public/static/images/banners/banner2.webp';
 
-export default function Banner2() {
+export default function Banner() {
   return (
     <Box
       maxW="700px"

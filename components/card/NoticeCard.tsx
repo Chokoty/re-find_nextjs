@@ -28,10 +28,8 @@ export default function NoticeCard({ date, type, content, directLink }: Props) {
   return (
     <Card
       width="100%"
-      // maxW="608px"
       maxW="700px"
       p="1rem"
-      // boxShadow="2xl"
       background={bg2}
       borderRadius="0.75rem"
     >

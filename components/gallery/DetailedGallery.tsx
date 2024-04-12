@@ -140,7 +140,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
             // handleLoading={handleLoading}
           />
         )}
-        {/* {activeView === 'listView' && <ListView artworks={artworks} /> */}
         {isFetchingNextPage ? (
           <Box
             w="100%"

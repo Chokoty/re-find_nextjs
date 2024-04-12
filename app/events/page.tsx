@@ -2,12 +2,9 @@
 
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { BsCalendarEventFill, BsDoorOpenFill } from 'react-icons/bs';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 
 import SearchLayout from '@/components/layout/search-layout';
-import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const events = [
@@ -56,16 +53,9 @@ const events = [
 ];
 
 export default function Events() {
-  const setIsOpen = useDrawerStore((state) => state.setIsOpen);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, []);
-
   return (
     <SearchLayout title="이벤트관">
-      {/* <MySnowfall /> */}
       {events.map((event, index) => (
         <Box
           key={index}

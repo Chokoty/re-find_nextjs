@@ -8,23 +8,17 @@ type Props = {
   hide: () => void;
 };
 
-// export const ModalHideContext = createContext<() => void>(() => {});
 export const ModalHideContext = createContext(() => {});
 
 export default function Modal({ Component, modalProps, hide }: Props) {
   const modalRef = useRef<HTMLDivElement>(null);
 
-  // esc로 꺼지게 하기위해 mount되면 focus처리한다.
   // Focus the modal container when it mounts
   useEffect(() => {
     if (modalRef.current) {
       modalRef.current.focus();
     }
   }, []);
-
-  // esc를 누른경우
-  // const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) =>
-  //   e.key === 'Escape' && hide();
 
   const handleCancel = () => {
     hide();

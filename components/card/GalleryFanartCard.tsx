@@ -7,13 +7,11 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import React, { useState } from 'react';
 import { FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { MdPerson } from 'react-icons/md';
 
 import { formatArtistValue } from '@/hook/useFormatArtistValue';
-import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import styles from '@/styles/GalleryFanartCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -42,22 +40,8 @@ export default function GalleryFanartCard({
   // onToggleFocus,
   num,
 }: Props) {
-  // const [imageHeight, setImageHeight] = useState<number | null>(null);
-  // const isMobile = useResponsive();
   const article_link = useResponsiveLink('', 'article');
   const widthValue = useBreakpointValue({ base: '200px', sm: '249px' });
-  // const width = useBreakpointValue({ base: 200, sm: 249 });
-  // const modifiedUrl300 = useModifiedImageUrl({
-  //   url: artwork.img_url_list[0],
-  //   size: 300,
-  // });
-  // const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
-
-  // const handleImageLoad = (
-  //   e: React.SyntheticEvent<HTMLImageElement, Event>
-  // ) => {
-  //   setImageHeight((e.target as HTMLImageElement).height);
-  // };
   const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const authorName = 'author' in artwork ? artwork.author : '';
 

@@ -29,8 +29,6 @@ export default function RankingBadge({ num }: Prop) {
       alignItems="center"
       zIndex={3}
       filter="drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.20))"
-      // w="0px"
-      // h="200px"
     >
       {/* for gradient */}
       <svg width="0" height="0">

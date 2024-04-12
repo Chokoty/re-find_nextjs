@@ -1,6 +1,7 @@
 import {
   Avatar,
   Button,
+  Flex,
   Link,
   Text,
   useColorModeValue,
@@ -15,10 +16,10 @@ interface Props {
   writerURL: string;
   profURL: string;
   nickname: string;
-  board: string;
+  board: string[];
 }
 
-export default function AuthorProfileCard({
+export default function DeveloperProfileCard({
   writerURL,
   profURL,
   nickname,
@@ -41,25 +42,23 @@ export default function AuthorProfileCard({
 
   return (
     <Link
+      // w="100%"
       className="link-to-wakzoo"
       href={writerURL === '' ? '#' : member_link}
       isExternal
     >
       <Button
-        as="a"
-        target="_blank"
+        _hover={{ textDecoration: 'none' }}
         color={'#f5f5f5'}
-        boxShadow="md"
+        boxShadow="base"
         maxW="sm"
-        borderWidth="1px"
-        borderRadius="lg"
+        borderRadius="1rem"
         overflow="hidden"
-        p="10px"
-        width="240px"
-        height="240px"
+        p="1.5rem"
+        width="100%"
+        height="120px"
         display="flex"
-        flexDirection="column"
-        justifyContent="center"
+        justifyContent="space-between"
         gap="10px"
       >
         {profURL === 'NULL' ? (
@@ -72,6 +71,7 @@ export default function AuthorProfileCard({
               position: 'relative',
               width: 96,
               height: 96,
+              backgroundColor: '#ffffff',
             }}
           >
             <Image
@@ -85,21 +85,39 @@ export default function AuthorProfileCard({
             />
           </div>
         )}
-
-        <Text fontSize="md" textAlign="center" mb="12px" color={highlightColor}>
-          {nickname || '프로필은 왁물원에서'}
-        </Text>
-        <Text
-          fontSize="md"
-          textAlign="center"
-          color={color2}
-          px="2"
-          py="1"
-          rounded="full"
-          bg={highlightColor2}
+        <Flex
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="flex-start"
+          gap="10px"
+          w="12rem"
         >
-          {board || '---'}
-        </Text>
+          <Text
+            fontSize="md"
+            textAlign="center"
+            mb="0.5rem"
+            pl="0.5rem"
+            color={highlightColor}
+          >
+            {nickname || '프로필은 왁물원에서'}
+          </Text>
+          <Flex gap="2" wrap="wrap">
+            {board.map((item, index) => (
+              <Text
+                key={index}
+                fontSize="sm"
+                textAlign="center"
+                color={color2}
+                px="2"
+                py="1"
+                rounded="full"
+                bg={highlightColor2}
+              >
+                {item || '---'}
+              </Text>
+            ))}
+          </Flex>
+        </Flex>
       </Button>
     </Link>
   );

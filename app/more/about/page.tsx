@@ -10,7 +10,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import ProfileCard2 from '@/components/card/ProfileCard2';
+import DeveloperProfileCard from '@/components/card/DeveloperProfileCard';
 import MoreLayout from '@/components/layout/more-layout';
 import developers from '@/data/developers';
 import { useResponsive } from '@/hook/useResponsive';
@@ -97,7 +97,7 @@ export default function About() {
             {developers.map(
               (item, index) =>
                 item.group === 'member' && (
-                  <ProfileCard2
+                  <DeveloperProfileCard
                     key={index}
                     writerURL={item.writerURL}
                     profURL={item.profURL}
@@ -135,7 +135,7 @@ export default function About() {
             {developers.map(
               (item, index) =>
                 item.group === 'credit' && (
-                  <ProfileCard2
+                  <DeveloperProfileCard
                     key={index}
                     writerURL={item.writerURL}
                     profURL={item.profURL}

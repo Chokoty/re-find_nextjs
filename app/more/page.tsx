@@ -1,21 +1,13 @@
 'use client';
 
 import { Button, Flex, Link } from '@chakra-ui/react';
-import { useEffect } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 
 import MoreButtons from '@/components/common/MoreButtons';
 import UpdateLogBoard from '@/components/common/UpdateLogBoard';
 import MoreLayout from '@/components/layout/more-layout';
-import { useDrawerStore } from '@/store/drawerStore';
 
 export default function More() {
-  const setIsOpen = useDrawerStore((state) => state.setIsOpen);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [setIsOpen]);
-
   return (
     <MoreLayout title="좀 더!">
       <Flex

@@ -8,12 +8,8 @@ import React from 'react';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Banner2 from '@/components/banner/Banner2';
+import Banner from '@/components/banner/Banner';
 import EventCard1 from '@/components/event/Card/EventCard1';
-import EventCard2 from '@/components/event/Card/EventCard2';
-import EventCard3 from '@/components/event/Card/EventCard3';
-import EventDay from '@/components/event/EventDay';
-// import MelonVoteModal from '@/components/events/MelonVoteModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const swiperSlideStyle = {
@@ -24,7 +20,6 @@ const swiperSlideStyle = {
 };
 
 export default function BannerSlider() {
-  // const color = useColorModeValue(lightMode.color2, darkMode.bg);
   const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const width = useBreakpointValue({ base: '90%', md: '100%' });
 
@@ -42,38 +37,16 @@ export default function BannerSlider() {
           }}
           loop={true}
           grabCursor={true}
-          // effect={'creative'}
-          // creativeEffect={{
-          //   prev: {
-          //     shadow: true,
-          //     translate: [0, 0, -400],
-          //   },
-          //   next: {
-          //     translate: ['100%', 0, 0],
-          //   },
-          // }}
           style={{
             paddingBottom: '2.5rem',
           }}
         >
           <SwiperSlide style={swiperSlideStyle}>
-            <Banner2 />
+            <Banner />
           </SwiperSlide>
           <SwiperSlide style={swiperSlideStyle}>
             <EventCard1 />
           </SwiperSlide>
-          {/* <SwiperSlide style={swiperSlideStyle}>
-            <EventCard2 />
-          </SwiperSlide>
-          <SwiperSlide style={swiperSlideStyle}>
-            <EventCard3 />
-          </SwiperSlide> */}
-          {/* <SwiperSlide style={swiperSlideStyle}>
-            <MelonVoteModal />
-          </SwiperSlide> */}
-          {/* <SwiperSlide style={swiperSlideStyle}>
-            <EventDay />
-          </SwiperSlide> */}
         </Swiper>
       </Box>
     </Box>

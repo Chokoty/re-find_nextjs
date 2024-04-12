@@ -2,7 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import members from '@/data/members2';
+import members from '@/data/members';
 import { getStaticImage } from '@/lib/getStaticImage';
 import type { Member as MemberType } from '@/types';
 
@@ -20,16 +20,7 @@ const Member = ({ member }: { member: MemberType }) => {
   const { value, name, greetings } = member;
   const staticImage = getStaticImage(value);
   return (
-    <Box
-      w="140px"
-      as="li"
-      listStyleType="none"
-      // display="flex"
-      // flexDir="column"
-      // gap="10px"
-      // justifyContent="center"
-      // alignItems="center"
-    >
+    <Box w="140px" as="li" listStyleType="none">
       <Link
         href={`/gallery/${value}`}
         prefetch={false}

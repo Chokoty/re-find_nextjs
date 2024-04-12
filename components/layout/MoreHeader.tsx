@@ -6,12 +6,10 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React, { useEffect, useRef } from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import BackButton from '@/components/common/BackButton';
 import { useShowShadow } from '@/hook/useShowShadow';
-import { useDrawerStore } from '@/store/drawerStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
@@ -20,14 +18,6 @@ type Props = {
 };
 
 export default function MoreHeader({ title, isIndex }: Props) {
-  const [isOpenDrawer, setIsOpenDrawer] = useDrawerStore((state) => [
-    state.isOpen,
-    state.setIsOpen,
-  ]);
-
-  const myDrawerRef = useRef<HTMLDivElement>(null);
-
-  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
@@ -38,37 +28,6 @@ export default function MoreHeader({ title, isIndex }: Props) {
 
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
   const showShadow = useShowShadow(50, 0);
-
-  useEffect(() => {
-    if (!isOpenDrawer) {
-      return;
-    }
-    const handleClick = (e: globalThis.MouseEvent) => {
-      if (
-        (e.target as HTMLDivElement).className === 'hamburger-react' ||
-        (e.target as HTMLDivElement).closest('.hamburger-react')
-      ) {
-        return;
-      }
-      if ((e.target as HTMLDivElement).tagName.toLowerCase() === 'a') {
-        console.log('a');
-        return; // Return early if the clicked element is an <a> tag
-      }
-      if (
-        myDrawerRef.current &&
-        !myDrawerRef.current.contains(e.target as HTMLDivElement)
-      ) {
-        // console.log("other");
-        setIsOpenDrawer(false);
-      }
-    };
-    window.addEventListener('mousedown', handleClick);
-    return () => window.removeEventListener('mousedown', handleClick);
-  }, [isOpenDrawer]);
-
-  const toggleDrawer = () => {
-    setIsOpenDrawer(!isOpenDrawer);
-  };
 
   return (
     <Box

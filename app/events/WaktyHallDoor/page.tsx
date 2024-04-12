@@ -8,7 +8,7 @@ import { useState } from 'react';
 import PageTitle from '@/components/common/PageTitle';
 import Game from '@/components/event/montyHall/Game';
 import EventLayout from '@/components/layout/event-layout';
-import waktyhall1 from '@/public/waktyhall1.webp';
+import waktyhall1 from '@/public/static/images/events/question.webp';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const topTitle = {

@@ -10,7 +10,6 @@ import {
   ListItem,
   Text,
   UnorderedList,
-  useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
@@ -19,8 +18,6 @@ import React from 'react';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function Description() {
-  const { colorMode, toggleColorMode } = useColorMode();
-
   // Theme
   const color = useColorModeValue(lightMode.color, darkMode.color);
   const highlightColor = useColorModeValue(

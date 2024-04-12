@@ -17,14 +17,8 @@ export default function SearchModalOpener() {
   const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
   const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
-  // const { setIsOpen } = useModalStore(
-  //   useShallow((state) => ({
-  //     setIsOpen: state.setIsOpen,
-  //   }))
-  // );
   const handleInputClick = () => {
     show();
-    // setIsOpen(true);
   };
   const { show } = useModal(SearchModal);
 
@@ -55,13 +49,10 @@ export default function SearchModalOpener() {
           alignItems="center"
           focusBorderColor="#01BFA2"
           size="md"
-          // value={nickname}
-          // onChange={handleSearch}
           _hover={{
             backgroundColor: bg2,
             borderColor: '#01BFA2',
           }}
-          // _focus={{ backgroundColor: bg2 }}
           sx={{
             'input::placeholder': {
               textOverflow: 'ellipsis',

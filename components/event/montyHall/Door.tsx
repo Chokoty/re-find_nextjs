@@ -3,10 +3,9 @@ import Image from 'next/image';
 import React from 'react';
 import { MdOutlineImageSearch } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
-
 import type MontyHall from '@/lib/montyhall';
-import BoomDoor from '@/public/염소굳.webp';
-import KeyDoor from '@/public/페리도두.webp';
+import BoomDoor from '@/public/static/images/events/goat.webp';
+import KeyDoor from '@/public/static/images/events/peridot.webp';
 import { useImageViewerStore } from '@/store/imageViewerStore';
 import styles from '@/styles/Door.module.scss';
 

@@ -1,99 +1,116 @@
-import { Avatar, Button, Text, useColorModeValue } from '@chakra-ui/react';
+import { Avatar, Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import React from 'react';
 
+import SortTypeIcons from '@/components/artist/SortTypeIcons';
+import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
 import { darkMode, lightMode } from '@/styles/theme';
 
-interface Props {
+interface AuthorProfileCardProps {
+  author: SourceAuthor;
   writerURL: string;
   profURL: string;
   nickname: string;
-  board: string;
 }
 
-export default function AuthorProfileCard({ profURL, nickname, board }: Props) {
-  // const color = useColorModeValue(lightMode.color, darkMode.color);
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-  const highlightColor2 = useColorModeValue(
-    lightMode.highlight2,
-    darkMode.highlight2
-  );
+export default function AuthorProfileCard({
+  author,
+  profURL,
+  nickname,
+}: AuthorProfileCardProps) {
+  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
+  const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
 
   // const member_link = useResponsiveLink(
-  //   writerURL.split('/').pop() || 'default',
+  //   writerURL?.split('/').pop() || 'default',
   //   'member'
   // );
 
   return (
-    // <Link
-    //   className="link-to-wakzoo"
-    //   href={writerURL === '' ? '#' : member_link}
-    //   // passHref
-    //   isExternal
-    // >
-    <NextLink href={`/artists/${nickname}`}>
+    <NextLink
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+      }}
+      href={`/artists/${nickname}`}
+    >
       <Button
+        backgroundColor={bg2}
+        _hover={{
+          backgroundColor: bg3,
+        }}
         as="a"
         target="_blank"
-        color={'#f5f5f5'}
-        boxShadow="md"
-        maxW="sm"
-        borderWidth="1px"
         borderRadius="lg"
         overflow="hidden"
-        p="10px"
-        width="240px"
-        height="240px"
+        p="1rem"
+        minW="240px"
+        h="100%"
         display="flex"
         flexDirection="column"
         justifyContent="center"
-        gap="10px"
+        alignItems="center"
+        gap="1rem"
+        w="100%"
       >
-        {profURL === 'NULL' ? (
-          <Avatar size="xl" name={nickname} src={profURL || ''} />
-        ) : (
-          <div
-            style={{
-              borderRadius: '50%',
-              overflow: 'hidden',
-              position: 'relative',
-              width: 96,
-              height: 96,
-            }}
-          >
-            <Image
-              src={
-                profURL ||
-                'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
-              }
-              alt={nickname}
-              fill={true}
-              unoptimized
-            />
-          </div>
-        )}
-
-        <Text fontSize="md" textAlign="center" mb="12px" color={highlightColor}>
-          {nickname || '프로필은 왁물원에서'}
-        </Text>
-        <Text
-          fontSize="md"
-          textAlign="center"
-          color={color2}
-          px="2"
-          py="1"
-          rounded="full"
-          bg={highlightColor2}
+        <Box
+          display="flex"
+          flexDirection={['column', 'row', 'row']}
+          justifyContent="center"
+          alignItems="center"
+          w="100%"
+          gap="1rem"
         >
-          {board || '---'}
-        </Text>
+          {profURL === 'NULL' ? (
+            <Avatar size="lg" name={nickname} src={profURL || ''} />
+          ) : (
+            <div
+              style={{
+                borderRadius: '50%',
+                overflow: 'hidden',
+                position: 'relative',
+                width: 96,
+                height: 96,
+              }}
+            >
+              <Image
+                src={
+                  profURL ||
+                  'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
+                }
+                alt={nickname}
+                fill={true}
+                unoptimized
+              />
+            </div>
+          )}
+          <Box
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            gap="0.5rem"
+          >
+            <Text fontSize="lg" textAlign="center">
+              {nickname || '프로필은 왁물원에서'}
+            </Text>
+          </Box>
+        </Box>
+        <SortTypeIcons
+          sortCriteria={null}
+          artist={author}
+          component={'inNickname'}
+        />
+        <ViewTypeIcons
+          selectedView={null}
+          artist={author}
+          component={'inNickname'}
+          onSelectViewType={null}
+        />
       </Button>
     </NextLink>
-    // </Link>
   );
 }

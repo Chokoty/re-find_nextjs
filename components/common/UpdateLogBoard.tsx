@@ -9,8 +9,6 @@ type Prop = {
 };
 
 export default function UpdateLogBoard({ width }: Prop) {
-  // const color = useColorModeValue(lightMode.color, darkMode.color);
-
   return (
     <Box
       w={width}

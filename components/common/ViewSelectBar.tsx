@@ -28,7 +28,7 @@ import {
 } from 'react-icons/md';
 
 import { menuItems } from '@/data/artists';
-import members from '@/data/members2';
+import members from '@/data/members';
 import { useScroll } from '@/hook/useScroll';
 import { useShowShadow } from '@/hook/useShowShadow';
 import { darkMode, lightMode } from '@/styles/theme';
@@ -58,24 +58,8 @@ export default function ViewSelectBar({
   topOffset,
   isdPick,
 }: Props) {
-  // const isMobile = useResponsive();
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   // 현재 topbackground가 화면의 크기만큼 유동적으로 변하기 때문에 background를 상황에따라 주기 에매하다
-  // const isScrolling = useScroll(520);
-  // const showShadow = useShowShadow(520, 0);
-
-  // const selectedLabel = menuItems.find(
-  //   (item) => item.id === selectedMenu
-  // )?.label;
-
-  // const handlePopoverOpen = () => {
-  //   setIsOpen(true);
-  // };
-
-  // const handlePopoverClose = () => {
-  //   setIsOpen(false);
-  //   handleShowDeleted();
-  // };
 
   const { onClose } = useDisclosure();
 
@@ -94,19 +78,6 @@ export default function ViewSelectBar({
   const boxShadowDark =
     '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
-
-  // useEffect(() => {
-  //   if (usingPage === 'gallery') {
-  //     setTopPosition(0);
-  //   }
-  //   if (usingPage === 'artist') {
-  //     if (isMobile) {
-  //       setTopPosition(0);
-  //     } else {
-  //       setTopPosition(57);
-  //     }
-  //   }
-  // }, [usingPage]);
 
   const sortLabel =
     menuItems.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -131,16 +102,7 @@ export default function ViewSelectBar({
       justifyContent="space-between"
       p="0.5rem 2rem"
       mb="1rem"
-      // position=""
-      // top={isMobile ? '0' : '57px'}
-      // top={`${topOffset}px`}
-      // zIndex="90"
       w="100%"
-      // boxShadow={showShadow ? boxShadow : 'none'}
-      // style={{
-      //   backgroundColor: isScrolling ? bgColor : 'unset',
-      //   color: isScrolling ? color : 'unset',
-      // }}
     >
       <Box display="flex" flexDir="row" gap="5px">
         <Button
@@ -169,11 +131,7 @@ export default function ViewSelectBar({
         gap="1rem"
       >
         {isdPick && (
-          <Box
-            // w={isSmallerThan370 ? '40px' : '120px'}
-            display="flex"
-            justifyContent="flex-end"
-          >
+          <Box display="flex" justifyContent="flex-end">
             <Menu>
               <MenuButton
                 variant="solid"
@@ -203,11 +161,7 @@ export default function ViewSelectBar({
             </Menu>
           </Box>
         )}
-        <Box
-          // w={isSmallerThan370 ? '40px' : '120px'}
-          display="flex"
-          justifyContent="flex-end"
-        >
+        <Box display="flex" justifyContent="flex-end">
           <Menu>
             <MenuButton
               variant="solid"
@@ -287,18 +241,6 @@ export default function ViewSelectBar({
                   혐잘딱 게시글 {isDeletedVisible ? '가리기' : '보이기'}
                 </Text>
               </Button>
-              {/* <Button
-              w="100%"
-              variant="ghost"
-              textAlign="left"
-              onClick={() => {
-                handleShowDeleted();
-              }}
-            >
-              <Text w="100%" textAlign="left">
-                삭제된 게시글 {isDeletedVisible ? '가리기' : '보이기'}
-              </Text>
-            </Button> */}
             </PopoverBody>
           </PopoverContent>
         </Popover>
