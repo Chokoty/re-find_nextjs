@@ -101,3 +101,10 @@ export type GetSearchResultParams = {
   likeCountLimit: CountLimit;
   commentCountLimit: CountLimit;
 };
+
+// constants
+export type Board = {
+  board: string;
+  id: string;
+  state?: string;
+};
