@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
+import queryOptions from '@/app/artists/service/client/queries';
 import DetailedEvent from '@/components/event/DetailedEvent';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
-import queryOptions from '@/service/client/artists/queries';
 
 type Params = { params: { keyword: string } };
 

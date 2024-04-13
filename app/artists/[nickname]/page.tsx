@@ -2,12 +2,12 @@ import { Box, Center, Text } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
-import DetailedArtists from '@/components/artist/DetailedArtists';
-import ArtistHeader from '@/components/layout/ArtistHeader';
+import DetailedArtists from '@/app/artists/components/DetailedArtists';
+import ArtistHeader from '@/app/artists/components/ui/Header/ArtistHeader';
+import queryOptions from '@/app/artists/service/client/queries';
+import { getAuthorInfo } from '@/app/artists/service/server';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
-import queryOptions from '@/service/client/artists/queries';
-import { getAuthorInfo } from '@/service/server/artists';
 
 type Params = {
   params: { nickname: string };

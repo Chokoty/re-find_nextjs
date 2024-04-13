@@ -5,7 +5,6 @@ import {
   AlertTitle,
   Box,
   Text,
-  useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
@@ -14,14 +13,17 @@ import { useInView } from 'react-intersection-observer';
 import { PuffLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
 
-import { convertBoardParams, convertRankTypeParams } from '@/lib/convertParams';
+import {
+  convertBoardParams,
+  convertRankTypeParams,
+} from '@/app/artists/lib/convertParams';
+import { useArtistList } from '@/app/artists/service/client/useArtistService';
+import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
 import NotSearch from '@/public/static/images/original_18.png';
-import { useArtistList } from '@/service/client/artists/useArtistService';
-import { useArtistSearchInfoStore } from '@/store/artistSearchInfoStore';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { SortCriteria } from '@/types';
 
-import ArtistCard from './ArtistCard';
+import ArtistCard from './Card/ArtistCard';
 
 type Props = {
   sortCriteria: SortCriteria;
@@ -84,7 +86,7 @@ export default function ArtistList({ sortCriteria, selectedView }: Props) {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        // minH="500px"
+        // minH="500px"ArtistProfile
         borderBottomRadius="1rem"
       >
         <PuffLoader color="#01BFA2" />

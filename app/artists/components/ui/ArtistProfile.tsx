@@ -15,8 +15,8 @@ import {
 import { useState } from 'react';
 import { ImLink } from 'react-icons/im';
 
-import SortTypeIcons from '@/components/artist/SortTypeIcons';
-import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
+import SortTypeIcons from '@/components/IconGroup/SortTypeIcons';
+import ViewTypeIcons from '@/components/IconGroup/ViewTypeIcons';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 interface Props {
@@ -26,7 +26,7 @@ interface Props {
   handleViewTypeSelect: (viewType: string) => void;
 }
 
-export default function AuthorProfileHead({
+export default function ArtistProfile({
   nickname,
   profile,
   boardType,

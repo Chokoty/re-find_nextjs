@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 
-import ArtistList from '@/components/artist/ArtistList';
-import SortTypeButtonGroup from '@/components/artist/SortTypeButtonGroup';
-import ViewTypeButtonGroup from '@/components/artist/ViewTypeButtonGroup';
+import ArtistList from '@/app/artists/components/ui/ArtistList';
+import SortTypeButtonGroup from '@/app/artists/components/ui/Group/SortTypeButtonGroup';
+import ViewTypeButtonGroup from '@/app/artists/components/ui/Group/ViewTypeButtonGroup';
 import type { SortCriteria } from '@/types';
 
 export default function Artists() {

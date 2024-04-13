@@ -12,11 +12,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
+import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import { useArtistInfo } from '@/service/client/artists/useArtistService';
 
 type Prop = { keyword: string };
 

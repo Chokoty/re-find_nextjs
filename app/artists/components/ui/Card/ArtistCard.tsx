@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Text,
   useBreakpointValue,
   useColorModeValue,
@@ -8,8 +7,8 @@ import {
 import NextImage from 'next/image';
 import Link from 'next/link';
 
-import SortTypeIcons from '@/components/artist/SortTypeIcons';
-import ViewTypeIcons from '@/components/artist/ViewTypeIcons';
+import SortTypeIcons from '@/components/IconGroup/SortTypeIcons';
+import ViewTypeIcons from '@/components/IconGroup/ViewTypeIcons';
 import { useResponsive } from '@/hook/useResponsive';
 import styles from '@/styles/ArtistCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';

@@ -11,12 +11,12 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { HashLoader } from 'react-spinners';
 
-import AuthorProfileHead from '@/components/artist/AuthorProfileHead';
+import ArtistProfile from '@/app/artists/components/ui/ArtistProfile';
+import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import { useArtistInfo } from '@/service/client/artists/useArtistService';
 
 type Props = {
   nickname: string;
@@ -151,7 +151,7 @@ export default function DetailedArtists({ nickname, artistInfo }: Props) {
 
   return (
     <>
-      <AuthorProfileHead
+      <ArtistProfile
         nickname={actualNickname}
         profile={artistInfo}
         boardType={boardType}

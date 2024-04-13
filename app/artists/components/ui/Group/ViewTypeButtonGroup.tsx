@@ -2,8 +2,8 @@ import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import CountUp from 'react-countup';
 import { useShallow } from 'zustand/react/shallow';
 
+import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
 import { viewTypes } from '@/data/artists';
-import { useArtistSearchInfoStore } from '@/store/artistSearchInfoStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {
