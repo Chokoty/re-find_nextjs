@@ -1,18 +1,8 @@
 'use client';
 
-import {
-  background,
-  Box,
-  Button,
-  Text,
-  useColorMode,
-  useColorModeValue,
-  useTheme,
-} from '@chakra-ui/react';
+import { Box, Button, useColorMode } from '@chakra-ui/react';
 
-import { darkMode, lightMode } from '@/styles/theme';
-
-const btnList = ['전체', '이세돌', '고멤', '우왁굳', '금손 작가들의 방'];
+import { BUTTON_LIST } from '@/app/gallery/lib/const';
 
 type Props = {
   range: { start: number; end: number };
@@ -25,8 +15,6 @@ export default function ThisWeekBtnList({
   selected,
   setSelected,
 }: Props) {
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-  // const highlight = useColorModeValue(lightMode.highlight, darkMode.highlight);
   const { colorMode } = useColorMode();
   const isDarkMode = colorMode === 'dark';
   const highlight = isDarkMode ? 'white' : '#01bda1';
@@ -58,7 +46,7 @@ export default function ThisWeekBtnList({
         'scrollbar-width': 'none',
       }}
     >
-      {btnList.slice(range.start, range.end).map((item, index) => (
+      {BUTTON_LIST.slice(range.start, range.end).map((item, index) => (
         <Box key={index}>
           <Button
             h={['30px', '36px']}

@@ -64,6 +64,7 @@
         "patterns": ["./*", "../*"]
       }
     ],
+    "react-hooks/rules-of-hooks": "warn",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
     "arrow-body-style": "off",

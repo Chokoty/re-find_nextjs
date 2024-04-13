@@ -2,8 +2,8 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
 import members from '@/data/members';
-import { getStaticImage } from '@/lib/getStaticImage';
 import type { Member as MemberType } from '@/types';
 
 export default function MemberList() {

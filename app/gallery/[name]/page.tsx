@@ -1,14 +1,14 @@
 import { Box } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 
-import TopBackground from '@/components/common/TopBackground';
-import DetailedGallery from '@/components/gallery/DetailedGallery';
-import GalleryTitle from '@/components/gallery/GalleryTitle';
-import gallery from '@/data/gallery';
+import DetailedGallery from '@/app/gallery/components/DetailedGallery';
+import GalleryTitle from '@/app/gallery/components/ui/GalleryTitle';
+import TopBackground from '@/app/gallery/components/ui/TopBackground';
+import GALLERY_LIST from '@/app/gallery/lib/const';
+import queryOptions from '@/app/gallery/service/client/queries';
 import members from '@/data/members';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
-import queryOptions from '@/service/client/gallery/queries';
 
 type Params = { params: { name: string } };
 
@@ -41,7 +41,7 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
 export default async function page({ params: { name } }: Params) {
   const endpoint =
     members.find((item) => item.value === name)?.query ||
-    gallery.find((item) => item.value === name)?.query;
+    GALLERY_LIST.find((item) => item.value === name)?.query;
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     // name이 isdPick이면 isdNoticeArtworks를 호출하고, 그렇지 않으면 galleryArtworks를 호출한다.

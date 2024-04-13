@@ -8,16 +8,16 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
-import CountUp from 'react-countup';
+// import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
+import GALLERY_LIST from '@/app/gallery/lib/const';
+import { useArtworks } from '@/app/gallery/service/client/useGalleryService';
 import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
-import gallery from '@/data/gallery';
-import { useArtworks } from '@/service/client/gallery/useGalleryService';
 
 type Props = {
   value: string;
@@ -30,9 +30,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     threshold: 0,
     rootMargin: '1300px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
-
-  // const album = gallery.find((item) => item.value === value);
-  // const member = members.find((item) => item.value === value);
 
   const [selected, setSelected] = useState('isd'); // 멤버 선택 > isdPick일 경우
 
@@ -122,7 +119,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         {activeView === 'masonry' && (
           <MasonryView
             artworks={
-              isDeletedVisible && gallery !== null
+              isDeletedVisible && GALLERY_LIST !== null
                 ? artworks
                 : artworks.filter((artwork) => artwork?.is_hyum === false)
             }
@@ -132,7 +129,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         {activeView === 'grid' && (
           <SimpleView
             artworks={
-              isDeletedVisible && gallery !== null
+              isDeletedVisible && GALLERY_LIST !== null
                 ? artworks
                 : artworks.filter((artwork) => artwork?.is_hyum === false)
             }

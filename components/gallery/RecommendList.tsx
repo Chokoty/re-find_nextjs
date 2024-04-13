@@ -10,9 +10,9 @@ import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { HashLoader } from 'react-spinners';
 
+import { useRecommendArtwork } from '@/app/gallery/service/client/useGalleryService';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
-import { useRecommendArtwork } from '@/service/client/gallery/useGalleryService';
 
 export default function RecommendList({ getAp }: { getAp: () => number }) {
   const params = useParams<{ id: string }>();

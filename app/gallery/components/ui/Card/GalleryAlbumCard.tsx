@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
-import { getStaticImage } from '@/lib/getStaticImage';
+import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
 import styles from '@/styles/GalleryAlbumCard.module.scss';
 import type { Gallery } from '@/types';
 

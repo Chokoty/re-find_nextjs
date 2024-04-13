@@ -11,11 +11,11 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FaAngleLeft } from 'react-icons/fa6';
 
-import gallery from '@/data/gallery';
+import GALLERY_LIST from '@/app/gallery/lib/const';
 import members from '@/data/members';
 import { darkMode, lightMode } from '@/styles/theme';
 
-import ShareLinkButton from '../common/ShareLinkButton';
+import ShareLinkButton from './Button/ShareLinkButton';
 
 const getTitleInfo = (type: string) => {
   if (type === 'galleryHome') {
@@ -25,7 +25,7 @@ const getTitleInfo = (type: string) => {
     };
   }
 
-  const album = gallery.find((item) => item.value === type);
+  const album = GALLERY_LIST.find((item) => item.value === type);
   const member = members.find((item) => item.value === type);
 
   return {

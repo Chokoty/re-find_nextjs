@@ -16,7 +16,7 @@ import { useResponsiveLink } from '@/hook/useResponsiveLink';
 import styles from '@/styles/GalleryFanartCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 
-import RankingBadge from '../gallery/RankingBadge';
+import RankingBadge from '../RankingBadge';
 
 const iconStyle = {
   width: '1rem',

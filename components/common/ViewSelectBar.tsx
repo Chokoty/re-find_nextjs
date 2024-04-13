@@ -16,21 +16,13 @@ import {
   useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
 import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
-import {
-  MdMoreHoriz,
-  MdOutlineDashboard,
-  MdOutlineGridView,
-  MdOutlineKeyboardArrowDown,
-} from 'react-icons/md';
+import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 import { menuItems } from '@/data/artists';
 import members from '@/data/members';
-import { useScroll } from '@/hook/useScroll';
-import { useShowShadow } from '@/hook/useShowShadow';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {

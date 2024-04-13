@@ -1,4 +1,4 @@
-import { Button, Text, Tooltip, useColorModeValue } from '@chakra-ui/react';
+import { Button, Text, useColorModeValue } from '@chakra-ui/react';
 import toast from 'react-hot-toast';
 import { MdShare } from 'react-icons/md';
 

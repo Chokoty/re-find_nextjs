@@ -4,19 +4,18 @@ import { Box, Text } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
-import ThisWeekBtnList from '@/components/gallery/ThisWeekBtnList';
-
-import GalleryFanartSliderSkeleton from '../skeleton/GalleryFanartSliderSkeleton';
+import GalleryFanartSliderSkeleton from '@/app/gallery/components/skeleton/GalleryFanartSliderSkeleton';
+import ThisWeekBtnList from '@/app/gallery/components/ui/ThisWeekTop/ThisWeekBtnList';
 
 const GallerySlider = dynamic(
-  () => import('@/components/gallery/GallerySlider'),
+  () => import('@/app/gallery/components/slider/GallerySlider'),
   {
     ssr: false,
     loading: () => <GalleryFanartSliderSkeleton />,
   }
 );
 
-export default function ThisWeekTopSection() {
+export default function ThisWeekTop() {
   const [selectedItem, setSelectedItem] = useState('전체');
 
   return (

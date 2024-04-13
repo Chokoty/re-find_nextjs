@@ -4,7 +4,7 @@ import { Box, Text } from '@chakra-ui/react';
 
 import MemberList from './MemberList';
 
-export default function MemberAlbumSection() {
+export default function MemberAlbum() {
   return (
     <Box
       w="100%"

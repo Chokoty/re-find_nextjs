@@ -3,6 +3,7 @@ import Image from 'next/image';
 import React from 'react';
 import { MdOutlineImageSearch } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
+
 import type MontyHall from '@/lib/montyhall';
 import BoomDoor from '@/public/static/images/events/goat.webp';
 import KeyDoor from '@/public/static/images/events/peridot.webp';
