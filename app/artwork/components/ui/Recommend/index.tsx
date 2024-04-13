@@ -32,7 +32,7 @@ const buttonStyle = [
   },
 ];
 
-export default function RecommendArtworks() {
+export default function Recommend() {
   const [paramStep, setParamStep] = useState([false, true, false]); // 대중픽, 기본픽, 나작픽
   const getAp = () => {
     return AP[paramStep.findIndex((v) => v)];

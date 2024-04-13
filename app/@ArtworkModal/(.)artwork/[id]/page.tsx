@@ -1,8 +1,8 @@
 import { Box } from '@chakra-ui/react';
 
-import Artwork from '@/components/gallery/Artwork';
-import RecommendArtworks from '@/components/gallery/RecommendArtworks';
-import { getArtworkDetail } from '@/service/server/gallery';
+import Artwork from '@/app/artwork/components/Artwork';
+import Recommend from '@/app/artwork/components/ui/Recommend';
+import { getArtworkDetail } from '@/app/artwork/service/server';
 
 import { Modal } from './modal';
 
@@ -35,7 +35,7 @@ export default async function ArtworkModal({ params: { id } }: Params) {
           <Artwork data={artwork} />
         </Box>
         {/* 하단(유사이미지 추천) */}
-        <RecommendArtworks />
+        <Recommend />
       </Box>
     </Modal>
   );

@@ -4,7 +4,7 @@ import { Box, Button, Heading, Text, useColorMode } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaChevronRight, FaShare } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6';
@@ -12,7 +12,9 @@ import { FaCircleUser } from 'react-icons/fa6';
 import SocialStats from '@/components/search/SocialStats';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
-const ImageSlider = dynamic(() => import('./ImageSlider'), { ssr: false });
+const ImageSlider = dynamic(() => import('./slider/ImageSlider'), {
+  ssr: false,
+});
 
 export default function Artwork({ data }: { data: ArtworkDetail }) {
   const {
@@ -35,8 +37,6 @@ export default function Artwork({ data }: { data: ArtworkDetail }) {
   const article_link = useResponsiveLink('', 'article');
   const { colorMode } = useColorMode();
   const handleCopyLink = () => {
-    // 복사하려는 링크를 여기에 입력하세요.
-    // const linkToCopy = `https://re-find.xyz/gallery/${value}`;
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {

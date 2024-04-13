@@ -4,7 +4,6 @@ import { useMemo } from 'react';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
-  GetRecommendArtworksParams,
 } from '@/types';
 
 import queryOptions from './queries';
@@ -74,27 +73,6 @@ export function useNoticeArtworks({
 
 export function useArtworkDetail(artworkId: number) {
   return useQuery(queryOptions.artworkDetail(artworkId));
-}
-
-export function useRecommendArtwork({
-  artworkId,
-  ap,
-}: GetRecommendArtworksParams) {
-  // return useQuery(queryOptions.recommendArtwoks({ artworkId, ap }));
-  const { data, fetchNextPage, isFetchingNextPage, isLoading, isError } =
-    useInfiniteQuery(queryOptions.recommendArtwoks({ artworkId, ap }));
-
-  const artworks = useMemo(() => {
-    return data?.pages.flatMap((page) => page.list);
-  }, [data]);
-
-  return {
-    artworks,
-    fetchNextPage,
-    isFetchingNextPage,
-    isLoading,
-    isError,
-  };
 }
 
 export function useArtworks({

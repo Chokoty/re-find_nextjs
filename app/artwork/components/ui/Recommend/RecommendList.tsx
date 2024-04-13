@@ -6,12 +6,11 @@ import {
   Box,
 } from '@chakra-ui/react';
 import { useParams } from 'next/navigation';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { HashLoader } from 'react-spinners';
 
-import { useRecommendArtwork } from '@/app/gallery/service/client/useGalleryService';
-import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
+import { useRecommendArtwork } from '@/app/artwork/service/client/useArtworkService';
 import MasonryView from '@/components/views/MasonryView';
 
 export default function RecommendList({ getAp }: { getAp: () => number }) {

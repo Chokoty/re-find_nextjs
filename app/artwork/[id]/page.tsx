@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 
-import Artwork from '@/components/gallery/Artwork';
-import RecommendArtworks from '@/components/gallery/RecommendArtworks';
+import Artwork from '@/app/artwork/components/Artwork';
+import Recommend from '@/app/artwork/components/ui/Recommend';
+import { getArtworkDetail } from '@/app/artwork/service/server';
 import { siteConfig } from '@/lib/config';
-import { getArtworkDetail } from '@/service/server/gallery';
 
 type Params = { params: { id: string } };
 
@@ -54,7 +54,7 @@ export default async function ArtworkPage({ params: { id } }: Params) {
         <Artwork data={artwork} />
       </Box>
       {/* 하단(유사이미지 추천) */}
-      <RecommendArtworks />
+      <Recommend />
     </Box>
   );
 }
