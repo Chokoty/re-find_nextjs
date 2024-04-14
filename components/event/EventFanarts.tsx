@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import RandomFanartBtn from '@/components/event/RandomFanartBtn';
 import { randomFanartData } from '@/data/randomFanarts';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
   initialFanart: null;

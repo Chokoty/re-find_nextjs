@@ -8,7 +8,7 @@ import {
 import { FaSearch } from 'react-icons/fa';
 
 import useModal from '@/hooks/useModal';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 import SearchModal from './SearchModal';
 

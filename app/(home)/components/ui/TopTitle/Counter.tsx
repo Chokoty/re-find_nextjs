@@ -9,7 +9,7 @@ import {
 import CountUp from 'react-countup';
 
 import { useCounts } from '@/app/(home)/service/client/useHomeService';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function Counter() {
   const badge = useColorModeValue(lightMode.badge, darkMode.badge);

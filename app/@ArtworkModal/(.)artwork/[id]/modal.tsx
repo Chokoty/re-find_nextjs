@@ -8,7 +8,7 @@ import FocusLock from 'react-focus-lock';
 import { IoClose } from 'react-icons/io5';
 
 import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();

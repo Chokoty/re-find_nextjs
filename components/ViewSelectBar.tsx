@@ -23,7 +23,7 @@ import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 import { menuItems } from '@/data/artists';
 import members from '@/data/members';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
   activeView: string;

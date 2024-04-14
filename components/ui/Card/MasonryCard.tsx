@@ -1,8 +1,8 @@
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
-import CardImage from '@/components/ui/CardImage';
-import { darkMode, lightMode } from '@/styles/theme';
+import CardImage from '@/components/ui/MasonryImage/CardImage';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
   artwork: ArtworkList | GalleryArtworkList;

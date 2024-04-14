@@ -20,7 +20,7 @@ import Modals from '@/components/modal/Modals';
 import DesktopHeaderTab from '@/components/ui/Header/DesktopHeaderTab';
 import { useResponsive } from '@/hooks/useResponsive';
 import { useScroll } from '@/hooks/useScroll';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function Header() {
   const pathname = usePathname();

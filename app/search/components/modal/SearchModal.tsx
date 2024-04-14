@@ -8,7 +8,7 @@ import SearchHistory from '@/app/search/components/ui/SearchHistory';
 import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function SearchModal() {
   const inputRef = useRef<HTMLInputElement>(null);

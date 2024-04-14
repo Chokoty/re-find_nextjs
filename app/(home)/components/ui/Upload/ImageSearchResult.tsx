@@ -16,7 +16,7 @@ import Description from '@/app/(home)/components/ui/Description';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
   searchTime: number;

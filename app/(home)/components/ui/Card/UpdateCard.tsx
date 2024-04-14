@@ -17,7 +17,7 @@ import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsive } from '@/hooks/useResponsive';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Prop = {
   update: RecentBoardData;

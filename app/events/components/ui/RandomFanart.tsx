@@ -26,7 +26,7 @@ import { IoSettingsSharp } from 'react-icons/io5';
 import { useRandomFanart } from '@/app/events/service/client/useEventService';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 import type { CheckBoxType } from '@/types';
 
 const setLocalStorage = (key: string, value: CheckBoxType) => {

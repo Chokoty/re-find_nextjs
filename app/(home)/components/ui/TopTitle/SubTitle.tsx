@@ -2,8 +2,8 @@ import { useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+import { darkMode, lightMode } from '@/lib/theme';
 import WakGood from '@/public/real-wakgood.webp';
-import { darkMode, lightMode } from '@/styles/theme';
 
 const data = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
 

@@ -6,7 +6,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function BannerSkeleton() {
   const bgColor = useColorModeValue(lightMode.bg2, darkMode.bg2);

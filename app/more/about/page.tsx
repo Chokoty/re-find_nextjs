@@ -14,7 +14,7 @@ import DeveloperProfileCard from '@/app/more/components/ui/Card/DeveloperProfile
 import MoreLayout from '@/app/more/components/ui/Layout/MoreLayout';
 import { DEVELOPERS } from '@/app/more/lib/const';
 import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function About() {
   const isMobile = useResponsive();

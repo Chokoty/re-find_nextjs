@@ -2,7 +2,7 @@ import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function DesktopHeaderTab() {
   const color5 = useColorModeValue(lightMode.color, darkMode.color5);

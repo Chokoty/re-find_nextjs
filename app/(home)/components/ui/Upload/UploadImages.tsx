@@ -10,9 +10,9 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { useUpload } from '@/app/(home)/hooks/useUpload';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
+import { darkMode, lightMode } from '@/lib/theme';
 import UploadImage from '@/public/static/images/refind-1.webp';
 import UploadHoverImage from '@/public/static/images/refind-2.webp';
-import { darkMode, lightMode } from '@/styles/theme';
 
 export default function UploadImages() {
   const { setHashs, setUploadedFiles } = useImageUploadStore(

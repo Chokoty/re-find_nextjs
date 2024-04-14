@@ -2,7 +2,7 @@ import { Box, Divider, useColorModeValue } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
 
 import MoreHeader from '@/app/more/components/ui/Header/MoreHeader';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 interface Props {
   children: ReactNode;

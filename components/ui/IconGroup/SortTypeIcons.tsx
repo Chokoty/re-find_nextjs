@@ -12,7 +12,7 @@ import {
 
 import { sortTypes } from '@/data/artists';
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 import type { SortCriteria } from '@/types';
 
 const iconStyle = {

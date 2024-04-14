@@ -20,10 +20,10 @@ import React, { useState } from 'react';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { useShallow } from 'zustand/react/shallow';
 
+import styles from '@/app/search/components/ui/Option/MainOptions.module.scss';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import HelpPopOver from '@/components/popover/HelpPopOver';
-import styles from '@/styles/MainOptions.module.scss';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 const boardMap: Record<string, string[]> = {
   all: [],

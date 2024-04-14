@@ -10,8 +10,8 @@ import {
 import { usePathname } from 'next/navigation';
 import { CgOptions } from 'react-icons/cg';
 
-import styles from '@/styles/OptionContainer.module.scss';
-import { darkMode, lightMode } from '@/styles/theme';
+import styles from '@/app/search/components/ui/Option/OptionContainer.module.scss';
+import { darkMode, lightMode } from '@/lib/theme';
 
 import MainOptions from './MainOptions';
 

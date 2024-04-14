@@ -2,7 +2,7 @@ import { Box, useColorModeValue } from '@chakra-ui/react';
 import type { ReactNode } from 'react';
 
 import EventHeader from '@/app/events/components/ui/Header/EventHeader';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
   children: ReactNode;

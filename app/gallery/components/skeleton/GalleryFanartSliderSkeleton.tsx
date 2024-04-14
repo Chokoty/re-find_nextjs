@@ -1,6 +1,6 @@
 import { Box, Skeleton, SkeletonText } from '@chakra-ui/react';
 
-import styles from '@/styles/GalleryFanartSliderSkeleton.module.scss';
+import styles from '@/app/gallery/components/skeleton/GalleryFanartSliderSkeleton.module.scss';
 
 export default function GalleryFanartSliderSkeleton() {
   return (

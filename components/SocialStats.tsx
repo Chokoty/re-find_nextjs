@@ -8,7 +8,7 @@ import {
 } from 'react-icons/fa';
 
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 const iconStyle = {
   width: '1rem',

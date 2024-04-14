@@ -4,9 +4,9 @@ import { Box, Button, Heading } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { PuffLoader } from 'react-spinners';
 
+import styles from '@/app/events/components/montyHall/Game.module.scss';
 import MontyHall from '@/app/events/lib/montyhall';
 import { useWaktyHallArts } from '@/app/events/service/client/useEventService';
-import styles from '@/styles/Game.module.scss';
 
 import { Door } from './Door';
 import DetailedImageViewer from './Modal';

@@ -5,7 +5,7 @@ import { Suspense, useEffect, useState } from 'react';
 
 import SearchBar from '@/app/search/components/ui/Bar/SearchBar';
 import OptionContainer from '@/app/search/components/ui/Option/OptionContainer';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function SearchHeader() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);

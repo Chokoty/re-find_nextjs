@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 
 import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 interface TopBackgroundProps {
   children: ReactNode;

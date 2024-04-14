@@ -2,8 +2,8 @@ import { Button, Text, useColorModeValue } from '@chakra-ui/react';
 import toast from 'react-hot-toast';
 import { MdShare } from 'react-icons/md';
 
-import styles from '@/styles/ShareLinkButton.module.scss';
-import { darkMode, lightMode } from '@/styles/theme';
+import styles from '@/app/gallery/components/ui/Button/ShareLinkButton.module.scss';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function ShareLinkButton() {
   const highlightColor = useColorModeValue(

@@ -15,7 +15,7 @@ import { useDebounce } from 'react-use';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 const helpMessage = '대소문자 구분: 검색은 대소문자를 구분합니다.';
 

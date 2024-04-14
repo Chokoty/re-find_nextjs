@@ -15,7 +15,7 @@ import {
 import NextLink from 'next/link';
 import React from 'react';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function Description() {
   // Theme

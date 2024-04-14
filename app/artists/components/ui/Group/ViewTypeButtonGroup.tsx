@@ -4,7 +4,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
 import { viewTypes } from '@/data/artists';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
   selectedView: keyof AuthorCommon | null;

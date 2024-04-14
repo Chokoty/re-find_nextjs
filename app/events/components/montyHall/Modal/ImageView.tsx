@@ -16,7 +16,7 @@ import { HiOutlineExternalLink } from 'react-icons/hi';
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 const iconStyle = {
   width: '1rem',

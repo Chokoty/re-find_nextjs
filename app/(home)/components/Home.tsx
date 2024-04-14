@@ -11,7 +11,7 @@ import EventFanarts from '@/components/event/EventFanarts';
 import MoreButtons from '@/components/MoreButtons';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/slider/BannerSlider'),

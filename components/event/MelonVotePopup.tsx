@@ -17,7 +17,7 @@ import React, { useEffect, useState } from 'react';
 import { LuAlertCircle, LuVote } from 'react-icons/lu';
 
 import { useCookie } from '@/hooks/useCookie';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function MelonVoteModal() {
   const { setCookie, getCookie, deleteCookie } = useCookie();

@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react';
 
 import UpdateCardList from '@/app/(home)/components/ui/Upload/UpdateCardList';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function UpdateBoard() {
   const color = useColorModeValue(lightMode.color, darkMode.color);

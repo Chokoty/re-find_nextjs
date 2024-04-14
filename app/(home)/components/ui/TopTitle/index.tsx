@@ -1,6 +1,6 @@
 import { Box, useBreakpointValue, useColorModeValue } from '@chakra-ui/react';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 import Counter from './Counter';
 import SubTitle from './SubTitle';

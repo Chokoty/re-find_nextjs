@@ -12,7 +12,7 @@ import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Prop = {
   inputRef: React.RefObject<HTMLInputElement>;

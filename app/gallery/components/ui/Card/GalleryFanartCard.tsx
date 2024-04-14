@@ -11,10 +11,10 @@ import { FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { MdPerson } from 'react-icons/md';
 
+import styles from '@/app/gallery/components/ui/Card/GalleryFanartCard.module.scss';
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
-import styles from '@/styles/GalleryFanartCard.module.scss';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 import RankingBadge from '../RankingBadge';
 

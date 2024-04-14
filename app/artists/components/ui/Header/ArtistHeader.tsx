@@ -10,7 +10,7 @@ import {
 import NextLink from 'next/link';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Prop = {
   title: string;

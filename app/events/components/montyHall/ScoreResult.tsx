@@ -1,8 +1,8 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Link, Text, useColorModeValue } from '@chakra-ui/react';
 
-import { darkMode, lightMode } from '@/styles/theme';
-import styles from '@/styles/WaktyHallDoor.module.scss';
+import styles from '@/app/events/components/montyHall/ScoreResult.module.scss';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type CountResult = {
   changeWin: number;

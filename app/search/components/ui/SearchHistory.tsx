@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
   recentSearches: string[];

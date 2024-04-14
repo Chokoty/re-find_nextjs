@@ -1,7 +1,7 @@
 import { Box, Text } from '@chakra-ui/react';
 import { FaBookmark } from 'react-icons/fa';
 
-import styles from '@/styles/RankingBadge.module.scss';
+import styles from '@/app/gallery/components/ui/RankingBadge.module.scss';
 
 type Prop = {
   num: number;

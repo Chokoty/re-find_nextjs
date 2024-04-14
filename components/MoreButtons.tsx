@@ -11,7 +11,7 @@ import { FiMoon } from 'react-icons/fi';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
 import { PiGiftBold } from 'react-icons/pi';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function MoreButtons() {
   const bg = useColorModeValue(lightMode.bg2, darkMode.bg2);

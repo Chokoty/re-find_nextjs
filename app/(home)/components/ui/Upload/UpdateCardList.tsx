@@ -11,7 +11,7 @@ import {
 
 import UpdateCard from '@/app/(home)/components/ui/Card/UpdateCard';
 import { useRecentUpdates } from '@/app/(home)/service/client/useHomeService';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function UpdateCardList() {
   // TODO: 에러 처리 필요? (length가 0인 경우 다른 처리 필요한가?)

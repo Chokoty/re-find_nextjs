@@ -2,7 +2,7 @@ import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 import { PiGiftBold } from 'react-icons/pi';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function Event() {
   const bg2 = useColorModeValue(lightMode.bg3, darkMode.bg2);

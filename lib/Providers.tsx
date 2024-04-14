@@ -12,7 +12,7 @@ import { isAxiosError } from 'axios';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-import theme from '@/styles/theme';
+import theme from '@/lib/theme';
 
 export function Providers({ children }: React.PropsWithChildren) {
   const [queryClient] = useState(

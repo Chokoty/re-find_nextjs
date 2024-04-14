@@ -4,7 +4,7 @@ import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 import EventLayout from './components/ui/Layout/EventLayout';
 

@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 
 import SortTypeIcons from '@/components/ui/IconGroup/SortTypeIcons';
 import ViewTypeIcons from '@/components/ui/IconGroup/ViewTypeIcons';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 interface AuthorProfileCardProps {
   author: SourceAuthor;

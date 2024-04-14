@@ -10,7 +10,7 @@ import { FaArrowLeftLong } from 'react-icons/fa6';
 
 import BackButton from '@/components/BackButton';
 import { useShowShadow } from '@/hooks/useShowShadow';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
   title: string;

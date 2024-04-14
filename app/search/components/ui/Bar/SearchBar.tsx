@@ -16,7 +16,7 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import SearchHistory from '@/app/search/components/ui/SearchHistory';
 import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
 import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function SearchBar() {
   const isMobile = useResponsive();

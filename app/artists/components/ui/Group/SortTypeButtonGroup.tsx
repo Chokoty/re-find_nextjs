@@ -1,7 +1,7 @@
 import { Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 
 import { sortTypes } from '@/data/artists';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 import type { SortCriteria } from '@/types';
 
 type Props = {

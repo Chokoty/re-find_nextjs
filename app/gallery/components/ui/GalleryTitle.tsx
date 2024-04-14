@@ -13,7 +13,7 @@ import { FaAngleLeft } from 'react-icons/fa6';
 
 import GALLERY_LIST from '@/app/gallery/lib/const';
 import members from '@/data/members';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 import ShareLinkButton from './Button/ShareLinkButton';
 

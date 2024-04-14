@@ -8,12 +8,12 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import type { SwiperOptions } from 'swiper/types';
 
+import styles from '@/app/gallery/components/slider/GallerySlider.module.scss';
 import MoreButton from '@/app/gallery/components/ui/Button/MoreButton';
 import GalleryAlbumCard from '@/app/gallery/components/ui/Card/GalleryAlbumCard';
 import GalleryFanartCard from '@/app/gallery/components/ui/Card/GalleryFanartCard';
 import GALLERY_LIST from '@/app/gallery/lib/const';
 import { test } from '@/data/test';
-import styles from '@/styles/GallerySlider.module.scss';
 
 interface CustomSwiperParams extends SwiperOptions {
   // 다른 타입을 추가하거나 필요에 따라 수정

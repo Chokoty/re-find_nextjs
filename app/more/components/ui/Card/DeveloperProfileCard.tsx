@@ -10,7 +10,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 interface Props {
   writerURL: string;

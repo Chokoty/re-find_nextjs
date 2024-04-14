@@ -7,11 +7,11 @@ import {
 import NextImage from 'next/image';
 import Link from 'next/link';
 
+import styles from '@/app/artists/components/ui/Card/ArtistCard.module.scss';
 import SortTypeIcons from '@/components/ui/IconGroup/SortTypeIcons';
 import ViewTypeIcons from '@/components/ui/IconGroup/ViewTypeIcons';
 import { useResponsive } from '@/hooks/useResponsive';
-import styles from '@/styles/ArtistCard.module.scss';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 import type { SortCriteria } from '@/types';
 
 type Props = {

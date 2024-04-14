@@ -9,7 +9,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import Banner from '@/app/(home)/components/ui/Slide/Banner';
 import Event from '@/app/(home)/components/ui/Slide/Event';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 const swiperSlideStyle = {
   display: 'flex',

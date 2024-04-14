@@ -24,8 +24,8 @@ import { useShallow } from 'zustand/react/shallow';
 import SearchCard from '@/app/search/components/ui/Card/SearchCard';
 import { useSearchResults } from '@/app/search/service/client/useSearchService';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
+import { darkMode } from '@/lib/theme';
 import NotSearch from '@/public/static/images/original_18.png';
-import { darkMode } from '@/styles/theme';
 
 export default function SearchResult() {
   const searchParams = useSearchParams();

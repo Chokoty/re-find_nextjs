@@ -1,7 +1,7 @@
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
 
 import LinkBtns from './LinkBtn';
 
