@@ -22,7 +22,6 @@ export default function NoticeCard({ date, type, content, directLink }: Props) {
     lightMode.highlight,
     darkMode.highlight
   );
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
 
   return (

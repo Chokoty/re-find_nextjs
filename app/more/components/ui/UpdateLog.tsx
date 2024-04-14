@@ -1,8 +1,7 @@
 import { Flex } from '@chakra-ui/react';
-import React from 'react';
 
-import NoticeCard from '@/components/card/NoticeCard';
-import updateLog from '@/data/updateLog';
+import NoticeCard from '@/app/more/components/ui/Card/NoticeCard';
+import { UPDATE_LOGS } from '@/app/more/lib/const';
 
 type Prop = {
   count: number;
@@ -17,8 +16,7 @@ export default function UpdateLog({ count }: Prop) {
       gap="0.5rem"
       margin="0 auto"
     >
-      {updateLog
-        .slice(count === 0 ? undefined : -count) // 배열의 마지막 count 개의 항목만 가져옵니다.
+      {UPDATE_LOGS.slice(count === 0 ? undefined : -count) // 배열의 마지막 count 개의 항목만 가져옵니다.
         .reverse()
         .map((item, index) => (
           <NoticeCard
