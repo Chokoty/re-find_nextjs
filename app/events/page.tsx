@@ -4,8 +4,9 @@ import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 
-import SearchLayout from '@/components/layout/search-layout';
 import { darkMode, lightMode } from '@/styles/theme';
+
+import EventLayout from './components/ui/Layout/EventLayout';
 
 const events = [
   {
@@ -19,7 +20,7 @@ const events = [
         style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
       />
     ),
-    link: '/events/RandomGacha',
+    link: '/events/randomGacha',
     linkText: '무슨 팬아트가 나올까요?',
   },
   // {
@@ -47,7 +48,7 @@ const events = [
   //       style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
   //     />
   //   ),
-  //   link: '/events/WaktyHallDoor',
+  //   link: '/events/waktyhall',
   //   linkText: '선택을 바꾸시겠습니까?',
   // },
 ];
@@ -55,7 +56,7 @@ const events = [
 export default function Events() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   return (
-    <SearchLayout title="이벤트관">
+    <EventLayout title="이벤트관">
       {events.map((event, index) => (
         <Box
           key={index}
@@ -110,6 +111,6 @@ export default function Events() {
           </Box>
         </Box>
       ))}
-    </SearchLayout>
+    </EventLayout>
   );
 }

@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 
 import queryOptions from '@/app/artists/service/client/queries';
-import DetailedEvent from '@/components/event/DetailedEvent';
+import DetailedEvent from '@/app/events/components/DetailedEvent';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
+
+import RandomGacha from '../components/RandomGacha';
+import WaktyHall from '../components/WaktyHall';
 
 type Params = { params: { keyword: string } };
 
@@ -35,6 +38,13 @@ export function generateMetadata({ params: { keyword } }: Params): Metadata {
 
 export default async function page({ params: { keyword } }: Params) {
   const decodedKeyword = decodeURIComponent(keyword);
+
+  if (keyword === 'randomGacha') {
+    return <RandomGacha />;
+  }
+  if (keyword === 'waktyhall') {
+    return <WaktyHall />;
+  }
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     const { queryKey, queryFn } = queryOptions.artistInfo({

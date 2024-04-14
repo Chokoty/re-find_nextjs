@@ -9,12 +9,12 @@ export function useRandomFanart(checkboxValues: CheckBoxType) {
   return useQuery(queryOptions.randomFanart(checkboxValues));
 }
 
-// 이세계 페스티벌 작품 가져오기
+// (미사용) 이세계 페스티벌 작품 가져오기
 export function useIsdArtworks() {
   return useQuery(queryOptions.isdArtworks());
 }
 
-// 키딩 작품 가져오기
+// (미사용) 키딩 작품 가져오기
 export function useKidingArtworks() {
   return useQuery(queryOptions.kidingArtworks());
 }

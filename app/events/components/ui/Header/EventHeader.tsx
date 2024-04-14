@@ -1,20 +1,13 @@
 'use client';
 
-import {
-  Box,
-  Button,
-  Flex,
-  Heading,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import NextLink from 'next/link';
-import { FaArrowLeftLong } from 'react-icons/fa6';
+import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 
+import BackButton from '@/components/common/BackButton';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Prop = { title: string };
 
-export default function GalleryHeader({ title }: Prop) {
+export default function EventHeader({ title }: Prop) {
   const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   const color = useColorModeValue(lightMode.color, darkMode.color);
 
@@ -30,6 +23,7 @@ export default function GalleryHeader({ title }: Prop) {
     >
       <Flex
         as="header"
+        h="100%"
         style={{
           backgroundColor: bgColor2,
           color,
@@ -40,19 +34,7 @@ export default function GalleryHeader({ title }: Prop) {
         }}
       >
         <Box w="3rem" h="3rem">
-          <Button
-            w="3rem"
-            h="3rem"
-            p="0.5rem"
-            variant="ghost"
-            borderRadius="50%"
-            flexShrink={0}
-          >
-            <NextLink href="/events">
-              <FaArrowLeftLong style={{ width: '1.5rem', height: '1.5rem' }} />
-            </NextLink>
-          </Button>
-          {/* <BackButton /> */}
+          <BackButton />
         </Box>
         <Box w="16rem" h="3rem">
           <Heading

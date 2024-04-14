@@ -4,10 +4,10 @@ import React from 'react';
 import { MdOutlineImageSearch } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
-import type MontyHall from '@/lib/montyhall';
+import type MontyHall from '@/app/events/lib/montyhall';
+import { useImageViewerStore } from '@/app/events/store/imageViewerStore';
 import BoomDoor from '@/public/static/images/events/goat.webp';
 import KeyDoor from '@/public/static/images/events/peridot.webp';
-import { useImageViewerStore } from '@/store/imageViewerStore';
 import styles from '@/styles/Door.module.scss';
 
 type Props = {

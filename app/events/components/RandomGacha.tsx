@@ -1,9 +1,9 @@
 'use client';
 
+import EventLayout from '@/app/events/components/ui/Layout/EventLayout';
+import RandomFanart from '@/app/events/components/ui/RandomFanart';
 import PageTitle from '@/components/common/PageTitle';
-import RandomFanart from '@/components/common/RandomFanart';
 import EventFanarts from '@/components/event/EventFanarts';
-import EventLayout from '@/components/layout/event-layout';
 
 const topTitle = {
   title: '팬아트 랜덤 가챠',
