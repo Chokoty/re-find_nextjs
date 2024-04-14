@@ -2,7 +2,7 @@
 
 import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 
-import BackButton from '@/components/common/BackButton';
+import BackButton from '@/components/BackButton';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Prop = { title: string };

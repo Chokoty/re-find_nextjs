@@ -11,8 +11,8 @@ import { FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { MdPerson } from 'react-icons/md';
 
-import { formatArtistValue } from '@/hook/useFormatArtistValue';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { formatArtistValue } from '@/hooks/useFormatArtistValue';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import styles from '@/styles/GalleryFanartCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 

@@ -1,4 +1,4 @@
-import Service from '@/service';
+import Service from '@/lib/service';
 import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
 
 // TODO: 네이밍 통일하기 (artists vs authors)

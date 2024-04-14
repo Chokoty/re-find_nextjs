@@ -14,10 +14,10 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import GALLERY_LIST from '@/app/gallery/lib/const';
 import { useArtworks } from '@/app/gallery/service/client/useGalleryService';
-import ViewSelectBar from '@/components/common/ViewSelectBar';
 import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
 import MasonryView from '@/components/views/MasonryView';
 import SimpleView from '@/components/views/SimpleView';
+import ViewSelectBar from '@/components/ViewSelectBar';
 
 type Props = {
   value: string;

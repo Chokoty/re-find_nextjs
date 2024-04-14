@@ -7,9 +7,9 @@ import {
 import NextImage from 'next/image';
 import Link from 'next/link';
 
-import SortTypeIcons from '@/components/IconGroup/SortTypeIcons';
-import ViewTypeIcons from '@/components/IconGroup/ViewTypeIcons';
-import { useResponsive } from '@/hook/useResponsive';
+import SortTypeIcons from '@/components/ui/IconGroup/SortTypeIcons';
+import ViewTypeIcons from '@/components/ui/IconGroup/ViewTypeIcons';
+import { useResponsive } from '@/hooks/useResponsive';
 import styles from '@/styles/ArtistCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { SortCriteria } from '@/types';

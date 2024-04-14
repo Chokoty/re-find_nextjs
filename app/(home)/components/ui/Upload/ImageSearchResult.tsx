@@ -14,8 +14,8 @@ import { useShallow } from 'zustand/react/shallow';
 import AuthorProfileCard from '@/app/(home)/components/ui/Card/AuthorProfileCard';
 import Description from '@/app/(home)/components/ui/Description';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
+import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {

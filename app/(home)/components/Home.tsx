@@ -7,10 +7,10 @@ import BannerSkeleton from '@/app/(home)/components/skeleton/BannerSkeleton';
 import Footer from '@/app/(home)/components/ui/Footer';
 import TopTitle from '@/app/(home)/components/ui/TopTitle';
 import Upload from '@/app/(home)/components/ui/Upload';
-import MoreButtons from '@/components/common/MoreButtons';
-import UpdateLogBoard from '@/components/common/UpdateLogBoard';
 import EventFanarts from '@/components/event/EventFanarts';
-import { useResponsive } from '@/hook/useResponsive';
+import MoreButtons from '@/components/MoreButtons';
+import UpdateLogBoard from '@/components/UpdateLogBoard';
+import { useResponsive } from '@/hooks/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const BannerSlider = dynamic(

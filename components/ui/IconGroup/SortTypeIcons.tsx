@@ -11,7 +11,7 @@ import {
 } from 'react-icons/fa';
 
 import { sortTypes } from '@/data/artists';
-import { formatArtistValue } from '@/hook/useFormatArtistValue';
+import { formatArtistValue } from '@/hooks/useFormatArtistValue';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { SortCriteria } from '@/types';
 
@@ -44,10 +44,6 @@ type Props = {
 };
 
 export default function SortTypeIcons({ sortCriteria, artist }: Props) {
-  // let align = ['center', 'center', 'center'];
-  // if (component === 'inIndex') {
-  //   align = ['center', 'center', 'flex-start'];
-  // }
   const color7 = useColorModeValue(lightMode.color, darkMode.color7);
 
   if (!artist) {

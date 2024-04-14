@@ -2,8 +2,8 @@
 
 import EventLayout from '@/app/events/components/ui/Layout/EventLayout';
 import RandomFanart from '@/app/events/components/ui/RandomFanart';
-import PageTitle from '@/components/common/PageTitle';
 import EventFanarts from '@/components/event/EventFanarts';
+import PageTitle from '@/components/PageTitle';
 
 const topTitle = {
   title: '팬아트 랜덤 가챠',

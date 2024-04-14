@@ -1,9 +1,9 @@
 import { Box, Flex, Link, Text } from '@chakra-ui/react';
 import NextImage from 'next/image';
 
-import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
+import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
+import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
 
 type Prop = {
   artwork: ArtworkList;

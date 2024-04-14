@@ -1,7 +1,7 @@
 import { format, sub } from 'date-fns';
 
 // 오늘부터 1일 전
-export const getOnDayAgo = () => {
+const getOnDayAgo = () => {
   const today = new Date();
   const oneDayAgo = sub(today, { days: 1 });
   const since = format(oneDayAgo, 'yyyyMMdd');
@@ -10,7 +10,7 @@ export const getOnDayAgo = () => {
 };
 
 // 오늘부터 1주일 전
-export const getOnWeekAgo = () => {
+const getOnWeekAgo = () => {
   const today = new Date();
   const oneWeekAgo = sub(today, { weeks: 1 });
   const since = format(oneWeekAgo, 'yyyyMMdd');
@@ -19,7 +19,7 @@ export const getOnWeekAgo = () => {
 };
 
 // 오늘부터 1개월 전
-export const getOnMonthAgo = () => {
+const getOnMonthAgo = () => {
   const today = new Date();
   const oneMonthAgo = sub(today, { months: 1 });
   const since = format(oneMonthAgo, 'yyyyMMdd');
@@ -28,7 +28,7 @@ export const getOnMonthAgo = () => {
 };
 
 // 오늘부터 6개월 전
-export const getOnSixMonAgo = () => {
+const getOnSixMonAgo = () => {
   const today = new Date();
   const sixMonthAgo = sub(today, { months: 6 });
   const since = format(sixMonthAgo, 'yyyyMMdd');
@@ -37,7 +37,7 @@ export const getOnSixMonAgo = () => {
 };
 
 // 오늘부터 1년 전
-export const getOnYearAgo = () => {
+const getOnYearAgo = () => {
   const today = new Date();
   const oneYearAgo = sub(today, { years: 1 });
   const since = format(oneYearAgo, 'yyyyMMdd');

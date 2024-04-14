@@ -2,8 +2,8 @@ import { Avatar, Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 
-import SortTypeIcons from '@/components/IconGroup/SortTypeIcons';
-import ViewTypeIcons from '@/components/IconGroup/ViewTypeIcons';
+import SortTypeIcons from '@/components/ui/IconGroup/SortTypeIcons';
+import ViewTypeIcons from '@/components/ui/IconGroup/ViewTypeIcons';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface AuthorProfileCardProps {

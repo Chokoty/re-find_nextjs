@@ -12,11 +12,11 @@ import NextImage from 'next/image';
 import NextLink from 'next/link';
 import { MdArrowForwardIos, MdPerson } from 'react-icons/md';
 
-import boardData from '@/app/(home)/data/board';
-import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { useResponsive } from '@/hook/useResponsive';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
-import { useUploadTimeDiff } from '@/hook/useUploadTimeDiff';
+import BOARD_LIST from '@/app/(home)/lib/const';
+import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
+import { useResponsive } from '@/hooks/useResponsive';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
+import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Prop = {
@@ -42,14 +42,14 @@ export default function UpdateCard({ update }: Prop) {
   const uploadTimeDiff = useUploadTimeDiff(update.date);
   const article_link = useResponsiveLink(update.id, 'article');
   const menu_link = useResponsiveLink(
-    boardData.find(
+    BOARD_LIST.find(
       (item) => item.board === update.board.replace(/&#\d+;/g, '').trim()
     )?.id ?? '',
     'menu'
   );
 
   function getImageSrc() {
-    const boardItem = boardData.find((item) => item.board === update.board);
+    const boardItem = BOARD_LIST.find((item) => item.board === update.board);
     if (boardItem?.state === '-관-') {
       return '/static/images/icons/close.jpeg';
     }

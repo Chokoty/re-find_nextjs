@@ -13,7 +13,7 @@ import {
 import DeveloperProfileCard from '@/app/more/components/ui/Card/DeveloperProfileCard';
 import MoreLayout from '@/app/more/components/ui/Layout/MoreLayout';
 import { DEVELOPERS } from '@/app/more/lib/const';
-import { useResponsive } from '@/hook/useResponsive';
+import { useResponsive } from '@/hooks/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function About() {

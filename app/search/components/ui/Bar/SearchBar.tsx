@@ -15,7 +15,7 @@ import { IoIosCloseCircle } from 'react-icons/io';
 
 import SearchHistory from '@/app/search/components/ui/SearchHistory';
 import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
-import { useResponsive } from '@/hook/useResponsive';
+import { useResponsive } from '@/hooks/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function SearchBar() {

@@ -15,9 +15,9 @@ import {
 import { useState } from 'react';
 import { ImLink } from 'react-icons/im';
 
-import SortTypeIcons from '@/components/IconGroup/SortTypeIcons';
-import ViewTypeIcons from '@/components/IconGroup/ViewTypeIcons';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import SortTypeIcons from '@/components/ui/IconGroup/SortTypeIcons';
+import ViewTypeIcons from '@/components/ui/IconGroup/ViewTypeIcons';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 interface Props {
   nickname: string;

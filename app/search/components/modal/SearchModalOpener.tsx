@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react';
 import { FaSearch } from 'react-icons/fa';
 
-import useModal from '@/hook/useModal';
+import useModal from '@/hooks/useModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import SearchModal from './SearchModal';

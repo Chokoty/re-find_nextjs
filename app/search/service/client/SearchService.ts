@@ -1,4 +1,4 @@
-import { getPriod } from '@/lib/date';
+import { getPriod } from '@/app/search/lib/date';
 import Service from '@/lib/service';
 import type { CountLimit, GetSearchResultParams } from '@/types';
 

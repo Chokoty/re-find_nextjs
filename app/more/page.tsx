@@ -4,8 +4,8 @@ import { Flex, Link, Text } from '@chakra-ui/react';
 import { AiFillExperiment } from 'react-icons/ai';
 
 import MoreLayout from '@/app/more/components/ui/Layout/MoreLayout';
-import MoreButtons from '@/components/common/MoreButtons';
-import UpdateLogBoard from '@/components/common/UpdateLogBoard';
+import MoreButtons from '@/components/MoreButtons';
+import UpdateLogBoard from '@/components/UpdateLogBoard';
 
 import { SOURCE_URL } from './lib/const';
 

@@ -1,11 +1,13 @@
+'use client';
+
 import { Box, Flex } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import React from 'react';
-// import { CgMoreO } from 'react-icons/cg';
 import { FaSearch } from 'react-icons/fa';
 import { FaImage } from 'react-icons/fa6';
-// import { IoPersonCircle } from 'react-icons/io5';
 import { MdHomeFilled, MdPerson } from 'react-icons/md';
+
+import { useResponsive } from '@/hooks/useResponsive';
+import useTabBar from '@/hooks/useTabBar';
 
 const routerList = {
   home: '/',
@@ -36,16 +38,13 @@ const IconComponent = ({ router }: { router: RouterType }) => {
   }
 };
 
-type Props = {
-  tab: string;
-  setTab: (tab: string) => void;
-};
-
-export default function TabBarComponent({ tab, setTab }: Props) {
+export default function MobileTabBar() {
+  const { tab, setTab } = useTabBar();
+  const isMobile = useResponsive(); // 모바일 환경인지 체크
   const getButtonColor = (buttonName: string) => {
     return tab === buttonName ? '#FFFFFF' : '#828282';
   };
-
+  if (!isMobile) return null;
   return (
     <Box
       position="sticky"

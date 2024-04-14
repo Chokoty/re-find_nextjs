@@ -7,7 +7,7 @@ import {
   FaThumbsUp,
 } from 'react-icons/fa';
 
-import { formatArtistValue } from '@/hook/useFormatArtistValue';
+import { formatArtistValue } from '@/hooks/useFormatArtistValue';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const iconStyle = {

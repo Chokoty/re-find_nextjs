@@ -62,7 +62,7 @@ export default function Error({
         </Link>
         <Button
           onClick={
-            // Attempt to recover by trying to re-render the segment
+            // 세그먼트를 다시 렌더링하여 복구를 시도합니다.
             () => reset()
           }
         >

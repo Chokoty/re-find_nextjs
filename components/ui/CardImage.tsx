@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
-import { formatArtistValue } from '@/hook/useFormatArtistValue';
-import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { useResponsive } from '@/hook/useResponsive';
+import { formatArtistValue } from '@/hooks/useFormatArtistValue';
+import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
+import { useResponsive } from '@/hooks/useResponsive';
 import styles from '@/styles/CardImage.module.scss';
 
 type Props = {

@@ -1,7 +1,7 @@
 import Measure from 'react-measure';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
-import MasonryCard from '@/components/card/MasonryCard';
+import MasonryCard from '@/components/ui/Card/MasonryCard';
 
 type Props = {
   artworks: ArtworkList[];

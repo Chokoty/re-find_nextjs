@@ -1,6 +1,6 @@
 import { Box, SimpleGrid } from '@chakra-ui/react';
 
-import SimpleCards from '@/components/card/SimpleCards';
+import SimpleCards from '@/components/ui/Card/SimpleCards';
 
 type Props = {
   artworks: ArtworkList[];
@@ -8,37 +8,15 @@ type Props = {
 };
 
 export default function SimpleView({ artworks, isDeletedVisible }: Props) {
-  // const [focusedArtworkId, setFocusedArtworkId] = useState(null);
-  // const handleToggleFocus = (id: any) => {
-  //   if (id === focusedArtworkId) {
-  //     setFocusedArtworkId(null); // Deselect the artwork if it's already focused
-  //   } else {
-  //     setFocusedArtworkId(id); // Set the focused artwork ID
-  //   }
-  // };
-
   const content = () => {
     if (isDeletedVisible) {
       return artworks.map((artwork, index) => (
-        <SimpleCards
-          key={index}
-          artwork={artwork}
-          // isFocused={artwork.id === focusedArtworkId}
-          // onToggleFocus={handleToggleFocus}
-        />
+        <SimpleCards key={index} artwork={artwork} />
       ));
     }
     if (!isDeletedVisible) {
-      return artworks.map(
-        (artwork, index) =>
-          !artwork.deleted ? (
-            <SimpleCards
-              key={index}
-              artwork={artwork}
-              // isFocused={artwork.id === focusedArtworkId}
-              // onToggleFocus={handleToggleFocus}
-            />
-          ) : null // Render null if deleted is true
+      return artworks.map((artwork, index) =>
+        !artwork.deleted ? <SimpleCards key={index} artwork={artwork} /> : null
       );
     }
   };

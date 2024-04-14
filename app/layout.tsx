@@ -5,8 +5,8 @@ import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 
-import Header from '@/components/Header';
-import TabBar from '@/components/TabBar/TabBar';
+import Header from '@/components/ui/Header';
+import MobileTabBar from '@/components/ui/TabBar/MobileTabBar';
 import { siteConfig } from '@/lib/config';
 import { Providers } from '@/lib/Providers';
 
@@ -58,7 +58,7 @@ export default function RootLayout({
           <Header />
           {ArtworkModal}
           <main>{children}</main>
-          <TabBar />
+          <MobileTabBar />
           <div id="modal-root" />
           <div id="artwork-modal-root" />
         </Providers>

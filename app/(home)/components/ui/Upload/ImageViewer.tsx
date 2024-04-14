@@ -4,10 +4,10 @@ import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useShallow } from 'zustand/react/shallow';
 
+import { TARGET_COUNT } from '@/app/(home)/lib/const';
 import queryOptions from '@/app/(home)/service/client/queries';
 import { useImageInfo } from '@/app/(home)/service/client/useHomeService';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
-import { TARGET_COUNT } from '@/lib/const';
 
 import Loading from '../Loading';
 import ImageSearchResult from './ImageSearchResult';

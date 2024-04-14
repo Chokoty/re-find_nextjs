@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { ModalHideContext } from '@/components/common/Modal/Modal';
+import { ModalHideContext } from '@/components/modal/Modal';
 import useModalState, { MODAL_COMPONENTS } from '@/store/modalStore';
 
 type CalledByModalInner = { hide: () => void };

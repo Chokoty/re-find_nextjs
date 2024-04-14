@@ -1,6 +1,8 @@
 import type { Board } from '@/types';
 
-const boardData: Board[] = [
+export const TARGET_COUNT = 60000; // 이벤트 타겟 카운트
+
+const BOARD_LIST: Board[] = [
   {
     board: '이세돌┃팬아트',
     id: '344',
@@ -51,4 +53,4 @@ const boardData: Board[] = [
   },
 ];
 
-export default boardData;
+export default BOARD_LIST;

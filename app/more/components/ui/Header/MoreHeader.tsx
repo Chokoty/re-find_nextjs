@@ -8,8 +8,8 @@ import {
 import NextLink from 'next/link';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 
-import BackButton from '@/components/common/BackButton';
-import { useShowShadow } from '@/hook/useShowShadow';
+import BackButton from '@/components/BackButton';
+import { useShowShadow } from '@/hooks/useShowShadow';
 import { darkMode, lightMode } from '@/styles/theme';
 
 type Props = {

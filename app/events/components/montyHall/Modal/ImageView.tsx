@@ -13,9 +13,9 @@ import React, { useState } from 'react';
 import { FaComment, FaEye, FaImage, FaThumbsUp } from 'react-icons/fa';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 
-import { formatArtistValue } from '@/hook/useFormatArtistValue';
-import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { formatArtistValue } from '@/hooks/useFormatArtistValue';
+import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
 const iconStyle = {

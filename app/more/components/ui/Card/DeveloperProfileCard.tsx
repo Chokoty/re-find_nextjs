@@ -9,7 +9,7 @@ import {
 import Image from 'next/image';
 import React from 'react';
 
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 
 interface Props {

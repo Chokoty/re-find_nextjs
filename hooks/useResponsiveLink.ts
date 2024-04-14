@@ -1,7 +1,7 @@
 'use client';
 
 import { links } from '@/data/links';
-import { useResponsive } from '@/hook/useResponsive';
+import { useResponsive } from '@/hooks/useResponsive';
 
 export const useResponsiveLink = (
   id: string,

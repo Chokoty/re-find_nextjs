@@ -10,7 +10,7 @@ import { FaChevronRight, FaShare } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6';
 
 import SocialStats from '@/components/SocialStats';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 const ImageSlider = dynamic(() => import('./slider/ImageSlider'), {
   ssr: false,

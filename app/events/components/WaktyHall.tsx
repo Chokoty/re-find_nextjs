@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 import Game from '@/app/events/components/montyHall/Game';
 import EventLayout from '@/app/events/components/ui/Layout/EventLayout';
-import PageTitle from '@/components/common/PageTitle';
+import PageTitle from '@/components/PageTitle';
 import Question from '@/public/static/images/events/question.webp';
 import { darkMode, lightMode } from '@/styles/theme';
 

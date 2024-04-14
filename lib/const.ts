@@ -1,5 +1,3 @@
-export const TARGET_COUNT = 60000; // 이벤트 타겟 카운트
-
 export const GalleryMap = {
   woowakgood: '우왁굳',
   ine: '아이네',
@@ -7,7 +5,7 @@ export const GalleryMap = {
   lilpa: '릴파',
   jururu: '주르르',
   gosegu: '고세구',
-  viichan: '비찬',
+  viichan: '비챤',
   gomem: '고멤/교멤',
   isdPick: '이세돌픽',
   halloween: '할로윈',

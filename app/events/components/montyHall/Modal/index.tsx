@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useImageViewerStore } from '@/app/events/store/imageViewerStore';
-import { useResponsive } from '@/hook/useResponsive';
+import { useResponsive } from '@/hooks/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 import ImageView from './ImageView';

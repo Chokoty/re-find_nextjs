@@ -1,4 +1,4 @@
-import Service from '@/service';
+import Service from '@/lib/service';
 import type { CheckBoxType } from '@/types';
 
 class EventService extends Service {

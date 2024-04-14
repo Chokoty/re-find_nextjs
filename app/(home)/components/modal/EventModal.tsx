@@ -13,8 +13,8 @@ import {
 import Confetti from 'react-confetti';
 import { useShallow } from 'zustand/react/shallow';
 
+import { TARGET_COUNT } from '@/app/(home)/lib/const';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
-import { TARGET_COUNT } from '@/lib/const';
 
 export default function EventModal() {
   const targetCountText = TARGET_COUNT.toString().slice(0, 1);

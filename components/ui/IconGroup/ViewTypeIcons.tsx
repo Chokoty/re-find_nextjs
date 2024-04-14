@@ -32,11 +32,9 @@ export default function ViewTypeIcons({
       display="flex"
       flexDirection="row"
       justifyContent={align}
-      // justifyContent={['center', 'center', 'flex-end']}
       w="auto"
       flexWrap="wrap"
       gap="0.5rem"
-      // pl={['1rem', '0', '0']}
     >
       {isAllZero ? (
         <Text fontSize="md" color="gray.500">
@@ -48,7 +46,6 @@ export default function ViewTypeIcons({
             artist[viewType.value] !== 0 && (
               <Button
                 key={index}
-                // colorScheme="blue"
                 colorScheme={viewType.colorScheme}
                 variant={
                   // sortCriteria?.field === viewType.value ? 'solid' : 'outline'

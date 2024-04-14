@@ -24,8 +24,8 @@ import { FaArrowDown, FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 
 import { useRandomFanart } from '@/app/events/service/client/useEventService';
-import { useModifiedImageUrl } from '@/hook/useModifiedImageUrl';
-import { useResponsiveLink } from '@/hook/useResponsiveLink';
+import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { darkMode, lightMode } from '@/styles/theme';
 import type { CheckBoxType } from '@/types';
 

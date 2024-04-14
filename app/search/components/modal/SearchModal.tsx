@@ -6,8 +6,8 @@ import { useEffect, useRef } from 'react';
 import ModalSearchBar from '@/app/search/components/modal/ModalSearchBar';
 import SearchHistory from '@/app/search/components/ui/SearchHistory';
 import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
-import useModal from '@/hook/useModal';
-import { useResponsive } from '@/hook/useResponsive';
+import useModal from '@/hooks/useModal';
+import { useResponsive } from '@/hooks/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function SearchModal() {
