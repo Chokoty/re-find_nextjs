@@ -52,7 +52,6 @@ export default function SocialStats(props: Props) {
           flexDirection="row"
           gap="0.5rem"
         >
-          {/* <IconComponent sortTypeName={sortType.name} /> */}
           {IconComponent[s as keyof typeof IconComponent]}
           <Text fontSize="xs">{formatArtistValue(n)}</Text>
         </Text>

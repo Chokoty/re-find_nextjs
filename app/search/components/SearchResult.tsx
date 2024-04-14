@@ -13,7 +13,6 @@ import {
   TabPanels,
   Tabs,
   Text,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
@@ -22,19 +21,13 @@ import { useInView } from 'react-intersection-observer';
 import { PuffLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
 
+import SearchCard from '@/app/search/components/ui/Card/SearchCard';
+import { useSearchResults } from '@/app/search/service/client/useSearchService';
+import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import NotSearch from '@/public/static/images/original_18.png';
-import { useSearchResults } from '@/service/client/search/useSearchService';
-import { useSearchFilterStore } from '@/store/searchFilerStore';
-import { darkMode, lightMode } from '@/styles/theme';
-
-import SearchCard from './SearchCard';
+import { darkMode } from '@/styles/theme';
 
 export default function SearchResult() {
-  const borderBottom = useColorModeValue(
-    lightMode.borderBottom,
-    darkMode.borderBottom
-  );
-
   const searchParams = useSearchParams();
   const q = searchParams.get('q') ?? '';
 

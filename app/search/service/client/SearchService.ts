@@ -1,5 +1,5 @@
 import { getPriod } from '@/lib/date';
-import Service from '@/service';
+import Service from '@/lib/service';
 import type { CountLimit, GetSearchResultParams } from '@/types';
 
 const ROWS_PER_PAGE = 10; // 한 페이지당 불러올 아이템 개수

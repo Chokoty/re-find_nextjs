@@ -9,7 +9,7 @@ import toast from 'react-hot-toast';
 import { FaChevronRight, FaShare } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6';
 
-import SocialStats from '@/components/search/SocialStats';
+import SocialStats from '@/components/SocialStats';
 import { useResponsiveLink } from '@/hook/useResponsiveLink';
 
 const ImageSlider = dynamic(() => import('./slider/ImageSlider'), {

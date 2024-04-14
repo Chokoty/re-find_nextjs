@@ -10,7 +10,7 @@ import { FaSearch } from 'react-icons/fa';
 import useModal from '@/hook/useModal';
 import { darkMode, lightMode } from '@/styles/theme';
 
-import SearchModal from '.';
+import SearchModal from './SearchModal';
 
 export default function SearchModalOpener() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);

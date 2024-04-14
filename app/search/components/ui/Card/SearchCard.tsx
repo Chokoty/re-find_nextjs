@@ -12,10 +12,9 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
+import SocialStats from '@/components/SocialStats';
 import styles from '@/styles/SearchCard.module.scss';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import SocialStats from './SocialStats';
 
 type Props = {
   item: SearchItem;

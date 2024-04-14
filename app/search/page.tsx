@@ -3,8 +3,8 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import { Suspense } from 'react';
 
-import SearchHeader from '@/components/search/SearchHeader';
-import SearchResult from '@/components/search/SearchResult';
+import SearchResult from '@/app/search/components/SearchResult';
+import SearchHeader from '@/app/search/components/ui/Header/SearchHeader';
 import { darkMode, lightMode } from '@/styles/theme';
 
 export default function Search() {

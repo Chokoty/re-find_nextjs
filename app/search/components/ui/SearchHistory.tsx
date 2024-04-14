@@ -5,7 +5,6 @@ import {
   Heading,
   IconButton,
   Text,
-  useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { usePathname, useRouter } from 'next/navigation';
@@ -27,7 +26,6 @@ export default function SearchHistory({
   close,
   modalClose,
 }: Props) {
-  const { colorMode } = useColorMode();
   const pathname = usePathname();
   const router = useRouter();
   const color = useColorModeValue(lightMode.color7, darkMode.color9);

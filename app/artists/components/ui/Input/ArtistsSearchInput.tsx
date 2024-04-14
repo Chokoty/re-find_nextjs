@@ -17,8 +17,6 @@ import { useShallow } from 'zustand/react/shallow';
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
 import { darkMode, lightMode } from '@/styles/theme';
 
-import HelpPopOver from '../../../../../components/search/HelpPopOver';
-
 const helpMessage = '대소문자 구분: 검색은 대소문자를 구분합니다.';
 
 export default function ArtistsSearchInput() {

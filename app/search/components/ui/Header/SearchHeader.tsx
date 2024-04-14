@@ -3,10 +3,9 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import { Suspense, useEffect, useState } from 'react';
 
+import SearchBar from '@/app/search/components/ui/Bar/SearchBar';
+import OptionContainer from '@/app/search/components/ui/Option/OptionContainer';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import OptionContainer from './OptionContainer';
-import SearchBar from './SearchBar';
 
 export default function SearchHeader() {
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);

@@ -13,11 +13,10 @@ import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 
+import SearchHistory from '@/app/search/components/ui/SearchHistory';
+import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
 import { useResponsive } from '@/hook/useResponsive';
 import { darkMode, lightMode } from '@/styles/theme';
-
-import SearchHistory from './SearchHistory';
-import { useLocalStorage } from './useLocalStorage';
 
 export default function SearchBar() {
   const isMobile = useResponsive();
