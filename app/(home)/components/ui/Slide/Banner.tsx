@@ -1,9 +1,8 @@
 import { Box } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
-import React from 'react';
 
-import MainBanner from '@/public/static/images/banners/banner2.webp';
+import { MainBanner } from '@/lib/images';
 
 export default function Banner() {
   return (

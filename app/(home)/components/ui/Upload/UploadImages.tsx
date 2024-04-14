@@ -10,9 +10,8 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { useUpload } from '@/app/(home)/hooks/useUpload';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
+import { UploadHoverImage, UploadImage } from '@/lib/images';
 import { darkMode, lightMode } from '@/lib/theme';
-import UploadImage from '@/public/static/images/refind-1.webp';
-import UploadHoverImage from '@/public/static/images/refind-2.webp';
 
 export default function UploadImages() {
   const { setHashs, setUploadedFiles } = useImageUploadStore(
@@ -96,7 +95,6 @@ export default function UploadImages() {
               alt="리파인드 로고2"
               width={160}
               height={160}
-              unoptimized
             />
           ) : (
             <Image
@@ -104,7 +102,6 @@ export default function UploadImages() {
               alt="리파인드 로고1"
               width={160}
               height={160}
-              unoptimized
             />
           )}
 

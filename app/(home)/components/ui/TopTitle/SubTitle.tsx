@@ -2,8 +2,8 @@ import { useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
+import { RealWakGood } from '@/lib/images';
 import { darkMode, lightMode } from '@/lib/theme';
-import WakGood from '@/public/real-wakgood.webp';
 
 const data = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
 
@@ -31,7 +31,7 @@ export default function SubTitle() {
       <p className="title-text">팬아트</p>
       <div className="bg-crop">
         <Image
-          src={WakGood}
+          src={RealWakGood}
           alt="실사왁굳"
           className="bg-wakdoo"
           width={100}

@@ -3,10 +3,7 @@ import NextImage from 'next/image';
 import React from 'react';
 import { FaYoutube } from 'react-icons/fa';
 
-import Afreeca from '@/public/static/icons/afreecatv-logo.webp';
-import Twitter from '@/public/static/icons/twitter-x-logo.webp';
-import Waksplorer from '@/public/static/icons/waksplorer-logo.webp';
-import Wakzoo from '@/public/static/icons/wakzoo-logo.webp';
+import { Afreeca, Twitter, Waksplorer, Wakzoo } from '@/lib/images';
 
 const XButton = () => (
   <Button

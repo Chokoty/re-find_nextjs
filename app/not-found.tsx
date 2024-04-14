@@ -4,7 +4,7 @@ import { Box, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import ErrorImage from '@/public/static/images/404/404-박쥐단.gif';
+import { ErrorImage } from '@/lib/images';
 
 export default function NotFound() {
   return (

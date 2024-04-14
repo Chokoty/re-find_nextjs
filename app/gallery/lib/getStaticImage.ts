@@ -14,7 +14,7 @@ import {
   Viichan,
   ViichanBirthday,
   Wakgood,
-} from '@/data/vectors';
+} from '@/lib/images';
 
 export const getStaticImage = (cover: string) => {
   switch (cover) {

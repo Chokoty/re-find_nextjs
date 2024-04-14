@@ -7,8 +7,7 @@ import { useShallow } from 'zustand/react/shallow';
 import styles from '@/app/events/components/montyHall/Door.module.scss';
 import type MontyHall from '@/app/events/lib/montyhall';
 import { useImageViewerStore } from '@/app/events/store/imageViewerStore';
-import BoomDoor from '@/public/static/images/events/goat.webp';
-import KeyDoor from '@/public/static/images/events/peridot.webp';
+import { BoomDoor, KeyDoor } from '@/lib/images';
 
 type Props = {
   handleSelection: (id: number) => void;

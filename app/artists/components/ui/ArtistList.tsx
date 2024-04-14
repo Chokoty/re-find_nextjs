@@ -19,8 +19,8 @@ import {
 } from '@/app/artists/lib/convertParams';
 import { useArtistList } from '@/app/artists/service/client/useArtistService';
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
+import { NotSearch } from '@/lib/images';
 import { darkMode, lightMode } from '@/lib/theme';
-import NotSearch from '@/public/static/images/original_18.png';
 import type { SortCriteria } from '@/types';
 
 import ArtistCard from './Card/ArtistCard';
