@@ -3,9 +3,8 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
+import Modal from '@/components/Modal';
 import useModalState, { MODAL_COMPONENTS } from '@/store/modalStore';
-
-import Modal from '.';
 
 export default function Modals() {
   const { modals, hideModal } = useModalState((state) => state);
