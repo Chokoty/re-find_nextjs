@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react';
 
-import GalleryTitle from '@/app/gallery/components/ui/GalleryTitle';
-import MemberAlbum from '@/app/gallery/components/ui/MemberAlbum';
-import RefindPick from '@/app/gallery/components/ui/RefindPick';
-import TopBackground from '@/app/gallery/components/ui/TopBackground';
+import GalleryTitle from '@/app/gallery/components/GalleryTitle';
+import MemberAlbum from '@/app/gallery/components/MemberAlbum';
+import RefindPick from '@/app/gallery/components/RefindPick';
+import TopBackground from '@/app/gallery/components/TopBackground';
 // import ThisWeekTop from '@/app/gallery/components/ui/ThisWeekTop';
 
 export default function Gallery() {

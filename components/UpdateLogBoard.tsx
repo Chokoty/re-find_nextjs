@@ -2,7 +2,7 @@ import { Box, Flex, Heading } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { IoIosArrowForward } from 'react-icons/io';
 
-import UpdateLog from '@/app/more/components/ui/UpdateLog';
+import UpdateLog from '@/app/more/components/UpdateLog';
 
 type Prop = {
   width: string;

@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 
 import Artwork from '@/app/artwork/components/Artwork';
-import Recommend from '@/app/artwork/components/ui/Recommend';
+import Recommend from '@/app/artwork/components/Recommend';
 import { getArtworkDetail } from '@/app/artwork/service/server';
 
 import { Modal } from './modal';

@@ -6,7 +6,7 @@ import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 
 import { darkMode, lightMode } from '@/lib/theme';
 
-import EventLayout from './components/ui/Layout/EventLayout';
+import EventLayout from './components/EventLayout';
 
 const events = [
   {

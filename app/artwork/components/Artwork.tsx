@@ -12,7 +12,7 @@ import { FaCircleUser } from 'react-icons/fa6';
 import SocialStats from '@/components/SocialStats';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
-const ImageSlider = dynamic(() => import('./slider/ImageSlider'), {
+const ImageSlider = dynamic(() => import('./ImageSlider'), {
   ssr: false,
 });
 

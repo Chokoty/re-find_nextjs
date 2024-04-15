@@ -1,7 +1,7 @@
 'use client';
 
-import MoreLayout from '@/app/more/components/ui/Layout/MoreLayout';
-import UpdateLog from '@/app/more/components/ui/UpdateLog';
+import MoreLayout from '@/app/more/components/MoreLayout';
+import UpdateLog from '@/app/more/components/UpdateLog';
 
 export default function Notice() {
   return (

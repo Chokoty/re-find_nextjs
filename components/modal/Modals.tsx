@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 
 import useModalState, { MODAL_COMPONENTS } from '@/store/modalStore';
 
-import Modal from './Modal';
+import Modal from '.';
 
 export default function Modals() {
   const { modals, hideModal } = useModalState((state) => state);

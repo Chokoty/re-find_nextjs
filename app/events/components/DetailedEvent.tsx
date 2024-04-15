@@ -13,9 +13,9 @@ import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
-import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
-import MasonryView from '@/components/views/MasonryView';
-import SimpleView from '@/components/views/SimpleView';
+import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
+import MasonryView from '@/components/View/MasonryView';
+import SimpleView from '@/components/View/SimpleView';
 import ViewSelectBar from '@/components/ViewSelectBar';
 
 type Prop = { keyword: string };

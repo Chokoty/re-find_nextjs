@@ -21,7 +21,7 @@ import { useInView } from 'react-intersection-observer';
 import { PuffLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
 
-import SearchCard from '@/app/search/components/ui/Card/SearchCard';
+import SearchCard from '@/app/search/components/Card/SearchCard';
 import { useSearchResults } from '@/app/search/service/client/useSearchService';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import { NotSearch } from '@/lib/images';

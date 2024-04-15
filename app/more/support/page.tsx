@@ -4,7 +4,7 @@ import { Box, Button, Text } from '@chakra-ui/react';
 import { BsChatDots } from 'react-icons/bs';
 import { FaBug } from 'react-icons/fa';
 
-import MoreLayout from '@/app/more/components/ui/Layout/MoreLayout';
+import MoreLayout from '@/app/more/components/MoreLayout';
 import { SUPPORT_INFOS } from '@/app/more/lib/const';
 
 export default function Support() {

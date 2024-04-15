@@ -3,8 +3,8 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import { useEffect, useRef } from 'react';
 
-import ModalSearchBar from '@/app/search/components/modal/ModalSearchBar';
-import SearchHistory from '@/app/search/components/ui/SearchHistory';
+import ModalSearchBar from '@/app/search/components/Modal/ModalSearchBar';
+import SearchHistory from '@/app/search/components/SearchHistory';
 import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';

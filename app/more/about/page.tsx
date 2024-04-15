@@ -10,8 +10,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import DeveloperProfileCard from '@/app/more/components/ui/Card/DeveloperProfileCard';
-import MoreLayout from '@/app/more/components/ui/Layout/MoreLayout';
+import DeveloperProfileCard from '@/app/more/components/Card/DeveloperProfileCard';
+import MoreLayout from '@/app/more/components/MoreLayout';
 import { DEVELOPERS } from '@/app/more/lib/const';
 import { useResponsive } from '@/hooks/useResponsive';
 import { darkMode, lightMode } from '@/lib/theme';

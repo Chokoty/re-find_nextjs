@@ -5,8 +5,8 @@ import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 
-import Header from '@/components/ui/Header';
-import MobileTabBar from '@/components/ui/TabBar/MobileTabBar';
+import Header from '@/components/Header';
+import MobileTabBar from '@/components/MobileTabBar';
 import { siteConfig } from '@/lib/config';
 import { Providers } from '@/lib/Providers';
 

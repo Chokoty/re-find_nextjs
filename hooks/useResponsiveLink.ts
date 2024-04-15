@@ -1,6 +1,6 @@
 'use client';
 
-import { links } from '@/data/links';
+import { LINKS } from '@/constants/links';
 import { useResponsive } from '@/hooks/useResponsive';
 
 export const useResponsiveLink = (
@@ -14,16 +14,16 @@ export const useResponsiveLink = (
 
   // 모바일 또는 PC 링크 반환
   if (type === 'article') {
-    if (id === '') return isMobile ? links.mobile.article : links.pc.article;
-    return isMobile ? links.mobile.article + id : links.pc.article + id;
+    if (id === '') return isMobile ? LINKS.mobile.article : LINKS.pc.article;
+    return isMobile ? LINKS.mobile.article + id : LINKS.pc.article + id;
   }
   if (type === 'menu') {
     return isMobile
-      ? links.mobile.menu + id
-      : `${links.pc.menu + id}%26search.boardtype=I`;
+      ? LINKS.mobile.menu + id
+      : `${LINKS.pc.menu + id}%26search.boardtype=I`;
   }
   if (type === 'member') {
-    return isMobile ? links.mobile.member + id : links.pc.member + id;
+    return isMobile ? LINKS.mobile.member + id : LINKS.pc.member + id;
   }
   // TODO: 우선 타입스크립트 도움을 위함
   return '';

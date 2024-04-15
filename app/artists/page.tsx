@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 
 import Artists from '@/app/artists/components/Artists';
-import ArtistsSearchInput from '@/app/artists/components/ui/Input/ArtistsSearchInput';
+import ArtistsSearchInput from '@/app/artists/components/ArtistsSearchInput';
 import queryOptions from '@/app/artists/service/client/queries';
 import PageTitle from '@/components/PageTitle';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';

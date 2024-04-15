@@ -21,8 +21,8 @@ import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
 import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
-import { menuItems } from '@/data/artists';
-import members from '@/data/members';
+import { MEMBERS } from '@/app/gallery/lib/const';
+import { MENU_ITEMS } from '@/constants/artists';
 import { darkMode, lightMode } from '@/lib/theme';
 
 type Props = {
@@ -72,12 +72,12 @@ export default function ViewSelectBar({
   const boxShadow = useColorModeValue(boxShadowLight, boxShadowDark);
 
   const sortLabel =
-    menuItems.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
+    MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
   const memberName =
-    members.find((item) => item.value === selectedMember)?.name ?? '전체';
+    MEMBERS.find((item) => item.value === selectedMember)?.name ?? '전체';
   const memberList = [
     { id: 1, name: '전체', value: 'isd' },
-    ...members.slice(1, 7),
+    ...MEMBERS.slice(1, 7),
   ];
 
   const getIconColor = (isActive: boolean) => {
@@ -166,9 +166,8 @@ export default function ViewSelectBar({
             </MenuButton>
             <MenuList bg={popoverBg} zIndex="4">
               {isdPick === true &&
-                menuItems
-                  .filter((item) => item.isdPick === true)
-                  .map((item) => (
+                MENU_ITEMS.filter((item) => item.isdPick === true).map(
+                  (item) => (
                     <MenuItem
                       bg={popoverBg}
                       _hover={{
@@ -179,9 +178,10 @@ export default function ViewSelectBar({
                     >
                       {item.label}
                     </MenuItem>
-                  ))}
+                  )
+                )}
               {isdPick === false &&
-                menuItems.map((item) => (
+                MENU_ITEMS.map((item) => (
                   <MenuItem
                     bg={popoverBg}
                     key={item.id}

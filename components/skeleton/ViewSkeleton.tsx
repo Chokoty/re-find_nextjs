@@ -1,6 +1,6 @@
 import { Box, SimpleGrid, Skeleton, SkeletonText } from '@chakra-ui/react';
 
-import styles from '@/components/skeleton/ViewSkeleton.module.scss';
+import styles from '@/components/Skeleton/ViewSkeleton.module.scss';
 
 type Prop = {
   view: string;

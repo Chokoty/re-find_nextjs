@@ -14,9 +14,9 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import GALLERY_LIST from '@/app/gallery/lib/const';
 import { useArtworks } from '@/app/gallery/service/client/useGalleryService';
-import ViewSkeleton from '@/components/skeleton/ViewSkeleton';
-import MasonryView from '@/components/views/MasonryView';
-import SimpleView from '@/components/views/SimpleView';
+import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
+import MasonryView from '@/components/View/MasonryView';
+import SimpleView from '@/components/View/SimpleView';
 import ViewSelectBar from '@/components/ViewSelectBar';
 
 type Props = {

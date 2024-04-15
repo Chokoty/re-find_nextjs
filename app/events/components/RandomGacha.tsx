@@ -1,8 +1,8 @@
 'use client';
 
-import EventLayout from '@/app/events/components/ui/Layout/EventLayout';
-import RandomFanart from '@/app/events/components/ui/RandomFanart';
-import EventFanarts from '@/components/event/EventFanarts';
+import EventLayout from '@/app/events/components/EventLayout';
+import RandomFanart from '@/app/events/components/RandomFanart';
+import EventFanarts from '@/components/EventFanarts';
 import PageTitle from '@/components/PageTitle';
 
 const topTitle = {

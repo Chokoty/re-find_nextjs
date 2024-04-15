@@ -3,30 +3,27 @@
 import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 
-import BannerSkeleton from '@/app/(home)/components/skeleton/BannerSkeleton';
-import Footer from '@/app/(home)/components/ui/Footer';
-import TopTitle from '@/app/(home)/components/ui/TopTitle';
-import Upload from '@/app/(home)/components/ui/Upload';
-import EventFanarts from '@/components/event/EventFanarts';
-import MoreButtons from '@/components/MoreButtons';
+import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
+import Footer from '@/app/(home)/components/Footer';
+import TopTitle from '@/app/(home)/components/TopTitle';
+import Upload from '@/app/(home)/components/Upload';
+import MoreButtons from '@/components/Button/MoreButtons';
+import EventFanarts from '@/components/EventFanarts';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import { useResponsive } from '@/hooks/useResponsive';
 import { darkMode, lightMode } from '@/lib/theme';
 
 const BannerSlider = dynamic(
-  () => import('@/app/(home)/components/slider/BannerSlider'),
+  () => import('@/app/(home)/components/BannerSlider'),
   {
     ssr: false,
     loading: () => <BannerSkeleton />,
   }
 );
 
-const EventModal = dynamic(
-  () => import('@/app/(home)/components/modal/EventModal'),
-  {
-    ssr: false,
-  }
-);
+const EventModal = dynamic(() => import('@/app/(home)/components/EventModal'), {
+  ssr: false,
+});
 export default function Home() {
   const isMobile = useResponsive();
 

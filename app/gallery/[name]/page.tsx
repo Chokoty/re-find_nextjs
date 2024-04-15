@@ -2,11 +2,10 @@ import { Box } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 
 import DetailedGallery from '@/app/gallery/components/DetailedGallery';
-import GalleryTitle from '@/app/gallery/components/ui/GalleryTitle';
-import TopBackground from '@/app/gallery/components/ui/TopBackground';
-import GALLERY_LIST from '@/app/gallery/lib/const';
+import GalleryTitle from '@/app/gallery/components/GalleryTitle';
+import TopBackground from '@/app/gallery/components/TopBackground';
+import GALLERY_LIST, { MEMBERS } from '@/app/gallery/lib/const';
 import queryOptions from '@/app/gallery/service/client/queries';
-import members from '@/data/members';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 
@@ -40,7 +39,7 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
 
 export default async function page({ params: { name } }: Params) {
   const endpoint =
-    members.find((item) => item.value === name)?.query ||
+    MEMBERS.find((item) => item.value === name)?.query ||
     GALLERY_LIST.find((item) => item.value === name)?.query;
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {

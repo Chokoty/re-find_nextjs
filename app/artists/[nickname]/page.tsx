@@ -2,8 +2,8 @@ import { Box, Center, Text } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
+import ArtistHeader from '@/app/artists/components/ArtistHeader';
 import DetailedArtists from '@/app/artists/components/DetailedArtists';
-import ArtistHeader from '@/app/artists/components/ui/Header/ArtistHeader';
 import queryOptions from '@/app/artists/service/client/queries';
 import { getAuthorInfo } from '@/app/artists/service/server';
 import { siteConfig } from '@/lib/config';

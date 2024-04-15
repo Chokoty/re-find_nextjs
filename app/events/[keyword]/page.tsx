@@ -2,11 +2,10 @@ import type { Metadata } from 'next';
 
 import queryOptions from '@/app/artists/service/client/queries';
 import DetailedEvent from '@/app/events/components/DetailedEvent';
+import RandomGacha from '@/app/events/components/RandomGacha';
+import WaktyHall from '@/app/events/components/WaktyHall';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
-
-import RandomGacha from '../components/RandomGacha';
-import WaktyHall from '../components/WaktyHall';
 
 type Params = { params: { keyword: string } };
 
