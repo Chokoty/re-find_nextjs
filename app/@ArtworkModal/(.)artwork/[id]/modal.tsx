@@ -7,8 +7,8 @@ import { createPortal } from 'react-dom';
 import FocusLock from 'react-focus-lock';
 import { IoClose } from 'react-icons/io5';
 
-import { useResponsive } from '@/hook/useResponsive';
-import { darkMode, lightMode } from '@/styles/theme';
+import { useResponsive } from '@/hooks/useResponsive';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export function Modal({ children }: { children: React.ReactNode }) {
   const router = useRouter();

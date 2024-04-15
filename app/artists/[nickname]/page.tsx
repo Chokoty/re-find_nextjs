@@ -2,12 +2,12 @@ import { Box, Center, Text } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
-import DetailedArtists from '@/components/artist/DetailedArtists';
-import ArtistHeader from '@/components/layout/ArtistHeader';
+import ArtistHeader from '@/app/artists/components/ArtistHeader';
+import DetailedArtists from '@/app/artists/components/DetailedArtists';
+import queryOptions from '@/app/artists/service/client/queries';
+import { getAuthorInfo } from '@/app/artists/service/server';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
-import queryOptions from '@/service/client/artists/queries';
-import { getAuthorInfo } from '@/service/server/artists';
 
 type Params = {
   params: { nickname: string };
@@ -43,16 +43,41 @@ export default async function page({ params: { nickname } }: Params) {
   const decodedNickname = decodeURIComponent(nickname);
   const result = await getAuthorInfo(nickname);
   const { author_nickname, num_artworks } = result;
-  const { queryKey, queryFn } = queryOptions.artistInfo({
-    nickname: decodedNickname,
-    sortType: 'latest',
-    field: '',
-  });
-  const query = await getDehydratedInfiniteQuery({
-    queryKey,
-    queryFn,
-    initialPageParam: 1,
-  });
+
+  if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+    const { queryKey, queryFn } = queryOptions.artistInfo({
+      nickname: decodedNickname,
+      sortType: 'latest',
+      field: '',
+    });
+    const query = await getDehydratedInfiniteQuery({
+      queryKey,
+      queryFn,
+      initialPageParam: 1,
+    });
+
+    return (
+      <Box>
+        <ArtistHeader title="" />
+        {author_nickname === '' && num_artworks === 0 ? (
+          <NotFount nickname={decodedNickname} />
+        ) : (
+          <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            margin="0 auto"
+            mb="2rem"
+          >
+            <Hydrate state={{ queries: [query] }}>
+              <DetailedArtists nickname={decodedNickname} artistInfo={result} />
+            </Hydrate>
+          </Box>
+        )}
+      </Box>
+    );
+  }
+
   return (
     <Box>
       <ArtistHeader title="" />
@@ -66,9 +91,7 @@ export default async function page({ params: { nickname } }: Params) {
           margin="0 auto"
           mb="2rem"
         >
-          <Hydrate state={{ queries: [query] }}>
-            <DetailedArtists nickname={decodedNickname} artistInfo={result} />
-          </Hydrate>
+          <DetailedArtists nickname={decodedNickname} artistInfo={result} />
         </Box>
       )}
     </Box>

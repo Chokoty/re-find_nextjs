@@ -10,14 +10,13 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import ProfileCard2 from '@/components/card/ProfileCard2';
-import MoreLayout from '@/components/layout/more-layout';
-import developers from '@/data/developers';
-import { useResponsive } from '@/hook/useResponsive';
-import { darkMode, lightMode } from '@/styles/theme';
+import DeveloperProfileCard from '@/app/more/components/Card/DeveloperProfileCard';
+import MoreLayout from '@/app/more/components/MoreLayout';
+import { DEVELOPERS } from '@/app/more/lib/const';
+import { useResponsive } from '@/hooks/useResponsive';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function About() {
-  // const setIsOpen = useStore((state) => state.setIsOpen);
   const isMobile = useResponsive();
 
   const highlightColor = useColorModeValue(
@@ -25,14 +24,10 @@ export default function About() {
     darkMode.highlight
   );
 
-  // useEffect(() => {
-  //   setIsOpen(false);
-  // }, [setIsOpen]);
-
   const isMemberCountOdd =
-    developers.filter((item) => item.group === 'member').length % 2 !== 0;
+    DEVELOPERS.filter((item) => item.group === 'member').length % 2 !== 0;
   const isCreditCountOdd =
-    developers.filter((item) => item.group === 'credit').length % 2 !== 0;
+    DEVELOPERS.filter((item) => item.group === 'credit').length % 2 !== 0;
 
   return (
     <MoreLayout title="About">
@@ -94,10 +89,10 @@ export default function About() {
             margin="0 auto"
             p="0"
           >
-            {developers.map(
+            {DEVELOPERS.map(
               (item, index) =>
                 item.group === 'member' && (
-                  <ProfileCard2
+                  <DeveloperProfileCard
                     key={index}
                     writerURL={item.writerURL}
                     profURL={item.profURL}
@@ -132,10 +127,10 @@ export default function About() {
             margin="0 auto"
             p="0"
           >
-            {developers.map(
+            {DEVELOPERS.map(
               (item, index) =>
                 item.group === 'credit' && (
-                  <ProfileCard2
+                  <DeveloperProfileCard
                     key={index}
                     writerURL={item.writerURL}
                     profURL={item.profURL}

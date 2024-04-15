@@ -4,7 +4,7 @@ import { Box, Button, Heading, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import NotFound from '@/public/static/images/404/404-박쥐단.gif';
+import { ErrorImage } from '@/lib/images';
 
 export default function Error({
   error,
@@ -33,7 +33,7 @@ export default function Error({
         {/* <Text>에러내용: {error.message}</Text> */}
       </Box>
       <Image
-        src={NotFound}
+        src={ErrorImage}
         alt="404-박쥐단"
         width={400}
         height={400}

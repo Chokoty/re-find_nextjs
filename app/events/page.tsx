@@ -2,13 +2,11 @@
 
 import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
-import { useEffect } from 'react';
-import { BsCalendarEventFill, BsDoorOpenFill } from 'react-icons/bs';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 
-import SearchLayout from '@/components/layout/search-layout';
-import { useDrawerStore } from '@/store/drawerStore';
-import { darkMode, lightMode } from '@/styles/theme';
+import { darkMode, lightMode } from '@/lib/theme';
+
+import EventLayout from './components/EventLayout';
 
 const events = [
   {
@@ -22,7 +20,7 @@ const events = [
         style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
       />
     ),
-    link: '/events/RandomGacha',
+    link: '/events/randomGacha',
     linkText: '무슨 팬아트가 나올까요?',
   },
   // {
@@ -50,22 +48,15 @@ const events = [
   //       style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
   //     />
   //   ),
-  //   link: '/events/WaktyHallDoor',
+  //   link: '/events/waktyhall',
   //   linkText: '선택을 바꾸시겠습니까?',
   // },
 ];
 
 export default function Events() {
-  const setIsOpen = useDrawerStore((state) => state.setIsOpen);
   const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, []);
-
   return (
-    <SearchLayout title="이벤트관">
-      {/* <MySnowfall /> */}
+    <EventLayout title="이벤트관">
       {events.map((event, index) => (
         <Box
           key={index}
@@ -120,6 +111,6 @@ export default function Events() {
           </Box>
         </Box>
       ))}
-    </SearchLayout>
+    </EventLayout>
   );
 }

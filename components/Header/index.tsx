@@ -15,12 +15,12 @@ import { usePathname } from 'next/navigation';
 import { PiGiftBold } from 'react-icons/pi';
 import { RiMenu2Line } from 'react-icons/ri';
 
-import Modals from '@/components/common/Modal/Modals';
-import HeaderTab from '@/components/Header/HeaderTab';
-import SearchModalOpener from '@/components/search/Modal/SearchModalOpener';
-import { useResponsive } from '@/hook/useResponsive';
-import { useScroll } from '@/hook/useScroll';
-import { darkMode, lightMode } from '@/styles/theme';
+import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
+import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
+import Modals from '@/components/Modal/Modals';
+import { useResponsive } from '@/hooks/useResponsive';
+import { useScroll } from '@/hooks/useScroll';
+import { darkMode, lightMode } from '@/lib/theme';
 
 export default function Header() {
   const pathname = usePathname();
@@ -28,7 +28,7 @@ export default function Header() {
   const isSearchPage = pathname.startsWith('/search');
   const isGalleryPage = pathname.includes('/gallery');
 
-  const isMobile = useResponsive(); // 모바일 환경인지 체크
+  const isMobile = useResponsive();
   const isScrolling = useScroll(60);
   const { colorMode } = useColorMode();
   const isDarkMode = colorMode === 'dark';
@@ -55,9 +55,6 @@ export default function Header() {
       justifyContent="space-between"
       style={{
         backgroundImage: 'none',
-        // backgroundImage: isScrolling
-        //   ? 'none' // 스크롤 시에만 그라데이션 배경 적용
-        //   : `linear-gradient(90deg, ${bg2} 0%, rgba(0, 0, 0, 0) 50%, ${bg2} 100%)`,
         backgroundColor,
         backdropFilter,
         transition: 'background-color 0.3s, background-image 0.3s',
@@ -77,12 +74,10 @@ export default function Header() {
             />
           </Link>
         </Box>
-        {!isMobile && <HeaderTab />}
+        {!isMobile && <DesktopHeaderTab />}
       </Box>
       {!isSearchPage && <SearchModalOpener />}
       <Flex>
-        {/* <DarkModeToggle className="dark-mode-toggle" /> */}
-
         {!isMobile && (
           <Box
             display="flex"
@@ -94,11 +89,6 @@ export default function Header() {
             p="0 1rem"
           ></Box>
         )}
-        {/* <MyDrawer
-          isOpen={isOpenDrawer}
-          toggleDrawer={toggleDrawer}
-          ref={myDrawerRef}
-        /> */}
         <NextLink href="/events">
           <Tooltip label="이벤트관" aria-label="A tooltip">
             <Button
@@ -122,7 +112,6 @@ export default function Header() {
             </Button>
           </Tooltip>
         </NextLink>
-        {/* {isMobile && ( */}
         <NextLink href="/more">
           <Box
             className="hamburger"
@@ -142,7 +131,6 @@ export default function Header() {
           </Box>
         </NextLink>
         <Modals />
-        {/* )} */}
       </Flex>
     </Flex>
   );

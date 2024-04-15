@@ -64,13 +64,29 @@ export const siteConfig = {
         '오직 리파인드에서 진행하는 팬아트 랜덤 가챠를 진행해보세요!',
       url: '/events',
     },
-    detailed(name: string) {
-      const decodedNickname = decodeURIComponent(name);
-      return {
+    detailed(keyword: string) {
+      const decodedNickname = decodeURIComponent(keyword);
+      const result = {
         title: `리파인드 | ${decodedNickname} 이벤트`,
         description: `${decodedNickname}에 관한 갤러리를 확인할 수 있습니다.`,
         url: `/events/${decodedNickname}`,
       };
+      if (keyword === 'randomGacha') {
+        return {
+          ...result,
+          description:
+            '오직 리파인드에서 진행하는 팬아트 랜덤 가챠를 진행해보세요!',
+        };
+      }
+      if (keyword === 'waktyhall') {
+        return {
+          ...result,
+          description:
+            '문 뒤에는 고퀄팬아트와 혐잘딱팬아트, 왁두팬아트가 있습니다, 당신의 선택은?',
+        };
+      }
+
+      return result;
     },
     WaktyHallDoor: {
       title: '리파인드 | 왁티홀의 문',

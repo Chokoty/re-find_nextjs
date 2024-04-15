@@ -6,7 +6,7 @@ import type { Metadata, Viewport } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 
 import Header from '@/components/Header';
-import TabBar from '@/components/TabBar/TabBar';
+import MobileTabBar from '@/components/MobileTabBar';
 import { siteConfig } from '@/lib/config';
 import { Providers } from '@/lib/Providers';
 
@@ -58,7 +58,7 @@ export default function RootLayout({
           <Header />
           {ArtworkModal}
           <main>{children}</main>
-          <TabBar />
+          <MobileTabBar />
           <div id="modal-root" />
           <div id="artwork-modal-root" />
         </Providers>

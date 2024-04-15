@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
-import NotFound from '@/public/static/images/404/404-박쥐단.gif';
+import { ErrorImage } from '@/lib/images';
 
 export default function Error({
   error,
@@ -35,7 +35,7 @@ export default function Error({
       <Text>현재 해당 페이지 복구 작업을 진행하고 있습니다. 감사합니다.</Text>
       <Text mb="1rem">에러내용: {error.message}</Text>
       <Image
-        src={NotFound}
+        src={ErrorImage}
         alt="404-박쥐단"
         width={400}
         height={400}
@@ -62,7 +62,7 @@ export default function Error({
         </Link>
         <Button
           onClick={
-            // Attempt to recover by trying to re-render the segment
+            // 세그먼트를 다시 렌더링하여 복구를 시도합니다.
             () => reset()
           }
         >

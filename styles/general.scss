@@ -6,9 +6,6 @@
 }
 @import './_mixins.scss';
 @import './home.scss';
-// @import "./support.scss";
-@import './otherLayout.scss';
-@import './SwiperCustomStyles.scss';
 
 * {
   margin: 0;
@@ -17,7 +14,9 @@
 
 // swiper pagination bullet customize
 .swiper-pagination .swiper-pagination-bullet {
-  background-color: #d1d6db;
+  width: 0.7rem;
+  height: 0.7rem;
+  background-color: #a0a0a0;
 }
 
 .swiper-pagination .swiper-pagination-bullet-active {
@@ -113,6 +112,13 @@ footer {
   padding: 32px 0;
   // position: relative;
   // color: #ced4da9a !important; // #767676;
+}
+
+.body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }
 
 .thumbsContainer {
