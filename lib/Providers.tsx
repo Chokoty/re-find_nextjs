@@ -9,7 +9,7 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { isAxiosError } from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import theme from '@/lib/theme';
@@ -67,6 +67,18 @@ export function Providers({ children }: React.PropsWithChildren) {
     //   window.location.assign(`/auth/login`);
     // }
   };
+
+  useEffect(() => {
+    localStorage.setItem('theme', 'light');
+    const selectedTheme = localStorage.getItem('theme');
+    if (selectedTheme) {
+      document.body.classList.add(selectedTheme);
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.add('light');
+    }
+  }, []);
 
   return (
     <ChakraProvider theme={theme}>
