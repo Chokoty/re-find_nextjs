@@ -21,6 +21,7 @@
     "@tanstack/react-query-devtools": "^5.25.0",
     "axios": "^1.6.8",
     "browser-image-hash": "^0.0.5",
+    "clsx": "^2.1.0",
     "cross-env": "^7.0.3",
     "date-fns": "^3.4.0",
     "hamburger-react": "^2.5.0",
@@ -45,6 +46,7 @@
     "react-use": "^17.5.0",
     "sharp": "^0.33.2",
     "swiper": "^11.0.6",
+    "tailwind-merge": "^2.2.2",
     "uuid": "^9.0.1",
     "zustand": "^4.5.1"
   },
