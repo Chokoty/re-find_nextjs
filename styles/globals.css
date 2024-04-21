@@ -9,42 +9,278 @@
   src: url('./fonts/ONE-Mobile-POP.woff') format('woff');
 }
 
+:root {
+  /* standard color */
+  --black: #000000;
+  --white: #ffffff;
+  --whiteAlpha-50: rgba(255, 255, 255, 0.04);
+  --whiteAlpha-100: rgba(255, 255, 255, 0.06);
+  --whiteAlpha-200: rgba(255, 255, 255, 0.08);
+  --whiteAlpha-300: rgba(255, 255, 255, 0.16);
+  --whiteAlpha-400: rgba(255, 255, 255, 0.24);
+  --whiteAlpha-500: rgba(255, 255, 255, 0.36);
+  --whiteAlpha-600: rgba(255, 255, 255, 0.48);
+  --whiteAlpha-700: rgba(255, 255, 255, 0.64);
+  --whiteAlpha-800: rgba(255, 255, 255, 0.8);
+  --whiteAlpha-900: rgba(255, 255, 255, 0.92);
+  --blackAlpha-50: rgba(0, 0, 0, 0.04);
+  --blackAlpha-100: rgba(0, 0, 0, 0.06);
+  --blackAlpha-200: rgba(0, 0, 0, 0.08);
+  --blackAlpha-300: rgba(0, 0, 0, 0.16);
+  --blackAlpha-400: rgba(0, 0, 0, 0.24);
+  --blackAlpha-500: rgba(0, 0, 0, 0.36);
+  --blackAlpha-600: rgba(0, 0, 0, 0.48);
+  --blackAlpha-700: rgba(0, 0, 0, 0.64);
+  --blackAlpha-800: rgba(0, 0, 0, 0.8);
+  --blackAlpha-900: rgba(0, 0, 0, 0.92);
+  --redAlpha-200: rgba(254, 178, 178, 0.12);
+  --orangeAlpha-200: rgba(251, 211, 141, 0.12);
+  --yellowAlpha-200: rgba(250, 240, 137, 0.12);
+  --greenAlpha-200: rgba(154, 230, 180, 0.12);
+  --tealAlpha-200: rgba(129, 230, 217, 0.12);
+  --blueAlpha-200: rgba(144, 205, 244, 0.12);
+  --cyanAlpha-200: rgba(157, 236, 249, 0.12);
+  --purpleAlpha-200: rgba(214, 188, 250, 0.12);
+  --pinkAlpha-200: rgba(251, 182, 206, 0.12);
+  --gray-50: #f7fafc;
+  --gray-100: #edf2f7;
+  --gray-125: #e5e7eb;
+  --gray-150: #e0e0e0;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e0;
+  --gray-400: #b0b6be;
+  --gray-500: #8c9199;
+  --gray-600: #62656d;
+  --gray-700: #363c46;
+  --gray-800: #222224;
+  --gray-900: #171923;
+  --red-50: #fff5f5;
+  --red-100: #fed7d7;
+  --red-200: #feb2b2;
+  --red-300: #fc8181;
+  --red-400: #f56565;
+  --red-500: #e53e3e;
+  --red-600: #c53030;
+  --red-700: #9b2c2c;
+  --red-800: #822727;
+  --red-900: #63171b;
+  --orange-50: #fffaf0;
+  --orange-100: #feebc8;
+  --orange-200: #fbd38d;
+  --orange-300: #f6ad55;
+  --orange-400: #ed8936;
+  --orange-500: #dd6b20;
+  --orange-600: #c05621;
+  --orange-700: #9c4221;
+  --orange-800: #7b341e;
+  --orange-900: #652b19;
+  --yellow-50: #fffff0;
+  --yellow-100: #fefcbf;
+  --yellow-200: #faf089;
+  --yellow-300: #f6e05e;
+  --yellow-400: #ecc94b;
+  --yellow-500: #d69e2e;
+  --yellow-600: #b7791f;
+  --yellow-700: #975a16;
+  --yellow-800: #744210;
+  --yellow-900: #5f370e;
+  --green-50: #f0fff4;
+  --green-100: #c6f6d5;
+  --green-200: #9ae6b4;
+  --green-300: #68d391;
+  --green-400: #48bb78;
+  --green-500: #38a169;
+  --green-600: #2f855a;
+  --green-700: #276749;
+  --green-800: #22543d;
+  --green-900: #1c4532;
+  --teal-50: #e6fffa;
+  --teal-75: #c1eadf;
+  --teal-100: #b2f5ea;
+  --teal-200: #81e6d9;
+  --teal-300: #4fd1c5;
+  --teal-400: #38b2ac;
+  --teal-500: #319795;
+  --teal-600: #2c7a7b;
+  --teal-700: #285e61;
+  --teal-800: #234e52;
+  --teal-900: #1d4044;
+  --blue-50: #ebf8ff;
+  --blue-100: #bee3f8;
+  --blue-200: #90cdf4;
+  --blue-300: #63b3ed;
+  --blue-400: #4299e1;
+  --blue-500: #3182ce;
+  --blue-600: #2b6cb0;
+  --blue-700: #2c5282;
+  --blue-800: #2a4365;
+  --blue-900: #1a365d;
+  --cyan-50: #edfdfd;
+  --cyan-100: #c4f1f9;
+  --cyan-200: #9decf9;
+  --cyan-300: #76e4f7;
+  --cyan-400: #0bc5ea;
+  --cyan-500: #00b5d8;
+  --cyan-600: #00a3c4;
+  --cyan-700: #0987a0;
+  --cyan-800: #086f83;
+  --cyan-900: #065666;
+  --purple-50: #faf5ff;
+  --purple-100: #e9d8fd;
+  --purple-200: #d6bcfa;
+  --purple-300: #b794f4;
+  --purple-400: #9f8aea;
+  --purple-500: #805ad5;
+  --purple-600: #6b46c1;
+  --purple-700: #553c9a;
+  --purple-800: #44337a;
+  --purple-900: #322659;
+  --pink-50: #fff5f7;
+  --pink-100: #fed7e2;
+  --pink-200: #fbb6ce;
+  --pink-300: #f687b3;
+  --pink-400: #ed64a6;
+  --pink-500: #d53f8c;
+  --pink-600: #b83280;
+  --pink-700: #97266d;
+  --pink-800: #702459;
+  --pink-900: #521b41;
+  /* site color*/
+  --linkedin-50: #e8f4f9;
+  --linkedin-100: #cfedfb;
+  --linkedin-200: #9bdaf3;
+  --linkedin-300: #68c7ec;
+  --linkedin-400: #34b3e4;
+  --linkedin-500: #00a0dc;
+  --linkedin-600: #008cc9;
+  --linkedin-700: #0077b5;
+  --linkedin-800: #005e93;
+  --linkedin-900: #004471;
+  --facebook-50: #e8f4f9;
+  --facebook-100: #d9dee9;
+  --facebook-200: #b7c2da;
+  --facebook-300: #6482c0;
+  --facebook-400: #4267b2;
+  --facebook-500: #385898;
+  --facebook-600: #314e89;
+  --facebook-700: #29487d;
+  --facebook-800: #223b67;
+  --facebook-900: #1e355b;
+  --messenger-50: #d0e6ff;
+  --messenger-100: #b9daff;
+  --messenger-200: #a2cdff;
+  --messenger-300: #7ab8ff;
+  --messenger-400: #2e90ff;
+  --messenger-500: #0078ff;
+  --messenger-600: #0063d1;
+  --messenger-700: #0052ac;
+  --messenger-800: #003c7e;
+  --messenger-900: #002c5c;
+  --whatsapp-50: #dffeec;
+  --whatsapp-100: #b9f5d0;
+  --whatsapp-200: #90edb3;
+  --whatsapp-300: #65e495;
+  --whatsapp-400: #3cdd78;
+  --whatsapp-500: #22c35e;
+  --whatsapp-600: #179848;
+  --whatsapp-700: #0c6c33;
+  --whatsapp-800: #01421c;
+  --whatsapp-900: #001803;
+  --twitter-50: #e5f4fd;
+  --twitter-100: #c8e9fb;
+  --twitter-200: #a8dcfa;
+  --twitter-300: #83cdf7;
+  --twitter-400: #57bbf5;
+  --twitter-500: #1da1f2;
+  --twitter-600: #1a94da;
+  --twitter-700: #1681bf;
+  --twitter-800: #136b9e;
+  --twitter-900: #0d4d71;
+  --telegram-50: #e3f2f9;
+  --telegram-100: #c5e4f3;
+  --telegram-200: #a2d4ec;
+  --telegram-300: #7ac1e4;
+  --telegram-400: #47a9da;
+  --telegram-500: #0088cc;
+  --telegram-600: #007ab8;
+  --telegram-700: #006ba1;
+  --telegram-800: #005885;
+  --telegram-900: #003f5e;
+  /* custom color */
+  --darkmode-bg: #121212;
+  /* --darkmode-color: #e8eaec; */
+  /* --darkmode-footer: #ced4da9a; */
+  --lightmode-bg: #f8f9fa;
+  /* --lightmode-color: #1b1642; */
+  /* --lightmode-footer: #222222; */
+  /* --myblack-100: #282828;
+  --myblack-200: #24292e; */
+  --darkmode-card-bg: #262424;
+  --mainColor-100: #01bda1;
+  --mainColor-200: #ef5a9a;
+  /* font-body */
+  --fonts-body: Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  /* transition-duration */
+  --transition-duration-ultra-fast: 50ms;
+  --transition-duration-faster: 100ms;
+  --transition-duration-fast: 150ms;
+  --transition-duration-normal: 200ms;
+  --transition-duration-slow: 300ms;
+  --transition-duration-slower: 400ms;
+  --transition-duration-ultra-slow: 500ms;
+  /* line-height */
+  --lineHeights-3: 0.75rem;
+  --lineHeights-4: 1rem;
+  --lineHeights-5: 1.25rem;
+  --lineHeights-6: 1.5rem;
+  --lineHeights-7: 1.75rem;
+  --lineHeights-8: 2rem;
+  --lineHeights-9: 2.25rem;
+  --lineHeights-10: 2.5rem;
+  --lineHeights-normal: normal;
+  --lineHeights-none: 1;
+  --lineHeights-shorter: 1.25;
+  --lineHeights-short: 1.375;
+  --lineHeights-base: 1.5;
+  --lineHeights-tall: 1.625;
+  --lineHeights-taller: 2;
+}
+/* TODO: chakra 라이브러리 제거후 안쓸지 결정 */
 * {
   margin: 0;
   padding: 0;
 }
-
+/* TODO: chakra 라이브러리 제거후 안쓸지 결정 */
 html {
   /* 사파리 적용 */
   overflow-x: hidden;
   font-size: 16px;
 }
 body {
-  font-family:
-    Pretendard,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    Oxygen,
-    Ubuntu,
-    Cantarell,
-    'Open Sans',
-    'Helvetica Neue',
-    sans-serif !important;
-
   &.light {
-    --background: 248, 249, 250; /* #f8f9fa */
-    --hightlight: 1, 189, 161; /* #01bda1 */
-    --dashed-border: 0, 0, 0; /* #000000 */
+    --background: var(--lightmode-bg);
+    --color: var(--gray-900);
+    --hightlight: var(--mainColor-100);
+    --dashed-border: var(--black);
+    --card: var(--white);
   }
 
   &.dark {
-    --background: 18, 18, 18; /* #121212 */
-    --hightlight: 239, 128, 177; /* #EF80B1 */
-    --dashed-border: 224, 224, 224; /* #e0e0e0 */
+    --background: var(--darkmode-bg);
+    --color: var(--gray-50);
+    --hightlight: var(--mainColor-200);
+    --dashed-border: var(--gray-150);
+    --card: var(--darkmode-card-bg);
   }
-  background: rgb(var(--background));
+
+  /* TODO: Chakra 라이브러리 제거 후 !important 지우기 */
+  font-family: var(--fonts-body) !important;
+  color: var(--color) !important;
+  background: var(--background) !important;
+  transition-property: background-color;
+  transition-duration: var(--transition-duration-normal) !important;
+  line-height: var(--lineHeights-base) !important;
 }
 
 /* swiper pagination bullet customize */
