@@ -11,6 +11,7 @@ import {
   Lilpa,
   LilpaBirthday,
   Rewind2Year,
+  TiffanyWouldYouMia,
   Viichan,
   ViichanBirthday,
   Wakgood,
@@ -32,6 +33,8 @@ export const getStaticImage = (cover: string) => {
       return ViichanBirthday;
     case 'lilpaBirthday':
       return LilpaBirthday;
+    case 'tiffanyWouldYouMia':
+      return TiffanyWouldYouMia;
     case 'ine':
       return Ine;
     case 'jingburger':

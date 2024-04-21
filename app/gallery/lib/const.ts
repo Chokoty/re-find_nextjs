@@ -20,6 +20,16 @@ const GALLERY_LIST: Gallery[] = [
   },
   {
     id: 1,
+    value: 'tiffanyWouldYouMia',
+    type: 'special',
+    title: 'RE:START',
+    description: '오랜 기다림 끝에 돌아온 티파니님을 환영합니다!',
+    subTitle: '티파니님의 팬아트',
+    query:
+      'artworks?query=티파니&query=우주미아&board=gomem&board=gomem_behind&title=',
+  },
+  {
+    id: 2,
     value: 'kissingYou',
     type: 'special',
     title: '이세돌 키싱유 팬아트',
@@ -29,7 +39,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?query=kissing&query=키싱&query=키씽&query=뚜뚜뚜&query=뚜두루&query=고마워 사랑해&query=사랑해 한마디&query=너만을 사랑해&case_sensitive=false&board=isd&board=best&title=',
   },
   {
-    id: 2,
+    id: 3,
     value: 'lilpaBirthday',
     type: 'special',
     title: '릴파님 생일 팬아트',
@@ -38,7 +48,7 @@ const GALLERY_LIST: Gallery[] = [
     query: 'gallery?member=lilpa&since=20240309&until=20240309',
   },
   {
-    id: 3,
+    id: 4,
     value: 'viichanBirthday',
     type: 'special',
     title: '비챤님 생일 팬아트',
@@ -47,7 +57,7 @@ const GALLERY_LIST: Gallery[] = [
     query: 'gallery?member=viichan&since=20240116&until=20240116',
   },
   {
-    id: 4,
+    id: 5,
     value: 'rewind2year',
     type: 'special',
     title: '이세돌 2주년 팬아트',
@@ -57,7 +67,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=리와인드&query=rewind&query=re:wind&query=데뷔%202주년',
   },
   {
-    id: 5,
+    id: 6,
     value: 'christmas',
     type: 'keyword',
     title: '크리스마스 팬아트',
@@ -67,7 +77,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
   },
   {
-    id: 6,
+    id: 7,
     value: 'halloween',
     type: 'keyword',
     title: '할로윈 팬아트',
