@@ -22,6 +22,7 @@ export { default as Lilpa } from '@/public/static/images/gallery/member/lilpa.we
 export { default as Viichan } from '@/public/static/images/gallery/member/viichan.webp';
 export { default as Wakgood } from '@/public/static/images/gallery/member/wakgood.webp';
 export { default as Rewind2Year } from '@/public/static/images/gallery/rewind2year.webp';
+export { default as TiffanyWouldYouMia } from '@/public/static/images/gallery/tiffanyWouldYouMia.webp';
 export { default as ViichanBirthday } from '@/public/static/images/gallery/viichanBirthday.webp';
 export { default as VirtualIsd } from '@/public/static/images/gallery/virtualIsd.webp';
 export { default as NotSearch } from '@/public/static/images/original_18.png';
