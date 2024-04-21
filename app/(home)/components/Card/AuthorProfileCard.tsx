@@ -1,10 +1,8 @@
-import { Avatar, Box, Button, Text, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
-import NextLink from 'next/link';
+import Link from 'next/link';
 
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
-import { darkMode, lightMode } from '@/lib/theme';
 
 interface AuthorProfileCardProps {
   author: SourceAuthor;
@@ -18,87 +16,27 @@ export default function AuthorProfileCard({
   profURL,
   nickname,
 }: AuthorProfileCardProps) {
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
-
-  // const member_link = useResponsiveLink(
-  //   writerURL?.split('/').pop() || 'default',
-  //   'member'
-  // );
-
   return (
-    <NextLink
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-      }}
-      href={`/artists/${nickname}`}
-    >
-      <Button
-        backgroundColor={bg2}
-        _hover={{
-          backgroundColor: bg3,
-        }}
-        as="a"
-        target="_blank"
-        borderRadius="lg"
-        overflow="hidden"
-        p="1rem"
-        minW="240px"
-        h="100%"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        gap="1rem"
-        w="100%"
-      >
-        <Box
-          display="flex"
-          flexDirection={['column', 'row', 'row']}
-          justifyContent="center"
-          alignItems="center"
-          w="100%"
-          gap="1rem"
-        >
-          {profURL === 'NULL' ? (
-            <Avatar size="lg" name={nickname} src={profURL || ''} />
-          ) : (
-            <div
-              style={{
-                borderRadius: '50%',
-                overflow: 'hidden',
-                position: 'relative',
-                width: 96,
-                height: 96,
-              }}
-            >
-              <Image
-                src={
-                  profURL ||
-                  'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
-                }
-                alt={nickname}
-                fill={true}
-                unoptimized
-              />
-            </div>
-          )}
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            gap="0.5rem"
-          >
-            <Text fontSize="lg" textAlign="center">
-              {nickname || '프로필은 왁물원에서'}
-            </Text>
-          </Box>
-        </Box>
+    <Link className="mb-2 size-full" href={`/artists/${nickname}`}>
+      <div className="flex size-full flex-col items-center justify-center gap-4 rounded-xl bg-card p-8 transition hover:bg-blackAlpha-100 dark:hover:bg-whiteAlpha-100">
+        <div className="flex w-full flex-col items-center justify-center gap-4 2sm:flex-row">
+          <div className="size-[96px]">
+            <Image
+              width={100}
+              height={100}
+              className="size-[96px] rounded-full object-cover"
+              src={
+                profURL ||
+                'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
+              }
+              alt={nickname}
+              unoptimized
+            />
+          </div>
+          <p className="text-center text-lg">
+            {nickname || '프로필은 왁물원에서'}
+          </p>
+        </div>
         <SortTypeIcons
           sortCriteria={null}
           artist={author}
@@ -110,7 +48,7 @@ export default function AuthorProfileCard({
           component={'inNickname'}
           onSelectViewType={null}
         />
-      </Button>
-    </NextLink>
+      </div>
+    </Link>
   );
 }

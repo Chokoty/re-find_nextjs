@@ -1,11 +1,8 @@
 import {
-  Button,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
-  ModalHeader,
   ModalOverlay,
   useColorModeValue,
 } from '@chakra-ui/react';
@@ -13,16 +10,10 @@ import { useEffect, useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useImageViewerStore } from '@/app/events/store/imageViewerStore';
-import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/lib/theme';
 
 import ImageView from './ImageView';
 
 export default function DetailedImageViewer() {
-  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const isMobile = useResponsive(); // 모바일 환경인지 체크
-
   const { fanart, isOpen, setIsOpen } = useImageViewerStore(
     useShallow((state) => ({
       fanart: state.fanart,

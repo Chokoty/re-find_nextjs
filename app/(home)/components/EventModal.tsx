@@ -60,8 +60,7 @@ export default function EventModal() {
             드래그하여 인증해 주시면 작은 선물을 드릴 예정입니다.
           </Text>
           <br />
-          드래그해서 보기:{' '}
-          <span className="hidden-text">원대한 꿈이 있잖아~</span>
+          드래그해서 보기: <span>원대한 꿈이 있잖아~</span>
           <br />
           <br />
           <Text>

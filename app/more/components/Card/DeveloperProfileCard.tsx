@@ -41,12 +41,7 @@ export default function DeveloperProfileCard({
   );
 
   return (
-    <Link
-      // w="100%"
-      className="link-to-wakzoo"
-      href={writerURL === '' ? '#' : member_link}
-      isExternal
-    >
+    <Link href={writerURL === '' ? '#' : member_link} isExternal>
       <Button
         _hover={{ textDecoration: 'none' }}
         color={'#f5f5f5'}

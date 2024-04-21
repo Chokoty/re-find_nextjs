@@ -27,7 +27,6 @@ export default function SimpleCard({ artwork }: Prop) {
   });
   return (
     <Link
-      className="link-to-wakzoo-from-profile"
       key={artwork.id}
       href={artwork?.id ? article_link + artwork.id : '#'}
       isExternal

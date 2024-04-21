@@ -6,10 +6,11 @@ import { cn } from '@/lib/common';
 
 export type CustomVariantProps = VariantProps<typeof buttonStyles>;
 
-type ButtonProps = React.HTMLAttributes<HTMLButtonElement> &
-  CustomVariantProps & {
-    additionalClass?: string;
-  };
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    CustomVariantProps {
+  additionalClass?: string;
+}
 
 const buttonStyles = cva(
   'inline-flex select-none items-center justify-center whitespace-nowrap rounded-md align-middle font-semibold leading-tight outline-none outline-offset-2 transition',

@@ -1,5 +1,6 @@
-import { Box, Button, Text } from '@chakra-ui/react';
+import clsx from 'clsx';
 
+import Button, { type CustomVariantProps } from '@/components/Button';
 import { VIEW_TYPES } from '@/constants/artists';
 
 type Props = {
@@ -24,53 +25,41 @@ export default function ViewTypeIcons({
     (viewType) => artist[viewType.value] === 0
   );
 
-  let align = ['center', 'center', 'center'];
-  if (component === 'inIndex') {
-    align = ['center', 'center', 'flex-end'];
-  }
-
   return (
-    <Box
-      display="flex"
-      flexDirection="row"
-      justifyContent={align}
-      w="auto"
-      flexWrap="wrap"
-      gap="0.5rem"
+    <div
+      className={clsx(
+        'flex w-auto flex-row flex-wrap justify-center gap-2',
+        component === 'inIndex'
+          ? 'justify-center md:justify-end'
+          : 'justify-center'
+      )}
     >
       {isAllZero ? (
-        <Text fontSize="md" color="gray.500">
-          정보 없음
-        </Text>
+        <p className="text-base text-gray-500">정보 없음</p>
       ) : (
         VIEW_TYPES.map(
           (viewType, index) =>
             artist[viewType.value] !== 0 && (
               <Button
                 key={index}
-                colorScheme={viewType.colorScheme}
-                variant={
-                  // sortCriteria?.field === viewType.value ? 'solid' : 'outline'
-                  selectedView === null || selectedView !== viewType.value
-                    ? 'outline'
-                    : 'solid'
+                intent={
+                  (selectedView === null || selectedView !== viewType.value
+                    ? `outline-${viewType.colorScheme}`
+                    : `solid-${viewType.colorScheme}`) as CustomVariantProps['intent']
                 }
-                size="sm"
-                display="flex"
-                flexDirection={['row', 'row', 'column']}
-                h={['2rem', '2rem', '3rem']}
-                gap={['0.5rem', '0.5rem', '0']}
                 onClick={() => {
                   if (!onSelectViewType) return;
                   onSelectViewType(viewType.value);
                 }}
+                // size="lg"
+                additionalClass="flex h-8 flex-row gap-2 md:h-12 md:flex-col md:gap-0 ps-3 pe-3"
               >
-                <Text fontSize="sm">{viewType.name}</Text>
-                <Text fontSize="md"> {artist[viewType.value]}</Text>
+                <p className="text-sm">{viewType.name}</p>
+                <p className="text-base"> {artist[viewType.value]}</p>
               </Button>
             )
         )
       )}
-    </Box>
+    </div>
   );
 }

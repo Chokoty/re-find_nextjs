@@ -10,7 +10,6 @@ import {
   ModalOverlay,
   Text,
   useBreakpointValue,
-  useColorMode,
   useColorModeValue,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
@@ -23,16 +22,11 @@ export default function MelonVoteModal() {
   const { setCookie, getCookie, deleteCookie } = useCookie();
 
   const [isOpen, setIsOpen] = useState(false);
-  const { colorMode, toggleColorMode } = useColorMode();
   const [color, setColor] = useState('#052e16'); // 초기 색상 설정
 
   // Theme
   const color3 = useColorModeValue(lightMode.color2, darkMode.color3);
 
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
   const modalWidth = useBreakpointValue({ base: '92%', sm: '392px' });
 
   const handleCloseModal = () => {
@@ -53,7 +47,6 @@ export default function MelonVoteModal() {
     const dontShowAdayCookie = getCookie('dontShowAday');
     const dontShowAdayLocalStorage = localStorage.getItem('dontShowAday');
 
-    console.log('!!!', getCookie('dontShowAday'));
     if (dontShowAdayCookie !== 'true' || dontShowAdayLocalStorage !== 'true') {
       handleOpenModal();
     }
@@ -68,12 +61,6 @@ export default function MelonVoteModal() {
 
     return () => clearInterval(interval); // 컴포넌트가 언마운트될 때 인터벌 제거
   }, []);
-
-  const modalStyles = {
-    bg: 'gray.800', // 배경색 지정
-    color: 'white', // 텍스트 색상 지정
-    borderRadius: '8px', // 모서리 둥글게
-  };
 
   return (
     <Box

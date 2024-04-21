@@ -17,12 +17,11 @@ import { RANDOM_FANARTS } from '@/constants/randomFanarts';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
-type Props = {
-  initialFanart: null;
+export default function RandomFanartButton({
+  selectedEventKey,
+}: {
   selectedEventKey: string;
-};
-
-export default function RandomFanartButton({ selectedEventKey }: Props) {
+}) {
   const selectedEvent = RANDOM_FANARTS.find(
     (event) => event.key === selectedEventKey
   );
@@ -102,7 +101,7 @@ export default function RandomFanartButton({ selectedEventKey }: Props) {
 
     if (!data) {
       return (
-        <div className="random-fanart__guide" style={guide}>
+        <div style={guide}>
           <Flex
             direction={direction}
             alignItems="center"
@@ -143,7 +142,6 @@ export default function RandomFanartButton({ selectedEventKey }: Props) {
           pt="2rem"
         >
           <Link
-            className="link-to-wakzoo"
             href={article_link}
             // passHref
             isExternal
@@ -203,11 +201,10 @@ export default function RandomFanartButton({ selectedEventKey }: Props) {
 
   return (
     <Box p="0.5rem" w="100%" borderRadius="lg">
-      <div style={previewContainer} className="random-fanart">
+      <div style={previewContainer}>
         {content()}
         <Flex gap="2">
           <Button
-            className="random-fanart-kidding"
             colorScheme="yellow"
             size="md"
             mt="1rem"

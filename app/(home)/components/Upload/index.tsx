@@ -3,10 +3,9 @@
 import { useEffect } from 'react';
 import { useShallow } from 'zustand/react/shallow';
 
+import BeforeUpload from '@/app/(home)/components/Upload/BeforeUpload';
+import ImageViewer from '@/app/(home)/components/Upload/ImageViewer';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
-
-import BeforeUpload from './BeforeUpload';
-import ImageViewer from './ImageViewer';
 
 export default function Upload() {
   const { hashs, uploadedfiles, resetFiles } = useImageUploadStore(

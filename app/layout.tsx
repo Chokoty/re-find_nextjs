@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
-      <body className="dark">
+      <body>
         <Providers>
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />

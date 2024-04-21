@@ -69,14 +69,14 @@ export function Providers({ children }: React.PropsWithChildren) {
   };
 
   useEffect(() => {
-    localStorage.setItem('theme', 'light');
+    // localStorage.setItem('theme', 'light');
     const selectedTheme = localStorage.getItem('theme');
     if (selectedTheme) {
       document.body.classList.add(selectedTheme);
     } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add('dark');
     } else {
-      document.body.classList.add('light');
+      document.body.classList.add('dark');
     }
   }, []);
 

@@ -1,6 +1,6 @@
 import type { OpenGraphType } from 'next/dist/lib/metadata/types/opengraph-types';
 
-import { GalleryMap } from './const';
+import { GalleryMap } from '@/lib/const';
 
 export const siteConfig = {
   mainDomain: 'https://re-find.xyz',

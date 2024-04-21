@@ -161,7 +161,6 @@ export default function ArtistProfile({
         mb="2rem"
       >
         <Button
-          className="link-to-wakzoo-from-profile"
           colorScheme="gray"
           borderRadius="full"
           m="0 0.5rem"

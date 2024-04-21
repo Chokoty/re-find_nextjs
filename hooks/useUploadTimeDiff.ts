@@ -11,7 +11,7 @@ export const useUploadTimeDiff = (writeDate: string): string => {
     const nowUTC = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
     const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
     const nowKR = new Date(nowUTC + KR_TIME_DIFF);
-    const parts = writeDate.split(/[\s.:]+/);
+    const parts = writeDate.split(/[\s\-.:]+/);
 
     const year = parseInt(parts[0]);
     const month = parseInt(parts[1]) - 1;

@@ -42,7 +42,6 @@ export default function More() {
       >
         <AiFillExperiment
           color="white"
-          className="icon"
           style={{
             width: '20px',
             height: '20px',
@@ -54,7 +53,7 @@ export default function More() {
           (beta)이세돌 팬아트를 키워드로 찾아주는 AI
         </Text>
       </Link>
-      <UpdateLogBoard width={'90%'} />
+      <UpdateLogBoard />
     </MoreLayout>
   );
 }

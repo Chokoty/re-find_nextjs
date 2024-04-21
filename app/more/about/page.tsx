@@ -57,7 +57,6 @@ export default function About() {
           <li>
             <Link
               color={highlightColor}
-              className="link-to-wakzoo"
               href={'https://cafe.naver.com/steamindiegame/9859159'}
               isExternal
             >
@@ -80,7 +79,6 @@ export default function About() {
           </Text>
           <Flex
             w="90%"
-            className="developers"
             display="flex"
             flexWrap="wrap"
             gap="20px"
@@ -118,7 +116,6 @@ export default function About() {
           </Text>
           <Flex
             w="90%"
-            className="developers"
             display="flex"
             flexWrap="wrap"
             gap="20px"

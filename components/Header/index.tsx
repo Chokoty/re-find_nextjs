@@ -114,7 +114,6 @@ export default function Header() {
         </NextLink>
         <NextLink href="/more">
           <Box
-            className="hamburger"
             w="3rem"
             h="3rem"
             display="flex"

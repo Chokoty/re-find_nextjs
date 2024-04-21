@@ -1,6 +1,5 @@
 export { default as RealWakGood } from '@/public/real-wakgood.webp';
 export { default as Afreeca } from '@/public/static/icons/afreecatv-logo.webp';
-export { default as Twitter } from '@/public/static/icons/twitter-x-logo.webp';
 export { default as Waksplorer } from '@/public/static/icons/waksplorer-logo.webp';
 export { default as Wakzoo } from '@/public/static/icons/wakzoo-logo.webp';
 export { default as ErrorImage } from '@/public/static/images/404/404-박쥐단.gif';

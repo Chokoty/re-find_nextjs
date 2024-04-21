@@ -1,4 +1,3 @@
-import { Box, Button } from '@chakra-ui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
@@ -11,6 +10,7 @@ import { TARGET_COUNT } from '@/app/(home)/lib/const';
 import queryOptions from '@/app/(home)/service/client/queries';
 import { useImageInfo } from '@/app/(home)/service/client/useHomeService';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
+import Button from '@/components/Button';
 
 type Prop = {
   hashs: string[];
@@ -51,13 +51,7 @@ export default function ImageViewer({ hashs }: Prop) {
   const getResult = () => {
     if (!data) {
       return (
-        <Button
-          onClick={resetFiles}
-          size="lg"
-          colorScheme="blue"
-          mt="20px"
-          w={200}
-        >
+        <Button onClick={resetFiles} size="lg">
           다른 이미지 검색
         </Button>
       );
@@ -68,19 +62,9 @@ export default function ImageViewer({ hashs }: Prop) {
   };
 
   return (
-    <Box
-      className="result-area"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      borderRadius="1rem"
-      w={['90%', '90%', '100%']}
-      m="1rem 0 10rem 0"
-      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
-    >
+    <div className="my-4 flex w-full flex-col items-center justify-center rounded-2xl bg-card px-4 py-8 shadow-cardBox">
       <Preview data={data} isLoading={isLoading} />
       {isLoading ? <Loading /> : getResult()}
-    </Box>
+    </div>
   );
 }

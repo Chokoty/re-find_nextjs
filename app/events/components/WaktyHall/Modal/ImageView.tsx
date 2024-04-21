@@ -1,31 +1,20 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Link,
-  Text,
-  useBreakpointValue,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import React, { useState } from 'react';
-import { FaComment, FaEye, FaImage, FaThumbsUp } from 'react-icons/fa';
 import { HiOutlineExternalLink } from 'react-icons/hi';
 
-import { formatArtistValue } from '@/hooks/useFormatArtistValue';
-import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { darkMode, lightMode } from '@/lib/theme';
 
-const iconStyle = {
-  width: '1rem',
-  height: '1rem',
-};
-const iconStyleMobile = {
-  width: '0.6rem',
-  height: '0.6rem',
-};
+// const iconStyle = {
+//   width: '1rem',
+//   height: '1rem',
+// };
+// const iconStyleMobile = {
+//   width: '0.6rem',
+//   height: '0.6rem',
+// };
 
 type Props = {
   width: number;

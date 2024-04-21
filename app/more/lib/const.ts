@@ -396,6 +396,7 @@ export const UPDATE_LOGS: UpdateLog[] = [
     date: '2024.04.01',
     type: '[안내]',
     content: '만우절 기념 왁티홀의 문을 체험해보고 슛코 팬아트를 공개합니다!',
+    directLink: 'https://cafe.naver.com/steamindiegame/15785022',
   },
   {
     id: 40,
@@ -417,5 +418,6 @@ export const UPDATE_LOGS: UpdateLog[] = [
     type: '[안내]',
     content:
       '갤러리 페이지가 리뉴얼 되었습니다. 더불어 추가된 팬아트 세부 페이지에서 추천 시스템(beta)을 이용할 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/15913134',
   },
 ];

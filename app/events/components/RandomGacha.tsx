@@ -21,7 +21,7 @@ export default function RandomGacha() {
         }}
       ></div>
       <RandomFanart />
-      <EventFanarts initialFanart={null} showCnt={0} width={'100%'} />
+      <EventFanarts />
     </EventLayout>
   );
 }

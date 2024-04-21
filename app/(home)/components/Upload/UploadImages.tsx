@@ -1,9 +1,3 @@
-import {
-  Box,
-  Text,
-  useBreakpointValue,
-  useColorModeValue,
-} from '@chakra-ui/react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { useShallow } from 'zustand/react/shallow';
@@ -11,7 +5,6 @@ import { useShallow } from 'zustand/react/shallow';
 import { useUpload } from '@/app/(home)/hooks/useUpload';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
 import { UploadHoverImage, UploadImage } from '@/lib/images';
-import { darkMode, lightMode } from '@/lib/theme';
 
 export default function UploadImages() {
   const { setHashs, setUploadedFiles } = useImageUploadStore(
@@ -43,52 +36,22 @@ export default function UploadImages() {
     }, 1000);
   };
 
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-  const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const width = useBreakpointValue({ base: '90%', md: '100%' });
-
   return (
-    <Box
-      w={width}
-      maxW="700px"
-      backgroundColor={bgColor2}
-      borderRadius="1rem"
-      m="1rem 0"
-      p="1rem 0"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
-    >
-      <Box
-        className={`uploader ${isDragActive ? 'active' : ''} ${
-          highlightColor === '#01bda1' ? 'light' : 'dark'
-        }`}
-        border="0.25rem dashed #6d6d6d"
-        borderRadius="1rem"
-        cursor="pointer"
-        p="1rem"
-        maxW="500px"
-        w="100%"
+    <div className="my-4 flex w-full flex-col items-center justify-center gap-6 rounded-2xl bg-card py-4 shadow-cardBox">
+      {/* image draggable area */}
+      <div
+        className={`w-[90%] max-w-[300px] cursor-pointer rounded-2xl border-4 border-dashed border-[#6d6d6d] p-4 hover:border-dashed-border xs:w-4/5 xs:max-w-[360px] md:w-3/5 md:max-w-[500px] 
+        lg:w-full
+        ${isDragActive ? 'border-hightlight' : ''}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}
       >
-        <Box
+        <div
           {...getRootProps()}
-          w="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          gap="0.5rem"
+          className="flex w-full flex-col items-center justify-center gap-2"
         >
           <input {...getInputProps()} />
-          {/* <SlCloudUpload className="logo" /> */}
           {isClick ? (
             <Image
               src={UploadHoverImage}
@@ -104,27 +67,17 @@ export default function UploadImages() {
               height={160}
             />
           )}
-
-          <Box>
-            {isDragActive ? (
-              <Text>이미지를 여기에 드롭하세요!</Text>
-            ) : (
-              <Text maxW="300px" textAlign="center">
-                이미지를 여기로 드래그하거나 화면을 클릭하여 파일을&nbsp;
-                <span
-                  className="underline"
-                  style={{
-                    color: highlightColor,
-                  }}
-                >
-                  업로드
-                </span>
-                하세요.
-              </Text>
-            )}
-          </Box>
-        </Box>
-      </Box>
-    </Box>
+          {isDragActive ? (
+            <p>이미지를 여기에 드롭하세요!</p>
+          ) : (
+            <p className="max-w-[300px] text-center">
+              이미지를 여기로 드래그하거나 화면을 클릭하여 파일을&nbsp;
+              <span className="text-hightlight underline">업로드</span>
+              하세요.
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }

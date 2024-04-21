@@ -1,58 +1,19 @@
-import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 import { PiGiftBold } from 'react-icons/pi';
 
-import { darkMode, lightMode } from '@/lib/theme';
-
 export default function Event() {
-  const bg2 = useColorModeValue(lightMode.bg3, darkMode.bg2);
-
   return (
-    <Box
-      w="100%"
-      h="100%"
-      p={['0.8rem 0', '1.5rem 0', '2.7rem 0']}
-      maxW="700px"
-      maxH="130px"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      background={bg2}
-      borderRadius="1rem"
-      // boxShadow="md"
-    >
-      <Text
-        // color={color3}
-        fontSize={['1.2rem', '1.5rem', '1.7rem']}
-        fontWeight="bold"
-        mb="1rem"
-      >
+    <div className="flex size-full max-h-[130px] flex-col items-center justify-center rounded-2xl bg-card py-3 shadow-cardBox 2sm:py-6 md:py-11">
+      <p className="mb-4 text-lg font-bold 2sm:text-base md:text-[1.7rem]">
         이벤트 페이지 개설!
-      </Text>
+      </p>
       <Link
         href="/events"
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          background: '#d6bcfa',
-          color: '#1a202c',
-          width: '60%',
-          padding: '0.5rem',
-          borderRadius: '1rem',
-          fontWeight: 600,
-          // _hover={{ background: '#ddd', color: 'black' }}
-        }}
+        className="flex w-3/5 items-center justify-center rounded-2xl bg-purple-200 p-2 font-semibold text-gray-800 transition hover:bg-purple-300"
       >
-        <PiGiftBold
-          style={{
-            width: '1.5rem',
-            height: '1.5rem',
-            marginRight: '0.5rem',
-          }}
-        />
+        <PiGiftBold className="mr-2 size-6" />
         팬아트 가챠 하러가기
       </Link>
-    </Box>
+    </div>
   );
 }

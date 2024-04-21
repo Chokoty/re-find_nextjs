@@ -161,7 +161,7 @@ export default function RandomFanart() {
 
     if (!data) {
       return (
-        <div className="random-fanart__guide" style={guide}>
+        <div style={guide}>
           <Text fontSize="xl" fontWeight="bold" mb="1rem">
             아래 버튼을 누르면 랜덤 팬아트가 나와요!
           </Text>
@@ -183,7 +183,6 @@ export default function RandomFanart() {
           // mb="1rem"
         >
           <Link
-            className="link-to-akzoo"
             href={article_link}
             // passHref
             isExternal
@@ -241,7 +240,7 @@ export default function RandomFanart() {
 
   return (
     <Box
-      // className="random-fanart"
+      //
       m="0 auto"
       p="1rem 0"
       borderRadius="1rem"
@@ -333,7 +332,6 @@ export default function RandomFanart() {
       <Flex gap="2">
         <Spacer />
         <Button
-          className="random-fanart__button"
           // w="160px"
           colorScheme="yellow"
           size="md"

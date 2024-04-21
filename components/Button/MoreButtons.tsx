@@ -1,134 +1,78 @@
-import { SunIcon } from '@chakra-ui/icons';
-import {
-  Box,
-  Button,
-  Text,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import NextLink from 'next/link';
-import { FiMoon } from 'react-icons/fi';
+import Link from 'next/link';
+import { FiMoon, FiSun } from 'react-icons/fi';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
 import { PiGiftBold } from 'react-icons/pi';
 
-import { darkMode, lightMode } from '@/lib/theme';
+import { useTheme } from '@/hooks/useTheme';
+
+type ButtonProp = {
+  href?: string;
+  icon: JSX.Element;
+  text: string;
+  onClick?: () => void;
+  type?: 'button' | 'link';
+};
+
+const MoreButton = ({
+  href = '',
+  icon,
+  text,
+  onClick,
+  type = 'link',
+}: ButtonProp) => {
+  const containerClassName =
+    'shadow-base flex h-32 w-36 cursor-pointer flex-col items-center justify-between rounded-2xl bg-card p-4 transition hover:bg-gray-200 dark:hover:bg-whiteAlpha-300';
+  const IconWrapperClassName = 'p-2';
+  const buttonClassName = 'text-xl font-semibold';
+  if (type === 'button') {
+    return (
+      <button className={containerClassName} onClick={onClick}>
+        <div className={IconWrapperClassName}>{icon}</div>
+        <p className={buttonClassName}>{text}</p>
+      </button>
+    );
+  }
+  return (
+    <Link href={href}>
+      <div className={containerClassName}>
+        <div className={IconWrapperClassName}>{icon}</div>
+        <p className={buttonClassName}>{text}</p>
+      </div>
+    </Link>
+  );
+};
 
 export default function MoreButtons() {
-  const bg = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const Icon = useColorModeValue(FiMoon, SunIcon);
-
-  const { toggleColorMode } = useColorMode();
-
-  const handleButtonClick = () => {
-    toggleColorMode(); // 다크 모드 전환
-  };
+  const { toggleTheme } = useTheme();
 
   return (
-    <Box
-      display="flex"
-      flexDirection="row"
-      w="21rem"
-      flexWrap="wrap"
-      justifyContent="center"
-      alignItems="center"
-      gap="1rem"
-      mt="1rem"
-    >
-      <NextLink href={'/more/about'} passHref>
-        <Button
-          variant="solid"
-          w="9rem"
-          h="8rem"
-          p="1rem"
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          alignItems="center"
-          gap="1rem"
-          borderRadius="1rem"
-          boxShadow="base"
-          background={bg}
-        >
-          <Box p="0.5rem">
-            <MdInfoOutline
-              style={{
-                width: '2rem',
-                height: '2rem',
-              }}
-            />
-          </Box>
-          <Text fontSize="xl">리파인드 소개</Text>
-        </Button>
-      </NextLink>
-      <NextLink href={'/more/support'} passHref>
-        <Button
-          variant="solid"
-          w="9rem"
-          h="8rem"
-          p="1rem"
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          alignItems="center"
-          gap="1rem"
-          borderRadius="1rem"
-          boxShadow="base"
-          background={bg}
-        >
-          <Box p="0.5rem">
-            <MdOutlineContactSupport
-              style={{ width: '2rem', height: '2rem' }}
-            />
-          </Box>
-          <Text fontSize="xl">문의,지원</Text>
-        </Button>
-      </NextLink>
-      <NextLink href={'/events'} passHref>
-        <Button
-          variant="solid"
-          w="9rem"
-          h="8rem"
-          p="1rem"
-          display="flex"
-          flexDirection="column"
-          justifyContent="space-between"
-          alignItems="center"
-          gap="1rem"
-          borderRadius="1rem"
-          boxShadow="base"
-          background={bg}
-        >
-          <Box p="0.5rem">
-            <PiGiftBold style={{ width: '2rem', height: '2rem' }} />
-          </Box>
-          <Text fontSize="xl">이벤트</Text>
-        </Button>
-      </NextLink>
-      <Button
-        variant="solid"
-        w="9rem"
-        h="8rem"
-        p="1rem"
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        alignItems="center"
-        gap="1rem"
-        borderRadius="1rem"
-        boxShadow="base"
-        background={bg}
-        onClick={handleButtonClick}
-      >
-        <Box p="0.5rem">
-          <Icon
-            style={{
-              width: '2rem',
-              height: '2rem',
-            }}
-          />
-        </Box>
-        <Text fontSize="xl">화면 스타일</Text>
-      </Button>
-    </Box>
+    <div className="mt-4 flex w-full max-w-[340px] flex-row flex-wrap items-center justify-center gap-4">
+      <MoreButton
+        href="/more/about"
+        icon={<MdInfoOutline className="size-8" />}
+        text="리파인드 소개"
+      />
+      <MoreButton
+        href="/more/support"
+        icon={<MdOutlineContactSupport className="size-8" />}
+        text="문의,지원"
+      />
+      <MoreButton
+        href="/events"
+        icon={<PiGiftBold className="size-8" />}
+        text="이벤트"
+      />
+      <MoreButton
+        type="button"
+        icon={
+          <>
+            <FiMoon className="size-8 dark:hidden" />
+            <FiSun className="hidden size-8 dark:block" />
+          </>
+        }
+        text="화면 스타일"
+        onClick={toggleTheme}
+      />
+    </div>
   );
 }

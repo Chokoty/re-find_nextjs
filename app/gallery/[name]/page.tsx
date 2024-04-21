@@ -60,7 +60,7 @@ export default async function page({ params: { name } }: Params) {
     });
 
     return (
-      <Box className="body" minH="240vh" w="100%" m="0 auto">
+      <Box minH="240vh" w="100%" m="0 auto">
         <TopBackground>
           <GalleryTitle pageType={name} />
           <></>
@@ -68,7 +68,6 @@ export default async function page({ params: { name } }: Params) {
         <Box
           as="section"
           w="100%"
-          className="layout"
           position="relative"
           top={['0px', '-100px', '-108px', '-180px', '-220px']} // -220px(-60px + -160px)
           zIndex="2"
@@ -82,15 +81,13 @@ export default async function page({ params: { name } }: Params) {
   }
 
   return (
-    <Box className="body" minH="240vh" w="100%" m="0 auto">
+    <Box minH="240vh" w="100%" m="0 auto">
       <TopBackground>
         <GalleryTitle pageType={name} />
-        <></>
       </TopBackground>
       <Box
         as="section"
         w="100%"
-        className="layout"
         position="relative"
         top={['0px', '-100px', '-108px', '-180px', '-220px']} // -220px(-60px + -160px)
         zIndex="2"

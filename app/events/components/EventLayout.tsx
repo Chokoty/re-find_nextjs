@@ -13,9 +13,9 @@ export default function EventLayout({ children, title }: Props) {
   const bg = useColorModeValue(lightMode.bg, darkMode.bg);
 
   return (
-    <Box className="body" minH="240vh" background={bg} w="100%" m="0 auto">
+    <Box className="mx-auto min-h-[240vh] w-full" background={bg}>
       <EventHeader title={title} />
-      <Box w="100%" mt="1rem" className="layout">
+      <Box w="100%" mt="1rem">
         {children}
       </Box>
     </Box>

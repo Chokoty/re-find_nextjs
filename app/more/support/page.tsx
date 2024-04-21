@@ -10,9 +10,9 @@ import { SUPPORT_INFOS } from '@/app/more/lib/const';
 export default function Support() {
   return (
     <MoreLayout title="Support">
-      <Box className="toLink" pb="15rem">
+      <Box pb="15rem">
         {SUPPORT_INFOS.map((info, index) => (
-          <Box className="area" mt="5rem" key={index}>
+          <Box mt="5rem" key={index}>
             <Button
               href={info.url}
               as="a"

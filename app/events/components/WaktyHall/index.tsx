@@ -45,7 +45,6 @@ export default function WaktyHall() {
         />
         <Link
           color={highlightColor}
-          className="link-to-wakzoo"
           href={'https://cafe.naver.com/steamindiegame/2093767'}
           isExternal
         >

@@ -1,14 +1,5 @@
-import { ExternalLinkIcon } from '@chakra-ui/icons';
-import {
-  Card,
-  CardFooter,
-  Flex,
-  Link,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
-
-import { darkMode, lightMode } from '@/lib/theme';
+import Link from 'next/link';
+import { LuExternalLink } from 'react-icons/lu';
 
 type Props = {
   date: string;
@@ -18,42 +9,20 @@ type Props = {
 };
 
 export default function NoticeCard({ date, type, content, directLink }: Props) {
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-
   return (
-    <Card
-      width="100%"
-      maxW="700px"
-      p="1rem"
-      background={bg2}
-      borderRadius="0.75rem"
-    >
-      <Text textAlign="left" p="0" fontSize="md">
-        {type} {content}
-      </Text>
-      <CardFooter mt="0.5rem" p="0">
-        <Flex w="100%" justifyContent="space-between" alignItems="center">
-          <Text fontSize="sm" textAlign="left">
-            {date}
-          </Text>
-          {directLink && (
-            <Link
-              className="link-to-wakzoo"
-              href={directLink}
-              isExternal
-              color={highlightColor}
-            >
-              <Text fontSize="sm" textAlign="left">
-                링크 <ExternalLinkIcon mx="2px" />
-              </Text>
-            </Link>
-          )}
-        </Flex>
-      </CardFooter>
-    </Card>
+    <div className="w-full gap-2 rounded-xl bg-card p-4 shadow-cardBox">
+      <p>{`${type} ${content}`}</p>
+      <div className="mt-2 flex flex-row justify-between">
+        <p className="text-sm">{date}</p>
+        {directLink && (
+          <Link href={directLink} target="_blank" className="text-hightlight">
+            <div className="flex items-center">
+              <p className="text-sm">링크</p>
+              <LuExternalLink className="ml-1 text-sm text-hightlight" />
+            </div>
+          </Link>
+        )}
+      </div>
+    </div>
   );
 }

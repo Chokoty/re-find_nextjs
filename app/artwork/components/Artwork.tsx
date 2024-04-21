@@ -29,9 +29,6 @@ export default function Artwork({ data }: { data: ArtworkDetail }) {
     view,
     like,
     comment,
-    category,
-    deleted,
-    url,
   } = data;
   const [imgUrl, setImageUrl] = useState(img_url);
   const article_link = useResponsiveLink('', 'article');

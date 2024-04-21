@@ -114,7 +114,6 @@ const GalleryHomeTitle = () => {
         팬아트
       </Text>
       <Box
-        className="bg-crop"
         w={['4rem', '6rem', '10rem']}
         h={['2rem', '3rem', '4rem']}
         position="relative"
