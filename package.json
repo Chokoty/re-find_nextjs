@@ -21,6 +21,7 @@
     "@tanstack/react-query-devtools": "^5.25.0",
     "axios": "^1.6.8",
     "browser-image-hash": "^0.0.5",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "cross-env": "^7.0.3",
     "date-fns": "^3.4.0",

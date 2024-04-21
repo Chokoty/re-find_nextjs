@@ -8,5 +8,5 @@
   "arrowParens": "always",
   "trailingComma": "es5",
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindFunctions": ["cn"]
+  "tailwindFunctions": ["cn", "clsx", "cva"]
 }
