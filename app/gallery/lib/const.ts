@@ -11,15 +11,6 @@ export const BUTTON_LIST = [
 const GALLERY_LIST: Gallery[] = [
   {
     id: 0,
-    value: 'isdPick',
-    type: 'special',
-    title: '이세돌픽 팬아트',
-    subTitle: '이세돌이 고른 팬아트',
-    description: '이세계아이돌이 고른 공지사항 팬아트',
-    query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
-  },
-  {
-    id: 1,
     value: 'tiffanyWouldYouMia',
     type: 'special',
     title: 'RE:START',
@@ -27,6 +18,15 @@ const GALLERY_LIST: Gallery[] = [
     subTitle: '티파니님의 팬아트',
     query:
       'artworks?query=티파니&query=우주미아&board=gomem&board=gomem_behind&title=',
+  },
+  {
+    id: 1,
+    value: 'isdPick',
+    type: 'special',
+    title: '이세돌픽 팬아트',
+    subTitle: '이세돌이 고른 팬아트',
+    description: '이세계아이돌이 고른 공지사항 팬아트',
+    query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
   },
   {
     id: 2,
