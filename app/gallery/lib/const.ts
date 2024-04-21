@@ -9,16 +9,16 @@ export const BUTTON_LIST = [
 ];
 
 const GALLERY_LIST: Gallery[] = [
-  {
-    id: 0,
-    value: 'tiffanyWouldYouMia',
-    type: 'special',
-    title: 'RE:START',
-    description: '오랜 기다림 끝에 돌아온 티파니님을 환영합니다!',
-    subTitle: '티파니님의 팬아트',
-    query:
-      'artworks?query=티파니&query=우주미아&board=gomem&board=gomem_behind&title=',
-  },
+  // {
+  //   id: 0,
+  //   value: 'tiffanyWouldYouMia',
+  //   type: 'special',
+  //   title: 'RE:START',
+  //   description: '오랜 기다림 끝에 돌아온 티파니님을 환영합니다!',
+  //   subTitle: '티파니님의 팬아트',
+  //   query:
+  //     'artworks?query=티파니&query=우주미아&board=gomem&board=gomem_behind&title=',
+  // },
   {
     id: 1,
     value: 'isdPick',
