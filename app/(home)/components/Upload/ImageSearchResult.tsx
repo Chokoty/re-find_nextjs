@@ -40,7 +40,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
       {ids?.length === 0 ? (
         <Description />
       ) : (
-        <div className=" flex w-full flex-col items-center justify-center rounded-b-2xl bg-card">
+        <div className=" flex w-full flex-col items-center justify-center rounded-b-2xl bg-white dark:bg-dark-card">
           <div className="flex w-full flex-col items-center justify-between gap-4">
             <div className="flex w-full flex-row items-center justify-between">
               <div className="w-full">
@@ -65,14 +65,12 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
               </Badge>
             </div>
             <Link
-              className="mb-4 flex w-full items-center"
+              className="mb-4 flex w-full items-center text-light-main dark:text-dark-main"
               href={article_link + ids[0].id}
               target="_blank"
             >
-              <p className="text-xl font-bold text-hightlight 2sm:text-2xl">
-                {data.title}
-              </p>
-              <LuExternalLink className="ml-2 hidden text-lg font-semibold text-hightlight 2sm:block" />
+              <p className="text-xl font-bold 2sm:text-2xl">{data.title}</p>
+              <LuExternalLink className="ml-2 hidden text-lg font-semibold 2sm:block" />
             </Link>
           </div>
           <AuthorProfileCard
@@ -89,7 +87,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
             {ids.map((item, index) => (
               <Link
                 key={index}
-                className="mb-4 w-full text-lg text-hightlight"
+                className="mb-4 w-full text-lg text-light-main dark:text-dark-main"
                 href={article_link + item.id}
                 target="_blank"
               >
@@ -100,7 +98,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
                 ) : (
                   <div className="flex items-center">
                     <p className="line-clamp-1">{article_link + item.id}</p>
-                    <LuExternalLink className="ml-2 hidden text-lg font-semibold text-hightlight 2sm:block" />
+                    <LuExternalLink className="ml-2 hidden text-lg font-semibold 2sm:block" />
                   </div>
                 )}
                 {item.is_shukkou === true && (

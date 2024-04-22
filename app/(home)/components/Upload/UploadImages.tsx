@@ -37,10 +37,10 @@ export default function UploadImages() {
   };
 
   return (
-    <div className="my-4 flex w-full flex-col items-center justify-center gap-6 rounded-2xl bg-card py-4 shadow-cardBox">
+    <div className="my-4 flex w-full flex-col items-center justify-center gap-6 rounded-2xl bg-white py-4 shadow-cardBox dark:bg-dark-card">
       {/* image draggable area */}
       <div
-        className={`w-[90%] max-w-[300px] cursor-pointer rounded-2xl border-4 border-dashed border-[#6d6d6d] p-4 hover:border-dashed-border xs:w-4/5 xs:max-w-[360px] md:w-3/5 md:max-w-[500px] 
+        className={`w-[90%] max-w-[300px] cursor-pointer rounded-2xl border-4 border-dashed border-[#6d6d6d] p-4 hover:border-black dark:hover:border-gray-150 xs:w-4/5 xs:max-w-[360px] md:w-3/5 md:max-w-[500px] 
         lg:w-full
         ${isDragActive ? 'border-hightlight' : ''}`}
         onMouseEnter={handleMouseEnter}
@@ -72,7 +72,9 @@ export default function UploadImages() {
           ) : (
             <p className="max-w-[300px] text-center">
               이미지를 여기로 드래그하거나 화면을 클릭하여 파일을&nbsp;
-              <span className="text-hightlight underline">업로드</span>
+              <span className="text-light-main underline dark:text-dark-main">
+                업로드
+              </span>
               하세요.
             </p>
           )}

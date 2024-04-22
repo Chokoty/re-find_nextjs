@@ -17,7 +17,7 @@ export default function SubTitle() {
 
   return (
     <div className="flex items-center gap-[10px]">
-      <p className="text-lg font-bold text-hightlight md:text-xl lg:text-2xl xl:text-3xl">
+      <p className="text-lg font-bold text-light-main dark:text-dark-main md:text-xl lg:text-2xl xl:text-3xl">
         {SUB_TITLES[currentIndex]}
       </p>
       <p className="text-lg font-bold md:text-xl lg:text-2xl xl:text-3xl">

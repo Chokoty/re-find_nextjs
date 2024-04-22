@@ -40,7 +40,7 @@ export default function UpdateCard({ update }: Prop) {
   }
 
   return (
-    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-card py-4 dark:border-gray-700 md:h-[144px] ">
+    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-gray-700 dark:bg-dark-card md:h-[144px] ">
       <Link href={article_link} target="_blank" className="mr-3">
         <div className="flex w-max items-center justify-center">
           <Image
@@ -55,22 +55,22 @@ export default function UpdateCard({ update }: Prop) {
         </div>
       </Link>
       <div className="flex h-20 flex-1 flex-col items-start justify-between 2sm:flex-row md:h-24">
-        <div className="flex flex-col items-start justify-between gap-1 2sm:gap-2">
+        <div className="flex flex-col items-start justify-between gap-1 text-light-main dark:text-dark-main 2sm:gap-2">
           <Link className="flex items-center" href={menu_link} target="_blank">
-            <p className="text-sm text-hightlight 2sm:text-base md:text-lg">
+            <p className="text-sm 2sm:text-base md:text-lg">
               {update.board.replace(/&#\d+;/g, '').trim()}
             </p>
-            <MdArrowForwardIos className="ml-2 hidden text-sm text-hightlight 2sm:block" />
+            <MdArrowForwardIos className="ml-2 hidden text-sm 2sm:block" />
           </Link>
           <Link
             className="flex items-center"
             href={article_link}
             target="_blank"
           >
-            <p className="line-clamp-1 text-base font-semibold text-hightlight 2sm:text-lg md:text-xl">
+            <p className="line-clamp-1 text-base font-semibold 2sm:text-lg md:text-xl">
               {update.info.title}
             </p>
-            <LuExternalLink className="ml-2 hidden text-lg font-semibold text-hightlight 2sm:block" />
+            <LuExternalLink className="ml-2 hidden text-lg font-semibold 2sm:block" />
           </Link>
         </div>
         <div className="flex flex-row items-end gap-2 2sm:flex-col">

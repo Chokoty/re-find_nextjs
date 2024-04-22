@@ -27,7 +27,7 @@ const Loading = () => {
   return (
     <div
       role="status"
-      className="mx-auto mb-4 h-[600px] w-[90%] animate-pulse bg-card"
+      className="mx-auto mb-4 h-[600px] w-[90%] animate-pulse bg-white dark:bg-dark-card"
     >
       <div className="size-full rounded-2xl bg-gray-125 dark:bg-gray-700" />
     </div>

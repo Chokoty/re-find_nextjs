@@ -3,7 +3,7 @@ import { PiGiftBold } from 'react-icons/pi';
 
 export default function Event() {
   return (
-    <div className="flex size-full max-h-[130px] flex-col items-center justify-center rounded-2xl bg-card py-3 shadow-cardBox 2sm:py-6 md:py-11">
+    <div className="flex size-full max-h-[130px] flex-col items-center justify-center rounded-2xl bg-white py-3 shadow-cardBox dark:bg-dark-card 2sm:py-6 md:py-11">
       <p className="mb-4 text-lg font-bold 2sm:text-base md:text-[1.7rem]">
         이벤트 페이지 개설!
       </p>

@@ -10,28 +10,27 @@ const config: Config = {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      white: '#ffffff',
-      purple: '#3f3cbb',
-      midnight: '#121063',
-      metal: '#565584',
-      tahiti: '#3ab7bf',
-      silver: '#ecebff',
-      'bubble-gum': '#ff77e9',
-      bermuda: '#78dcca',
+      black: 'var(--black)',
+      white: 'var(--white)',
+      purple: 'var(--purple)',
+      midnight: 'var(--midnight)',
+      metal: 'var(--metal)',
+      tahiti: 'var(--tahiti)',
+      silver: 'var(--silver)',
+      'bubble-gum': 'var(--bubble-gum)',
+      bermuda: 'var(--bermuda)',
     },
     extend: {
       colors: {
-        background: 'var(--background)', // background
-        border: 'var(--border)',
-        color: 'var(--color)', // text color
-        card: 'var(--card)', // card background
-        hightlight: 'var(--hightlight)',
-        'dashed-border': 'var(--dashed-border)',
-        // 'copy-primary': 'rgba(var(--copy-primary))',
-        // 'copy-secondary': 'rgba(var(--copy-secondary))',
-        // cta: 'rgba(var(--cta))',
-        // 'cta-active': 'rgba(var(--cta-active))',
-        // 'cta-text': 'rgba(var(--cta-text))',
+        // border: 'var(--border)',
+        // background color
+        'dark-background': 'var(--darkmode-bg)',
+        'light-background': 'var(--lightmode-bg)',
+        // card color (white mode is bg-white)
+        'dark-card': 'var(--darkmode-card-bg)',
+        // hightlight color
+        'light-main': 'var(--mainColor-100)',
+        'dark-main': 'var(--mainColor-200)',
         whiteAlpha: {
           50: 'var(--whiteAlpha-50)',
           100: 'var(--whiteAlpha-100)',
@@ -237,6 +236,7 @@ const config: Config = {
   },
   plugins: [],
   darkMode: 'class',
+  important: true, // TODO: 적용하고 chakra 지우기
 };
 
 export default config;

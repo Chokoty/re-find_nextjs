@@ -9,7 +9,8 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { isAxiosError } from 'axios';
-import React, { useEffect, useState } from 'react';
+import { ThemeProvider } from 'next-themes';
+import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
 import theme from '@/lib/theme';
@@ -68,43 +69,15 @@ export function Providers({ children }: React.PropsWithChildren) {
     // }
   };
 
-  useEffect(() => {
-    // localStorage.setItem('theme', 'light');
-    const selectedTheme = localStorage.getItem('theme');
-    if (selectedTheme) {
-      document.body.classList.add(selectedTheme);
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.add('dark');
-    }
-  }, []);
-
   return (
-    <ChakraProvider theme={theme}>
-      <Toaster position="bottom-center" />
-      <QueryClientProvider client={queryClient}>
-        {children}
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </ChakraProvider>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <ChakraProvider theme={theme}>
+        <Toaster position="bottom-center" />
+        <QueryClientProvider client={queryClient}>
+          {children}
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </ChakraProvider>
+    </ThemeProvider>
   );
 }
-
-//     if (error.response && error.response.status === 500) {
-//       console.log('Server Error: ', error.response.status);
-//       toast({
-//         title: `현재 서버와 연결이 원활하지 않습니다. 잠시 후 다시 시도해주세요.`,
-//         status: `error`,
-//         isClosable: true,
-//       });
-//     } else if (error.code === 'ERR_NETWORK') {
-//       console.log('Network Error: ', error.code);
-//       toast({
-//         title: `${error.code}`,
-//         status: `error`,
-//         isClosable: true,
-//       });
-//     } else {
-//       console.log(error);
-//     }

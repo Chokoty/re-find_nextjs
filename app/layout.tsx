@@ -49,14 +49,17 @@ export default function RootLayout({
   ArtworkModal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
-      <body>
+    <html className="h-full overflow-hidden" lang="kr" suppressHydrationWarning>
+      <body className="h-full bg-light-background text-gray-900 dark:bg-dark-background dark:text-gray-50">
         <Providers>
+          {/* var(--green-200) - #9ae6b4 */}
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />
           {ArtworkModal}
-          <main>{children}</main>
+          {/* main height: parent - header */}
+          <main className="h-[calc(100%-60px)] overflow-y-scroll">
+            {children}
+          </main>
           <MobileTabBar />
           <div id="modal-root" />
           <div id="artwork-modal-root" />

@@ -24,7 +24,7 @@ export default function RandomGacha() {
     await refetch();
   };
   return (
-    <div className="mt-4 flex w-[90%] flex-col items-center justify-start gap-4 rounded-2xl bg-card px-6 pb-4 pt-6 shadow-cardBox">
+    <div className="mt-4 flex w-[90%] flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
       <div className="flex w-full items-center justify-start">
         <h2 className="text-xl font-bold">팬아트 가챠</h2>
       </div>
@@ -118,7 +118,7 @@ const Fanart = ({
     <div className="mb-2 flex w-full flex-col items-center justify-center rounded-2xl">
       <Link className="w-full" href={article_link} target="_blank">
         <Image
-          className="max-h-[312px] rounded-2xl object-cover shadow-card"
+          className="shadow-card max-h-[312px] rounded-2xl object-cover"
           src={modifiedUrl300}
           alt={`랜덤 팬아트 게시글 title: ${title}`}
           width={475}

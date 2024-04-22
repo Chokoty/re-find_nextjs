@@ -62,7 +62,7 @@ export default function ImageViewer({ hashs }: Prop) {
   };
 
   return (
-    <div className="my-4 flex w-full flex-col items-center justify-center rounded-2xl bg-card px-4 py-8 shadow-cardBox">
+    <div className="my-4 flex w-full flex-col items-center justify-center rounded-2xl bg-white px-4 py-8 shadow-cardBox dark:bg-dark-card">
       <Preview data={data} isLoading={isLoading} />
       {isLoading ? <Loading /> : getResult()}
     </div>

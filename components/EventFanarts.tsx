@@ -26,12 +26,12 @@ export default function EventFanarts({ type = 'all' }: Props) {
 
   // console.log(selectedEventKey, randomFanartArr);
   return (
-    <div className="mt-4 flex w-full max-w-[540px] flex-col items-center justify-start rounded-2xl bg-card px-6 pb-4 pt-6 shadow-cardBox">
+    <div className="mt-4 flex w-full max-w-[540px] flex-col items-center justify-start rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
       <div className="flex w-full flex-row items-center justify-between">
         <p className="text-lg font-bold">특집 팬아트 가챠</p>
         <p className="text-lg font-bold">총 {RANDOM_FANARTS.length} 개</p>
       </div>
-      <div className="mt-5 flex w-full flex-col items-center justify-center rounded-2xl border border-hightlight px-2 pb-2">
+      <div className="mt-5 flex w-full flex-col items-center justify-center rounded-2xl border border-light-main px-2 pb-2 dark:border-dark-main">
         {randomFanartArr.map((item, index) => (
           <button
             key={index}
