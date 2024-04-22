@@ -99,6 +99,7 @@ export default function CardImage({ data }: Props) {
         }
         alt={title}
         style={{
+          minHeight: '100px', // TODO: 추후 수정하기
           maxHeight: '430px',
           objectFit: 'cover',
           borderRadius: '20px',
