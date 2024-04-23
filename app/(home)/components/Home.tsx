@@ -27,7 +27,7 @@ const EventModal = dynamic(() => import('@/app/(home)/components/EventModal'), {
 export default function Home() {
   return (
     <div className="mx-auto my-4 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6">
-      {/* <EventModal /> */}
+      <EventModal />
       {/* desktop: left / mobile: top */}
       <section className="flex w-[90%] max-w-[700px] flex-col items-center justify-center md:w-full">
         <BannerSlider />

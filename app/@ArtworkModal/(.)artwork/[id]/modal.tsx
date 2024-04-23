@@ -24,14 +24,14 @@ export function Modal({ children }: { children: React.ReactNode }) {
         onDismiss();
       }
     };
-    const htmlElement = document.documentElement;
-    htmlElement.style.overflowY = 'hidden';
+    // const htmlElement = document.documentElement;
+    // htmlElement.style.overflowY = 'hidden';
     if (modalRef.current) {
       modalRef.current.scrollTop = 0;
     }
     document.body.addEventListener('keydown', closeOnEscapeKey);
     return () => {
-      htmlElement.style.overflowY = 'scroll';
+      // htmlElement.style.overflowY = 'scroll';
       document.body.removeEventListener('keydown', closeOnEscapeKey);
     };
   }, [onDismiss]);

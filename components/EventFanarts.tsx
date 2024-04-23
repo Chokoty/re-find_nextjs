@@ -31,7 +31,7 @@ export default function EventFanarts({ type = 'all' }: Props) {
         <p className="text-lg font-bold">특집 팬아트 가챠</p>
         <p className="text-lg font-bold">총 {RANDOM_FANARTS.length} 개</p>
       </div>
-      <div className="mt-5 flex w-full flex-col items-center justify-center rounded-2xl border border-light-main px-2 pb-2 dark:border-dark-main">
+      <div className="mt-5 flex w-full flex-col items-center justify-center rounded-2xl border border-green-highlight px-2 pb-2 dark:border-pink-highlight">
         {randomFanartArr.map((item, index) => (
           <button
             key={index}

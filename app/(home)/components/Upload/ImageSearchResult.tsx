@@ -65,7 +65,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
               </Badge>
             </div>
             <Link
-              className="mb-4 flex w-full items-center text-light-main dark:text-dark-main"
+              className="mb-4 flex w-full items-center text-green-highlight dark:text-pink-highlight"
               href={article_link + ids[0].id}
               target="_blank"
             >
@@ -87,7 +87,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
             {ids.map((item, index) => (
               <Link
                 key={index}
-                className="mb-4 w-full text-lg text-light-main dark:text-dark-main"
+                className="mb-4 w-full text-lg text-green-highlight dark:text-pink-highlight"
                 href={article_link + item.id}
                 target="_blank"
               >

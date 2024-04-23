@@ -72,7 +72,7 @@ export default function UploadImages() {
           ) : (
             <p className="max-w-[300px] text-center">
               이미지를 여기로 드래그하거나 화면을 클릭하여 파일을&nbsp;
-              <span className="text-light-main underline dark:text-dark-main">
+              <span className="text-green-highlight underline dark:text-pink-highlight">
                 업로드
               </span>
               하세요.

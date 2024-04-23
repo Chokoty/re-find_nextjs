@@ -26,7 +26,7 @@ export default function Tooltip({
   };
 
   return (
-    <div className="relative inline-block transition">
+    <div className="relative inline-block transition" aria-label="A tooltip">
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -36,7 +36,7 @@ export default function Tooltip({
       </div>
       {showTooltip && (
         <div
-          className={`absolute left-1/2 top-[110%] -translate-x-1/2 rounded bg-gray-125 px-2 py-1 text-gray-900 transition`}
+          className={`absolute left-1/2 top-[110%] -translate-x-1/2 rounded-sm bg-gray-125 px-2 py-1 text-sm text-gray-900 transition`}
           style={{
             minWidth: 'max-content',
           }}

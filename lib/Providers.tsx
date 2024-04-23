@@ -69,6 +69,7 @@ export function Providers({ children }: React.PropsWithChildren) {
     // }
   };
 
+  // TODO: 여전히flash가 존재한다. chakra때문인가? 나중에 지우고 다시 테스트해보기
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <ChakraProvider theme={theme}>

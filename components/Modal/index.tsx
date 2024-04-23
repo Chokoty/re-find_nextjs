@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react';
 import { createContext, useEffect, useRef } from 'react';
 import FocusLock from 'react-focus-lock';
 
@@ -30,11 +29,11 @@ export default function Modal({ Component, modalProps, hide }: Props) {
         handleCancel();
       }
     };
-    const htmlElement = document.documentElement;
-    htmlElement.style.overflowY = 'hidden';
+    // const htmlElement = document.documentElement;
+    // htmlElement.style.overflowY = 'hidden';
     document.body.addEventListener('keydown', closeOnEscapeKey);
     return () => {
-      htmlElement.style.overflowY = 'scroll';
+      // htmlElement.style.overflowY = 'scroll';
       document.body.removeEventListener('keydown', closeOnEscapeKey);
     };
   }, [handleCancel]);
@@ -42,14 +41,8 @@ export default function Modal({ Component, modalProps, hide }: Props) {
   return (
     // 외부로 tab 키 이동을 막기 위해 FocusLock 사용
     <FocusLock>
-      <Box
-        zIndex={201} // overlay > header보다 위
-        position="fixed"
-        left="0"
-        top="0"
-        width="100%"
-        height="100%"
-        background="rgba(0 0 0 / 48%)"
+      <div
+        className="fixed inset-0 z-[201] size-full bg-blackAlpha-600" // overlay > header보다 위
         onClick={handleCancel}
       />
       <ModalHideContext.Provider value={handleCancel}>

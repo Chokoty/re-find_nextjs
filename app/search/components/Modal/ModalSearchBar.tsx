@@ -1,18 +1,7 @@
-import {
-  Box,
-  Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  useColorModeValue,
-} from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
-
-import { darkMode, lightMode } from '@/lib/theme';
 
 type Prop = {
   inputRef: React.RefObject<HTMLInputElement>;
@@ -27,11 +16,6 @@ export default function ModalSearchBar({
 }: Prop) {
   const router = useRouter();
   const [input, setInput] = useState(''); // 검색어
-  const [isHover, setIsHover] = useState(false);
-
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
-  const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
 
   const handleSearch = () => {
     const trimedInput = input.trim();
@@ -62,117 +46,41 @@ export default function ModalSearchBar({
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      gap="1rem"
-      p="0 1rem"
-      w="100%"
-      // w={width}
-    >
-      <InputGroup
-        m="0 "
-        // w={width}
+    <div className="flex w-full flex-col items-center justify-center gap-4 px-4">
+      <div
+        className="relative mx-4 h-9 w-full"
+        // onClick={handleInputClick}
       >
-        <InputLeftElement pointerEvents="none" color={color7} fontSize="1.2em">
-          <span
-            style={{
-              width: '1px',
-              height: '16px',
-              marginLeft: '8px',
-              background: color7,
-              position: 'absolute',
-              top: '25%',
-              right: '10%',
-            }}
-          ></span>
-        </InputLeftElement>
-        <Input
+        <div className="absolute left-0 top-0 z-[2] h-full w-10">
+          <span className="absolute right-[10%] top-1/2 ml-2 h-4 w-px -translate-y-1/2 bg-gray-600 dark:bg-whiteAlpha-500" />
+        </div>
+        <input
           ref={inputRef}
+          className="relative size-full cursor-text rounded-full border border-gray-200 bg-gray-100 pl-12 pr-20 outline-none transition placeholder:text-gray-500 hover:border-green-highlight hover:bg-white focus:border-green-highlight focus:outline-none focus:ring-1 focus:ring-green-highlight dark:border-whiteAlpha-300 dark:bg-whiteAlpha-200 dark:placeholder:text-whiteAlpha-600 dark:hover:border-pink-highlight dark:hover:bg-dark-card dark:focus:border-pink-highlight dark:focus:ring-pink-highlight 2sm:pr-24"
           placeholder="키워드 검색 (빈 칸은 전체 검색)"
-          h="2.25rem"
-          pl="3rem"
-          pr={['56px', '100px']}
-          borderRadius="2rem"
-          bg={bg3}
-          alignItems="center"
           value={input}
           onChange={onBarChange}
           onKeyDown={onBarKeyDown}
-          focusBorderColor="#01BFA2"
-          size="md"
-          _hover={{
-            backgroundColor: bg2,
-            borderColor: '#01BFA2',
-          }}
-          _focus={{ backgroundColor: bg2 }}
-          sx={{
-            'input::placeholder': {
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-            },
-          }}
         />
-        <InputRightElement
-          pointerEvents="auto"
-          width="auto"
-          height="100%"
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center"
-          padding="0.5rem"
-          gap="0.5rem"
-          marginRight="0.5rem"
-          _hover={{
-            cursor: 'default',
-          }}
-        >
+        <div className="absolute right-0 top-0 z-[2] flex h-full w-[84px] items-center justify-end pr-4 2sm:gap-2">
           {input.length > 0 && (
-            <Button
-              variant="ghost"
-              borderRadius="50%"
+            <button
+              type="button"
+              className="mr-2 flex size-8 items-center justify-center"
               onClick={handleClear}
-              p="0"
-              height="100%"
-              minH="30px"
-              minW="30px"
-              _hover={{}}
-              _active={{}}
             >
-              <IoIosCloseCircle
-                style={{
-                  width: '19px',
-                  height: '19px',
-                  color: color7,
-                }}
-              />
-            </Button>
+              <IoIosCloseCircle className="size-5 text-gray-600 dark:text-whiteAlpha-700" />
+            </button>
           )}
-          <Button
-            variant="ghost"
-            borderRadius="50%"
+          <button
+            type="button"
+            className="flex size-8 items-center justify-center"
             onClick={onSearchButtonClick}
-            p="0"
-            height="100%"
-            minH="30px"
-            minW="30px"
-            _hover={{}}
-            _active={{}}
-            onMouseEnter={() => setIsHover(true)}
-            onMouseLeave={() => setIsHover(false)}
           >
-            <FaSearch
-              style={{
-                width: '19px',
-                height: '19px',
-                color: isHover ? '#01BFA2' : color7,
-              }}
-            />
-          </Button>
-        </InputRightElement>
-      </InputGroup>
-    </Box>
+            <FaSearch className="size-5 text-gray-600 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-pink-highlight" />
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }

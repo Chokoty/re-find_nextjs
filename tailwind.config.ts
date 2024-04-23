@@ -28,9 +28,11 @@ const config: Config = {
         'light-background': 'var(--lightmode-bg)',
         // card color (white mode is bg-white)
         'dark-card': 'var(--darkmode-card-bg)',
+        // footer color (white mode is bg-white)
+        'dark-footer': 'var(--darkmode-footer-bg)',
         // hightlight color
-        'light-main': 'var(--mainColor-100)',
-        'dark-main': 'var(--mainColor-200)',
+        'green-highlight': 'var(--mainColor-100)',
+        'pink-highlight': 'var(--mainColor-200)',
         whiteAlpha: {
           50: 'var(--whiteAlpha-50)',
           100: 'var(--whiteAlpha-100)',
@@ -230,6 +232,7 @@ const config: Config = {
         cardBox: '0 8px 20px 0 rgba(0,0,0,.08)',
         base: '0 1px 3px 0 rgba(0, 0, 0, 0.1),0 1px 2px 0 rgba(0, 0, 0, 0.06)',
         md: '0 4px 6px -1px rgba(0, 0, 0, 0.1),0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+        lg: 'rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px',
       },
       backgroundImage: {},
     },

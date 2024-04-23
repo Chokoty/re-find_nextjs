@@ -55,7 +55,7 @@ export default function UpdateCard({ update }: Prop) {
         </div>
       </Link>
       <div className="flex h-20 flex-1 flex-col items-start justify-between 2sm:flex-row md:h-24">
-        <div className="flex flex-col items-start justify-between gap-1 text-light-main dark:text-dark-main 2sm:gap-2">
+        <div className="flex flex-col items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2sm:gap-2">
           <Link className="flex items-center" href={menu_link} target="_blank">
             <p className="text-sm 2sm:text-base md:text-lg">
               {update.board.replace(/&#\d+;/g, '').trim()}

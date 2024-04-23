@@ -1,88 +1,66 @@
 'use client';
 
-import { Box, Flex } from '@chakra-ui/react';
-import NextLink from 'next/link';
+import clsx from 'clsx';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FaSearch } from 'react-icons/fa';
-import { FaImage } from 'react-icons/fa6';
-import { MdHomeFilled, MdPerson } from 'react-icons/md';
+import { FaUserGroup } from 'react-icons/fa6';
+import { IoMdImages } from 'react-icons/io';
+import { MdHomeFilled } from 'react-icons/md';
 
-import { useResponsive } from '@/hooks/useResponsive';
-import useTabBar from '@/hooks/useTabBar';
-
-const routerList = {
-  home: '/',
-  search: '/search?q=',
-  gallery: '/gallery',
-  artists: '/artists',
+const routerMap = {
+  home: {
+    path: '/',
+    name: '홈',
+    icon: <MdHomeFilled className="size-7" />,
+  },
+  search: {
+    path: '/search?q=',
+    name: '검색',
+    icon: <FaSearch className="size-6" />,
+  },
+  gallery: {
+    path: '/gallery',
+    name: '갤러리',
+    icon: <IoMdImages className="size-7" />,
+  },
+  artists: {
+    path: '/artists',
+    name: '작가',
+    icon: <FaUserGroup className="size-6" />,
+  },
 };
 
-type RouterType = keyof typeof routerList;
-
-const iconStyle = {
-  width: '2rem',
-  height: '2rem',
-};
-
-const IconComponent = ({ router }: { router: RouterType }) => {
-  switch (router) {
-    case 'home':
-      return <MdHomeFilled style={iconStyle} />;
-    case 'search':
-      return <FaSearch style={iconStyle} />;
-    case 'gallery':
-      return <FaImage style={iconStyle} />;
-    case 'artists':
-      return <MdPerson style={iconStyle} />;
-    default:
-      return null;
-  }
-};
+type RouterType = keyof typeof routerMap;
 
 export default function MobileTabBar() {
-  const { tab, setTab } = useTabBar();
-  const isMobile = useResponsive(); // 모바일 환경인지 체크
-  const getButtonColor = (buttonName: string) => {
-    return tab === buttonName ? '#FFFFFF' : '#828282';
+  const pathname = usePathname();
+  const isCurrentPathname = (tabPathname: string) => {
+    if (tabPathname === '/') return pathname === '/';
+    return pathname.startsWith(tabPathname);
   };
-  if (!isMobile) return null;
   return (
-    <Box
-      position="sticky"
-      bottom="4"
-      zIndex="200"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Flex
-        background="#292929"
-        // p="0.5rem"
-        width="250px"
-        height="60px"
-        justifyContent="center"
-        alignItems="center"
-        borderRadius="2rem"
-        gap="1.5rem"
-        boxShadow="dark-lg"
-      >
-        {Object.keys(routerList).map((router) => (
-          <NextLink
-            href={routerList[router as RouterType]}
-            passHref
-            key={router}
-          >
-            <Box
-              color={getButtonColor(router)}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              onClick={() => setTab(router)}
+    <div className="sticky bottom-1 z-[200] flex justify-center 2sm:bottom-3 md:hidden">
+      <div className="flex h-[57px] w-full max-w-[300px] items-center justify-between rounded-full bg-white px-7 shadow-lg dark:bg-dark-footer">
+        {Object.keys(routerMap).map((router) => (
+          <Link href={routerMap[router as RouterType].path} key={router}>
+            <div
+              className={clsx('flex flex-col items-center justify-center', {
+                'text-gray-700 dark:text-white': isCurrentPathname(
+                  routerMap[router as RouterType].path
+                ),
+                'text-blackAlpha-500 dark:text-whiteAlpha-500':
+                  !isCurrentPathname(routerMap[router as RouterType].path),
+              })}
             >
-              <IconComponent router={router as RouterType} />
-            </Box>
-          </NextLink>
+              {routerMap[router as RouterType].icon}
+              <span className="text-xs">
+                {routerMap[router as RouterType].name}
+              </span>
+            </div>
+          </Link>
         ))}
-      </Flex>
-    </Box>
+      </div>
+    </div>
   );
 }

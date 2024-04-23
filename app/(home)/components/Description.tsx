@@ -7,13 +7,13 @@ export default function Description() {
     <div className="mb-5 flex w-full items-center justify-center">
       <Accordion initOpen={true}>
         <AccordionItem title="이미지 출처를 찾지 못했습니다.">
-          <div className="my-4 w-full rounded-md border-2 border-light-main p-8 dark:border-dark-main">
+          <div className="my-4 w-full rounded-md border-2 border-green-highlight p-8 dark:border-pink-highlight">
             <p className="mb-3 font-bold">
               다음과 같은 경우에 검색결과가 나오지 않을 수 있습니다!
             </p>
             <ul
               role="list"
-              className="mb-3.5 list-disc pl-5 text-light-main dark:text-dark-main"
+              className="mb-3.5 list-disc pl-5 text-green-highlight dark:text-pink-highlight"
             >
               <li>
                 <p className="font-bold">
@@ -49,7 +49,7 @@ export default function Description() {
                 href="https://www.google.co.kr/imghp?hl=ko"
                 target="_blank"
               >
-                <span className="font-bold text-light-main dark:text-dark-main">
+                <span className="font-bold text-green-highlight dark:text-pink-highlight">
                   구글 이미지 검색하러가기
                 </span>
               </Link>
@@ -58,7 +58,7 @@ export default function Description() {
               만약 위에 해당하지 않는 경우라면 스크린샷과 함께 버그 제보
               해주시면 서비스 개선하는데 큰 도움이 됩니다. &nbsp;
               <Link className="contents" href="/support">
-                <p className="font-bold text-light-main dark:text-dark-main">
+                <p className="font-bold text-green-highlight dark:text-pink-highlight">
                   버그제보하기
                 </p>
               </Link>
