@@ -54,33 +54,33 @@ export default function UpdateCard({ update }: Prop) {
           />
         </div>
       </Link>
-      <div className="flex h-20 flex-1 flex-col items-start justify-between 2sm:flex-row md:h-24">
-        <div className="flex flex-col items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2sm:gap-2">
+      <div className="flex h-20 flex-1 flex-col items-start justify-between 2xs:flex-row md:h-24">
+        <div className="flex flex-col items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2xs:gap-2">
           <Link className="flex items-center" href={menu_link} target="_blank">
-            <p className="text-sm 2sm:text-base md:text-lg">
+            <p className="text-sm 2xs:text-base md:text-lg">
               {update.board.replace(/&#\d+;/g, '').trim()}
             </p>
-            <MdArrowForwardIos className="ml-2 hidden text-sm 2sm:block" />
+            <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
           </Link>
           <Link
             className="flex items-center"
             href={article_link}
             target="_blank"
           >
-            <p className="line-clamp-1 text-base font-semibold 2sm:text-lg md:text-xl">
+            <p className="line-clamp-1 text-base font-semibold 2xs:text-lg md:text-xl">
               {update.info.title}
             </p>
-            <LuExternalLink className="ml-2 hidden text-lg font-semibold 2sm:block" />
+            <LuExternalLink className="ml-2 hidden text-lg font-semibold 2xs:block" />
           </Link>
         </div>
-        <div className="flex flex-row items-end gap-2 2sm:flex-col">
+        <div className="flex flex-row items-end gap-2 2xs:flex-col">
           <Badge intent="danger" size="lg">
             <Link
               className="flex items-center"
               href={`/artists/${update.info.nickname}`}
             >
               <MdPerson className="mr-0.5 size-4 text-red-800 dark:text-red-200" />
-              <p className="line-clamp-1 max-w-16 text-sm text-red-800 dark:text-red-200 2sm:max-w-20 2sm:text-base sm:max-w-32 md:text-lg">
+              <p className="line-clamp-1 max-w-16 text-sm text-red-800 dark:text-red-200 2xs:max-w-20 2xs:text-base sm:max-w-32 md:text-lg">
                 {update.info.nickname}
               </p>
               <LuExternalLink className="ml-0.5 text-sm text-red-800 dark:text-red-200" />
@@ -89,7 +89,7 @@ export default function UpdateCard({ update }: Prop) {
           <Badge intent="secondary" size="lg">
             <div className="flex items-center">
               <FaRegClock className="mr-0.5 text-sm text-green-800 dark:text-green-200" />
-              <p className="line-clamp-1 max-w-16 text-sm text-green-800 dark:text-green-200 2sm:max-w-20 2sm:text-base sm:max-w-32 md:text-lg">
+              <p className="line-clamp-1 max-w-16 text-sm text-green-800 dark:text-green-200 2xs:max-w-20 2xs:text-base sm:max-w-32 md:text-lg">
                 {uploadTimeDiff}
               </p>
             </div>

@@ -49,16 +49,16 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
                   href={board_link}
                   target="_blank"
                 >
-                  <p className="text-lg font-bold 2sm:text-xl">
+                  <p className="text-lg font-bold 2xs:text-xl">
                     {data.board.replace(/&#\d+;/g, '').trim()}
                   </p>
-                  <MdArrowForwardIos className="ml-2 hidden text-sm 2sm:block" />
+                  <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
                 </Link>
               </div>
               <Badge intent="secondary" size="lg">
                 <div className="flex items-center">
                   <FaRegClock className="mr-1 text-sm text-green-800 dark:text-green-200" />
-                  <p className="line-clamp-1 max-w-16 text-sm text-green-800 dark:text-green-200 2sm:max-w-20 2sm:text-base sm:max-w-32">
+                  <p className="line-clamp-1 max-w-16 text-sm text-green-800 dark:text-green-200 2xs:max-w-20 2xs:text-base sm:max-w-32">
                     {uploadTimeDiff}
                   </p>
                 </div>
@@ -69,8 +69,8 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
               href={article_link + ids[0].id}
               target="_blank"
             >
-              <p className="text-xl font-bold 2sm:text-2xl">{data.title}</p>
-              <LuExternalLink className="ml-2 hidden text-lg font-semibold 2sm:block" />
+              <p className="text-xl font-bold 2xs:text-2xl">{data.title}</p>
+              <LuExternalLink className="ml-2 hidden text-lg font-semibold 2xs:block" />
             </Link>
           </div>
           <AuthorProfileCard
@@ -98,7 +98,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
                 ) : (
                   <div className="flex items-center">
                     <p className="line-clamp-1">{article_link + item.id}</p>
-                    <LuExternalLink className="ml-2 hidden text-lg font-semibold 2sm:block" />
+                    <LuExternalLink className="ml-2 hidden text-lg font-semibold 2xs:block" />
                   </div>
                 )}
                 {item.is_shukkou === true && (

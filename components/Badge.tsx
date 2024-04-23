@@ -7,7 +7,7 @@ type BadgeProps = VariantProps<typeof badgeStyles> & {
 };
 
 const badgeStyles = cva(
-  'inline-block whitespace-nowrap text-sm font-bold 2sm:text-base',
+  'inline-block whitespace-nowrap text-sm font-bold 2xs:text-base',
   {
     variants: {
       intent: {

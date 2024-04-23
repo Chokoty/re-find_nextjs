@@ -19,7 +19,7 @@ export default function AuthorProfileCard({
   return (
     <Link className="mb-2 size-full" href={`/artists/${nickname}`}>
       <div className="flex size-full flex-col items-center justify-center gap-4 rounded-xl bg-white p-8 transition hover:bg-blackAlpha-100 dark:bg-dark-card dark:hover:bg-whiteAlpha-100">
-        <div className="flex w-full flex-col items-center justify-center gap-4 2sm:flex-row">
+        <div className="flex w-full flex-col items-center justify-center gap-4 2xs:flex-row">
           <div className="size-[96px]">
             <Image
               width={100}

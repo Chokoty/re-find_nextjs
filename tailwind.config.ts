@@ -210,16 +210,18 @@ const config: Config = {
       },
       screens: {
         // chakra UI -> 4개 30em(480px)/48em(768px)/62em(992px) -> 3개 30em(480px)/48em(768px) -> 2개 30em(480px)
-        '2xs': '320px',
+        xxs: '320px',
         // => @media (min-width: 320px) { ... }
         xs: '375px',
         // => @media (min-width: 375px) { ... }
-        '2sm': '478px',
+        '2xs': '478px',
         // => @media (min-width: 478px) { ... }
         sm: '640px',
         // => @media (min-width: 640px) { ... }
         md: '768px',
         // => @media (min-width: 768px) { ... } // chakraUI -> isMobile
+        '2md': '992px',
+        // => @media (min-width: 992px) { ... }
         lg: '1024px',
         // => @media (min-width: 1024px) { ... }
         xl: '1280px',

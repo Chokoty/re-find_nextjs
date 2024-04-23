@@ -45,7 +45,7 @@ export default function SortTypeIcons({ sortCriteria, artist }: Props) {
   }
 
   return (
-    <div className="flex flex-col items-center gap-2 2sm:flex-row">
+    <div className="flex flex-col items-center gap-2 2xs:flex-row">
       <div className="mr-2 flex flex-row gap-4">
         {SORT_TYPES.slice(0, 3).map(
           (sortType, index2) =>

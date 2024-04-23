@@ -16,7 +16,7 @@ export default function Counter() {
     }
     if (!counts) {
       return (
-        <p className="text-xs 2sm:text-sm md:text-base lg:text-lg">
+        <p className="text-xs 2xs:text-sm md:text-base lg:text-lg">
           현재 서버와의 연결이 불안정합니다.
         </p>
       );
@@ -24,7 +24,7 @@ export default function Counter() {
     const { total_counter, today_counter } = counts;
     return (
       <div className="flex flex-row items-center justify-center gap-1">
-        <p className="text-xs 2sm:text-sm md:text-base lg:text-lg">
+        <p className="text-xs 2xs:text-sm md:text-base lg:text-lg">
           <CountUp end={parseInt(total_counter)} duration={2} />
         </p>
         <Tooltip
@@ -38,7 +38,7 @@ export default function Counter() {
             <CountUp end={parseInt(today_counter)} duration={5} />
           </Badge>
         </Tooltip>
-        <p className="text-xs 2sm:text-sm md:text-base lg:text-lg">
+        <p className="text-xs 2xs:text-sm md:text-base lg:text-lg">
           개의 출처를 찾았습니다.
         </p>
       </div>
