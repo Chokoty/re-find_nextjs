@@ -1,103 +1,42 @@
 'use client';
 
-import { Box, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 
 import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
-import { darkMode, lightMode } from '@/lib/theme';
 
 interface TopBackgroundProps {
   children: ReactNode;
 }
 
 const TopBackground = ({ children }: TopBackgroundProps) => {
-  const { colorMode } = useColorMode();
-  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-  const isDarkMode = colorMode === 'dark';
   const pathname = usePathname().replace('/gallery', '');
   const bgStaticSrc = getStaticImage(pathname.slice(1));
-  const imageBackgroundShadow = isDarkMode
-    ? `linear-gradient(180deg, ${bg}80 51.43%, ${bg} 100%),linear-gradient(75deg, ${bg} 0%, ${bg}00 45.72%)`
-    : `linear-gradient(180deg, ${bg}00 31.43%, ${bg} 86%),linear-gradient(91deg, ${bg} 0%, ${bg}00 57.72%)`;
-  const imageOpacity = isDarkMode ? 0.8 : 0.7;
+
   return (
-    <Box
-      as="section"
-      w="100%"
-      h="100%"
-      maxH="751px"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      position="relative"
-    >
-      <Box
-        w="100%"
-        // paddingTop="56.25%" // 16:9
-        position="relative"
-        top={['0px', '-60px']}
-        // style={isAlbum ? backgroundStyle2 : backgroundStyle}
-        // aspectRatio="16/9"
-        aspectRatio="1200/675"
-        zIndex="1"
-      >
-        {/* <Box
-          position="relative"
-          // top={['-8rem', '-12.5rem', '-16rem']}
-          top="100px"
-          p={['1rem', '1rem', '2rem']}
-          w="100%"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="flex-start"
-          textAlign="center"
-          zIndex="-1"
-        ></Box> */}
+    <section className="relative flex size-full max-h-[751px] flex-col items-center justify-center">
+      <div className="top-0 z-[1] aspect-[1200/675] w-full 2xs:relative 2xs:top-[-60px]">
         <Image
+          className="size-full max-h-[751px] object-cover opacity-70 dark:opacity-80"
           src={bgStaticSrc}
-          // layout="fill"
-          // objectFit="cover"
-          // layout="responsive"
-          // objectFit="cover"
-          alt="Background Image"
-          priority
+          alt="백그라운드 커버 이미지"
           quality={100}
           width={1920}
           height={1080}
-          style={{
-            width: '100%',
-            maxHeight: '751px',
-            height: '100%',
-            objectFit: 'cover',
-            opacity: imageOpacity,
-          }}
           unoptimized
+          priority
         />
-      </Box>
-      <Box
-        position="absolute"
-        width="100%"
-        height="100%"
-        top={['0px', '-59px']} // 4k screen으로가면 +1을 해주어 shadow를 아래로 내려줘야 뜨는 현상이 없어진다.
-        zIndex="2"
-        background={imageBackgroundShadow}
+      </div>
+      <div
+        // 4k screen으로가면 +1을 해주어 shadow를 아래로 내려줘야 뜨는 현상이 없어진다.
+        // #121212 > light-mode | #f8f9fa > dark-mode
+        className="absolute top-0 z-[2] size-full bg-[linear-gradient(#f8f9fa00_31.43%,_#f8f9fa_86%),_linear-gradient(91deg,_#f8f9fa_0%,_#f8f9fa00_57.72%)] dark:bg-[linear-gradient(180deg,_#12121280_51.43%,_#121212_100%),_linear-gradient(75deg,_#121212_0%,_#12121200_45.72%)] 2xs:top-[-59px]"
       />
-      <Box
-        w="100%"
-        h={['100%', 'unset']}
-        display={['flex', 'block']}
-        position="absolute"
-        bottom={['1rem', '8rem', '10rem', '14rem', '20rem']}
-        p={['0 1rem', '0 2rem', '0 2rem']}
-        zIndex="2"
-      >
+      <div className="absolute bottom-4 z-[2] flex size-full px-4 2xs:bottom-32 2xs:block 2xs:h-auto 2xs:px-8 md:bottom-40 2md:bottom-56 xl:bottom-80">
         {children}
-      </Box>
-    </Box>
+      </div>
+    </section>
   );
 };
 

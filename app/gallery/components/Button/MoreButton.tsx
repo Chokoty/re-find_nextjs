@@ -1,23 +1,16 @@
-import { Box, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { CiCirclePlus } from 'react-icons/ci';
 
 export default function MoreButton() {
   return (
-    <Box display="flex" justifyContent="center" alignItems="center">
+    <div className="flex items-center justify-center">
       <Link
         href="/gallery/weekRanking"
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '4px',
-        }}
+        className="flex flex-col items-center justify-center gap-1"
       >
         <CiCirclePlus size="100" />
-        <Text>더보기</Text>
+        <p>더보기</p>
       </Link>
-    </Box>
+    </div>
   );
 }

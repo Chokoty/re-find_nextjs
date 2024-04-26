@@ -1,8 +1,9 @@
 'use client';
 
-import { Box, Button, useColorMode } from '@chakra-ui/react';
+import clsx from 'clsx';
 
 import { BUTTON_LIST } from '@/app/gallery/lib/const';
+import Button from '@/components/Button';
 
 type Props = {
   range: { start: number; end: number };
@@ -15,12 +16,6 @@ export default function ThisWeekBtnList({
   selected,
   setSelected,
 }: Props) {
-  const { colorMode } = useColorMode();
-  const isDarkMode = colorMode === 'dark';
-  const highlight = isDarkMode ? 'white' : '#01bda1';
-  const backgroundColor = isDarkMode ? '#ffffff57' : '#00000080';
-  const hoverColor = isDarkMode ? '#ffffff3c' : '#000000b3';
-
   const onClick = (value: string) => {
     if (setSelected) {
       setSelected(value);
@@ -28,47 +23,25 @@ export default function ThisWeekBtnList({
   };
 
   return (
-    <Box
-      w="100%"
-      padding="0 2rem"
-      display="flex"
-      justifyContent="flex-start"
-      alignItems="center"
-      maxW="680px"
-      flexWrap="wrap"
-      gap="0.5rem"
-      as="ul"
-      sx={{
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-        '-ms-overflow-style': 'none',
-        'scrollbar-width': 'none',
-      }}
-    >
-      {BUTTON_LIST.slice(range.start, range.end).map((item, index) => (
-        <Box key={index}>
-          <Button
-            h={['30px', '36px']}
-            borderRadius="800px"
-            // border={selected === item ? 'none' : `0.3px solid ${color}`}
-            onClick={() => onClick(item)}
-            // variant={selected === item ? 'solid' : 'outline'}
-            variant="solid"
-            bg={selected === item ? highlight : backgroundColor}
-            color={selected === item ? 'black' : 'white'}
-            _hover={{
-              background: selected === item ? highlight : hoverColor,
-            }}
-            fontSize={['sm', 'md']}
-            fontWeight="bold"
-            textAlign="left"
-            // color={color}
-          >
-            {item}
-          </Button>
-        </Box>
+    <ul className="flex-start mb-3 flex w-full max-w-[680px] flex-wrap items-center gap-2 px-8 md:mb-5">
+      {BUTTON_LIST.slice(range.start, range.end).map((item) => (
+        <Button
+          key={item}
+          size="sm"
+          additionalClass={clsx(
+            'rounded-full text-sm sm:h-9 sm:min-h-9 sm:pe-4 sm:ps-4 sm:text-base',
+            {
+              'bg-green-highlight font-medium text-black hover:bg-teal-500 dark:bg-pink-highlight dark:hover:bg-pink-400':
+                selected === item,
+              'bg-blackAlpha-200 font-normal text-black hover:bg-blackAlpha-500 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-500':
+                selected !== item,
+            }
+          )}
+          onClick={() => onClick(item)}
+        >
+          {item}
+        </Button>
       ))}
-    </Box>
+    </ul>
   );
 }

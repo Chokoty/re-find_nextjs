@@ -4,7 +4,7 @@ export default function Alert() {
   return (
     <div
       // datatype="alert"
-      className="flex w-[90%] flex-col items-center justify-center gap-2 rounded-2xl bg-gray-200 p-4"
+      className="mx-auto flex w-[90%] flex-col items-center justify-center gap-2 rounded-2xl bg-gray-200 p-4"
     >
       <div className="flex items-center">
         <GoAlertFill className="mr-1 size-5 text-red-600" />

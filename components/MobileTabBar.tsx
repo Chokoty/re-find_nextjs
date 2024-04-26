@@ -41,7 +41,7 @@ export default function MobileTabBar() {
   };
   return (
     <div className="sticky bottom-1 z-[200] flex justify-center 2xs:bottom-3 md:hidden">
-      <div className="dark:bg-dark-footer flex h-[57px] w-full max-w-[300px] items-center justify-between rounded-full bg-white px-7 shadow-lg">
+      <div className="flex h-[57px] w-full max-w-[300px] items-center justify-between rounded-full bg-white px-7 shadow-lg dark:bg-dark-footer">
         {Object.keys(routerMap).map((router) => (
           <Link href={routerMap[router as RouterType].path} key={router}>
             <div

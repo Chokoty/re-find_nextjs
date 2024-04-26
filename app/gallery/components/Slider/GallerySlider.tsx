@@ -2,8 +2,6 @@
 
 import 'swiper/css';
 
-import { useColorMode } from '@chakra-ui/react';
-import React, { useState } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import type { SwiperOptions } from 'swiper/types';
@@ -11,7 +9,6 @@ import type { SwiperOptions } from 'swiper/types';
 import MoreButton from '@/app/gallery/components/Button/MoreButton';
 import GalleryAlbumCard from '@/app/gallery/components/Card/GalleryAlbumCard';
 import GalleryFanartCard from '@/app/gallery/components/Card/GalleryFanartCard';
-import styles from '@/app/gallery/components/Slider/GallerySlider.module.scss';
 import GALLERY_LIST from '@/app/gallery/lib/const';
 import { test } from '@/constants/test';
 
@@ -29,22 +26,13 @@ type Props = {
 };
 
 export default function GallerySlider({ customSwiperOptions, type }: Props) {
-  const [focusedArtworkId, setFocusedArtworkId] = useState<number | null>(null);
-
-  const handleToggleFocus = (id: number | null) => {
-    if (id === focusedArtworkId) {
-      setFocusedArtworkId(null); // Deselect the artwork if it's already focused
-    } else {
-      setFocusedArtworkId(id); // Set the focused artwork ID
-    }
-  };
   const { style: customStyle, ...customOptions } = customSwiperOptions || {};
 
   const swiperParams = {
     // centerInsufficientSlides
     style: {
       width: '100%',
-      padding: '0 1rem',
+      padding: '0 2rem',
       ...(customStyle || {}),
     },
     allowTouchMove: true,
@@ -76,8 +64,6 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
               <GalleryFanartCard
                 key={index}
                 artwork={data}
-                isFocused={data.id === focusedArtworkId}
-                onToggleFocus={handleToggleFocus}
                 num={index < 3 ? index + 1 : -1}
               />
             </SwiperSlide>
@@ -87,7 +73,7 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
           </SwiperSlide>
         </>
       ) : (
-        GALLERY_LIST.map((data, index) => (
+        GALLERY_LIST.map((data) => (
           <SwiperSlide key={data.id}>
             <GalleryAlbumCard album={data} />
           </SwiperSlide>
@@ -100,8 +86,6 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
 
 const SlideNavButtons = () => {
   const swiper = useSwiper();
-  const { colorMode } = useColorMode();
-  const isDarkMode = colorMode === 'dark';
 
   const handlePrevClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -118,22 +102,20 @@ const SlideNavButtons = () => {
   };
 
   return (
-    <div
-      className={`${styles.swiper_nav_btns} ${isDarkMode ? styles.dark : ''}`}
-    >
+    <div>
       <button
-        className={styles.swiper_prev_btn}
+        className="broder-none absolute left-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
         type="button"
         onClick={handlePrevClick}
       >
-        <GrFormPrevious size="22px" />
+        <GrFormPrevious size="22px" className="mb-8" />
       </button>
       <button
-        className={styles.swiper_next_btn}
+        className="broder-none absolute right-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
         type="button"
         onClick={handleNextClick}
       >
-        <GrFormNext size="22px" />
+        <GrFormNext size="22px" className="mb-8" />
       </button>
     </div>
   );
