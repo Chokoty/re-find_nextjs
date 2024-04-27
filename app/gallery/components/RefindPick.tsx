@@ -28,9 +28,9 @@ export default function RefindPick() {
         textAlign="center"
         w="100%"
         // h="80px"
-        padding="0 2rem"
+        p={['0 1rem', '0 2rem', '0 2rem']}
       >
-        <Text textAlign="left" fontWeight="800" fontSize={['xl', 'xl', '40px']}>
+        <Text textAlign="left" fontWeight="800" fontSize={['xl', '2xl']}>
           리파인드 추천 앨범
         </Text>
       </Box>

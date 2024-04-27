@@ -27,6 +27,7 @@ export default function ShareLinkButton() {
       style={{ background: highlightColor, borderRadius: '80px' }}
       variant="solid"
       onClick={handleCopyLink}
+      h="2.5rem"
     >
       <Text className={styles.text} color="white">
         <span className={styles.gallery}>갤러리</span> 공유하기

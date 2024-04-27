@@ -106,7 +106,7 @@ export default function GalleryAlbumCard({
               <Text className={styles.title}>{title}</Text>
               <Text className={styles.description}>{description}</Text>
             </Box>
-            <FaArrowRightLong size={40} color="white" />
+            {/* <FaArrowRightLong size={40} color="white" /> */}
           </Box>
         </Box>
       </Link>
