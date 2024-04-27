@@ -33,25 +33,25 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
           />
         </div>
         <div className="absolute inset-0 z-[1] hidden rounded-[20px] bg-blackAlpha-500 group-hover:block" />
-        <div className="absolute inset-0 z-[2] hidden size-full flex-col rounded-[20px] border-DEFAULT border-whiteAlpha-700 bg-blackAlpha-600 text-white group-hover:flex md:py-2">
-          <p className="flex h-4/5 flex-1 flex-col items-center justify-center gap-1.5 border-b-DEFAULT border-whiteAlpha-700 py-4 min-[875px]:flex-auto min-[875px]:justify-end min-[875px]:px-4">
+        <div className="absolute inset-0 z-[2] hidden size-full flex-col rounded-[20px] border-base border-whiteAlpha-700 bg-blackAlpha-600 text-white group-hover:flex md:py-2">
+          <p className="flex h-4/5 flex-1 flex-col items-center justify-center gap-1.5 border-b-base border-whiteAlpha-700 py-4 min-[875px]:flex-auto min-[875px]:justify-end min-[875px]:px-4">
             <p className="w-full truncate text-center text-base font-semibold 2xs:text-lg min-[875px]:text-left">
               {artwork.board.replace(/&#\d+;/g, '').trim()}
             </p>
-            <div className="flex w-full flex-col items-center justify-start gap-0.5 md:gap-2 min-[875px]:items-start xl:flex-row xl:items-center xl:justify-start">
-              <div className="flex max-w-full items-center justify-center gap-1.5 truncate text-whiteAlpha-700">
+            <div className="flex w-full flex-col items-center justify-start gap-0.5 text-whiteAlpha-700 md:gap-2 min-[875px]:items-start xl:flex-row xl:items-center xl:justify-start">
+              <div className="flex max-w-full items-center justify-center gap-1.5 truncate">
                 <FiClock className="size-4" />
                 <p className="text-center text-sm font-normal">
                   {artwork?.date?.split(' ')[0].slice(2, -1)}
                 </p>
               </div>
-              <div className="flex items-center justify-center gap-1.5 text-whiteAlpha-700">
+              <div className="flex items-center justify-center gap-1.5">
                 <FaEye className="size-4" />
                 <p className="text-center text-sm font-normal">
                   {formatArtistValue(artwork.view)}
                 </p>
               </div>
-              <div className="flex items-center justify-center gap-1.5 text-whiteAlpha-700">
+              <div className="flex items-center justify-center gap-1.5">
                 <FaThumbsUp className="size-4" />
                 <p className="text-center text-sm font-normal">
                   {formatArtistValue(artwork.like)}
@@ -59,7 +59,7 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
               </div>
             </div>
           </p>
-          <div className="md:grow-1/2 md:shrink-1/2 flex h-14 w-full shrink-0 grow-0 items-center justify-center gap-2 p-2 md:px-4 md:pb-0">
+          <div className="flex h-14 w-full shrink-0 grow-0 items-center justify-center gap-2 p-2 md:px-4 md:pb-0">
             <Link
               className="w-full flex-1"
               href={`/artists/${authorName}`}

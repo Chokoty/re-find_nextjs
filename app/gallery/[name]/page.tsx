@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 
 import DetailedGallery from '@/app/gallery/components/DetailedGallery';
@@ -60,40 +59,28 @@ export default async function page({ params: { name } }: Params) {
     });
 
     return (
-      <Box minH="240vh" w="100%" m="0 auto">
+      <div className="w-full">
         <TopBackground>
           <GalleryTitle pageType={name} />
-          <></>
         </TopBackground>
-        <Box
-          as="section"
-          w="100%"
-          position="relative"
-          top={['0px', '-100px', '-108px', '-180px', '-220px']} // -220px(-60px + -160px)
-          zIndex="2"
-        >
+        <section className="relative top-0 z-[2] w-full 2xs:top-[-100px] md:top-[-108px] 2md:top-[-180px] xl:top-[-220px]">
           <Hydrate state={{ queries: [query] }}>
             <DetailedGallery value={name} endpoint={endpoint ?? ''} />
           </Hydrate>
-        </Box>
-      </Box>
+        </section>
+      </div>
     );
   }
 
   return (
-    <Box minH="240vh" w="100%" m="0 auto">
+    <div className="w-full">
       <TopBackground>
         <GalleryTitle pageType={name} />
       </TopBackground>
-      <Box
-        as="section"
-        w="100%"
-        position="relative"
-        top={['0px', '-100px', '-108px', '-180px', '-220px']} // -220px(-60px + -160px)
-        zIndex="2"
-      >
+      {/* -220px(-60px + -160px) */}
+      <section className="relative top-0 z-[2] w-full 2xs:top-[-100px] md:top-[-108px] 2md:top-[-180px] xl:top-[-220px]">
         <DetailedGallery value={name} endpoint={endpoint ?? ''} />
-      </Box>
-    </Box>
+      </section>
+    </div>
   );
 }

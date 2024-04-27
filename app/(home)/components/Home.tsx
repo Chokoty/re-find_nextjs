@@ -4,13 +4,12 @@ import dynamic from 'next/dynamic';
 
 import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import Footer from '@/app/(home)/components/Footer';
+import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
 import MoreButtons from '@/components/Button/MoreButtons';
 import EventFanarts from '@/components/EventFanarts';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
-
-import RandomGacha from './RandomGacha';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),

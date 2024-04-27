@@ -1,8 +1,6 @@
-import clsx from 'clsx';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import Button, { type CustomVariantProps } from '@/components/Button';
 import RandomFanartButton from '@/components/Button/RandomFanartButton';
 import { RANDOM_FANARTS } from '@/constants/randomFanarts';
 import { cn } from '@/lib/common';

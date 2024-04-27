@@ -55,7 +55,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
               팬아트 갤러리로 돌아가기
             </p>
           </Button>
-          <h1 className="0 my-3.5 font-['ONE-Mobile-POP'] text-2xl 2xs:text-4xl md:text-5xl 2md:text-[4rem]">
+          <h1 className="my-3.5 font-['ONE-Mobile-POP'] text-2xl 2xs:text-4xl md:text-5xl 2md:text-[4rem]">
             {title}
           </h1>
           <div className="mb-6">

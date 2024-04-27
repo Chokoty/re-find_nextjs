@@ -16,6 +16,7 @@ import {
   useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
+import clsx from 'clsx';
 import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
@@ -58,14 +59,6 @@ export default function ViewSelectBar({
     'rgb(0 0 0 / 8%)',
     'rgb(255 255 255 / 8%)'
   );
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-  const { colorMode } = useColorMode();
-  const isDarkMode = colorMode === 'dark';
-
-  const boxShadowLight =
-    '0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06)';
-  const boxShadowDark =
-    '0px 4px 6px -1px rgba(255, 255, 255, 0.1), 0px 2px 4px -1px rgba(255, 255, 255, 0.06)'; // 다크 모드에서의 그림자
 
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -76,48 +69,33 @@ export default function ViewSelectBar({
     ...MEMBERS.slice(1, 7),
   ];
 
-  const getIconColor = (isActive: boolean) => {
-    if (isActive) {
-      return isDarkMode ? 'white' : 'rgba(0,0,0, 0.70)';
-    }
-    return isDarkMode ? 'rgba(255, 255, 255, 0.20)' : 'rgba(0,0,0, 0.20)';
-  };
-
   return (
-    <Flex // 뷰 선택 버튼
-      flexDirection="row"
-      alignItems="center"
-      justifyContent="space-between"
-      p="0.5rem 2rem"
-      mb="1rem"
-      w="100%"
-    >
-      <Box display="flex" flexDir="row" gap="5px">
-        <Button
-          variant={activeView === 'masonry' ? 'solid' : 'ghost'}
+    <div className="mb-4 flex w-full items-center justify-between px-8 py-2">
+      <div className="flex gap-[5px]">
+        <button
+          className={clsx('h-10 rounded-full px-4 transition', {
+            'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300':
+              activeView === 'masonry',
+            'text-blackAlpha-400 hover:bg-gray-100 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200':
+              activeView !== 'masonry',
+          })}
           onClick={() => onViewChange('masonry')}
-          borderRadius="30px"
         >
-          <BiSolidDashboard
-            size="26px"
-            color={getIconColor(activeView === 'masonry')}
-          />
-        </Button>
-        <Button
-          variant={activeView === 'grid' ? 'solid' : 'ghost'}
+          <BiSolidDashboard size="26px" />
+        </button>
+        <button
+          className={clsx('h-10 rounded-full px-4 transition', {
+            'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300':
+              activeView === 'grid',
+            'text-blackAlpha-400 hover:bg-gray-100 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200':
+              activeView !== 'grid',
+          })}
           onClick={() => onViewChange('grid')}
-          borderRadius="30px"
         >
-          <IoGrid size="24px" color={getIconColor(activeView === 'grid')} />
-        </Button>
-      </Box>
-      <Box
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="center"
-        gap="1rem"
-      >
+          <IoGrid size="24px" />
+        </button>
+      </div>
+      <div className="flex items-center justify-center gap-4">
         {isdPick && (
           <Box display="flex" justifyContent="flex-end">
             <Menu>
@@ -232,7 +210,7 @@ export default function ViewSelectBar({
             </PopoverBody>
           </PopoverContent>
         </Popover>
-      </Box>
-    </Flex>
+      </div>
+    </div>
   );
 }

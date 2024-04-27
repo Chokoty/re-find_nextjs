@@ -23,7 +23,7 @@ export default function ThisWeekBtnList({
   };
 
   return (
-    <ul className="flex-start mb-3 flex w-full max-w-[680px] flex-wrap items-center gap-2 px-8 md:mb-5">
+    <ul className="mb-3 flex w-full max-w-[680px] flex-wrap items-center justify-start gap-2 px-8 md:mb-5">
       {BUTTON_LIST.slice(range.start, range.end).map((item) => (
         <Button
           key={item}

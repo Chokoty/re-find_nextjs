@@ -104,14 +104,14 @@ const SlideNavButtons = () => {
   return (
     <div>
       <button
-        className="broder-none absolute left-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
+        className="absolute left-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
         type="button"
         onClick={handlePrevClick}
       >
         <GrFormPrevious size="22px" className="mb-8" />
       </button>
       <button
-        className="broder-none absolute right-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
+        className="absolute right-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
         type="button"
         onClick={handleNextClick}
       >

@@ -118,7 +118,7 @@ const Fanart = ({
     <div className="mb-2 flex w-full flex-col items-center justify-center rounded-2xl">
       <Link className="w-full" href={article_link} target="_blank">
         <Image
-          className="shadow-card max-h-[312px] rounded-2xl object-cover"
+          className="max-h-[312px] rounded-2xl object-cover shadow-cardBox"
           src={modifiedUrl300}
           alt={`랜덤 팬아트 게시글 title: ${title}`}
           width={475}

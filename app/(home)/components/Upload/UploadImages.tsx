@@ -42,7 +42,7 @@ export default function UploadImages() {
       <div
         className={`w-[90%] max-w-[300px] cursor-pointer rounded-2xl border-4 border-dashed border-[#6d6d6d] p-4 hover:border-black dark:hover:border-gray-150 xs:w-4/5 xs:max-w-[360px] md:w-3/5 md:max-w-[500px] 
         lg:w-full
-        ${isDragActive ? 'border-hightlight' : ''}`}
+        ${isDragActive ? 'border-green-highlight dark:border-pink-highlight' : ''}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}

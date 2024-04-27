@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
-import LinkBtns from './LinkBtn';
+import LinkBtns from '@/app/(home)/components/Footer/LinkBtn';
 
 export default function Footer() {
   return (
     <footer className="mb-12 mt-5 flex w-[90%] flex-col justify-center lg:mt-1">
       <LinkBtns />
       <div className="mb-4 mt-5 px-2 text-gray-600 dark:text-whiteAlpha-700">
-        <p className="text-md mb-4 font-bold">고객센터</p>
+        <p className="mb-4 font-bold">고객센터</p>
         <div className="mb-6">
           <p className="text-sm">팀 리파인드</p>
           <p className="text-sm">contact@re-find.xyz</p>
