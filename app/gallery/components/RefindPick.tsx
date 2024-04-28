@@ -19,6 +19,7 @@ export default function RefindPick() {
       flexDir="column"
       gap="30px"
       // mt="120px"
+      pl={['1rem', '2rem', '2rem']}
     >
       <Box
         display="flex"
@@ -28,7 +29,7 @@ export default function RefindPick() {
         textAlign="center"
         w="100%"
         // h="80px"
-        p={['0 1rem', '0 2rem', '0 2rem']}
+        // p={['0 1rem', '0 2rem', '0 2rem']}
       >
         <Text textAlign="left" fontWeight="800" fontSize={['xl', '2xl']}>
           리파인드 추천 앨범
@@ -38,7 +39,7 @@ export default function RefindPick() {
         type="album"
         customSwiperOptions={{
           style: {
-            padding: '0 2rem',
+            padding: '0',
           },
           spaceBetween: 8,
           breakpoints: {
