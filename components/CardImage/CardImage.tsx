@@ -2,12 +2,13 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaEye, FaThumbsUp } from 'react-icons/fa';
-import { FaArrowRightLong } from 'react-icons/fa6';
+import { FaArrowRightLong, FaChevronRight } from 'react-icons/fa6';
 
 import styles from '@/components/CardImage/CardImage.module.scss';
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsive } from '@/hooks/useResponsive';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 type Props = {
   data: ArtworkList | GalleryArtworkList;
@@ -29,6 +30,7 @@ export default function CardImage({ data }: Props) {
     url,
   } = data;
   const isMobile = useResponsive();
+  const article_link = useResponsiveLink('', 'article');
   const modifiedUrl300 = useModifiedImageUrl({
     url: img_url_list[0],
     size: 300,
@@ -273,6 +275,7 @@ export default function CardImage({ data }: Props) {
             }}
           >
             <Box
+              h="2.5rem"
               className={styles.textBox}
               w="100%"
               display="flex"
@@ -286,17 +289,65 @@ export default function CardImage({ data }: Props) {
                 background: 'linear-gradient(92deg, #ff58a2 0%, #ff93c3 100%)',
               }}
               // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
-              borderRadius="11px"
+              borderRadius="800px"
               background="linear-gradient(92deg, #FF4195 0%, #FF72B0 100%)"
-              padding="8px 10px"
+              padding="0 1rem"
               fontSize="xs"
               fontWeight="600"
               color="white"
               transition="all 0.2s ease-in-out"
             >
-              {/* 왁물원<span>에서 보기</span> */}
-              자세히보기
-              <FaArrowRightLong />
+              자세히
+              <FaArrowRightLong
+                style={{
+                  // marginLeft: '0.5rem',
+                  fontSize: '0.8rem',
+                }}
+              />
+            </Box>
+          </Link>
+          <Link
+            // className={styles.btns}
+            href={article_link + id}
+            target="_blank"
+          >
+            <Box
+              // className={styles.textBox}
+              // w="100%"
+              h="2.5rem"
+              display="flex"
+              flexDir="row"
+              alignItems="center"
+              justifyContent="center"
+              gap="0.5rem"
+              _hover={{
+                textDecoration: 'none',
+                cursor: 'pointer',
+                backgroundColor: 'pink.400',
+                // color: 'rgba(0, 0, 0, 0.7)',
+                background: 'linear-gradient(92deg, #1be073 0%, #83dcb7 100%)',
+              }}
+              // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
+              borderRadius="800px"
+              background="linear-gradient(92deg, #02C75A 0%, #83dcb7 100%)"
+              padding="0 1rem"
+              color="white"
+              transition="all 0.2s ease-in-out"
+            >
+              <Text
+                fontSize="xs"
+                fontWeight="600"
+                color="white"
+                textAlign="center"
+              >
+                왁물원
+              </Text>
+              <FaArrowRightLong
+                style={{
+                  // marginLeft: '0.5rem',
+                  fontSize: '0.8rem',
+                }}
+              />
             </Box>
           </Link>
         </Box>

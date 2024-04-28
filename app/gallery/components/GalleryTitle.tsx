@@ -52,6 +52,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
       alignItems={'flex-start'}
       justifyContent={'flex-start'}
       w="100%"
+      minH="14rem"
     >
       {pageType === 'galleryHome' ? (
         <>
