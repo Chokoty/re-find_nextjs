@@ -49,7 +49,7 @@ export default function CardImage({ data }: Props) {
         </div>
       </Link>
       {/* 화면사이즈 768 이상(데스크탑 환경) */}
-      <div className="group relative hidden w-full md:inline-block">
+      <div className="group relative hidden w-full rounded-[20px] border-base border-blackAlpha-200 dark:border-none md:inline-block">
         <Image
           width={236}
           height={236}
@@ -60,7 +60,7 @@ export default function CardImage({ data }: Props) {
           }
           alt={title}
           className={clsx(
-            'max-h-[430px] rounded-[20px] bg-[#f5f5f5] object-cover',
+            'max-h-[430px] rounded-[20px] bg-[#f5f5f5] object-cover ',
             {
               'blur-[6px]': deleted,
             }

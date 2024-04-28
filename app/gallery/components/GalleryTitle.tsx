@@ -35,7 +35,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
   // const color = isDarkMode ? 'rgb(255 255 255 / 60%)' : 'rgb(0 0 0 / 60%)';
 
   return (
-    <div className="flex w-full flex-col items-center justify-center 2xs:items-start 2xs:justify-start">
+    <div className="flex w-full flex-col items-center justify-center sm:items-start sm:justify-start">
       {pageType === 'galleryHome' ? (
         <>
           <p className="text-xs font-semibold 2xs:text-base md:text-xl">
@@ -73,7 +73,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
 // TODO: ONE-Mobile-POP 폰트 최적화 필요 feat) fonts.ts
 const GalleryHomeTitle = () => {
   return (
-    <div className="flex h-[72px] items-center justify-center font-['ONE-Mobile-POP'] text-3xl 2xs:text-5xl md:text-[80px]">
+    <div className="flex h-[72px] items-center justify-center font-['ONE-Mobile-POP'] text-3xl 2xs:text-5xl md:h-[120px] md:text-[80px]">
       <h1 className="m-0">팬아트</h1>
       <div className="relative h-8 w-16 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-12 2xs:w-24 md:h-16 md:w-40">
         <Image
