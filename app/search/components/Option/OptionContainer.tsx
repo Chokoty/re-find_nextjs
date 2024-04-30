@@ -1,85 +1,38 @@
-import {
-  Accordion,
+'use client';
+
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io';
+
+import MainOptions from '@/app/search/components/Option/MainOptions';
+import Accordion, {
   AccordionButton,
-  AccordionIcon,
   AccordionItem,
-  Box,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { usePathname } from 'next/navigation';
-import { CgOptions } from 'react-icons/cg';
-
-import styles from '@/app/search/components/Option/OptionContainer.module.scss';
-import { darkMode, lightMode } from '@/lib/theme';
-
-import MainOptions from './MainOptions';
+  AccordionPanel,
+} from '@/components/Accordion';
 
 export default function OptionContainer() {
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const isSearchPage = usePathname() === '/search';
   return (
-    <Accordion
-      className={styles.accordion}
-      allowMultiple
-      w="100%"
-      p="1.5rem 1rem 0"
-    >
-      <AccordionItem
-        border="none"
-        _focus={{ boxShadow: 'none' }}
-        _hover={{ boxShadow: 'none' }}
-      >
+    <Accordion>
+      <AccordionItem hasBorder={false}>
         {({ isExpanded }) => (
           <>
-            <Box display="flex" alignItems="center" justifyContent="flex-end">
-              {/* <Button
-                // justifyContent="flex-end"
-                gap="0.3rem"
-                p="0.5rem"
-                borderRadius="0.5rem"
-                background="none"
-                _hover={{
-                  backgroundColor: bg2,
-                  borderColor: '#01BFA2',
-                  color: '#01BFA2',
-                }}
-                onClick={() => {
-                  router.push(`/search?q=${q}`);
-                }}
-              >
-                <RepeatIcon />
-                <Text>필터 초기화</Text>
-              </Button> */}
-              <AccordionButton
-                gap="0.3rem"
-                p="0.5rem"
-                borderRadius="0.5rem"
-                _hover={{
-                  backgroundColor: bg2,
-                  borderColor: '#01BFA2',
-                  color: '#01BFA2',
-                }}
-                w="auto"
-              >
+            <div className="flex w-full items-center justify-end">
+              <AccordionButton type="filter">
                 {isExpanded ? (
                   <>
-                    <AccordionIcon />
-                    <Text>필터 접기</Text>
+                    필터 접기
+                    <IoIosArrowUp size="17" />
                   </>
                 ) : (
                   <>
-                    {isSearchPage ? (
-                      <CgOptions fontSize="1rem" />
-                    ) : (
-                      <AccordionIcon />
-                    )}
-                    <Text>필터 더보기</Text>
+                    필터 더보기
+                    <IoIosArrowDown size="17" />
                   </>
                 )}
               </AccordionButton>
-            </Box>
-            <MainOptions />
+            </div>
+            <AccordionPanel>
+              <MainOptions />
+            </AccordionPanel>
           </>
         )}
       </AccordionItem>
