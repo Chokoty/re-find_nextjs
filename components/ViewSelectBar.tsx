@@ -1,13 +1,3 @@
-import {
-  Box,
-  Button as ChakraButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  useColorModeValue,
-  useMediaQuery,
-} from '@chakra-ui/react';
 import clsx from 'clsx';
 import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
@@ -16,14 +6,13 @@ import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 import { MEMBERS } from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
-import { MENU_ITEMS } from '@/constants/artists';
-import { darkMode, lightMode } from '@/lib/theme';
-
+import Menu, { MenuButton, MenuItem, MenuList } from '@/components/Menu';
 import Popover, {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-} from './Popover';
+} from '@/components/Popover';
+import { MENU_ITEMS } from '@/constants/artists';
 
 type Props = {
   activeView: string;
@@ -49,14 +38,6 @@ export default function ViewSelectBar({
   onMemberClick,
   isdPick,
 }: Props) {
-  const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
-  // 현재 topbackground가 화면의 크기만큼 유동적으로 변하기 때문에 background를 상황에따라 주기 에매하다
-  const popoverBg = useColorModeValue(lightMode.bg2, darkMode.bg3);
-  const popoverHoverBg = useColorModeValue(
-    'rgb(0 0 0 / 8%)',
-    'rgb(255 255 255 / 8%)'
-  );
-
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
   const memberName =
@@ -94,79 +75,55 @@ export default function ViewSelectBar({
       </div>
       <div className="flex items-center justify-center gap-4">
         {isdPick && (
-          <Box display="flex" justifyContent="flex-end">
-            <Menu>
-              <MenuButton
-                variant="solid"
-                borderRadius="800px"
-                as={ChakraButton}
-                iconSpacing={isSmallerThan370 ? 'unset' : '2'}
-                rightIcon={
-                  isSmallerThan370 ? <FaUser /> : <MdOutlineKeyboardArrowDown />
-                }
-              >
-                {!isSmallerThan370 && memberName}
-              </MenuButton>
-              <MenuList bg={popoverBg} zIndex="4">
-                {memberList.map((member) => (
-                  <MenuItem
-                    bg={popoverBg}
-                    key={member.id}
-                    _hover={{
-                      bg: popoverHoverBg,
-                    }}
-                    onClick={() => onMemberClick?.(member.value)}
-                  >
-                    {member.name}
-                  </MenuItem>
-                ))}
-              </MenuList>
-            </Menu>
-          </Box>
-        )}
-        <Box display="flex" justifyContent="flex-end">
           <Menu>
             <MenuButton
-              variant="solid"
-              borderRadius="800px"
-              as={ChakraButton}
-              iconSpacing={isSmallerThan370 ? 'unset' : '2'}
+              size="lg"
               rightIcon={<MdOutlineKeyboardArrowDown />}
+              rightMobileIcon={<FaUser />}
             >
-              {!isSmallerThan370 && sortLabel}
+              {memberName}
             </MenuButton>
-            <MenuList bg={popoverBg} zIndex="4">
-              {isdPick === true &&
-                MENU_ITEMS.filter((item) => item.isdPick === true).map(
-                  (item) => (
-                    <MenuItem
-                      bg={popoverBg}
-                      _hover={{
-                        bg: popoverHoverBg,
-                      }}
-                      key={item.id}
-                      onClick={() => onMenuItemClick(item.id)}
-                    >
-                      {item.label}
-                    </MenuItem>
-                  )
-                )}
-              {isdPick === false &&
-                MENU_ITEMS.map((item) => (
-                  <MenuItem
-                    bg={popoverBg}
-                    key={item.id}
-                    _hover={{
-                      bg: popoverHoverBg,
-                    }}
-                    onClick={() => onMenuItemClick(item.id)}
-                  >
-                    {item.label}
-                  </MenuItem>
-                ))}
+            <MenuList>
+              {memberList.map((member) => (
+                <MenuItem
+                  key={member.id}
+                  onClick={() => onMemberClick?.(member.value)}
+                >
+                  {member.name}
+                </MenuItem>
+              ))}
             </MenuList>
           </Menu>
-        </Box>
+        )}
+        <Menu>
+          <MenuButton
+            size="lg"
+            rightIcon={<MdOutlineKeyboardArrowDown />}
+            rightMobileIcon={<MdOutlineKeyboardArrowDown />}
+          >
+            {sortLabel}
+          </MenuButton>
+          <MenuList>
+            {isdPick === true &&
+              MENU_ITEMS.filter((item) => item.isdPick === true).map((item) => (
+                <MenuItem
+                  key={item.id}
+                  onClick={() => onMenuItemClick(item.id)}
+                >
+                  {item.label}
+                </MenuItem>
+              ))}
+            {isdPick === false &&
+              MENU_ITEMS.map((item) => (
+                <MenuItem
+                  key={item.id}
+                  onClick={() => onMenuItemClick(item.id)}
+                >
+                  {item.label}
+                </MenuItem>
+              ))}
+          </MenuList>
+        </Menu>
         <Popover>
           <PopoverTrigger size="lg">
             <MdMoreHoriz className="size-6" />

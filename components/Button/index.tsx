@@ -1,12 +1,12 @@
 import type { VariantProps } from 'class-variance-authority';
 import { cva } from 'class-variance-authority';
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import { cn } from '@/lib/common';
 
 export type CustomVariantProps = VariantProps<typeof buttonStyles>;
 
-interface ButtonProps
+export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     CustomVariantProps {
   additionalClass?: string;
@@ -112,13 +112,10 @@ const buttonStyles = cva(
   }
 );
 
-export default function Button({
-  children,
-  onClick,
-  intent,
-  additionalClass,
-  size,
-}: ButtonProps) {
+function Button(
+  { children, onClick, intent, additionalClass, size }: ButtonProps,
+  ref: React.Ref<HTMLButtonElement>
+) {
   const buttonClassName = cn(
     buttonStyles({
       size,
@@ -127,8 +124,15 @@ export default function Button({
     additionalClass
   );
   return (
-    <button type="button" onClick={onClick} className={buttonClassName}>
+    <button
+      ref={ref}
+      type="button"
+      onClick={onClick}
+      className={buttonClassName}
+    >
       {children}
     </button>
   );
 }
+
+export default forwardRef(Button);
