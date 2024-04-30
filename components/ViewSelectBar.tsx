@@ -1,19 +1,11 @@
 import {
   Box,
-  Button,
-  Flex,
+  Button as ChakraButton,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-  Text,
-  useColorMode,
   useColorModeValue,
-  useDisclosure,
   useMediaQuery,
 } from '@chakra-ui/react';
 import clsx from 'clsx';
@@ -23,8 +15,15 @@ import { IoGrid } from 'react-icons/io5';
 import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
 import { MEMBERS } from '@/app/gallery/lib/const';
+import Button from '@/components/Button';
 import { MENU_ITEMS } from '@/constants/artists';
 import { darkMode, lightMode } from '@/lib/theme';
+
+import Popover, {
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+} from './Popover';
 
 type Props = {
   activeView: string;
@@ -52,8 +51,6 @@ export default function ViewSelectBar({
 }: Props) {
   const [isSmallerThan370] = useMediaQuery('(max-width: 480px)');
   // 현재 topbackground가 화면의 크기만큼 유동적으로 변하기 때문에 background를 상황에따라 주기 에매하다
-
-  const { onClose } = useDisclosure();
   const popoverBg = useColorModeValue(lightMode.bg2, darkMode.bg3);
   const popoverHoverBg = useColorModeValue(
     'rgb(0 0 0 / 8%)',
@@ -102,7 +99,7 @@ export default function ViewSelectBar({
               <MenuButton
                 variant="solid"
                 borderRadius="800px"
-                as={Button}
+                as={ChakraButton}
                 iconSpacing={isSmallerThan370 ? 'unset' : '2'}
                 rightIcon={
                   isSmallerThan370 ? <FaUser /> : <MdOutlineKeyboardArrowDown />
@@ -132,7 +129,7 @@ export default function ViewSelectBar({
             <MenuButton
               variant="solid"
               borderRadius="800px"
-              as={Button}
+              as={ChakraButton}
               iconSpacing={isSmallerThan370 ? 'unset' : '2'}
               rightIcon={<MdOutlineKeyboardArrowDown />}
             >
@@ -170,43 +167,18 @@ export default function ViewSelectBar({
             </MenuList>
           </Menu>
         </Box>
-        <Popover onClose={onClose}>
-          <PopoverTrigger>
-            <Box w="40px">
-              <Button
-                w="2.5rem"
-                h="2.5rem"
-                p="0"
-                variant="solid"
-                borderRadius="full"
-              >
-                <MdMoreHoriz size="24px" />
-              </Button>
-            </Box>
+        <Popover>
+          <PopoverTrigger size="lg">
+            <MdMoreHoriz className="size-6" />
           </PopoverTrigger>
-          <PopoverContent w="200px" bg={popoverBg}>
-            <PopoverBody
-              display="flex"
-              flexDirection="column"
-              alignItems="flex-start"
-              justifyContent="center"
-              p="0.5rem"
-            >
-              <Text p="0.5rem 1rem" fontSize="sm">
-                뷰 옵션
-              </Text>
-              <Button
-                w="100%"
-                variant="ghost"
-                textAlign="left"
-                onClick={() => {
-                  handleShowDeleted();
-                }}
-              >
-                <Text w="100%" textAlign="left">
+          <PopoverContent size="sm" hasCloseButton={false}>
+            <PopoverBody>
+              <div className="flex flex-col items-start justify-center">
+                <p className="px-4 py-2 text-sm">뷰 옵션</p>
+                <Button intent="ghost-gray" onClick={handleShowDeleted}>
                   혐잘딱 게시글 {isDeletedVisible ? '가리기' : '보이기'}
-                </Text>
-              </Button>
+                </Button>
+              </div>
             </PopoverBody>
           </PopoverContent>
         </Popover>

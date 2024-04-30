@@ -84,6 +84,9 @@ const config: Config = {
         pinkAlpha: {
           200: 'var(--pinkAlpha-200)',
         },
+        black: {
+          200: 'var(--black-200)',
+        },
         gray: {
           50: 'var(--gray-50)',
           100: 'var(--gray-100)',

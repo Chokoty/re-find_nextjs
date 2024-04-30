@@ -1,14 +1,20 @@
 'use client';
 
 import React, { useState } from 'react';
+import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { useShallow } from 'zustand/react/shallow';
 
 import Divider from '@/app/(home)/components/Divider';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import Checkbox from '@/components/Checkbox';
-import HelpPopOver from '@/components/HelpPopOver';
 import NumberInput from '@/components/NumberInput';
+import Popover, {
+  PopoverBody,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+} from '@/components/Popover';
 import Select from '@/components/Select';
 
 const boardMap: Record<string, string[]> = {
@@ -283,7 +289,17 @@ export default function MainOptions() {
             작가
           </Checkbox>
         </div>
-        <HelpPopOver description="전부 체크되지 않은 경우엔 제목과 본문에서만 찾습니다." />
+        <Popover>
+          <PopoverTrigger size="sm">
+            <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>검색 도움말</PopoverHeader>
+            <PopoverBody>
+              전부 체크되지 않은 경우엔 제목과 본문에서만 찾습니다.
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
       </div>
       <Divider />
       <div className="m-2 flex items-center justify-between min-[515px]:m-4">
@@ -294,9 +310,18 @@ export default function MainOptions() {
         >
           대소문자 구분
         </Checkbox>
-        <HelpPopOver
-          description={`체크시 대소문자를 구분해줍니다. 예시) 체크 후 Over를 검색하면 True Lover는 검색되지 않습니다.`}
-        />
+        <Popover>
+          <PopoverTrigger size="sm">
+            <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>검색 도움말</PopoverHeader>
+            <PopoverBody>
+              {`체크시 대소문자를 구분해줍니다. 예시) 체크 후 Over를 검색하면 True
+              Lover는 검색되지 않습니다.`}
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
       </div>
       <Divider />
       <div className="m-2 flex flex-col gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
