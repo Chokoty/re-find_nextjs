@@ -74,7 +74,7 @@ export default function NumberInput({
           role="button"
           tabIndex={-1}
           className={clsx(
-            'flex flex-1 select-none items-center justify-center rounded-tr-md border-s-base border-blackAlpha-300 text-lg text-whiteAlpha-800 transition dark:border-whiteAlpha-300',
+            'flex flex-1 select-none items-center justify-center rounded-tr-md border-s-base border-blackAlpha-300 text-lg text-blackAlpha-800 transition dark:border-whiteAlpha-300 dark:text-whiteAlpha-800',
             {
               'cursor-not-allowed opacity-40': parsedInputValue >= parsedMax,
               'cursor-pointer': parsedInputValue < parsedMax,
@@ -88,7 +88,7 @@ export default function NumberInput({
           role="button"
           tabIndex={-1}
           className={clsx(
-            '-mt-px flex flex-1 select-none items-center justify-center rounded-br-md border-s-base border-t-base border-blackAlpha-300 text-lg text-whiteAlpha-800 transition dark:border-whiteAlpha-300',
+            '-mt-px flex flex-1 select-none items-center justify-center rounded-br-md border-s-base border-t-base border-blackAlpha-300 text-lg text-blackAlpha-800 transition dark:border-whiteAlpha-300 dark:text-whiteAlpha-800',
             {
               'cursor-not-allowed opacity-40': parsedInputValue <= parsedMin,
               'cursor-pointer': parsedInputValue > parsedMin,

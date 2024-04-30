@@ -8,16 +8,16 @@ type Props = {
   recentSearches: string[];
   deleteHistoryKeyword: (value: string) => void;
   deleteHistoryKeywords: () => void;
-  close?: () => void;
-  modalClose?: () => void;
+  closeHistory?: () => void;
+  closeModal?: () => void;
 };
 
 export default function SearchHistory({
   recentSearches,
   deleteHistoryKeyword,
   deleteHistoryKeywords,
-  close,
-  modalClose,
+  closeHistory,
+  closeModal,
 }: Props) {
   const pathname = usePathname();
   const router = useRouter();
@@ -25,7 +25,7 @@ export default function SearchHistory({
 
   const moveSearchResult = (q: string) => {
     if (!isSearchPage) {
-      modalClose?.();
+      closeModal?.();
     }
     router.push(`/search?q=${q}`);
   };
@@ -36,7 +36,7 @@ export default function SearchHistory({
         <div className="flex items-center justify-center">
           {isSearchPage && (
             <Button
-              onClick={close}
+              onClick={closeHistory}
               size="xs"
               intent="ghost-gray"
               additionalClass="h-6 min-h-6"

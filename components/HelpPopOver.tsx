@@ -1,8 +1,8 @@
 'use client';
 
-import { BsFillQuestionCircleFill } from 'react-icons/bs';
-import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
+import { useEffect, useRef, useState } from 'react';
+import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { IoClose } from 'react-icons/io5';
 
 type Prop = {
@@ -35,8 +35,6 @@ export default function HelpPopOver({ description }: Prop) {
     }
   };
 
-  console.log(isShow);
-
   // 컴포넌트가 마운트될 때 document.body에 클릭 이벤트 리스너 추가
   useEffect(() => {
     document.body.addEventListener('click', handleClickOutside);
@@ -48,13 +46,18 @@ export default function HelpPopOver({ description }: Prop) {
 
   return (
     <div className="relative inline-block" aria-label="A popover">
-      <button ref={buttonRef} onClick={toggle}>
+      <button
+        aria-label="question button"
+        type="button"
+        ref={buttonRef}
+        onClick={toggle}
+      >
         <BsFillQuestionCircleFill className="text-blackAlpha-600 dark:text-whiteAlpha-600" />
       </button>
       <div
         ref={popoverRef}
         className={clsx(
-          'top-50 absolute right-[-30px] z-50 w-[320px] rounded-md border-base border-whiteAlpha-700 bg-gray-600 transition',
+          'absolute right-[-30px] top-[30px] z-50 w-[320px] rounded-md border-base border-whiteAlpha-700 bg-gray-600 transition',
           {
             'visible opacity-100': isShow,
             'invisible opacity-0': !isShow,
@@ -62,6 +65,8 @@ export default function HelpPopOver({ description }: Prop) {
         )}
       >
         <button
+          type="button"
+          aria-label="Close popover"
           onClick={() => setIsShow(false)}
           className="absolute right-2 top-2"
         >

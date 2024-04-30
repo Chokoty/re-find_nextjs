@@ -1,9 +1,8 @@
+import { Modal } from '@/app/@ArtworkModal/(.)artwork/[id]/modal';
 import Recommend from '@/app/artwork/components/Recommend';
 import ContentSection from '@/app/artwork/components/section/ContentSection';
 import ImageSection from '@/app/artwork/components/section/ImageSection';
 import { getArtworkDetail } from '@/app/artwork/service/server';
-
-import { Modal } from '@/app/@ArtworkModal/(.)artwork/[id]/modal';
 
 type Params = { params: { id: string } };
 
