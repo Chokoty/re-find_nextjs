@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
 import { FiMoon, FiSun } from 'react-icons/fi';

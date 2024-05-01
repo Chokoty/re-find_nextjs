@@ -18,12 +18,12 @@ export const SOURCE_URL = 'https://cafe.naver.com/steamindiegame/9524252';
 
 export const SUPPORT_INFOS = [
   {
-    title: '버그 제보',
-    url: 'https://docs.google.com/forms/d/e/1FAIpQLScK_i8O9QnhfZswreRX7VYROWzG3Kte6bVxjf28VSK0Fcu23g/viewform',
-  },
-  {
     title: '기타 문의',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSf0WGZnnlZahRLoinXe1n0GmPCdryKXEFlPznqyLrsjBKpnZw/viewform',
+  },
+  {
+    title: '버그 제보',
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLScK_i8O9QnhfZswreRX7VYROWzG3Kte6bVxjf28VSK0Fcu23g/viewform',
   },
 ];
 
