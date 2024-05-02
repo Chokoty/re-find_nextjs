@@ -1,13 +1,14 @@
-import { Button } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
 import { MdOutlineImageSearch } from 'react-icons/md';
-import { useShallow } from 'zustand/react/shallow';
 
 import styles from '@/app/events/components/WaktyHall/Door.module.scss';
 import type MontyHall from '@/app/events/lib/montyhall';
-import { useImageViewerStore } from '@/app/events/store/imageViewerStore';
+import Button from '@/components/Button';
+import useModal from '@/hooks/useModal';
 import { BoomDoor, KeyDoor } from '@/lib/images';
+
+import ImageViewModal from './ImageViewModal';
 
 type Props = {
   handleSelection: (id: number) => void;
@@ -18,17 +19,18 @@ type Props = {
   fanart: WaktyHall;
 };
 
-const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
-  const { setFanart, setIsOpen } = useImageViewerStore(
-    useShallow((state) => ({
-      setIsOpen: state.setIsOpen,
-      setFanart: state.setFanart,
-    }))
-  );
+export default function Door({
+  handleSelection,
+  id,
+  game,
+  prizeOrGoat,
+  fanart,
+}: Props) {
+  const { show } = useModal(ImageViewModal);
   const onOpen = () => {
     const artwork = getFanart();
-    setIsOpen(true);
-    setFanart(artwork);
+    if (!artwork) return;
+    show({ artwork });
   };
 
   const certainDoorSrc = () => {
@@ -132,13 +134,12 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
             ((game.win && game.prizeDoor === +id) ||
               game.montyDoor === +id) && (
               <Button
-                fontSize={['sm', 'md']}
-                gap="0.2rem"
-                marginTop="0.5rem"
-                background={game.prizeDoor === +id ? '#48BB78' : '#F56565'}
+                // fontSize={['sm', 'md']}
+                intent={game.prizeDoor === +id ? 'solid-green' : 'solid-red'}
+                additionalClass="mt-2 rounded-md w-full"
                 onClick={onOpen}
               >
-                <MdOutlineImageSearch />
+                <MdOutlineImageSearch className="mr-1" />
                 자세히 <span className={styles.secondaryText}>보기</span>
               </Button>
             )}
@@ -179,7 +180,7 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
               className={`${styles['door--face']} ${styles['door--right']}`}
             ></div>
           </div>
-          <p style={{ marginTop: '0.5rem' }}>{id}번째 문 선택</p>
+          <p className="mt-2 text-center">{id}번째 문 선택</p>
         </div>
       </div>
     );
@@ -223,15 +224,13 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
               className={`${styles['door--face']} ${styles['door--right']}`}
             ></div>
           </div>
-          <p style={{ marginTop: '0.5rem' }}>{id}번째 문 오픈</p>
+          <p className="mt-2 text-center">{id}번째 문 오픈</p>
           <Button
-            fontSize={['sm', 'md']}
-            gap="0.2rem"
-            marginTop="0.5rem"
-            background="#F56565"
+            intent="solid-red"
+            additionalClass="mt-2 rounded-md w-full"
             onClick={onOpen}
           >
-            <MdOutlineImageSearch />
+            <MdOutlineImageSearch className="mr-1" />
             자세히 <span className={styles.secondaryText}>보기</span>
           </Button>
         </div>
@@ -286,6 +285,4 @@ const Door = ({ handleSelection, id, game, prizeOrGoat, fanart }: Props) => {
       </div>
     </div>
   );
-};
-
-export { Door };
+}

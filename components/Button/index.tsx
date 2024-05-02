@@ -13,7 +13,7 @@ export interface ButtonProps
 }
 
 const buttonStyles = cva(
-  'inline-flex select-none items-center justify-center whitespace-nowrap rounded-md align-middle font-semibold leading-tight outline-none outline-offset-2 transition',
+  'inline-flex select-none items-center justify-center whitespace-nowrap rounded-md align-middle font-semibold leading-tight outline-none outline-offset-2 transition disabled:cursor-not-allowed disabled:opacity-75',
   {
     variants: {
       intent: {
@@ -113,7 +113,7 @@ const buttonStyles = cva(
 );
 
 function Button(
-  { children, onClick, intent, additionalClass, size }: ButtonProps,
+  { children, onClick, disabled, intent, additionalClass, size }: ButtonProps,
   ref: React.Ref<HTMLButtonElement>
 ) {
   const buttonClassName = cn(
@@ -129,6 +129,7 @@ function Button(
       type="button"
       onClick={onClick}
       className={buttonClassName}
+      disabled={disabled}
     >
       {children}
     </button>

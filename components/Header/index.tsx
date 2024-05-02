@@ -45,23 +45,30 @@ export default function Header() {
   );
 }
 
+const etcPathMap = {
+  '/more/notice': '공지사항',
+  '/more/support': '문의',
+  '/more/about': '소개',
+  '/more': '좀 더!',
+  '/events': '이벤트관',
+  '/events/randomGacha': '이벤트관',
+} as const;
+
+type EtcPathMapKeyType = keyof typeof etcPathMap;
+
 const HeaderContent = () => {
   const pathname = usePathname();
   const isMorePath = pathname.startsWith('/more');
+  const isEvents = pathname.startsWith('/events');
   const isSearchPage = pathname.startsWith('/search');
-  const moreMap = {
-    '/more/notice': '공지사항',
-    '/more/support': '문의',
-    '/more/about': '소개',
-    '/more': '좀 더!',
-  } as const;
 
-  if (isMorePath) {
+  // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
+  if (isMorePath || isEvents) {
     return (
       <>
         <BackButton />
         <h1 className="flex items-center justify-center text-xl font-bold">
-          {moreMap[pathname as keyof typeof moreMap] ?? '좀 더!'}
+          {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
         </h1>
         <div className="size-12" />
       </>

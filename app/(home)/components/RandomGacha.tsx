@@ -4,12 +4,12 @@ import { useEffect, useState } from 'react';
 import { BsQuestionLg } from 'react-icons/bs';
 import { FaDice } from 'react-icons/fa';
 
-import { RANDOM_TEXTS } from '@/app/(home)/lib/const';
 import { useRandomFanart } from '@/app/events/service/client/useEventService';
 import Alert from '@/components/Alert';
 import Button from '@/components/Button';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
+import { RANDOM_TEXTS } from '@/lib/const';
 
 export default function RandomGacha() {
   const { data, isLoading, isFetching, refetch, status } = useRandomFanart({
@@ -91,9 +91,9 @@ const Fanart = ({
     'article'
   );
 
-  const modifiedUrl300 = useModifiedImageUrl({
+  const modifiedUrl800 = useModifiedImageUrl({
     url: data?.img_url ?? '',
-    size: 300,
+    size: 800,
   });
 
   if (isError) {
@@ -119,16 +119,21 @@ const Fanart = ({
       <Link className="w-full" href={article_link} target="_blank">
         <Image
           className="max-h-[312px] rounded-2xl object-cover shadow-cardBox"
-          src={modifiedUrl300}
+          src={modifiedUrl800}
           alt={`랜덤 팬아트 게시글 title: ${title}`}
           width={475}
           height={475}
           unoptimized
         />
       </Link>
-      <div className="mt-2 px-4">
+      <div className="mt-2 px-4 text-center">
         <p className="line-clamp-1">제목: {title}</p>
-        <p className="line-clamp-1">작가: {nickname}</p>
+        <Link
+          href={`/artists/${nickname}`}
+          className="hover:text-green-highlight dark:hover:text-pink-highlight"
+        >
+          <p className="line-clamp-1">작가: {nickname}</p>
+        </Link>
       </div>
     </div>
   );

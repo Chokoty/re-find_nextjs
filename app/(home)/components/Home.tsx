@@ -8,7 +8,6 @@ import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
 import MoreButtons from '@/components/Button/MoreButtons';
-import EventFanarts from '@/components/EventFanarts';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 
 const BannerSlider = dynamic(
@@ -41,9 +40,6 @@ export default function Home() {
           </h2>
           <MoreButtons />
         </div>
-        {/* <div className="w-[90%]">
-          <EventFanarts type="more" />
-        </div> */}
         <RandomGacha />
         <UpdateLogBoard />
         <Footer />

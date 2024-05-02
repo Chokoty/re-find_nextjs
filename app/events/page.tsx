@@ -1,25 +1,15 @@
-'use client';
-
-import { Box, Text, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
+import { BsDoorOpenFill } from 'react-icons/bs';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 
-import { darkMode, lightMode } from '@/lib/theme';
-
-import EventLayout from './components/EventLayout';
+import { cn } from '@/lib/common';
 
 const events = [
   {
     title: '팬아트 랜덤가챠 굴리기',
-    // buttonColorScheme: 'yellow',
-    buttonColorScheme: '#faf089',
-    hoverBackground: '#ddd',
-    hoverColor: 'black',
-    icon: (
-      <GiPerspectiveDiceSixFacesRandom
-        style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
-      />
-    ),
+    colorScheme:
+      'bg-purple-400 hover:bg-purple-500 dark:text-gray-900 text-gray-50',
+    icon: <GiPerspectiveDiceSixFacesRandom className="mr-2 size-6" />,
     link: '/events/randomGacha',
     linkText: '무슨 팬아트가 나올까요?',
   },
@@ -37,80 +27,45 @@ const events = [
   //   link: '/gallery/AprilFool',
   //   linkText: '이건 못참지',
   // },
-  // {
-  //   title: '왁티홀의 문 체험하기 (신규!)',
-  //   // buttonColorScheme: 'red',
-  //   buttonColorScheme: '#feb2b2',
-  //   hoverBackground: '#ddd',
-  //   hoverColor: 'black',
-  //   icon: (
-  //     <BsDoorOpenFill
-  //       style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.5rem' }}
-  //     />
-  //   ),
-  //   link: '/events/waktyhall',
-  //   linkText: '선택을 바꾸시겠습니까?',
-  // },
+  {
+    title: '왁티홀의 문 체험하기',
+    colorScheme: 'bg-red-400 hover:bg-red-500 dark:text-gray-900 text-gray-50',
+    isDisabled: true,
+    icon: <BsDoorOpenFill className="mr-2 size-6" />,
+    link: '/events/waktyhall',
+    linkText: '선택을 바꾸시겠습니까?',
+  },
 ];
 
 export default function Events() {
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
   return (
-    <EventLayout title="이벤트관">
+    <div className="mx-auto my-4 flex w-[90%] flex-col items-center justify-center gap-4">
       {events.map((event, index) => (
-        <Box
+        <div
           key={index}
-          margin="0 auto"
-          mb="1rem"
-          p="1rem 0"
-          borderRadius="1rem"
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-          background={bg2} // bg2 should be defined in your theme or component
-          w="100%"
-          maxW="540px"
-          minH="120px"
-          boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
+          className="mx-auto flex min-h-[120px] w-full max-w-[540px] flex-col items-center justify-between rounded-2xl bg-white p-5 shadow-cardBox dark:bg-dark-card"
         >
-          <Box
-            display="flex"
-            gap="1rem"
-            flexDirection="column"
-            justifyContent="space-between"
-            alignItems="center"
-            w="100%"
+          <p className="mb-2 w-full px-4 text-center text-lg font-bold">
+            {event.title}
+          </p>
+          {event.isDisabled && (
+            <p className="text-center text-red-700 dark:text-red-300">
+              현재 해당 서비스는 지웓되지않습니다.
+              <br className="inline md:hidden" /> 추후 추가될 예정입니다.
+            </p>
+          )}
+          <Link
+            href={event.link}
+            className={cn(
+              'mt-2 flex w-full justify-center rounded-xl p-2 font-semibold transition md:w-[60%]',
+              event.colorScheme
+            )}
           >
-            <Text
-              fontSize="lg"
-              fontWeight="bold"
-              textAlign="center"
-              w="100%"
-              p="0 1rem"
-            >
-              {event.title}
-            </Text>
-            <Link
-              href={event.link}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                background: event.buttonColorScheme,
-                color: '#1a202c',
-                width: '60%',
-                padding: '0.5rem',
-                borderRadius: '1rem',
-                fontWeight: 600,
-                // _hover={{ background: '#ddd', color: 'black' }}
-              }}
-            >
-              {event.icon}
-              {event.linkText}
-            </Link>
-          </Box>
-        </Box>
+            {event.icon}
+            {event.linkText}
+          </Link>
+        </div>
       ))}
-    </EventLayout>
+    </div>
   );
 }
