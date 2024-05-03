@@ -10,31 +10,17 @@ type ButtonProp = {
   href?: string;
   icon: JSX.Element;
   text: string;
-  onClick?: () => void;
-  type?: 'button' | 'link';
 };
 
-const MoreButton = ({
-  href = '',
-  icon,
-  text,
-  onClick,
-  type = 'link',
-}: ButtonProp) => {
-  const containerClassName =
-    'shadow-base flex h-32 w-36 cursor-pointer flex-col items-center justify-between rounded-2xl bg-white dark:bg-dark-card p-4 transition hover:bg-gray-200 dark:hover:bg-whiteAlpha-300';
-  const IconWrapperClassName = 'p-2';
-  const buttonClassName = 'text-xl font-semibold';
-  if (type === 'button') {
-    return (
-      <button className={containerClassName} onClick={onClick}>
-        <div className={IconWrapperClassName}>{icon}</div>
-        <p className={buttonClassName}>{text}</p>
-      </button>
-    );
-  }
+const containerClassName =
+  'shadow-base flex h-32 w-36 cursor-pointer flex-col items-center justify-between rounded-2xl bg-white dark:bg-dark-card p-4 transition hover:bg-gray-200 dark:hover:bg-whiteAlpha-300';
+const IconWrapperClassName = 'p-2';
+const buttonClassName = 'text-xl font-semibold';
+const iconClassName = 'size-8';
+
+const MoreLinkButton = ({ href = '', icon, text }: ButtonProp) => {
   return (
-    <Link href={href}>
+    <Link href={href} prefetch={false}>
       <div className={containerClassName}>
         <div className={IconWrapperClassName}>{icon}</div>
         <p className={buttonClassName}>{text}</p>
@@ -43,7 +29,7 @@ const MoreButton = ({
   );
 };
 
-export default function MoreButtons() {
+const ThemeToggleButton = () => {
   const { setTheme, resolvedTheme } = useTheme();
   const isDarkMode = resolvedTheme === 'dark';
   const toggleTheme = () => {
@@ -51,36 +37,38 @@ export default function MoreButtons() {
   };
 
   return (
+    <button className={containerClassName} onClick={toggleTheme}>
+      <div className={IconWrapperClassName}>
+        {isDarkMode ? (
+          <FiSun className={iconClassName} />
+        ) : (
+          <FiMoon className={iconClassName} />
+        )}
+      </div>
+      <p className={buttonClassName}>화면 스타일</p>
+    </button>
+  );
+};
+
+export default function MoreButtons() {
+  return (
     <div className="mt-4 flex w-full max-w-[340px] flex-row flex-wrap items-center justify-center gap-4">
-      <MoreButton
+      <MoreLinkButton
         href="/more/about"
-        icon={<MdInfoOutline className="size-8" />}
+        icon={<MdInfoOutline className={iconClassName} />}
         text="리파인드 소개"
       />
-      <MoreButton
+      <MoreLinkButton
         href="/more/support"
-        icon={<MdOutlineContactSupport className="size-8" />}
+        icon={<MdOutlineContactSupport className={iconClassName} />}
         text="문의,지원"
       />
-      <MoreButton
+      <MoreLinkButton
         href="/events"
-        icon={<PiGiftBold className="size-8" />}
+        icon={<PiGiftBold className={iconClassName} />}
         text="이벤트"
       />
-      <MoreButton
-        type="button"
-        icon={
-          <>
-            {isDarkMode ? (
-              <FiSun className="size-8" />
-            ) : (
-              <FiMoon className="size-8" />
-            )}
-          </>
-        }
-        text="화면 스타일"
-        onClick={toggleTheme}
-      />
+      <ThemeToggleButton />
     </div>
   );
 }

@@ -22,6 +22,12 @@ export default function Modal({ Component, modalProps, hide }: Props) {
   const handleCancel = () => {
     hide();
   };
+  const handleBackdropClick = () => {
+    // 기본은 backdrop 클릭시 닫히지않도록 설정, show함수에 isBackdropClick: true를 넘겨주면 backdrop 클릭시 닫히도록 설정
+    if (modalProps?.isBackdropClick) {
+      handleCancel();
+    }
+  };
 
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => {
@@ -43,7 +49,7 @@ export default function Modal({ Component, modalProps, hide }: Props) {
     <FocusLock>
       <div
         className="fixed inset-0 z-[201] size-full bg-blackAlpha-600" // overlay > header보다 위
-        onClick={handleCancel}
+        onClick={handleBackdropClick}
       />
       <ModalHideContext.Provider value={handleCancel}>
         <Component {...modalProps} />

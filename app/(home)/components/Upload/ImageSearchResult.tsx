@@ -6,11 +6,11 @@ import { useShallow } from 'zustand/react/shallow';
 
 import AuthorProfileCard from '@/app/(home)/components/Card/AuthorProfileCard';
 import Description from '@/app/(home)/components/Description';
-import Divider from '@/app/(home)/components/Divider';
 import BOARD_LIST from '@/app/(home)/lib/const';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
 import Badge from '@/components/Badge';
 import Button from '@/components/Button';
+import Divider from '@/components/Divider';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
 

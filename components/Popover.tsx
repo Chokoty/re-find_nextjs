@@ -73,7 +73,7 @@ export default function Popover({ children }: { children: React.ReactNode }) {
     <PopoverContext.Provider
       value={{ isOpen, onToggle, onClose, popoverRef, buttonRef }}
     >
-      <div className="relative inline-block" aria-label="A popover">
+      <div className="relative inline-flex" aria-label="A popover">
         {children}
       </div>
     </PopoverContext.Provider>
@@ -81,7 +81,7 @@ export default function Popover({ children }: { children: React.ReactNode }) {
 }
 
 type PopoverTriggerProps = {
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'sm' | 'md' | 'lg' | '9xl';
   children: React.ReactNode;
 };
 
@@ -98,6 +98,7 @@ function PopoverTrigger({ children, size = 'md' }: PopoverTriggerProps) {
           'size-4': size === 'sm',
           'size-5': size === 'md',
           'size-10': size === 'lg',
+          'size-32': size === '9xl',
         }
       )}
       onClick={onToggle}
@@ -110,12 +111,19 @@ function PopoverTrigger({ children, size = 'md' }: PopoverTriggerProps) {
 type PopoverContentProps = {
   hasCloseButton?: boolean;
   size?: 'sm' | 'md' | 'lg';
+  position?:
+    | 'top-left'
+    | 'top-right'
+    | 'bottom-left'
+    | 'bottom-right'
+    | 'bottom-center';
   children: React.ReactNode;
 };
 
 function PopoverContent({
   children,
   size = 'md',
+  position = 'bottom-left',
   hasCloseButton = true,
 }: PopoverContentProps) {
   const { isOpen, onClose, popoverRef } = usePopoverContext();
@@ -124,13 +132,16 @@ function PopoverContent({
     <div
       ref={popoverRef}
       className={clsx(
-        'absolute right-[-30px] z-50 rounded-md border-base border-gray-200 bg-white transition dark:border-whiteAlpha-300 dark:bg-black-200',
+        'absolute z-50 rounded-md border-base border-gray-200 bg-white transition dark:border-whiteAlpha-300 dark:bg-black-200',
         {
-          'visible top-[calc(100%+10px)] opacity-100': isOpen,
+          'visible opacity-100': isOpen,
           'invisible opacity-0': !isOpen,
           'w-[200px]': size === 'sm',
           'w-[320px]': size === 'md',
           'w-[400px]': size === 'lg',
+          'right-[-30px] top-[calc(100%+10px)]': position === 'bottom-left',
+          'left-0 top-[calc(100%+10px)] translate-x-[-30%]':
+            position === 'bottom-center',
         }
       )}
     >

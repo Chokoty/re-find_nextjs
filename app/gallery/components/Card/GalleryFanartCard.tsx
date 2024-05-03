@@ -66,7 +66,7 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
               prefetch={false}
             >
               <div
-                className="flex h-10 w-full items-center justify-center gap-1 rounded-full bg-white text-black transition hover:bg-black hover:text-white xl:h-11"
+                className="flex h-10 w-full items-center justify-center gap-1 rounded-full bg-white text-gray-900 transition hover:bg-gray-900 hover:text-white xl:h-11"
                 // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
               >
                 <MdPerson className="hidden xl:block" />

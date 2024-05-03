@@ -20,8 +20,6 @@ export default function ViewSkeleton({ view }: Prop) {
     );
   }
 
-  // grid
-  // TODO: 이거 Simple view에 적용하기
   return (
     <div
       role="status"

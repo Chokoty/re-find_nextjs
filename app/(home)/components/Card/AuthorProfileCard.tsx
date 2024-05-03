@@ -37,17 +37,8 @@ export default function AuthorProfileCard({
             {nickname || '프로필은 왁물원에서'}
           </p>
         </div>
-        <SortTypeIcons
-          sortCriteria={null}
-          artist={author}
-          component={'inNickname'}
-        />
-        <ViewTypeIcons
-          selectedView={null}
-          artist={author}
-          component={'inNickname'}
-          onSelectViewType={null}
-        />
+        <SortTypeIcons artist={author} />
+        <ViewTypeIcons artist={author} />
       </div>
     </Link>
   );

@@ -26,7 +26,7 @@ export default function DetailedEvent({ keyword }: Prop) {
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
   const { fetchNextPage, artworks, isError, isFetchingNextPage, isLoading } =
-    useArtistInfo({ nickname: keyword, sortType, field: '' });
+    useArtistInfo({ nickname: keyword, sortType, board: null });
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {

@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';

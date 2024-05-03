@@ -17,7 +17,7 @@ export default function Select({
     <div className="relative h-fit w-full">
       <select
         className={clsx(
-          'h-10 w-full min-w-0 appearance-none rounded-md border-base border-blackAlpha-300 bg-white pb-px pe-8 ps-4 outline-transparent transition *:bg-blackAlpha-100 *:text-black focus:outline-none focus:ring-2 dark:border-whiteAlpha-300 dark:bg-dark-card dark:*:bg-whiteAlpha-200 dark:*:text-white',
+          'h-10 w-full min-w-0 appearance-none rounded-md border-base border-blackAlpha-300 bg-white pb-px pe-8 ps-4 outline-transparent transition *:bg-blackAlpha-100 *:text-gray-900 focus:outline-none focus:ring-2 dark:border-whiteAlpha-300 dark:bg-dark-card dark:*:bg-whiteAlpha-200 dark:*:text-white',
           {
             'cursor-not-allowed opacity-40': disabled,
           }

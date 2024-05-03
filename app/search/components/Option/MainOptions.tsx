@@ -5,9 +5,9 @@ import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { useShallow } from 'zustand/react/shallow';
 
-import Divider from '@/app/(home)/components/Divider';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import Checkbox from '@/components/Checkbox';
+import Divider from '@/components/Divider';
 import NumberInput from '@/components/NumberInput';
 import Popover, {
   PopoverBody,
@@ -290,7 +290,7 @@ export default function MainOptions() {
           </Checkbox>
         </div>
         <Popover>
-          <PopoverTrigger size="sm">
+          <PopoverTrigger size="lg">
             <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
           </PopoverTrigger>
           <PopoverContent>
@@ -311,7 +311,7 @@ export default function MainOptions() {
           대소문자 구분
         </Checkbox>
         <Popover>
-          <PopoverTrigger size="sm">
+          <PopoverTrigger size="lg">
             <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
           </PopoverTrigger>
           <PopoverContent>

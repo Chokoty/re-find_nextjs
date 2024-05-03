@@ -26,10 +26,10 @@ export default function Preview({ data, isLoading }: Props) {
           alt={files[0].name}
           width={500}
           height={500}
-          className={clsx(
-            'flex h-full shadow-cardBox',
-            isImageLoading ? 'rounded-2xl' : 'rounded-t-2xl'
-          )}
+          className={clsx('flex h-full shadow-cardBox', {
+            'rounded-2xl': isImageLoading,
+            'rounded-t-2xl': !isImageLoading,
+          })}
           src={files[0].preview}
           // Revoke data uri after image is loaded
           onLoad={() => {

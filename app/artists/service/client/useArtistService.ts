@@ -1,9 +1,8 @@
-import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
+import { useInfiniteQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
+import queryOptions from '@/app/artists/service/client/queries';
 import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
-
-import queryOptions from './queries';
 
 export function useArtistInfo({
   nickname,

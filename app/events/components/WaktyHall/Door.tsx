@@ -3,12 +3,11 @@ import React from 'react';
 import { MdOutlineImageSearch } from 'react-icons/md';
 
 import styles from '@/app/events/components/WaktyHall/Door.module.scss';
+import ImageViewModal from '@/app/events/components/WaktyHall/ImageViewModal';
 import type MontyHall from '@/app/events/lib/montyhall';
 import Button from '@/components/Button';
 import useModal from '@/hooks/useModal';
 import { BoomDoor, KeyDoor } from '@/lib/images';
-
-import ImageViewModal from './ImageViewModal';
 
 type Props = {
   handleSelection: (id: number) => void;

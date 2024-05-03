@@ -100,7 +100,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
         </Tooltip>
       </div>
       {/* 작품 수, 팔로워, 팔로잉 */}
-      <div className="m-1rem 0.5rem mx-2 mt-4 flex flex-col items-center justify-center gap-4">
+      <div className="mx-2 mt-4 flex flex-col items-center justify-center gap-4">
         <p className="dark:text-whiteAlpha-900">
           총 작품 수&nbsp;
           {<CountUp end={total ?? 0} className="text-green-highlight" />}개

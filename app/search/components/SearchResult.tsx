@@ -7,11 +7,11 @@ import { useInView } from 'react-intersection-observer';
 import { PuffLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
 
-import Divider from '@/app/(home)/components/Divider';
 import SearchCard from '@/app/search/components/Card/SearchCard';
 import { useSearchResults } from '@/app/search/service/client/useSearchService';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import Alert from '@/components/Alert';
+import Divider from '@/components/Divider';
 import { NotSearch } from '@/lib/images';
 
 export default function SearchResult() {
@@ -101,10 +101,11 @@ export default function SearchResult() {
           alt="찾을 수 없음을 표시"
           width={202}
           height={172}
+          priority
           unoptimized
         />
         <h3 className="my-6 text-center">
-          검색 결과가 없습니다. 다른 키워드로 검색해 보세요
+          검색 결과가 없습니다. <br /> 다른 키워드로 검색해 보세요
         </h3>
       </div>
     );
