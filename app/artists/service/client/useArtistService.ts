@@ -8,7 +8,7 @@ import queryOptions from './queries';
 export function useArtistInfo({
   nickname,
   sortType,
-  field,
+  board,
 }: GetArtistInfoParams) {
   const {
     data,
@@ -17,7 +17,7 @@ export function useArtistInfo({
     // hasNextPage, // 다음 페이지를 가지고 있는지(마지막 페이지인지 판단 t/f)
     isLoading,
     isError,
-  } = useInfiniteQuery(queryOptions.artistInfo({ nickname, sortType, field }));
+  } = useInfiniteQuery(queryOptions.artistInfo({ nickname, sortType, board }));
 
   const artworks = useMemo(() => {
     return data?.pages.flatMap((page) => {

@@ -11,7 +11,7 @@ import {
 
 import { SORT_TYPES } from '@/constants/artists';
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
-import type { SortCriteria } from '@/types';
+import type { SortTotalCriteria } from '@/types';
 
 const iconClassName = 'w-4 h-4';
 
@@ -33,17 +33,12 @@ const IconComponent = ({ sortTypeName }: { sortTypeName: string }) => {
 };
 
 type Props = {
-  sortCriteria: SortCriteria | null;
   artist: AuthorCommon;
-  component?: string;
+  totalCountCriteria?: SortTotalCriteria;
 };
 
-export default function SortTypeIcons({ sortCriteria, artist }: Props) {
-  if (!artist) {
-    // artist가 null인 경우 예외 처리
-    return null;
-  }
-
+// 작가가 보유하고 있는 총 조회, 총 댓글, 총 좋아요, 총 구독 수를 보여주는 컴포넌트
+export default function SortTypeIcons({ artist, totalCountCriteria }: Props) {
   return (
     <div className="flex flex-col items-center gap-2 2xs:flex-row">
       <div className="mr-2 flex flex-row gap-4">
@@ -54,9 +49,9 @@ export default function SortTypeIcons({ sortCriteria, artist }: Props) {
                 key={index2}
                 className={clsx(
                   'flex flex-row gap-2',
-                  !sortCriteria || sortCriteria?.field !== sortType.value
-                    ? 'text-gray-800 dark:text-gray-300'
-                    : 'text-pink-500'
+                  totalCountCriteria !== sortType.value
+                    ? 'text-gray-900 dark:text-whiteAlpha-700'
+                    : 'text-green-highlight'
                 )}
               >
                 <IconComponent sortTypeName={sortType.name} />
@@ -75,9 +70,9 @@ export default function SortTypeIcons({ sortCriteria, artist }: Props) {
                 key={index2}
                 className={clsx(
                   'flex flex-row gap-2',
-                  sortCriteria?.field === sortType.value
-                    ? 'text-pink-500'
-                    : 'text-gray-800 dark:text-gray-300'
+                  totalCountCriteria !== sortType.value
+                    ? 'text-gray-900 dark:text-whiteAlpha-700'
+                    : 'text-green-highlight'
                 )}
               >
                 <IconComponent sortTypeName={sortType.name} />

@@ -1,39 +1,26 @@
-import clsx from 'clsx';
-
 import Button, { type CustomVariantProps } from '@/components/Button';
 import { VIEW_TYPES } from '@/constants/artists';
+import type { SortRankCriteria } from '@/types';
 
 type Props = {
-  selectedView: string | null;
   artist: AuthorCommon;
-  component: string;
-  onSelectViewType: ((viewType: string) => void) | null;
+  rankCriteria?: SortRankCriteria | null;
+  sortRankCriteria?: (value: SortRankCriteria) => void;
 };
 
+// 베스트, 금손 작가, 우왁굳, 고멤/교멤, 이세돌 게시판에 대한 작가의 작품 개수를 보여주는 컴포넌트
 export default function ViewTypeIcons({
-  selectedView,
   artist,
-  component,
-  onSelectViewType,
+  rankCriteria,
+  sortRankCriteria,
 }: Props) {
-  if (!artist) {
-    // artist가 null인 경우 예외 처리
-    return null;
-  }
   // 모든 viewType이 0인지 확인
   const isAllZero = VIEW_TYPES.every(
     (viewType) => artist[viewType.value] === 0
   );
 
   return (
-    <div
-      className={clsx(
-        'flex w-auto flex-row flex-wrap justify-center gap-2',
-        component === 'inIndex'
-          ? 'justify-center md:justify-end'
-          : 'justify-center'
-      )}
-    >
+    <div className="flex w-auto flex-row flex-wrap justify-center gap-2">
       {isAllZero ? (
         <p className="text-base text-gray-500">정보 없음</p>
       ) : (
@@ -43,15 +30,13 @@ export default function ViewTypeIcons({
               <Button
                 key={index}
                 intent={
-                  (selectedView === null || selectedView !== viewType.value
+                  (!rankCriteria || rankCriteria !== viewType.value
                     ? `outline-${viewType.colorScheme}`
                     : `solid-${viewType.colorScheme}`) as CustomVariantProps['intent']
                 }
                 onClick={() => {
-                  if (!onSelectViewType) return;
-                  onSelectViewType(viewType.value);
+                  sortRankCriteria?.(viewType.value);
                 }}
-                // size="lg"
                 additionalClass="flex h-8 flex-row gap-2 md:h-12 md:flex-col md:gap-0 ps-3 pe-3"
               >
                 <p className="text-sm">{viewType.name}</p>

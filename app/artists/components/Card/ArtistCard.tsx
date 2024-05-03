@@ -1,137 +1,84 @@
-import {
-  Box,
-  Text,
-  useBreakpointValue,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import NextImage from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 
-import styles from '@/app/artists/components/Card/ArtistCard.module.scss';
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
 import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/lib/theme';
-import type { SortCriteria } from '@/types';
+import type { SortRankCriteria, SortTotalCriteria } from '@/types';
 
 type Props = {
   artist: AuthorInfo;
-  highlightedText: string;
-  sortCriteria: SortCriteria;
-  selectedView: keyof AuthorCommon | null;
   nth: number;
+  inputText: string;
+  rankCriteria: SortRankCriteria | null;
+  totalCountCriteria: SortTotalCriteria;
 };
 
 export default function ArtistCard({
   artist,
-  highlightedText,
   nth,
-  sortCriteria,
-  selectedView,
+  inputText,
+  rankCriteria,
+  totalCountCriteria,
 }: Props) {
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
-  const imgValue = useBreakpointValue({ base: '4rem', md: '6rem' });
   const { nick, prof_url } = artist;
   const isMobile = useResponsive();
+  const highlightText = (text: string) => {
+    const regex = new RegExp(inputText, 'gi');
+
+    return text.replace(
+      regex,
+      (match) => `<span style="color: #01BFA2">${match}</span>`
+    );
+  };
+  const highlightedText = highlightText(artist.nick);
   return (
-    <Link href={`/artists/${nick}`} prefetch={false} className={styles.box}>
-      <Box
-        backgroundColor={bg2}
-        _hover={{
-          backgroundColor: bg3,
-        }}
-        w="100%"
-        mb="1rem"
-        // p={['0.5rem', '1rem', '1rem']}
-        p="1rem"
-        mt="1rem"
-        h="100%"
-        minH={['250px', '150px', '126px']}
-        display="flex"
-        flexDirection={['column', 'column', 'row']}
-        alignItems="center"
-        justifyContent={['center', 'center', 'space-between']}
-        borderRadius="1rem"
-        gap="1rem"
-      >
-        <Box
-          display="flex"
-          flexDirection={['column', 'row', 'row']}
-          // flexDirection="row"
-          alignItems="center"
-          gap="1rem"
-        >
-          <Text fontSize="lg" fontWeight="bold">
-            {nth <= 100 ? nth : '-'}
-          </Text>
-          <Box w={imgValue} h={imgValue}>
-            <NextImage
+    <Link
+      href={`/artists/${nick}`}
+      prefetch={false}
+      className="flex w-full items-center justify-center"
+    >
+      <div className="my-4 flex size-full min-h-[250px] flex-col items-center justify-center gap-4 rounded-2xl p-4 hover:bg-gray-200 dark:hover:bg-black-200 2xs:min-h-[150px] md:min-h-[168px] md:flex-row md:justify-between">
+        <div className="flex flex-col items-center gap-4 2xs:flex-row">
+          <p className="text-lg font-bold">{nth <= 100 ? nth : '-'}</p>
+          <div className="size-20 md:size-24">
+            <Image
               // fill
               // sizes="(min-width: 767px) 66px, 100px"
+              className="size-20 rounded-full object-cover md:size-24"
               width={100}
               height={100}
-              style={{
-                borderRadius: '50%',
-                objectFit: 'cover',
-                width: imgValue,
-                height: imgValue,
-                // marginRight: '1rem',
-              }}
               src={prof_url}
               alt={nick}
+              priority
               unoptimized
             />
-          </Box>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
-            justifyContent="center"
-            gap="0.5rem"
-          >
-            <Text
-              fontSize="lg"
-              fontWeight="bold"
+          </div>
+          <div className="flex flex-col items-start justify-center gap-2">
+            <p
+              className="text-lg font-bold"
               dangerouslySetInnerHTML={{
                 __html: highlightedText,
               }}
             />
             {!isMobile && (
               <SortTypeIcons
-                sortCriteria={sortCriteria}
-                // sortTypes={sortTypes}
                 artist={artist}
-                component={'inIndex'}
+                totalCountCriteria={totalCountCriteria}
               />
             )}
-          </Box>
-        </Box>
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="space-between"
-          gap="1rem"
-          className={styles.viewTypeIconsContainer}
-        >
+          </div>
+        </div>
+        <div className="flex w-auto flex-col items-center justify-between gap-4 md:w-[169px] min-[830px]:w-[227px] 2md:w-auto">
           {isMobile && (
             <SortTypeIcons
-              sortCriteria={sortCriteria}
-              // sortTypes={sortTypes}
               artist={artist}
-              component={'inIndex'}
+              totalCountCriteria={totalCountCriteria}
             />
           )}
-          <ViewTypeIcons
-            // viewTypes={viewTypes}
-            selectedView={selectedView}
-            artist={artist}
-            component={'inIndex'}
-            onSelectViewType={null}
-          />
-        </Box>
-      </Box>
+          <ViewTypeIcons artist={artist} rankCriteria={rankCriteria} />
+        </div>
+      </div>
     </Link>
   );
 }

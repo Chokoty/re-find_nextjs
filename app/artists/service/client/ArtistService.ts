@@ -25,11 +25,11 @@ class ArtistService extends Service {
     nickname,
     sortType,
     page,
-    field,
+    board,
   }: GetArtistInfoParams & PageNum) {
     const url =
       `/author_artworks?name=${nickname}&type=${sortType}&page=${page}`.concat(
-        field !== '' ? `&board=${field.replace('_cnt', '')}` : ''
+        board ? `&board=${board}` : ''
       );
 
     return this.http.get<Artist>(url);

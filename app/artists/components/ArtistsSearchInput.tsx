@@ -1,28 +1,22 @@
 'use client';
 
-import {
-  Button,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import React, { useState } from 'react';
+import clsx from 'clsx';
+import React, { useEffect, useRef, useState } from 'react';
+import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { useDebounce } from 'react-use';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
-import { darkMode, lightMode } from '@/lib/theme';
-
-const helpMessage = '대소문자 구분: 검색은 대소문자를 구분합니다.';
+import Popover, {
+  PopoverBody,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/Popover';
 
 export default function ArtistsSearchInput() {
-  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-  const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
-  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
+  const inputRef = useRef<HTMLInputElement>(null);
   const [input, setInput] = useState('');
   const { setDebounceValue } = useArtistSearchInfoStore(
     useShallow((state) => ({
@@ -46,79 +40,48 @@ export default function ArtistsSearchInput() {
     [input]
   );
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
+  const isInputNotEmpty = input.length > 0;
   return (
-    <InputGroup
-      display="flex"
-      alignItems="center"
-      justifyContent="center"
-      maxW="400px"
-      mb="1rem"
-    >
-      <InputLeftElement w="3rem" pointerEvents="none">
+    <div className="relative h-10 w-full max-w-[400px]">
+      <div className="absolute left-1 top-0 z-[2] flex h-full w-10 items-center justify-center">
         <FaSearch
-          style={{
-            color: '#5C5F6B',
-            position: 'relative',
-            top: '0.1rem',
-            width: '1.2rem',
-            height: '1.2rem',
-          }}
+          className={clsx('size-5', {
+            'text-green-highlight': isInputNotEmpty,
+            'text-gray-600 dark:text-whiteAlpha-500': !isInputNotEmpty,
+          })}
         />
-      </InputLeftElement>
-      <Input
-        pr="50px"
+      </div>
+      <input
+        ref={inputRef}
+        className="relative size-full cursor-text rounded-full border border-gray-200 bg-gray-100 pl-12 pr-14 outline-none transition placeholder:text-gray-500 hover:border-green-highlight hover:bg-white focus:border-green-highlight focus:outline-none focus:ring-1 focus:ring-green-highlight dark:border-whiteAlpha-300 dark:bg-whiteAlpha-200 dark:placeholder:text-whiteAlpha-600 dark:hover:bg-dark-card 2xs:pr-24"
         placeholder="왁물원 닉네임"
-        focusBorderColor="#01BFA2"
-        size="md"
         value={input}
         onChange={handleSearch}
-        // onKeyDown={handleKeyPress}
-        backgroundColor={bg3}
-        borderWidth="2px"
-        borderRadius="2rem"
-        _hover={{
-          backgroundColor: bg,
-          borderColor: '#01BFA2',
-        }}
-        _focus={{ backgroundColor: bg }}
       />
-
-      <InputRightElement
-        w="3rem"
-        // mr="0.5rem"
-        // pointerEvents="auto"
-        // display="flex"
-        // justifyContent="flex-end"
-        // alignItems="center"
-        // padding="0.5rem"
-        // _hover={{
-        //   cursor: 'default',
-        // }}
-      >
-        {input.length > 0 && (
-          <Button
-            variant="ghost"
-            borderRadius="50%"
+      <div className="absolute right-0 top-0 z-[2] flex h-full items-center justify-end pr-4">
+        {isInputNotEmpty ? (
+          <button
+            type="button"
+            className="flex size-6 items-center justify-center"
             onClick={handleClearInputText}
-            p="0"
-            _hover={{}}
-            _active={{}}
           >
-            <IoIosCloseCircle
-              style={{
-                color: color7,
-                width: '20px',
-                height: '20px',
-              }}
-            />
-          </Button>
-        )}
-        {/* {input.length > 0 ? (
-          
+            <IoIosCloseCircle className="size-5 text-gray-600 dark:text-whiteAlpha-700" />
+          </button>
         ) : (
-          <HelpPopOver description={helpMessage} placement="left" />
-        )} */}
-      </InputRightElement>
-    </InputGroup>
+          <Popover>
+            <PopoverTrigger>
+              <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
+            </PopoverTrigger>
+            <PopoverContent size="sm" hasCloseButton={false}>
+              <PopoverBody>대소문자는 구분됩니다.</PopoverBody>
+            </PopoverContent>
+          </Popover>
+        )}
+      </div>
+    </div>
   );
 }
