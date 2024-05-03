@@ -1,6 +1,5 @@
 'use client';
 
-import { ChakraProvider } from '@chakra-ui/provider';
 import {
   MutationCache,
   QueryCache,
@@ -12,8 +11,6 @@ import { isAxiosError } from 'axios';
 import { ThemeProvider } from 'next-themes';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-
-import theme from '@/lib/theme';
 
 export function Providers({ children }: React.PropsWithChildren) {
   const [queryClient] = useState(
@@ -71,14 +68,12 @@ export function Providers({ children }: React.PropsWithChildren) {
 
   // TODO: 여전히flash가 존재한다. chakra때문인가? 나중에 지우고 다시 테스트해보기
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <ChakraProvider theme={theme}>
-        <Toaster position="bottom-center" />
-        <QueryClientProvider client={queryClient}>
-          {children}
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </ChakraProvider>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <Toaster position="bottom-center" />
+      <QueryClientProvider client={queryClient}>
+        {children}
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
     </ThemeProvider>
   );
 }

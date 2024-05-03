@@ -212,7 +212,6 @@ const config: Config = {
         },
       },
       screens: {
-        // chakra UI -> 4개 30em(480px)/48em(768px)/62em(992px) -> 3개 30em(480px)/48em(768px) -> 2개 30em(480px)
         xxs: '320px',
         // => @media (min-width: 320px) { ... }
         xs: '375px',
@@ -222,7 +221,7 @@ const config: Config = {
         sm: '640px',
         // => @media (min-width: 640px) { ... }
         md: '768px',
-        // => @media (min-width: 768px) { ... } // chakraUI -> isMobile
+        // => @media (min-width: 768px) { ... } // isMobile
         '2md': '992px',
         // => @media (min-width: 992px) { ... }
         lg: '1024px',
@@ -254,7 +253,7 @@ const config: Config = {
   },
   plugins: [],
   darkMode: 'class',
-  important: true, // TODO: 적용하고 chakra 지우기
+  // important: true,
 };
 
 export default config;
