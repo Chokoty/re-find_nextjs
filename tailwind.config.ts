@@ -248,6 +248,30 @@ const config: Config = {
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(236px, 1fr))',
       },
+      keyframes: {
+        modalRenderFromBottom: {
+          '0%': { opacity: '0', transform: 'translateY(100%)' }, // 최하단으로부터 시작
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        modalRenderFromTop: {
+          '0%': { opacity: '0', transform: 'translateY(-100%)' }, // 최상단으로부터 시작
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        modalRemove: {
+          '0%': { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(0.75rem)' },
+        },
+        modalRemoveFromTop: {
+          '0%': { opacity: '1', transform: 'translateY(0)' }, // 최상단으로 끝
+          '100%': { opacity: '0', transform: 'translateY(-100%)' },
+        },
+      },
+      animation: {
+        modalRenderFromTop: 'modalRenderFromTop 0.3s ease-out',
+        modalRenderFromBottom: 'modalRenderFromBottom 0.3s ease-out',
+        modalRemove: 'modalRemove 0.3s ease-out',
+        modalRemoveFromTop: 'modalRemoveFromTop 0.3s ease-out',
+      },
       backgroundImage: {},
     },
   },

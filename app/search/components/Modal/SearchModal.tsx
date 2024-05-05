@@ -28,24 +28,22 @@ export default function SearchModal() {
   };
 
   return (
-    <div className="fixed left-1/2 top-0 z-[1000] w-full -translate-x-1/2 overscroll-y-none md:w-[70%]">
-      <section className="w-full rounded-b-2xl border border-gray-200 bg-white px-2 dark:border-whiteAlpha-300 dark:bg-dark-card">
-        <div className="px-6 py-8">
-          <SearchBar
-            inputRef={inputRef}
-            addHistoryKeyword={addHistoryKeyword}
-            onClose={onClose}
-          />
-        </div>
-        <div className="px-2 pb-6">
-          <SearchHistory
-            recentSearches={recentSearches}
-            deleteHistoryKeyword={deleteHistoryKeyword}
-            deleteHistoryKeywords={deleteHistoryKeywords}
-            closeModal={onClose}
-          />
-        </div>
-      </section>
-    </div>
+    <section className="w-full rounded-b-2xl border border-gray-200 bg-white px-2 dark:border-whiteAlpha-300 dark:bg-dark-card">
+      <div className="px-6 py-8">
+        <SearchBar
+          inputRef={inputRef}
+          addHistoryKeyword={addHistoryKeyword}
+          onClose={onClose}
+        />
+      </div>
+      <div className="px-2 pb-6">
+        <SearchHistory
+          recentSearches={recentSearches}
+          deleteHistoryKeyword={deleteHistoryKeyword}
+          deleteHistoryKeywords={deleteHistoryKeywords}
+          closeModal={onClose}
+        />
+      </div>
+    </section>
   );
 }

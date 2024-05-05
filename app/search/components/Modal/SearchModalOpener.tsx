@@ -5,7 +5,7 @@ import useModal from '@/hooks/useModal';
 
 export default function SearchModalOpener() {
   const handleInputClick = () => {
-    show({ isBackdropClick: true });
+    show({ isBackdropClick: true, position: 'top' });
   };
   const { show } = useModal(SearchModal);
 

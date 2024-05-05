@@ -7,6 +7,7 @@ import { getArtworkDetail } from '@/app/artwork/service/server';
 type Params = { params: { id: string } };
 
 // 기존 모달 시스템과 달리 page용 모달을 return해줘야하므로 따로 작성
+// 추후 modal로 변경하기
 export default async function ArtworkModal({ params: { id } }: Params) {
   const artwork = await getArtworkDetail(parseInt(id));
   return (

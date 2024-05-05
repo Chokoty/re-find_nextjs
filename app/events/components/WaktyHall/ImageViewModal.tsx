@@ -36,41 +36,39 @@ export default function ImageViewModal({
   }, [onClose]);
 
   return (
-    <div className="fixed left-1/2 top-1/2 z-[1000] w-full -translate-x-1/2 -translate-y-1/2 overscroll-y-none">
-      <section className="relative mx-auto w-full rounded-2xl bg-white px-2 dark:bg-dark-card md:max-w-[50%]">
-        <button
-          className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300"
-          onClick={onClose}
+    <section className="relative m-5 rounded-2xl bg-white dark:bg-dark-card sm:mx-auto sm:w-full sm:max-w-lg">
+      <button
+        className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300"
+        onClick={onClose}
+      >
+        <IoClose className="size-8" />
+      </button>
+      <div className="flex size-full flex-col items-center justify-center px-5 py-12">
+        <Link
+          href={article_link}
+          className="hover:text-green-highlight dark:hover:text-pink-highlight"
+          target="_blank"
         >
-          <IoClose className="size-8" />
-        </button>
-        <div className="flex size-full flex-col items-center justify-center px-5 py-12">
+          <Image
+            className="max-h-[400px] rounded-[20px] object-cover object-center shadow-img"
+            width={475}
+            height={475}
+            src={modifiedUrl800}
+            alt={`랜덤 팬아트 게시글 title: ${title}`}
+            unoptimized
+          />
+        </Link>
+        <div className="mt-2 px-4 text-start">
+          <p className="line-clamp-1">게시판: {board}</p>
           <Link
             href={article_link}
             className="hover:text-green-highlight dark:hover:text-pink-highlight"
             target="_blank"
           >
-            <Image
-              className="max-h-[400px] rounded-[20px] object-cover object-center shadow-img"
-              width={475}
-              height={475}
-              src={modifiedUrl800}
-              alt={`랜덤 팬아트 게시글 title: ${title}`}
-              unoptimized
-            />
+            <p className="line-clamp-1">제목: {title}</p>
           </Link>
-          <div className="mt-2 px-4 text-start">
-            <p className="line-clamp-1">게시판: {board}</p>
-            <Link
-              href={article_link}
-              className="hover:text-green-highlight dark:hover:text-pink-highlight"
-              target="_blank"
-            >
-              <p className="line-clamp-1">제목: {title}</p>
-            </Link>
-          </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

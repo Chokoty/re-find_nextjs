@@ -8,7 +8,7 @@ export default function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL('/gallery', req.nextUrl));
   }
 
-  if (pathname === '/events/WaktyHallDoor') {
+  if (pathname === '/events/waktyhall') {
     return NextResponse.redirect(new URL('/events', req.nextUrl));
   }
 }
