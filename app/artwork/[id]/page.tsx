@@ -39,7 +39,7 @@ export async function generateMetadata({
 export default async function ArtworkPage({ params: { id } }: Params) {
   const artwork = await getArtworkDetail(parseInt(id));
   return (
-    <div className="flex size-full flex-col px-5 py-12">
+    <div className="flex size-full flex-col p-5">
       {/* 상단(정보 - 제목,작가,날짜,게시판, 말머리, vlc) */}
       <div className="flex w-full flex-col items-center justify-center gap-4 p-4 md:flex-row md:items-start md:p-0">
         <ImageSection

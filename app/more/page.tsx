@@ -7,7 +7,7 @@ import UpdateLogBoard from '@/components/UpdateLogBoard';
 
 export default function More() {
   return (
-    <div className="my-4 flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
       <div className="mb-4">
         <MoreButtons />
       </div>

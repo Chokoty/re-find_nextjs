@@ -19,9 +19,9 @@ export default function DesktopHeaderTab() {
         `w-${width} inline-block text-center font-bold hover:text-blackAlpha-900 dark:hover:text-whiteAlpha-900`,
         {
           'text-blackAlpha-900 dark:text-whiteAlpha-900':
-            currentPathname === tabPath,
+            currentPathname.includes(tabPath),
           'text-blackAlpha-600 dark:text-whiteAlpha-600':
-            currentPathname !== tabPath,
+            !currentPathname.includes(tabPath),
         }
       );
     }
@@ -38,7 +38,7 @@ export default function DesktopHeaderTab() {
           <Link href={tabPath}>
             <span className={getSpanClassName(width, tabPath)}>{name}</span>
           </Link>
-          {currentPathname === tabPath && (
+          {currentPathname.includes(tabPath) && (
             <div
               className={`w-${width} absolute bottom-[-6px] h-0.5 rounded-sm bg-green-highlight dark:bg-pink-highlight`}
             />

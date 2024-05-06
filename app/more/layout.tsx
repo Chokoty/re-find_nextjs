@@ -31,7 +31,7 @@ export default function MoreLayout({
 }>) {
   return (
     <>
-      <div className="mx-auto my-8 h-1 w-full max-w-40 rounded-md bg-green-highlight dark:bg-pink-highlight" />
+      <div className="mx-auto my-6 h-1 w-full max-w-40 rounded-md bg-green-highlight dark:bg-pink-highlight" />
       {children}
     </>
   );

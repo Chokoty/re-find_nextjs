@@ -29,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <div className="mb-12 flex w-full flex-col items-center justify-center px-4 text-center">
+    <div className="flex w-full flex-col items-center justify-center px-4 text-center">
       <h1 className="mx-auto my-4 text-3xl font-bold">왁물원 게시글</h1>
       <Link
         className="flex items-center text-green-highlight transition hover:underline dark:text-pink-highlight"

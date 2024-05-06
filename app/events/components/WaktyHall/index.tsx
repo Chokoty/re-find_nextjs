@@ -16,7 +16,7 @@ const SOURCE_URL = 'https://cafe.naver.com/steamindiegame/2093767';
 
 export default function WaktyHall() {
   return (
-    <div className="mx-auto mb-12 mt-4 flex w-[90%] flex-col items-center justify-center gap-4">
+    <div className="mx-auto flex w-[90%] flex-col items-center justify-center gap-4">
       <div className="flex w-full flex-col items-center justify-center gap-4 p-4 pb-16 text-center">
         <div className="mb-4">
           <PageTitle topTitle={topTitle} />

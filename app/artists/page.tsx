@@ -34,7 +34,7 @@ export default async function ArtistsPage() {
           <RankSortButtonGroup />
           <TotalSortButtonGroup />
           <Hydrate state={{ queries: [query] }}>
-            <div className="mb-20 w-full rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
+            <div className="w-full rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
               <ArtistList />
             </div>
           </Hydrate>
@@ -50,7 +50,7 @@ export default async function ArtistsPage() {
         <ArtistsSearchInput />
         <RankSortButtonGroup />
         <TotalSortButtonGroup />
-        <div className="mb-20 w-full rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
+        <div className="w-full rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
           <ArtistList />
         </div>
       </div>

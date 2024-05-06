@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 export default function Notice() {
   return (
-    <div className="mx-4 mb-14 mt-4">
+    <div className="p-4">
       <UpdateLog />
     </div>
   );

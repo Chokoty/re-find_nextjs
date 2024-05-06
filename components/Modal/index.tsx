@@ -69,6 +69,15 @@ export default function Modal({ Component, modalProps, hide }: Props) {
     }
   };
 
+  // 모달 외부 스크롤 제거
+  useEffect(() => {
+    const htmlElement = document.documentElement;
+    htmlElement.style.overflowY = 'hidden';
+    return () => {
+      htmlElement.style.overflowY = 'scroll';
+    };
+  }, []);
+
   return (
     <FocusLock>
       <div
