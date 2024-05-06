@@ -7,6 +7,7 @@ import { FaAngleLeft } from 'react-icons/fa6';
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
 import GALLERY_LIST, { MEMBERS } from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
+import { BBangTTi } from '@/lib/images';
 
 const getTitleInfo = (type: string) => {
   if (type === 'galleryHome') {
@@ -38,7 +39,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
     <div className="flex w-full flex-col items-center justify-center sm:items-start sm:justify-start">
       {pageType === 'galleryHome' ? (
         <>
-          <p className="text-xs font-semibold 2xs:text-base md:text-xl">
+          <p className="text-sm font-semibold 2xs:text-base md:text-xl">
             {description}
           </p>
           <GalleryHomeTitle />
@@ -73,16 +74,18 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
 // TODO: ONE-Mobile-POP 폰트 최적화 필요 feat) fonts.ts
 const GalleryHomeTitle = () => {
   return (
-    <div className="flex h-[72px] items-center justify-center font-['ONE-Mobile-POP'] text-3xl 2xs:text-5xl md:h-[120px] md:text-[80px]">
+    <div className="flex h-[72px] items-center justify-center font-['ONE-Mobile-POP'] text-4xl 2xs:text-5xl md:h-[120px] md:text-[80px]">
       <h1 className="m-0">팬아트</h1>
       <div className="relative h-8 w-16 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-12 2xs:w-24 md:h-16 md:w-40">
         <Image
-          src="/static/images/4.png"
-          alt="애기뺑띠"
-          fill
-          priority
-          sizes="(max-width: 479px) 15vw, (max-width: 500px) 40vw, 60vw"
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
+          src={BBangTTi}
+          alt="애기뺑띠"
+          // fill
+          width={160}
+          height={64}
+          priority
+          // sizes="(max-width: 479px) 15vw, (max-width: 500px) 40vw, 60vw"
           unoptimized
         />
       </div>

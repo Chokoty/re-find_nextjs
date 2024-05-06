@@ -16,7 +16,7 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
 
   return (
     <section className="relative flex size-full max-h-[751px] flex-col items-center justify-center">
-      <div className="top-0 z-[1] aspect-[1200/675] w-full 2xs:relative 2xs:top-[-60px]">
+      <div className="relative top-[-60px] z-[1] aspect-[1200/675] min-h-[355px] w-full 2xs:min-h-[440px] sm:min-h-[586px]">
         <Image
           className="size-full max-h-[751px] object-cover opacity-70 dark:opacity-80"
           src={bgStaticSrc}
@@ -31,7 +31,7 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
       <div
         // 4k screen으로가면 +1을 해주어 shadow를 아래로 내려줘야 뜨는 현상이 없어진다.
         // #121212 > light-mode | #f8f9fa > dark-mode
-        className="absolute top-0 z-[2] size-full bg-[linear-gradient(#f8f9fa00_31.43%,_#f8f9fa_86%),_linear-gradient(91deg,_#f8f9fa_0%,_#f8f9fa00_57.72%)] dark:bg-[linear-gradient(180deg,_#12121280_51.43%,_#121212_100%),_linear-gradient(75deg,_#121212_0%,_#12121200_45.72%)] 2xs:top-[-59px]"
+        className="absolute top-[-59px] z-[2] size-full bg-[linear-gradient(#f8f9fa00_31.43%,_#f8f9fa_86%),_linear-gradient(91deg,_#f8f9fa_0%,_#f8f9fa00_57.72%)] dark:bg-[linear-gradient(180deg,_#12121280_51.43%,_#121212_100%),_linear-gradient(75deg,_#121212_0%,_#12121200_45.72%)]"
       />
       <div className="absolute bottom-4 z-[2] flex size-full px-4 2xs:bottom-32 2xs:block 2xs:h-auto 2xs:px-8 md:bottom-40 2md:bottom-56 xl:bottom-80">
         {children}

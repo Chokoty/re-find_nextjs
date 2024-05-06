@@ -1,6 +1,5 @@
+import EventService from '@/app/events/service/client/EventService';
 import type { CheckBoxType } from '@/types';
-
-import EventService from './EventService';
 
 const queryKeys = {
   randomFanart: (checkboxValues: CheckBoxType) => {

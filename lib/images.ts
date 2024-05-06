@@ -3,6 +3,7 @@ export { default as RealWakGood } from '@/public/real-wakgood.webp';
 export { default as Afreeca } from '@/public/static/icons/afreecatv-logo.webp';
 export { default as Waksplorer } from '@/public/static/icons/waksplorer-logo.webp';
 export { default as Wakzoo } from '@/public/static/icons/wakzoo-logo.webp';
+export { default as BBangTTi } from '@/public/static/images/4.png';
 export { default as ErrorImage } from '@/public/static/images/404/404-박쥐단.gif';
 export { default as MainBanner } from '@/public/static/images/banners/banner2.webp';
 export { default as BoomDoor } from '@/public/static/images/events/goat.webp';

@@ -7,7 +7,7 @@ import type { Member as MemberType } from '@/types';
 
 export default function MemberList() {
   return (
-    <ul className="flex w-full flex-wrap gap-[10px]">
+    <ul className="grid w-full grid-cols-2 gap-4 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-8">
       {MEMBERS.map((member) => (
         <Member key={member.id} member={member} />
       ))}
@@ -31,7 +31,7 @@ const Member = ({ member }: { member: MemberType }) => {
           alignItems: 'center',
         }}
       >
-        <div className="relative size-[90px] md:size-[120px]">
+        <div className="relative size-[85px] md:size-[120px]">
           <Image
             className="rounded-full object-cover"
             src={staticImage}
