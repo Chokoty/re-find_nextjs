@@ -94,7 +94,7 @@ function MenuButton({
     <Button
       ref={buttonRef}
       intent={intent}
-      additionalClass="min-w-4 select-none appearance-none items-center justify-center rounded-full bg-gray-100 font-semibold text-blackAlpha-900 transition hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 gap-2"
+      additionalClass="min-w-4 select-none appearance-none items-center justify-center rounded-full bg-gray-100 font-semibold text-blackAlpha-900 transition dark:bg-whiteAlpha-200 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 gap-2"
       onClick={onToggle}
     >
       <span className="pointer-events-none hidden sm:block">{children}</span>
@@ -116,8 +116,8 @@ function MenuList({ children }: { children: React.ReactNode }) {
       className={clsx(
         'absolute right-0 z-[4] min-w-max rounded-md border-base border-gray-200 bg-white transition dark:border-whiteAlpha-300 dark:bg-black-200',
         {
-          'visible top-[calc(100%+10px)] opacity-100': isOpen,
-          'invisible opacity-0': !isOpen,
+          'visible top-[calc(100%+10px)] scale-100 opacity-100': isOpen,
+          'invisible scale-90 opacity-0': !isOpen,
         }
       )}
     >

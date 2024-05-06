@@ -19,7 +19,7 @@ export function AccordionButton({
     <button
       type="button"
       className={clsx(
-        'flex items-center justify-center gap-1 rounded-lg py-1.5 pl-3 pr-2 text-center text-base transition hover:bg-blackAlpha-50 dark:hover:bg-whiteAlpha-100',
+        'flex items-center justify-center gap-1 rounded-lg py-1.5 pl-3 pr-2 text-center text-base transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300',
         {
           'mr-2 w-auto font-medium text-gray-900 dark:text-gray-50':
             type === 'filter',

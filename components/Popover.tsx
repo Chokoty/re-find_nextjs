@@ -93,7 +93,7 @@ function PopoverTrigger({ children, size = 'md' }: PopoverTriggerProps) {
       aria-label="question button"
       type="button"
       className={clsx(
-        'inline-flex min-w-4 select-none appearance-none items-center justify-center rounded-full bg-transparent p-0 font-semibold text-blackAlpha-900 transition hover:bg-gray-200 active:bg-gray-300 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400',
+        'inline-flex min-w-4 select-none appearance-none items-center justify-center rounded-full bg-transparent p-0 font-semibold text-blackAlpha-900 transition hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400',
         {
           'size-4': size === 'sm',
           'size-5': size === 'md',
@@ -134,8 +134,8 @@ function PopoverContent({
       className={clsx(
         'absolute z-50 rounded-md border-base border-gray-200 bg-white transition dark:border-whiteAlpha-300 dark:bg-black-200',
         {
-          'visible opacity-100': isOpen,
-          'invisible opacity-0': !isOpen,
+          'visible scale-100 opacity-100': isOpen,
+          'invisible scale-95 opacity-0': !isOpen,
           'w-[200px]': size === 'sm',
           'w-[320px]': size === 'md',
           'w-[400px]': size === 'lg',
