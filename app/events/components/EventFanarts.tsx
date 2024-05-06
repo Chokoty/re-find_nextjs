@@ -68,7 +68,13 @@ export default function EventFanarts() {
         isLoading={isLoading}
         isFetching={isFetching}
         isError={status === 'error'}
-        loadingContent={<p>먼저 위 버튼을 눌러 특집을 선택해주세요.</p>}
+        loadingContent={
+          <p>
+            {selectedEvent
+              ? '아래 버튼을 눌러 랜덤가챠를 시도할 수 있어요!'
+              : '먼저 위 버튼을 눌러 특집을 선택해주세요.'}
+          </p>
+        }
       />
       <Button
         additionalClass="rounded-full pe-8 ps-8"

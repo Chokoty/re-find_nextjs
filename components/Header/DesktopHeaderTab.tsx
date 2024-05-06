@@ -10,9 +10,10 @@ const tabs = [
 // gallery or artists 페이지일 경우만 isActive style 적용
 export default function DesktopHeaderTab() {
   const currentPathname = usePathname();
-  const isInGalleryOrArtists =
-    currentPathname.includes('/gallery') ||
-    currentPathname.includes('/artists');
+  const isInGallery = currentPathname.includes('/gallery');
+  const isInArtist = currentPathname.includes('/artists');
+  const isInGalleryOrArtists = isInGallery || isInArtist;
+
   const getSpanClassName = (width: number, tabPath: string) => {
     if (isInGalleryOrArtists) {
       return clsx(
@@ -38,11 +39,15 @@ export default function DesktopHeaderTab() {
           <Link href={tabPath}>
             <span className={getSpanClassName(width, tabPath)}>{name}</span>
           </Link>
-          {currentPathname.includes(tabPath) && (
-            <div
-              className={`w-${width} absolute bottom-[-6px] h-0.5 rounded-sm bg-green-highlight dark:bg-pink-highlight`}
-            />
-          )}
+          <div
+            className={clsx(
+              `absolute bottom-[-6px] h-0.5 rounded-sm bg-green-highlight dark:bg-pink-highlight`,
+              {
+                'w-12': currentPathname.includes(tabPath) && isInGallery,
+                'w-8': currentPathname.includes(tabPath) && isInArtist,
+              }
+            )}
+          />
         </div>
       ))}
     </div>
