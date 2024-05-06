@@ -47,12 +47,16 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
     <Box
       display="flex"
       flexDirection="column"
-      alignItems={['center', 'flex-start']}
-      justifyContent={['center', 'flex-start']}
+      // alignItems={['center', 'flex-start']}
+      // justifyContent={['center', 'flex-start']}
+      alignItems={'flex-start'}
+      justifyContent={'flex-start'}
       w="100%"
+      minH="14rem"
     >
       {pageType === 'galleryHome' ? (
         <>
+          <Box w="100%" h={['2rem', '4rem', '5rem']}></Box>
           <Text fontSize={['xs', 'md', 'xl']} fontWeight="600">
             {description}
           </Text>
@@ -68,7 +72,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
             gap="5px"
             color={color}
             onClick={handleBackButton}
-            mb="0.5rem"
+            mb={['2rem', '4rem', '5rem']}
           >
             <FaAngleLeft />
             <Text color={color}>팬아트 갤러리로 돌아가기</Text>
@@ -76,7 +80,8 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
           <Text
             m="0"
             as="h1"
-            fontSize={['2xl', '4xl', '5xl', '4rem']}
+            // fontSize={['2xl', '4xl', '5xl', '4rem']}
+            fontSize={['3xl', '5xl', '3.5rem']}
             fontFamily={'ONE-Mobile-POP'}
           >
             {title}
@@ -108,15 +113,15 @@ const GalleryHomeTitle = () => {
       <Text
         m="0"
         as="h1"
-        fontSize={['3xl', '5xl', '80px']}
+        fontSize={['3xl', '5xl', '3.5rem']}
         fontFamily={'ONE-Mobile-POP'}
       >
         팬아트
       </Text>
       <Box
         className="bg-crop"
-        w={['4rem', '6rem', '10rem']}
-        h={['2rem', '3rem', '4rem']}
+        w={['5rem', '7rem', '9rem']}
+        h={['1.8rem', '2.7rem', '3.6rem']}
         position="relative"
         overflow="hidden"
         borderRadius={['3rem', '5rem']}
@@ -142,7 +147,7 @@ const GalleryHomeTitle = () => {
       <Text
         m="0"
         as="h1"
-        fontSize={['3xl', '5xl', '80px']}
+        fontSize={['3xl', '5xl', '3.5rem']}
         fontFamily={'ONE-Mobile-POP'}
         color={highlightColor}
       >

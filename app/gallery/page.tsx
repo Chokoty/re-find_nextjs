@@ -16,7 +16,8 @@ export default function Gallery() {
         as="section"
         w="100%"
         position="relative"
-        top={['-60px', '-90px', '-120px', '-180px', '-220px']} // -220px(-60px + -160px)
+        // top={['-60px', '-90px', '-120px', '-180px', '-220px']} // -220px(-60px + -160px)
+        top={['0', '-9rem', '-18rem']}
         zIndex="2"
       >
         {/* <ThisWeekTop /> */}

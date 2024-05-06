@@ -13,7 +13,7 @@ export default function MemberAlbum() {
       flexDir="column"
       gap="30px"
       mt={['30px', '30px', '110px']}
-      p="0 2rem"
+      p={['0 1rem', '0 2rem', '0 2rem']}
     >
       <Box
         display="flex"
@@ -24,7 +24,7 @@ export default function MemberAlbum() {
         w="100%"
         h="80px"
       >
-        <Text textAlign="left" fontWeight="800" fontSize={['xl', 'xl', '40px']}>
+        <Text textAlign="left" fontWeight="800" fontSize={['xl', '2xl']}>
           멤버별 앨범 모아보기
         </Text>
       </Box>

@@ -92,7 +92,9 @@ export default async function page({ params: { name } }: Params) {
         w="100%"
         className="layout"
         position="relative"
-        top={['0px', '-100px', '-108px', '-180px', '-220px']} // -220px(-60px + -160px)
+        // top={['0px', '-140px', '-108px', '-180px', '-220px']} // -220px(-60px + -160px)
+        top={['0px', '-180px', '-9rem']} // -220px(-60px + -160px)
+        bottom="3rem"
         zIndex="2"
       >
         <DetailedGallery value={name} endpoint={endpoint ?? ''} />

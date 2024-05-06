@@ -91,7 +91,10 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
         h={['100%', 'unset']}
         display={['flex', 'block']}
         position="absolute"
-        bottom={['1rem', '8rem', '10rem', '14rem', '20rem']}
+        // bottom={['1rem', '8rem', '10rem', '14rem', '20rem']}
+        // top={['-2rem', '4rem', '8rem', '10rem']}
+        top="0"
+        mt="1rem"
         p={['0 1rem', '0 2rem', '0 2rem']}
         zIndex="2"
       >
