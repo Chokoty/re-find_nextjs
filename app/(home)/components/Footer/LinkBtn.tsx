@@ -1,142 +1,87 @@
-import { Button, Flex } from '@chakra-ui/react';
-import NextImage from 'next/image';
-import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { FaYoutube } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
 
-import { Afreeca, Twitter, Waksplorer, Wakzoo } from '@/lib/images';
+import { Afreeca, Waksplorer, Wakzoo } from '@/lib/images';
 
 const XButton = () => (
-  <Button
+  <Link
     href="https://twitter.com/RE_FIND_XYZ"
-    as="a"
-    borderRadius={8}
     target="_blank"
-    width="32px"
-    mr="2.5"
-    p="0"
-    colorScheme="black"
-    bg="black"
-    shadow="md"
+    className="flex size-10 items-center justify-center rounded-lg bg-blackAlpha-900 shadow-md"
   >
-    <NextImage
-      width={18}
-      height={18}
-      quality={90}
-      src={Twitter}
-      alt="twitter-x"
-      style={{ filter: 'invert(100%)' }}
-    />
-  </Button>
+    <FaXTwitter className="size-5 text-white dark:size-7" />
+  </Link>
 );
 
 const AfreecaButton = () => (
-  <Button
+  <Link
     href="https://bj.afreecatv.com/ecvhao"
-    as="a"
     target="_blank"
-    width="32px"
-    mr="2.5"
-    p="0"
-    colorScheme="white"
-    bg="white"
-    borderRadius={8}
-    shadow="md"
+    className="flex size-10 items-center justify-center rounded-lg bg-whiteAlpha-900 shadow-md"
   >
-    <NextImage
+    <Image
+      className="size-9"
       width={30}
       height={30}
       quality={90}
       src={Afreeca}
       alt="afreeca"
-      // style={{ filter: 'invert(100%)' }}
     />
-  </Button>
+  </Link>
 );
 const WakzooButton = () => (
-  <Button
-    className="link-to-wakzoo"
-    width="32px"
-    borderRadius={8}
-    p="0"
-    mr="2.5"
+  <Link
     href="https://cafe.naver.com/steamindiegame"
-    colorScheme="green"
-    bg="white"
-    as="a"
     target="_blank"
-    shadow="md"
+    className="size-10 rounded-lg bg-whiteAlpha-900 shadow-md"
   >
-    <NextImage
+    <Image
       width={60}
       height={60}
       quality={90}
       src={Wakzoo}
       alt="naver-cafe-logo"
     />
-  </Button>
+  </Link>
 );
 
 const YoutubeButton = () => (
-  <Button
-    width="32px"
-    borderRadius={8}
-    p="0"
-    mr="2.5"
+  <Link
     href="https://www.youtube.com/@waktaverse"
-    colorScheme="red"
-    bg="#FF0000"
-    as="a"
     target="_blank"
-    shadow="md"
+    className="flex size-10 items-center justify-center rounded-lg bg-[#FF0000] shadow-md"
   >
-    <FaYoutube
-      color="white"
-      style={{
-        width: '20px',
-        height: '20px',
-        padding: '0',
-      }}
-    />
-  </Button>
+    <FaYoutube className="size-5 text-white" />
+  </Link>
 );
 
 const WaksplorerButton = () => (
-  <Button
+  <Link
     href="https://waktaver.se/"
-    as="a"
     target="_blank"
-    width="32px"
-    mr="2.5"
-    p="0"
-    colorScheme="white"
-    bg="#fff"
-    shadow="md"
+    className="rounded-lg bg-whiteAlpha-900 shadow-md"
   >
-    <NextImage
+    <Image
+      className="size-10"
       width={30}
       height={30}
       quality={90}
       src={Waksplorer}
       alt="waksplorer"
     />
-  </Button>
+  </Link>
 );
 
 export default function LinkBtns() {
   return (
-    <Flex
-      w="100%"
-      mb="20px"
-      p="10px 0"
-      flexDirection="row"
-      justifyContent="center"
-      alignItems="center"
-    >
+    <div className="flex items-center justify-center gap-2 py-2.5">
       <WakzooButton />
       <AfreecaButton />
       <YoutubeButton />
       <WaksplorerButton />
       <XButton />
-    </Flex>
+    </div>
   );
 }

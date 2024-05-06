@@ -31,7 +31,8 @@
     "airbnb-base",
     "airbnb-typescript/base",
     "prettier",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:@tanstack/eslint-plugin-query/recommended",
+    "plugin:tailwindcss/recommended"
   ],
   "rules": {
     "prettier/prettier": ["error", { "endOfLine": "auto" }], // Delete `␍` prettier/prettier 해결 방법

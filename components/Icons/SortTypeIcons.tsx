@@ -1,7 +1,6 @@
 'use client';
 
-import { Box, Text, useColorModeValue } from '@chakra-ui/react';
-import React from 'react';
+import clsx from 'clsx';
 import {
   FaBookmark,
   FaComment,
@@ -12,103 +11,78 @@ import {
 
 import { SORT_TYPES } from '@/constants/artists';
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
-import { darkMode, lightMode } from '@/lib/theme';
-import type { SortCriteria } from '@/types';
+import type { SortTotalCriteria } from '@/types';
 
-const iconStyle = {
-  width: '1rem',
-  height: '1rem',
-};
+const iconClassName = 'w-4 h-4';
 
 const IconComponent = ({ sortTypeName }: { sortTypeName: string }) => {
   switch (sortTypeName) {
     case '총 작품':
-      return <FaImage style={iconStyle} />;
+      return <FaImage className={iconClassName} />;
     case '총 조회':
-      return <FaEye style={iconStyle} />;
+      return <FaEye className={iconClassName} />;
     case '총 댓글':
-      return <FaComment style={iconStyle} />;
+      return <FaComment className={iconClassName} />;
     case '총 좋아요':
-      return <FaThumbsUp style={iconStyle} />;
+      return <FaThumbsUp className={iconClassName} />;
     case '총 구독':
-      return <FaBookmark style={iconStyle} />;
+      return <FaBookmark className={iconClassName} />;
     default:
       return null;
   }
 };
 
 type Props = {
-  sortCriteria: SortCriteria | null;
   artist: AuthorCommon;
-  component: string;
+  totalCountCriteria?: SortTotalCriteria;
 };
 
-export default function SortTypeIcons({ sortCriteria, artist }: Props) {
-  const color7 = useColorModeValue(lightMode.color, darkMode.color7);
-
-  if (!artist) {
-    // artist가 null인 경우 예외 처리
-    return null;
-  }
-
+// 작가가 보유하고 있는 총 조회, 총 댓글, 총 좋아요, 총 구독 수를 보여주는 컴포넌트
+export default function SortTypeIcons({ artist, totalCountCriteria }: Props) {
   return (
-    <Box
-      display="flex"
-      flexDirection={['column', 'row', 'row']}
-      alignItems="center"
-      gap="0.5rem"
-    >
-      <Box display="flex" flexDirection="row" gap="1rem" mr="0.5em">
+    <div className="flex flex-col items-center gap-2 2xs:flex-row">
+      <div className="mr-2 flex flex-row gap-4">
         {SORT_TYPES.slice(0, 3).map(
           (sortType, index2) =>
             artist[sortType.value] !== 0 && (
-              <Text
+              <div
                 key={index2}
-                color={
-                  !sortCriteria || sortCriteria?.field !== sortType.value
-                    ? color7
-                    : 'pink.500'
-                }
-                size="sm"
-                display="flex"
-                flexDirection="row"
-                gap="0.5rem"
+                className={clsx(
+                  'flex flex-row gap-2',
+                  totalCountCriteria !== sortType.value
+                    ? 'text-gray-900 dark:text-whiteAlpha-700'
+                    : 'text-green-highlight'
+                )}
               >
                 <IconComponent sortTypeName={sortType.name} />
-                <Text fontSize="xs">
+                <p className="text-xs">
                   {formatArtistValue(artist[sortType.value])}
-                </Text>
-              </Text>
+                </p>
+              </div>
             )
         )}
-      </Box>
-      <Box
-        display="flex"
-        gap="0.5rem"
-        justifyContent="center"
-        alignItems="center"
-      >
+      </div>
+      <div className="flex items-center justify-center gap-2">
         {SORT_TYPES.slice(3, 5).map(
           (sortType, index2) =>
             artist[sortType.value] !== 0 && (
-              <Text
+              <div
                 key={index2}
-                color={
-                  sortCriteria?.field === sortType.value ? 'pink.500' : color7
-                }
-                size="sm"
-                display="flex"
-                flexDirection="row"
-                gap="0.5rem"
+                className={clsx(
+                  'flex flex-row gap-2',
+                  totalCountCriteria !== sortType.value
+                    ? 'text-gray-900 dark:text-whiteAlpha-700'
+                    : 'text-green-highlight'
+                )}
               >
                 <IconComponent sortTypeName={sortType.name} />
-                <Text fontSize="xs">
+                <p className="text-xs">
                   {formatArtistValue(artist[sortType.value])}
-                </Text>
-              </Text>
+                </p>
+              </div>
             )
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }

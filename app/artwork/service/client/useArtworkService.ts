@@ -1,9 +1,8 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
+import queryOptions from '@/app/artwork/service/client/queries';
 import type { GetRecommendArtworksParams } from '@/types';
-
-import queryOptions from './queries';
 
 export function useRecommendArtwork({
   artworkId,

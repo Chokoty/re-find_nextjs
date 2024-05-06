@@ -1,10 +1,10 @@
 'use client';
 
-import { Box, Button, Heading, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect } from 'react';
 
+import Button from '@/components/Button';
 import { ErrorImage } from '@/lib/images';
 
 export default function Error({
@@ -20,55 +20,36 @@ export default function Error({
   }, [error]);
 
   return (
-    <Box
-      m="0 auto"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      height="80vh"
-      width="80%"
-    >
-      <Heading as="h1" size="md" mb="20px">
-        이용에 불편을 드려 죄송합니다.
-      </Heading>
-      <Text>현재 해당 페이지 복구 작업을 진행하고 있습니다. 감사합니다.</Text>
-      <Text mb="1rem">에러내용: {error.message}</Text>
+    <div className="flex size-full flex-col items-center justify-center p-4 text-center">
+      <h1 className="text-xl font-bold">이용에 불편을 드려 죄송합니다.</h1>
+      <p className="mb-2.5 mt-2">
+        현재 해당 페이지 복구 작업을 진행하고 있습니다.
+      </p>
       <Image
         src={ErrorImage}
         alt="404-박쥐단"
         width={400}
         height={400}
+        priority
         unoptimized
       />
-
-      <Box
-        display="flex"
-        gap="0.5rem"
-        mt="20px"
-        justifyContent="center"
-        alignItems="center"
-      >
+      <p className="mt-3">에러내용: {error.message}</p>
+      <div className="mt-5 flex items-center justify-center gap-2">
         <Link
           href="/"
-          style={{
-            fontSize: '16px',
-            fontWeight: 600,
-            padding: '0 16px',
-            color: '#01bda1',
-          }}
+          className="px-4 font-semibold text-green-highlight transition hover:underline"
         >
           홈으로
         </Link>
+
         <Button
-          onClick={
-            // 세그먼트를 다시 렌더링하여 복구를 시도합니다.
-            () => reset()
-          }
+          intent="solid-gray"
+          additionalClass="dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-gray-100 font-semibold text-blackAlpha-900 hover:bg-gray-200 active:bg-gray-300 text-base"
+          onClick={reset} // 세그먼트를 다시 렌더링하여 복구를 시도합니다.
         >
-          다시 시도하기
+          다시 시도
         </Button>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }

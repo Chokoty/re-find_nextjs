@@ -1,10 +1,11 @@
 'use client';
 
-import { Box, Button, Heading, Text, Tooltip } from '@chakra-ui/react';
+import clsx from 'clsx';
 import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-import RecommendList from './RecommendList';
+import RecommendList from '@/app/artwork/components/Recommend/RecommendList';
+import Tooltip from '@/components/Tooltip';
 
 const AP = [0.5, 1.0, 1.5];
 
@@ -47,63 +48,44 @@ export default function Recommend() {
     }
   };
   return (
-    <Box
-      w="100%"
-      display="flex"
-      flexDir="column"
-      justifyContent="center"
-      alignItems="center"
-      mt="62px"
-    >
-      <Heading as="h4" size="md">
-        유사 이미지 추천
-      </Heading>
-      <Box
-        mt="1rem"
-        display="flex"
-        flexDir="column"
-        justifyContent="center"
-        alignItems="center"
-      >
+    <div className="mt-14 flex w-full flex-col items-center justify-center">
+      <h4 className="text-2xl font-bold">유사 이미지 추천</h4>
+      <div className="mt-4 flex flex-col items-center justify-center">
         {/* <Text>관련된 추천 게시글을 주세요</Text> */}
-        <Box
-          display="flex"
-          flexDir="row"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <div className="flex items-center justify-center">
           <Tooltip label="좋아요 패턴이 비슷한 게시글을 추천">
-            <Text fontSize={['sm', 'md']}>대중픽</Text>
+            <p className="text-sm 2xs:text-base">대중픽</p>
           </Tooltip>
-          <Box
-            display="flex"
-            flexDir="row"
-            justifyContent="center"
-            alignItems="center"
-            gap={['1rem', '1.7rem']}
-            mx={['0.5rem', '1rem']}
-          >
+          <div className="mx-2 flex items-center justify-center gap-4 2xs:mx-4 2xs:gap-7">
             {AP.map((_, i) => (
-              <Button
+              <button
                 key={i}
-                padding="0"
-                background={paramStep[i] ? buttonStyle[i].background : 'white'}
-                border={buttonStyle[i].border}
-                borderRadius="800px"
-                width={buttonStyle[i].size}
-                height={buttonStyle[i].size}
+                className={clsx(
+                  'flex items-center justify-center rounded-full border-4 text-white transition hover:bg-whiteAlpha-500',
+                  {
+                    'text-4 size-[50px] border-green-300': i === 0,
+                    'text-3 size-[38px] border-gray-300': i === 1,
+                    'text-4 size-[50px] border-purple-300': i === 2,
+                    'bg-green-600': i === 0 && paramStep[i],
+                    'bg-gray-600': i === 1 && paramStep[i],
+                    'bg-purple-600': i === 2 && paramStep[i],
+                    'bg-white': !paramStep[i],
+                  }
+                )}
                 onClick={() => handleButtonClick(buttonStyle[i].location)}
               >
-                {paramStep[i] && <FaCheck size={buttonStyle[i].iconSize} />}
-              </Button>
+                {paramStep[i] && <FaCheck />}
+              </button>
             ))}
-          </Box>
+          </div>
           <Tooltip label="좋아요 패턴이 잘 안 겹치는 게시글을 추천">
-            <Text fontSize={['sm', 'md']}>나작픽</Text>
+            <p className="text-sm 2xs:text-base">나작픽</p>
           </Tooltip>
-        </Box>
-      </Box>
-      <RecommendList getAp={getAp} />
-    </Box>
+        </div>
+      </div>
+      <div className="mt-8 w-full overflow-hidden px-2">
+        <RecommendList getAp={getAp} />
+      </div>
+    </div>
   );
 }

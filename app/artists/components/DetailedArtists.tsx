@@ -1,18 +1,14 @@
 'use client';
 
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Box,
-} from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { HashLoader } from 'react-spinners';
+import { useShallow } from 'zustand/react/shallow';
 
-import ArtistProfile from '@/app/artists/components/ArtistProfile';
+import { convertBoardParams } from '@/app/artists/lib/convertParams';
 import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
+import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
+import Alert from '@/components/Alert';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
@@ -23,27 +19,27 @@ type Props = {
   artistInfo: AuthorOverview;
 };
 
-export default function DetailedArtists({ nickname, artistInfo }: Props) {
+export default function DetailedArtists({ nickname }: Props) {
   const { ref, inView } = useInView({
     // infinite scroll을 위한 옵저버
     threshold: 0,
     rootMargin: '1300px 0px', // 상단에서 1000px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
-  let actualNickname = '';
-  if (Array.isArray(nickname)) [actualNickname] = nickname;
-  else actualNickname = nickname;
-  const [sortCriteria, setSortCriteria] = useState({
-    field: '',
-    order: 'descending', // 'ascending' 또는 'descending'
-  });
   // 뷰 선택 메뉴
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [boardType, setBoardType] = useState('');
   const [sortType, setSortType] = useState('latest'); // TODO: 이전 부분 삭제 (query가 들어갈 수 있는 상황이 없는 것 같아서)
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
+  const { rankCriteria } = useArtistSearchInfoStore(
+    useShallow((state) => ({ rankCriteria: state.rankCriteria }))
+  );
+
   const { fetchNextPage, artworks, isError, isFetchingNextPage, isLoading } =
-    useArtistInfo({ nickname, sortType, field: sortCriteria.field });
+    useArtistInfo({
+      nickname,
+      sortType,
+      board: rankCriteria ? convertBoardParams(rankCriteria) : null,
+    });
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
@@ -65,21 +61,6 @@ export default function DetailedArtists({ nickname, artistInfo }: Props) {
     setIsDeletedVisible((prev) => !prev);
   }, []);
 
-  const handleViewTypeSelect = (value: string) => {
-    // 같은거 누르면 해제,토글
-    if (value === sortCriteria.field) {
-      setBoardType('');
-      setSortCriteria((prevState) => {
-        return { ...prevState, field: '', order: 'descending' };
-      });
-    } else {
-      setBoardType(value);
-      setSortCriteria((prevState) => {
-        return { ...prevState, field: value, order: 'descending' };
-      });
-    }
-  };
-
   // 무한 스크롤
   useEffect(() => {
     if (inView) {
@@ -93,34 +74,13 @@ export default function DetailedArtists({ nickname, artistInfo }: Props) {
     }
 
     if (isError) {
-      return (
-        <Alert
-          status="error"
-          w="100%"
-          borderRadius="1rem"
-          justifyContent="center"
-          flexDir={['column', 'column', 'column', 'row']}
-        >
-          <Box display="flex">
-            <AlertIcon />
-            <AlertTitle>서버 에러</AlertTitle>
-          </Box>
-          <AlertDescription>
-            현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
-            빠른 시일 내에 해결하겠습니다.
-          </AlertDescription>
-        </Alert>
-      );
+      return <Alert />;
     }
 
     if (!artworks || artworks.length === 0) return;
 
     return (
-      <Box
-        w="100%"
-        p={['0 0.5rem', '0 1.5rem']}
-        overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-      >
+      <div className="w-full overflow-hidden px-2 py-0 2xs:px-6">
         {activeView === 'masonry' && (
           <MasonryView
             artworks={artworks}
@@ -131,32 +91,19 @@ export default function DetailedArtists({ nickname, artistInfo }: Props) {
           <SimpleView artworks={artworks} isDeletedVisible={isDeletedVisible} />
         )}
         {isFetchingNextPage ? (
-          <Box
-            w="100%"
-            mt="1.5rem"
-            mb="1.5rem"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
+          <div className="my-6 flex w-full items-center justify-center">
             <HashLoader color="#01BFA2" />
-          </Box>
+          </div>
         ) : (
           // Observer를 위한 div
-          <Box ref={ref} w="100%" h="5rem" />
+          <div ref={ref} className="h-20 w-full" />
         )}
-      </Box>
+      </div>
     );
   };
 
   return (
     <>
-      <ArtistProfile
-        nickname={actualNickname}
-        profile={artistInfo}
-        boardType={boardType}
-        handleViewTypeSelect={handleViewTypeSelect}
-      />
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}

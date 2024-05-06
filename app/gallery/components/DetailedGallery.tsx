@@ -1,12 +1,5 @@
 'use client';
 
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Box,
-} from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
 // import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
@@ -14,6 +7,7 @@ import HashLoader from 'react-spinners/HashLoader';
 
 import GALLERY_LIST from '@/app/gallery/lib/const';
 import { useArtworks } from '@/app/gallery/service/client/useGalleryService';
+import Alert from '@/components/Alert';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
@@ -92,30 +86,13 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     }
 
     if (isError) {
-      return (
-        <Alert
-          status="error"
-          w="100%"
-          borderRadius="1rem"
-          justifyContent="center"
-          flexDir={['column', 'column', 'column', 'row']}
-        >
-          <Box display="flex">
-            <AlertIcon />
-            <AlertTitle>서버 에러</AlertTitle>
-          </Box>
-          <AlertDescription>
-            현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
-            빠른 시일 내에 해결하겠습니다.
-          </AlertDescription>
-        </Alert>
-      );
+      return <Alert />;
     }
 
     if (!artworks || artworks.length === 0) return;
 
     return (
-      <Box w="100%" p={['0 0.5rem', '0 1.5rem']} overflow="hidden">
+      <div className="w-full overflow-hidden px-2 py-0 2xs:p-6 2xs:py-0">
         {activeView === 'masonry' && (
           <MasonryView
             artworks={
@@ -138,21 +115,14 @@ export default function DetailedGallery({ value, endpoint }: Props) {
           />
         )}
         {isFetchingNextPage ? (
-          <Box
-            w="100%"
-            mt="1.5rem"
-            mb="1.5rem"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
+          <div className="my-6 flex w-full items-center justify-center">
             <HashLoader color="#01BFA2" />
-          </Box>
+          </div>
         ) : (
           // Observer를 위한 div
-          <Box ref={ref} w="100%" h="5rem" />
+          <div ref={ref} className="h-20 w-full" />
         )}
-      </Box>
+      </div>
     );
   };
 

@@ -1,7 +1,7 @@
 import type { Sort, View } from '@/types';
 
 export const VIEW_TYPES: View[] = [
-  { name: '베스트', value: 'best_cnt', colorScheme: 'red' },
+  { name: '베스트', value: 'best_cnt', colorScheme: 'purple' },
   { name: '금손 작가', value: 'goldhand_cnt', colorScheme: 'yellow' },
   { name: '우왁굳', value: 'wak_cnt', colorScheme: 'green' },
   { name: '고멤/교멤', value: 'gomem_cnt', colorScheme: 'teal' },

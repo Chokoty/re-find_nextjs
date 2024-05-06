@@ -1,9 +1,7 @@
-import { Box, Text, useColorMode } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
-import styles from '@/app/gallery/components/Card/GalleryAlbumCard.module.scss';
 import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
 import type { Gallery } from '@/types';
 
@@ -24,7 +22,6 @@ const getBadgeText = ({
     }
     return '특집 팬아트';
   }
-  // badgeType === 'keyword'
   return '추천 키워드';
 };
 
@@ -32,84 +29,46 @@ export default function GalleryAlbumCard({
   album: { title, value, description, type },
 }: Prop) {
   const staticImage = getStaticImage(value);
-  const { colorMode } = useColorMode();
-  const isDarkMode = colorMode === 'dark';
-  const imageBackgroundShadow = isDarkMode
-    ? 'linear-gradient(180deg, hsla(0, 0%, 7%, .8), hsla(0, 0%, 7%, .4) 0%, hsla(0, 0%, 7%, 0) 0%, hsla(0, 0%, 7%, 0%) 12.23%, hsla(0, 0%, 7%, .64) 86.23%, #121212 101.07% )'
-    : 'linear-gradient(180deg, hsla(0, 0%, 7%, .8), hsla(0, 0%, 7%, .4) 0%, hsla(0, 0%, 7%, 0) 0%, hsla(0, 0%, 7%, 0%) 47.23%, hsla(0, 0%, 7%, .64) 100.23%, #121212 100.07%)';
   return (
-    <Box
-      position="relative"
-      w="100%"
-      transition=" all 0.2s ease-in-out"
-      className={styles.cardWrapper}
-    >
-      {/* TODO: 수정 필요 */}
-      <Link href={`/gallery/${value}`} prefetch={false}>
-        <Box
-          position="relative"
-          w="100%"
-          h={['200px', '230px', '280px', '350px', '400px']}
-        >
+    <div className="relative w-full transition hover:scale-[1.01]">
+      <Link className="" href={`/gallery/${value}`} prefetch={false}>
+        <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">
           <Image
+            className="rounded-2xl object-cover"
             src={staticImage}
             alt={title}
             fill
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            style={{
-              objectFit: 'cover',
-              borderRadius: '1rem', // 10px;
-            }}
             unoptimized
           />
-        </Box>
-        <Box
-          className={styles.overlay}
-          w="100%"
-          h="100%"
-          position="absolute"
-          top={0}
-          right={0}
-          bottom={0}
-          left={0}
-          borderRadius="0.9rem" // image 1rem 보다 작게 설정해야 아래 이미지 뜨는 현상 방지
-          zIndex={1}
-          background={imageBackgroundShadow}
-          display="flex"
-          flexDir="column"
-          alignItems="flex-end"
-          justifyContent="space-between"
+        </div>
+        <div
+          className="dark:bg-[linear-gradient(180deg,_hsla(0,_0%,_7%,_.8),_hsla(0,_0%,_7%,_.4)_0%,_hsla(0,_0%,_7%,_0)_0%,_hsla(0,_0%,_7%,_0%)_12.23%,_hsla(0,_0%,_7%,_.64)_86.23%,_#121212 101.07%)] absolute inset-0 z-[1] flex size-full flex-col items-end justify-between rounded-2xl bg-[linear-gradient(180deg,_hsla(0,_0%,_7%,_.8),_hsla(0,_0%,_7%,_.4)_0%,_hsla(0,_0%,_7%,_0)_0%,_hsla(0,_0%,_7%,_0%)_47.23%,_hsla(0,_0%,_7%,_.64)_100.23%,_#121212_100.07%)] px-2.5 pb-3.5 pt-2.5 min-[840px]:px-3 min-[840px]:pb-4 min-[840px]:pt-3 min-[1055px]:px-5 min-[1055px]:pb-7 min-[1055px]:pt-5"
+          // borderRadius="0.9rem" // image 1rem 보다 작게 설정해야 아래 이미지 뜨는 현상 방지
         >
-          <Box
-            className={styles.recommendationBox}
-            display="flex"
-            justify-content="center"
-            align-items="center"
-            padding="12px 16px"
-            borderRadius="10px"
-            background="rgba(0, 0, 0, 0.40)"
-          >
-            <Text fontWeight="400" fontSize="14px" color="white">
+          <div className="flex items-center justify-center rounded-[10px] bg-blackAlpha-500 px-2.5 py-1.5 md:px-3 md:py-2 min-[840px]:px-3.5 min-[840px]:py-2.5">
+            <p className="text-xs font-normal text-white md:text-sm">
               {getBadgeText({ badgeType: type, badgeValue: value })}
-            </Text>
-          </Box>
-          <Box
-            w="100%"
-            display="flex"
-            flexDir="row"
-            justifyContent="space-between"
-            alignItems="center"
-            className={styles.textBoxWrapper}
-          >
-            <Box className={styles.textBox}>
-              <Text className={styles.title}>{title}</Text>
-              <Text className={styles.description}>{description}</Text>
-            </Box>
-            <FaArrowRightLong size={40} color="white" />
-          </Box>
-        </Box>
+            </p>
+          </div>
+          <div className="flex w-full items-center justify-between">
+            <div className="flex flex-col items-start gap-1 pr-0 min-[840px]:pr-2 min-[1055px]:pr-5 min-[1400px]:pr-[25px] min-[1600px]:pr-[30px]">
+              <p className="text-xl font-bold text-white min-[1055px]:text-2xl min-[1600px]:text-3xl">
+                {title}
+              </p>
+              <p className="text-sm font-normal text-white min-[1055px]:text-[15px] min-[1600px]:text-base">
+                {description}
+              </p>
+            </div>
+            <FaArrowRightLong
+              className="hidden 2md:block"
+              size={40}
+              color="white"
+            />
+          </div>
+        </div>
       </Link>
-    </Box>
+    </div>
   );
 }

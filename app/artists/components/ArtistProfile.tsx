@@ -1,60 +1,54 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Flex,
-  Popover,
-  PopoverArrow,
+'use client';
+
+import Image from 'next/image';
+import CountUp from 'react-countup';
+import toast from 'react-hot-toast';
+import { ImLink } from 'react-icons/im';
+import { useShallow } from 'zustand/react/shallow';
+
+import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
+import Button from '@/components/Button';
+import SortTypeIcons from '@/components/Icons/SortTypeIcons';
+import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
+import Popover, {
   PopoverBody,
   PopoverContent,
   PopoverTrigger,
-  Text,
-  Tooltip,
-  useToast,
-} from '@chakra-ui/react';
-import { useState } from 'react';
-import { ImLink } from 'react-icons/im';
-
-import SortTypeIcons from '@/components/Icons/SortTypeIcons';
-import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
+} from '@/components/Popover';
+import Tooltip from '@/components/Tooltip';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 interface Props {
   nickname: string;
   profile: AuthorOverview;
-  boardType: string;
-  handleViewTypeSelect: (viewType: string) => void;
 }
 
-export default function ArtistProfile({
-  nickname,
-  profile,
-  boardType,
-  handleViewTypeSelect,
-}: Props) {
-  const toast = useToast();
-  const [isOpen, setIsOpen] = useState(false);
+export default function ArtistProfile({ nickname, profile }: Props) {
+  const {
+    author_url,
+    author_nickname,
+    author_prof_url,
+    best_cnt,
+    goldhand_cnt,
+    wak_cnt,
+    isd_cnt,
+    gomem_cnt,
+  } = profile;
+  const { rankCriteria, sortRankCriteria } = useArtistSearchInfoStore(
+    useShallow((state) => ({
+      rankCriteria: state.rankCriteria,
+      sortRankCriteria: state.sortRankCriteria,
+    }))
+  );
 
-  // 구독 toast 버튼
   const handleSubscribe = () => {
-    toast({
-      title: 'Alert',
-      description: '구독기능은 아직 준비중입니다.',
-      duration: 2000,
-      isClosable: true,
-    });
+    toast.error('구독 기능 준비 중입니다.');
   };
 
   const member_link = useResponsiveLink(
-    profile.author_url.split('/').pop() ?? '',
+    author_url.split('/').pop() ?? '',
     'member'
   );
-  // const article_link = useResponsiveLink('', 'article');
-  // console.log(profile?.author_prof_url);
-
-  const handleToggle = () => {
-    setIsOpen(!isOpen);
-  };
   const handleCopyLink = () => {
     // 복사하려는 링크를 여기에 입력하세요.
     // const linkToCopy = `https://re-find.xyz/artists/${encodeURIComponent(
@@ -63,129 +57,81 @@ export default function ArtistProfile({
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast({
-        title: '프로필 링크 복사됨',
-        description: '링크가 클립보드에 복사되었습니다.',
-        // status: 'success',
-        duration: 1500,
-        isClosable: true,
-      });
+      toast.success('프로필 링크가 클립보드에 복사되었습니다.');
     });
   };
-  return (
-    <Flex // 상단 프로필 정보
-      flexDirection="column"
-      alignItems="center"
-      // width="656px" - 모바일 버그 주범....
-      // maxW="656px"
-      pt="10px"
-    >
-      <Box>
-        <Popover isOpen={isOpen} onClose={handleToggle}>
-          <PopoverTrigger>
-            <Avatar
-              w="120px"
-              h="120px"
-              name={profile?.author_nickname}
-              src={profile?.author_prof_url}
-              m="0.5rem 0"
-              onClick={handleToggle}
-              cursor="pointer"
-            />
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverArrow />
-            <PopoverBody
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent="center"
-              p="1rem"
-            >
-              <Text fontSize="lg" fontWeight="bold" mb="0.5rem">
-                좋아요, 댓글 부탁드려요!
-              </Text>
-              <Text fontSize="md" fontWeight="light" textAlign="center">
-                작가님들에게 큰 힘이 됩니다 킹아!
-              </Text>
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
-      </Box>
 
-      <Text fontSize="4xl" fontWeight="bold" m="8px 0" pl="2rem">
-        {nickname}
+  const total = best_cnt + goldhand_cnt + wak_cnt + isd_cnt + gomem_cnt;
+  return (
+    <div className="mt-2.5 flex flex-col items-center">
+      <Popover>
+        <PopoverTrigger size="9xl">
+          <Image
+            src={author_prof_url}
+            alt={author_nickname}
+            className="my-2 rounded-full object-cover"
+            width={130}
+            height={130}
+            unoptimized
+            priority
+          />
+        </PopoverTrigger>
+        <PopoverContent position="bottom-center">
+          <PopoverBody>
+            <p className="my-2 text-center text-lg font-bold">
+              좋아요, 댓글 부탁드려요!
+            </p>
+            <p className="text-center text-base font-light">
+              작가님들에게 큰 힘이 됩니다 킹아!
+            </p>
+          </PopoverBody>
+        </PopoverContent>
+      </Popover>
+      <div className="my-2 flex items-center justify-center gap-1">
+        <div className="size-10" />
+        <p className="text-4xl font-bold">{nickname}</p>
         <Tooltip label="프로필 공유">
-          <Button
-            w="3rem"
-            h="3rem"
-            variant="ghost"
-            borderRadius="full"
-            p="0"
+          <button
+            className="flex size-10 items-center justify-center rounded-full transition hover:bg-gray-200 dark:hover:bg-whiteAlpha-300"
             onClick={handleCopyLink}
           >
             <ImLink />
-          </Button>
+          </button>
         </Tooltip>
-      </Text>
-
-      <Flex // 작품 수, 팔로워, 팔로잉
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        m="1rem 0.5rem"
-        gap="1.5rem"
-      >
-        {/* <Box as="button">
-          <Text fontWeight="600">작품 수 {profile[sortTypes[3].value]}개</Text>
-        </Box> */}
-        <SortTypeIcons
-          sortCriteria={null}
-          artist={profile}
-          component={'inNickname'}
-        />
+      </div>
+      {/* 작품 수, 팔로워, 팔로잉 */}
+      <div className="mx-2 mt-4 flex flex-col items-center justify-center gap-4">
+        <p className="dark:text-whiteAlpha-900">
+          총 작품 수&nbsp;
+          {<CountUp end={total ?? 0} className="text-green-highlight" />}개
+        </p>
+        <SortTypeIcons artist={profile} />
         <ViewTypeIcons
-          selectedView={boardType}
           artist={profile}
-          component={'inNickname'}
-          onSelectViewType={handleViewTypeSelect}
+          rankCriteria={rankCriteria}
+          sortRankCriteria={sortRankCriteria}
         />
-      </Flex>
-      <Flex // 왁물원, 팔로우 버튼
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="center"
-        w="100%"
-        ml="2rem"
-        m="8px 0"
-        mb="2rem"
-      >
+      </div>
+      {/* 왁물원, 팔로우 버튼 */}
+      <div className="my-4 flex w-full items-center justify-center gap-4">
         <Button
-          className="link-to-wakzoo-from-profile"
-          colorScheme="gray"
-          borderRadius="full"
-          m="0 0.5rem"
-          h="48px"
+          size="lg"
+          intent="solid-gray"
+          additionalClass="rounded-full dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-gray-100 font-semibold text-blackAlpha-900 hover:bg-gray-200 active:bg-gray-300 max-w-[73px] text-base"
           onClick={() => {
             window.open(member_link, '_blank');
           }}
         >
           왁물원
         </Button>
-
         <Button
-          colorScheme="green"
-          borderRadius="full"
-          m="0 0.5rem"
-          h="48px"
-          // onClick={() => {
-          //   window.open(member_link, '_blank');
-          // }}
+          size="lg"
+          additionalClass="rounded-full max-w-[73px] text-base"
           onClick={handleSubscribe}
         >
           + 구독
         </Button>
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   );
 }

@@ -1,8 +1,8 @@
-import { Box } from '@chakra-ui/react';
 import type { Metadata } from 'next';
 
-import Artwork from '@/app/artwork/components/Artwork';
 import Recommend from '@/app/artwork/components/Recommend';
+import ContentSection from '@/app/artwork/components/section/ContentSection';
+import ImageSection from '@/app/artwork/components/section/ImageSection';
 import { getArtworkDetail } from '@/app/artwork/service/server';
 import { siteConfig } from '@/lib/config';
 
@@ -39,22 +39,28 @@ export async function generateMetadata({
 export default async function ArtworkPage({ params: { id } }: Params) {
   const artwork = await getArtworkDetail(parseInt(id));
   return (
-    <Box w="100%" h="100%" display="flex" flexDir="column" px="20px" py="50px">
+    <div className="flex size-full flex-col p-5">
       {/* 상단(정보 - 제목,작가,날짜,게시판, 말머리, vlc) */}
-      <Box
-        w="100%"
-        minH="40vh"
-        display="flex"
-        flexDir={['column', 'column', 'row']}
-        gap="1rem"
-        justifyContent="center"
-        alignItems={['center', 'center', 'flex-start']}
-        padding={['1rem', '0']}
-      >
-        <Artwork data={artwork} />
-      </Box>
+      <div className="flex w-full flex-col items-center justify-center gap-4 p-4 md:flex-row md:items-start md:p-0">
+        <ImageSection
+          title={artwork.title}
+          imgSrc={artwork.img_url}
+          imgUrlList={artwork.img_url_list}
+        />
+        <ContentSection
+          id={artwork.id}
+          title={artwork.title}
+          author={artwork.author}
+          board={artwork.board}
+          date={artwork.date}
+          profileUrl={artwork.prof_url}
+          view={artwork.view}
+          like={artwork.like}
+          comment={artwork.comment}
+        />
+      </div>
       {/* 하단(유사이미지 추천) */}
       <Recommend />
-    </Box>
+    </div>
   );
 }

@@ -18,12 +18,12 @@ export const SOURCE_URL = 'https://cafe.naver.com/steamindiegame/9524252';
 
 export const SUPPORT_INFOS = [
   {
-    title: '버그 제보',
-    url: 'https://docs.google.com/forms/d/e/1FAIpQLScK_i8O9QnhfZswreRX7VYROWzG3Kte6bVxjf28VSK0Fcu23g/viewform',
-  },
-  {
     title: '기타 문의',
     url: 'https://docs.google.com/forms/d/e/1FAIpQLSf0WGZnnlZahRLoinXe1n0GmPCdryKXEFlPznqyLrsjBKpnZw/viewform',
+  },
+  {
+    title: '버그 제보',
+    url: 'https://docs.google.com/forms/d/e/1FAIpQLScK_i8O9QnhfZswreRX7VYROWzG3Kte6bVxjf28VSK0Fcu23g/viewform',
   },
 ];
 
@@ -396,6 +396,7 @@ export const UPDATE_LOGS: UpdateLog[] = [
     date: '2024.04.01',
     type: '[안내]',
     content: '만우절 기념 왁티홀의 문을 체험해보고 슛코 팬아트를 공개합니다!',
+    directLink: 'https://cafe.naver.com/steamindiegame/15785022',
   },
   {
     id: 40,
@@ -417,5 +418,6 @@ export const UPDATE_LOGS: UpdateLog[] = [
     type: '[안내]',
     content:
       '갤러리 페이지가 리뉴얼 되었습니다. 더불어 추가된 팬아트 세부 페이지에서 추천 시스템(beta)을 이용할 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/15913134',
   },
 ];

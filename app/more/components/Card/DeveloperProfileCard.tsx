@@ -1,16 +1,9 @@
-import {
-  Avatar,
-  Button,
-  Flex,
-  Link,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
+'use client';
+
 import Image from 'next/image';
-import React from 'react';
+import Link from 'next/link';
 
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
-import { darkMode, lightMode } from '@/lib/theme';
 
 interface Props {
   writerURL: string;
@@ -25,100 +18,43 @@ export default function DeveloperProfileCard({
   nickname,
   board,
 }: Props) {
-  const color2 = useColorModeValue(lightMode.color2, darkMode.color2);
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-  const highlightColor2 = useColorModeValue(
-    lightMode.highlight2,
-    darkMode.highlight2
-  );
-
   const member_link = useResponsiveLink(
     writerURL.split('/').pop() || 'default',
     'member'
   );
 
   return (
-    <Link
-      // w="100%"
-      className="link-to-wakzoo"
-      href={writerURL === '' ? '#' : member_link}
-      isExternal
-    >
-      <Button
-        _hover={{ textDecoration: 'none' }}
-        color={'#f5f5f5'}
-        boxShadow="base"
-        maxW="sm"
-        borderRadius="1rem"
-        overflow="hidden"
-        p="1.5rem"
-        width="100%"
-        height="120px"
-        display="flex"
-        justifyContent="space-between"
-        gap="10px"
-      >
-        {profURL === 'NULL' ? (
-          <Avatar size="xl" name={nickname} src={profURL || ''} />
-        ) : (
-          <div
-            style={{
-              borderRadius: '50%',
-              overflow: 'hidden',
-              position: 'relative',
-              width: 96,
-              height: 96,
-              backgroundColor: '#ffffff',
-            }}
-          >
-            <Image
-              src={
-                profURL ||
-                'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
-              }
-              alt={nickname}
-              fill={true}
-              unoptimized
-            />
-          </div>
-        )}
-        <Flex
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="flex-start"
-          gap="10px"
-          w="12rem"
-        >
-          <Text
-            fontSize="md"
-            textAlign="center"
-            mb="0.5rem"
-            pl="0.5rem"
-            color={highlightColor}
-          >
+    <Link href={writerURL === '' ? '#' : member_link} target="_blank">
+      <div className="flex min-h-[120px] w-full min-w-10 max-w-[346px] items-center justify-start gap-4 rounded-2xl bg-gray-200 px-4 py-2 shadow-base transition hover:bg-gray-300 dark:bg-dark-card dark:hover:bg-whiteAlpha-300">
+        <div className="relative min-h-20 min-w-20 md:min-h-24 md:min-w-24">
+          <Image
+            className="rounded-full bg-gray-100 object-cover"
+            src={
+              profURL ||
+              'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
+            }
+            alt={nickname}
+            fill={true}
+            priority
+            unoptimized
+          />
+        </div>
+        <div className="flex h-full flex-col items-start justify-center">
+          <p className="mb-2 text-green-highlight dark:text-pink-highlight">
             {nickname || '프로필은 왁물원에서'}
-          </Text>
-          <Flex gap="2" wrap="wrap">
+          </p>
+          <div className="flex flex-wrap gap-2 px-1">
             {board.map((item, index) => (
-              <Text
+              <span
                 key={index}
-                fontSize="sm"
-                textAlign="center"
-                color={color2}
-                px="2"
-                py="1"
-                rounded="full"
-                bg={highlightColor2}
+                className="rounded-full bg-teal-500 px-2 py-1 text-sm text-white dark:bg-red-100 dark:text-gray-900"
               >
                 {item || '---'}
-              </Text>
+              </span>
             ))}
-          </Flex>
-        </Flex>
-      </Button>
+          </div>
+        </div>
+      </div>
     </Link>
   );
 }

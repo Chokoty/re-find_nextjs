@@ -1,31 +1,15 @@
-import { Box, Skeleton } from '@chakra-ui/react';
-
-import styles from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton.module.scss';
-
 export default function GalleryAlbumSliderSkeleton() {
   return (
-    <Box
-      className={styles.container}
-      display="flex"
-      flexDir="row"
-      gap="20px"
-      padding="0 2rem"
-      w="100%"
-    >
+    <div role="status" className="flex w-full animate-pulse gap-5 px-8">
       <GalleryAlbumSkeleton />
       <GalleryAlbumSkeleton />
       <GalleryAlbumSkeleton />
-    </Box>
+    </div>
   );
 }
 
 const GalleryAlbumSkeleton = () => {
   return (
-    <Skeleton
-      className={styles.skeleton}
-      borderRadius="1rem"
-      w="100%"
-      h={['200px', '230px', '280px', '350px', '400px']}
-    />
+    <div className="h-[200px] w-full rounded-2xl bg-gray-125 dark:bg-gray-700 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px] [&:nth-child(2)]:hidden 2xs:[&:nth-child(2)]:block [&:nth-child(3)]:hidden lg:[&:nth-child(3)]:block" />
   );
 };

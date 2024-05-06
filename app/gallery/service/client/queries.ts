@@ -1,9 +1,8 @@
+import GalleryService from '@/app/gallery/service/client/GalleryService';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
 } from '@/types';
-
-import GalleryService from './GalleryService';
 
 const queryKeys = {
   galleryArtworks: ({ query, sortType }: GetKeywordGalleryArtworksParams) =>

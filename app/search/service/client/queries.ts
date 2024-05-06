@@ -1,6 +1,5 @@
+import SearchService from '@/app/search/service/client/SearchService';
 import type { GetSearchResultParams } from '@/types';
-
-import SearchService from './SearchService';
 
 const queryKeys = {
   searchResults: ({

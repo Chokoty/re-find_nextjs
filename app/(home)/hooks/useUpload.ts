@@ -3,9 +3,8 @@
 import { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
+import { useImageHash } from '@/app/(home)/hooks/useImageHash';
 import type { FileWithPreview } from '@/types';
-
-import { useImageHash } from './useImageHash';
 
 interface UseUploadProps {
   getDataFromChild: (files: FileWithPreview[]) => void;

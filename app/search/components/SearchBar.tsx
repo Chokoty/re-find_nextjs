@@ -1,45 +1,36 @@
-import {
-  Box,
-  Button,
-  Collapse,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightElement,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 
-import SearchHistory from '@/app/search/components/SearchHistory';
-import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
-import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/lib/theme';
+import Button from '@/components/Button';
 
-export default function SearchBar() {
-  const isMobile = useResponsive();
+type Prop = {
+  inputRef?: React.RefObject<HTMLInputElement>;
+  addHistoryKeyword: (keyword: string) => void;
+  onClose?: () => void;
+  focusBar?: () => void;
+  closeHistory?: () => void;
+  hasButton?: boolean;
+  q?: string;
+};
+
+export default function SearchBar({
+  addHistoryKeyword,
+  onClose,
+  focusBar,
+  inputRef,
+  closeHistory,
+  hasButton = false,
+  q,
+}: Prop) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const q = searchParams.get('q') ?? '';
-  const [input, setInput] = useState(q); // 검색어
-  const [isHover, setIsHover] = useState(false);
-  const {
-    recentSearches,
-    addHistoryKeyword,
-    deleteHistoryKeyword,
-    deleteHistoryKeywords,
-  } = useLocalStorage();
-  const [focused, setFocused] = useState(false);
-
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const color7 = useColorModeValue(lightMode.color7, darkMode.color7);
-  const bg3 = useColorModeValue(lightMode.bg3, darkMode.bg3);
+  const [input, setInput] = useState(q ?? ''); // 검색어
 
   const handleSearch = () => {
     const trimedInput = input.trim();
-    handleCloseSearchHistory();
+    onClose?.();
+    closeHistory?.();
     if (trimedInput.length > 0) {
       addHistoryKeyword(trimedInput);
     }
@@ -61,165 +52,56 @@ export default function SearchBar() {
     }
   };
 
-  const onBarFocus = () => {
-    setFocused(true);
-  };
-
   const handleClear = () => {
-    handleCloseSearchHistory();
+    closeHistory?.();
     setInput('');
   };
 
-  const handleCloseSearchHistory = () => {
-    setFocused(false);
-  };
-
   return (
-    <Box display="flex" flexDir="column" w="100%">
-      <Box
-        display="flex"
-        justifyContent="flex-start"
-        alignItems="center"
-        gap="1rem"
-        p="0 1rem"
-        w="100%"
-        // w={width}
+    <div className="flex w-full items-center justify-center gap-4">
+      <div
+        className="relative h-9 w-full"
+        // onClick={handleInputClick}
       >
-        <InputGroup
-          m="0 "
-          // w={width}
-        >
-          <InputLeftElement
-            pointerEvents="none"
-            color={color7}
-            fontSize="1.2em"
-          >
-            <span
-              style={{
-                width: '1px',
-                height: '16px',
-                marginLeft: '8px',
-                background: color7,
-                position: 'absolute',
-                top: '25%',
-                right: '10%',
-              }}
-            ></span>
-          </InputLeftElement>
-          <Input
-            placeholder="키워드 검색 (빈 칸은 전체 검색)"
-            h="2.25rem"
-            pl="3rem"
-            pr="100px"
-            borderRadius="2rem"
-            bg={bg3}
-            alignItems="center"
-            value={input}
-            onChange={onBarChange}
-            onKeyDown={onBarKeyDown}
-            onFocus={onBarFocus}
-            focusBorderColor="#01BFA2"
-            size="md"
-            _hover={{
-              backgroundColor: bg2,
-              borderColor: '#01BFA2',
-            }}
-            _focus={{ backgroundColor: bg2 }}
-            sx={{
-              'input::placeholder': {
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-              },
-            }}
-          />
-          <InputRightElement
-            pointerEvents="auto"
-            display="flex"
-            height="100%"
-            width="auto"
-            justifyContent="space-between"
-            alignItems="center"
-            padding="0.5rem"
-            gap="0.5rem"
-            marginRight="0.5rem"
-            _hover={{
-              cursor: 'default',
-            }}
-          >
-            {input.length > 0 && (
-              <Button
-                variant="ghost"
-                borderRadius="50%"
-                onClick={handleClear}
-                p="0"
-                height="100%"
-                minH="30px"
-                minW="30px"
-                _hover={{}}
-                _active={{}}
-              >
-                <IoIosCloseCircle
-                  style={{
-                    width: '1.2rem',
-                    height: '1.2rem',
-                    color: color7,
-                  }}
-                />
-              </Button>
-            )}
-            <Button
-              variant="ghost"
-              borderRadius="50%"
-              onClick={onSearchButtonClick}
-              p="0"
-              height="100%"
-              minH="30px"
-              minW="30px"
-              _hover={{}}
-              _active={{}}
-              onMouseEnter={() => setIsHover(true)}
-              onMouseLeave={() => setIsHover(false)}
+        <div className="absolute left-0 top-0 z-[2] h-full w-10">
+          <span className="absolute right-[10%] top-1/2 ml-2 h-4 w-px -translate-y-1/2 bg-gray-600 dark:bg-whiteAlpha-500" />
+        </div>
+        <input
+          ref={inputRef}
+          className="relative size-full cursor-text rounded-full border border-gray-200 bg-gray-100 pl-12 pr-20 outline-none transition placeholder:text-gray-500 hover:border-green-highlight hover:bg-white focus:border-green-highlight focus:outline-none focus:ring-1 focus:ring-green-highlight dark:border-whiteAlpha-300 dark:bg-whiteAlpha-200 dark:placeholder:text-whiteAlpha-600 dark:hover:border-green-highlight dark:hover:bg-dark-card 2xs:pr-24"
+          placeholder="키워드 검색 (빈 칸은 전체 검색)"
+          value={input}
+          onChange={onBarChange}
+          onKeyDown={onBarKeyDown}
+          onFocus={focusBar}
+        />
+        <div className="absolute right-0 top-0 z-[2] flex h-full w-[84px] items-center justify-end pr-4 2xs:gap-2">
+          {input.length > 0 && (
+            <button
+              type="button"
+              className="mr-2 flex size-8 items-center justify-center"
+              onClick={handleClear}
             >
-              <FaSearch
-                style={{
-                  width: '1.2rem',
-                  height: '1.2rem',
-                  color: isHover ? '#01BFA2' : color7,
-                }}
-              />
-            </Button>
-          </InputRightElement>
-        </InputGroup>
-        {!isMobile && (
-          <Button
-            // colorScheme="green"
-            borderRadius="2rem"
-            p="0 1.25rem"
-            minW="4rem"
-            h="36px"
-            backgroundColor="#21e7ca"
-            color="#1a202c"
+              <IoIosCloseCircle className="size-5 text-gray-600 dark:text-whiteAlpha-700" />
+            </button>
+          )}
+          <button
+            type="button"
+            className="flex size-8 items-center justify-center"
             onClick={onSearchButtonClick}
-            _hover={{
-              backgroundColor: '#64f3de',
-              // color: 'white',
-            }}
           >
-            검색
-          </Button>
-        )}
-      </Box>
-      <Collapse in={focused} animateOpacity>
-        <Box mt="1rem">
-          <SearchHistory
-            recentSearches={recentSearches}
-            deleteHistoryKeyword={deleteHistoryKeyword}
-            deleteHistoryKeywords={deleteHistoryKeywords}
-            close={handleCloseSearchHistory}
-          />
-        </Box>
-      </Collapse>
-    </Box>
+            <FaSearch className="size-5 text-gray-600 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-green-highlight" />
+          </button>
+        </div>
+      </div>
+      {hasButton && (
+        <Button
+          additionalClass="rounded-full bg-green-highlight hover:bg-green-600 min-h-9 h-9 hidden md:inline-flex"
+          onClick={onSearchButtonClick}
+        >
+          검색
+        </Button>
+      )}
+    </div>
   );
 }

@@ -1,5 +1,3 @@
-import { Box, SimpleGrid } from '@chakra-ui/react';
-
 import SimpleCards from '@/components/Card/SimpleCards';
 
 type Props = {
@@ -22,23 +20,8 @@ export default function SimpleView({ artworks, isDeletedVisible }: Props) {
   };
 
   return (
-    <Box
-      w="100%"
-      m="1rem auto 2rem"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <SimpleGrid
-        w="100%"
-        minChildWidth={['170px', '236px']} // 모바일에서는 150px, 그 외에서는 252px
-        spacing={['0.5rem', '0.75rem']}
-        justifyContent="center"
-        alignItems="center"
-        placeItems="center"
-      >
-        {content()}
-      </SimpleGrid>
-    </Box>
+    <div className="grid w-full grid-cols-2 gap-2 2xs:gap-2.5 min-[600px]:grid-cols-3 min-[900px]:grid-cols-4 min-[1150px]:grid-cols-5 min-[1330px]:grid-cols-6 min-[1550px]:grid-cols-7 min-[1900px]:grid-cols-8">
+      {content()}
+    </div>
   );
 }

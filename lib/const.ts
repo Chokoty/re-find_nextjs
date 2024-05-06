@@ -15,3 +15,5 @@ export const GalleryMap = {
   lilpaBirthday: '릴파님 생일',
   kissingYou: '키싱유 커버',
 } as const;
+
+export const RANDOM_TEXTS = ['과연', '어떤', '팬아트가', '나올까요?', '🤔'];

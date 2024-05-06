@@ -15,17 +15,29 @@ export type FileWithPreview = File & {
 };
 
 // artists
-export type SortCriteria = { field: keyof AuthorCommon; active: boolean };
+export type SortTotalCriteria = keyof Pick<
+  AuthorCommon,
+  {
+    [K in keyof AuthorCommon]: K extends `total_${string}` ? K : never;
+  }[keyof AuthorCommon]
+>;
+
+export type SortRankCriteria = keyof Pick<
+  AuthorCommon,
+  {
+    [K in keyof AuthorCommon]: K extends `total_${string}` ? never : K;
+  }[keyof AuthorCommon]
+>;
 
 export interface View {
   name: string;
-  value: keyof AuthorCommon;
+  value: SortRankCriteria;
   colorScheme: string;
 }
 
 export interface Sort {
   name: string;
-  value: keyof AuthorCommon;
+  value: SortTotalCriteria;
 }
 
 // gallery
@@ -78,7 +90,7 @@ export type GetRecommendArtworksParams = {
 export type GetArtistInfoParams = {
   nickname: string;
   sortType: string;
-  field: string;
+  board: string | null;
 };
 
 export type GetArtistListParams = {

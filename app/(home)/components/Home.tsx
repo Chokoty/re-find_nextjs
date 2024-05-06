@@ -1,17 +1,14 @@
 'use client';
 
-import { Box, Flex, Heading, useColorModeValue } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 
 import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import Footer from '@/app/(home)/components/Footer';
+import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
 import MoreButtons from '@/components/Button/MoreButtons';
-import EventFanarts from '@/components/EventFanarts';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
-import { useResponsive } from '@/hooks/useResponsive';
-import { darkMode, lightMode } from '@/lib/theme';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),
@@ -21,85 +18,27 @@ const BannerSlider = dynamic(
   }
 );
 
-const EventModal = dynamic(() => import('@/app/(home)/components/EventModal'), {
-  ssr: false,
-});
 export default function Home() {
-  const isMobile = useResponsive();
-
-  // Theme
-  const bgColor = useColorModeValue(lightMode.bg, darkMode.bg);
-  const bgColor2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  // const color = useColorModeValue(lightMode.color, darkMode.color);
   return (
-    <Box
-      className="home_body"
-      display="flex"
-      justifyContent="center"
-      alignItems="start"
-      flexDirection="row"
-      width="100%"
-      maxW="1208px"
-      flexWrap="wrap"
-      gap="1.5rem"
-      margin="1rem auto"
-      backgroundColor={bgColor}
-    >
-      <EventModal />
-      <Box
-        w="100%"
-        minH="100vh"
-        maxW="700px"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-      >
+    <div className="mx-auto flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6">
+      {/* desktop: left / mobile: top */}
+      <section className="flex w-[90%] max-w-[700px] flex-col items-center justify-center md:w-full">
         <BannerSlider />
         <TopTitle />
         <Upload />
-      </Box>
-      <Box
-        w="100%"
-        maxW="400px"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
-        borderRadius="1rem"
-      >
-        {!isMobile && (
-          <Box
-            w="90%"
-            mt="1rem"
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            background={bgColor2}
-            borderRadius="1rem"
-            p="1rem 0"
-            boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
-          >
-            <Flex
-              pt="0.5rem"
-              pl="1.5rem"
-              w="100%"
-              maxW="400px"
-              flexDir="row"
-              justifyContent="space-between"
-              alignItems="center"
-            >
-              <Heading size="md">좀 더!</Heading>
-              {/* <Text fontSize="md">더보기</Text> */}
-            </Flex>
-            <MoreButtons />
-          </Box>
-        )}
-        <EventFanarts initialFanart={null} showCnt={2} width={'90%'} />
-        <UpdateLogBoard width={'90%'} />
+      </section>
+      {/* desktop: right / mobile: bottom */}
+      <section className="flex max-w-[400px] flex-col items-center justify-center">
+        <div className="hidden w-[90%] flex-col items-center rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card md:flex">
+          <h2 className="w-full text-start text-xl font-bold leading-5">
+            좀 더!
+          </h2>
+          <MoreButtons />
+        </div>
+        <RandomGacha />
+        <UpdateLogBoard />
         <Footer />
-      </Box>
-    </Box>
+      </section>
+    </div>
   );
 }

@@ -1,6 +1,5 @@
+import ArtworkService from '@/app/artwork/service/client/ArtworkService';
 import type { GetRecommendArtworksParams } from '@/types';
-
-import ArtworkService from './ArtworkService';
 
 const queryKeys = {
   recommendArtworks: ({ artworkId, ap }: GetRecommendArtworksParams) =>

@@ -1,6 +1,5 @@
 'use client';
 
-import { ChakraProvider } from '@chakra-ui/provider';
 import {
   MutationCache,
   QueryCache,
@@ -9,10 +8,9 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { isAxiosError } from 'axios';
+import { ThemeProvider } from 'next-themes';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-
-import theme from '@/lib/theme';
 
 export function Providers({ children }: React.PropsWithChildren) {
   const [queryClient] = useState(
@@ -68,31 +66,14 @@ export function Providers({ children }: React.PropsWithChildren) {
     // }
   };
 
+  // TODO: 여전히flash가 존재한다. chakra때문인가? 나중에 지우고 다시 테스트해보기
   return (
-    <ChakraProvider theme={theme}>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <Toaster position="bottom-center" />
       <QueryClientProvider client={queryClient}>
         {children}
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
-    </ChakraProvider>
+    </ThemeProvider>
   );
 }
-
-//     if (error.response && error.response.status === 500) {
-//       console.log('Server Error: ', error.response.status);
-//       toast({
-//         title: `현재 서버와 연결이 원활하지 않습니다. 잠시 후 다시 시도해주세요.`,
-//         status: `error`,
-//         isClosable: true,
-//       });
-//     } else if (error.code === 'ERR_NETWORK') {
-//       console.log('Network Error: ', error.code);
-//       toast({
-//         title: `${error.code}`,
-//         status: `error`,
-//         isClosable: true,
-//       });
-//     } else {
-//       console.log(error);
-//     }

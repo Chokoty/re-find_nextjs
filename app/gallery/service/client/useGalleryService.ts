@@ -1,12 +1,11 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
+import queryOptions from '@/app/gallery/service/client/queries';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
 } from '@/types';
-
-import queryOptions from './queries';
 
 // 갤러리에서 왁굳님, 이세돌 분들의 갤러리용 팬아트를 확인할 수 있습니다.(더불어, 비챤님, 릴파님 생일 요청으로도 사용됩니다.)
 export function useGalleryArtworks({

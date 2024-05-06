@@ -1,16 +1,9 @@
-import { Button, Text, useColorModeValue } from '@chakra-ui/react';
 import toast from 'react-hot-toast';
 import { MdShare } from 'react-icons/md';
 
-import styles from '@/app/gallery/components/Button/ShareLinkButton.module.scss';
-import { darkMode, lightMode } from '@/lib/theme';
+import Button from '@/components/Button';
 
 export default function ShareLinkButton() {
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-
   const handleCopyLink = () => {
     // 복사하려는 링크를 여기에 입력하세요.
     // const linkToCopy = `https://re-find.xyz/gallery/${value}`;
@@ -23,15 +16,13 @@ export default function ShareLinkButton() {
 
   return (
     <Button
-      className={styles.button}
-      style={{ background: highlightColor, borderRadius: '80px' }}
-      variant="solid"
+      additionalClass="bg-green-highlight dark:hover:bg-pink-400 dark:bg-pink-highlight hover:bg-teal-500 rounded-full"
       onClick={handleCopyLink}
     >
-      <Text className={styles.text} color="white">
-        <span className={styles.gallery}>갤러리</span> 공유하기
-      </Text>
-      <MdShare className={styles.icon} color="white" />
+      <p className="text-white">
+        <span className="hidden 2xs:inline-block">갤러리</span> 공유하기
+      </p>
+      <MdShare className="ml-1 text-white" />
     </Button>
   );
 }
