@@ -1,49 +1,50 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useTheme } from 'next-themes';
 
+const tabs = [
+  { path: '/gallery', name: '갤러리', width: 12 },
+  { path: '/artists', name: '작가', width: 8 },
+];
+
+// gallery or artists 페이지일 경우만 isActive style 적용
 export default function DesktopHeaderTab() {
-  const pathname = usePathname();
-  const isCurrentPath = (path: string) => pathname === path;
-  const { resolvedTheme } = useTheme();
-  const isDarkMode = resolvedTheme === 'dark';
+  const currentPathname = usePathname();
+  const isInGalleryOrArtists =
+    currentPathname.includes('/gallery') ||
+    currentPathname.includes('/artists');
+  const getSpanClassName = (width: number, tabPath: string) => {
+    if (isInGalleryOrArtists) {
+      return clsx(
+        `w-${width} inline-block text-center font-bold hover:text-blackAlpha-900 dark:hover:text-whiteAlpha-900`,
+        {
+          'text-blackAlpha-900 dark:text-whiteAlpha-900':
+            currentPathname === tabPath,
+          'text-blackAlpha-600 dark:text-whiteAlpha-600':
+            currentPathname !== tabPath,
+        }
+      );
+    }
+
+    return `w-${width} inline-block text-center font-bold hover:text-blackAlpha-900 dark:hover:text-whiteAlpha-900 text-blackAlpha-900 dark:text-whiteAlpha-900`;
+  };
   return (
     <div className="mr-3 hidden items-center md:flex">
-      {/* 갤러리 탭 */}
-      <div className="relative flex w-[60px] items-center justify-center">
-        <Link href="/gallery">
-          <span
-            className={clsx('w-12 text-center font-bold', {
-              'hover:text-whiteAlpha-800': isDarkMode,
-              'text-whiteAlpha-800': isDarkMode && isCurrentPath('/gallery'),
-              'text-whiteAlpha-600': isDarkMode && !isCurrentPath('/gallery'),
-            })}
-          >
-            갤러리
-          </span>
-        </Link>
-        {isCurrentPath('/gallery') && (
-          <div className="absolute bottom-[-6px] h-0.5 w-8 rounded-sm bg-green-highlight dark:bg-pink-highlight" />
-        )}
-      </div>
-      {/* 작가 탭 */}
-      <div className="relative flex w-[60px] items-center justify-center">
-        <Link href="/artists">
-          <span
-            className={clsx('w-8 text-center font-bold', {
-              'hover:text-whiteAlpha-800': isDarkMode,
-              'text-whiteAlpha-800': isDarkMode && isCurrentPath('/artists'),
-              'text-whiteAlpha-600': isDarkMode && !isCurrentPath('/artists'),
-            })}
-          >
-            작가
-          </span>
-        </Link>
-        {isCurrentPath('/artists') && (
-          <div className="absolute bottom-[-6px] h-0.5 w-6 rounded-sm bg-green-highlight dark:bg-pink-highlight" />
-        )}
-      </div>
+      {tabs.map(({ path: tabPath, name, width }) => (
+        <div
+          key={tabPath}
+          className="relative flex w-[60px] items-center justify-center"
+        >
+          <Link href={tabPath}>
+            <span className={getSpanClassName(width, tabPath)}>{name}</span>
+          </Link>
+          {currentPathname === tabPath && (
+            <div
+              className={`w-${width} absolute bottom-[-6px] h-0.5 rounded-sm bg-green-highlight dark:bg-pink-highlight`}
+            />
+          )}
+        </div>
+      ))}
     </div>
   );
 }

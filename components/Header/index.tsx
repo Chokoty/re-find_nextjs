@@ -5,7 +5,6 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useTheme } from 'next-themes';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 import BackButton from '@/components/Button/BackButton';
@@ -22,24 +21,26 @@ export default function Header() {
   const pathname = usePathname();
   const isGalleryPage = pathname.includes('/gallery');
   const isScrolling = useScroll(60);
-  const { resolvedTheme } = useTheme();
-  const isWhiteMode = resolvedTheme === 'light';
   const isNotScrollingGalleryPage = isGalleryPage && !isScrolling;
-  const isWhiteModeWithNotGalleryPage = isWhiteMode && !isGalleryPage;
 
   return (
     <header
-      className={clsx(
-        'flex h-[60px] w-full items-center justify-between px-4 transition', // fixed top-0 z-[200]
-        {
-          'bg-white dark:bg-dark-card': !isNotScrollingGalleryPage,
-          'bg-blackAlpha-500': isNotScrollingGalleryPage,
-          'backdrop-blur': isNotScrollingGalleryPage,
-          'border-b border-gray-150': isWhiteModeWithNotGalleryPage,
-        }
-      )}
+      className={clsx('fixed top-0 z-[200] h-[60px] w-full transition', {
+        'bg-white dark:bg-dark-card': !isNotScrollingGalleryPage,
+        'bg-blackAlpha-500 backdrop-blur': isNotScrollingGalleryPage,
+      })}
     >
-      <HeaderContent />
+      <nav
+        className={clsx(
+          'flex size-full items-center justify-between px-4 shadow-navTop transition',
+          {
+            'dark:shadow-navTopDark': isScrolling,
+            'dark:shadow-none': !isScrolling,
+          }
+        )}
+      >
+        <HeaderContent />
+      </nav>
       <Modals />
     </header>
   );
@@ -78,7 +79,7 @@ const HeaderContent = () => {
   return (
     <>
       <div className="flex items-center justify-center">
-        <div className="mr-2 size-11 rounded-full p-2 transition hover:bg-gray-200 dark:hover:bg-whiteAlpha-300 md:mr-4">
+        <div className="mr-2 size-11 rounded-full p-2 transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 md:mr-4">
           <Link href="/">
             <Image
               alt="리파인드 로고"
