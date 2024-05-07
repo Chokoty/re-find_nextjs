@@ -1,8 +1,5 @@
-'use client';
-
-import EventLayout from '@/app/events/components/EventLayout';
+import EventFanarts from '@/app/events/components/EventFanarts';
 import RandomFanart from '@/app/events/components/RandomFanart';
-import EventFanarts from '@/components/EventFanarts';
 import PageTitle from '@/components/PageTitle';
 
 const topTitle = {
@@ -12,16 +9,12 @@ const topTitle = {
 
 export default function RandomGacha() {
   return (
-    <EventLayout title="이벤트관">
-      <PageTitle topTitle={topTitle} />
-      <div
-        style={{
-          width: '100%',
-          height: '2rem',
-        }}
-      ></div>
+    <div className="mx-auto flex w-[90%] flex-col items-center justify-center gap-4">
+      <div className="mt-6">
+        <PageTitle topTitle={topTitle} />
+      </div>
       <RandomFanart />
-      <EventFanarts initialFanart={null} showCnt={0} width={'100%'} />
-    </EventLayout>
+      <EventFanarts />
+    </div>
   );
 }

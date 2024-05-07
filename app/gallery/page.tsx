@@ -1,29 +1,23 @@
-import { Box } from '@chakra-ui/react';
-
 import GalleryTitle from '@/app/gallery/components/GalleryTitle';
 import MemberAlbum from '@/app/gallery/components/MemberAlbum';
 import RefindPick from '@/app/gallery/components/RefindPick';
+// import ThisWeekTop from '@/app/gallery/components/ThisWeekTop';
 import TopBackground from '@/app/gallery/components/TopBackground';
-// import ThisWeekTop from '@/app/gallery/components/ui/ThisWeekTop';
 
 export default function Gallery() {
   return (
-    <Box w="100%">
+    <div className="w-full">
       <TopBackground>
         <GalleryTitle pageType="galleryHome" />
       </TopBackground>
-      <Box
-        as="section"
-        w="100%"
-        position="relative"
-        // top={['-60px', '-90px', '-120px', '-180px', '-220px']} // -220px(-60px + -160px)
-        top={['0', '-9rem', '-18rem']}
-        zIndex="2"
+      <section
+        // -220px(-60px + -160px)
+        className="relative top-[-30px] z-[2] w-full 2xs:top-[-90px] md:top-[-120px] 2md:top-[-180px] xl:top-[-220px]"
       >
         {/* <ThisWeekTop /> */}
         <RefindPick />
         <MemberAlbum />
-      </Box>
-    </Box>
+      </section>
+    </div>
   );
 }

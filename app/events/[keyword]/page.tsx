@@ -49,7 +49,7 @@ export default async function page({ params: { keyword } }: Params) {
     const { queryKey, queryFn } = queryOptions.artistInfo({
       nickname: decodedKeyword,
       sortType: 'latest',
-      field: '',
+      board: null,
     });
     const query = await getDehydratedInfiniteQuery({
       queryKey,

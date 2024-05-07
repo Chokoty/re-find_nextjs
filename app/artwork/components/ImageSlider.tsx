@@ -1,44 +1,46 @@
 import 'swiper/css';
 
-import { useColorMode } from '@chakra-ui/react';
+import clsx from 'clsx';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 interface Props {
   urls: string[];
-  w?: number;
-  h?: number;
+  size?: 'small' | 'base' | 'large';
   handleClickImage: (imgUrl: string) => void;
 }
 
+const sizeMap = {
+  small: { w: 100, h: 100 },
+  base: { w: 130, h: 130 },
+  large: { w: 150, h: 150 },
+};
+
 export default function ImageSlider({
   urls,
-  w = 130,
-  h = 130,
+  size = 'base',
   handleClickImage,
 }: Props) {
-  const { colorMode } = useColorMode();
   return (
     <Swiper slidesPerView={3.5} spaceBetween={8} centerInsufficientSlides>
       {urls.map((url, idx) => (
         <SwiperSlide key={url}>
-          <button onClick={() => handleClickImage(url)}>
+          <button
+            className="rounded-[20px] border-base border-blackAlpha-200 dark:border-none"
+            onClick={() => handleClickImage(url)}
+          >
             <Image
               // fill
+              className={clsx('rounded-[20px] bg-[#f5f5f5] object-cover', {
+                'size-[100px]': size === 'small',
+                'size-[130px]': size === 'base',
+                'size-[150px]': size === 'large',
+              })}
               priority
-              width={w}
-              height={h}
+              width={sizeMap[size].w}
+              height={sizeMap[size].h}
               src={url}
               alt={`${idx + 1}번째 이미지`}
-              style={{
-                width: `${w}px`,
-                height: `${h}px`,
-                borderRadius: '20px',
-                objectFit: 'cover',
-                background: '#f5f5f5',
-                border:
-                  colorMode === 'dark' ? 'none' : '1px solid rgba(0,0,0,.102)',
-              }}
               unoptimized
             />
           </button>

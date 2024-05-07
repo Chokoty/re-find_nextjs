@@ -29,11 +29,7 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
             {({ measureRef }) => (
               <div
                 ref={measureRef}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
+                className="flex items-center justify-center"
               >
                 <MasonryCard key={artwork.id} artwork={artwork} />
               </div>
@@ -46,6 +42,7 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
 
   return (
     <ResponsiveMasonry
+      className="w-full"
       columnsCountBreakPoints={{
         350: 2,
         590: 3,
@@ -55,9 +52,6 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
         1528: 7,
         1792: 8,
         2020: 9,
-      }}
-      style={{
-        width: '100%',
       }}
     >
       <Masonry gutter="10px">{content()}</Masonry>

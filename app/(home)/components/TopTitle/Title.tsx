@@ -1,27 +1,15 @@
-import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
 import Link from 'next/link';
 
-import { darkMode, lightMode } from '@/lib/theme';
-
+// TODO: ONE-Mobile-POP 폰트 최적화 필요 feat) fonts.ts
 export default function Title() {
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-  // const color = useColorModeValue(lightMode.color, darkMode.color);
-
-  const handleTitleClick = () => {
-    window.location.href = '/';
-  };
-
   return (
-    <Box className="title" onClick={handleTitleClick}>
-      <Link href="/" className="content">
-        <Heading className="title-main" fontFamily={'ONE-Mobile-POP'}>
-          <span style={{ color: highlightColor }}>RE:</span>
-          FIND
-        </Heading>
-      </Link>
-    </Box>
+    <Link href="/" className="no-underline">
+      <h2 className="flex items-center justify-center text-center font-['ONE-Mobile-POP'] text-[60px] font-bold leading-tight 2xs:text-[70px] md:text-[85px] lg:text-[100px]">
+        <span className="text-green-highlight dark:text-pink-highlight">
+          RE:
+        </span>
+        FIND
+      </h2>
+    </Link>
   );
 }

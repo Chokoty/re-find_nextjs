@@ -1,4 +1,3 @@
-import { Box, Flex, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,11 +7,11 @@ import type { Member as MemberType } from '@/types';
 
 export default function MemberList() {
   return (
-    <Flex h="100%" as="ul" display="flex" flexWrap="wrap" gap="10px">
+    <ul className="grid w-full grid-cols-2 gap-4 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-8">
       {MEMBERS.map((member) => (
         <Member key={member.id} member={member} />
       ))}
-    </Flex>
+    </ul>
   );
 }
 
@@ -20,7 +19,7 @@ const Member = ({ member }: { member: MemberType }) => {
   const { value, name, greetings } = member;
   const staticImage = getStaticImage(value);
   return (
-    <Box w="140px" as="li" listStyleType="none">
+    <li className="w-[140px] list-none">
       <Link
         href={`/gallery/${value}`}
         prefetch={false}
@@ -32,28 +31,21 @@ const Member = ({ member }: { member: MemberType }) => {
           alignItems: 'center',
         }}
       >
-        <Box
-          position="relative"
-          width={['90px', '90px', '120px']}
-          height={['90px', '90px', '120px']}
-        >
+        <div className="relative size-[85px] md:size-[120px]">
           <Image
+            className="rounded-full object-cover"
             src={staticImage}
             alt={name}
-            fill
             sizes="(max-width: 1000px) 10vw, 15vw"
             quality={100}
+            fill
             priority
-            style={{
-              objectFit: 'cover',
-              borderRadius: '50%',
-            }}
             unoptimized
           />
-        </Box>
-        <Text textAlign="center">{name}</Text>
-        <Text fontSize="12px">{`"${greetings}"`}</Text>
+        </div>
+        <p className="text-center">{name}</p>
+        <p className="text-xs">{`"${greetings}"`}</p>
       </Link>
-    </Box>
+    </li>
   );
 };

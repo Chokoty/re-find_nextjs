@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import queryOptions from './queries';
+import queryOptions from '@/app/(home)/service/client/queries';
 
 export function useImageInfo({ hash }: { hash: string }) {
   return useQuery(queryOptions.imageInfo(hash));

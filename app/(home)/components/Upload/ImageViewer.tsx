@@ -1,9 +1,9 @@
-import { Box, Button } from '@chakra-ui/react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import toast from 'react-hot-toast';
 import { useShallow } from 'zustand/react/shallow';
 
+import EventModal from '@/app/(home)/components/EventModal';
 import Loading from '@/app/(home)/components/Loading';
 import ImageSearchResult from '@/app/(home)/components/Upload/ImageSearchResult';
 import Preview from '@/app/(home)/components/Upload/Preview';
@@ -11,6 +11,8 @@ import { TARGET_COUNT } from '@/app/(home)/lib/const';
 import queryOptions from '@/app/(home)/service/client/queries';
 import { useImageInfo } from '@/app/(home)/service/client/useHomeService';
 import { useImageUploadStore } from '@/app/(home)/store/imageUploadStore';
+import Button from '@/components/Button';
+import useModal from '@/hooks/useModal';
 
 type Prop = {
   hashs: string[];
@@ -18,12 +20,12 @@ type Prop = {
 
 export default function ImageViewer({ hashs }: Prop) {
   const { data, isLoading } = useImageInfo({ hash: hashs[0] });
-  const { resetFiles, setCongrat } = useImageUploadStore(
+  const { resetFiles } = useImageUploadStore(
     useShallow((state) => ({
       resetFiles: state.resetFiles,
-      setCongrat: state.setIsEventActive,
     }))
   );
+  const { show } = useModal(EventModal);
   const queryClient = useQueryClient();
   const { queryKey } = queryOptions.counts();
 
@@ -44,20 +46,14 @@ export default function ImageViewer({ hashs }: Prop) {
 
     // 6만 기념 이벤트
     if (source.total_counter === TARGET_COUNT.toString()) {
-      setCongrat(true); // targetCount 번째 검색 시 축하메시지
+      show();
     }
   }, [data]);
 
   const getResult = () => {
     if (!data) {
       return (
-        <Button
-          onClick={resetFiles}
-          size="lg"
-          colorScheme="blue"
-          mt="20px"
-          w={200}
-        >
+        <Button onClick={resetFiles} size="lg">
           다른 이미지 검색
         </Button>
       );
@@ -68,19 +64,9 @@ export default function ImageViewer({ hashs }: Prop) {
   };
 
   return (
-    <Box
-      className="result-area"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-      justifyContent="center"
-      borderRadius="1rem"
-      w={['90%', '90%', '100%']}
-      m="1rem 0 10rem 0"
-      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
-    >
+    <div className="my-4 flex w-full flex-col items-center justify-center rounded-2xl bg-white px-4 py-8 shadow-cardBox dark:bg-dark-card">
       <Preview data={data} isLoading={isLoading} />
       {isLoading ? <Loading /> : getResult()}
-    </Box>
+    </div>
   );
 }

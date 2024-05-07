@@ -29,5 +29,10 @@ export default function MoreLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <>
+      <div className="mx-auto my-6 h-1 w-full max-w-40 rounded-md bg-green-highlight dark:bg-pink-highlight" />
+      {children}
+    </>
+  );
 }

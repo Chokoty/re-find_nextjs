@@ -1,6 +1,7 @@
 import type { Board } from '@/types';
 
 export const TARGET_COUNT = 60000; // 이벤트 타겟 카운트
+export const SUB_TITLES = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
 
 const BOARD_LIST: Board[] = [
   {

@@ -1,4 +1,4 @@
-import HomeService from './HomeService';
+import HomeService from '@/app/(home)/service/client/HomeService';
 
 const queryKeys = {
   imageInfo: (hash: string) => ['imageInfo', hash] as const,

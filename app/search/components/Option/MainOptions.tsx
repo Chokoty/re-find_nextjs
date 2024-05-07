@@ -1,29 +1,21 @@
 'use client';
 
-import {
-  AccordionPanel,
-  Box,
-  Checkbox,
-  CheckboxGroup,
-  Divider,
-  NumberDecrementStepper,
-  NumberIncrementStepper,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  Select,
-  Stack,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
 import React, { useState } from 'react';
+import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { FaComment, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { useShallow } from 'zustand/react/shallow';
 
-import styles from '@/app/search/components/Option/MainOptions.module.scss';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
-import HelpPopOver from '@/components/HelpPopOver';
-import { darkMode, lightMode } from '@/lib/theme';
+import Checkbox from '@/components/Checkbox';
+import Divider from '@/components/Divider';
+import NumberInput from '@/components/NumberInput';
+import Popover, {
+  PopoverBody,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+} from '@/components/Popover';
+import Select from '@/components/Select';
 
 const boardMap: Record<string, string[]> = {
   all: [],
@@ -58,14 +50,9 @@ const boardMap: Record<string, string[]> = {
 };
 
 const MIN_COUNT = 0;
-const MAX_COUNT = 100;
+const MAX_COUNT = 20000;
 
 export default function MainOptions() {
-  const selectBg = useColorModeValue(lightMode.bg2, darkMode.bg3);
-  const iconStyle = {
-    width: '1rem',
-    height: '1rem',
-  };
   // const searchParams = useSearchParams();
   // const searchParamsObj = Object.fromEntries(searchParams.entries());
   const {
@@ -249,26 +236,14 @@ export default function MainOptions() {
   };
 
   return (
-    <AccordionPanel pb={4} className={styles.panel}>
+    <div className="px-0 py-2 min-[515px]:px-4">
       <Divider />
-      <Box
-        display="flex"
-        flexDir={['column', 'row']}
-        gap="1rem"
-        m="1rem"
-        className={styles.row}
-      >
+      <div className="m-2 flex flex-col gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
         {/* 업로드날짜 (유튜브 참고) -> 시작 ~ 끝 */}
         <Select
           placeholder="전체기간"
           onChange={handleChangeDateType}
           defaultValue={dateType}
-          sx={{
-            '> option': {
-              background: selectBg,
-              color: 'white',
-            },
-          }}
         >
           <option value="day">1일</option>
           <option value="week">1주</option>
@@ -281,12 +256,6 @@ export default function MainOptions() {
           placeholder="최신순"
           onChange={handleChangeRankType}
           defaultValue={rankType}
-          sx={{
-            '> option': {
-              background: selectBg,
-              color: 'white',
-            },
-          }}
         >
           {/* <option value="option1">최신순</option> */}
           <option value="comment">댓글수</option>
@@ -294,89 +263,73 @@ export default function MainOptions() {
           <option value="view">조회수</option>
           <option value="oldest">업로드 날짜</option>
         </Select>
-      </Box>
+      </div>
       <Divider />
-      <Box
-        m="1rem"
-        display="flex"
-        flexDir="row"
-        alignItems="center"
-        // justifyContent={['space-between', 'unset']}
-        justifyContent="space-between"
-        className={styles.row}
-      >
-        <CheckboxGroup colorScheme="teal">
-          <Stack
-            direction="row"
-            spacing={[3, 5]}
-            // direction={['column', 'row']}
+      <div className="m-2 flex items-center justify-between min-[515px]:m-4">
+        <div className="flex gap-5">
+          <Checkbox
+            value="title"
+            onChange={handleCheckTitle}
+            defaultChecked={hasTitle}
           >
-            <Checkbox
-              value="title"
-              onChange={handleCheckTitle}
-              defaultChecked={hasTitle}
-            >
-              제목
-            </Checkbox>
-            <Checkbox
-              value="content"
-              onChange={handleCheckContent}
-              defaultChecked={hasContent}
-            >
-              본문
-            </Checkbox>
-            <Checkbox
-              value="author"
-              onChange={handleCheckAuthor}
-              defaultChecked={hasAuthor}
-            >
-              작가
-            </Checkbox>
-          </Stack>
-        </CheckboxGroup>
-        <HelpPopOver description="전부 체크되지 않은 경우엔 제목과 본문에서만 찾습니다." />
-      </Box>
+            제목
+          </Checkbox>
+          <Checkbox
+            value="content"
+            onChange={handleCheckContent}
+            defaultChecked={hasContent}
+          >
+            본문
+          </Checkbox>
+          <Checkbox
+            value="author"
+            onChange={handleCheckAuthor}
+            defaultChecked={hasAuthor}
+          >
+            작가
+          </Checkbox>
+        </div>
+        <Popover>
+          <PopoverTrigger size="lg">
+            <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>검색 도움말</PopoverHeader>
+            <PopoverBody>
+              전부 체크되지 않은 경우엔 제목과 본문에서만 찾습니다.
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </div>
       <Divider />
-      <Box
-        m="1rem"
-        display="flex"
-        flexDir="row"
-        alignItems="center"
-        // justifyContent={['space-between', 'unset']}
-        justifyContent="space-between"
-        className={styles.row}
-      >
+      <div className="m-2 flex items-center justify-between min-[515px]:m-4">
         <Checkbox
-          colorScheme="teal"
           value="sensitive"
           onChange={handleCheckSensitiveCase}
           defaultChecked={hasSensitiveCase}
         >
           대소문자 구분
         </Checkbox>
-        <HelpPopOver
-          description={`체크시 대소문자를 구분해줍니다. 예시) 체크 후 Over를 검색하면 True Lover는 검색되지 않습니다.`}
-        />
-      </Box>
+        <Popover>
+          <PopoverTrigger size="lg">
+            <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>검색 도움말</PopoverHeader>
+            <PopoverBody>
+              {`체크시 대소문자를 구분해줍니다. 예시) 체크 후 Over를 검색하면 True
+              Lover는 검색되지 않습니다.`}
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </div>
       <Divider />
-      <Box
-        display="flex"
-        flexDir={['column', 'row']}
-        gap="1rem"
-        m="1rem"
-        className={styles.row}
-      >
+      <div className="m-2 flex flex-col gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
         {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
         <Select
           placeholder="전체 게시판"
           onChange={handleChangeBoard}
           defaultValue={board}
-          sx={{
-            '> option': {
-              background: selectBg,
-              color: 'white',
-            },
-          }}
         >
           <option value="isd">이세돌┃팬아트</option>
           <option value="goldhand">금손 작가들의 방</option>
@@ -394,12 +347,6 @@ export default function MainOptions() {
           disabled={categories.length === 0}
           onChange={handleChangeCategory}
           defaultValue={category}
-          sx={{
-            '> option': {
-              background: selectBg,
-              color: 'white',
-            },
-          }}
         >
           {categories.map((item, idx) => (
             <option value={item} key={idx}>
@@ -407,180 +354,76 @@ export default function MainOptions() {
             </option>
           ))}
         </Select>
-      </Box>
-      {/* <Divider />
-      <Box
-        display="flex"
-        flexDirection="row"
-        justifyContent="flex-start"
-        alignItems="center"
-        gap="1rem"
-        m="1rem"
-      >
-        <Tag
-          size="md"
-          // key={size}
-          borderRadius="full"
-          variant="solid"
-          colorScheme="green"
-        >
-          <TagLabel>징버거</TagLabel>
-          <TagCloseButton />
-        </Tag>
-        <Tag
-          size="md"
-          // key={size}
-          borderRadius="full"
-          variant="solid"
-          colorScheme="green"
-        >
-          <TagLabel>산타</TagLabel>
-          <TagCloseButton />
-        </Tag>
-      </Box> */}
+      </div>
       <Divider />
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        flexWrap="wrap"
-        gap="1rem"
-        m="1rem"
-        className={styles.row}
-      >
-        <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="flex-start"
-          alignItems="center"
-          gap="1rem"
-        >
+      <div className="m-2 flex flex-col flex-wrap gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
+        <div className="flex items-center justify-start gap-4">
           <Checkbox
-            colorScheme="teal"
             value="viewLimit"
             onChange={handleCheckViewCountLimit}
             defaultChecked={viewCountLimit.check}
           >
-            <FaEye style={iconStyle} />
+            <FaEye className="size-4" />
           </Checkbox>
           <NumberInput
-            maxW="200px"
-            w="100%"
             defaultValue={viewCount.min}
             min={MIN_COUNT}
             max={viewCount.max}
-            onChange={handleChangeViewLowerCount}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-          <Text>~</Text>
+            handleChange={handleChangeViewLowerCount}
+          />
+          <p>~</p>
           <NumberInput
-            maxW="200px"
-            w="100%"
             defaultValue={viewCount.max}
             min={viewCount.min}
-            onChange={handleChangeViewUpperCount}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-        </Box>
-        <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="flex-start"
-          alignItems="center"
-          gap="1rem"
-        >
+            max={MAX_COUNT}
+            handleChange={handleChangeViewUpperCount}
+          />
+        </div>
+        <div className="flex items-center justify-start gap-4">
           <Checkbox
-            colorScheme="teal"
             value="likeLimit"
             onChange={handleCheckLikeCountLimit}
             defaultChecked={likeCountLimit.check}
           >
-            <FaThumbsUp style={iconStyle} />
+            <FaThumbsUp className="size-4" />
           </Checkbox>
           <NumberInput
-            maxW="200px"
-            w="100%"
             defaultValue={likeCount.min}
             min={MIN_COUNT}
             max={likeCount.max}
-            onChange={handleChangeLikeLowerCount}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-          <Text>~</Text>
+            handleChange={handleChangeLikeLowerCount}
+          />
+          <p>~</p>
           <NumberInput
-            maxW="200px"
-            w="100%"
             defaultValue={likeCount.max}
             min={likeCount.min}
-            onChange={handleChangeLikeUpperCount}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-        </Box>
-        <Box
-          display="flex"
-          flexDirection="row"
-          justifyContent="flex-start"
-          alignItems="center"
-          gap="1rem"
-        >
+            max={MAX_COUNT}
+            handleChange={handleChangeLikeUpperCount}
+          />
+        </div>
+        <div className="flex items-center justify-start gap-4">
           <Checkbox
-            colorScheme="teal"
             value="commentLimit"
             onChange={handleCheckCommentCountLimit}
             defaultChecked={commentCountLimit.check}
           >
-            <FaComment style={iconStyle} />
+            <FaComment className="size-4" />
           </Checkbox>
           <NumberInput
-            maxW="200px"
-            w="100%"
             defaultValue={commentCount.min}
             min={MIN_COUNT}
             max={commentCount.max}
-            onChange={handleChangeCommentLowerCount}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-          <Text>~</Text>
+            handleChange={handleChangeCommentLowerCount}
+          />
+          <p>~</p>
           <NumberInput
-            maxW="200px"
-            w="100%"
             defaultValue={commentCount.max}
             min={commentCount.min}
-            onChange={handleChangeCommentUpperCount}
-          >
-            <NumberInputField />
-            <NumberInputStepper>
-              <NumberIncrementStepper />
-              <NumberDecrementStepper />
-            </NumberInputStepper>
-          </NumberInput>
-        </Box>
-      </Box>
-    </AccordionPanel>
+            max={MAX_COUNT}
+            handleChange={handleChangeCommentUpperCount}
+          />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -1,40 +1,20 @@
-import { ExternalLinkIcon } from '@chakra-ui/icons';
-import {
-  Badge,
-  Box,
-  Flex,
-  Heading,
-  Link,
-  Text,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import NextImage from 'next/image';
-import NextLink from 'next/link';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FaRegClock } from 'react-icons/fa6';
+import { LuExternalLink } from 'react-icons/lu';
 import { MdArrowForwardIos, MdPerson } from 'react-icons/md';
 
 import BOARD_LIST from '@/app/(home)/lib/const';
+import Badge from '@/components/Badge';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
-import { useResponsive } from '@/hooks/useResponsive';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
-import { darkMode, lightMode } from '@/lib/theme';
 
 type Prop = {
   update: RecentBoardData;
 };
 
 export default function UpdateCard({ update }: Prop) {
-  const isMobile = useResponsive();
-
-  const highlightColor = useColorModeValue(
-    lightMode.highlight,
-    darkMode.highlight
-  );
-  const color2 = useColorModeValue(lightMode.color2, darkMode.bg2);
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-
-  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-
   const modifiedUrl100 = useModifiedImageUrl({
     url: update.info.img_url,
     size: 100,
@@ -60,219 +40,62 @@ export default function UpdateCard({ update }: Prop) {
   }
 
   return (
-    <Box
-      width="90%"
-      p="0"
-      borderRadius="0"
-      borderBottom="1px solid"
-      borderColor={bg}
-      background={color2}
-      display="flex"
-      flexDirection="row"
-      h={isMobile ? 'auto' : '144px'}
-      justifyContent="space-between"
-      alignItems="center"
-      placeItems="center"
-    >
-      <Link
-        className="link-to-wakzoo"
-        href={article_link}
-        isExternal
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        <Box
-          display="flex"
-          justifyContent="center"
-          alignItems="center"
-          h={isMobile ? '5rem' : '6rem'}
-          w={isMobile ? '5rem' : '8rem'}
-          borderRadius="0.5rem"
-          mr="1rem"
-        >
-          <NextImage
+    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-gray-700 dark:bg-dark-card md:h-[144px] ">
+      <Link href={article_link} target="_blank" className="mr-3">
+        <div className="flex w-max items-center justify-center">
+          <Image
             quality={90}
             width={100}
             height={100}
-            style={{
-              borderRadius: '0.5rem',
-              objectFit: 'cover',
-              width: isMobile ? '5rem' : '6rem',
-              height: isMobile ? '5rem' : '6rem',
-            }}
             src={getImageSrc()}
             alt={update.info.title}
+            className="size-20 rounded-lg object-cover md:size-24"
             unoptimized
           />
-        </Box>
+        </div>
       </Link>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="space-between"
-        alignItems="flex-start"
-        h="100%"
-        w="100%"
-        p="1rem 0"
-      >
-        <Flex
-          w="100%"
-          flexDirection={['column', 'row']}
-          alignItems={['flex-start', 'center']}
-          justifyContent="space-between"
-          gap={['0.5rem', '1rem', '1rem']}
-        >
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-between"
-            alignItems="flex-start"
-            gap={['0.2rem', '1rem']}
+      <div className="flex h-20 flex-1 flex-col items-start justify-between 2xs:flex-row md:h-24">
+        <div className="flex flex-col items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2xs:gap-2">
+          <Link className="flex items-center" href={menu_link} target="_blank">
+            <p className="text-sm 2xs:text-base md:text-lg">
+              {update.board.replace(/&#\d+;/g, '').trim()}
+            </p>
+            <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
+          </Link>
+          <Link
+            className="flex items-center"
+            href={article_link}
+            target="_blank"
           >
-            <Text fontSize={['sm', 'md', 'lg']}>
-              <Link
-                color={highlightColor}
-                className="link-to-wakzoo"
-                href={menu_link}
-                isExternal
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                {update.board.replace(/&#\d+;/g, '').trim()}
-                <MdArrowForwardIos
-                  style={{
-                    marginLeft: '0.5rem',
-                    fontSize: '0.8rem',
-                  }}
-                />
-              </Link>
-            </Text>
-            <Heading
-              as="h1"
-              fontSize={['md', 'lg', 'xl']}
-              textTransform="uppercase"
-              m="0"
+            <p className="line-clamp-1 text-base font-semibold 2xs:text-lg md:text-xl">
+              {update.info.title}
+            </p>
+            <LuExternalLink className="ml-2 hidden text-lg font-semibold 2xs:block" />
+          </Link>
+        </div>
+        <div className="flex flex-row items-end gap-2 2xs:flex-col">
+          <Badge intent="danger" size="lg">
+            <Link
+              className="flex items-center"
+              href={`/artists/${update.info.nickname}`}
             >
-              <Link
-                color={highlightColor}
-                className="link-to-wakzoo"
-                href={article_link}
-                isExternal
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <Text noOfLines={1}>{update.info.title}</Text>
-                <ExternalLinkIcon mx="2px" />
-              </Link>
-            </Heading>
-          </Box>
-          <Box
-            display="flex"
-            flexDirection={['row', 'column']}
-            alignItems={['center', 'flex-end']}
-            gap={['0.5rem', '1rem']}
-            justifyContent="space-between"
-            h="100%"
-          >
-            <Badge
-              variant="subtle"
-              // w="7rem"
-              maxW="12rem"
-              p="0 0.5rem"
-              borderRadius="6px"
-              colorScheme="red"
-              h={['1.5rem', '2rem']}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize={['xs', 'md', 'lg']}>
-                <NextLink
-                  href={`/artists/${update.info.nickname}`}
-                  style={{
-                    // color: highlightColor,
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
-                  <MdPerson
-                    style={{
-                      // color: getButtonColor('artists'),
-                      width: '1rem',
-                      height: '1rem',
-                    }}
-                  />
-                  <Text
-                    ml="0.2rem"
-                    noOfLines={1}
-                    maxW="8rem"
-                    textTransform="none"
-                  >
-                    {update.info.nickname}
-                  </Text>
-                  <ExternalLinkIcon
-                    style={{
-                      marginLeft: '0.2rem',
-                      fontSize: '0.8rem',
-                    }}
-                  />
-                </NextLink>
-              </Text>
-            </Badge>
-            <Badge
-              // w="6rem"
-              // maxW="6rem"
-              variant="subtle"
-              colorScheme="green"
-              borderRadius="6px"
-              p="0 0.5rem"
-              h={['1.5rem', '2rem']}
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text
-                fontSize={['xs', 'md', 'lg']}
-                display="flex"
-                alignItems="center"
-                justifyContent="center"
-              >
-                <Box w="1rem" h="1rem">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </Box>
-                <Text
-                  color={color}
-                  // fontSize={['xs', 'md', 'lg']}
-                  ml="0.2rem"
-                  noOfLines={1}
-                  maxW="8rem"
-                >
-                  {uploadTimeDiff}
-                </Text>
-              </Text>
-            </Badge>
-          </Box>
-        </Flex>
-      </Box>
-    </Box>
+              <MdPerson className="mr-0.5 size-4 text-red-800 dark:text-red-200" />
+              <p className="line-clamp-1 max-w-16 text-sm text-red-800 dark:text-red-200 2xs:max-w-20 2xs:text-base sm:max-w-32 md:text-lg">
+                {update.info.nickname}
+              </p>
+              <LuExternalLink className="ml-0.5 text-sm text-red-800 dark:text-red-200" />
+            </Link>
+          </Badge>
+          <Badge intent="secondary" size="lg">
+            <div className="flex items-center">
+              <FaRegClock className="mr-0.5 text-sm text-green-800 dark:text-green-200" />
+              <p className="line-clamp-1 max-w-16 text-sm text-green-800 dark:text-green-200 2xs:max-w-20 2xs:text-base sm:max-w-32 md:text-lg">
+                {uploadTimeDiff}
+              </p>
+            </div>
+          </Badge>
+        </div>
+      </div>
+    </div>
   );
 }

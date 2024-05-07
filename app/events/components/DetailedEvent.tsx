@@ -1,18 +1,12 @@
 'use client';
 
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Box,
-  Text,
-} from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
+import Alert from '@/components/Alert';
+import PageTitle from '@/components/PageTitle';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
@@ -32,7 +26,7 @@ export default function DetailedEvent({ keyword }: Prop) {
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
   const { fetchNextPage, artworks, isError, isFetchingNextPage, isLoading } =
-    useArtistInfo({ nickname: keyword, sortType, field: '' });
+    useArtistInfo({ nickname: keyword, sortType, board: null });
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {
@@ -50,10 +44,6 @@ export default function DetailedEvent({ keyword }: Prop) {
     setIsDeletedVisible((prev) => !prev);
   }, []);
 
-  // useEffect(() => {
-  //   setArtworks(keyword_artworks?.list);
-  // }, [keyword_artworks]);
-
   useEffect(() => {
     if (inView) {
       fetchNextPage();
@@ -66,34 +56,13 @@ export default function DetailedEvent({ keyword }: Prop) {
     }
 
     if (isError) {
-      return (
-        <Alert
-          status="error"
-          w="100%"
-          borderRadius="1rem"
-          justifyContent="center"
-          flexDir={['column', 'column', 'column', 'row']}
-        >
-          <Box display="flex">
-            <AlertIcon />
-            <AlertTitle>서버 에러</AlertTitle>
-          </Box>
-          <AlertDescription>
-            현재 서버와의 연결이 불안정합니다! 이용에 불편을 드려 죄송합니다.
-            빠른 시일 내에 해결하겠습니다.
-          </AlertDescription>
-        </Alert>
-      );
+      return <Alert />;
     }
 
     if (!artworks || artworks.length === 0) return;
 
     return (
-      <Box
-        w="100%"
-        p={['0 0.5rem', '0 1.5rem']}
-        overflow="hidden" // 모바일 사파리에서 여백이 생기는 문제 해결
-      >
+      <div className="w-full overflow-hidden px-2 py-0 2xs:p-6 2xs:py-0">
         {activeView === 'masonry' && (
           <MasonryView
             artworks={artworks}
@@ -108,40 +77,27 @@ export default function DetailedEvent({ keyword }: Prop) {
           />
         )}
         {isFetchingNextPage ? (
-          <Box
-            w="100%"
-            mt="1.5rem"
-            mb="1.5rem"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
+          <div className="my-6 flex w-full items-center justify-center">
             <HashLoader color="#01BFA2" />
-          </Box>
+          </div>
         ) : (
           // Observer를 위한 div
-          <Box ref={ref} w="100%" h="5rem" />
+          <div ref={ref} className="h-20 w-full" />
         )}
-      </Box>
+      </div>
     );
   };
 
+  const topTitle = {
+    title: '🎃 할로윈 특집 🎃',
+    description: '왁타버스 팬아트',
+  };
+
   return (
-    <Box>
-      <Box
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
-        m=" 3rem"
-      >
-        <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-          🎃 할로윈 특집 🎃
-        </Text>
-        <Text m="0 auto" as="h1" fontFamily={'ONE-Mobile-POP'}>
-          왁타버스 팬아트
-        </Text>
-      </Box>
+    <>
+      <div className="my-12">
+        <PageTitle topTitle={topTitle} />
+      </div>
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}
@@ -152,15 +108,7 @@ export default function DetailedEvent({ keyword }: Prop) {
         topOffset={59}
         isdPick={false}
       />
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        margin="0 auto"
-        mb="2rem"
-      >
-        {content()}
-      </Box>
-    </Box>
+      {content()}
+    </>
   );
 }

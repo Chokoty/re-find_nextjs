@@ -1,4 +1,3 @@
-import { Box, Text } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 
 import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
@@ -13,33 +12,17 @@ const GallerySlider = dynamic(
 
 export default function RefindPick() {
   return (
-    <Box
-      w="100%"
-      display="flex"
-      flexDir="column"
-      gap="30px"
-      // mt="120px"
-      pl={['1rem', '2rem', '2rem']}
-    >
-      <Box
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="flex-start"
-        textAlign="center"
-        w="100%"
-        // h="80px"
-        // p={['0 1rem', '0 2rem', '0 2rem']}
-      >
-        <Text textAlign="left" fontWeight="800" fontSize={['xl', '2xl']}>
+    <div className="flex w-full flex-col">
+      <div className="mb-6 w-full px-8 md:mb-8">
+        <p className="text-left text-2xl font-extrabold md:text-4xl">
           리파인드 추천 앨범
-        </Text>
-      </Box>
+        </p>
+      </div>
       <GallerySlider
         type="album"
         customSwiperOptions={{
           style: {
-            padding: '0',
+            // padding: '0 2rem',
           },
           spaceBetween: 8,
           breakpoints: {
@@ -57,6 +40,6 @@ export default function RefindPick() {
           },
         }}
       />
-    </Box>
+    </div>
   );
 }

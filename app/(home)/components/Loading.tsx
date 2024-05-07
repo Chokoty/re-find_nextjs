@@ -1,20 +1,10 @@
-import { Box, Spinner, Text } from '@chakra-ui/react';
+import { ClipLoader } from 'react-spinners';
 
 export default function Loading() {
   return (
-    <Box
-      className="loading"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      mt="2rem"
-    >
-      <Text fontSize="lg" textAlign="center" fontWeight="bold" mb="1rem">
-        검색중
-      </Text>
-      &nbsp;
-      <Spinner size="md" />
-    </Box>
+    <div className="mt-8 flex flex-col items-center justify-center">
+      <p className="mb-4 text-center text-xl font-bold">검색중</p>
+      <ClipLoader color="var(--green-500)" />
+    </div>
   );
 }

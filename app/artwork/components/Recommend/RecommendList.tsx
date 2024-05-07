@@ -1,16 +1,10 @@
-import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
-  AlertTitle,
-  Box,
-} from '@chakra-ui/react';
 import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { HashLoader } from 'react-spinners';
 
 import { useRecommendArtwork } from '@/app/artwork/service/client/useArtworkService';
+import Alert from '@/components/Alert';
 import MasonryView from '@/components/View/MasonryView';
 
 export default function RecommendList({ getAp }: { getAp: () => number }) {
@@ -35,59 +29,32 @@ export default function RecommendList({ getAp }: { getAp: () => number }) {
     }
   }, [inView]);
 
-  const contents = () => {
-    if (isLoading) return <HashLoader color="#01BFA2" />;
-    if (isError || !artworks || artworks.length === 0 || !artworks?.[0]) {
-      return (
-        <Alert status="error" w="90%" borderRadius="1rem" flexDir="column">
-          <Box display="flex">
-            <AlertIcon />
-            <AlertTitle>추천 시스템 준비</AlertTitle>
-          </Box>
-          <AlertDescription>
-            현재 해당 게시글에 대한 추천 시스템이 준비 중입니다.
-          </AlertDescription>
-        </Alert>
-      );
-    }
-
+  if (isLoading) {
     return (
-      <>
-        <MasonryView
-          artworks={artworks.filter((artwork) => artwork.is_hyum === false)}
-          isDeletedVisible={false}
-        />
-        {isFetchingNextPage ? (
-          <Box
-            w="100%"
-            mt="1.5rem"
-            mb="1.5rem"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <HashLoader color="#01BFA2" />
-          </Box>
-        ) : (
-          // Observer를 위한 div
-          <Box ref={ref} w="100%" h="5rem" />
-        )}
-      </>
+      <div className="my-8 flex w-full items-center justify-center">
+        <HashLoader color="#01BFA2" />
+      </div>
     );
-  };
+  }
+
+  if (isError || !artworks || artworks.length === 0 || !artworks?.[0]) {
+    return <Alert />;
+  }
 
   return (
-    <Box
-      mt="2rem"
-      w="100%"
-      p={['0 0.5rem', '0 1.5rem']}
-      overflow="hidden"
-      display="flex"
-      flexDir="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      {contents()}
-    </Box>
+    <>
+      <MasonryView
+        artworks={artworks.filter((artwork) => artwork.is_hyum === false)}
+        isDeletedVisible={false}
+      />
+      {isFetchingNextPage ? (
+        <div className="my-6 flex w-full items-center justify-center">
+          <HashLoader color="#01BFA2" />
+        </div>
+      ) : (
+        // Observer를 위한 div
+        <div ref={ref} className="h-20 w-full" />
+      )}
+    </>
   );
 }

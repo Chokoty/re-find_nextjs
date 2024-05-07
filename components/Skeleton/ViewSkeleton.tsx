@@ -1,7 +1,3 @@
-import { Box, SimpleGrid, Skeleton, SkeletonText } from '@chakra-ui/react';
-
-import styles from '@/components/Skeleton/ViewSkeleton.module.scss';
-
 type Prop = {
   view: string;
 };
@@ -9,64 +5,33 @@ type Prop = {
 export default function ViewSkeleton({ view }: Prop) {
   if (view === 'masonry') {
     return (
-      <div className={styles.box}>
+      <div
+        role="status"
+        className="grid w-full animate-pulse grid-cols-2 gap-2 px-2 2xs:gap-2.5 2xs:px-6 min-[590px]:grid-cols-3 min-[830px]:grid-cols-4 min-[1110px]:grid-cols-5 min-[1350px]:grid-cols-6 min-[1528px]:grid-cols-7 min-[1792px]:grid-cols-8 min-[2020px]:grid-cols-9"
+      >
         {Array.from({ length: 15 }, (_, index) => (
-          <div className={styles.item} key={index}>
-            <Skeleton height="236px" overflow="hidden" borderRadius="1rem" />
-            <SkeletonText
-              mt="2" // 0.5rem
-              noOfLines={2}
-              spacing="2"
-              skeletonHeight="5"
-            />
+          <div className="w-full" key={index}>
+            <div className="h-[236px] w-full overflow-hidden rounded-2xl bg-gray-125 dark:bg-gray-500" />
+            <div className="mt-2 h-5 w-full rounded-sm bg-gray-125 dark:bg-gray-500" />
+            <div className="mt-2 h-4 w-[90%] rounded-sm bg-gray-125 dark:bg-gray-500" />
           </div>
         ))}
       </div>
     );
   }
 
-  // grid
   return (
-    <Box
-      w="94%"
-      m="0 auto"
-      mt="1rem"
-      mb="2rem"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
+    <div
+      role="status"
+      className="grid w-full animate-pulse grid-cols-2 gap-2 px-2 2xs:gap-2.5 2xs:px-6 min-[600px]:grid-cols-3 min-[900px]:grid-cols-4 min-[1150px]:grid-cols-5 min-[1330px]:grid-cols-6 min-[1550px]:grid-cols-7 min-[1900px]:grid-cols-8"
     >
-      <SimpleGrid
-        w={['100%', '90%']}
-        minChildWidth={['170px', '236px']} // 모바일에서는 150px, 그 외에서는 252px
-        spacing={['0.5rem', '0.75rem']}
-        justifyContent="center"
-        alignItems="center"
-        placeItems="center"
-        m="0 auto"
-      >
-        {Array.from({ length: 15 }, (_, index) => (
-          <Box w="100%" key={index}>
-            <Skeleton
-              // m={['0', '0 0.5rem']}
-              mb="0.5rem"
-              w={['170px', '236px']}
-              h={['120px', '157px']}
-              overflow="hidden"
-              borderRadius="1rem"
-            />
-            <Box w="90%">
-              <SkeletonText
-                mt="1" // 0.5rem
-                noOfLines={2}
-                spacing="1"
-                skeletonHeight="5"
-                borderRadius="1rem"
-              />
-            </Box>
-          </Box>
-        ))}
-      </SimpleGrid>
-    </Box>
+      {Array.from({ length: 20 }, (_, index) => (
+        <div className="w-full" key={index}>
+          <div className="mb-2 h-[120px] w-full overflow-hidden rounded-2xl bg-gray-125 dark:bg-gray-500 2xs:h-[157px]" />
+          <div className="mt-1 h-4 w-[90%] rounded-sm bg-gray-125 dark:bg-gray-500" />
+          <div className="mt-1 h-3 w-4/5 rounded-sm bg-gray-125 dark:bg-gray-500" />
+        </div>
+      ))}
+    </div>
   );
 }

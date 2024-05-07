@@ -1,5 +1,4 @@
-import 'normalize.css';
-import '@/styles/general.scss';
+import '@/styles/globals.css';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
@@ -50,14 +49,17 @@ export default function RootLayout({
   ArtworkModal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
-      <body>
+    <html className="h-full" lang="kr" suppressHydrationWarning>
+      <body className="h-full bg-light-background text-gray-900 dark:bg-dark-background dark:text-gray-50">
         <Providers>
+          {/* var(--green-200) - #9ae6b4 */}
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />
           {ArtworkModal}
-          <main>{children}</main>
+          {/* main height: includes header + mobileTabBar */}
+          <main className="overflow-x-hidden py-[calc(60px+16px)]">
+            {children}
+          </main>
           <MobileTabBar />
           <div id="modal-root" />
           <div id="artwork-modal-root" />

@@ -1,6 +1,5 @@
 'use client';
 
-import { Box, Text } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
@@ -19,29 +18,19 @@ export default function ThisWeekTop() {
   const [selectedItem, setSelectedItem] = useState('전체');
 
   return (
-    <Box w="100%" display="flex" flexDir="column" gap="30px">
-      <Box
-        padding="0 2rem"
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="flex-start"
-        textAlign="center"
-        w="100%"
-        // h="80px"
-      >
-        <Text textAlign="left" fontWeight="800" fontSize={['xl', 'xl', '40px']}>
+    <div className="flex w-full flex-col">
+      <div className="mb-4 w-full px-8 md:mb-6">
+        <p className="text-left text-2xl font-extrabold md:text-4xl">
           이 주의 왁물원 인기 팬아트!
-        </Text>
-      </Box>
+        </p>
+      </div>
       <ThisWeekBtnList
-        // type="link"
         range={{ start: 0, end: 7 }}
         selected={selectedItem}
         setSelected={setSelectedItem}
         isdPick={false}
       />
       <GallerySlider type="fanart" />
-    </Box>
+    </div>
   );
 }

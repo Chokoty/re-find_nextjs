@@ -1,50 +1,55 @@
 'use client';
 
-import { Box, useColorModeValue } from '@chakra-ui/react';
-import { Suspense, useEffect, useState } from 'react';
+import clsx from 'clsx';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
-import OptionContainer from '@/app/search/components/Option/OptionContainer';
 import SearchBar from '@/app/search/components/SearchBar';
-import { darkMode, lightMode } from '@/lib/theme';
+import SearchHistory from '@/app/search/components/SearchHistory';
+import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
 
 export default function SearchHeader() {
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const searchParams = useSearchParams();
+  const q = searchParams.get('q') ?? '';
+  const {
+    recentSearches,
+    addHistoryKeyword,
+    deleteHistoryKeyword,
+    deleteHistoryKeywords,
+  } = useLocalStorage();
+  const [focused, setFocused] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
-      if (scrollTop > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+  const onBarFocus = () => {
+    setFocused(true);
+  };
 
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  const top = isScrolled ? '60px' : '76px';
+  const handleCloseSearchHistory = () => {
+    setFocused(false);
+  };
 
   return (
-    <Box
-      background={bg2}
-      position="sticky"
-      pt="1rem"
-      top={top}
-      w="100%"
-      h="100%"
-      zIndex="200"
-      borderRadius="1rem"
-    >
-      <Suspense>
-        <SearchBar />
-        <OptionContainer />
-      </Suspense>
-    </Box>
+    <section className="w-full">
+      <div className="px-4">
+        <SearchBar
+          addHistoryKeyword={addHistoryKeyword}
+          hasButton
+          closeHistory={handleCloseSearchHistory}
+          q={q}
+          focusBar={onBarFocus}
+        />
+      </div>
+      <div
+        className={clsx('mt-4 max-h-0 overflow-hidden transition-all', {
+          'max-h-screen': focused,
+        })}
+      >
+        <SearchHistory
+          recentSearches={recentSearches}
+          deleteHistoryKeyword={deleteHistoryKeyword}
+          deleteHistoryKeywords={deleteHistoryKeywords}
+          closeHistory={handleCloseSearchHistory}
+        />
+      </div>
+    </section>
   );
 }

@@ -1,12 +1,11 @@
+import ArtistService from '@/app/artists/service/client/ArtistService';
 import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
-
-import ArtistService from './ArtistService';
 
 const queryKeys = {
   artistList: ({ q, ranktype, board }: GetArtistListParams) =>
     ['artistList', q, ranktype, board] as const,
-  artistInfo: ({ nickname, sortType, field }: GetArtistInfoParams) =>
-    ['artistInfo', nickname, sortType, field] as const,
+  artistInfo: ({ nickname, sortType, board }: GetArtistInfoParams) =>
+    ['artistInfo', nickname, sortType, board] as const,
 };
 
 const queryOptions = {
@@ -25,14 +24,14 @@ const queryOptions = {
       return lastPageParam + 1;
     },
   }),
-  artistInfo: ({ nickname, sortType, field }: GetArtistInfoParams) => ({
-    queryKey: queryKeys.artistInfo({ nickname, sortType, field }),
+  artistInfo: ({ nickname, sortType, board }: GetArtistInfoParams) => ({
+    queryKey: queryKeys.artistInfo({ nickname, sortType, board }),
     queryFn: ({ pageParam }: { pageParam: number }) =>
       ArtistService.getArtistArtworks({
         nickname,
         sortType,
         page: pageParam,
-        field,
+        board,
       }),
     initialPageParam: 1,
     getNextPageParam: (

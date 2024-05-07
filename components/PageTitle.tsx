@@ -1,5 +1,3 @@
-import { Box, Text } from '@chakra-ui/react';
-
 type Prop = {
   topTitle: {
     title: string;
@@ -9,17 +7,13 @@ type Prop = {
 
 export default function PageTitle({ topTitle }: Prop) {
   return (
-    <Box>
-      {/* <Text as="h2" fontSize="3xl" fontWeight="bold"> */}
-      <Text
-        m="0 auto"
-        as="h1"
-        fontSize={['3xl', '5xl']}
-        fontFamily={'ONE-Mobile-POP'}
-      >
+    <div className="mx-auto mt-2.5">
+      <h1 className="text-center font-['ONE-Mobile-POP'] text-3xl font-normal 2xs:text-5xl">
         {topTitle.title}
-      </Text>
-      <Text fontSize="md">{topTitle?.description}</Text>
-    </Box>
+      </h1>
+      <p className="pt-4 text-center text-sm font-normal 2xs:text-base">
+        {topTitle?.description}
+      </p>
+    </div>
   );
 }

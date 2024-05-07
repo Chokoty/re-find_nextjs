@@ -1,34 +1,16 @@
 'use client';
 
-import { Box, Text } from '@chakra-ui/react';
-
-import MemberList from './MemberList';
+import MemberList from '@/app/gallery/components/MemberAlbum/MemberList';
 
 export default function MemberAlbum() {
   return (
-    <Box
-      w="100%"
-      h="100%"
-      display="flex"
-      flexDir="column"
-      gap="30px"
-      mt={['30px', '30px', '110px']}
-      p={['0 1rem', '0 2rem', '0 2rem']}
-    >
-      <Box
-        display="flex"
-        flexDirection="row"
-        alignItems="center"
-        justifyContent="flex-start"
-        textAlign="center"
-        w="100%"
-        h="80px"
-      >
-        <Text textAlign="left" fontWeight="800" fontSize={['xl', '2xl']}>
+    <div className="mt-20 flex size-full flex-col px-8 md:mt-28">
+      <div className="mb-6 w-full md:mb-8">
+        <p className="text-left text-2xl font-extrabold md:text-4xl">
           멤버별 앨범 모아보기
-        </Text>
-      </Box>
+        </p>
+      </div>
       <MemberList />
-    </Box>
+    </div>
   );
 }

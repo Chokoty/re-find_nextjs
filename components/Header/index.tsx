@@ -1,137 +1,99 @@
 'use client';
 
-import {
-  Box,
-  Button,
-  Flex,
-  Link,
-  Tooltip,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import clsx from 'clsx';
+import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import NextLink from 'next/link';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { PiGiftBold } from 'react-icons/pi';
-import { RiMenu2Line } from 'react-icons/ri';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
+import BackButton from '@/components/Button/BackButton';
 import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
-import Modals from '@/components/Modal/Modals';
-import { useResponsive } from '@/hooks/useResponsive';
+import DesktopMenuTab from '@/components/Header/DesktopMenuTab';
 import { useScroll } from '@/hooks/useScroll';
-import { darkMode, lightMode } from '@/lib/theme';
+import { Logo } from '@/lib/images';
+
+const Modals = dynamic(() => import('@/components/Modal/Modals'), {
+  ssr: false,
+});
 
 export default function Header() {
   const pathname = usePathname();
-  const isMorePath = pathname.startsWith('/more');
-  const isSearchPage = pathname.startsWith('/search');
   const isGalleryPage = pathname.includes('/gallery');
-
-  const isMobile = useResponsive();
   const isScrolling = useScroll(60);
-  const { colorMode } = useColorMode();
-  const isDarkMode = colorMode === 'dark';
-
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-  // gallery page이면 기본적으로 transparent이지만, 스크롤할 때는 bg2로 변경 하지만, 이외에 page라면 bg2로 고정
-  const backgroundColor =
-    isGalleryPage && !isScrolling ? 'rgba(0, 0, 0, 0.30)' : bg2;
-  const backdropFilter = isGalleryPage && !isScrolling ? 'blur(6px)' : 'none';
-
-  if (isMorePath) return null;
+  const isNotScrollingGalleryPage = isGalleryPage && !isScrolling;
 
   return (
-    <Flex
-      position="sticky"
-      zIndex="200"
-      as="header"
-      h="60px"
-      pt="0"
-      top="0"
-      p="0 1rem"
-      alignItems="center"
-      justifyContent="space-between"
-      style={{
-        backgroundImage: 'none',
-        backgroundColor,
-        backdropFilter,
-        transition: 'background-color 0.3s, background-image 0.3s',
-        borderBottom:
-          isDarkMode || isGalleryPage ? 'none' : '1px solid #ececec',
-        color,
-      }}
+    <header
+      className={clsx('fixed top-0 z-[200] h-[60px] w-full transition', {
+        'bg-white dark:bg-dark-card': !isNotScrollingGalleryPage,
+        'bg-blackAlpha-500 backdrop-blur': isNotScrollingGalleryPage,
+      })}
     >
-      <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Box w="3rem" h="3rem" p="0.5rem" mr="1rem" borderRadius="50%">
-          <Link href="/">
-            <Image
-              alt="logo"
-              width={32}
-              height={32}
-              src="/android-chrome-512x512.png"
-            />
-          </Link>
-        </Box>
-        {!isMobile && <DesktopHeaderTab />}
-      </Box>
-      {!isSearchPage && <SearchModalOpener />}
-      <Flex>
-        {!isMobile && (
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            position="relative"
-            w="60px"
-            p="0 1rem"
-          ></Box>
+      <nav
+        className={clsx(
+          'flex size-full items-center justify-between px-4 shadow-navTop transition',
+          {
+            'dark:shadow-navTopDark': isScrolling,
+            'dark:shadow-none': !isScrolling,
+          }
         )}
-        <NextLink href="/events">
-          <Tooltip label="이벤트관" aria-label="A tooltip">
-            <Button
-              w="3rem"
-              h="3rem"
-              // m="0 0.5rem"
-              p="0"
-              borderRadius="50%"
-              background="none"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <PiGiftBold
-                style={{
-                  width: '1.5rem',
-                  height: '1.5rem',
-                  color,
-                }}
-              />
-            </Button>
-          </Tooltip>
-        </NextLink>
-        <NextLink href="/more">
-          <Box
-            className="hamburger"
-            w="3rem"
-            h="3rem"
-            display="flex"
-            justifyContent="center"
-            alignItems="center"
-          >
-            <RiMenu2Line
-              style={{
-                width: '1.8rem',
-                height: '1.8rem',
-                color,
-              }}
-            />
-          </Box>
-        </NextLink>
-        <Modals />
-      </Flex>
-    </Flex>
+      >
+        <HeaderContent />
+      </nav>
+      <Modals />
+    </header>
   );
 }
+
+const etcPathMap = {
+  '/more/notice': '공지사항',
+  '/more/support': '문의',
+  '/more/about': '소개',
+  '/more': '좀 더!',
+  '/events': '이벤트관',
+  '/events/randomGacha': '이벤트관',
+} as const;
+
+type EtcPathMapKeyType = keyof typeof etcPathMap;
+
+const HeaderContent = () => {
+  const pathname = usePathname();
+  const isMorePath = pathname.startsWith('/more');
+  const isEvents = pathname.startsWith('/events');
+  const isSearchPage = pathname.startsWith('/search');
+
+  // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
+  if (isMorePath || isEvents) {
+    return (
+      <>
+        <BackButton />
+        <h1 className="flex items-center justify-center text-xl font-bold">
+          {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
+        </h1>
+        <div className="size-12" />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <div className="flex items-center justify-center">
+        <div className="mr-2 size-11 rounded-full p-2 transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 md:mr-4">
+          <Link href="/">
+            <Image
+              alt="리파인드 로고"
+              width={32}
+              height={32}
+              src={Logo}
+              priority
+            />
+          </Link>
+        </div>
+        <DesktopHeaderTab />
+      </div>
+      {!isSearchPage && <SearchModalOpener />}
+      <DesktopMenuTab />
+    </>
+  );
+};

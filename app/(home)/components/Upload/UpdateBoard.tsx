@@ -1,68 +1,17 @@
-import {
-  Box,
-  Heading,
-  Text,
-  useBreakpointValue,
-  useColorModeValue,
-} from '@chakra-ui/react';
-
 import UpdateCardList from '@/app/(home)/components/Upload/UpdateCardList';
-import { darkMode, lightMode } from '@/lib/theme';
 
 export default function UpdateBoard() {
-  const color = useColorModeValue(lightMode.color, darkMode.color);
-  const bg2 = useColorModeValue(lightMode.bg2, darkMode.bg2);
-  const bg = useColorModeValue(lightMode.bg, darkMode.bg);
-  const width = useBreakpointValue({ base: '90%', md: '100%' });
-
   return (
-    <Box
-      className="update-info"
-      m="0 auto"
-      // mt="1rem"
-      mb="1rem"
-      display="grid"
-      alignItems="center"
-      placeItems="center"
-      w={width}
-      maxW="700px"
-      background={bg2}
-      borderRadius="1rem"
-      boxShadow="0 8px 20px 0 rgba(0,0,0,.08)"
-    >
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        w="90%"
-        p="2rem 0 1rem"
-        borderBottom="1px solid"
-        borderColor={bg}
-      >
-        <Heading
-          as="h2"
-          size="md"
-          color={color}
-          textAlign="left"
-          w="100%"
-          // pl="1em"
-        >
+    <div className="mx-auto mb-4 flex w-full flex-col items-center justify-center rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
+      <div className="flex w-[90%] items-center justify-start pb-4 pt-8">
+        <h2 className="text-xl font-bold leading-tight">
           게시판 업데이트 현황
-        </Heading>
-      </Box>
+        </h2>
+      </div>
       <UpdateCardList />
-      <Box
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        placeItems="center"
-        w="100%"
-        p="1em"
-      >
-        <Text whiteSpace="normal">
-          명시된 게시판에 있는 원본만 찾을 수 있습니다.
-        </Text>
-      </Box>
-    </Box>
+      <div className="flex w-full items-center justify-center p-4">
+        <p>명시된 게시판에 있는 원본만 찾을 수 있습니다.</p>
+      </div>
+    </div>
   );
 }

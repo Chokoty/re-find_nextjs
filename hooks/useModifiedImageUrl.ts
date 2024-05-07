@@ -15,6 +15,10 @@ export const useModifiedImageUrl = ({
     if (url.match(/\.jpg\?type=w\d+$/) || url.match(/\.png\?type=w\d+$/)) {
       return url.replace(/\?type=w\d+$/, '?type=w300');
     }
+  } else if (size === 800) {
+    if (url.match(/\.jpg\?type=w\d+$/) || url.match(/\.png\?type=w\d+$/)) {
+      return url.replace(/\?type=w\d+$/, '?type=w800');
+    }
   }
   return url; // gif 또는 다른 확장자의 경우 원래 URL을 반환
 };

@@ -1,6 +1,5 @@
 'use client';
 
-import { Box, Heading } from '@chakra-ui/react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -8,27 +7,11 @@ import { ErrorImage } from '@/lib/images';
 
 export default function NotFound() {
   return (
-    <Box
-      m="0 auto"
-      display="flex"
-      flexDirection="column"
-      justifyContent="center"
-      alignItems="center"
-      height="80vh"
-      width="80%"
-    >
-      <Heading as="h1" size="md">
-        존재하지 않는 페이지입니다.
-      </Heading>
+    <div className="flex size-full flex-col items-center justify-center p-4">
+      <h1 className="text-xl font-bold">존재하지 않는 페이지입니다.</h1>
       <Link
         href="/"
-        style={{
-          fontSize: '16px',
-          fontWeight: 600,
-          padding: '0 16px',
-          color: '#01bda1',
-          margin: '10px 0 20px',
-        }}
+        className="px-4 py-2 font-semibold text-green-highlight transition hover:underline"
       >
         홈으로 이동하기
       </Link>
@@ -37,8 +20,9 @@ export default function NotFound() {
         alt="404-박쥐단"
         width={400}
         height={400}
+        priority
         unoptimized
       />
-    </Box>
+    </div>
   );
 }
