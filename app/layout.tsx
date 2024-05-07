@@ -49,8 +49,9 @@ export default function RootLayout({
   ArtworkModal: React.ReactNode;
 }>) {
   return (
-    <html className="h-full" lang="kr" suppressHydrationWarning>
-      <body className="h-full bg-light-background text-gray-900 dark:bg-dark-background dark:text-gray-50">
+    <html lang="kr" className="dark" suppressHydrationWarning>
+      {/** className="h-full bg-light-background text-gray-900 dark:bg-dark-background dark:text-gray-50" */}
+      <body>
         <Providers>
           {/* var(--green-200) - #9ae6b4 */}
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />

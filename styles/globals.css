@@ -250,13 +250,23 @@
   --lineHeights-base: 1.5;
   --lineHeights-tall: 1.625;
   --lineHeights-taller: 2;
+
+  --background: var(--lightmode-bg);
+  --color: var(--gray-900);
+
+  &.dark {
+    --background: var(--darkmode-bg);
+    --color: var(--gray-50);
+  }
 }
 
 body {
-  font-family: var(--fonts-body) !important;
+  font-family: var(--fonts-body);
   transition-property: background-color;
-  transition-duration: var(--transition-duration-normal) !important;
-  line-height: var(--lineHeights-base) !important;
+  transition-duration: var(--transition-duration-normal);
+  line-height: var(--lineHeights-base);
+  color: var(--color);
+  background: var(--background);
 }
 
 /* swiper pagination bullet customize */
