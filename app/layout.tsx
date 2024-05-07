@@ -7,6 +7,7 @@ import NextTopLoader from 'nextjs-toploader';
 import Header from '@/components/Header';
 import MobileTabBar from '@/components/MobileTabBar';
 import { siteConfig } from '@/lib/config';
+import { oneMobilePop, pretendard } from '@/lib/fonts';
 import { Providers } from '@/lib/Providers';
 
 export const metadata: Metadata = {
@@ -49,7 +50,11 @@ export default function RootLayout({
   ArtworkModal: React.ReactNode;
 }>) {
   return (
-    <html lang="kr" className="dark" suppressHydrationWarning>
+    <html
+      lang="kr"
+      className={`dark ${pretendard.className} ${oneMobilePop.variable}`}
+      suppressHydrationWarning
+    >
       {/** className="h-full bg-light-background text-gray-900 dark:bg-dark-background dark:text-gray-50" */}
       <body>
         <Providers>

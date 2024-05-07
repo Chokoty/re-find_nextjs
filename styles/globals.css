@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css');
-
-@font-face {
-  font-family: 'ONE-Mobile-POP';
-  src: url('./fonts/ONE-Mobile-POP.woff') format('woff');
-}
-
 :root {
   /* standard color */
   --black: #000000;
@@ -261,7 +254,7 @@
 }
 
 body {
-  font-family: var(--fonts-body);
+  /* font-family: var(--fonts-body); */
   transition-property: background-color;
   transition-duration: var(--transition-duration-normal);
   line-height: var(--lineHeights-base);
