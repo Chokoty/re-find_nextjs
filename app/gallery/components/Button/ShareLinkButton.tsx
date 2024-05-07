@@ -18,7 +18,6 @@ export default function ShareLinkButton() {
     <Button
       additionalClass="bg-green-highlight dark:hover:bg-pink-400 dark:bg-pink-highlight hover:bg-teal-500 rounded-full"
       onClick={handleCopyLink}
-      h="2.5rem"
     >
       <p className="text-white">
         <span className="hidden 2xs:inline-block">갤러리</span> 공유하기
