@@ -64,7 +64,7 @@ export default function CardImage({ data }: Props) {
             </div>
           </div>
         </div>
-        <div className="flex h-[50px] w-full flex-1 items-center justify-between gap-2 px-2 py-2 md:px-4">
+        <div className="flex h-[50px] w-full flex-1 items-center justify-between gap-2 p-2 md:px-4">
           <Link className="w-full" href={`/artwork/${id}`}>
             <div
               // className={styles.textBox}

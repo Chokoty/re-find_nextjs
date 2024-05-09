@@ -275,6 +275,9 @@ const config: Config = {
         modalRemove: 'modalRemove 0.3s ease-out',
         modalRemoveFromTop: 'modalRemoveFromTop 0.3s ease-out',
       },
+      fontFamily: {
+        pop: ['var(--font-one-mobile-pop)'],
+      },
       backgroundImage: {},
     },
   },

@@ -56,7 +56,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
               팬아트 갤러리로 돌아가기
             </p>
           </Button>
-          <h1 className="my-3.5 font-['ONE-Mobile-POP'] text-2xl 2xs:text-4xl md:text-5xl 2md:text-[4rem]">
+          <h1 className="my-3.5 font-pop text-2xl 2xs:text-4xl md:text-5xl 2md:text-[4rem]">
             {title}
           </h1>
           <div className="mb-6">
@@ -71,10 +71,9 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
   );
 }
 
-// TODO: ONE-Mobile-POP 폰트 최적화 필요 feat) fonts.ts
 const GalleryHomeTitle = () => {
   return (
-    <div className="flex h-[72px] items-center justify-center font-['ONE-Mobile-POP'] text-4xl 2xs:text-5xl md:h-[120px] md:text-[80px]">
+    <div className="flex h-[72px] items-center justify-center font-pop text-4xl 2xs:text-5xl md:h-[120px] md:text-[80px]">
       <h1 className="m-0">팬아트</h1>
       <div className="relative h-8 w-16 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-12 2xs:w-24 md:h-16 md:w-40">
         <Image
