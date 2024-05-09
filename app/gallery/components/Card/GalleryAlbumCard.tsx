@@ -1,8 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { FaArrowRightLong } from 'react-icons/fa6';
 
 import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
+import Popover, {
+  PopoverBody,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+} from '@/components/Popover';
 import type { Gallery } from '@/types';
 
 type Prop = {
@@ -26,12 +33,27 @@ const getBadgeText = ({
 };
 
 export default function GalleryAlbumCard({
-  album: { title, value, description, type },
+  album: { title, value, description, type, author },
 }: Prop) {
   const staticImage = getStaticImage(value);
   return (
     <div className="relative w-full transition hover:scale-[1.01]">
-      <Link className="" href={`/gallery/${value}`} prefetch={false}>
+      <div className="absolute inset-0 rounded-2xl px-2.5 pb-3.5 pt-2.5 min-[840px]:px-3 min-[840px]:pb-4 min-[840px]:pt-3 min-[1055px]:px-5 min-[1055px]:pb-7 min-[1055px]:pt-5">
+        <div className="flex size-7 items-center justify-center md:size-9 min-[840px]:size-10">
+          <Popover>
+            <PopoverTrigger color="sub">
+              <div className="rounded-full bg-whiteAlpha-500">
+                <BsFillQuestionCircleFill className="size-5 rounded-full text-blackAlpha-600" />
+              </div>
+            </PopoverTrigger>
+            <PopoverContent size="ss" position="bottom-right">
+              <PopoverHeader>일러스트레이터</PopoverHeader>
+              <PopoverBody>{author}</PopoverBody>
+            </PopoverContent>
+          </Popover>
+        </div>
+      </div>
+      <Link href={`/gallery/${value}`} prefetch={false}>
         <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">
           <Image
             className="rounded-2xl object-cover"

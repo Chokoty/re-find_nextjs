@@ -16,6 +16,7 @@ const GALLERY_LIST: Gallery[] = [
     title: 'RE:START',
     description: '오랜 기다림 끝에 돌아온 티파니님을 환영합니다!',
     subTitle: '티파니님의 팬아트',
+    author: '참빼미',
     query:
       'artworks?query=티파니&query=우주미아&board=gomem&board=gomem_behind&title=',
   },
@@ -26,6 +27,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '이세돌픽 팬아트',
     subTitle: '이세돌이 고른 팬아트',
     description: '이세계아이돌이 고른 공지사항 팬아트',
+    author: '후히이',
     query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
   },
   {
@@ -35,6 +37,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '이세돌 키싱유 팬아트',
     description: '오랜만에 돌아온 이세계아이돌 단체 커버곡 키싱유!',
     subTitle: '🍭 이세돌 키싱유 팬아트 🍭',
+    author: 'WAMELL',
     query:
       'artworks?query=kissing&query=키싱&query=키씽&query=뚜뚜뚜&query=뚜두루&query=고마워 사랑해&query=사랑해 한마디&query=너만을 사랑해&case_sensitive=false&board=isd&board=best&title=',
   },
@@ -45,6 +48,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '릴파님 생일 팬아트',
     subTitle: '🎂 릴파님 생일 팬아트 🎂',
     description: '릴파님의 탄신일을 진심으로 축하드립니다!',
+    author: 'sei9',
     query: 'gallery?member=lilpa&since=20240309&until=20240309',
   },
   {
@@ -54,6 +58,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '비챤님 생일 팬아트',
     subTitle: '🎂 비챤님 생일 팬아트 🎂',
     description: '비챤님의 탄신일을 진심으로 축하드립니다!',
+    author: '뉴단',
     query: 'gallery?member=viichan&since=20240116&until=20240116',
   },
   {
@@ -63,6 +68,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '이세돌 2주년 팬아트',
     subTitle: ' ❤️‍🔥 이세돌 2주년 ❤️‍🔥',
     description: '이세계아이돌과 함께한 2년간의 추억들',
+    author: '코델',
     query:
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=리와인드&query=rewind&query=re:wind&query=데뷔%202주년',
   },
@@ -73,6 +79,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '크리스마스 팬아트',
     subTitle: '🎅🏼 크리스마스 특집 🎄',
     description: '이세돌과 함께 메리 크리스마스!',
+    author: '여비날',
     query:
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
   },
@@ -83,6 +90,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '할로윈 팬아트',
     subTitle: '🎃 할로윈 특집 🎃',
     description: 'Trick or Treat! 해피 할로윈',
+    author: 'COCOball',
     query:
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
   },
