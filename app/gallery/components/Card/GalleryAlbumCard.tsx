@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { FaArrowRightLong } from 'react-icons/fa6';
+import { LuExternalLink } from 'react-icons/lu';
 
 import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
 import Popover, {
@@ -38,8 +39,10 @@ export default function GalleryAlbumCard({
   const staticImage = getStaticImage(value);
   return (
     <div className="relative w-full transition hover:scale-[1.01]">
+      {/* 출처(작가) */}
       <div className="absolute inset-0 rounded-2xl px-2.5 pb-3.5 pt-2.5 min-[840px]:px-3 min-[840px]:pb-4 min-[840px]:pt-3 min-[1055px]:px-5 min-[1055px]:pb-7 min-[1055px]:pt-5">
-        <div className="flex size-7 items-center justify-center md:size-9 min-[840px]:size-10">
+        {/* 모바일 */}
+        <div className="flex size-7 items-center justify-center md:hidden md:size-9 min-[840px]:size-10">
           <Popover>
             <PopoverTrigger color="sub">
               <div className="rounded-full bg-whiteAlpha-500">
@@ -48,10 +51,21 @@ export default function GalleryAlbumCard({
             </PopoverTrigger>
             <PopoverContent size="ss" position="bottom-right">
               <PopoverHeader>일러스트레이터</PopoverHeader>
-              <PopoverBody>{author}</PopoverBody>
+              <PopoverBody>
+                <Link className="flex items-center" href={`/artists/${author}`}>
+                  {author}
+                  <LuExternalLink className="ml-1 text-base font-semibold" />
+                </Link>
+              </PopoverBody>
             </PopoverContent>
           </Popover>
         </div>
+        {/* 데스크탑 */}
+        <Link href={`/artists/${author}`} className="flex">
+          <div className="absolute z-[2] hidden items-center justify-center rounded-[10px] bg-blackAlpha-500 px-3 py-2 text-sm font-normal text-white hover:bg-blackAlpha-600 active:bg-blackAlpha-400 md:inline-flex min-[840px]:px-3.5 min-[840px]:py-2.5">
+            출처
+          </div>
+        </Link>
       </div>
       <Link href={`/gallery/${value}`} prefetch={false}>
         <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">
