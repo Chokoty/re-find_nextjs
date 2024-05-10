@@ -73,7 +73,7 @@ export default function Popover({ children }: { children: React.ReactNode }) {
     <PopoverContext.Provider
       value={{ isOpen, onToggle, onClose, popoverRef, buttonRef }}
     >
-      <div className="relative inline-flex" aria-label="A popover">
+      <div className="relative z-[2] inline-flex" aria-label="A popover">
         {children}
       </div>
     </PopoverContext.Provider>
@@ -81,27 +81,41 @@ export default function Popover({ children }: { children: React.ReactNode }) {
 }
 
 type PopoverTriggerProps = {
-  size?: 'sm' | 'md' | 'lg' | '9xl';
+  size?: 'sm' | 'md' | '2md' | 'lg' | '9xl';
+  color?: 'main' | 'sub';
   children: React.ReactNode;
 };
 
-function PopoverTrigger({ children, size = 'md' }: PopoverTriggerProps) {
+function PopoverTrigger({
+  children,
+  size = 'md',
+  color = 'main',
+}: PopoverTriggerProps) {
   const { onToggle, buttonRef } = usePopoverContext();
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    onToggle();
+  };
   return (
     <button
       ref={buttonRef}
       aria-label="question button"
       type="button"
       className={clsx(
-        'inline-flex min-w-4 select-none appearance-none items-center justify-center rounded-full bg-transparent p-0 font-semibold text-blackAlpha-900 transition hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400',
+        'inline-flex min-w-4 select-none appearance-none items-center justify-center rounded-full p-0 font-semibold transition',
         {
           'size-4': size === 'sm',
           'size-5': size === 'md',
+          'size-8': size === '2md',
           'size-10': size === 'lg',
           'size-32': size === '9xl',
+          'bg-transparent text-blackAlpha-900 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
+            color === 'main',
+          'bg-transition text-white hover:bg-blackAlpha-300 active:bg-blackAlpha-400':
+            color === 'sub',
         }
       )}
-      onClick={onToggle}
+      onClick={handleClick}
     >
       {children}
     </button>
@@ -110,7 +124,7 @@ function PopoverTrigger({ children, size = 'md' }: PopoverTriggerProps) {
 
 type PopoverContentProps = {
   hasCloseButton?: boolean;
-  size?: 'sm' | 'md' | 'lg';
+  size?: 'ss' | 'sm' | 'md' | 'lg';
   position?:
     | 'top-left'
     | 'top-right'
@@ -136,12 +150,14 @@ function PopoverContent({
         {
           'visible scale-100 opacity-100': isOpen,
           'invisible scale-95 opacity-0': !isOpen,
+          'w-[155px]': size === 'ss',
           'w-[200px]': size === 'sm',
           'w-[320px]': size === 'md',
           'w-[400px]': size === 'lg',
           'right-[-30px] top-[calc(100%+10px)]': position === 'bottom-left',
           'left-0 top-[calc(100%+10px)] translate-x-[-30%]':
             position === 'bottom-center',
+          'left-0 top-[calc(100%+10px)]': position === 'bottom-right',
         }
       )}
     >
@@ -169,7 +185,7 @@ function PopoverHeader({ children }: { children: React.ReactNode }) {
 }
 
 function PopoverBody({ children }: { children: React.ReactNode }) {
-  return <div className="px-3 py-2 text-start">{children}</div>;
+  return <div className="p-3 text-start">{children}</div>;
 }
 
 export { PopoverBody, PopoverContent, PopoverHeader, PopoverTrigger };

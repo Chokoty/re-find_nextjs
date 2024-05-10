@@ -7,6 +7,7 @@ import { FiClock } from 'react-icons/fi';
 
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
+import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 type Props = {
   data: ArtworkList | GalleryArtworkList;
@@ -19,6 +20,7 @@ export default function CardImage({ data }: Props) {
     url: img_url_list[0],
     size: 300,
   });
+  const article_link = useResponsiveLink('', 'article');
 
   return (
     <div className="group relative w-full rounded-[20px] border-base border-blackAlpha-200 dark:border-none">
@@ -75,7 +77,7 @@ export default function CardImage({ data }: Props) {
               <FaArrowRightLong className="ml-1 hidden 2xs:block" />
             </div>
           </Link>
-          <Link className="w-full" href={`/artwork/${id}`}>
+          <Link className="w-full" href={article_link + id} target="_blank">
             <div
               // className={styles.textBox}
               className="flex h-[34px] w-full items-center justify-center rounded-xl bg-gradient-to-tl from-green-500 to-green-300 px-2.5 py-2 text-xs font-semibold text-white transition hover:from-green-400 hover:to-green-200"

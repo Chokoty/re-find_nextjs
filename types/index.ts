@@ -61,6 +61,7 @@ export interface Gallery {
   description?: string;
   query?: string;
   isHidden?: boolean;
+  author?: string;
 }
 
 // search
