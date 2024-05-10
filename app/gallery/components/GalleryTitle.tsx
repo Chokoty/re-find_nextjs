@@ -30,7 +30,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
   const router = useRouter();
   const { title, description } = getTitleInfo(pageType);
   const handleBackButton = () => {
-    router.back();
+    router.push('/gallery');
   };
 
   // const color = isDarkMode ? 'rgb(255 255 255 / 60%)' : 'rgb(0 0 0 / 60%)';

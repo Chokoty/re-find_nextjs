@@ -128,7 +128,9 @@ export default function ViewSelectBar({
         </Menu>
         <Popover>
           <PopoverTrigger size="lg">
-            <MdMoreHoriz className="size-6" />
+            <div className="flex size-10 items-center justify-center rounded-full bg-gray-100 dark:bg-whiteAlpha-200">
+              <MdMoreHoriz className="size-6" />
+            </div>
           </PopoverTrigger>
           <PopoverContent size="sm" hasCloseButton={false}>
             <PopoverBody>

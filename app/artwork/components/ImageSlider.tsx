@@ -36,6 +36,9 @@ export default function ImageSlider({
                 'size-[130px]': size === 'base',
                 'size-[150px]': size === 'large',
               })}
+              onContextMenu={(e: React.MouseEvent<HTMLImageElement>) => {
+                e.preventDefault();
+              }}
               priority
               width={sizeMap[size].w}
               height={sizeMap[size].h}
