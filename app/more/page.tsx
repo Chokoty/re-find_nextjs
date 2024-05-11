@@ -19,6 +19,12 @@ export default function More() {
           </p>
         </div>
       </Link>
+      <br />
+      <Link href='./login'>
+        <div>
+          <p>로그인</p>
+        </div>
+      </Link>
       <UpdateLogBoard />
     </div>
   );
