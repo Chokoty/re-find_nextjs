@@ -30,7 +30,7 @@ const events = [
   {
     title: '왁티홀의 문 체험하기',
     colorScheme: 'bg-red-400 hover:bg-red-500 dark:text-gray-900 text-gray-50',
-    isDisabled: true,
+    // isDisabled: true,
     icon: <BsDoorOpenFill className="mr-2 size-6" />,
     link: '/events/waktyhall',
     linkText: '선택을 바꾸시겠습니까?',
@@ -48,12 +48,6 @@ export default function Events() {
           <p className="mb-2 w-full px-4 text-center text-lg font-bold">
             {event.title}
           </p>
-          {event.isDisabled && (
-            <p className="text-center text-red-700 dark:text-red-300">
-              현재 해당 서비스는 지웓되지않습니다.
-              <br className="inline md:hidden" /> 추후 추가될 예정입니다.
-            </p>
-          )}
           <Link
             href={event.link}
             className={cn(
