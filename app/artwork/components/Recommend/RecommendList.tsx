@@ -6,15 +6,15 @@ import { HashLoader } from 'react-spinners';
 import { useRecommendArtwork } from '@/app/artwork/service/client/useArtworkService';
 import Alert from '@/components/Alert';
 import MasonryView from '@/components/View/MasonryView';
+import { useResponsive } from '@/hooks/useResponsive';
 
 export default function RecommendList({ getAp }: { getAp: () => number }) {
-  const params = useParams<{ id: string }>();
-  // infinite scroll
-  const { ref, inView } = useInView({
-    threshold: 0,
-    rootMargin: '800px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
-  });
+  // infinite scroll을 위한 옵저버
+  const isMobile = useResponsive();
+  const option = isMobile ? { rootMargin: '1000px 0px' } : undefined;
+  const { ref, inView } = useInView(option);
 
+  const params = useParams<{ id: string }>();
   const { fetchNextPage, artworks, isError, isFetchingNextPage, isLoading } =
     useRecommendArtwork({
       artworkId: parseInt(params.id),

@@ -12,6 +12,7 @@ import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
 import ViewSelectBar from '@/components/ViewSelectBar';
+import { useResponsive } from '@/hooks/useResponsive';
 
 type Props = {
   value: string;
@@ -19,14 +20,12 @@ type Props = {
 };
 
 export default function DetailedGallery({ value, endpoint }: Props) {
-  // infinite scroll
-  const { ref, inView } = useInView({
-    threshold: 0,
-    rootMargin: '1300px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
-  });
-
-  const [selected, setSelected] = useState('isd'); // 멤버 선택 > isdPick일 경우
-
+  // infinite scroll을 위한 옵저버
+  const isMobile = useResponsive();
+  const option = isMobile ? { rootMargin: '1000px 0px' } : undefined;
+  const { ref, inView } = useInView(option);
+  // 멤버 선택 > isdPick일 경우
+  const [selected, setSelected] = useState('isd');
   // 뷰 선택 메뉴
   // TODO: 추후 URL 쿼리스트링으로 받아오는 값에 따라 초기 뷰와 상태 설정
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
