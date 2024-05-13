@@ -19,7 +19,7 @@ const GALLERY_LIST: Gallery[] = [
     subTitle: '뉴 아이네 팬아트',
     author: '핏짜라짜라',
     query:
-      'artworks?query=뉴이네&query=뉴 아이네&board=isd&board=best&since=20240427&title=',
+      'artworks?query=뉴이네&query=아이네&query=콘서트&query=에버퍼플&query=EVER PURPLE&query=아단콘&board=isd&board=best&since=20240427&title=',
   },
   {
     id: 1,
