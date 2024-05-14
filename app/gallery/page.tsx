@@ -12,7 +12,7 @@ export default function Gallery() {
       </TopBackground>
       <section
         // -220px(-60px + -160px)
-        className="relative top-[-30px] z-[2] w-full 2xs:top-[-90px] md:top-[-120px] 2md:top-[-180px] xl:top-[-220px]"
+        className="relative top-[-50px] z-[2] w-full 2xs:top-[-90px] md:top-[-120px] 2md:top-[-180px] xl:top-[-220px]"
       >
         {/* <ThisWeekTop /> */}
         <RefindPick />
