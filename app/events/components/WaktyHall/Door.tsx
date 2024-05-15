@@ -93,6 +93,7 @@ export default function Door({
           // disabled={isOpen}
         >
           <div className={styles.goat}>
+            <div className={styles.th}>{id}</div>
             <Image
               src={certainDoorSrc()}
               width={250}
@@ -135,7 +136,7 @@ export default function Door({
               <Button
                 // fontSize={['sm', 'md']}
                 intent={game.prizeDoor === +id ? 'solid-green' : 'solid-red'}
-                additionalClass="mt-2 rounded-md w-full"
+                additionalClass="mt-2 rounded-md w-full 2xs:px-2"
                 onClick={onOpen}
               >
                 <MdOutlineImageSearch className="mr-1" />
@@ -226,7 +227,7 @@ export default function Door({
           <p className="mt-2 text-center">{id}번째 문 오픈</p>
           <Button
             intent="solid-red"
-            additionalClass="mt-2 rounded-md w-full"
+            additionalClass="mt-2 rounded-md w-full 2xs:px-2"
             onClick={onOpen}
           >
             <MdOutlineImageSearch className="mr-1" />
