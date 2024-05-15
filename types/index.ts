@@ -6,6 +6,15 @@ export type CheckBoxType = {
   gomem: boolean;
 };
 
+export type WaktyHallResultType = {
+  score: number;
+  gamesPlayed: number;
+  changeWin: number;
+  changeLose: number;
+  keepWin: number;
+  keepLose: number;
+};
+
 // home
 // interface FileWithPreview extends File {
 //   preview: string;

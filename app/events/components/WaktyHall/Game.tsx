@@ -6,11 +6,14 @@ import { PuffLoader } from 'react-spinners';
 
 import Door from '@/app/events/components/WaktyHall/Door';
 import ScoreResult from '@/app/events/components/WaktyHall/ScoreResult';
+import useLocalStorage from '@/app/events/hooks/useLocalStorage';
 import MontyHall from '@/app/events/lib/montyhall';
 import { useWaktyHallArts } from '@/app/events/service/client/useEventService';
 import Button from '@/components/Button';
+import type { WaktyHallResultType } from '@/types';
 
-const initStorageObj = {
+// 점수, 게임횟수, 변경해서 이긴횟수, 변경해서 진횟수, 유지해서 이긴횟수, 유지해서 진횟수
+const initGameResult = {
   score: 0,
   gamesPlayed: 0,
   changeWin: 0,
@@ -20,30 +23,22 @@ const initStorageObj = {
 };
 
 export default function Game() {
-  // const [promptOpen, setPromptOpen] = useState(false);
-  const [result, setResult] = useState<string[]>([]);
+  const [answers, setAnswers] = useState<string[]>([]);
   const [game, setGame] = useState<MontyHall | null>(null);
   const [selected, setSelected] = useState(false);
   const [prizeOrGoat, setPrizeOrGoat] = useState<number | null>(null);
   const [isInProgress, setIsInProgress] = useState(false);
 
-  const [records, setRecords] = useState(() => {
-    if (typeof window === 'undefined') {
-      return initStorageObj;
-    }
-    const scoreRecords = localStorage.getItem('waktyHall2');
-    return scoreRecords ? JSON.parse(scoreRecords) : initStorageObj;
+  // 로컬 스토리지가 있는 경우 로컬 스토리지에서 값 가져오기
+  const [records, setRecords] = useLocalStorage({
+    key: 'waktyHall',
+    initialValue: initGameResult,
   });
-  const [score, setScore] = useState(records.score);
-  const [gamesPlayed, setGamesPlayed] = useState(records.gamesPlayed);
+  // 로컬 스토리지에서 받은 값을 로컬 상태로 설정합니다.
+  const [gameResult, setGameResult] = useState<WaktyHallResultType>(records);
+
   const [switched, setSwitched] = useState(false);
-  // 변경해서 이긴횟수, 변경해서 진횟수, 유지해서 이긴횟수, 유지해서 진횟수
-  const [resultCount, setResultCount] = useState({
-    changeWin: records.changeWin,
-    changeLose: records.changeLose,
-    keepWin: records.keepWin,
-    keepLose: records.keepLose,
-  });
+
   const {
     data: fanartsBehindDoor,
     isLoading,
@@ -51,21 +46,11 @@ export default function Game() {
     refetch,
   } = useWaktyHallArts();
 
-  const handleScore = () => {
-    const newScore = score + 1;
-    setScore(newScore);
-    const data = localStorage.getItem('waktyHall2');
-    if (!data) return;
-    localStorage.setItem(
-      'waktyHall2',
-      JSON.stringify({ ...JSON.parse(data), score: newScore })
-    );
-  };
-
   const handleGamePlayed = (isWin: boolean) => {
-    const newGamesPlayed = gamesPlayed + 1;
-    let { changeWin, changeLose, keepWin, keepLose } = resultCount;
+    const newGamesPlayed = gameResult.gamesPlayed + 1;
+    let { changeWin, changeLose, keepWin, keepLose, score } = gameResult;
     if (isWin) {
+      score += 1;
       if (switched) {
         changeWin += 1;
       } else {
@@ -76,21 +61,16 @@ export default function Game() {
     } else {
       keepLose += 1;
     }
-    setResultCount({ changeWin, changeLose, keepWin, keepLose });
-    setGamesPlayed(newGamesPlayed);
-    const data = localStorage.getItem('waktyHall2');
-    if (!data) return;
-    localStorage.setItem(
-      'waktyHall2',
-      JSON.stringify({
-        ...JSON.parse(data),
-        gamesPlayed: newGamesPlayed,
-        changeWin,
-        changeLose,
-        keepWin,
-        keepLose,
-      })
-    );
+    const updatedGameResult = {
+      score,
+      gamesPlayed: newGamesPlayed,
+      changeWin,
+      changeLose,
+      keepWin,
+      keepLose,
+    };
+    setGameResult(updatedGameResult);
+    setRecords(updatedGameResult);
   };
 
   const handleSwitched = () => {
@@ -109,16 +89,14 @@ export default function Game() {
   // 4. 유저가 바뀌지 않는다면 처음 선택한 문 오픈(정답 or 오답)
   const keepDoor = () => {
     if (!game) return;
-    setResult(game.checkWinning());
-    // setPromptOpen(false);
+    setAnswers(game.checkWinning());
     setSelected(false);
   };
   // 4. 유저가 바꾼다면 바꾼 문 오픈(정답 or 오답)
   const changeDoor = () => {
     if (!game) return;
-    setResult(game.changeAnswer());
+    setAnswers(game.changeAnswer());
     handleSwitched();
-    // setPromptOpen(false);
     setSelected(false);
   };
   // 재시작한다
@@ -126,71 +104,39 @@ export default function Game() {
   const restart = () => {
     if (!game) return;
     refetch();
-    setResult([]);
+    setAnswers([]);
     setPrizeOrGoat(game.prizeDoor); // 이전 정답 문 저장(표시용)
     setGame(null);
     setIsInProgress(false);
     setSwitched(false);
   };
 
-  // score, game 진행 횟수
+  // game 끝날때 횟수 설정
   useEffect(() => {
     if (!game) return;
-    if (game.win === true) {
-      handleScore();
-    }
     if (game.win === true || game.win === false) {
       handleGamePlayed(game.win);
     }
   }, [game?.win]);
 
-  useEffect(() => {
-    const scoreRecords = localStorage.getItem('waktyHall2');
-    if (scoreRecords) {
-      setRecords(JSON.parse(scoreRecords));
-    } else {
-      localStorage.setItem('waktyHall2', JSON.stringify(initStorageObj));
-    }
-  }, []);
-
   if (isLoading || isFetching) {
-    return (
-      <div className="flex flex-col items-center justify-center">
-        <PuffLoader color="#01BFA2" />
-        <p className="pt-[52px] min-[1098px]:pt-[44px]">
-          새로운 팬아트를 가져오고 있습니다. 잠시만 기다려주세요...
-        </p>
-        <ScoreResult
-          score={score}
-          gamesPlayed={gamesPlayed}
-          resultCount={resultCount}
-        />
-      </div>
-    );
+    return <Loading />;
   }
 
   if (!fanartsBehindDoor) {
     return (
-      <div className="flex flex-col items-center justify-center">
-        <p className="pt-[52px] min-[1098px]:pt-[44px]">
-          팬아트를 가져오는 데 실패했습니다. 새로고침을 눌러주세요.
-        </p>
-        <Button
-          additionalClass="rounded-md"
-          onClick={() => {
-            refetch();
-          }}
-        >
-          새로고침
-        </Button>
-      </div>
+      <Fail
+        reload={() => {
+          refetch();
+        }}
+      />
     );
   }
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
       <div className="mb-14 flex w-full justify-center">
-        <div className="mx-4 flex w-[1200px] flex-wrap justify-evenly gap-[47px] min-[500px]:gap-[75px] min-[1098px]:gap-[60px]">
+        <div className="mx-4 flex w-full max-w-[1200px] flex-wrap justify-evenly gap-[68px] min-[500px]:gap-[75px] min-[1098px]:gap-[60px] xl:flex-nowrap">
           <Door
             id="1"
             prizeOrGoat={prizeOrGoat === 1}
@@ -228,14 +174,14 @@ export default function Game() {
           </h2>
           <div className="flex justify-center gap-4">
             <Button
-              additionalClass="rounded-md"
+              additionalClass="rounded-md w-full"
               tabIndex={0}
               onClick={keepDoor}
             >
               그대로
             </Button>
             <Button
-              additionalClass="rounded-md"
+              additionalClass="rounded-md w-full"
               tabIndex={0}
               intent="solid-orange"
               onClick={changeDoor}
@@ -245,14 +191,14 @@ export default function Game() {
           </div>
         </div>
       ) : null}
-      {result.length > 0 && (
+      {answers.length > 0 && (
         <>
           <div className="text-center text-base">
-            {result.map((phrase, index) => (
+            {answers.map((phrase, index) => (
               <p
                 key={index}
                 className={clsx('text-[20px] font-bold tracking-[2px]', {
-                  'text-red-800': game && game.win === false,
+                  'text-red-600': game && game.win === false,
                   'text-yellow-400': game && game.win === true,
                 })}
               >
@@ -269,11 +215,32 @@ export default function Game() {
           </Button>
         </>
       )}
-      <ScoreResult
-        score={score}
-        gamesPlayed={gamesPlayed}
-        resultCount={resultCount}
-      />
+      <ScoreResult gameResult={gameResult} />
     </div>
   );
 }
+
+const etcContaierClassName = 'flex flex-col items-center justify-center gap-8';
+const etcTextClassName = 'text-center';
+
+const Loading = () => (
+  <div className={etcContaierClassName}>
+    <div className="flex h-[300px] items-center justify-center">
+      <PuffLoader color="#01BFA2" />
+    </div>
+    <p className={etcTextClassName}>
+      새로운 팬아트를 가져오고 있는 중입니다. <br /> 잠시만 기다려주세요.
+    </p>
+  </div>
+);
+
+const Fail = ({ reload }: { reload: () => void }) => (
+  <div className={etcContaierClassName}>
+    <p className={etcTextClassName}>
+      팬아트를 가져오는 데 실패했습니다. <br /> 새로고침을 눌러주세요.
+    </p>
+    <Button additionalClass="rounded-md w-full" onClick={reload}>
+      새로고침
+    </Button>
+  </div>
+);
