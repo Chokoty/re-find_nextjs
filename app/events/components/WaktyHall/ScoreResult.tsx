@@ -1,29 +1,14 @@
-import Link from 'next/link';
-import { LuExternalLink } from 'react-icons/lu';
-
-type CountResult = {
-  changeWin: number;
-  changeLose: number;
-  keepWin: number;
-  keepLose: number;
-};
-
-type Props = {
-  score: number;
-  gamesPlayed: number;
-  resultCount: CountResult;
-};
-
-const URL_SOURCE = 'https://cafe.naver.com/steamindiegame/9859159';
+import type { WaktyHallResultType } from '@/types';
 
 export default function ScoreResult({
-  score,
-  gamesPlayed,
-  resultCount,
-}: Props) {
-  const { changeWin, changeLose, keepWin, keepLose } = resultCount;
+  gameResult,
+}: {
+  gameResult: WaktyHallResultType;
+}) {
+  const { score, gamesPlayed, changeWin, changeLose, keepWin, keepLose } =
+    gameResult;
   const getChangeWinProbabilityInGame = () => {
-    return gamesPlayed === 0
+    return gameResult.gamesPlayed === 0
       ? 0
       : (((changeWin + keepLose) / gamesPlayed) * 100).toFixed(2);
   };
@@ -36,15 +21,7 @@ export default function ScoreResult({
   return (
     <div className="mt-[30px] flex justify-center">
       {!score && !gamesPlayed ? (
-        <div className="m-auto w-1/2">
-          <Link
-            className="flex items-center text-green-highlight transition hover:underline dark:text-pink-highlight"
-            href={URL_SOURCE}
-            target="_blank"
-          >
-            링크: 몬티홀의 역설을 아십니까? - 왁굳의 노가리
-            <LuExternalLink className="ml-1 hidden 2xs:block" />
-          </Link>
+        <div className="mx-2 w-full max-w-[340px]">
           <p className="text-start">
             <br />
             여기 3개의 문이 있습니다. 3개의 문 뒤에는 2개의 꽝인 팬아트가 있고
@@ -86,7 +63,7 @@ export default function ScoreResult({
             <tbody>
               <tr>
                 <th className="h-8 w-16 border-base border-gray-500 bg-gray-300 text-center text-gray-900">
-                  변경시 이김
+                  변경시 당첨
                 </th>
                 <td className="h-8 w-16 border-base border-gray-500 text-center">
                   {changeWin}
@@ -98,7 +75,7 @@ export default function ScoreResult({
               </tr>
               <tr>
                 <th className="h-8 w-16 border-base border-gray-500 bg-gray-300 text-center text-gray-900">
-                  유지시 이김
+                  유지시 당첨
                 </th>
                 <td className="h-8 w-16 border-base border-gray-500 text-center">
                   {keepWin}
@@ -109,7 +86,7 @@ export default function ScoreResult({
               </tr>
               <tr>
                 <th className="h-8 w-16 border-base border-gray-500 bg-gray-300 text-center text-gray-900">
-                  정답
+                  전체 당첨
                 </th>
                 <td className="h-8 w-16 border-base border-gray-500 text-center">
                   {score}

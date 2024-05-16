@@ -7,12 +7,8 @@ export default function middleware(req: NextRequest) {
   if (pathname === '/gallery/AprilFool' || pathname === '/gallery/Shuko') {
     return NextResponse.redirect(new URL('/gallery', req.nextUrl));
   }
-
-  if (pathname === '/events/waktyhall') {
-    return NextResponse.redirect(new URL('/events', req.nextUrl));
-  }
 }
 
 export const config = {
-  matcher: ['/', '/gallery/:path*', '/events/:path*'],
+  matcher: ['/', '/gallery/:path*'],
 };

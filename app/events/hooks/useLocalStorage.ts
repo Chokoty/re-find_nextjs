@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 
-import type { CheckBoxType } from '@/types';
+import type { CheckBoxType, WaktyHallResultType } from '@/types';
 
-type Props = { key: string; initialValue: CheckBoxType };
-type SetValueFunction = (prevState: CheckBoxType) => CheckBoxType;
+type ValueType = CheckBoxType | WaktyHallResultType;
+type Props = { key: string; initialValue: ValueType };
+type SetValueFunction = (prevState: ValueType) => ValueType;
 
-const useCheckboxLocalStorage = ({ key, initialValue }: Props) => {
+const useLocalStorage = ({ key, initialValue }: Props) => {
   const [state, setState] = useState(() => {
     try {
       const value = window.localStorage.getItem(key);
@@ -19,7 +20,7 @@ const useCheckboxLocalStorage = ({ key, initialValue }: Props) => {
     }
   });
 
-  const setValue = (value: string | SetValueFunction) => {
+  const setValue = (value: ValueType | SetValueFunction) => {
     try {
       // 만약 전달된 값이 콜백 함수라면, 기존 상태와 함께 호출한다.
       const valueToStore =
@@ -36,4 +37,4 @@ const useCheckboxLocalStorage = ({ key, initialValue }: Props) => {
   return [state, setValue] as const;
 };
 
-export default useCheckboxLocalStorage;
+export default useLocalStorage;

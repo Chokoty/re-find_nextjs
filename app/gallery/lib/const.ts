@@ -15,7 +15,7 @@ const GALLERY_LIST: Gallery[] = [
     type: 'special',
     title: '뉴 아이네',
     description:
-      '오리지널 아바타가 공개됨과 동시에 5월 11일 단독 콘서트가 진행됩니다!',
+      '오리지널 아바타가 공개됨과 동시에 5월 11일 단독 콘서트가 진행되었습니다!',
     subTitle: '뉴 아이네 팬아트',
     author: '핏짜라짜라',
     query:

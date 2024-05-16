@@ -26,6 +26,11 @@ const getTitleInfo = (type: string) => {
   };
 };
 
+const titleClassName =
+  'mt-1.5 font-pop text-4xl sm:text-5xl 2md:text-6xl lg:text-7xl 2xl:text-8xl';
+const descriptionClassName =
+  'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[360px] 2md:max-w-[420px] 2xl:max-w-[550px]';
+
 export default function GalleryTitle({ pageType }: { pageType: string }) {
   const router = useRouter();
   const { title, description } = getTitleInfo(pageType);
@@ -33,13 +38,11 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
     router.push('/gallery');
   };
 
-  // const color = isDarkMode ? 'rgb(255 255 255 / 60%)' : 'rgb(0 0 0 / 60%)';
-
   return (
-    <div className="flex w-full flex-col items-center justify-center sm:items-start sm:justify-start">
+    <div className="flex w-full max-w-[380px] flex-col items-start justify-start md:max-w-[460px] 2md:max-w-[710px]">
       {pageType === 'galleryHome' ? (
         <>
-          <p className="text-sm font-semibold 2xs:text-base md:text-xl">
+          <p className={`font-semibold ${descriptionClassName}`}>
             {description}
           </p>
           <GalleryHomeTitle />
@@ -56,13 +59,9 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
               팬아트 갤러리로 돌아가기
             </p>
           </Button>
-          <h1 className="my-3.5 font-pop text-2xl 2xs:text-4xl md:text-5xl 2md:text-[4rem]">
-            {title}
-          </h1>
-          <div className="mb-6">
-            <p className="text-sm font-bold 2xs:text-base md:text-xl">
-              {description}
-            </p>
+          <h1 className={titleClassName}>{title}</h1>
+          <div className="mb-6 mt-1.5">
+            <p className={`font-bold ${descriptionClassName}`}>{description}</p>
           </div>
           <ShareLinkButton />
         </>
@@ -73,9 +72,9 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
 
 const GalleryHomeTitle = () => {
   return (
-    <div className="flex h-[72px] items-center justify-center font-pop text-4xl 2xs:text-5xl md:h-[120px] md:text-[80px]">
-      <h1 className="m-0">팬아트</h1>
-      <div className="relative h-8 w-16 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-12 2xs:w-24 md:h-16 md:w-40">
+    <div className={`flex items-center justify-center ${titleClassName}`}>
+      <p>팬아트</p>
+      <div className="relative h-10 w-20 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-12 2xs:w-24 md:h-16 md:w-40 2xl:h-20 2xl:w-48">
         <Image
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
           src={BBangTTi}
@@ -88,9 +87,7 @@ const GalleryHomeTitle = () => {
           unoptimized
         />
       </div>
-      <p className="m-0 text-green-highlight dark:text-pink-highlight">
-        갤러리
-      </p>
+      <p className="text-green-highlight dark:text-pink-highlight">갤러리</p>
     </div>
   );
 };

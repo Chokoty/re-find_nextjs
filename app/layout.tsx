@@ -44,10 +44,8 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
 
 export default function RootLayout({
   children,
-  ArtworkModal,
 }: Readonly<{
   children: React.ReactNode;
-  ArtworkModal: React.ReactNode;
 }>) {
   return (
     <html
@@ -61,14 +59,12 @@ export default function RootLayout({
           {/* var(--green-200) - #9ae6b4 */}
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />
-          {ArtworkModal}
           {/* main height: includes header + mobileTabBar */}
           <main className="overflow-x-hidden py-[calc(60px+16px)]">
             {children}
           </main>
           <MobileTabBar />
           <div id="modal-root" />
-          <div id="artwork-modal-root" />
         </Providers>
       </body>
       <GoogleAnalytics gaId={GA_ID} />
