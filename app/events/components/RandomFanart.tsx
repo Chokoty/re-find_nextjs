@@ -6,7 +6,7 @@ import { FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 
 import Fanart from '@/app/events/components/Fanart';
-import useCheckboxLocalStorage from '@/app/events/hooks/useCheckboxLocalStorage';
+import useLocalStorage from '@/app/events/hooks/useLocalStorage';
 import { useRandomFanart } from '@/app/events/service/client/useEventService';
 import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';
@@ -16,6 +16,7 @@ import Popover, {
   PopoverHeader,
   PopoverTrigger,
 } from '@/components/Popover';
+import type { CheckBoxType } from '@/types';
 
 const initCheckboxValues = {
   isd: true,
@@ -24,12 +25,12 @@ const initCheckboxValues = {
 };
 
 export default function RandomFanart() {
-  const [value, setValue] = useCheckboxLocalStorage({
+  const [value, setValue] = useLocalStorage({
     key: 'checkboxValues',
     initialValue: initCheckboxValues,
   });
 
-  const [checkboxValues, setCheckboxValues] = useState(value);
+  const [checkboxValues, setCheckboxValues] = useState<CheckBoxType>(value);
 
   const { data, isLoading, isFetching, refetch, status } =
     useRandomFanart(checkboxValues);

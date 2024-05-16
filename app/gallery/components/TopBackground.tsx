@@ -15,10 +15,10 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
   const bgStaticSrc = getStaticImage(pathname.slice(1));
 
   return (
-    <section className="relative flex size-full max-h-[751px] flex-col items-center justify-center">
-      <div className="relative top-[-60px] z-[1] aspect-[1200/675] min-h-[355px] w-full 2xs:min-h-[440px] sm:min-h-[586px]">
+    <section className="relative top-[-60px] flex size-full max-h-[1180px] flex-col items-center justify-center">
+      <div className="z-[1] aspect-[1200/675] min-h-[355px] w-full 2xs:min-h-[440px] sm:min-h-[586px]">
         <Image
-          className="size-full max-h-[751px] object-cover opacity-70 dark:opacity-80"
+          className="size-full max-h-[1180px] object-cover opacity-70 dark:opacity-80"
           src={bgStaticSrc}
           alt="백그라운드 커버 이미지"
           quality={100}
@@ -29,11 +29,11 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
         />
       </div>
       <div
-        // 4k screen으로가면 +1을 해주어 shadow를 아래로 내려줘야 뜨는 현상이 없어진다.
+        // shadow를 아래로 내려줘야 그림자가 뜨는 현상이 없어진다.
         // #121212 > light-mode | #f8f9fa > dark-mode
-        className="absolute top-[-59px] z-[2] size-full bg-[linear-gradient(#f8f9fa00_31.43%,_#f8f9fa_86%),_linear-gradient(91deg,_#f8f9fa_0%,_#f8f9fa00_57.72%)] dark:bg-[linear-gradient(180deg,_#12121280_51.43%,_#121212_100%),_linear-gradient(75deg,_#121212_0%,_#12121200_45.72%)]"
+        className="absolute top-[1px] z-[2] size-full bg-[linear-gradient(#f8f9fa00_31.43%,_#f8f9fa_86%),_linear-gradient(91deg,_#f8f9fa_0%,_#f8f9fa00_57.72%)] dark:bg-[linear-gradient(180deg,_#12121280_51.43%,_#121212_100%),_linear-gradient(75deg,_#121212_0%,_#12121200_45.72%)]"
       />
-      <div className="absolute bottom-4 z-[2] flex size-full px-4 2xs:bottom-32 2xs:block 2xs:h-auto 2xs:px-8 md:bottom-40 2md:bottom-56 xl:bottom-80">
+      <div className="absolute bottom-8 z-[2] block w-full px-8 2xs:bottom-20 md:bottom-1/2 md:translate-y-[80%]">
         {children}
       </div>
     </section>
