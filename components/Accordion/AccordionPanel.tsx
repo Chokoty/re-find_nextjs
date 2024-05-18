@@ -12,7 +12,7 @@ export function AccordionPanel({ children }: AccordionPanelProps) {
   return (
     <div
       className={clsx('w-full overflow-hidden px-4 transition-all', {
-        'max-h-[500px] opacity-100': isOpen,
+        'max-h-screen opacity-100': isOpen,
         'max-h-0 opacity-0': !isOpen,
       })}
     >

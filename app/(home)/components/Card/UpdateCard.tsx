@@ -40,7 +40,7 @@ export default function UpdateCard({ update }: Prop) {
   }
 
   return (
-    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-gray-700 dark:bg-dark-card md:h-[144px] ">
+    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-whiteAlpha-300 dark:bg-dark-card md:h-[144px] ">
       <Link href={article_link} target="_blank" className="mr-3">
         <div className="flex w-max items-center justify-center">
           <Image
