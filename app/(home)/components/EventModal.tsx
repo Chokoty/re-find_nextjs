@@ -18,14 +18,14 @@ export default function EventModal() {
   };
 
   return (
-    <section className="relative m-5 rounded-2xl bg-white dark:bg-dark-card sm:mx-auto sm:w-full sm:max-w-lg">
+    <section className="relative m-auto w-[90%] rounded-2xl bg-white dark:bg-dark-card sm:w-full sm:max-w-lg">
       <button
         className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300"
         onClick={onClose}
       >
         <IoClose className="size-8" />
       </button>
-      <div className="flex size-full flex-col items-center justify-center px-3 py-6 text-center text-sm 2xs:px-4 2xs:py-12 2xs:text-base lg:px-8">
+      <div className="flex size-full flex-col items-center justify-center break-keep px-3 py-6 text-center text-sm 2xs:px-4 2xs:py-12 2xs:text-base lg:px-8">
         <h1 className="py-4 text-lg font-semibold 2xs:text-xl">
           리파인드 누적검색량 {targetCountText}만 돌파 기념 기습 이벤트
         </h1>
