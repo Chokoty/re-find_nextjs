@@ -23,13 +23,13 @@ export default function SubTitle() {
       <p className="text-lg font-bold md:text-xl lg:text-2xl xl:text-3xl">
         팬아트
       </p>
-      <div className="relative h-[22px] w-[78px] overflow-hidden rounded-2xl shadow-wakdoo md:h-[28px] md:w-[98px] lg:h-[33px]  lg:w-[116px] xl:h-[40px] xl:w-[140px]">
+      <div className="h-[22px] w-[78px] overflow-hidden rounded-2xl shadow-wakdoo md:h-[28px] md:w-[98px] lg:h-[33px]  lg:w-[116px] xl:h-[40px] xl:w-[140px]">
         <Image
           src={RealWakGood}
           alt="실사왁굳"
-          className="absolute mt-[-35%] max-h-fit w-[480px]"
-          width={100}
-          height={100}
+          className="-translate-y-[23%]"
+          width={150}
+          height={219}
           // unoptimized
           // placeholder="blur"
         />
