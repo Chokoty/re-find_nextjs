@@ -210,6 +210,9 @@ const config: Config = {
           800: 'var(--pink-800)',
           900: 'var(--pink-900)',
         },
+        icon: {
+          naver: '#02C759',
+        },
       },
       screens: {
         xxs: '320px',
@@ -246,15 +249,15 @@ const config: Config = {
         lg: 'rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px',
         navTop: '0 2px 4px 0 hsla(0,0%,80.8%,.5)',
         navTopDark: '0 2px 6px 0 hsl(0deg 0.17% 44.65% / 31%)',
-        // navBottom: '0 -2px 4px 0 rgba(33,37,41,.08)',
+        navBottom: '0 -2px 4px 0 rgba(33,37,41,.08)',
       },
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(236px, 1fr))',
       },
       keyframes: {
         modalRenderFromBottom: {
-          '0%': { opacity: '0', transform: 'translateY(100%)' }, // 최하단으로부터 시작
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          '0%': { opacity: '0', transform: 'translateY(100%)', scale: '0.5' }, // 최하단으로부터 시작
+          '100%': { opacity: '1', transform: 'translateY(0)', scale: '1' },
         },
         modalRenderFromTop: {
           '0%': { opacity: '0', transform: 'translateY(-100%)' }, // 최상단으로부터 시작
@@ -268,12 +271,20 @@ const config: Config = {
           '0%': { opacity: '1', transform: 'translateY(0)' }, // 최상단으로 끝
           '100%': { opacity: '0', transform: 'translateY(-100%)' },
         },
+        modalRemoveFromBottom: {
+          '0%': { opacity: '1', transform: 'translateY(0)' }, // 최하단으로 끝
+          '100%': {
+            opacity: '0',
+            transform: 'translateY(100%)',
+          },
+        },
       },
       animation: {
         modalRenderFromTop: 'modalRenderFromTop 0.3s ease-out',
         modalRenderFromBottom: 'modalRenderFromBottom 0.3s ease-out',
-        modalRemove: 'modalRemove 0.3s ease-out',
-        modalRemoveFromTop: 'modalRemoveFromTop 0.3s ease-out',
+        modalRemove: 'modalRemove 0.2s ease-out',
+        modalRemoveFromTop: 'modalRemoveFromTop 0.2s ease-out',
+        modalRemoveFromBottom: 'modalRemoveFromBottom 0.2s ease-out',
       },
       fontFamily: {
         pop: ['var(--font-one-mobile-pop)'],

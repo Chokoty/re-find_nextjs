@@ -20,7 +20,8 @@ const animationMap = {
   },
   bottom: {
     render: 'animate-modalRenderFromBottom',
-    remove: 'animate-modalRemove',
+    // remove: 'animate-modalRemove',
+    remove: 'animate-modalRemoveFromBottom',
   },
 } as const;
 
@@ -28,6 +29,7 @@ const animationMap = {
 export default function Modal({ Component, modalProps, hide }: Props) {
   const position = modalProps?.position ?? 'center';
   const animationPosition = modalProps?.position ?? 'bottom';
+  const size = modalProps?.size ?? 'basic';
   const ANIMATION_RENDER =
     animationMap[animationPosition as AnimationRenderPositionType].render;
   const ANIMATION_REMOVE =
@@ -92,12 +94,10 @@ export default function Modal({ Component, modalProps, hide }: Props) {
           <div
             tabIndex={-1}
             ref={modalRef}
-            className={clsx(
-              'transition-all duration-500 ease-out sm:mx-auto sm:w-full sm:max-w-[70%]',
-              {
-                [className]: true,
-              }
-            )}
+            className={clsx(className, {
+              'sm:mx-auto sm:w-full sm:max-w-[70%]': size === 'basic',
+              'size-full': size === 'full',
+            })}
             onClick={(e) => e.stopPropagation()} // modal 바깥 클릭시 닫히지 않도록 설정
             onAnimationEnd={handleAnimationEnd}
             onKeyDown={handleKeyDown}
