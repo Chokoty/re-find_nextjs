@@ -48,18 +48,18 @@ const nextConfig = {
       },
     ],
   },
-  env: {
-    NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
+  rewrites: async () => {
+    // 개발 환경을 위한 proxy 설정입니다.
+    if (process.env.NEXT_PUBLIC_IS_LOCAL) {
+      return [
+        {
+          source: `${process.env.NEXT_PUBLIC_REDIRECT_URL}/:path*`,
+          destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+        },
+      ];
+    }
+    return [];
   },
-  // 개발 환경을 위한 proxy 설정입니다.
-  // rewrites: async () => {
-  //   return [
-  //     {
-  //       source: `${process.env.NEXT_PUBLIC_REDIRECT_URL}/:path*`,
-  //       destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
-  //     },
-  //   ];
-  // },
 };
 
 module.exports = withPlugins(

@@ -6,13 +6,11 @@ import { Logo } from '@/lib/images';
 
 import NaverButton from './Button/NaverButton';
 
-// TODO: 추후 개발용, 배포용 env 파일 분리하여 관리하기(feat.env-cmd)
-// const redirect_uri = `${
-//   process.env.NODE_ENV === 'production'
-//     ? process.env.NEXT_PUBLIC_CLIENT_URL
-//     : process.env.NEXT_PUBLIC_LOCAL_CLIENT_URL
-// }/register`;
-const redirect_uri = `${process.env.NEXT_PUBLIC_LOCAL_CLIENT_URL}/register`;
+const redirect_uri = `${
+  process.env.NEXT_PUBLIC_IS_LOCAL
+    ? process.env.NEXT_PUBLIC_LOCAL_CLIENT_URL
+    : process.env.NEXT_PUBLIC_CLIENT_URL
+}/register`;
 const client_id = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
 
 export default function LoginModal() {

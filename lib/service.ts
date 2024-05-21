@@ -18,12 +18,14 @@ interface HTTPInstance {
 class Service {
   public http: HTTPInstance;
 
-  private baseURL: string;
+  private baseURL?: string;
 
   // private headers: Record<string, string>;
 
   constructor() {
-    this.baseURL = process.env.NEXT_PUBLIC_SERVER_URL!;
+    this.baseURL = process.env.NEXT_PUBLIC_IS_LOCAL
+      ? process.env.NEXT_PUBLIC_REDIRECT_URL
+      : process.env.NEXT_PUBLIC_SERVER_URL;
     // this.headers = {
     //   csrf: 'token',
     //   // Referer: this.baseURL,
