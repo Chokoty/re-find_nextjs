@@ -124,6 +124,8 @@ export type GetSearchResultParams = {
   commentCountLimit: CountLimit;
 };
 
+export type GetLoginQueryParams = { code: string | null; state: string | null };
+
 // constants
 export type Board = {
   board: string;

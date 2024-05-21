@@ -212,6 +212,7 @@ const config: Config = {
         },
         icon: {
           naver: '#02C759',
+          naverDark: '#48484B',
         },
       },
       screens: {

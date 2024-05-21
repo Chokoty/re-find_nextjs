@@ -2,13 +2,17 @@ import Image from 'next/image';
 import { IoClose } from 'react-icons/io5';
 
 import useModal from '@/hooks/useModal';
-import { Logo, Naver } from '@/lib/images';
+import { Logo } from '@/lib/images';
+
+import NaverButton from './Button/NaverButton';
 
 // TODO: 추후 개발용, 배포용 env 파일 분리하여 관리하기(feat.env-cmd)
-const redirect_uri =
-  process.env.NODE_ENV === 'production'
-    ? process.env.NEXT_PUBLIC_CLIENT_URL
-    : process.env.NEXT_PUBLIC_LOCAL_CLIENT_URL;
+// const redirect_uri = `${
+//   process.env.NODE_ENV === 'production'
+//     ? process.env.NEXT_PUBLIC_CLIENT_URL
+//     : process.env.NEXT_PUBLIC_LOCAL_CLIENT_URL
+// }/register`;
+const redirect_uri = `${process.env.NEXT_PUBLIC_LOCAL_CLIENT_URL}/register`;
 const client_id = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
 
 export default function LoginModal() {
@@ -25,31 +29,22 @@ export default function LoginModal() {
       >
         <IoClose className="size-8" />
       </button>
-      <div className="flex size-full flex-col items-center justify-center px-3 py-8 text-center text-sm 2xs:px-4 2xs:py-12 2xs:text-base lg:px-8">
-        <div className="flex flex-col items-center justify-center">
+      <div className="flex size-full flex-col items-center justify-end px-6 py-8 text-center text-sm 2xs:text-base md:py-6 lg:px-8">
+        <div className="absolute left-1/2 top-[45%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center md:top-[40%]">
           <Image
             alt="리파인드 로고"
             width={48}
             height={48}
             src={Logo}
+            className="h-[80px] w-[141px]"
+            unoptimized
             priority
           />
           <h1 className="mt-2 text-xl font-semibold">리파인드 로그인</h1>
         </div>
-        <button
-          className="mt-10 flex h-[55px] w-full items-center rounded-md bg-icon-naver 2xs:px-2"
-          onClick={goToNaverLogin}
-        >
-          <Image
-            src={Naver}
-            alt="네이버 로고"
-            className="absolute"
-            width={45}
-            height={45}
-            priority
-          />
-          <span className="w-full font-semibold">네이버 아이디로 로그인</span>
-        </button>
+        <NaverButton onClick={goToNaverLogin}>
+          네이버 아이디로 로그인
+        </NaverButton>
       </div>
     </section>
   );
