@@ -3,7 +3,9 @@ import React from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { PiGiftBold } from 'react-icons/pi';
 
+import LoginModal from '@/components/LoginModal';
 import Tooltip from '@/components/Tooltip';
+import useModal from '@/hooks/useModal';
 
 const routerMap = {
   event: {
@@ -21,8 +23,19 @@ const routerMap = {
 };
 
 export default function DesktopMenuTab() {
+  const { show } = useModal(LoginModal);
+  const handleClick = () => {
+    show({ isBackdropClick: true });
+  };
+
   return (
     <div className="flex items-center justify-end md:min-w-[174px]">
+      <button
+        className="hidden px-2.5 font-semibold transition hover:text-green-highlight md:block"
+        onClick={handleClick}
+      >
+        로그인
+      </button>
       {Object.keys(routerMap).map((key) => {
         const typedKey = key as keyof typeof routerMap;
         const {
