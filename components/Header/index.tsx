@@ -54,6 +54,7 @@ const etcPathMap = {
   '/events': '이벤트관',
   '/events/randomGacha': '이벤트관',
   '/register': '회원가입',
+  '/register_success': '회원가입',
 } as const;
 
 type EtcPathMapKeyType = keyof typeof etcPathMap;
@@ -63,10 +64,11 @@ const HeaderContent = () => {
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
   const isRegister = pathname.startsWith('/register');
+  const isRegisterSucess = pathname.startsWith('/register_success');
   const isSearchPage = pathname.startsWith('/search');
 
   // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
-  if (isMorePath || isEvents || isRegister) {
+  if (isMorePath || isEvents || isRegister || isRegisterSucess) {
     return (
       <>
         <BackButton />

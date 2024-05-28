@@ -14,6 +14,11 @@ class CommonService extends Service {
     const url = `/request_email_verification?naver_id=${naverId}`;
     return this.http.get(url);
   }
+
+  verifyEmail(token: string) {
+    const url = `/verify_email?token=${token}`;
+    return this.http.get(url);
+  }
 }
 
 // 항상 CommonService 동일한 인스턴스를 사용하도록 한다. (싱글톤)

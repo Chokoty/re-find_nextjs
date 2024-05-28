@@ -71,6 +71,7 @@ export default function Register() {
               이메일
             </label>
           </span>
+          {/* TODO: [        ] @naver.com로 UI 바꾸기 */}
           <input
             ref={inputRef}
             id="email-input"

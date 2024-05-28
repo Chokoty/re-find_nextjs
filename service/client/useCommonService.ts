@@ -10,3 +10,7 @@ export function useLogin({ code, state }: GetLoginQueryParams) {
 export function useVerificationRequest(email: string) {
   return useQuery(queryOptions.requestVerification(email));
 }
+
+export function useVerifyEmail(token: string) {
+  return useQuery(queryOptions.verifyEmail(token));
+}
