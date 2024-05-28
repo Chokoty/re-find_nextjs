@@ -1,10 +1,11 @@
-import type { GetLoginQueryParams } from '@/types';
 import CommonService from '@/service/client/CommonService';
+import type { GetLoginQueryParams } from '@/types';
 
 const queryKeys = {
   login: ({ code, state }: GetLoginQueryParams) =>
     ['login', code, state] as const,
-  verify: ['verify'] as const,
+  requestVerification: (email: string) =>
+    ['requestVerification', email] as const,
 };
 
 const queryOptions = {
@@ -14,9 +15,9 @@ const queryOptions = {
     // gcTime: 0,
     enabled: false, // 초기에는 호출하지 않음
   }),
-  verify: () => ({
-    queryKey: queryKeys.verify,
-    queryFn: () => CommonService.verifyWithNaverEmail(),
+  requestVerification: (email: string) => ({
+    queryKey: queryKeys.requestVerification(email),
+    queryFn: () => CommonService.requestVerification(email),
     enabled: false, // 초기에는 호출하지 않음
   }),
 };

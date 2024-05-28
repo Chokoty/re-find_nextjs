@@ -7,9 +7,12 @@ class CommonService extends Service {
     return this.http.get(url);
   }
 
-  // 이메일 인증 요청 - login된 상태에서 아무 인자 없이 호출하면 인증 메일 발송
-  verifyWithNaverEmail() {
-    return this.http.get(`/request_email_verification`);
+  // 이메일 인증 요청 - login된 상태에서 아무 인자 없이 호출하면 인증 메일 발송 (기본적으로 @naver.com 없이 id를 줍니다)
+  requestVerification(email: string) {
+    const naverId = email.split('@')[0];
+    console.log(naverId);
+    const url = `/request_email_verification?naver_id=${naverId}`;
+    return this.http.get(url);
   }
 }
 

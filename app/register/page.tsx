@@ -2,14 +2,20 @@
 
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import NaverButton from '@/components/Button/NaverButton';
-import { useLogin, useVerify } from '@/service/client/useCommonService';
+import {
+  useLogin,
+  useVerificationRequest,
+} from '@/service/client/useCommonService';
 
 export default function Register() {
   // TODO:  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/register". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
   const searchParams = useSearchParams();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [animate, setAnimate] = useState(false);
+  const [input, setInput] = useState('');
   const code = searchParams.get('code');
   const state = searchParams.get('state');
   const {
@@ -21,46 +27,70 @@ export default function Register() {
     isFetching: verifyIsFetcing,
     refetch: verify,
     status: verifyStatus,
-  } = useVerify();
-  const [animate, setAnimate] = useState(false);
+  } = useVerificationRequest(input);
 
   useEffect(() => {
     setAnimate(true);
+    inputRef.current?.focus();
   }, []);
 
   const isError = loginStatus === 'error' || verifyStatus === 'error';
   const isFetching = loginIsFetcing || verifyIsFetcing;
+  const isDisabledButton = isFetching || !input.length;
   const animateClassName = 'opacity-100 transition-opacity duration-1000';
-  const verifyWithNaverEmail = async () => {
+  const handleVerificationRequest = async () => {
     // console.log('test');
     await login();
     await verify();
+  };
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
   };
 
   return (
     <>
       {/* title */}
-      <div className="flex flex-col gap-2.5">
+      <div className="flex flex-col gap-7">
         <h1
           className={`${animate ? animateClassName : 'opacity-0'} text-3xl font-semibold`}
         >
           회원가입
         </h1>
         <p
-          className={`${animate ? `${animateClassName} delay-500` : 'opacity-0'} text-sm text-blackAlpha-800 dark:text-whiteAlpha-800`}
+          className={`${animate ? `${animateClassName} delay-300` : 'opacity-0'} text-sm text-blackAlpha-800 dark:text-whiteAlpha-800`}
         >
           RE:FIND에 오신 것을 환영해요.
           <br />
           서비스를 이용하기 위해 네이버 메일을 인증해주세요.
         </p>
+        <div
+          className={`${animate ? `${animateClassName} delay-[600ms]` : 'opacity-0'} flex flex-col gap-2.5`}
+        >
+          <span className="text-left">
+            <label className="text-sm" htmlFor="email-input">
+              이메일
+            </label>
+          </span>
+          <input
+            ref={inputRef}
+            id="email-input"
+            className="relative size-full cursor-text rounded-md border border-gray-200 bg-gray-100 px-4 py-2 outline-none transition placeholder:text-gray-500 hover:border-green-highlight hover:bg-white focus:border-green-highlight focus:outline-none focus:ring-1 focus:ring-green-highlight dark:border-whiteAlpha-300 dark:bg-whiteAlpha-200 dark:placeholder:text-whiteAlpha-600 dark:hover:bg-dark-card"
+            placeholder="example@naver.com"
+            value={input}
+            onChange={handleSearch}
+          />
+          <span className="text-xs text-blackAlpha-800 dark:text-whiteAlpha-800">
+            이메일 수신이 가능해야해요.
+          </span>
+        </div>
       </div>
       {/* actions */}
       <div
-        className={`${animate ? `${animateClassName} delay-1000` : 'opacity-0'} mt-auto flex flex-col`}
+        className={`${animate ? `${animateClassName} delay-[900ms]` : 'opacity-0'} mt-auto flex flex-col`}
       >
         <NaverButton
-          onClick={verifyWithNaverEmail}
-          disabled={isFetching} // 여러 번 클릭시 중복 요청 방지
+          onClick={handleVerificationRequest}
+          disabled={isDisabledButton} // 여러 번 클릭시 중복 요청 방지
         >
           네이버 메일 인증하기
         </NaverButton>

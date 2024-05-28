@@ -102,7 +102,7 @@ export default function Modal({ Component, modalProps, hide }: Props) {
             onAnimationEnd={handleAnimationEnd}
             onKeyDown={handleKeyDown}
           >
-            <Component {...modalProps} />
+            <Component {...modalProps} /> {/* 모달을 렌더링 */}
           </div>
         </ModalHideContext.Provider>
       </div>
