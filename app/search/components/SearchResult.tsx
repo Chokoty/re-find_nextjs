@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
+import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
 import { PuffLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
@@ -11,9 +12,9 @@ import SearchCard from '@/app/search/components/Card/SearchCard';
 import { useSearchResults } from '@/app/search/service/client/useSearchService';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import Alert from '@/components/Alert';
-import Divider from '@/components/Divider';
 import { NotSearch } from '@/lib/images';
 
+// 검색시 3번 렌더링되는거 최적화하기(옵션 상태때문)
 export default function SearchResult() {
   const searchParams = useSearchParams();
   const q = searchParams.get('q') ?? '';
@@ -118,7 +119,9 @@ export default function SearchResult() {
         <h4 className="text-xl font-bold">에 대한 검색결과 입니다.</h4>
         <div className="flex items-center gap-1">
           <p className="text-blackAlpha-500 dark:text-whiteAlpha-500">총</p>
-          <p className="text-[#01BFA2]">{total ?? 0}</p>
+          <p className="text-[#01BFA2]">
+            <CountUp end={total ?? 0} duration={2} />
+          </p>
           <p className="text-blackAlpha-500 dark:text-whiteAlpha-500">
             개의 팬아트가 검색되었습니다.
           </p>
@@ -132,34 +135,27 @@ export default function SearchResult() {
             전체({total ?? 0})
           </button>
         </div>
-        <div className="w-full">
-          <div className="p-0">
-            {/* 각 패널 */}
-            {searchResults.map((item) => (
-              <div
-                key={item.id}
-                className="flex w-full flex-col items-center justify-center p-6"
-              >
-                <SearchCard
-                  item={item}
-                  searchText={q}
-                  isTitleSearch={hasTitle}
-                  isContentSearch={hasContent}
-                  isAuthorSearch={hasAuthor}
-                  key={item.id}
-                />
-                <Divider />
-              </div>
-            ))}
-            {isFetchingNextPage ? (
-              <div className="my-6 flex w-full items-center justify-center">
-                <PuffLoader color="#01BFA2" />
-              </div>
-            ) : (
-              // Observer를 위한 div
-              <div className="h-20 w-full" ref={ref} />
-            )}
-          </div>
+        <div className="mt-6 w-full px-6">
+          {/* 각 패널 */}
+          {searchResults.map((item, index) => (
+            <SearchCard
+              index={index}
+              item={item}
+              searchText={q}
+              isTitleSearch={hasTitle}
+              isContentSearch={hasContent}
+              isAuthorSearch={hasAuthor}
+              key={item.id}
+            />
+          ))}
+          {isFetchingNextPage ? (
+            <div className="my-6 flex w-full items-center justify-center">
+              <PuffLoader color="#01BFA2" />
+            </div>
+          ) : (
+            // Observer를 위한 div
+            <div className="h-20 w-full" ref={ref} />
+          )}
         </div>
       </div>
     </div>
