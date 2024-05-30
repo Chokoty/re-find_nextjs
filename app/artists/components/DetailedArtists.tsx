@@ -34,12 +34,13 @@ export default function DetailedArtists({ nickname }: Props) {
     useShallow((state) => ({ rankCriteria: state.rankCriteria }))
   );
 
-  const { fetchNextPage, artworks, isError, isFetchingNextPage, isLoading } =
-    useArtistInfo({
+  const { fetchNextPage, artworks, status, isFetchingNextPage } = useArtistInfo(
+    {
       nickname,
       sortType,
       board: rankCriteria ? convertBoardParams(rankCriteria) : null,
-    });
+    }
+  );
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
@@ -66,41 +67,7 @@ export default function DetailedArtists({ nickname }: Props) {
     if (inView) {
       fetchNextPage();
     }
-  }, [inView]);
-
-  const content = () => {
-    if (isLoading) {
-      return <ViewSkeleton view={activeView} />;
-    }
-
-    if (isError) {
-      return <Alert />;
-    }
-
-    if (!artworks || artworks.length === 0) return;
-
-    return (
-      <div className="w-full overflow-hidden px-2 py-0 2xs:px-6">
-        {activeView === 'masonry' && (
-          <MasonryView
-            artworks={artworks}
-            isDeletedVisible={isDeletedVisible}
-          />
-        )}
-        {activeView === 'grid' && (
-          <SimpleView artworks={artworks} isDeletedVisible={isDeletedVisible} />
-        )}
-        {isFetchingNextPage ? (
-          <div className="my-6 flex w-full items-center justify-center">
-            <HashLoader color="#01BFA2" />
-          </div>
-        ) : (
-          // Observer를 위한 div
-          <div ref={ref} className="h-20 w-full" />
-        )}
-      </div>
-    );
-  };
+  }, [fetchNextPage, inView]);
 
   return (
     <>
@@ -114,7 +81,36 @@ export default function DetailedArtists({ nickname }: Props) {
         topOffset={59}
         isdPick={false}
       />
-      {content()}
+      {status === 'pending' ? (
+        <ViewSkeleton view={activeView} />
+      ) : status === 'error' ? (
+        <Alert />
+      ) : (
+        artworks && (
+          <div className="w-full overflow-hidden px-2 py-0 2xs:px-6">
+            {activeView === 'masonry' && (
+              <MasonryView
+                artworks={artworks}
+                isDeletedVisible={isDeletedVisible}
+              />
+            )}
+            {activeView === 'grid' && (
+              <SimpleView
+                artworks={artworks}
+                isDeletedVisible={isDeletedVisible}
+              />
+            )}
+            {isFetchingNextPage ? (
+              <div className="my-6 flex w-full items-center justify-center">
+                <HashLoader color="#01BFA2" />
+              </div>
+            ) : (
+              // Observer를 위한 div
+              <div ref={ref} className="h-20 w-full" />
+            )}
+          </div>
+        )
+      )}
     </>
   );
 }

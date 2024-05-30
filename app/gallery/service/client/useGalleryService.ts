@@ -16,43 +16,11 @@ export function useGalleryArtworks({
 
   const {
     data,
+    status,
     fetchNextPage, // 다음 페이지를 호출하는 함수
     isFetchingNextPage, // 다음 페이지를 호출 중인지 = isLoading과 같은 개념
     // hasNextPage, // 다음 페이지를 가지고 있는지(마지막 페이지인지 판단 t/f)
-    isLoading,
-    isError,
   } = useInfiniteQuery(queryOptions.galleryArtworks({ query, sortType }));
-
-  const artworks = useMemo(() => {
-    return data?.pages.flatMap((page) => {
-      if (Array.isArray(page.list)) {
-        return page.list.map((artwork) => ({
-          ...artwork,
-          board: artwork.board.replace(/&#\d+;/g, '').trim(),
-        }));
-      }
-      return [];
-    });
-  }, [data]);
-
-  const total = data?.pages[0].total;
-
-  return {
-    total,
-    artworks,
-    fetchNextPage,
-    isFetchingNextPage,
-    isLoading,
-    isError,
-  };
-}
-
-export function useNoticeArtworks({
-  member,
-  ranktype,
-}: GetIsdNoticeArtworksParams) {
-  const { data, fetchNextPage, isFetchingNextPage, isLoading, isError } =
-    useInfiniteQuery(queryOptions.isdNoticeArtworks({ member, ranktype }));
 
   const artworks = useMemo(() => {
     return data?.pages.flatMap((page) => page.list);
@@ -62,11 +30,33 @@ export function useNoticeArtworks({
 
   return {
     total,
+    status,
     artworks,
     fetchNextPage,
     isFetchingNextPage,
-    isLoading,
-    isError,
+  };
+}
+
+export function useNoticeArtworks({
+  member,
+  ranktype,
+}: GetIsdNoticeArtworksParams) {
+  const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
+    queryOptions.isdNoticeArtworks({ member, ranktype })
+  );
+
+  const artworks = useMemo(() => {
+    return data?.pages.flatMap((page) => page.list);
+  }, [data]);
+
+  const total = data?.pages[0].total;
+
+  return {
+    total,
+    status,
+    artworks,
+    fetchNextPage,
+    isFetchingNextPage,
   };
 }
 

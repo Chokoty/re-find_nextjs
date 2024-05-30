@@ -16,6 +16,7 @@ import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoSt
 import Alert from '@/components/Alert';
 import { NotSearch } from '@/lib/images';
 
+// TODO: 3번 렌더링되는 문제 해결 필요
 export default function ArtistList() {
   const {
     setTotal,
@@ -58,7 +59,7 @@ export default function ArtistList() {
     if (inView) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [fetchNextPage, inView]);
 
   if (isLoading) {
     return <Loading />;

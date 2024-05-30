@@ -80,7 +80,7 @@ export default function SearchResult() {
     if (inView) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [fetchNextPage, inView]);
 
   if (isLoading) {
     return (
