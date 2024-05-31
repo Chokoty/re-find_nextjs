@@ -14,6 +14,7 @@ type SearchFilterStore = {
   viewCountLimit: CountLimit;
   likeCountLimit: CountLimit;
   commentCountLimit: CountLimit;
+  isFetching: boolean;
   // set methods
   selectBoard: (board: string) => void;
   selectCategory: (category: string) => void;
@@ -27,6 +28,7 @@ type SearchFilterStore = {
   checkLikeCountLimit: (limitInfo: CountLimit) => void;
   checkCommentCountLimit: (limitInfo: CountLimit) => void;
   resetFilter: () => void;
+  setIsFetching: (isFetching: boolean) => void;
 };
 
 export const useSearchFilterStore = create<
@@ -56,6 +58,7 @@ export const useSearchFilterStore = create<
     min: 0,
     max: 100,
   },
+  isFetching: false,
   selectBoard: (board) => set({ board }),
   selectCategory: (category) => set({ category }),
   selectDateType: (dateType) => set({ dateType }),
@@ -94,4 +97,5 @@ export const useSearchFilterStore = create<
         max: 100,
       },
     }),
+  setIsFetching: (isFetching) => set({ isFetching }),
 }));

@@ -5,7 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
-import { PuffLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
 
 import SearchCard from '@/app/search/components/Card/SearchCard';
@@ -36,6 +35,7 @@ export default function SearchResult() {
     viewCountLimit,
     likeCountLimit,
     commentCountLimit,
+    setIsFetching,
   } = useSearchFilterStore(
     useShallow((state) => ({
       board: state.board,
@@ -49,6 +49,7 @@ export default function SearchResult() {
       viewCountLimit: state.viewCountLimit,
       likeCountLimit: state.likeCountLimit,
       commentCountLimit: state.commentCountLimit,
+      setIsFetching: state.setIsFetching,
     }))
   );
 
@@ -82,18 +83,20 @@ export default function SearchResult() {
     }
   }, [fetchNextPage, inView]);
 
+  useEffect(() => {
+    const isFetching = isFetchingNextPage || isLoading;
+    setIsFetching(isFetching);
+  }, [isFetchingNextPage, isLoading]);
+
   if (isLoading) {
     return (
-      <div className="my-6 flex min-h-[300px] w-full items-center justify-center rounded-2xl md:min-h-[450px]">
-        <PuffLoader color="#01BFA2" />
-      </div>
+      <div className="my-6 flex min-h-[300px] w-full items-center justify-center rounded-2xl md:min-h-[450px]" />
     );
   }
 
   if (isError) {
     return <Alert />;
   }
-
   if (!searchResults || searchResults.length === 0 || (total ?? 0) === 0) {
     return (
       <div className="flex min-h-[300px] w-full flex-col items-center justify-center md:min-h-[450px]">
@@ -150,14 +153,8 @@ export default function SearchResult() {
               key={item.id}
             />
           ))}
-          {isFetchingNextPage ? (
-            <div className="my-6 flex w-full items-center justify-center">
-              <PuffLoader color="#01BFA2" />
-            </div>
-          ) : (
-            // Observer를 위한 div
-            <div className="h-20 w-full" ref={ref} />
-          )}
+          {/* Observer를 위한 Element */}
+          <div className="h-20 w-full" ref={ref} />
         </div>
       </div>
     </div>
