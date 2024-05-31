@@ -2,7 +2,7 @@ import Service from '@/lib/service';
 import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
 
 // TODO: 네이밍 통일하기 (artists vs authors)
-const ROWS_PER_PAGE = 20; // 한 페이지당 불러올 아이템 개수
+export const ROWS_PER_PAGE = 20; // 한 페이지당 불러올 아이템 개수
 
 class ArtistService extends Service {
   // 왁타버스 작가 리스트 가져오기
