@@ -1,5 +1,5 @@
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
 
@@ -12,7 +12,6 @@ type Prop = {
   focusBar?: () => void;
   closeHistory?: () => void;
   hasButton?: boolean;
-  q?: string;
 };
 
 export default function SearchBar({
@@ -22,10 +21,11 @@ export default function SearchBar({
   inputRef,
   closeHistory,
   hasButton = false,
-  q,
 }: Prop) {
+  const searchParams = useSearchParams();
+  const q = searchParams.get('q') ?? '';
   const router = useRouter();
-  const [input, setInput] = useState(q ?? ''); // 검색어
+  const [input, setInput] = useState(q); // 검색어
 
   const handleSearch = () => {
     const trimedInput = input.trim();
@@ -56,6 +56,14 @@ export default function SearchBar({
     closeHistory?.();
     setInput('');
   };
+
+  /* 최근 검색어를 눌러 해당 검색어 router로 이동했을 때,
+   *  업데이트된 searchParams로 검색어가 업데이트 안되는 경우가 발생했음.
+   *  따라서, 컴포넌트 마운트시 업데이트
+   */
+  useEffect(() => {
+    setInput(q);
+  }, [q]);
 
   return (
     <div className="flex w-full items-center justify-center gap-4">
