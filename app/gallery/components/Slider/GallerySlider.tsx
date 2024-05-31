@@ -74,7 +74,7 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
         </>
       ) : (
         GALLERY_LIST.map((data) => (
-          <SwiperSlide key={data.id}>
+          <SwiperSlide key={data.id} className="overflow-hidden">
             <GalleryAlbumCard album={data} />
           </SwiperSlide>
         ))

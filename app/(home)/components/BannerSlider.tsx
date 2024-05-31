@@ -18,7 +18,7 @@ const swiperSlideStyle = {
 
 export default function BannerSlider() {
   return (
-    <div className="mb-2 w-full">
+    <div className="mb-1 w-full">
       <Swiper
         className="mySwiper"
         // navigation={true}

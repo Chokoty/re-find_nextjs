@@ -36,9 +36,9 @@ export default function ArtistCard({
     <Link
       href={`/artists/${nick}`}
       prefetch={false}
-      className="flex w-full items-center justify-center"
+      className="mb-4 flex w-full items-center justify-center border-b-base border-gray-300 pb-4 dark:border-whiteAlpha-300"
     >
-      <div className="my-4 flex size-full min-h-[250px] flex-col items-center justify-center gap-4 rounded-2xl p-4 hover:bg-gray-200 dark:hover:bg-black-200 2xs:min-h-[150px] md:min-h-[168px] md:flex-row md:justify-between">
+      <div className="flex size-full min-h-[250px] flex-col items-center justify-center gap-4 rounded-2xl px-4 py-4 transition hover:bg-gray-200 dark:hover:bg-black-200 2xs:min-h-[150px] md:min-h-[168px] md:flex-row md:justify-between 2md:py-0">
         <div className="flex flex-col items-center gap-4 2xs:flex-row">
           <p className="text-lg font-bold">{nth <= 100 ? nth : '-'}</p>
           <div className="size-20 md:size-24">

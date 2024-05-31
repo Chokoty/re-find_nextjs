@@ -24,7 +24,7 @@ export default function RandomGacha() {
     await refetch();
   };
   return (
-    <div className="mt-4 flex w-[90%] flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
+    <div className="mt-4 flex w-full flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
       <div className="flex w-full items-center justify-start">
         <h2 className="text-xl font-bold">팬아트 가챠</h2>
       </div>

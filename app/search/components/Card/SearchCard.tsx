@@ -112,9 +112,11 @@ export default function SearchCard({
               />
             </Link>
             <p>·</p>
-            <p>{board}</p>
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+              {board.replace(/&#\d+;/g, '').trim()}
+            </p>
             <p>·</p>
-            <p className="text-blackAlpha-600 dark:text-whiteAlpha-600">
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
               {date.split(' ')[0]}
             </p>
           </div>
@@ -137,13 +139,13 @@ export default function SearchCard({
         </div>
       </div>
       <Link href={url} prefetch={false} target="_blank">
-        <div className="w-full rounded-lg border-base border-blackAlpha-200 dark:border-none min-[660px]:h-[162px] min-[660px]:w-[200px]">
+        <div className="w-full overflow-hidden rounded-lg border-base border-blackAlpha-200 dark:border-none min-[660px]:h-[162px] min-[660px]:w-[200px]">
           <Image
             width="400"
             height="230"
             src={img_url}
             alt={title}
-            className="aspect-[400/230] rounded-lg bg-[#f5f5f5] object-cover min-[660px]:aspect-[200/162]"
+            className="aspect-[400/230] rounded-lg bg-[#f5f5f5] object-cover transition hover:scale-110 min-[660px]:aspect-[200/162]"
             priority
             unoptimized
           />

@@ -32,7 +32,7 @@ export default function CardImage({ data }: Props) {
         }
         alt={title}
         className={clsx(
-          'max-h-[430px] rounded-[20px] bg-[#f5f5f5] object-cover ',
+          'max-h-[430px] rounded-[20px] bg-[#f5f5f5] object-cover',
           {
             'blur-[6px]': deleted,
           }

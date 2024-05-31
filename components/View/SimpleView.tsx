@@ -12,11 +12,9 @@ export default function SimpleView({ artworks, isDeletedVisible }: Props) {
         <SimpleCards key={index} artwork={artwork} />
       ));
     }
-    if (!isDeletedVisible) {
-      return artworks.map((artwork, index) =>
-        !artwork.deleted ? <SimpleCards key={index} artwork={artwork} /> : null
-      );
-    }
+    return artworks.map((artwork, index) =>
+      !artwork.deleted ? <SimpleCards key={index} artwork={artwork} /> : null
+    );
   };
 
   return (

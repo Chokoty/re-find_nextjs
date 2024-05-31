@@ -115,7 +115,9 @@ export default function SearchResult() {
   return (
     <div className="flex w-full flex-col items-center justify-center">
       <div className="flex w-full flex-wrap items-baseline gap-2 p-4">
-        <h4 className="text-xl font-bold">{`'${q}'`}</h4>
+        <h4 className="text-xl font-bold">{`${
+          q.length === 0 ? '전체검색' : `'${q}'`
+        }`}</h4>
         <h4 className="text-xl font-bold">에 대한 검색결과 입니다.</h4>
         <div className="flex items-center gap-1">
           <p className="text-blackAlpha-500 dark:text-whiteAlpha-500">총</p>
