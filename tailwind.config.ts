@@ -246,7 +246,7 @@ const config: Config = {
         lg: 'rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px',
         navTop: '0 2px 4px 0 hsla(0,0%,80.8%,.5)',
         navTopDark: '0 2px 6px 0 hsl(0deg 0.17% 44.65% / 31%)',
-        // navBottom: '0 -2px 4px 0 rgba(33,37,41,.08)',
+        navBottom: '0 -2px 4px 0 rgba(33,37,41,.08)',
       },
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(236px, 1fr))',

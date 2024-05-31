@@ -38,8 +38,8 @@ const routerMap = {
 export default function MobileTabBar() {
   const currentPathname = usePathname();
   return (
-    <nav className="fixed bottom-1 z-[200] flex w-full justify-center 2xs:bottom-3 md:hidden">
-      <div className="flex h-[57px] w-full max-w-[300px] items-center justify-between rounded-full bg-white px-4 shadow-lg dark:bg-dark-footer">
+    <nav className="fixed bottom-0 z-[200] flex w-full justify-center md:hidden">
+      <div className="flex h-[60px] w-full items-center justify-evenly bg-white shadow-navBottom dark:border-t-base dark:border-whiteAlpha-300 dark:bg-dark-footer dark:shadow">
         {Object.keys(routerMap).map((key) => {
           const typedKey = key as keyof typeof routerMap;
           const {
