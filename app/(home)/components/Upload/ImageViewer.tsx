@@ -46,7 +46,7 @@ export default function ImageViewer({ hashs }: Prop) {
 
     // 7만 기념 이벤트
     if (source.total_counter === TARGET_COUNT.toString()) {
-      show({ congrat: true });
+      show({ congrat: true, animateDir: 'bottom' });
     }
   }, [data]);
 

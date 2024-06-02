@@ -260,6 +260,10 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateY(-100%)' }, // 최상단으로부터 시작
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        modalRender: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
         modalRemove: {
           '0%': { opacity: '1', transform: 'translateY(0)' },
           '100%': { opacity: '0', transform: 'translateY(0.75rem)' },
@@ -270,6 +274,7 @@ const config: Config = {
         },
       },
       animation: {
+        modalRender: 'modalRender 0.2s ease-out',
         modalRenderFromTop: 'modalRenderFromTop 0.3s ease-out',
         modalRenderFromBottom: 'modalRenderFromBottom 0.3s ease-out',
         modalRemove: 'modalRemove 0.3s ease-out',

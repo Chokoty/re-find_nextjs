@@ -7,11 +7,8 @@ import useModal from '@/hooks/useModal';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
-export default function ImageViewModal({
-  artwork,
-}: {
-  artwork: DoorBehindFanart;
-}) {
+export default function ImageViewModal(props: Record<string, unknown>) {
+  const artwork = props.artwork as DoorBehindFanart;
   const { title, url, img_url, board } = artwork;
   const { hide } = useModal();
   const onClose = () => {
