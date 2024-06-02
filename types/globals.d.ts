@@ -234,3 +234,5 @@ declare global {
     date: string;
   }
 }
+
+export type OptionType = { value: string; label: string; default?: boolean };
