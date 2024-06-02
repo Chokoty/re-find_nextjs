@@ -7,11 +7,14 @@ type Props = {
   hasArrow?: boolean;
   bg?: string;
   color?: string;
+  // 가운데 아래, 가운데 왼쪽
+  position?: 'bottom-center' | 'left-center';
 };
-// TODO: hasArrow, bg, color 적용
+// TODO: hasArrow, bg, color 적용 필요
 export default function Tooltip({
   children,
   label,
+  position = 'bottom-center',
   // hasArrow = false,
   // bg = 'gray-150', // tailwind에서 ${}를 사용하려면 변수를 사용해야함
   // color = 'black',
@@ -37,10 +40,14 @@ export default function Tooltip({
       </div>
       <div
         className={clsx(
-          'absolute left-1/2 top-[110%] z-[1000] -translate-x-1/2 rounded-sm bg-gray-125 px-2 py-1 text-sm text-gray-900 transition-all duration-200 ease-out',
+          'absolute z-[1000] rounded-sm bg-gray-125 px-2 py-1 text-sm text-gray-900 transition-all duration-200 ease-out',
           {
             'visible scale-100 opacity-100': show,
             'invisible scale-125 opacity-0': !show,
+            'left-1/2 top-[110%] -translate-x-1/2':
+              position === 'bottom-center',
+            'right-full top-1/2 mr-2 -translate-y-1/2 translate-x-0':
+              position === 'left-center',
           }
         )}
         style={{
