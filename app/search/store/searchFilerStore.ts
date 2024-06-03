@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-import type { CountLimit } from '@/types';
+import type { CountLimit, DateType } from '@/types';
 
 type SearchFilterStore = {
   board: string;
   category: string;
-  dateType: string;
+  dateType: DateType;
   rankType: string;
   hasSensitiveCase: boolean;
   hasTitle: boolean;
@@ -18,7 +18,7 @@ type SearchFilterStore = {
   // set methods
   selectBoard: (board: string) => void;
   selectCategory: (category: string) => void;
-  selectDateType: (dateType: string) => void;
+  selectDateType: (dateType: DateType) => void;
   selectRankType: (rankType: string) => void;
   checkSensitive: (check: boolean) => void;
   checkTitle: (check: boolean) => void;
@@ -37,7 +37,9 @@ export const useSearchFilterStore = create<
 >((set) => ({
   board: 'all',
   category: 'all',
-  dateType: 'all',
+  dateType: {
+    type: 'all',
+  },
   rankType: 'latest',
   hasSensitiveCase: false,
   hasTitle: false,
@@ -75,7 +77,9 @@ export const useSearchFilterStore = create<
     set({
       board: 'all',
       category: 'all',
-      dateType: 'all',
+      dateType: {
+        type: 'all',
+      },
       rankType: 'latest',
       hasSensitiveCase: false,
       hasTitle: false,

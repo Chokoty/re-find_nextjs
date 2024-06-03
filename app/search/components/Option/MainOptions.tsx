@@ -133,8 +133,8 @@ export default function MainOptions() {
     selectCategory(value);
   };
 
-  const handleChangeDateType = (value: string) => {
-    selectDateType(value);
+  const handleChangePeriod = (value: string, date?: string) => {
+    selectDateType({ type: value, date });
   };
 
   const handleChangeRankType = (value: string) => {
@@ -219,13 +219,13 @@ export default function MainOptions() {
   };
 
   return (
-    <div className="px-0 py-2 min-[515px]:px-4">
+    <div className="px-0 py-2 md:px-4">
       <Divider />
-      <div className="m-2 flex flex-col gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
+      <div className="m-2 flex flex-col gap-2 md:m-4 md:flex-row md:gap-4">
         {/* 업로드날짜 (유튜브 참고) -> 시작 ~ 끝 */}
         <Select
-          onChange={handleChangeDateType}
-          selected={dateType}
+          onChange={handleChangePeriod}
+          selected={dateType.type}
           options={[
             { value: 'all', label: '전체기간', default: true },
             { value: 'day', label: '1일' },
@@ -233,6 +233,11 @@ export default function MainOptions() {
             { value: 'mon', label: '1개월' },
             { value: 'sixMon', label: '6개월' },
             { value: 'year', label: '1년' },
+            {
+              value: 'custom',
+              label: '기간선택',
+              hasCustomDateRangePicker: true,
+            },
           ]}
         />
         {/* 정렬기준 */}
@@ -249,7 +254,7 @@ export default function MainOptions() {
         />
       </div>
       <Divider />
-      <div className="m-2 flex items-center justify-between min-[515px]:m-4">
+      <div className="m-2 flex items-center justify-between md:m-4">
         <div className="flex gap-5">
           <Checkbox
             value="title"
@@ -286,29 +291,7 @@ export default function MainOptions() {
         </Popover>
       </div>
       <Divider />
-      <div className="m-2 flex items-center justify-between min-[515px]:m-4">
-        <Checkbox
-          value="sensitive"
-          onChange={handleCheckSensitiveCase}
-          defaultChecked={hasSensitiveCase}
-        >
-          대소문자 구분
-        </Checkbox>
-        <Popover>
-          <PopoverTrigger size="lg">
-            <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
-          </PopoverTrigger>
-          <PopoverContent>
-            <PopoverHeader>검색 도움말</PopoverHeader>
-            <PopoverBody>
-              {`체크시 대소문자를 구분해줍니다. 예시) 체크 후 Over를 검색하면 True
-              Lover는 검색되지 않습니다.`}
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
-      </div>
-      <Divider />
-      <div className="m-2 flex flex-col gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
+      <div className="m-2 flex flex-col gap-2 md:m-4 md:flex-row md:gap-4">
         {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
         <Select
           onChange={handleChangeBoard}
@@ -340,7 +323,29 @@ export default function MainOptions() {
         />
       </div>
       <Divider />
-      <div className="m-2 flex flex-col flex-wrap gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
+      <div className="m-2 flex items-center justify-between md:m-4">
+        <Checkbox
+          value="sensitive"
+          onChange={handleCheckSensitiveCase}
+          defaultChecked={hasSensitiveCase}
+        >
+          대소문자 구분
+        </Checkbox>
+        <Popover>
+          <PopoverTrigger size="lg">
+            <BsFillQuestionCircleFill className="size-4 text-blackAlpha-600 dark:text-whiteAlpha-600" />
+          </PopoverTrigger>
+          <PopoverContent>
+            <PopoverHeader>검색 도움말</PopoverHeader>
+            <PopoverBody>
+              {`체크시 대소문자를 구분해줍니다. 예시) 체크 후 Over를 검색하면 True
+              Lover는 검색되지 않습니다.`}
+            </PopoverBody>
+          </PopoverContent>
+        </Popover>
+      </div>
+      <Divider />
+      <div className="m-2 flex flex-col flex-wrap gap-2 md:m-4 md:flex-row md:gap-4">
         <div className="flex items-center justify-start gap-4">
           <Checkbox
             value="viewLimit"

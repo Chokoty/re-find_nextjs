@@ -1,4 +1,4 @@
-import { getPriod } from '@/app/search/lib/date';
+import { getPeriod } from '@/app/search/lib/date';
 import Service from '@/lib/service';
 import type { CountLimit, GetSearchResultParams } from '@/types';
 
@@ -28,7 +28,8 @@ class SearchService extends Service {
       likeCountLimit,
       commentCountLimit,
     });
-    const period = getPriod(dateType);
+    const period =
+      dateType.type === 'custom' ? dateType.date : getPeriod(dateType.type);
     const boardCategory = getBoardCategory({ board, category });
     const etc = `${criteria}${range}${boardCategory}${period}`;
     const url =
