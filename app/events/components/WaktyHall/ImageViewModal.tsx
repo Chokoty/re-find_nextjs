@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
 
 import useModal from '@/hooks/useModal';
@@ -11,9 +11,12 @@ export default function ImageViewModal(props: Record<string, unknown>) {
   const artwork = props.artwork as DoorBehindFanart;
   const { title, url, img_url, board } = artwork;
   const { hide } = useModal();
-  const onClose = () => {
+  // 의존성 배열이 매번 변경되지 않도록 하기위함
+  // 함수를 메모이제이션하여 의존성 배열의 값이 변경되지 않는 한 동일한 함수 참조를 유지
+  const onClose = useCallback(() => {
     hide();
-  };
+  }, [hide]);
+
   const article_link = useResponsiveLink(url.split('/').pop() ?? '', 'article');
   const modifiedUrl800 = useModifiedImageUrl({
     url: img_url ?? '',
