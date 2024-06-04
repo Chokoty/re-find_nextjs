@@ -1,22 +1,24 @@
 'use client';
 
 import clsx from 'clsx';
-import React, { createContext, useEffect, useRef } from 'react';
+import React, { createContext, useRef, useState } from 'react';
 import { IoClose } from 'react-icons/io5';
 
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
+
 type PopoverContextType = {
-  isOpen: boolean;
+  visible: boolean;
   onToggle: () => void;
-  onClose: () => void;
-  popoverRef: React.RefObject<HTMLDivElement>;
+  onClose: (e?: Event) => void;
+  innerContentRef: React.RefObject<HTMLDivElement>;
   buttonRef: React.RefObject<HTMLButtonElement>;
 };
 
 const PopoverContext = createContext<PopoverContextType>({
-  isOpen: false,
+  visible: false,
   onToggle: () => {},
   onClose: () => {},
-  popoverRef: { current: null },
+  innerContentRef: { current: null },
   buttonRef: { current: null },
 });
 
@@ -32,48 +34,27 @@ export const usePopoverContext = () => {
 
 // TODO: 현재 Content는 고정적으로 top right에 위치해있다. 이를 동적으로 변경할 수 있도록 수정해야함
 export default function Popover({ children }: { children: React.ReactNode }) {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const popoverRef = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+  const innerContentRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const onToggle = () => {
-    setIsOpen((prev) => !prev);
+    setVisible((prev) => !prev);
   };
-  const onClose = () => {
-    setIsOpen(false);
+  const onClose = (e?: Event) => {
+    const buttonEl = buttonRef?.current;
+    const isButton =
+      buttonEl === e?.target || buttonEl?.contains(e?.target as Node);
+    if (isButton) return;
+
+    setVisible(false);
   };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    // 외부 클릭 시 팝오버 닫기 (다른 팝오버가 있을 경우 고려)
-    if (
-      popoverRef.current &&
-      !popoverRef.current.contains(event.target as Node)
-    ) {
-      // 외부에 있는 토글 버튼을 누르면 이후 로직을 실행하지 않음
-      if (
-        buttonRef.current &&
-        buttonRef.current.contains(event.target as Node)
-      ) {
-        return;
-      }
-      onClose();
-    }
-  };
-
-  // 컴포넌트가 마운트될 때 document.body에 클릭 이벤트 리스너 추가
-  useEffect(() => {
-    document.body.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.body.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
 
   return (
     <PopoverContext.Provider
-      value={{ isOpen, onToggle, onClose, popoverRef, buttonRef }}
+      value={{ visible, onToggle, onClose, innerContentRef, buttonRef }}
     >
-      <div className="relative z-[2] inline-flex" aria-label="A popover">
+      <div className="relative inline-flex" aria-label="팝오버">
         {children}
       </div>
     </PopoverContext.Provider>
@@ -95,6 +76,7 @@ function PopoverTrigger({
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.stopPropagation();
     onToggle();
+    // onOpen();
   };
   return (
     <button
@@ -109,7 +91,7 @@ function PopoverTrigger({
           'size-8': size === '2md',
           'size-10': size === 'lg',
           'size-32': size === '9xl',
-          'bg-transparent text-blackAlpha-900 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
+          'bg-gray-100 text-blackAlpha-900 hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
             color === 'main',
           'bg-transition text-white hover:bg-blackAlpha-300 active:bg-blackAlpha-400':
             color === 'sub',
@@ -140,16 +122,20 @@ function PopoverContent({
   position = 'bottom-left',
   hasCloseButton = true,
 }: PopoverContentProps) {
-  const { isOpen, onClose, popoverRef } = usePopoverContext();
+  const { visible, onClose, innerContentRef } = usePopoverContext();
   // const buttonHeight = buttonRef.current?.clientHeight;
+  useOnClickOutside(innerContentRef, (e) => {
+    onClose(e);
+  });
+
   return (
     <div
-      ref={popoverRef}
+      ref={innerContentRef}
       className={clsx(
         'absolute z-50 rounded-md border-base border-gray-200 bg-white transition dark:border-whiteAlpha-300 dark:bg-black-200',
         {
-          'visible scale-100 opacity-100': isOpen,
-          'invisible scale-95 opacity-0': !isOpen,
+          'visible scale-100 opacity-100': visible,
+          'invisible scale-95 opacity-0': !visible,
           'w-[155px]': size === 'ss',
           'w-[200px]': size === 'sm',
           'w-[320px]': size === 'md',
@@ -165,7 +151,9 @@ function PopoverContent({
         <button
           type="button"
           aria-label="Close popover"
-          onClick={onClose}
+          onClick={() => {
+            onClose();
+          }}
           className="absolute right-2 top-2"
         >
           <IoClose className="size-4" />

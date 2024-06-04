@@ -1,13 +1,14 @@
 'use client';
 
 import clsx from 'clsx';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { IoIosArrowDown } from 'react-icons/io';
 import { useShallow } from 'zustand/react/shallow';
 
 import DateRangePicker from '@/components/Select/DateRangePicker';
 import SelectModal from '@/components/Select/SelectModal';
 import useModal from '@/hooks/useModal';
+import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useResponsive } from '@/hooks/useResponsive';
 import { useDatePickerStore } from '@/store/datePickerStore';
 import type { OptionType, SelectHandleParams } from '@/types';
@@ -20,8 +21,7 @@ type Props = {
 };
 
 /**
- * select -> ul
- * option -> li
+ * select -> ul / option -> li
  */
 export default function Select({
   disabled,
@@ -29,9 +29,9 @@ export default function Select({
   selected,
   onChange,
 }: Props) {
-  const [isOpen, setIsOpen] = useState(false);
+  const [visible, setVisible] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
-  const selectRef = useRef<HTMLUListElement>(null);
+  const innerContentRef = useRef<HTMLUListElement>(null);
   const isMobile = useResponsive();
   const { show } = useModal(SelectModal);
   // 단순히 label을 표시하기 위함
@@ -72,37 +72,23 @@ export default function Select({
       });
       return;
     }
-    setIsOpen((prev) => !prev);
-  };
-  const onClose = () => {
-    setIsOpen(false);
+    onToggle();
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    // 외부 클릭 시 팝오버 닫기 (다른 팝오버가 있을 경우 고려)
-    if (
-      selectRef.current &&
-      !selectRef.current.contains(event.target as Node)
-    ) {
-      // 외부에 있는 토글 버튼을 누르면 이후 로직을 실행하지 않음
-      if (
-        buttonRef.current &&
-        buttonRef.current.contains(event.target as Node)
-      ) {
-        return;
-      }
-      onClose();
-    }
+  const onToggle = () => {
+    setVisible((prev) => !prev);
   };
+  const onClose = (e?: Event) => {
+    const buttonEl = buttonRef?.current;
+    const isButton =
+      buttonEl === e?.target || buttonEl?.contains(e?.target as Node);
+    if (isButton) return;
 
-  // 컴포넌트가 마운트될 때 document.body에 클릭 이벤트 리스너 추가
-  useEffect(() => {
-    document.body.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.body.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
+    setVisible(false);
+  };
+  useOnClickOutside(innerContentRef, (e) => {
+    onClose(e);
+  });
 
   const selectedLabel = options.find(
     (option) => option.value === selected
@@ -121,8 +107,8 @@ export default function Select({
           'relative block h-[40px] w-full appearance-none border-base border-blackAlpha-300 bg-white pb-px pe-8 ps-4 text-start outline-transparent transition focus:outline-none focus:ring-2 dark:border-whiteAlpha-300 dark:bg-dark-card',
           {
             'cursor-not-allowed opacity-40': disabled,
-            'rounded-t-md': isOpen,
-            'rounded-md': !isOpen,
+            'rounded-t-md': visible,
+            'rounded-md': !visible,
           }
         )}
       >
@@ -131,7 +117,7 @@ export default function Select({
           className={clsx(
             'pointer-events-none absolute right-2 top-1/2 inline-flex h-full w-6 -translate-y-1/2 items-center justify-center text-xl text-current transition',
             {
-              'rotate-180': isOpen,
+              'rotate-180': visible,
               'opacity-50': disabled,
             }
           )}
@@ -143,8 +129,8 @@ export default function Select({
        * 8개 넘어가면 스크롤
        */}
       <ul
-        ref={selectRef}
-        className={`absolute top-[39px] z-10 max-h-[300px] w-full overflow-y-auto rounded-b-md border-base border-blackAlpha-300 bg-white shadow-md dark:border-whiteAlpha-300 dark:bg-dark-card ${isOpen ? 'block' : 'hidden'}`}
+        ref={innerContentRef}
+        className={`absolute top-[39px] z-10 max-h-[300px] w-full overflow-y-auto rounded-b-md border-base border-blackAlpha-300 bg-white shadow-md dark:border-whiteAlpha-300 dark:bg-dark-card ${visible ? 'block' : 'hidden'}`}
       >
         {options.map(({ value, label, hasCustomDateRangePicker }) =>
           !hasCustomDateRangePicker ? (
