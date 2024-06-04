@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import Loading from '@/app/search/components/Loading';
+import BackToTopButton from '@/components/BackToTopButton';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
@@ -34,6 +35,7 @@ export default function NoticeLayout({
     <>
       {children}
       <Loading />
+      <BackToTopButton />
     </>
   );
 }

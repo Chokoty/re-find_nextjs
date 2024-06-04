@@ -31,7 +31,7 @@ export default function BackToTopButton() {
   }, []);
 
   return (
-    <div className="fixed bottom-20 right-5 z-[1000] md:right-10">
+    <div className="fixed bottom-20 right-5 z-[200] md:right-10">
       {isVisible && (
         <Tooltip label="맨 위로" position="left-center">
           <button
