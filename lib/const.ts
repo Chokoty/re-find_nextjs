@@ -19,3 +19,6 @@ export const GalleryMap = {
 export const RANDOM_TEXTS = ['과연', '어떤', '팬아트가', '나올까요?', '🤔'];
 
 export const MIN_DATE = '2015-01-01';
+
+export const NotFoundProfileURL =
+  'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png';

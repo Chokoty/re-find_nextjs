@@ -3,6 +3,7 @@ import Link from 'next/link';
 
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
+import { NotFoundProfileURL } from '@/lib/const';
 
 interface AuthorProfileCardProps {
   author: SourceAuthor;
@@ -25,10 +26,7 @@ export default function AuthorProfileCard({
               width={100}
               height={100}
               className="size-[96px] rounded-full object-cover"
-              src={
-                profURL ||
-                'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
-              }
+              src={profURL || NotFoundProfileURL}
               alt={nickname}
               unoptimized
             />
