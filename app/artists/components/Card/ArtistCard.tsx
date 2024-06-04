@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { ROWS_PER_PAGE } from '@/app/artists/service/client/ArtistService';
+import { delayArr, ROWS_PER_PAGE } from '@/app/artists/lib/const';
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
 import { useResponsive } from '@/hooks/useResponsive';
@@ -45,14 +45,6 @@ export default function ArtistCard({
   }, []);
 
   const th = (nth - 1) % ROWS_PER_PAGE;
-  /**
-   * Tailwind CSS 컴파일러가 제대로 작동하려면 attributes를 일반 텍스트로 사용할 수 있어야 합니다.
-   * 예시) ``delay-[${index * 100}ms]`` 와 같은 밀리초 단위의 변수는 사용할 수 없습니다.
-   * */
-  const delayArr = Array.from(
-    { length: ROWS_PER_PAGE },
-    (_, i) => `delay-[${i * 100}ms]`
-  );
 
   const animateClassName = isVisible
     ? `translate-y-0 opacity-100 ${delayArr[th]}`

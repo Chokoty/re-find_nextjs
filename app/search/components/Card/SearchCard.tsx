@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { ROWS_PER_PAGE } from '@/app/search/service/client/SearchService';
+import { delayArr, ROWS_PER_PAGE } from '@/app/search/lib/const';
 import SocialStats from '@/components/SocialStats';
 
 type Props = {
@@ -63,14 +63,6 @@ export default function SearchCard({
   }, []);
 
   const th = index % ROWS_PER_PAGE;
-  /**
-   * Tailwind CSS 컴파일러가 제대로 작동하려면 attributes를 일반 텍스트로 사용할 수 있어야 합니다.
-   * 예시) ``delay-[${index * 100}ms]`` 와 같은 밀리초 단위의 변수는 사용할 수 없습니다.
-   * */
-  const delayArr = Array.from(
-    { length: ROWS_PER_PAGE },
-    (_, i) => `delay-[${i * 100}ms]`
-  );
 
   const animateClassName = isVisible
     ? `translate-y-0 opacity-100 ${delayArr[th]}`

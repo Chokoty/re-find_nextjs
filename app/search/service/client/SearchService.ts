@@ -1,8 +1,7 @@
+import { ROWS_PER_PAGE } from '@/app/search/lib/const';
 import { getPeriod } from '@/app/search/lib/date';
 import Service from '@/lib/service';
 import type { CountLimit, GetSearchResultParams } from '@/types';
-
-export const ROWS_PER_PAGE = 10; // 한 페이지당 불러올 아이템 개수
 
 class SearchService extends Service {
   // 검색 결과 가져오기
