@@ -65,7 +65,7 @@ export const DEVELOPERS: Developer[] = [
     group: 'member',
     nickname: '람쥐썬더펀치',
     writerURL:
-      'https://cafe.naver.com/ca-fe/cafes/27842958/members/N27vMPTAxmQvTsmC9DDBvw?tab=articles',
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/N27vMPTAxmQvTsmC9DDBvw',
     profURL: 람쥐썬더펀치,
     contribute: ['UX 디자인'],
   },
@@ -151,18 +151,25 @@ export const DEVELOPERS: Developer[] = [
   },
   {
     group: 'member',
+    nickname: '춘향의 사랑',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/Bb5h-v6AoCGacBz76C7gJg',
+    profURL: NotFoundProfileURL,
+    contribute: ['AI연구'],
+  },
+  {
+    group: 'member',
     nickname: '녹두레기',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/2ZB1kx_FI9Qhs-jaAORemw',
     profURL: 녹두레기,
     contribute: ['백엔드'],
   },
-  // 수정필요
   {
     group: 'member',
     nickname: '담다',
     writerURL:
-      'https://cafe.naver.com/ca-fe/cafes/27842958/members/T8zKwDjv8_CiE3Pvo-FHVw',
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/ILudmLEjWir3qKfErZ5xNg',
     profURL: NotFoundProfileURL,
     contribute: ['백엔드'],
   },
