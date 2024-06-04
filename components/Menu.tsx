@@ -140,7 +140,7 @@ function MenuItem({ onClick, children }: MenuItemType) {
     <button
       type="button"
       role="menuitem"
-      className="flex w-full select-none items-center py-1.5 pe-3 ps-3 text-start transition hover:bg-gray-100 dark:hover:bg-whiteAlpha-200"
+      className="flex w-full select-none items-center py-1.5 pe-3 ps-3 text-start transition hover:bg-gray-100 active:bg-gray-200 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300"
       tabIndex={-1}
       onClick={handleClick}
     >

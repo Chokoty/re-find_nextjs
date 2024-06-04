@@ -137,7 +137,7 @@ export default function Select({
             <li
               key={value}
               className={clsx(
-                'h-9 cursor-pointer pe-8 ps-4 text-sm leading-9 transition hover:bg-green-100 hover:text-green-highlight hover:underline dark:text-white dark:hover:bg-[#01BFA2]'
+                'h-9 cursor-pointer pe-8 ps-4 text-sm leading-9 transition hover:bg-green-100 hover:text-green-highlight hover:underline active:bg-green-200 dark:text-white dark:hover:bg-[#01BFA2] dark:active:bg-[#01bfa2b0]'
                 // {
                 //   'bg-green-300 text-white': value === selected,
                 // }

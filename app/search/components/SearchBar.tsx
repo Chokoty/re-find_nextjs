@@ -104,7 +104,7 @@ export default function SearchBar({
       </div>
       {hasButton && (
         <Button
-          additionalClass="rounded-full bg-green-highlight hover:bg-green-600 min-h-9 h-9 hidden md:inline-flex"
+          additionalClass="rounded-full bg-green-highlight hover:bg-green-600 active:bg-green-700 dark:active:bg-green-400 min-h-9 h-9 hidden md:inline-flex"
           onClick={onSearchButtonClick}
         >
           검색

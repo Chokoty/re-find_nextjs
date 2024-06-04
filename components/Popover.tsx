@@ -91,7 +91,7 @@ function PopoverTrigger({
           'size-8': size === '2md',
           'size-10': size === 'lg',
           'size-32': size === '9xl',
-          'bg-gray-100 text-blackAlpha-900 hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
+          'bg-transparent text-blackAlpha-900 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
             color === 'main',
           'bg-transition text-white hover:bg-blackAlpha-300 active:bg-blackAlpha-400':
             color === 'sub',

@@ -92,7 +92,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
         <p className="text-4xl font-bold">{nickname}</p>
         <Tooltip label="프로필 공유">
           <button
-            className="flex size-10 items-center justify-center rounded-full transition hover:bg-gray-200 dark:hover:bg-whiteAlpha-300"
+            className="flex size-10 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400"
             onClick={handleCopyLink}
           >
             <ImLink />

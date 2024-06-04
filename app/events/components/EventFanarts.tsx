@@ -54,7 +54,7 @@ export default function EventFanarts() {
                   selectedEvent?.key === item.key && item.color === 'green',
                 'bg-pink-300 dark:bg-pink-500':
                   selectedEvent?.key === item.key && item.color === 'pink',
-                'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300':
+                'bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-300':
                   selectedEvent?.key !== item.key,
               }
             )}

@@ -10,13 +10,13 @@ export default function ShareLinkButton() {
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast.success('갤러리 링크 복사됨');
+      toast.success('갤러리 링크가 복사되었습니다.');
     });
   };
 
   return (
     <Button
-      additionalClass="bg-green-highlight dark:hover:bg-pink-400 dark:bg-pink-highlight hover:bg-teal-500 rounded-full"
+      additionalClass="bg-green-highlight dark:hover:bg-pink-400 dark:active:bg-pink-500 dark:bg-pink-highlight hover:bg-teal-500 active:bg-teal-600 rounded-full"
       onClick={handleCopyLink}
     >
       <p className="text-white">

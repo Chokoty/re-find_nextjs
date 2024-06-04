@@ -90,7 +90,7 @@ export default function SearchCard({
               }}
             />
           </Link>
-          <div className="mt-1 flex items-center gap-1 text-sm text-blackAlpha-800 dark:text-whiteAlpha-800 min-[698px]:text-base">
+          <div className="mt-1 flex flex-wrap items-center gap-1 text-sm text-blackAlpha-800 dark:text-whiteAlpha-800 min-[698px]:text-base">
             <Link href={`/artists/${author}`} prefetch={false} target="_blank">
               <p
                 className="hover:text-blackAlpha-600 dark:hover:text-whiteAlpha-600"

@@ -7,6 +7,26 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      xxs: '320px',
+      // => @media (min-width: 320px) { ... }
+      xs: '375px',
+      // => @media (min-width: 375px) { ... }
+      '2xs': '478px',
+      // => @media (min-width: 478px) { ... }
+      sm: '640px',
+      // => @media (min-width: 640px) { ... }
+      md: '768px',
+      // => @media (min-width: 768px) { ... } // isMobile
+      '2md': '992px',
+      // => @media (min-width: 992px) { ... }
+      lg: '1024px',
+      // => @media (min-width: 1024px) { ... }
+      xl: '1280px',
+      // => @media (min-width: 1280px) { ... }
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -59,30 +79,39 @@ const config: Config = {
         },
         redAlpha: {
           200: 'var(--redAlpha-200)',
+          300: 'var(--redAlpha-300)',
         },
         yellowAlpha: {
           200: 'var(--yellowAlpha-200)',
+          300: 'var(--yellowAlpha-300)',
         },
         orangeAlpha: {
           200: 'var(--orangeAlpha-200)',
+          300: 'var(--orangeAlpha-300)',
         },
         greenAlpha: {
           200: 'var(--greenAlpha-200)',
+          300: 'var(--greenAlpha-300)',
         },
         tealAlpha: {
           200: 'var(--tealAlpha-200)',
+          300: 'var(--tealAlpha-300)',
         },
         blueAlpha: {
           200: 'var(--blueAlpha-200)',
+          300: 'var(--blueAlpha-300)',
         },
         cyanAlpha: {
           200: 'var(--cyanAlpha-200)',
+          300: 'var(--cyanAlpha-300)',
         },
         purpleAlpha: {
           200: 'var(--purpleAlpha-200)',
+          300: 'var(--purpleAlpha-300)',
         },
         pinkAlpha: {
           200: 'var(--pinkAlpha-200)',
+          300: 'var(--pinkAlpha-300)',
         },
         black: {
           200: 'var(--black-200)',
@@ -211,26 +240,6 @@ const config: Config = {
           900: 'var(--pink-900)',
         },
       },
-      screens: {
-        xxs: '320px',
-        // => @media (min-width: 320px) { ... }
-        xs: '375px',
-        // => @media (min-width: 375px) { ... }
-        '2xs': '478px',
-        // => @media (min-width: 478px) { ... }
-        sm: '640px',
-        // => @media (min-width: 640px) { ... }
-        md: '768px',
-        // => @media (min-width: 768px) { ... } // isMobile
-        '2md': '992px',
-        // => @media (min-width: 992px) { ... }
-        lg: '1024px',
-        // => @media (min-width: 1024px) { ... }
-        xl: '1280px',
-        // => @media (min-width: 1280px) { ... }
-        '2xl': '1536px',
-        // => @media (min-width: 1536px) { ... }
-      },
       borderWidth: {
         base: '1px',
       },
@@ -285,6 +294,9 @@ const config: Config = {
       },
       backgroundImage: {},
     },
+  },
+  future: {
+    hoverOnlyWhenSupported: true,
   },
   plugins: [],
   darkMode: 'class',

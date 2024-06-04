@@ -101,18 +101,20 @@ const SlideNavButtons = () => {
     swiper.slideNext();
   };
 
+  const commonClassName =
+    'absolute top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-300 active:bg-blackAlpha-400 dark:bg-blackAlpha-300 dark:hover:bg-blackAlpha-400 dark:active:bg-blackAlpha-500 md:block';
+
   return (
     <div>
       <button
-        className="absolute left-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
+        className={`left-0 ${commonClassName}`}
         type="button"
         onClick={handlePrevClick}
       >
         <GrFormPrevious size="22px" className="mb-8" />
       </button>
       <button
-        className="absolute right-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
-        type="button"
+        className={`right-0 ${commonClassName}`}
         onClick={handleNextClick}
       >
         <GrFormNext size="22px" className="mb-8" />

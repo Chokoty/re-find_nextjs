@@ -26,6 +26,7 @@ export default function ImageViewModal(props: Record<string, unknown>) {
         onClose();
       }
     };
+
     document.body.addEventListener('keydown', closeOnEscapeKey);
     return () => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
@@ -35,7 +36,7 @@ export default function ImageViewModal(props: Record<string, unknown>) {
   return (
     <section className="relative m-5 rounded-2xl bg-white dark:bg-dark-card sm:mx-auto sm:w-full sm:max-w-lg">
       <button
-        className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300"
+        className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition active:bg-gray-300  dark:active:bg-whiteAlpha-300"
         onClick={onClose}
       >
         <IoClose className="size-8" />
