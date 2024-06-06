@@ -259,6 +259,8 @@
   &.dark {
     --background: var(--darkmode-bg);
     --color: var(--gray-50);
+    /* for scrollbar color when refreshing page */
+    color-scheme: dark;
   }
 }
 
