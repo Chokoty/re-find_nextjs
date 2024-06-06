@@ -14,7 +14,7 @@ export default function Loading() {
 
   return (
     isShow && (
-      <div className="fixed inset-0 z-[299] flex size-full items-center justify-center bg-blackAlpha-700">
+      <div className="fixed inset-0 z-[299] flex size-full items-center justify-center bg-blackAlpha-300">
         <ClimbingBoxLoader color="#01BFA2" />
       </div>
     )
