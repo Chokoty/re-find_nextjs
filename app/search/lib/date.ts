@@ -45,7 +45,7 @@ const getOnYearAgo = () => {
   return { since, until };
 };
 
-export const getPriod = (dateType: string) => {
+export const getPeriod = (dateType: string) => {
   switch (dateType) {
     case 'day': {
       const { since, until } = getOnDayAgo();
@@ -71,3 +71,5 @@ export const getPriod = (dateType: string) => {
       return '';
   }
 };
+// 현재 날짜를 'yyyy-MM-dd' 형식으로 포맷팅하는 함수
+export const getCurrentDate = () => format(new Date(), 'yyyy-MM-dd');

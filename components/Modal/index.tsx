@@ -22,12 +22,16 @@ const animationMap = {
     render: 'animate-modalRenderFromBottom',
     remove: 'animate-modalRemove',
   },
+  default: {
+    render: 'animate-modalRender',
+    remove: 'animate-modalRemove',
+  },
 } as const;
 
 // 디폴트: 포지션(가운데), 렌더 애니메이션(밑)
 export default function Modal({ Component, modalProps, hide }: Props) {
   const position = modalProps?.position ?? 'center';
-  const animationPosition = modalProps?.position ?? 'bottom';
+  const animationPosition = modalProps?.animateDir ?? 'default';
   const ANIMATION_RENDER =
     animationMap[animationPosition as AnimationRenderPositionType].render;
   const ANIMATION_REMOVE =

@@ -29,7 +29,7 @@ export default function Door({
   const onOpen = () => {
     const artwork = getFanart();
     if (!artwork) return;
-    show({ artwork });
+    show({ artwork, animateDir: 'bottom' });
   };
 
   const certainDoorSrc = () => {

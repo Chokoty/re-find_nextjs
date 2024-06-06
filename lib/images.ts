@@ -30,3 +30,15 @@ export { default as VirtualIsd } from '@/public/static/images/gallery/virtualIsd
 export { default as NotSearch } from '@/public/static/images/original_18.png';
 export { default as UploadImage } from '@/public/static/images/refind-1.webp';
 export { default as UploadHoverImage } from '@/public/static/images/refind-2.webp';
+// developers
+export { default as 팔구 } from '@/public/static/images/developer/89.webp';
+export { default as 그적미적 } from '@/public/static/images/developer/그적미적.webp';
+export { default as 녹두레기 } from '@/public/static/images/developer/녹두레기.webp';
+export { default as 람쥐썬더펀치 } from '@/public/static/images/developer/람쥐썬더펀치.webp';
+export { default as 레루루 } from '@/public/static/images/developer/레루루.webp';
+export { default as 바게트빵옴뇸뇸 } from '@/public/static/images/developer/바게트빵옴뇸뇸.webp';
+export { default as 아르키메트리스 } from '@/public/static/images/developer/아르키메트리스.webp';
+export { default as 에이요 } from '@/public/static/images/developer/에이요.webp';
+export { default as 초코넛밀크티 } from '@/public/static/images/developer/초코넛밀크티.webp';
+export { default as 카닌 } from '@/public/static/images/developer/카닌.webp';
+export { default as 카미루 } from '@/public/static/images/developer/카미루.webp';

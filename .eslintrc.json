@@ -50,6 +50,7 @@
     "import/no-unresolved": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/ban-ts-comment": "off",
+    "no-nested-ternary": "off",
     // "import/no-extraneous-dependencies": [
     //   "error",
     //   {

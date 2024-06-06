@@ -1,5 +1,8 @@
 import type { Gallery, Member } from '@/types';
 
+// 한 페이지당 불러올 아이템 개수
+export const ROWS_PER_PAGE = 30;
+
 export const BUTTON_LIST = [
   '전체',
   '이세돌',

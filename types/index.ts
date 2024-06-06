@@ -80,6 +80,11 @@ export type CountLimit = {
   max: number;
 };
 
+export type DateType = {
+  type: string;
+  date?: string;
+};
+
 // service (api)
 
 export type GetKeywordGalleryArtworksParams = {
@@ -117,7 +122,7 @@ export type GetSearchResultParams = {
   sensitive: boolean;
   board: string;
   category: string;
-  dateType: string;
+  dateType: DateType;
   rankType: string;
   viewCountLimit: CountLimit;
   likeCountLimit: CountLimit;
@@ -129,4 +134,18 @@ export type Board = {
   board: string;
   id: string;
   state?: string;
+};
+
+// common
+export type SelectHandleParams = {
+  value: string;
+  startD: string;
+  dueD: string;
+};
+
+export type OptionType = {
+  value: string;
+  label: string;
+  default?: boolean;
+  hasCustomDateRangePicker?: boolean;
 };

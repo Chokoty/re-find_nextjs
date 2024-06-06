@@ -54,9 +54,9 @@ export default function ViewSelectBar({
       <div className="flex gap-[5px]">
         <button
           className={clsx('h-10 rounded-full px-4 transition', {
-            'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300':
+            'bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
               activeView === 'masonry',
-            'text-blackAlpha-400 hover:bg-gray-100 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200':
+            'text-blackAlpha-400 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300':
               activeView !== 'masonry',
           })}
           onClick={() => onViewChange('masonry')}
@@ -65,9 +65,9 @@ export default function ViewSelectBar({
         </button>
         <button
           className={clsx('h-10 rounded-full px-4 transition', {
-            'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300':
+            'bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
               activeView === 'grid',
-            'text-blackAlpha-400 hover:bg-gray-100 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200':
+            'text-blackAlpha-400 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300':
               activeView !== 'grid',
           })}
           onClick={() => onViewChange('grid')}

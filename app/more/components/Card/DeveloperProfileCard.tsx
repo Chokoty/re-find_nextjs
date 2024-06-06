@@ -1,13 +1,14 @@
 'use client';
 
-import Image from 'next/image';
+import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
 
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
+import { NotFoundProfileURL } from '@/lib/const';
 
 interface Props {
   writerURL: string;
-  profURL: string;
+  profURL: string | StaticImageData;
   nickname: string;
   board: string[];
 }
@@ -25,14 +26,11 @@ export default function DeveloperProfileCard({
 
   return (
     <Link href={writerURL === '' ? '#' : member_link} target="_blank">
-      <div className="flex min-h-[120px] w-full min-w-10 max-w-[346px] items-center justify-start gap-4 rounded-2xl bg-gray-200 px-4 py-2 shadow-base transition hover:bg-gray-300 dark:bg-dark-card dark:hover:bg-whiteAlpha-300">
+      <div className="flex min-h-[120px] w-full min-w-10 max-w-[346px] items-center justify-start gap-4 rounded-2xl bg-gray-200 px-4 py-2 shadow-base transition hover:bg-gray-300 active:bg-gray-400 dark:bg-dark-card dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400">
         <div className="relative min-h-20 min-w-20 md:min-h-24 md:min-w-24">
           <Image
             className="rounded-full bg-gray-100 object-cover"
-            src={
-              profURL ||
-              'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png'
-            }
+            src={profURL || NotFoundProfileURL}
             alt={nickname}
             fill={true}
             priority

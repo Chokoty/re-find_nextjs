@@ -1,7 +1,6 @@
+import { ROWS_PER_PAGE } from '@/app/artwork/lib/const';
 import Service from '@/lib/service';
 import type { GetRecommendArtworksParams } from '@/types';
-
-const ROWS_PER_PAGE = 30; // 한 페이지당 불러올 아이템 개수
 
 class ArtworkService extends Service {
   // 작품(게시글)에 대한 추천 작품들을 가져옵니다. 추천은 좋아요 기반이며, 파라미터로 조정 가능합니다.

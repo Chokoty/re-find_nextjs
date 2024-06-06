@@ -79,7 +79,7 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
               target="_blank"
             >
               <div
-                className="flex h-10 w-full items-center justify-center gap-2.5 rounded-full bg-gradient-to-tl from-pink-500 to-pink-300 text-white transition hover:bg-pink-highlight hover:text-blackAlpha-700 xl:h-11"
+                className="flex h-10 w-full items-center justify-center gap-2.5 rounded-full bg-gradient-to-tl from-pink-500 to-pink-300 text-white transition hover:bg-pink-highlight hover:text-blackAlpha-700 active:bg-pink-500 xl:h-11"
                 // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
               >
                 왁물원<span className="hidden xl:contents">에서 보기</span>

@@ -53,11 +53,7 @@ export default function Fanart({
   const displayText = RANDOM_TEXTS[displayTextIndex];
 
   if (isError) {
-    return (
-      <div className="my-4 w-full">
-        <Alert />
-      </div>
-    );
+    return <Alert />;
   }
 
   if (isFetching || isLoading || !data) {
