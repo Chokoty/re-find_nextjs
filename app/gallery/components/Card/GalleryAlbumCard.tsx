@@ -42,7 +42,7 @@ export default function GalleryAlbumCard({
       {/* 출처(작가) */}
       <div className="absolute inset-0 rounded-2xl px-2.5 pb-3.5 pt-2.5 min-[840px]:px-3 min-[840px]:pb-4 min-[840px]:pt-3 min-[1055px]:px-5 min-[1055px]:pb-7 min-[1055px]:pt-5">
         {/* 모바일 */}
-        <div className="flex size-7 items-center justify-center md:hidden md:size-9 min-[840px]:size-10">
+        <div className="relative z-[2] flex size-7 items-center justify-center md:hidden md:size-9 min-[840px]:size-10">
           <Popover>
             <PopoverTrigger color="sub">
               <div className="rounded-full bg-whiteAlpha-500">

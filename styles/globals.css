@@ -34,14 +34,23 @@
   --blackAlpha-800: rgba(0, 0, 0, 0.8);
   --blackAlpha-900: rgba(0, 0, 0, 0.92);
   --redAlpha-200: rgba(254, 178, 178, 0.12);
+  --redAlpha-300: rgba(254, 178, 178, 0.24);
   --orangeAlpha-200: rgba(251, 211, 141, 0.12);
+  --orangeAlpha-300: rgba(251, 211, 141, 0.24);
   --yellowAlpha-200: rgba(250, 240, 137, 0.12);
+  --yellowAlpha-300: rgba(250, 240, 137, 0.24);
   --greenAlpha-200: rgba(154, 230, 180, 0.12);
+  --greenAlpha-300: rgba(154, 230, 180, 0.24);
   --tealAlpha-200: rgba(129, 230, 217, 0.12);
+  --tealAlpha-300: rgba(129, 230, 217, 0.24);
   --blueAlpha-200: rgba(144, 205, 244, 0.12);
+  --blueAlpha-300: rgba(144, 205, 244, 0.24);
   --cyanAlpha-200: rgba(157, 236, 249, 0.12);
+  --cyanAlpha-300: rgba(157, 236, 249, 0.24);
   --purpleAlpha-200: rgba(214, 188, 250, 0.12);
+  --purpleAlpha-300: rgba(214, 188, 250, 0.24);
   --pinkAlpha-200: rgba(251, 182, 206, 0.12);
+  --pinkAlpha-300: rgba(251, 182, 206, 0.24);
   --black-200: #434343;
   --gray-50: #f7fafc;
   --gray-100: #edf2f7;
@@ -250,6 +259,8 @@
   &.dark {
     --background: var(--darkmode-bg);
     --color: var(--gray-50);
+    /* for scrollbar color when refreshing page */
+    color-scheme: dark;
   }
 }
 

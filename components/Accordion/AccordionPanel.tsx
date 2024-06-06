@@ -11,9 +11,10 @@ export function AccordionPanel({ children }: AccordionPanelProps) {
   const { isOpen } = useAccordionItemContext();
   return (
     <div
-      className={clsx('w-full overflow-hidden px-4 transition-all', {
-        'max-h-[500px] opacity-100': isOpen,
-        'max-h-0 opacity-0': !isOpen,
+      // overflow-hidden를 주면 select가 하단에 있는경우 열면 컨텐츠가 숨겨지는 버그 > 제거
+      className={clsx('w-full px-4 transition-all', {
+        'max-h-screen opacity-100': isOpen,
+        'max-h-0 overflow-hidden opacity-0': !isOpen,
       })}
     >
       {children}

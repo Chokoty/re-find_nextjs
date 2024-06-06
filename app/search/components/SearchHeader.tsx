@@ -1,7 +1,6 @@
 'use client';
 
 import clsx from 'clsx';
-import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 import SearchBar from '@/app/search/components/SearchBar';
@@ -9,8 +8,6 @@ import SearchHistory from '@/app/search/components/SearchHistory';
 import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
 
 export default function SearchHeader() {
-  const searchParams = useSearchParams();
-  const q = searchParams.get('q') ?? '';
   const {
     recentSearches,
     addHistoryKeyword,
@@ -34,7 +31,6 @@ export default function SearchHeader() {
           addHistoryKeyword={addHistoryKeyword}
           hasButton
           closeHistory={handleCloseSearchHistory}
-          q={q}
           focusBar={onBarFocus}
         />
       </div>

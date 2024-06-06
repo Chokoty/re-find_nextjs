@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
+import { delayArr, ROWS_PER_PAGE } from '@/app/search/lib/const';
 import SocialStats from '@/components/SocialStats';
 
 type Props = {
@@ -9,6 +11,7 @@ type Props = {
   isTitleSearch: boolean;
   isContentSearch: boolean;
   isAuthorSearch: boolean;
+  index: number;
 };
 
 // danerouslySetInnerHTML을 사용하여 검색어를 하이라이팅할 때, dompurify를 고려하여 sanitized HTML 사용할 것
@@ -18,6 +21,7 @@ export default function SearchCard({
   isTitleSearch,
   isAuthorSearch,
   isContentSearch,
+  index,
 }: Props) {
   const {
     title,
@@ -34,6 +38,7 @@ export default function SearchCard({
   const isAllHightlight =
     (isTitleSearch && isAuthorSearch && isContentSearch) ||
     (!isTitleSearch && !isAuthorSearch && !isContentSearch);
+  const [isVisible, setIsVisible] = useState(false);
 
   const highlightText = (text: string, ableHightlight: boolean) => {
     const regex = new RegExp(searchText, 'gi');
@@ -48,10 +53,27 @@ export default function SearchCard({
     return text;
   };
 
+  useEffect(() => {
+    // setTimeout(() => {
+    //   setIsVisible(true);
+    // }, 50);
+    requestAnimationFrame(() => {
+      setIsVisible(true);
+    });
+  }, []);
+
+  const th = index % ROWS_PER_PAGE;
+
+  const animateClassName = isVisible
+    ? `translate-y-0 opacity-100 ${delayArr[th]}`
+    : 'translate-y-4 opacity-0';
+
   return (
-    <div className="flex w-full flex-col-reverse items-center gap-8 overflow-hidden py-4 min-[660px]:flex-row">
-      <div className="flex w-full flex-col gap-2">
-        <div className="flex flex-1 flex-col items-start">
+    <div
+      className={`relative mb-6 flex w-full flex-col-reverse items-center gap-6 overflow-hidden border-b-base border-gray-300 pb-6 transition-all duration-300 dark:border-whiteAlpha-300 min-[660px]:flex-row min-[660px]:items-start ${animateClassName}`}
+    >
+      <div className="flex w-full flex-col">
+        <div className="mb-2 flex flex-1 flex-col items-start">
           <Link href={url} prefetch={false} target="_blank">
             <p
               className="text-start text-lg hover:text-blackAlpha-600 dark:hover:text-whiteAlpha-600"
@@ -60,7 +82,7 @@ export default function SearchCard({
               }}
             />
           </Link>
-          <div className="mt-1 flex items-center gap-1 text-sm text-blackAlpha-800 dark:text-whiteAlpha-800 min-[698px]:text-base">
+          <div className="mt-1 flex flex-wrap items-center gap-1 text-sm text-blackAlpha-800 dark:text-whiteAlpha-800 min-[698px]:text-base">
             <Link href={`/artists/${author}`} prefetch={false} target="_blank">
               <p
                 className="hover:text-blackAlpha-600 dark:hover:text-whiteAlpha-600"
@@ -70,34 +92,41 @@ export default function SearchCard({
               />
             </Link>
             <p>·</p>
-            <p>{board}</p>
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+              {board.replace(/&#\d+;/g, '').trim()}
+            </p>
             <p>·</p>
-            <p className="text-blackAlpha-600 dark:text-whiteAlpha-600">
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
               {date.split(' ')[0]}
             </p>
           </div>
-          <p
-            className="line-clamp-4 py-1 text-start"
-            dangerouslySetInnerHTML={{
-              __html: highlightText(
-                content.length > 100 ? `${content.slice(0, 250)}...` : content,
-                isContentSearch
-              ),
-            }}
-          />
+          <Link href={url} prefetch={false} target="_blank">
+            <p
+              className="line-clamp-3 break-all py-1 text-start"
+              dangerouslySetInnerHTML={{
+                __html: highlightText(
+                  content.length > 100
+                    ? `${content.slice(0, 250)}...`
+                    : content,
+                  isContentSearch
+                ),
+              }}
+            />
+          </Link>
         </div>
         <div className="flex justify-start">
           <SocialStats view={view} like={like} comment={comment} />
         </div>
       </div>
       <Link href={url} prefetch={false} target="_blank">
-        <div className="size-full rounded-lg border-base border-blackAlpha-200 dark:border-none min-[660px]:h-[132px] min-[660px]:w-[235px]">
+        <div className="w-full overflow-hidden rounded-lg border-base border-blackAlpha-200 dark:border-none min-[660px]:h-[162px] min-[660px]:w-[200px]">
           <Image
             width="400"
-            height="190"
+            height="230"
             src={img_url}
             alt={title}
-            className="aspect-[400/230] rounded-lg bg-[#f5f5f5] object-cover"
+            className="aspect-[400/230] rounded-lg bg-[#f5f5f5] object-cover transition hover:scale-110 min-[660px]:aspect-[200/162]"
+            priority
             unoptimized
           />
         </div>

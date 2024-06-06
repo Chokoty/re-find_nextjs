@@ -40,7 +40,7 @@ export default function Support() {
     <div className="mx-10 my-20 flex flex-wrap items-center justify-center gap-10">
       {SUPPORT_INFOS.map((info, index) => (
         <Link
-          className="flex h-[144px] w-[160px] flex-col items-center justify-center rounded-lg border-base border-gray-200 bg-white p-4 shadow-base transition hover:bg-gray-200 dark:border-whiteAlpha-300 dark:bg-dark-card dark:hover:bg-whiteAlpha-300"
+          className="flex h-[144px] w-[160px] flex-col items-center justify-center rounded-lg border-base border-gray-200 bg-white p-4 shadow-base transition hover:bg-gray-200 active:bg-gray-300 dark:border-whiteAlpha-300 dark:bg-dark-card dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400"
           key={index}
           href={info.url}
           target="_blank"

@@ -27,14 +27,14 @@ export default async function ArtistsPage() {
     });
 
     return (
-      <div className="my-2.5 flex w-full flex-col items-center justify-center p-4">
+      <div className="flex w-full flex-col items-center justify-center px-2.5 py-4 md:px-4">
         <PageTitle topTitle={topTitle} />
         <div className="mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
           <ArtistsSearchInput />
           <RankSortButtonGroup />
           <TotalSortButtonGroup />
           <Hydrate state={{ queries: [query] }}>
-            <div className="w-full rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
+            <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
               <ArtistList />
             </div>
           </Hydrate>
@@ -44,13 +44,13 @@ export default async function ArtistsPage() {
   }
   // 로컬에서 실행할 경우
   return (
-    <div className="flex size-full flex-col items-center justify-start p-4">
+    <div className="flex w-full flex-col items-center justify-center px-2.5 py-4 md:px-4">
       <PageTitle topTitle={topTitle} />
       <div className="mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
         <ArtistsSearchInput />
         <RankSortButtonGroup />
         <TotalSortButtonGroup />
-        <div className="w-full rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
+        <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
           <ArtistList />
         </div>
       </div>

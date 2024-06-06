@@ -44,9 +44,9 @@ export default function ImageViewer({ hashs }: Prop) {
       toast.success(`검색 성공 (${elapsedTime / 1000}s)`);
     }
 
-    // 6만 기념 이벤트
+    // 7만 기념 이벤트
     if (source.total_counter === TARGET_COUNT.toString()) {
-      show();
+      show({ congrat: true, animateDir: 'bottom' });
     }
   }, [data]);
 

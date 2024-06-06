@@ -1,10 +1,9 @@
+import { ROWS_PER_PAGE } from '@/app/gallery/lib/const';
 import Service from '@/lib/service';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
 } from '@/types';
-
-const ROWS_PER_PAGE = 30; // 한 페이지당 불러올 아이템 개수
 
 class GalleryService extends Service {
   // 키워드 갤러리 작품들 가져오기

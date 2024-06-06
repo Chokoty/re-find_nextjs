@@ -1,5 +1,8 @@
 import type { Gallery, Member } from '@/types';
 
+// 한 페이지당 불러올 아이템 개수
+export const ROWS_PER_PAGE = 30;
+
 export const BUTTON_LIST = [
   '전체',
   '이세돌',
@@ -19,7 +22,7 @@ const GALLERY_LIST: Gallery[] = [
     subTitle: '뉴 아이네 팬아트',
     author: '핏짜라짜라',
     query:
-      'artworks?query=뉴이네&query=뉴 아이네&board=isd&board=best&since=20240427&title=',
+      'artworks?query=뉴이네&query=아이네&query=콘서트&query=에버퍼플&query=EVER PURPLE&query=아단콘&board=isd&board=best&since=20240427&title=',
   },
   {
     id: 1,

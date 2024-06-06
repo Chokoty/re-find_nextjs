@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-import type { CountLimit } from '@/types';
+import type { CountLimit, DateType } from '@/types';
 
 type SearchFilterStore = {
   board: string;
   category: string;
-  dateType: string;
+  dateType: DateType;
   rankType: string;
   hasSensitiveCase: boolean;
   hasTitle: boolean;
@@ -14,10 +14,11 @@ type SearchFilterStore = {
   viewCountLimit: CountLimit;
   likeCountLimit: CountLimit;
   commentCountLimit: CountLimit;
+  isFetching: boolean;
   // set methods
   selectBoard: (board: string) => void;
   selectCategory: (category: string) => void;
-  selectDateType: (dateType: string) => void;
+  selectDateType: (dateType: DateType) => void;
   selectRankType: (rankType: string) => void;
   checkSensitive: (check: boolean) => void;
   checkTitle: (check: boolean) => void;
@@ -27,6 +28,7 @@ type SearchFilterStore = {
   checkLikeCountLimit: (limitInfo: CountLimit) => void;
   checkCommentCountLimit: (limitInfo: CountLimit) => void;
   resetFilter: () => void;
+  setIsFetching: (isFetching: boolean) => void;
 };
 
 export const useSearchFilterStore = create<
@@ -35,7 +37,9 @@ export const useSearchFilterStore = create<
 >((set) => ({
   board: 'all',
   category: 'all',
-  dateType: 'all',
+  dateType: {
+    type: 'all',
+  },
   rankType: 'latest',
   hasSensitiveCase: false,
   hasTitle: false,
@@ -56,6 +60,7 @@ export const useSearchFilterStore = create<
     min: 0,
     max: 100,
   },
+  isFetching: false,
   selectBoard: (board) => set({ board }),
   selectCategory: (category) => set({ category }),
   selectDateType: (dateType) => set({ dateType }),
@@ -72,7 +77,9 @@ export const useSearchFilterStore = create<
     set({
       board: 'all',
       category: 'all',
-      dateType: 'all',
+      dateType: {
+        type: 'all',
+      },
       rankType: 'latest',
       hasSensitiveCase: false,
       hasTitle: false,
@@ -94,4 +101,5 @@ export const useSearchFilterStore = create<
         max: 100,
       },
     }),
+  setIsFetching: (isFetching) => set({ isFetching }),
 }));

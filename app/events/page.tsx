@@ -8,7 +8,7 @@ const events = [
   {
     title: '팬아트 랜덤가챠 굴리기',
     colorScheme:
-      'bg-purple-400 hover:bg-purple-500 dark:text-gray-900 text-gray-50',
+      'bg-purple-400 hover:bg-purple-500 active:bg-purple-600 dark:text-gray-900 text-gray-50',
     icon: <GiPerspectiveDiceSixFacesRandom className="mr-2 size-6" />,
     link: '/events/randomGacha',
     linkText: '무슨 팬아트가 나올까요?',
@@ -29,7 +29,8 @@ const events = [
   // },
   {
     title: '왁티홀의 문 체험하기',
-    colorScheme: 'bg-red-400 hover:bg-red-500 dark:text-gray-900 text-gray-50',
+    colorScheme:
+      'bg-red-400 hover:bg-red-500 active:bg-red-600 dark:text-gray-900 text-gray-50',
     // isDisabled: true,
     icon: <BsDoorOpenFill className="mr-2 size-6" />,
     link: '/events/waktyhall',

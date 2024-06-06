@@ -24,7 +24,7 @@ export default function RandomGacha() {
     await refetch();
   };
   return (
-    <div className="mt-4 flex w-[90%] flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
+    <div className="mt-4 flex w-full flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
       <div className="flex w-full items-center justify-start">
         <h2 className="text-xl font-bold">팬아트 가챠</h2>
       </div>
@@ -46,7 +46,7 @@ export default function RandomGacha() {
           랜덤가챠 굴리기
         </Button>
         <Link href="/events/randomGacha" className="w-full">
-          <div className="inline-flex h-12 min-h-12 w-full select-none items-center justify-center whitespace-nowrap rounded-xl bg-gray-100 pe-4 ps-4 align-middle text-base font-bold leading-tight text-gray-800 outline-none outline-offset-2 transition hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300">
+          <div className="inline-flex h-12 min-h-12 w-full select-none items-center justify-center whitespace-nowrap rounded-xl bg-gray-100 pe-4 ps-4 align-middle text-base font-bold leading-tight text-gray-800 outline-none outline-offset-2 transition hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400">
             랜덤가챠 더보기(4개)
           </div>
         </Link>

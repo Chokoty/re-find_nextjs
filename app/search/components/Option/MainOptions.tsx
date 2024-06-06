@@ -119,43 +119,26 @@ export default function MainOptions() {
     max: MAX_COUNT,
   });
 
-  const handleChangeBoard = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const val = e.target.value;
+  const handleChangeBoard = (value: string) => {
     // 선택 안했을 때(전체 게시판 선택) > 빈 문자열
-    if (val === '') {
+    selectBoard(value);
+    if (value === 'all') {
       setCategories([]);
-      selectBoard('all');
       return;
     }
-    selectBoard(val);
-    setCategories(boardMap[val as keyof typeof boardMap]);
+    setCategories(boardMap[value as keyof typeof boardMap]);
   };
 
-  const handleChangeCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const val = e.target.value;
-    if (val === '') {
-      selectCategory('all');
-      return;
-    }
-    selectCategory(val);
+  const handleChangeCategory = (value: string) => {
+    selectCategory(value);
   };
 
-  const handleChangeDateType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const val = e.target.value;
-    if (val === '') {
-      selectDateType('all');
-      return;
-    }
-    selectDateType(val);
+  const handleChangePeriod = (value: string, date?: string) => {
+    selectDateType({ type: value, date });
   };
 
-  const handleChangeRankType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const val = e.target.value;
-    if (val === '') {
-      selectRankType('latest');
-      return;
-    }
-    selectRankType(val);
+  const handleChangeRankType = (value: string) => {
+    selectRankType(value);
   };
 
   const handleCheckSensitiveCase = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -236,36 +219,42 @@ export default function MainOptions() {
   };
 
   return (
-    <div className="px-0 py-2 min-[515px]:px-4">
+    <div className="px-0 py-2 md:px-4">
       <Divider />
-      <div className="m-2 flex flex-col gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
+      <div className="m-2 flex flex-col gap-2 md:m-4 md:flex-row md:gap-4">
         {/* 업로드날짜 (유튜브 참고) -> 시작 ~ 끝 */}
         <Select
-          placeholder="전체기간"
-          onChange={handleChangeDateType}
-          defaultValue={dateType}
-        >
-          <option value="day">1일</option>
-          <option value="week">1주</option>
-          <option value="mon">1개월</option>
-          <option value="sixMon">6개월</option>
-          <option value="year">1년</option>
-        </Select>
+          onChange={handleChangePeriod}
+          selected={dateType.type}
+          options={[
+            { value: 'all', label: '전체기간', default: true },
+            { value: 'day', label: '1일' },
+            { value: 'week', label: '1주' },
+            { value: 'mon', label: '1개월' },
+            { value: 'sixMon', label: '6개월' },
+            { value: 'year', label: '1년' },
+            {
+              value: 'custom',
+              label: '기간선택',
+              hasCustomDateRangePicker: true,
+            },
+          ]}
+        />
         {/* 정렬기준 */}
         <Select
-          placeholder="최신순"
           onChange={handleChangeRankType}
-          defaultValue={rankType}
-        >
-          {/* <option value="option1">최신순</option> */}
-          <option value="comment">댓글수</option>
-          <option value="like">좋아요</option>
-          <option value="view">조회수</option>
-          <option value="oldest">업로드 날짜</option>
-        </Select>
+          selected={rankType}
+          options={[
+            { value: 'latest', label: '최신순', default: true },
+            { value: 'comment', label: '댓글순' },
+            { value: 'like', label: '좋아요순' },
+            { value: 'view', label: '조회순' },
+            { value: 'oldest', label: '오래된순' },
+          ]}
+        />
       </div>
       <Divider />
-      <div className="m-2 flex items-center justify-between min-[515px]:m-4">
+      <div className="m-2 flex items-center justify-between md:m-4">
         <div className="flex gap-5">
           <Checkbox
             value="title"
@@ -302,7 +291,39 @@ export default function MainOptions() {
         </Popover>
       </div>
       <Divider />
-      <div className="m-2 flex items-center justify-between min-[515px]:m-4">
+      <div className="m-2 flex flex-col gap-2 md:m-4 md:flex-row md:gap-4">
+        {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
+        <Select
+          onChange={handleChangeBoard}
+          selected={board}
+          options={[
+            { value: 'all', label: '전체 게시판', default: true },
+            { value: 'isd', label: '이세돌┃팬아트' },
+            { value: 'goldhand', label: '금손 작가들의 방' },
+            { value: 'best', label: 'BEST 유머 정보' },
+            { value: 'wak', label: '우왁굳팬아트' },
+            { value: 'gomem', label: '고멤┃팬아트' },
+            { value: 'isd_behind', label: '이세돌┃작업후기' },
+            { value: 'gomem_behind', label: '고멤┃작업 후기' },
+            { value: 'notice', label: '전체 공지사항' },
+            { value: 'ai', label: 'AI 팬아트' },
+          ]}
+        />
+        {/* 카테고리 */}
+        <Select
+          disabled={categories.length === 0}
+          onChange={handleChangeCategory}
+          selected={category}
+          options={[
+            { value: 'all', label: '말머리', default: true },
+            ...categories.map((item) => {
+              return { value: item, label: item };
+            }),
+          ]}
+        />
+      </div>
+      <Divider />
+      <div className="m-2 flex items-center justify-between md:m-4">
         <Checkbox
           value="sensitive"
           onChange={handleCheckSensitiveCase}
@@ -324,39 +345,7 @@ export default function MainOptions() {
         </Popover>
       </div>
       <Divider />
-      <div className="m-2 flex flex-col gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
-        {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
-        <Select
-          placeholder="전체 게시판"
-          onChange={handleChangeBoard}
-          defaultValue={board}
-        >
-          <option value="isd">이세돌┃팬아트</option>
-          <option value="goldhand">금손 작가들의 방</option>
-          <option value="best">BEST 유머 정보</option>
-          <option value="wak">우왁굳팬아트</option>
-          <option value="gomem">고멤┃팬아트</option>
-          <option value="isd_behind">이세돌┃작업후기</option>
-          <option value="gomem_behind">고멤┃작업 후기</option>
-          <option value="notice">전체 공지사항</option>
-          <option value="ai">AI 팬아트</option>
-        </Select>
-        {/* 카테고리 */}
-        <Select
-          placeholder="말머리"
-          disabled={categories.length === 0}
-          onChange={handleChangeCategory}
-          defaultValue={category}
-        >
-          {categories.map((item, idx) => (
-            <option value={item} key={idx}>
-              {item}
-            </option>
-          ))}
-        </Select>
-      </div>
-      <Divider />
-      <div className="m-2 flex flex-col flex-wrap gap-2 2xs:flex-row min-[515px]:m-4 min-[515px]:gap-4">
+      <div className="m-2 flex flex-col flex-wrap gap-2 md:m-4 md:flex-row md:gap-4">
         <div className="flex items-center justify-start gap-4">
           <Checkbox
             value="viewLimit"
