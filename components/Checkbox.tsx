@@ -15,8 +15,7 @@ export default function Checkbox({
     <label className="relative inline-flex cursor-pointer items-center align-top">
       <input
         name={name}
-        className="absolute -m-px size-px overflow-hidden whitespace-nowrap border-0 border-none p-0"
-        style={{ clip: 'rect(0px, 0px, 0px, 0px);' }}
+        className="absolute -m-px size-0 overflow-hidden whitespace-nowrap border-0 border-none p-0"
         type="checkbox"
         onChange={onChange}
         defaultChecked={defaultChecked}
