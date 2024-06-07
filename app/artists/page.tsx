@@ -1,4 +1,5 @@
-import ArtistList from '@/app/artists/components/ArtistList';
+import { FaHardHat } from 'react-icons/fa';
+
 import ArtistsSearchInput from '@/app/artists/components/ArtistsSearchInput';
 import RankSortButtonGroup from '@/app/artists/components/Group/RankSortButtonGroup';
 import TotalSortButtonGroup from '@/app/artists/components/Group/TotalSortButtonGroup';
@@ -35,7 +36,7 @@ export default async function ArtistsPage() {
           <TotalSortButtonGroup />
           <Hydrate state={{ queries: [query] }}>
             <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
-              <ArtistList />
+              <Maintenance />
             </div>
           </Hydrate>
         </div>
@@ -51,9 +52,25 @@ export default async function ArtistsPage() {
         <RankSortButtonGroup />
         <TotalSortButtonGroup />
         <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
-          <ArtistList />
+          <Maintenance />
         </div>
       </div>
     </div>
   );
 }
+
+const Maintenance = () => {
+  return (
+    <div className="mx-auto mt-6 flex size-full min-h-[210px] flex-col items-center justify-center">
+      <div className="mb-2 flex items-center">
+        <FaHardHat className="mr-1 size-5 text-yellow-600" />
+        <p className="text-lg font-bold">작가 검색 서비스 점검</p>
+      </div>
+      <p className="break-keep text-center">
+        현재 작가 검색 서비스를 점검하고 있습니다.{' '}
+        <br className="inline sm:hidden" />
+        이용에 불편을 드려 죄송합니다.
+      </p>
+    </div>
+  );
+};
