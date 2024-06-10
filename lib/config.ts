@@ -116,6 +116,12 @@ export const siteConfig = {
       description: '리파인드의 공지사항을 확인해보세요!',
       url: '/more/notice',
     },
+    install: {
+      title: '리파인드 | 설치 가이드',
+      description:
+        '홈 화면에서 리파인드 아이콘을 클릭하여 한 번의 탭으로 접속할 수 있는 설치가이드를 확인해보세요.',
+      url: '/more/install-info',
+    },
   },
   search: {
     main: {

@@ -43,3 +43,8 @@ export { default as 에이요 } from '@/public/static/images/developer/에이요
 export { default as 초코넛밀크티 } from '@/public/static/images/developer/초코넛밀크티.webp';
 export { default as 카닌 } from '@/public/static/images/developer/카닌.webp';
 export { default as 카미루 } from '@/public/static/images/developer/카미루.webp';
+// install step
+export { default as cromeStep1 } from '@/public/static/images/install/crome/step1.webp';
+export { default as cromeStep2 } from '@/public/static/images/install/crome/step2.webp';
+export { default as cromeStep3 } from '@/public/static/images/install/crome/step3.webp';
+export { default as safariExample } from '@/public/static/images/install/safari/example.jpg';
