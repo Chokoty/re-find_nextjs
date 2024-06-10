@@ -7,6 +7,7 @@ import {
   Isd,
   Jingburger,
   Jururu,
+  JururuBirthday,
   KissingYou,
   Lilpa,
   LilpaBirthday,
@@ -36,6 +37,8 @@ export const getStaticImage = (cover: string) => {
       return ViichanBirthday;
     case 'lilpaBirthday':
       return LilpaBirthday;
+    case 'jururuBirthday':
+      return JururuBirthday;
     case 'tiffanyWouldYouMia':
       return TiffanyWouldYouMia;
     case 'ine':
