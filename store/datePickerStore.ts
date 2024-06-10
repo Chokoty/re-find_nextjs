@@ -1,5 +1,6 @@
-import { getCurrentDate } from '@/app/search/lib/date';
 import { create } from 'zustand';
+
+import { getCurrentDate } from '@/app/search/lib/date';
 
 type DatePickerStore = {
   startDate: string;
