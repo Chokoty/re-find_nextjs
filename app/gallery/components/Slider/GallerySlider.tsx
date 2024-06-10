@@ -9,7 +9,7 @@ import type { SwiperOptions } from 'swiper/types';
 import MoreButton from '@/app/gallery/components/Button/MoreButton';
 import GalleryAlbumCard from '@/app/gallery/components/Card/GalleryAlbumCard';
 import GalleryFanartCard from '@/app/gallery/components/Card/GalleryFanartCard';
-import GALLERY_LIST from '@/app/gallery/lib/const';
+import { LATEST_GALLERY_LIST } from '@/app/gallery/lib/const';
 import { test } from '@/constants/test';
 
 interface CustomSwiperParams extends SwiperOptions {
@@ -73,7 +73,7 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
           </SwiperSlide>
         </>
       ) : (
-        GALLERY_LIST.map((data) => (
+        LATEST_GALLERY_LIST.map((data) => (
           <SwiperSlide key={data.id} className="overflow-hidden">
             <GalleryAlbumCard album={data} />
           </SwiperSlide>

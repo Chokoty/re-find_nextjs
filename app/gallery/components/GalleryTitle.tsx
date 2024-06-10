@@ -27,9 +27,9 @@ const getTitleInfo = (type: string) => {
 };
 
 const titleClassName =
-  'mt-1.5 font-pop text-4xl sm:text-5xl 2md:text-6xl lg:text-7xl 2xl:text-8xl';
+  'mt-1.5 font-pop text-4xl sm:text-5xl 2md:text-6xl lg:text-7xl 2xl:text-8xl break-keep';
 const descriptionClassName =
-  'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[360px] 2md:max-w-[420px] 2xl:max-w-[550px]';
+  'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[360px] 2md:max-w-[420px] 2xl:max-w-[550px] break-keep';
 
 export default function GalleryTitle({ pageType }: { pageType: string }) {
   const router = useRouter();

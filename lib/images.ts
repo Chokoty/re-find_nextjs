@@ -12,6 +12,7 @@ export { default as Question } from '@/public/static/images/events/question.webp
 export { default as Christmas } from '@/public/static/images/gallery/christmas.webp';
 export { default as Halloween } from '@/public/static/images/gallery/halloween.webp';
 export { default as Isd } from '@/public/static/images/gallery/isd.webp';
+export { default as JururuBirthday } from '@/public/static/images/gallery/jururuBirthday.webp';
 export { default as KissingYou } from '@/public/static/images/gallery/kissingYou.webp';
 export { default as LilpaBirthday } from '@/public/static/images/gallery/lilpaBirthday.webp';
 export { default as Jururu } from '@/public/static/images/gallery/member/cotton.webp';
