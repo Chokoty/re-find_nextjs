@@ -116,7 +116,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '주르르님 생일 팬아트',
     subTitle: '🎂 주르르님 생일 팬아트 🎂',
     description: '주르르님의 탄신일을 진심으로 축하드립니다!',
-    author: 'sei9',
+    author: '피엘로',
     query:
       'artworks?board=isd&board=best&title=&content=&since=20240609&until=20240610&per_page=30&page=1&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이',
   },
