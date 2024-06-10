@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Re:find 왁타버스 팬아트 집합소',
+    name: 'RE:FIND 왁타버스 팬아트 집합소',
     short_name: 'RE:FIND (리파인드)',
     description:
       '왁물원과 연동된 왁타버스 팬아트를 한 곳에서 확인할 수 있는 집합소입니다.',
