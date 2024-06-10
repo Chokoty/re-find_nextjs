@@ -85,9 +85,11 @@ export default function Modal({ Component, modalProps, hide }: Props) {
   return (
     <FocusLock>
       <div
-        className={clsx('fixed inset-0 z-[201] size-full bg-blackAlpha-600', {
-          'flex items-center justify-center': position === 'center',
-          block: position === 'top',
+        className={clsx('fixed inset-0 z-[201] size-full', {
+          'block bg-blackAlpha-600': position === 'top',
+          'flex items-center justify-center bg-blackAlpha-600':
+            position === 'center',
+          'flex items-end justify-center': position === 'bottom',
         })}
         onClick={handleBackdropClick}
       >
@@ -100,6 +102,7 @@ export default function Modal({ Component, modalProps, hide }: Props) {
               'transition-all duration-500 ease-out sm:mx-auto sm:w-full sm:max-w-[70%]',
               {
                 [className]: true,
+                'mb-[60px] w-full': position === 'bottom',
               }
             )}
             onClick={(e) => e.stopPropagation()} // modal 바깥 클릭시 닫히지 않도록 설정
