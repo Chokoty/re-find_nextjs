@@ -452,5 +452,6 @@ export const UPDATE_LOGS: UpdateLog[] = [
     id: 43,
     date: '2024.06.10',
     content: '💗💗💗주르르님 생일 축하드립니다!💗💗💗',
+    directLink: 'https://cafe.naver.com/steamindiegame/16782114',
   },
 ];
