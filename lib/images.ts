@@ -1,4 +1,4 @@
-export { default as Logo } from '@/public/android-chrome-512x512.png';
+export { default as Logo } from '@/public/logo.svg';
 export { default as RealWakGood } from '@/public/real-wakgood.webp';
 export { default as Afreeca } from '@/public/static/icons/afreecatv-logo.webp';
 export { default as Waksplorer } from '@/public/static/icons/waksplorer-logo.webp';
