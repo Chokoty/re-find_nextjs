@@ -38,10 +38,9 @@ export default function Home() {
     const isDisPlayModeFullScreen = window.matchMedia(
       '(display-mode: fullscreen)'
     ).matches;
-    if (value || !isMobile || isDisPlayModeFullScreen) {
-      return () => { };
+    if (!value && isMobile && !isDisPlayModeFullScreen) {
+      openPwaInstallModal();
     }
-    openPwaInstallModal();
   }, [isMobile]);
 
   return (
