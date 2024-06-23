@@ -39,7 +39,7 @@ export default function Home() {
       '(display-mode: fullscreen)'
     ).matches;
     if (value || !isMobile || isDisPlayModeFullScreen) {
-      return;
+      return () => { };
     }
     openPwaInstallModal();
   }, [isMobile]);
