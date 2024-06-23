@@ -43,11 +43,11 @@ export default function Modal({ Component, modalProps, hide }: Props) {
   const [className, setClassName] = useState<string>(ANIMATION_RENDER);
 
   // 모달이 렌더링 될 때 focus를 modal로 이동
-  useEffect(() => {
-    if (modalRef.current) {
-      modalRef.current.focus();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (modalRef.current) {
+  //     modalRef.current.focus();
+  //   }
+  // }, []);
 
   // 기본은 backdrop 클릭시 닫히지않도록 설정, show함수에 isBackdropClick: true를 넘겨주면 backdrop 클릭시 닫히도록 설정
   const handleBackdropClick = () => {

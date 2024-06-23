@@ -31,13 +31,22 @@ export default function AppInstallModal(props: Record<string, unknown>) {
         리파인드 바로가기를 추가해보세요
       </span>
       {isIOS ? (
-        <p className="mt-4 break-keep text-center">
-          중앙 하단에{' '}
-          <MdOutlineIosShare className="inline text-green-highlight" />를
-          선택하고{' '}
-          <span className="text-green-highlight">홈 화면에 추가하기</span>를
-          눌러 설치를 진행해주세요.
-        </p>
+        <>
+          <p className="mt-4 break-keep text-center">
+            중앙 하단에{' '}
+            <MdOutlineIosShare className="inline text-green-highlight" />를
+            선택하고{' '}
+            <span className="text-green-highlight">홈 화면에 추가하기</span>를
+            눌러 설치를 진행해주세요.
+          </p>
+          <button
+            type="button"
+            onClick={close}
+            className={`${commonButtonClassName} mt-4 border bg-blackAlpha-100 dark:border-whiteAlpha-300 dark:bg-[#48484B] dark:text-whiteAlpha-800 dark:hover:bg-black-200 dark:active:bg-whiteAlpha-100`}
+          >
+            닫기
+          </button>
+        </>
       ) : (
         <>
           <p className="mt-2 text-center text-sm">
