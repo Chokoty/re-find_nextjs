@@ -286,7 +286,7 @@ const config: Config = {
         modalRender: 'modalRender 0.2s ease-out',
         modalRenderFromTop: 'modalRenderFromTop 0.3s ease-out',
         modalRenderFromBottom: 'modalRenderFromBottom 0.3s ease-out',
-        modalRemove: 'modalRemove 0.3s ease-out',
+        modalRemove: 'modalRemove 0.2s ease-out',
         modalRemoveFromTop: 'modalRemoveFromTop 0.3s ease-out',
       },
       fontFamily: {

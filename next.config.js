@@ -1,13 +1,18 @@
 /** @type {import('next').NextConfig} */
+const isProduction = process.env.NODE_ENV === 'production';
 const path = require('path');
-const nextComposePlugins = require('next-compose-plugins');
-const { withPlugins } = nextComposePlugins.extend(() => ({}));
-const withPWA = require('next-pwa');
+const withPlugins = require('next-compose-plugins');
+
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true', // 환경변수 ANALYZE가 true일 때 실행
   openAnalyzer: true, // 브라우저에 자동으로 분석결과를 새 탭으로 Open
 });
-const isProduction = process.env.NODE_ENV === 'production';
+
+const withPWA = require('next-pwa')({
+  dest: 'public',
+  disable: !isProduction,
+  runtimeCaching: [],
+});
 
 const nextConfig = {
   reactStrictMode: true,
@@ -62,19 +67,4 @@ const nextConfig = {
   // },
 };
 
-module.exports = withPlugins(
-  [
-    [
-      withPWA,
-      {
-        pwa: {
-          dest: 'public',
-          disable: !isProduction,
-          runtimeCaching: [],
-        },
-      },
-    ],
-    [withBundleAnalyzer],
-  ],
-  nextConfig
-);
+module.exports = withPlugins([withPWA, withBundleAnalyzer], nextConfig);

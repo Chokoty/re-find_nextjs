@@ -1,10 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import { useTheme } from 'next-themes';
-import { FiMoon, FiSun } from 'react-icons/fi';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
 import { PiGiftBold } from 'react-icons/pi';
+
+import AddToHomeScreenButton from '@/components/Button/AddToHomeScreenButton';
+import ThemeToggleButton from '@/components/Button/ThemeToggleButton';
 
 type ButtonProp = {
   href?: string;
@@ -14,45 +15,13 @@ type ButtonProp = {
 
 const containerClassName =
   'shadow-base dark:shadow-none flex h-32 w-36 cursor-pointer flex-col items-center justify-between rounded-2xl bg-white dark:bg-dark-card p-4 transition hover:bg-gray-200 dark:hover:bg-whiteAlpha-300 active:bg-gray-300 dark:active:bg-whiteAlpha-400';
-const IconWrapperClassName = 'p-2';
+const iconWrapperClassName = 'p-2';
 const buttonClassName = 'text-xl font-semibold';
 const iconClassName = 'size-8';
 
-const MoreLinkButton = ({ href = '', icon, text }: ButtonProp) => {
-  return (
-    <Link href={href} prefetch={false}>
-      <div className={containerClassName}>
-        <div className={IconWrapperClassName}>{icon}</div>
-        <p className={buttonClassName}>{text}</p>
-      </div>
-    </Link>
-  );
-};
-
-const ThemeToggleButton = () => {
-  const { setTheme, resolvedTheme } = useTheme();
-  const isDarkMode = resolvedTheme === 'dark';
-  const toggleTheme = () => {
-    setTheme(isDarkMode ? 'light' : 'dark');
-  };
-
-  return (
-    <button className={containerClassName} onClick={toggleTheme}>
-      <div className={IconWrapperClassName}>
-        {isDarkMode ? (
-          <FiSun className={iconClassName} />
-        ) : (
-          <FiMoon className={iconClassName} />
-        )}
-      </div>
-      <p className={buttonClassName}>화면 스타일</p>
-    </button>
-  );
-};
-
 export default function MoreButtons() {
   return (
-    <div className="mt-4 flex w-full max-w-[340px] flex-row flex-wrap items-center justify-center gap-4">
+    <div className="mt-4 grid w-full grid-cols-2 gap-4">
       <MoreLinkButton
         href="/more/about"
         icon={<MdInfoOutline className={iconClassName} />}
@@ -68,7 +37,29 @@ export default function MoreButtons() {
         icon={<PiGiftBold className={iconClassName} />}
         text="이벤트"
       />
-      <ThemeToggleButton />
+      <ThemeToggleButton
+        containerClassName={containerClassName}
+        iconWrapperClassName={iconWrapperClassName}
+        iconClassName={iconClassName}
+        buttonClassName={buttonClassName}
+      />
+      <AddToHomeScreenButton
+        containerClassName={containerClassName}
+        iconWrapperClassName={iconWrapperClassName}
+        iconClassName={iconClassName}
+        buttonClassName={buttonClassName}
+      />
     </div>
   );
 }
+
+const MoreLinkButton = ({ href = '', icon, text }: ButtonProp) => {
+  return (
+    <Link href={href} prefetch={false}>
+      <div className={containerClassName}>
+        <div className={iconWrapperClassName}>{icon}</div>
+        <p className={buttonClassName}>{text}</p>
+      </div>
+    </Link>
+  );
+};
