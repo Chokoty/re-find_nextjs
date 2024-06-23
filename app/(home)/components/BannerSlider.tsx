@@ -3,7 +3,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import { GiPartyPopper } from 'react-icons/gi';
 import { PiGiftBold } from 'react-icons/pi';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -36,7 +35,7 @@ export default function BannerSlider() {
           paddingBottom: '2.5rem',
         }}
       >
-        <SwiperSlide style={swiperSlideStyle}>
+        {/* <SwiperSlide style={swiperSlideStyle}>
           <Event
             title="주르르님 생일 축하드립니다!"
             linkColor="pink"
@@ -48,7 +47,7 @@ export default function BannerSlider() {
               </>
             }
           />
-        </SwiperSlide>
+        </SwiperSlide> */}
         <SwiperSlide style={swiperSlideStyle}>
           <Banner />
         </SwiperSlide>

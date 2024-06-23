@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { AiFillExperiment } from 'react-icons/ai';
+import { FaBookOpen } from 'react-icons/fa';
 
 import { SOURCE_URL } from '@/app/more/lib/const';
 import MoreButtons from '@/components/Button/MoreButtons';
@@ -19,7 +20,17 @@ export default function More() {
           </p>
         </div>
       </Link>
-      <UpdateLogBoard />
+      <Link className="mt-2 inline-block md:hidden" href="/more/install-info">
+        <div className="inline-flex min-h-10 w-[340px] items-center justify-start rounded-md bg-gray-700 px-4 text-gray-50 transition hover:bg-gray-800 active:bg-gray-900">
+          <FaBookOpen className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
+          <p className="text-sm xs:text-base">
+            (수동)리파인드 홈화면 설치 가이드
+          </p>
+        </div>
+      </Link>
+      <div className="p-4">
+        <UpdateLogBoard />
+      </div>
     </div>
   );
 }
