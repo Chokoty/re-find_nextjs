@@ -1,6 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
+import CountUp from 'react-countup';
 import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
@@ -49,6 +50,7 @@ export default function ViewSelectBar({
     ...MEMBERS.slice(1, 7),
   ];
 
+  const total = 20;
   return (
     <div className="mb-4 flex w-full items-center justify-between px-8 py-2">
       <div className="flex gap-[5px]">
@@ -75,6 +77,10 @@ export default function ViewSelectBar({
           <IoGrid size="24px" />
         </button>
       </div>
+      <p className="dark:text-whiteAlpha-900">
+        총 &nbsp;
+        {<CountUp end={total ?? 0} className="text-green-highlight" />}개
+      </p>
       <div className="flex items-center justify-center gap-4">
         {isdPick && (
           <Menu>
