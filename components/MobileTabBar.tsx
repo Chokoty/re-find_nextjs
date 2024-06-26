@@ -38,8 +38,8 @@ const routerMap = {
 export default function MobileTabBar() {
   const currentPathname = usePathname();
   return (
-    <nav className="justify-centermd:hidden fixed bottom-0 z-[200] flex w-full">
-      <div className="flex h-[80px] w-full items-center justify-evenly bg-white pb-5 shadow-navBottom dark:border-t-base dark:border-whiteAlpha-300 dark:bg-dark-footer dark:shadow">
+    <nav className="fixed bottom-0 z-[200] flex w-full justify-center md:hidden">
+      <div className="flex h-[60px] w-full items-center justify-evenly bg-white shadow-navBottom dark:border-t-base dark:border-whiteAlpha-300 dark:bg-dark-footer dark:shadow">
         {Object.keys(routerMap).map((key) => {
           const typedKey = key as keyof typeof routerMap;
           const {
@@ -56,14 +56,16 @@ export default function MobileTabBar() {
             <Link href={eachPath} key={name}>
               <div
                 className={clsx(
-                  'flex size-12 flex-col items-center justify-center gap-1 rounded-full active:bg-blackAlpha-100 dark:active:bg-whiteAlpha-300',
+                  'flex size-12 flex-col items-center justify-center rounded-full active:bg-blackAlpha-100 dark:active:bg-whiteAlpha-300',
                   {
                     'text-gray-700 dark:text-white': isActive,
                     'text-blackAlpha-500 dark:text-whiteAlpha-500': !isActive,
                   }
                 )}
               >
-                <Icon className={iconStyle} />
+                <div className="flex size-7 items-center justify-center">
+                  <Icon className={iconStyle} />
+                </div>
                 <span className="text-xs">{name}</span>
               </div>
             </Link>
