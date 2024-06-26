@@ -142,6 +142,7 @@ declare global {
     like: number;
     comment: number;
     deleted: boolean;
+    source?: null | number[];
   }
 
   // export interface Author {

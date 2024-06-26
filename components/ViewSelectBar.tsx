@@ -27,7 +27,7 @@ type Props = {
   handleShowDeleted: () => void;
   onMemberClick?: (member: string) => void;
   topOffset: number;
-  isdPick: boolean;
+  isIsdPick?: boolean;
   hasTotalCounter?: boolean;
 };
 
@@ -40,7 +40,7 @@ export default function ViewSelectBar({
   isDeletedVisible,
   handleShowDeleted,
   onMemberClick,
-  isdPick,
+  isIsdPick = false,
   hasTotalCounter = false,
 }: Props) {
   const sortLabel =
@@ -83,7 +83,7 @@ export default function ViewSelectBar({
         </p>
       )}
       <div className="flex items-center justify-center gap-4">
-        {isdPick && (
+        {isIsdPick && (
           <Menu>
             <MenuButton
               size="lg"
@@ -113,7 +113,7 @@ export default function ViewSelectBar({
             {sortLabel}
           </MenuButton>
           <MenuList>
-            {isdPick === true &&
+            {isIsdPick === true &&
               MENU_ITEMS.filter((item) => item.isdPick === true).map((item) => (
                 <MenuItem
                   key={item.id}
@@ -122,7 +122,7 @@ export default function ViewSelectBar({
                   {item.label}
                 </MenuItem>
               ))}
-            {isdPick === false &&
+            {isIsdPick === false &&
               MENU_ITEMS.map((item) => (
                 <MenuItem
                   key={item.id}

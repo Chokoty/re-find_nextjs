@@ -88,7 +88,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         onMemberClick={handleMemberClick}
         topOffset={59}
         hasTotalCounter={!!total}
-        isdPick={value === 'isdPick'}
+        isIsdPick={isIsdPick}
       />
       {status === 'pending' ? (
         <ViewSkeleton view={activeView} />
@@ -104,6 +104,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
                     ? artworks
                     : artworks.filter((artwork) => artwork?.is_hyum === false)
                 }
+                isIsdPick={isIsdPick}
                 isDeletedVisible={isDeletedVisible}
               />
             )}

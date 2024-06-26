@@ -9,13 +9,13 @@ import { FiClock } from 'react-icons/fi';
 import { formatArtistValue } from '@/hooks/useFormatArtistValue';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
-import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 type Props = {
-  data: ArtworkList | GalleryArtworkList;
+  data: ArtworkList;
+  wakzooLink: string;
 };
 
-export default function CardImage({ data }: Props) {
+export default function CardImage({ data, wakzooLink }: Props) {
   const [isFocus, setIsFocus] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const { img_url, img_url_list, title, board, view, like, date, deleted, id } =
@@ -24,7 +24,6 @@ export default function CardImage({ data }: Props) {
     url: img_url_list[0],
     size: 300,
   });
-  const article_link = useResponsiveLink('', 'article');
 
   useOnClickOutside(cardRef, () => {
     setIsFocus(false);
@@ -110,7 +109,7 @@ export default function CardImage({ data }: Props) {
               <FaArrowRightLong className="ml-1 hidden 2xs:block" />
             </div>
           </Link>
-          <Link className="w-full" href={article_link + id} target="_blank">
+          <Link className="w-full" href={wakzooLink} target="_blank">
             <div
               // className={styles.textBox}
               className="flex h-[34px] w-full items-center justify-center rounded-xl bg-gradient-to-tl from-green-500 to-green-300 px-2.5 py-2 text-xs font-semibold text-white transition hover:from-green-400 hover:to-green-200 active:from-green-500 active:to-green-300"
