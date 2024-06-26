@@ -1,14 +1,12 @@
 'use client';
 
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-// import CountUp from 'react-countup';
+import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import GALLERY_LIST from '@/app/gallery/lib/const';
-import queryOptions from '@/app/gallery/service/client/queries';
-// import { useArtworks } from '@/app/gallery/service/client/useGalleryService';
+import { useArtworks } from '@/app/gallery/service/client/useGalleryService';
+import { useFanartTotalCountStore } from '@/app/gallery/store/fanartTotalCountStore';
 import Alert from '@/components/Alert';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
@@ -24,6 +22,7 @@ type Props = {
 export default function DetailedGallery({ value, endpoint }: Props) {
   // infinite scroll을 위한 옵저버
   const isMobile = useResponsive();
+  const isIsdPick = value === 'isdPick';
   const option = isMobile ? { rootMargin: '1000px 0px' } : undefined;
   const { ref, inView } = useInView(option);
   // 멤버 선택 > isdPick일 경우
@@ -31,23 +30,13 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   // 뷰 선택 메뉴
   // TODO: 추후 URL 쿼리스트링으로 받아오는 값에 따라 초기 뷰와 상태 설정
   const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState(
-    value === 'isdPick' ? 'latest' : 'alzaltak'
-  ); // 초기 상태 설정
+  const [sortType, setSortType] = useState(isIsdPick ? 'latest' : 'alzaltak'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 / 가리기
-  const {
-    data,
-    status,
-    fetchNextPage, // 다음 페이지를 호출하는 함수
-    isFetchingNextPage, // 다음 페이지를 호출 중인지 = isLoading과 같은 개념
-    // hasNextPage, // 다음 페이지를 가지고 있는지(마지막 페이지인지 판단 t/f)
-  } = useInfiniteQuery(
-    queryOptions.galleryArtworks({ query: endpoint, sortType })
-  );
-
-  const artworks = useMemo(() => {
-    return data?.pages.flatMap((page) => page.list);
-  }, [data]);
+  const { total, status, artworks, fetchNextPage, isFetchingNextPage } =
+    useArtworks({ endpoint, sortType, isIsdPick, selected });
+  const { setTotal } = useFanartTotalCountStore((state) => ({
+    setTotal: state.setTotal,
+  }));
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
@@ -81,6 +70,11 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     }
   }, [fetchNextPage, inView]);
 
+  useEffect(() => {
+    if (!total) return;
+    setTotal(total);
+  }, [total]);
+
   return (
     <>
       <ViewSelectBar
@@ -93,6 +87,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         handleShowDeleted={handleShowDeleted}
         onMemberClick={handleMemberClick}
         topOffset={59}
+        hasTotalCounter={!!total}
         isdPick={value === 'isdPick'}
       />
       {status === 'pending' ? (

@@ -1,12 +1,12 @@
 'use client';
 
 import clsx from 'clsx';
-import CountUp from 'react-countup';
 import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
 import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
+import TotalCounter from '@/app/gallery/components/TotalCounter';
 import { MEMBERS } from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
 import Menu, { MenuButton, MenuItem, MenuList } from '@/components/Menu';
@@ -28,6 +28,7 @@ type Props = {
   onMemberClick?: (member: string) => void;
   topOffset: number;
   isdPick: boolean;
+  hasTotalCounter?: boolean;
 };
 
 export default function ViewSelectBar({
@@ -40,6 +41,7 @@ export default function ViewSelectBar({
   handleShowDeleted,
   onMemberClick,
   isdPick,
+  hasTotalCounter = false,
 }: Props) {
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -49,10 +51,8 @@ export default function ViewSelectBar({
     { id: 1, name: '전체', value: 'isd' },
     ...MEMBERS.slice(1, 7),
   ];
-
-  const total = 20;
   return (
-    <div className="mb-4 flex w-full items-center justify-between px-8 py-2">
+    <div className="relative mb-4 flex w-full items-center justify-between px-8 py-2">
       <div className="flex gap-[5px]">
         <button
           className={clsx('h-10 rounded-full px-4 transition', {
@@ -77,10 +77,11 @@ export default function ViewSelectBar({
           <IoGrid size="24px" />
         </button>
       </div>
-      <p className="dark:text-whiteAlpha-900">
-        총 &nbsp;
-        {<CountUp end={total ?? 0} className="text-green-highlight" />}개
-      </p>
+      {hasTotalCounter && (
+        <p className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 dark:text-whiteAlpha-900 2md:block">
+          <TotalCounter />
+        </p>
+      )}
       <div className="flex items-center justify-center gap-4">
         {isdPick && (
           <Menu>
