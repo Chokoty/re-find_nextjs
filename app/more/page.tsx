@@ -24,7 +24,7 @@ export default function More() {
         <div className="inline-flex min-h-10 items-center justify-start rounded-md bg-gray-700 px-4 text-gray-50 transition hover:bg-gray-800 active:bg-gray-900">
           <FaBookOpen className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
           <p className="text-sm xs:text-base">
-            (수동)리파인드 홈화면 설치 가이드
+            (안드로이드/IOS)리파인드 홈화면 설치 가이드
           </p>
         </div>
       </Link>

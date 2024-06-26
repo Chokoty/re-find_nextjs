@@ -38,14 +38,14 @@ export default function DeveloperProfileCard({
           />
         </div>
         <div className="flex h-full flex-col items-start justify-center">
-          <p className="mb-2 text-green-highlight dark:text-pink-highlight">
+          <p className="mb-2 font-semibold text-green-highlight dark:text-pink-highlight">
             {nickname || '프로필은 왁물원에서'}
           </p>
           <div className="flex flex-wrap gap-2 px-1">
             {board.map((item, index) => (
               <span
                 key={index}
-                className="rounded-full bg-teal-500 px-2 py-1 text-sm text-white dark:bg-red-100 dark:text-gray-900"
+                className="rounded-full bg-teal-500 px-[15px] py-1 text-sm font-semibold text-white dark:bg-red-100 dark:text-gray-900"
               >
                 {item || '---'}
               </span>

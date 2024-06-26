@@ -99,7 +99,7 @@ export const DEVELOPERS: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/1MItD9uVwQKvZgopAxV4Og',
     profURL: 팔구,
-    contribute: ['배너,카드 디자인'],
+    contribute: ['배너 디자인', '카드 디자인'],
   },
   {
     group: 'credit',
