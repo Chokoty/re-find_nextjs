@@ -69,7 +69,6 @@ export default function DetailedEvent({ keyword }: Prop) {
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
         topOffset={59}
-        isdPick={false}
       />
       {status === 'pending' ? (
         <ViewSkeleton view={activeView} />

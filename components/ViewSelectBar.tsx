@@ -6,6 +6,7 @@ import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
 import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
 
+import TotalCounter from '@/app/gallery/components/TotalCounter';
 import { MEMBERS } from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
 import Menu, { MenuButton, MenuItem, MenuList } from '@/components/Menu';
@@ -26,7 +27,8 @@ type Props = {
   handleShowDeleted: () => void;
   onMemberClick?: (member: string) => void;
   topOffset: number;
-  isdPick: boolean;
+  isIsdPick?: boolean;
+  hasTotalCounter?: boolean;
 };
 
 export default function ViewSelectBar({
@@ -38,7 +40,8 @@ export default function ViewSelectBar({
   isDeletedVisible,
   handleShowDeleted,
   onMemberClick,
-  isdPick,
+  isIsdPick = false,
+  hasTotalCounter = false,
 }: Props) {
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -48,9 +51,8 @@ export default function ViewSelectBar({
     { id: 1, name: '전체', value: 'isd' },
     ...MEMBERS.slice(1, 7),
   ];
-
   return (
-    <div className="mb-4 flex w-full items-center justify-between px-8 py-2">
+    <div className="relative mb-4 flex w-full items-center justify-between px-8 py-2">
       <div className="flex gap-[5px]">
         <button
           className={clsx('h-10 rounded-full px-4 transition', {
@@ -75,8 +77,13 @@ export default function ViewSelectBar({
           <IoGrid size="24px" />
         </button>
       </div>
+      {hasTotalCounter && (
+        <p className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 dark:text-whiteAlpha-900 2md:block">
+          <TotalCounter />
+        </p>
+      )}
       <div className="flex items-center justify-center gap-4">
-        {isdPick && (
+        {isIsdPick && (
           <Menu>
             <MenuButton
               size="lg"
@@ -106,7 +113,7 @@ export default function ViewSelectBar({
             {sortLabel}
           </MenuButton>
           <MenuList>
-            {isdPick === true &&
+            {isIsdPick === true &&
               MENU_ITEMS.filter((item) => item.isdPick === true).map((item) => (
                 <MenuItem
                   key={item.id}
@@ -115,7 +122,7 @@ export default function ViewSelectBar({
                   {item.label}
                 </MenuItem>
               ))}
-            {isdPick === false &&
+            {isIsdPick === false &&
               MENU_ITEMS.map((item) => (
                 <MenuItem
                   key={item.id}

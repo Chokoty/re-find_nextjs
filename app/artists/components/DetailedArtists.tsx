@@ -79,7 +79,6 @@ export default function DetailedArtists({ nickname }: Props) {
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
         topOffset={59}
-        isdPick={false}
       />
       {status === 'pending' ? (
         <ViewSkeleton view={activeView} />

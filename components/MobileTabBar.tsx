@@ -63,7 +63,9 @@ export default function MobileTabBar() {
                   }
                 )}
               >
-                <Icon className={iconStyle} />
+                <div className="flex size-7 items-center justify-center">
+                  <Icon className={iconStyle} />
+                </div>
                 <span className="text-xs">{name}</span>
               </div>
             </Link>

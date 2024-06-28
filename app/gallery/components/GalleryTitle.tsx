@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { FaAngleLeft } from 'react-icons/fa6';
 
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
+import TotalCounter from '@/app/gallery/components/TotalCounter';
 import GALLERY_LIST, { MEMBERS } from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
 import { BBangTTi } from '@/lib/images';
@@ -39,7 +40,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
   };
 
   return (
-    <div className="flex w-full max-w-[380px] flex-col items-start justify-start md:max-w-[460px] 2md:max-w-[710px]">
+    <div className="flex w-full flex-col items-start justify-start">
       {pageType === 'galleryHome' ? (
         <>
           <p className={`font-semibold ${descriptionClassName}`}>
@@ -59,11 +60,20 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
               팬아트 갤러리로 돌아가기
             </p>
           </Button>
-          <h1 className={titleClassName}>{title}</h1>
-          <div className="mb-6 mt-1.5">
-            <p className={`font-bold ${descriptionClassName}`}>{description}</p>
+          <div className="w-full max-w-[380px] md:max-w-[460px] 2md:max-w-[710px]">
+            <h1 className={titleClassName}>{title}</h1>
+            <div className="mb-6 mt-1.5">
+              <p className={`font-bold ${descriptionClassName}`}>
+                {description}
+              </p>
+            </div>
           </div>
-          <ShareLinkButton />
+          <div className="flex w-full items-center justify-between">
+            <ShareLinkButton />
+            <div className="2md:hidden">
+              <TotalCounter />
+            </div>
+          </div>
         </>
       )}
     </div>

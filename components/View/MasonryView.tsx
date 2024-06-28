@@ -6,16 +6,25 @@ import MasonryCard from '@/components/Card/MasonryCard';
 type Props = {
   artworks: ArtworkList[];
   isDeletedVisible: boolean;
+  isIsdPick?: boolean;
 };
 
-export default function MasonryView({ artworks, isDeletedVisible }: Props) {
+export default function MasonryView({
+  artworks,
+  isDeletedVisible,
+  isIsdPick = false,
+}: Props) {
   const content = () => {
     if (isDeletedVisible) {
       return artworks.map((artwork) => (
         <Measure key={artwork.id}>
           {({ measureRef }) => (
             <div ref={measureRef}>
-              <MasonryCard key={artwork.id} artwork={artwork} />
+              <MasonryCard
+                key={artwork.id}
+                artwork={artwork}
+                isIsdPick={isIsdPick}
+              />
             </div>
           )}
         </Measure>
@@ -31,7 +40,11 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
                 ref={measureRef}
                 className="flex items-center justify-center"
               >
-                <MasonryCard key={artwork.id} artwork={artwork} />
+                <MasonryCard
+                  key={artwork.id}
+                  artwork={artwork}
+                  isIsdPick={isIsdPick}
+                />
               </div>
             )}
           </Measure>
