@@ -126,7 +126,8 @@ const GALLERY_LIST: Gallery[] = [
     type: 'special',
     title: '뉴뉴릴파',
     subTitle: 'NEW NEW 릴파 공개',
-    description: 'NEW NEW 릴파 공개',
+    description:
+      'LILPACON : Going Out - SOOPER CONCERT | 7월 12일(금) 7월 13일(토) 오후 7시 ',
     author: '낑깡맛',
     query:
       'artworks?query=뉴뉴&board=isd&board=best&since=20240629&title=&content=',
