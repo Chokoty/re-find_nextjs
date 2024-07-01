@@ -450,8 +450,22 @@ export const UPDATE_LOGS: UpdateLog[] = [
   },
   {
     id: 43,
+    date: '2024.05.11',
+    content:
+      '뉴이네 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/16370339',
+  },
+  {
+    id: 44,
     date: '2024.06.10',
     content: '💗💗💗주르르님 생일 축하드립니다!💗💗💗',
     directLink: 'https://cafe.naver.com/steamindiegame/16782114',
+  },
+  {
+    id: 45,
+    date: '2024.07.01',
+    content:
+      '뉴뉴릴파 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    // directLink: 'https://cafe.naver.com/steamindiegame/16782114',
   },
 ];

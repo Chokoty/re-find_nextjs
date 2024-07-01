@@ -12,6 +12,7 @@ import {
   Lilpa,
   LilpaBirthday,
   newIne,
+  newnewLilpa,
   Rewind2Year,
   TiffanyWouldYouMia,
   Viichan,
@@ -27,6 +28,8 @@ export const getStaticImage = (cover: string) => {
       return KissingYou;
     case 'newIne':
       return newIne;
+    case 'newnewLilpa':
+      return newnewLilpa;
     case 'halloween':
       return Halloween;
     case 'rewind2year':

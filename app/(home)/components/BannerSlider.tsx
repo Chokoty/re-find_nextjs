@@ -35,21 +35,21 @@ export default function BannerSlider() {
           paddingBottom: '2.5rem',
         }}
       >
-        {/* <SwiperSlide style={swiperSlideStyle}>
+        <SwiperSlide style={swiperSlideStyle}>
+          <Banner />
+        </SwiperSlide>
+        <SwiperSlide style={swiperSlideStyle}>
           <Event
-            title="주르르님 생일 축하드립니다!"
-            linkColor="pink"
-            link="/gallery/jururuBirthday"
+            title="뉴뉴릴파 갤러리 추가"
+            linkColor="blue"
+            link="/gallery/newnewLilpa"
             linkContent={
               <>
-                <GiPartyPopper className="mr-2 size-6" />
-                주르르님 생일 팬아트 보러가기
+                {/* <GiPartyPopper className="mr-2 size-6" /> */}
+                뉴뉴릴파 갤러리 보러가기
               </>
             }
           />
-        </SwiperSlide> */}
-        <SwiperSlide style={swiperSlideStyle}>
-          <Banner />
         </SwiperSlide>
         <SwiperSlide style={swiperSlideStyle}>
           <Event
