@@ -3,6 +3,7 @@
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { FaUserGroup } from 'react-icons/fa6';
 import { IoMdImages } from 'react-icons/io';
@@ -37,9 +38,19 @@ const routerMap = {
 
 export default function MobileTabBar() {
   const currentPathname = usePathname();
+  const [isIOS, setIsIOS] = useState(false);
+
+  useEffect(() => {
+    const isDeviceIOS =
+      /iPad|iPhone|iPod/.test(window.navigator.userAgent) && !window.MSStream;
+    setIsIOS(isDeviceIOS);
+  }, []);
+
   return (
     <nav className="fixed bottom-0 z-[200] flex w-full justify-center md:hidden">
-      <div className="flex h-[60px] w-full items-center justify-evenly bg-white shadow-navBottom dark:border-t-base dark:border-whiteAlpha-300 dark:bg-dark-footer dark:shadow">
+      <div
+        className={`flex w-full items-center justify-evenly bg-white shadow-navBottom dark:border-t-base dark:border-whiteAlpha-300 dark:bg-dark-footer dark:shadow ${isIOS ? 'h-[80px] pb-2' : 'h-[60px]'}`}
+      >
         {Object.keys(routerMap).map((key) => {
           const typedKey = key as keyof typeof routerMap;
           const {
