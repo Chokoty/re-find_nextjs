@@ -21,9 +21,14 @@ export function useGalleryArtworks({
     isFetchingNextPage, // 다음 페이지를 호출 중인지 = isLoading과 같은 개념
     // hasNextPage, // 다음 페이지를 가지고 있는지(마지막 페이지인지 판단 t/f)
   } = useInfiniteQuery(queryOptions.galleryArtworks({ query, sortType }));
-
+  // 뉴뉴릴파 갤러리 내 릴단콘 관련 게시글 중 아이네님 사진이 존재하므로 필터
+  const isNewnewLilpaQuery = query.includes('릴단콘');
   const artworks = useMemo(() => {
-    return data?.pages.flatMap((page) => page.list);
+    return data?.pages.flatMap((page) =>
+      isNewnewLilpaQuery
+        ? page.list.filter((p) => !(p.id === 17160106))
+        : page.list
+    );
   }, [data]);
 
   const total = data?.pages[0].total;

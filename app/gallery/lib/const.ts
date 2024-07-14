@@ -130,7 +130,7 @@ const GALLERY_LIST: Gallery[] = [
       'LILPACON : Going Out - SOOPER CONCERT | 7월 12일(금) 7월 13일(토) 오후 7시 ',
     author: '낑깡맛',
     query:
-      'artworks?query=뉴뉴&board=isd&board=best&since=20240629&title=&content=',
+      'artworks?query=뉴뉴&query=릴파콘&query=릴단콘&board=isd&board=best&since=20240629&title=&content=',
   },
   // {
   //   id: 8,
