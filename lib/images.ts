@@ -51,3 +51,5 @@ export { default as cromeStep3 } from '@/public/static/images/install/crome/step
 export { default as safariStep1 } from '@/public/static/images/install/safari/step1.webp';
 export { default as safariStep2 } from '@/public/static/images/install/safari/step2.webp';
 export { default as safariStep3 } from '@/public/static/images/install/safari/step3.webp';
+// poll link
+export { default as PollLink } from '@/public/static/images/poll_link.webp';
