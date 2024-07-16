@@ -26,7 +26,7 @@ export function useGalleryArtworks({
   const artworks = useMemo(() => {
     return data?.pages.flatMap((page) =>
       isNewnewLilpaQuery
-        ? page.list.filter((p) => !(p.id === 17160106))
+        ? page.list.filter((p) => !(p.id === 17160106 || p.id === 17166985))
         : page.list
     );
   }, [data]);
