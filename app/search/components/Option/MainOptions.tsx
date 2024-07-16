@@ -300,7 +300,7 @@ export default function MainOptions() {
             { value: 'all', label: '전체 게시판', default: true },
             { value: 'isd', label: '이세돌┃팬아트' },
             { value: 'goldhand', label: '금손 작가들의 방' },
-            { value: 'best', label: 'BEST 유머 정보' },
+            { value: 'best', label: '통합 BEST 팬아트 게시판' },
             { value: 'wak', label: '우왁굳팬아트' },
             { value: 'gomem', label: '고멤┃팬아트' },
             { value: 'isd_behind', label: '이세돌┃작업후기' },
