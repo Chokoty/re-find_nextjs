@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useCallback } from 'react';
 
 import type { setValueParams } from '@/hooks/useLocalStorage';
@@ -16,22 +15,22 @@ export default function PollLinkModal(props: Record<string, unknown>) {
   const onClose = useCallback(() => {
     hide();
   }, [hide]);
-  // const onMove = () => {
-  //   setStorage?.(true);
-  //   window.href;
-  // };
+  const onMove = () => {
+    setStorage?.(true);
+    window.open('https://forms.gle/x1DDq3wWqobBpC748', '_blank');
+  };
   return (
     <section className="relative m-5 rounded-2xl bg-white dark:bg-dark-card sm:mx-auto sm:w-full sm:max-w-lg">
       <div className="flex size-full flex-col items-center justify-center gap-3 px-6 py-8">
-        <Link href="https://forms.gle/x1DDq3wWqobBpC748" target="_blank">
-          <Image
-            src={PollLink}
-            alt="poll link"
-            width={1000}
-            height={1000}
-            priority
-          />
-        </Link>
+        <Image
+          className="cursor-pointer"
+          onClick={onMove}
+          src={PollLink}
+          alt="poll link"
+          width={1000}
+          height={1000}
+          priority
+        />
         <button
           className="h-[40px] w-full rounded-md bg-green-highlight px-2.5 font-semibold text-gray-900 transition hover:bg-teal-400 active:bg-teal-400 disabled:cursor-not-allowed disabled:opacity-75"
           onClick={onClose}

@@ -9,11 +9,12 @@ import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
 import MoreButtons from '@/components/Button/MoreButtons';
-import AppInstallModal from '@/components/Modal/AppInstallModal';
+// import { useResponsive } from '@/hooks/useResponsive';
+import PollLinkModal from '@/components/Modal/PollLinkModal';
+// import AppInstallModal from '@/components/Modal/AppInstallModal';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
-import { useResponsive } from '@/hooks/useResponsive';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),
@@ -24,24 +25,36 @@ const BannerSlider = dynamic(
 );
 
 export default function Home() {
-  const [value, setValue] = useLocalStorage({
-    key: 'showAppInstallModal',
+  // const [value, setValue] = useLocalStorage({
+  //   key: 'showAppInstallModal',
+  //   initialValue: false,
+  // });
+  // const { show } = useModal(AppInstallModal);
+  // const isMobile = useResponsive();
+  // const openPwaInstallModal = () => {
+  //   show({ animateDir: 'bottom', position: 'bottom', setStorage: setValue });
+  // };
+
+  // useEffect(() => {
+  //   const isDisPlayModeFullScreen = window.matchMedia(
+  //     '(display-mode: fullscreen)'
+  //   ).matches;
+  //   if (!value && isMobile && !isDisPlayModeFullScreen) {
+  //     openPwaInstallModal();
+  //   }
+  // }, [isMobile]);
+
+  const [v, setValue] = useLocalStorage({
+    key: 'showPollLinkModal',
     initialValue: false,
   });
-  const { show } = useModal(AppInstallModal);
-  const isMobile = useResponsive();
-  const openPwaInstallModal = () => {
-    show({ animateDir: 'bottom', position: 'bottom', setStorage: setValue });
-  };
+  const { show } = useModal(PollLinkModal);
 
   useEffect(() => {
-    const isDisPlayModeFullScreen = window.matchMedia(
-      '(display-mode: fullscreen)'
-    ).matches;
-    if (!value && isMobile && !isDisPlayModeFullScreen) {
-      openPwaInstallModal();
+    if (!v) {
+      show({ setStorage: setValue });
     }
-  }, [isMobile]);
+  }, []);
 
   return (
     <div className="mx-auto flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 md:px-4">
