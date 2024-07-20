@@ -8,13 +8,10 @@ import GALLERY_LIST from '@/app/gallery/lib/const';
 import { useArtworks } from '@/app/gallery/service/client/useGalleryService';
 import { useFanartTotalCountStore } from '@/app/gallery/store/fanartTotalCountStore';
 import Alert from '@/components/Alert';
-import PollLinkModal from '@/components/Modal/PollLinkModal';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
 import ViewSelectBar from '@/components/ViewSelectBar';
-import useLocalStorage from '@/hooks/useLocalStorage';
-import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
 
 type Props = {
@@ -64,18 +61,6 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   const handleMemberClick = (member: string) => {
     setSelected(member);
   };
-
-  const [v, setValue] = useLocalStorage({
-    key: 'showPollLinkModal',
-    initialValue: false,
-  });
-  const { show } = useModal(PollLinkModal);
-
-  useEffect(() => {
-    if (!v) {
-      show({ setStorage: setValue });
-    }
-  }, []);
 
   // 무한 스크롤
   useEffect(() => {
