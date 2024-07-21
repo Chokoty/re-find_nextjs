@@ -1,5 +1,6 @@
 import {
   Christmas,
+  deadCat,
   Gomem,
   Gosegu,
   Halloween,
@@ -42,6 +43,8 @@ export const getStaticImage = (cover: string) => {
       return LilpaBirthday;
     case 'jururuBirthday':
       return JururuBirthday;
+    case 'deadCat':
+      return deadCat;
     case 'tiffanyWouldYouMia':
       return TiffanyWouldYouMia;
     case 'ine':

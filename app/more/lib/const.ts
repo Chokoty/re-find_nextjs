@@ -466,6 +466,6 @@ export const UPDATE_LOGS: UpdateLog[] = [
     date: '2024.07.01',
     content:
       '뉴뉴릴파 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
-    // directLink: 'https://cafe.naver.com/steamindiegame/16782114',
+    directLink: 'https://cafe.naver.com/steamindiegame/17019811',
   },
 ];

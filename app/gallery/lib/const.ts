@@ -132,6 +132,17 @@ const GALLERY_LIST: Gallery[] = [
     query:
       'artworks?query=뉴뉴&query=릴파콘&query=릴단콘&query=콘서트&query=going&query=Going&board=isd&board=best&since=20240629&title=&content=',
   },
+  {
+    id: 11,
+    value: 'deadCat',
+    type: 'special',
+    title: '데드캣',
+    subTitle: '고세구님 뉴의상 데드캣',
+    description: '고세구님의 신의상 데드캣이 공개되었습니다. #Rollin',
+    author: '니렝',
+    query:
+      'artworks?query=dead&query=cat&query=데드&query=캣&query=켓&query=강시&query=키랏&query=처음 보냐&query=뉴의상&query=빌런&query=신의상&query=qfr&board=isd&board=best&since=20240718&title=&content=',
+  },
   // {
   //   id: 8,
   //   value: 'Shuko',

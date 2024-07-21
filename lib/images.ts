@@ -10,6 +10,7 @@ export { default as BoomDoor } from '@/public/static/images/events/goat.webp';
 export { default as KeyDoor } from '@/public/static/images/events/peridot.webp';
 export { default as Question } from '@/public/static/images/events/question.webp';
 export { default as Christmas } from '@/public/static/images/gallery/christmas.webp';
+export { default as deadCat } from '@/public/static/images/gallery/deadCat.webp';
 export { default as Halloween } from '@/public/static/images/gallery/halloween.webp';
 export { default as Isd } from '@/public/static/images/gallery/isd.webp';
 export { default as JururuBirthday } from '@/public/static/images/gallery/jururuBirthday.webp';
