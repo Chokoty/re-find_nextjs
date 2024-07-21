@@ -107,7 +107,7 @@ const GALLERY_LIST: Gallery[] = [
     subTitle: '뉴 아이네 팬아트',
     author: '핏짜라짜라',
     query:
-      'artworks?query=뉴이네&query=아이네&query=콘서트&query=에버퍼플&query=EVER PURPLE&query=아단콘&board=isd&board=best&since=20240427&title=',
+      'artworks?board=isd&board=best&category=아이네&since=20240427&title=&query=뉴이네&query=아이네&query=콘서트&query=에버퍼플&query=EVER PURPLE&query=아단콘',
   },
   {
     id: 9,
@@ -118,7 +118,7 @@ const GALLERY_LIST: Gallery[] = [
     description: '주르르님의 탄신일을 진심으로 축하드립니다!',
     author: '피엘로',
     query:
-      'artworks?board=isd&board=best&title=&content=&since=20240609&until=20240611&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이',
+      'artworks?board=isd&board=best&category=주르르&title=&content=&since=20240609&until=20240611&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이',
   },
   {
     id: 10,
@@ -130,7 +130,7 @@ const GALLERY_LIST: Gallery[] = [
       'LILPACON : Going Out - SOOPER CONCERT | 7월 12일(금) 7월 13일(토) 오후 7시 ',
     author: '낑깡맛',
     query:
-      'artworks?query=뉴뉴&query=릴파콘&query=릴단콘&query=콘서트&query=going&query=Going&board=isd&board=best&since=20240629&title=&content=',
+      'artworks?board=isd&board=best&category=릴파&since=20240629&title=&content=&query=뉴뉴&query=릴파콘&query=릴단콘&query=콘서트&query=going&query=Going',
   },
   {
     id: 11,
@@ -141,7 +141,7 @@ const GALLERY_LIST: Gallery[] = [
     description: '고세구님의 신의상 데드캣이 공개되었습니다. #Rollin',
     author: '니렝',
     query:
-      'artworks?query=dead&query=cat&query=데드&query=캣&query=켓&query=강시&query=키랏&query=처음 보냐&query=뉴의상&query=빌런&query=신의상&query=qfr&board=isd&board=best&since=20240718&title=&content=',
+      'artworks?&board=isd&board=best&category=고세구&since=20240718&title=&content=&query=dead&query=cat&query=데드&query=캣&query=켓&query=강시&query=키랏&query=처음 보냐&query=뉴의상&query=빌런&query=신의상&query=qfr',
   },
   // {
   //   id: 8,
