@@ -55,7 +55,7 @@ export default function EventModal() {
         <br />
         <br />
         <p className="text-center font-bold text-[#ef5a9a]">
-          {`"원대한 꿈이 있잖아~"`}
+          {`"마이크 테스트 / FRAME / LOGIN / 먼 길을 돌아"`}
         </p>
         <br />
         <br />
