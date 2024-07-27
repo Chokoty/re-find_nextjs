@@ -16,41 +16,68 @@ import { NotSearch } from '@/lib/images';
 // 검색시 3번 렌더링되는거 최적화하기(옵션 상태때문)
 export default function SearchResult() {
   const searchParams = useSearchParams();
+  const defaultLimit = {
+    check: false,
+    min: 0,
+    max: 100,
+  };
   const q = searchParams.get('q') ?? '';
+  const board = searchParams.get('board') ?? 'all';
+  const rankType = searchParams.get('ranktype') ?? 'latest';
+  const sensitiveParam = searchParams.get('sensitive');
+  const hasSensitiveCase =
+    sensitiveParam === null ? false : sensitiveParam === 'true';
+  const category = searchParams.get('category') ?? 'all';
+  const dateType = searchParams.get('datetype')
+    ? {
+        type: searchParams.get('datetype') ?? 'all',
+        data: searchParams.get('datetypeDetail')!,
+      }
+    : { type: 'all' };
+  const titleParam = searchParams.get('title');
+  const contentParam = searchParams.get('content');
+  const authorParam = searchParams.get('author');
+  const hasTitle = titleParam === null ? false : titleParam === 'true';
+  const hasContent = contentParam === null ? false : contentParam === 'true';
+  const hasAuthor = authorParam === null ? false : authorParam === 'true';
+  const viewCountCheckParam = searchParams.get('viewCountCheck');
+  const likeCountCheckParam = searchParams.get('likeCountCheck');
+  const commentCountCheckParam = searchParams.get('commentCountCheck');
+
+  const viewCountCheck =
+    viewCountCheckParam === null ? false : viewCountCheckParam === 'true';
+  const likeCountCheck =
+    likeCountCheckParam === null ? false : likeCountCheckParam === 'true';
+  const commentCountCheck =
+    commentCountCheckParam === null ? false : commentCountCheckParam === 'true';
+  const viewCountLimit = viewCountCheck
+    ? {
+        check: viewCountCheck,
+        min: parseInt(searchParams.get('viewCountMin')!),
+        max: parseInt(searchParams.get('viewCountMax')!),
+      }
+    : defaultLimit;
+  const likeCountLimit = likeCountCheck
+    ? {
+        check: likeCountCheck,
+        min: parseInt(searchParams.get('likeCountMin')!),
+        max: parseInt(searchParams.get('likeCountMax')!),
+      }
+    : defaultLimit;
+  const commentCountLimit = commentCountCheck
+    ? {
+        check: commentCountCheck,
+        min: parseInt(searchParams.get('commentCountMin')!),
+        max: parseInt(searchParams.get('commentCountMax')!),
+      }
+    : defaultLimit;
 
   const { ref, inView } = useInView({
     threshold: 0,
     rootMargin: '1000px 0px', // 상단에서 800px 떨어진 지점에서 데이터를 불러옵니다. 이 값을 조정하여 원하는 위치에서 데이터를 불러올 수 있습니다.
   });
-
-  const {
-    board,
-    category,
-    dateType,
-    rankType,
-    hasSensitiveCase,
-    hasTitle,
-    hasContent,
-    hasAuthor,
-    viewCountLimit,
-    likeCountLimit,
-    commentCountLimit,
-    setIsFetching,
-  } = useSearchFilterStore(
-    useShallow((state) => ({
-      board: state.board,
-      category: state.category,
-      dateType: state.dateType,
-      rankType: state.rankType,
-      hasSensitiveCase: state.hasSensitiveCase,
-      hasTitle: state.hasTitle,
-      hasContent: state.hasContent,
-      hasAuthor: state.hasAuthor,
-      viewCountLimit: state.viewCountLimit,
-      likeCountLimit: state.likeCountLimit,
-      commentCountLimit: state.commentCountLimit,
-      setIsFetching: state.setIsFetching,
-    }))
+  const { setIsFetching } = useSearchFilterStore(
+    useShallow((state) => ({ setIsFetching: state.setIsFetching }))
   );
 
   const {
@@ -117,7 +144,7 @@ export default function SearchResult() {
 
   return (
     <div className="flex w-full flex-col items-center justify-center">
-      <div className="flex w-full flex-wrap items-baseline gap-2 p-4">
+      <div className="mt-4 flex w-full flex-wrap items-baseline gap-2 p-4">
         <h4 className="text-xl font-bold">{`${
           q.length === 0 ? '전체검색' : `'${q}'`
         }`}</h4>

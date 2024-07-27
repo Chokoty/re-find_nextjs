@@ -37,6 +37,8 @@ export default function Modal({ Component, modalProps, hide }: Props) {
   const ANIMATION_REMOVE =
     animationMap[animationPosition as AnimationRenderPositionType].remove;
   const isCelebrating = (modalProps?.congrat as boolean) || undefined;
+  // applyCustomMaxWidth가 true일경우 custom modal 내부에서도 max-width를 주어야 적용됩니다. (ex. OptionModal.tsx)
+  const applyCustomMaxWidth = modalProps?.applyCustomMaxWidth ?? false;
 
   const modalRef = useRef<HTMLDivElement>(null);
   const { width, height } = useWindowSize();
@@ -99,7 +101,7 @@ export default function Modal({ Component, modalProps, hide }: Props) {
             tabIndex={-1}
             ref={modalRef}
             className={clsx(
-              'transition-all duration-500 ease-out sm:mx-auto sm:w-full sm:max-w-[70%]',
+              `transition-all duration-500 ease-out sm:mx-auto sm:w-full ${applyCustomMaxWidth ? 'sm:max-w-fit' : 'sm:max-w-[70%]'}`,
               {
                 [className]: true,
                 'mb-[60px] w-full': position === 'bottom',
