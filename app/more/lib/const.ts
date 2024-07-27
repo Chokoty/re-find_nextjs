@@ -158,7 +158,7 @@ export const DEVELOPERS: Developer[] = [
     contribute: ['AI연구'],
   },
   {
-    group: 'member',
+    group: 'credit',
     nickname: '녹두레기',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/2ZB1kx_FI9Qhs-jaAORemw',
