@@ -1,4 +1,4 @@
-export const ROWS_PER_PAGE = 10; // 한 페이지당 불러올 아이템 개수
+export const ROWS_PER_PAGE = 30; // 한 페이지당 불러올 아이템 개수
 
 export const MIN_COUNT = 0;
 export const MAX_COUNT = 20000;

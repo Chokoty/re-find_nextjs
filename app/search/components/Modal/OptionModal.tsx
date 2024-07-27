@@ -48,7 +48,6 @@ export default function OptionModal(props: Record<string, unknown>) {
 
     // URL에 query string 추가
     const queryString = params.toString();
-    console.log(queryString);
     router.push(`/search?q=${q}&${queryString}`);
     onClose();
     searchModalClose();
