@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
 import Loading from '@/app/search/components/Loading';
 import BackToTopButton from '@/components/BackToTopButton';
@@ -34,7 +35,9 @@ export default function NoticeLayout({
   return (
     <>
       {children}
-      <Loading />
+      <Suspense>
+        <Loading />
+      </Suspense>
       <BackToTopButton />
     </>
   );
