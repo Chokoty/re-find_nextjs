@@ -34,7 +34,9 @@ export default function SearchBar({
     if (trimedInput.length > 0) {
       addHistoryKeyword(trimedInput);
     }
-    router.push(`/search?q=${encodeURIComponent(trimedInput)}`);
+    router.push(
+      `/search?q=${encodeURIComponent(trimedInput)}&ranktype=latest&sensitive=false`
+    );
   };
 
   const onBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {

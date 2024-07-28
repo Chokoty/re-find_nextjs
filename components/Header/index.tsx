@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 import BackButton from '@/components/Button/BackButton';
@@ -61,7 +62,6 @@ const HeaderContent = () => {
   const pathname = usePathname();
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
-  const isSearchPage = pathname.startsWith('/search');
 
   // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
   if (isMorePath || isEvents) {
@@ -92,7 +92,10 @@ const HeaderContent = () => {
         </div>
         <DesktopHeaderTab />
       </div>
-      {!isSearchPage && <SearchModalOpener />}
+      <Suspense>
+        <SearchModalOpener />
+      </Suspense>
+
       <DesktopMenuTab />
     </>
   );
