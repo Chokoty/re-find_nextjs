@@ -11,6 +11,7 @@ const queryKeys = {
   isdArtworks: ['isdArtworks'] as const,
   kidingArtworks: ['kidingArtworks'] as const,
   waktyHallArts: ['waktyHallArts'] as const,
+  tagImages: (tag: string) => ['tagImages', tag] as const,
   urlInfo: (url: string) => ['urlInfo', url] as const,
 };
 
@@ -38,6 +39,12 @@ const queryOptions = {
   waktyHallArts: () => ({
     queryKey: queryKeys.waktyHallArts,
     queryFn: () => EventService.getWaktyHallArts(),
+    // enabled: false, // 초기에는 호출하지 않음
+  }),
+  tagImages: (tag: string) => ({
+    queryKey: queryKeys.tagImages(tag),
+    queryFn: () => EventService.getTagImages(tag),
+    staleTime: 0,
     // enabled: false, // 초기에는 호출하지 않음
   }),
 };

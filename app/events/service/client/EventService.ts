@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import Service from '@/lib/service';
 import type { CheckBoxType } from '@/types';
 
@@ -23,6 +25,25 @@ class EventService extends Service {
 
   getWaktyHallArts() {
     return this.http.get<WaktyHall>(`/waktyhall`);
+  }
+
+  // 추후 변경
+  async getTagImages(tag: string) {
+    const url = 'http://146.56.39.42:65434/get_images';
+    return axios
+      .post(url, {
+        tag,
+      })
+      .then((response) => {
+        console.log('응답 받은 데이터:', response.data);
+        // string[]
+        return response.data;
+      })
+      .catch((error) => {
+        console.error('오류 발생:', error);
+        // 오류 처리를 여기서 합니다
+        return null;
+      });
   }
 }
 

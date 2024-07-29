@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import queryOptions from '@/app/artists/service/client/queries';
 import DetailedEvent from '@/app/events/components/DetailedEvent';
+import FanartWorldCup from '@/app/events/components/FanartWorldCup';
 import RandomGacha from '@/app/events/components/RandomGacha';
 import WaktyHall from '@/app/events/components/WaktyHall';
 import { siteConfig } from '@/lib/config';
@@ -43,6 +44,9 @@ export default async function page({ params: { keyword } }: Params) {
   }
   if (keyword === 'waktyhall') {
     return <WaktyHall />;
+  }
+  if (keyword === 'fanartWorldCup') {
+    return <FanartWorldCup />;
   }
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
