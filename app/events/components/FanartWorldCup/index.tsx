@@ -20,7 +20,10 @@ export default function FanartWorldCup() {
   const [selectableTags, setSelectableTags] = useState<string[]>([...TAGS]);
   const [changeRound, setChangeRound] = useState(false);
   const [isLast, setIsLast] = useState(false);
-  const [isLeft, setIsLeft] = useState(false);
+  const [winInfo, setWinInfo] = useState({
+    direction: '',
+    tag: '',
+  });
   // const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태
 
   // useEffect를 통해 매 라운드가 바뀔 때마다 사용 가능한 태그 쌍을 업데이트합니다.
@@ -83,9 +86,9 @@ export default function FanartWorldCup() {
   };
 
   // 선택된 태그를 처리하고 다음 라운드로 진행하는 함수
-  const handleTagSelect = (tag: string, tagUrls?: string) => {
+  const handleTagSelect = (tag: string) => {
     if (currentRound.gang === 2 && currentRound.round === 1) {
-      setSelectedTags([tagUrls ?? '', tag]);
+      // setWinInfo({ ...winInfo, tag });
       setIsLast(true);
       return;
     }
@@ -151,20 +154,28 @@ export default function FanartWorldCup() {
               <div className="h-full w-1/2">
                 <img
                   className="bg-gray-700"
-                  src={`http://146.56.39.42:65434${selectedTags[0]}`}
+                  src={`https://rerurureruru.com${winInfo.direction === 'left' ? data : data2}`}
                   alt="test"
                 />
               </div>
             </div>
             <button
-              className={`h-full w-full border border-gray-300 text-black-200 disabled:cursor-not-allowed ${isLeft ? isFetching : isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
-              onClick={isLeft ? changeFanart : changeFanart2}
-              disabled={isLeft ? isFetching : isFetching2}
+              className={`absolute bottom-[-60px] z-[202] h-[60px] w-full border border-gray-300 text-xl font-semibold text-black-200 disabled:cursor-not-allowed ${winInfo.direction === 'left' ? isFetching : isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
+              onClick={() => {
+                if (winInfo.direction === 'left') {
+                  changeFanart();
+                } else {
+                  changeFanart2();
+                }
+              }}
+              disabled={winInfo.direction === 'left' ? isFetching : isFetching2}
             >
               새로고침
             </button>
-            <h4 className="mt-4 text-3xl text-shadow-worldCup">
-              {selectedTags[1]}
+            <h4 className="absolute bottom-[20%] text-3xl text-shadow-worldCup">
+              {winInfo.direction === 'left'
+                ? currentRoundTags[0]
+                : currentRoundTags[1]}
             </h4>
           </div>
           <div className="flex w-1/2 flex-col items-center justify-center text-2xl">
@@ -191,26 +202,26 @@ export default function FanartWorldCup() {
         <div
           className="flex h-full max-h-full w-1/2 max-w-[50%] flex-col items-center justify-center"
           onClick={() => {
-            handleTagSelect(currentRoundTags[0], data);
-            setIsLeft(true);
+            handleTagSelect(currentRoundTags[0]);
+            setWinInfo({ ...winInfo, direction: 'left' });
           }}
         >
           <img
             className="bg-gray-700"
-            src={`http://146.56.39.42:65434${data}`}
+            src={`https://rerurureruru.com${data}`}
             alt="test"
           />
         </div>
         <div
           className="flex h-full max-h-full w-1/2 max-w-[50%] flex-col items-center justify-center"
           onClick={() => {
-            handleTagSelect(currentRoundTags[1], data);
-            setIsLeft(false);
+            handleTagSelect(currentRoundTags[1]);
+            setWinInfo({ ...winInfo, direction: 'right' });
           }}
         >
           <img
             className="bg-gray-700"
-            src={`http://146.56.39.42:65434${data2}`}
+            src={`https://rerurureruru.com${data2}`}
             alt="test"
           />
         </div>
