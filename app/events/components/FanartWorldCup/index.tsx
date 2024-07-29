@@ -20,6 +20,7 @@ export default function FanartWorldCup() {
   const [selectableTags, setSelectableTags] = useState<string[]>([...TAGS]);
   const [changeRound, setChangeRound] = useState(false);
   const [isLast, setIsLast] = useState(false);
+  const [isLeft, setIsLeft] = useState(false);
   // const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태
 
   // useEffect를 통해 매 라운드가 바뀔 때마다 사용 가능한 태그 쌍을 업데이트합니다.
@@ -155,6 +156,13 @@ export default function FanartWorldCup() {
                 />
               </div>
             </div>
+            <button
+              className={`h-full w-full border border-gray-300 text-black-200 disabled:cursor-not-allowed ${isLeft ? isFetching : isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
+              onClick={isLeft ? changeFanart : changeFanart2}
+              disabled={isLeft ? isFetching : isFetching2}
+            >
+              새로고침
+            </button>
             <h4 className="mt-4 text-3xl text-shadow-worldCup">
               {selectedTags[1]}
             </h4>
@@ -182,7 +190,10 @@ export default function FanartWorldCup() {
       <div className="relative flex size-full items-center justify-center">
         <div
           className="flex h-full max-h-full w-1/2 max-w-[50%] flex-col items-center justify-center"
-          onClick={() => handleTagSelect(currentRoundTags[0], data)}
+          onClick={() => {
+            handleTagSelect(currentRoundTags[0], data);
+            setIsLeft(true);
+          }}
         >
           <img
             className="bg-gray-700"
@@ -192,7 +203,10 @@ export default function FanartWorldCup() {
         </div>
         <div
           className="flex h-full max-h-full w-1/2 max-w-[50%] flex-col items-center justify-center"
-          onClick={() => handleTagSelect(currentRoundTags[1], data)}
+          onClick={() => {
+            handleTagSelect(currentRoundTags[1], data);
+            setIsLeft(false);
+          }}
         >
           <img
             className="bg-gray-700"
@@ -209,9 +223,9 @@ export default function FanartWorldCup() {
             새로고침
           </button>
           <button
-            className={`h-full w-1/2 border border-gray-300 text-black-200 disabled:cursor-not-allowed ${isFetching ? 'bg-gray-500' : 'bg-gray-200'}`}
+            className={`h-full w-1/2 border border-gray-300 text-black-200 disabled:cursor-not-allowed ${isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
             onClick={changeFanart2}
-            disabled={isFetching}
+            disabled={isFetching2}
           >
             새로고침
           </button>

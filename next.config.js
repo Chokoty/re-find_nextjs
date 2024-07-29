@@ -52,8 +52,8 @@ const nextConfig = {
         pathname: '/**',
       },
       {
-        protocol: 'http',
-        hostname: '146.56.39.42:65434',
+        protocol: 'https',
+        hostname: 'rerurureruru.com',
         port: '',
         pathname: '/**',
       },
@@ -71,7 +71,7 @@ const nextConfig = {
       // },
       {
         source: `/api2/:path*`,
-        destination: `http://146.56.39.42:65434/:path*`,
+        destination: `https://rerurureruru.com/:path*`,
       },
     ];
   },
