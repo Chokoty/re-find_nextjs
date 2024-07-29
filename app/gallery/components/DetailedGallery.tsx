@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -20,17 +21,33 @@ type Props = {
 };
 // TODO: 4번 렌더링되는 문제 해결 필요
 export default function DetailedGallery({ value, endpoint }: Props) {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const sortTypeInit = searchParams.get('sortType') ?? '';
+  const viewTypeInit = searchParams.get('viewType') ?? '';
+  const memberInit = searchParams.get('member') ?? '';
+
+  const pathNameParts = window.location.pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+  console.log(name);
   // infinite scroll을 위한 옵저버
   const isMobile = useResponsive();
   const isIsdPick = value === 'isdPick';
   const option = isMobile ? { rootMargin: '1000px 0px' } : undefined;
   const { ref, inView } = useInView(option);
   // 멤버 선택 > isdPick일 경우
-  const [selected, setSelected] = useState('isd');
+  const [selected, setSelected] = useState(
+    memberInit !== '' ? memberInit : 'isd'
+  );
   // 뷰 선택 메뉴
   // TODO: 추후 URL 쿼리스트링으로 받아오는 값에 따라 초기 뷰와 상태 설정
-  const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState(isIsdPick ? 'latest' : 'alzaltak'); // 초기 상태 설정
+  const [activeView, setActiveView] = useState(
+    viewTypeInit !== '' ? viewTypeInit : 'masonry'
+  ); // 초기 뷰 설정
+  const [sortType, setSortType] = useState(
+    sortTypeInit !== '' ? sortTypeInit : isIsdPick ? 'latest' : 'alzaltak'
+  ); // 초기 상태 설정
+
   const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 / 가리기
   const { total, status, artworks, fetchNextPage, isFetchingNextPage } =
     useArtworks({ endpoint, sortType, isIsdPick, selected });
@@ -38,11 +55,71 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     setTotal: state.setTotal,
   }));
 
+  const buildQueryString = (obj: any) => {
+    const queryString = Object.keys(obj)
+      .filter(
+        (key) => obj[key] !== '' && obj[key] !== undefined && obj[key] !== null
+      )
+      .map(
+        (key: string) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`
+      )
+      .join('&');
+
+    return queryString;
+  };
+  // const updateURL = (params: Record<string, string>) => {
+  //   const allSearchParams: Record<string, string> = {};
+
+  //   searchParams.forEach((v, key) => {
+  //     allSearchParams[key] = v;
+  //   });
+
+  //   Object.assign(allSearchParams, params);
+
+  //   return allSearchParams;
+
+  //   // const queryString = buildQueryString(allSearchParams);
+  //   // console.log(queryString);
+  //   // return queryString;
+  //   // router.push(`/gallery/${name}?${queryString}`);
+  // };
+
+  // const updateURLWithMember = (
+  //   params: Record<string, string>,
+  //   includeMember: boolean
+  // ) => {
+  //   const updatedParams = { ...params };
+  //   if (includeMember) {
+  //     updatedParams.member = selected;
+  //   }
+  //   // updateURL(updatedParams);
+  //   return updateURL(updatedParams);
+  // };
+
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
     (menuText: string) => {
       if (menuText === sortType) return;
       setSortType(menuText);
+
+      // updateURL({ viewType: activeView, sortType: menuText, member: selected });
+      // const params = updateURLWithMember(
+      //   { viewType: activeView, sortType: menuText },
+      //   isIsdPick
+      // );
+      // router.push(`/gallery/${name}?${buildQueryString(params)}`);
+
+      const allSearchParams: { [anyProp: string]: string } = {};
+
+      searchParams.forEach((v, key) => {
+        allSearchParams[key] = v;
+      });
+      allSearchParams.member = selected;
+      allSearchParams.sortType = menuText; // 현재 sortType 상태를 추가
+      allSearchParams.viewType = activeView;
+      console.log(buildQueryString(allSearchParams));
+      router.push(`/gallery/${name}?${buildQueryString(allSearchParams)}`);
     },
     [sortType]
   );
@@ -50,6 +127,25 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   // 뷰 선택하기
   const handleViewChange = (view: string) => {
     setActiveView(view);
+
+    // const params = updateURLWithMember({ viewType: view, sortType }, isIsdPick);
+    // router.push(`/gallery/${name}?${buildQueryString(params)}`);
+
+    // updateURLWithMember({ viewType: view, sortType }, isIsdPick);
+
+    // updateURL({ viewType: view, sortType, member: selected });
+    const allSearchParams: { [anyProp: string]: string } = {};
+
+    searchParams.forEach((v, key) => {
+      allSearchParams[key] = v;
+    });
+    allSearchParams.sortType = sortType; // 현재 sortType 상태를 추가
+    allSearchParams.viewType = view;
+    if (isIsdPick) {
+      allSearchParams.member = selected;
+    }
+    console.log(buildQueryString(allSearchParams));
+    router.push(`/gallery/${name}?${buildQueryString(allSearchParams)}`);
   };
 
   // 삭제된 게시글 보이기
@@ -60,6 +156,27 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   // value가 isd일 경우, 멤버 선택하기
   const handleMemberClick = (member: string) => {
     setSelected(member);
+
+    // updateURL({ viewType: activeView, sortType, member });
+    // updateURLWithMember({ viewType: activeView, sortType, member }, true);
+    // const params = updateURLWithMember(
+    //   { viewType: activeView, sortType, member },
+    //   true
+    // );
+    // router.push(`/gallery/${name}?${buildQueryString(params)}`);
+
+    const allSearchParams: { [anyProp: string]: string } = {};
+
+    searchParams.forEach((v, key) => {
+      allSearchParams[key] = v;
+    });
+    allSearchParams.sortType = sortType; // 현재 sortType 상태를 추가
+    allSearchParams.viewType = activeView;
+    if (isIsdPick) {
+      allSearchParams.member = member;
+    }
+    console.log(buildQueryString(allSearchParams));
+    router.push(`/gallery/${name}?${buildQueryString(allSearchParams)}`);
   };
 
   // 무한 스크롤
