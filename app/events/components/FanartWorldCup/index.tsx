@@ -156,6 +156,9 @@ export default function FanartWorldCup() {
                   className="bg-gray-700"
                   src={`https://rerurureruru.com${winInfo.direction === 'left' ? data : data2}`}
                   alt="test"
+                  style={{
+                    height: height - 100,
+                  }}
                 />
               </div>
             </div>
@@ -210,6 +213,9 @@ export default function FanartWorldCup() {
             className="bg-gray-700"
             src={`https://rerurureruru.com${data}`}
             alt="test"
+            style={{
+              height: height - 100,
+            }}
           />
         </div>
         <div
@@ -223,6 +229,9 @@ export default function FanartWorldCup() {
             className="bg-gray-700"
             src={`https://rerurureruru.com${data2}`}
             alt="test"
+            style={{
+              height: height - 100,
+            }}
           />
         </div>
         <div className="absolute bottom-0 z-[6] h-[60px] w-full text-xl font-semibold">
