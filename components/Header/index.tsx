@@ -52,8 +52,9 @@ const etcPathMap = {
   '/more/support': '문의',
   '/more/about': '소개',
   '/more': '좀 더!',
-  '/events': '이벤트관',
-  '/events/randomGacha': '이벤트관',
+  '/events': '이벤트',
+  '/events/randomGacha': '이벤트',
+  '/events/fanartWorldCup': '이벤트',
 } as const;
 
 type EtcPathMapKeyType = keyof typeof etcPathMap;

@@ -85,6 +85,13 @@ export const siteConfig = {
             '문 뒤에는 고퀄팬아트와 혐잘딱팬아트, 왁두팬아트가 있습니다, 당신의 선택은?',
         };
       }
+      if (keyword === 'fanartWorldCup') {
+        return {
+          ...result,
+          description:
+            '고세구님 팬아트 태그 월드컵에서 최고의 태그 팬아트를 골라보세요!',
+        };
+      }
 
       return result;
     },

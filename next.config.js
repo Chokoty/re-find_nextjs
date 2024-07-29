@@ -51,6 +51,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: '146.56.39.42:65434',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   env: {
@@ -62,6 +68,10 @@ const nextConfig = {
   //     {
   //       source: `${process.env.NEXT_PUBLIC_REDIRECT_URL}/:path*`,
   //       destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+  //     },
+  //     {
+  //       source: `/api2/:path*`,
+  //       destination: `http://146.56.39.42:65434/:path*`,
   //     },
   //   ];
   // },

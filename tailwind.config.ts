@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   content: [
@@ -41,6 +42,10 @@ const config: Config = {
       bermuda: 'var(--bermuda)',
     },
     extend: {
+      textShadow: {
+        worldCup:
+          '-1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000',
+      },
       colors: {
         // border: 'var(--border)',
         // background color
@@ -298,7 +303,18 @@ const config: Config = {
   future: {
     hoverOnlyWhenSupported: true,
   },
-  plugins: [],
+  plugins: [
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      );
+    }),
+  ],
   darkMode: 'class',
   // important: true,
 };

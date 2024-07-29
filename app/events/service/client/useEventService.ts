@@ -26,3 +26,7 @@ export function useUrlInfo(url: string) {
 export function useWaktyHallArts() {
   return useQuery(queryOptions.waktyHallArts());
 }
+
+export function useTagImages(tag: string) {
+  return useQuery(queryOptions.tagImages(tag));
+}

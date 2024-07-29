@@ -61,7 +61,7 @@ export default function GalleryAlbumCard({
           </Popover>
         </div>
         {/* 데스크탑 */}
-        <Link href={`/artists/${author}`} className="flex">
+        <Link href={`/artists/${author}?sortType=alzaltak`} className="flex">
           <div className="absolute z-[2] hidden items-center justify-center rounded-[10px] bg-blackAlpha-500 px-3 py-2 text-sm font-normal text-white hover:bg-blackAlpha-600 active:bg-blackAlpha-400 md:inline-flex min-[840px]:px-3.5 min-[840px]:py-2.5">
             출처
           </div>
