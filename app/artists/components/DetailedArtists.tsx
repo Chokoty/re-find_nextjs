@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { HashLoader } from 'react-spinners';
@@ -25,9 +26,18 @@ export default function DetailedArtists({ nickname }: Props) {
   const isMobile = useResponsive();
   const option = isMobile ? { rootMargin: '1000px 0px' } : undefined;
   const { ref, inView } = useInView(option);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const viewTypeInit = searchParams.get('viewType') ?? '';
+  const sortTypeInit = searchParams.get('sortType') ?? '';
+
   // 뷰 선택 메뉴
-  const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState('latest'); // TODO: 이전 부분 삭제 (query가 들어갈 수 있는 상황이 없는 것 같아서)
+  const [activeView, setActiveView] = useState(
+    viewTypeInit !== '' ? viewTypeInit : 'masonry'
+  ); // 초기 뷰 설정
+  const [sortType, setSortType] = useState(
+    sortTypeInit !== '' ? sortTypeInit : 'latest'
+  ); // TODO: 이전 부분 삭제 (query가 들어갈 수 있는 상황이 없는 것 같아서)
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
   const { rankCriteria } = useArtistSearchInfoStore(
@@ -42,20 +52,37 @@ export default function DetailedArtists({ nickname }: Props) {
     }
   );
 
+  const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+
+  const updateURL = (ViewType: string, SortType: string) => {
+    const params = new URLSearchParams();
+    params.append('viewType', ViewType);
+    params.append('sortType', SortType);
+    // URL에 query string 추가
+    const queryString = params.toString();
+    router.push(`/artists/${name}?${queryString}`);
+  };
+
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
     (menuText: string) => {
       // console.log(menuText);
       if (menuText === sortType) return;
       setSortType(menuText);
+      updateURL(activeView, menuText);
     },
     [sortType]
   );
 
   // 뷰 선택하기
-  const handleViewChange = useCallback((view: string) => {
+  // const handleViewChange = useCallback((view: string) => {
+  const handleViewChange = (view: string) => {
     setActiveView(view);
-  }, []);
+    updateURL(view, sortType);
+  };
+  // }, []);
 
   // 삭제된 게시글 보이기
   const handleShowDeleted = useCallback(() => {
