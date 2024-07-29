@@ -36,6 +36,10 @@ const getBadgeText = ({
 export default function GalleryAlbumCard({
   album: { title, value, description, type, author },
 }: Prop) {
+  const query = {
+    sortType: 'alzaltak',
+  };
+
   const staticImage = getStaticImage(value);
   return (
     <div className="relative w-full transition hover:scale-[1.01]">
@@ -67,7 +71,11 @@ export default function GalleryAlbumCard({
           </div>
         </Link>
       </div>
-      <Link href={`/gallery/${value}`} prefetch={false}>
+      {/* <Link href={`/gallery/${value}`} prefetch={false}> */}
+      <Link
+        href={`/gallery/${value}?sortType=alzaltak&viewType=masonry`}
+        prefetch={false}
+      >
         <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">
           <Image
             className="rounded-2xl object-cover"
