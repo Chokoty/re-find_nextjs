@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
@@ -27,10 +27,11 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   const viewTypeInit = searchParams.get('viewType') ?? '';
   const memberInit = searchParams.get('member') ?? '';
 
-  const pathNameParts = window.location.pathname.split('/');
+  const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
   const name = pathNameParts[pathNameParts.length - 1];
-  console.log(name);
-  // infinite scroll을 위한 옵저버
+
+  // // infinite scroll을 위한 옵저버
   const isMobile = useResponsive();
   const isIsdPick = value === 'isdPick';
   const option = isMobile ? { rootMargin: '1000px 0px' } : undefined;
@@ -55,47 +56,17 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     setTotal: state.setTotal,
   }));
 
-  const buildQueryString = (obj: any) => {
-    const queryString = Object.keys(obj)
-      .filter(
-        (key) => obj[key] !== '' && obj[key] !== undefined && obj[key] !== null
-      )
-      .map(
-        (key: string) =>
-          `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`
-      )
-      .join('&');
-
-    return queryString;
+  const updateURL = (SortType: string, ViewType: string, member?: string) => {
+    const params = new URLSearchParams();
+    if (isIsdPick && member) {
+      params.append('member', member);
+    }
+    params.append('sortType', SortType);
+    params.append('viewType', ViewType);
+    // URL에 query string 추가
+    const queryString = params.toString();
+    router.push(`/gallery/${name}?${queryString}`);
   };
-  // const updateURL = (params: Record<string, string>) => {
-  //   const allSearchParams: Record<string, string> = {};
-
-  //   searchParams.forEach((v, key) => {
-  //     allSearchParams[key] = v;
-  //   });
-
-  //   Object.assign(allSearchParams, params);
-
-  //   return allSearchParams;
-
-  //   // const queryString = buildQueryString(allSearchParams);
-  //   // console.log(queryString);
-  //   // return queryString;
-  //   // router.push(`/gallery/${name}?${queryString}`);
-  // };
-
-  // const updateURLWithMember = (
-  //   params: Record<string, string>,
-  //   includeMember: boolean
-  // ) => {
-  //   const updatedParams = { ...params };
-  //   if (includeMember) {
-  //     updatedParams.member = selected;
-  //   }
-  //   // updateURL(updatedParams);
-  //   return updateURL(updatedParams);
-  // };
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
@@ -103,23 +74,16 @@ export default function DetailedGallery({ value, endpoint }: Props) {
       if (menuText === sortType) return;
       setSortType(menuText);
 
-      // updateURL({ viewType: activeView, sortType: menuText, member: selected });
-      // const params = updateURLWithMember(
-      //   { viewType: activeView, sortType: menuText },
-      //   isIsdPick
-      // );
-      // router.push(`/gallery/${name}?${buildQueryString(params)}`);
-
-      const allSearchParams: { [anyProp: string]: string } = {};
-
-      searchParams.forEach((v, key) => {
-        allSearchParams[key] = v;
-      });
-      allSearchParams.member = selected;
-      allSearchParams.sortType = menuText; // 현재 sortType 상태를 추가
-      allSearchParams.viewType = activeView;
-      console.log(buildQueryString(allSearchParams));
-      router.push(`/gallery/${name}?${buildQueryString(allSearchParams)}`);
+      updateURL(menuText, activeView, selected);
+      // const params = new URLSearchParams();
+      // if (isIsdPick) {
+      //   params.append('member', selected);
+      // }
+      // params.append('sortType', menuText);
+      // params.append('viewType', activeView);
+      // // URL에 query string 추가
+      // const queryString = params.toString();
+      // router.push(`/gallery/${name}?${queryString}`);
     },
     [sortType]
   );
@@ -128,55 +92,19 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   const handleViewChange = (view: string) => {
     setActiveView(view);
 
-    // const params = updateURLWithMember({ viewType: view, sortType }, isIsdPick);
-    // router.push(`/gallery/${name}?${buildQueryString(params)}`);
-
-    // updateURLWithMember({ viewType: view, sortType }, isIsdPick);
-
-    // updateURL({ viewType: view, sortType, member: selected });
-    const allSearchParams: { [anyProp: string]: string } = {};
-
-    searchParams.forEach((v, key) => {
-      allSearchParams[key] = v;
-    });
-    allSearchParams.sortType = sortType; // 현재 sortType 상태를 추가
-    allSearchParams.viewType = view;
-    if (isIsdPick) {
-      allSearchParams.member = selected;
-    }
-    console.log(buildQueryString(allSearchParams));
-    router.push(`/gallery/${name}?${buildQueryString(allSearchParams)}`);
-  };
-
-  // 삭제된 게시글 보이기
-  const handleShowDeleted = () => {
-    setIsDeletedVisible((prev) => !prev);
+    updateURL(sortType, view, selected);
   };
 
   // value가 isd일 경우, 멤버 선택하기
   const handleMemberClick = (member: string) => {
     setSelected(member);
 
-    // updateURL({ viewType: activeView, sortType, member });
-    // updateURLWithMember({ viewType: activeView, sortType, member }, true);
-    // const params = updateURLWithMember(
-    //   { viewType: activeView, sortType, member },
-    //   true
-    // );
-    // router.push(`/gallery/${name}?${buildQueryString(params)}`);
+    updateURL(sortType, activeView, member);
+  };
 
-    const allSearchParams: { [anyProp: string]: string } = {};
-
-    searchParams.forEach((v, key) => {
-      allSearchParams[key] = v;
-    });
-    allSearchParams.sortType = sortType; // 현재 sortType 상태를 추가
-    allSearchParams.viewType = activeView;
-    if (isIsdPick) {
-      allSearchParams.member = member;
-    }
-    console.log(buildQueryString(allSearchParams));
-    router.push(`/gallery/${name}?${buildQueryString(allSearchParams)}`);
+  // 삭제된 게시글 보이기
+  const handleShowDeleted = () => {
+    setIsDeletedVisible((prev) => !prev);
   };
 
   // 무한 스크롤
