@@ -21,7 +21,8 @@ const Member = ({ member }: { member: MemberType }) => {
   return (
     <li className="w-[140px] list-none">
       <Link
-        href={`/gallery/${value}`}
+        // href={`/gallery/${value}`}
+        href={`/gallery/${value}?sortType=latest&viewType=masonry`}
         prefetch={false}
         style={{
           display: 'flex',
