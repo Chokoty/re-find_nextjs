@@ -63,18 +63,18 @@ const nextConfig = {
     NEXT_PUBLIC_GA_ID: process.env.NEXT_PUBLIC_GA_ID,
   },
   // 개발 환경을 위한 proxy 설정입니다.
-  // rewrites: async () => {
-  //   return [
-  //     {
-  //       source: `${process.env.NEXT_PUBLIC_REDIRECT_URL}/:path*`,
-  //       destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
-  //     },
-  //     {
-  //       source: `/api2/:path*`,
-  //       destination: `http://146.56.39.42:65434/:path*`,
-  //     },
-  //   ];
-  // },
+  rewrites: async () => {
+    return [
+      // {
+      //   source: `${process.env.NEXT_PUBLIC_REDIRECT_URL}/:path*`,
+      //   destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
+      // },
+      {
+        source: `/api2/:path*`,
+        destination: `http://146.56.39.42:65434/:path*`,
+      },
+    ];
+  },
 };
 
 module.exports = withPlugins([withPWA, withBundleAnalyzer], nextConfig);

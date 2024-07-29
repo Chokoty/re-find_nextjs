@@ -29,7 +29,7 @@ class EventService extends Service {
 
   // 추후 변경
   async getTagImages(tag: string) {
-    const url = 'http://146.56.39.42:65434/get_images';
+    const url = '/api2/get_images';
     return axios
       .post(url, {
         tag,
