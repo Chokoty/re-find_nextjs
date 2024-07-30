@@ -94,4 +94,5 @@ export const CREDIT = [
   '안녕 난 풀이야',
   '무 아',
   'VAAV',
+  '아요이',
 ];
