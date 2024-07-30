@@ -21,8 +21,8 @@ type Props = {
 };
 // TODO: 4번 렌더링되는 문제 해결 필요
 export default function DetailedGallery({ value, endpoint }: Props) {
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const sortTypeInit = searchParams.get('sortType') ?? '';
   const viewTypeInit = searchParams.get('viewType') ?? '';
   const memberInit = searchParams.get('member') ?? '';
@@ -61,8 +61,8 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     if (isIsdPick && member) {
       params.append('member', member);
     }
-    params.append('sortType', SortType);
     params.append('viewType', ViewType);
+    params.append('sortType', SortType);
     // URL에 query string 추가
     const queryString = params.toString();
     router.push(`/gallery/${name}?${queryString}`);
@@ -91,14 +91,12 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   // 뷰 선택하기
   const handleViewChange = (view: string) => {
     setActiveView(view);
-
     updateURL(sortType, view, selected);
   };
 
   // value가 isd일 경우, 멤버 선택하기
   const handleMemberClick = (member: string) => {
     setSelected(member);
-
     updateURL(sortType, activeView, member);
   };
 
