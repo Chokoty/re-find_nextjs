@@ -145,12 +145,12 @@ export default function FanartWorldCup() {
         <div className="fixed inset-0 z-[201] size-full">
           <Confetti width={width} height={height} />
         </div>
-        <div className="flex size-full items-center w-full">
+        <div className="flex size-full w-full items-center">
           <div className="relative flex h-full w-1/2 flex-col items-center justify-center">
             <div className="absolute top-0 z-[4] flex w-full items-center justify-center bg-blackAlpha-400 py-2 text-2xl text-white 2xs:text-3xl md:text-5xl">
               고세구 태그 팬아트 월드컵 우승
             </div>
-            <div className="flex items-center justify-center w-full">
+            <div className="flex w-full items-center justify-center">
               <div className="h-full w-1/2">
                 <img
                   className="bg-gray-700"
@@ -175,7 +175,7 @@ export default function FanartWorldCup() {
             >
               새로고침
             </button>
-            <h4 className="text-shadow-worldCup absolute bottom-[20%] text-3xl ">
+            <h4 className="absolute bottom-[20%] text-3xl text-shadow-worldCup ">
               {winInfo.direction === 'left'
                 ? currentRoundTags[0]
                 : currentRoundTags[1]}
@@ -256,7 +256,7 @@ export default function FanartWorldCup() {
           <Image src={VS} alt="vs" priority fill unoptimized />
         </div>
       </div>
-      <div className="text-shadow-worldCup pointer-events-none absolute bottom-[20%] left-0 z-[4] max-h-[50%] w-full text-2xl text-white 2xs:text-3xl md:text-5xl">
+      <div className="pointer-events-none absolute bottom-[20%] left-0 z-[4] max-h-[50%] w-full text-2xl text-white text-shadow-worldCup 2xs:text-3xl md:text-5xl">
         <p className="inline-block w-1/2 pr-[15%] text-right">
           {currentRoundTags[0]}
         </p>
