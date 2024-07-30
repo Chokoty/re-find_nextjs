@@ -175,7 +175,7 @@ export default function FanartWorldCup() {
             >
               새로고침
             </button>
-            <h4 className="absolute bottom-[20%] text-3xl text-shadow-worldCup">
+            <h4 className="text-shadow-worldCup absolute bottom-[20%] text-3xl ">
               {winInfo.direction === 'left'
                 ? currentRoundTags[0]
                 : currentRoundTags[1]}
@@ -256,7 +256,7 @@ export default function FanartWorldCup() {
           <Image src={VS} alt="vs" priority fill unoptimized />
         </div>
       </div>
-      <div className="pointer-events-none absolute bottom-[20%] left-0 z-[4] max-h-[50%] w-full text-2xl text-white text-shadow-worldCup 2xs:text-3xl md:text-5xl">
+      <div className="text-shadow-worldCup pointer-events-none absolute bottom-[20%] left-0 z-[4] max-h-[50%] w-full text-2xl text-white 2xs:text-3xl md:text-5xl">
         <p className="inline-block w-1/2 pr-[15%] text-right">
           {currentRoundTags[0]}
         </p>
