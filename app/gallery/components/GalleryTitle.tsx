@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { FaAngleLeft } from 'react-icons/fa6';
 
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
@@ -35,6 +35,23 @@ const descriptionClassName =
 export default function GalleryTitle({ pageType }: { pageType: string }) {
   const router = useRouter();
   const { title, description } = getTitleInfo(pageType);
+
+  const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+  // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
+  const shouldHideTotalCounter = (n: string) => {
+    const hiddenNames = [
+      'gosegu',
+      'ine',
+      'viichan',
+      'jingburger',
+      'lilpa',
+      'jururu',
+    ];
+    return hiddenNames.includes(n);
+  };
+
   const handleBackButton = () => {
     router.push('/gallery');
   };
@@ -71,7 +88,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
           <div className="flex w-full items-center justify-between">
             <ShareLinkButton />
             <div className="2md:hidden">
-              <TotalCounter />
+              {!shouldHideTotalCounter(name) && <TotalCounter />}
             </div>
           </div>
         </>
