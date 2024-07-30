@@ -156,14 +156,11 @@ export default function FanartWorldCup() {
                   className="bg-gray-700"
                   src={`https://rerurureruru.com${winInfo.direction === 'left' ? data : data2}`}
                   alt="test"
-                  style={{
-                    height: height - 100,
-                  }}
                 />
               </div>
             </div>
             <button
-              className={`absolute bottom-[-60px] z-[202] h-[60px] w-full border border-gray-300 text-xl font-semibold text-black-200 disabled:cursor-not-allowed ${winInfo.direction === 'left' ? isFetching : isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
+              className={`absolute bottom-[-60px] z-[202] h-[60px] w-full border border-gray-300 text-xl font-semibold text-black-200 disabled:cursor-not-allowed ${isFetching || isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
               onClick={() => {
                 if (winInfo.direction === 'left') {
                   changeFanart();
