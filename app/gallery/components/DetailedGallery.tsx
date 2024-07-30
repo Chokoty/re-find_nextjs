@@ -30,6 +30,19 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
   const name = pathNameParts[pathNameParts.length - 1];
+  console.log(name);
+  // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
+  const shouldHideTotalCounter = (n: string) => {
+    const hiddenNames = [
+      'gosegu',
+      'ine',
+      'viichan',
+      'jingburger',
+      'lilpa',
+      'jururu',
+    ];
+    return hiddenNames.includes(n);
+  };
 
   // // infinite scroll을 위한 옵저버
   const isMobile = useResponsive();
@@ -130,7 +143,7 @@ export default function DetailedGallery({ value, endpoint }: Props) {
         handleShowDeleted={handleShowDeleted}
         onMemberClick={handleMemberClick}
         topOffset={59}
-        hasTotalCounter={!!total}
+        hasTotalCounter={!shouldHideTotalCounter(name) && !!total}
         isIsdPick={isIsdPick}
       />
       {status === 'pending' ? (
