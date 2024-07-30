@@ -73,7 +73,7 @@ export default function GalleryAlbumCard({
       </div>
       {/* <Link href={`/gallery/${value}`} prefetch={false}> */}
       <Link
-        href={`/gallery/${value}?sortType=alzaltak&viewType=masonry`}
+        href={`/gallery/${value}?viewType=masonry&sortType=alzaltak`}
         prefetch={false}
       >
         <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">

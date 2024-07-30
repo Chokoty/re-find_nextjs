@@ -22,7 +22,7 @@ const Member = ({ member }: { member: MemberType }) => {
     <li className="w-[140px] list-none">
       <Link
         // href={`/gallery/${value}`}
-        href={`/gallery/${value}?sortType=latest&viewType=masonry`}
+        href={`/gallery/${value}?viewType=masonry&sortType=latest`}
         prefetch={false}
         style={{
           display: 'flex',
