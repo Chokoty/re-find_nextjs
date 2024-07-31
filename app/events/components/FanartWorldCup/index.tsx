@@ -7,7 +7,7 @@ import { useWindowSize } from 'react-use';
 
 import { CREDIT, TAGS } from '@/app/events/lib/const';
 import { useTagImages } from '@/app/events/service/client/useEventService';
-import { VS } from '@/lib/images';
+import { RefindLogo, VS } from '@/lib/images';
 
 export default function FanartWorldCup() {
   const { width, height } = useWindowSize();
@@ -178,11 +178,27 @@ export default function FanartWorldCup() {
                 : currentRoundTags[1]}
             </h4>
           </div>
-          <div className="flex w-1/2 flex-col items-center justify-center text-2xl">
-            <h2 className="mb-6 text-5xl">Credit</h2>
+          <div className="mt-10 flex w-1/2 flex-col items-center justify-center text-2xl">
+            <h2 className="mb-6 text-3xl">팀 리파인드 제작</h2>
+            <Image
+              src={RefindLogo}
+              alt="리파인드 로고"
+              width={100}
+              height={100}
+              priority
+              unoptimized
+            />
+            <h2 className="mb-6 mt-10 text-3xl">도와주신 작가님들</h2>
             {CREDIT.map((author) => (
               <p key={author}>{author}</p>
             ))}
+            <p className="mt-6 text-center">
+              세구님 방송 3주년 진심으로 축하드립니다!
+            </p>
+            <p className="mt-1 text-center">
+              세구님의 모든 망상이 현실이 되는 그날까지 늘 옆에서
+              응원하겠습니다. 킹아!
+            </p>
           </div>
         </div>
       </div>

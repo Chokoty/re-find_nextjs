@@ -1,5 +1,6 @@
 export { default as Logo } from '@/public/logo.svg';
 export { default as RealWakGood } from '@/public/real-wakgood.webp';
+export { default as RefindLogo } from '@/public/refind5.png';
 export { default as Afreeca } from '@/public/static/icons/afreecatv-logo.webp';
 export { default as Waksplorer } from '@/public/static/icons/waksplorer-logo.webp';
 export { default as Wakzoo } from '@/public/static/icons/wakzoo-logo.webp';
