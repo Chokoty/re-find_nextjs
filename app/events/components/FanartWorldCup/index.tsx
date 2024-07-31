@@ -135,6 +135,14 @@ export default function FanartWorldCup() {
     status: status2,
   } = useTagImages(currentRoundTags[1]);
 
+  const chunkArray = (array: string[], size: number) => {
+    const chunkedArr = [];
+    for (let i = 0; i < array.length; i += size) {
+      chunkedArr.push(array.slice(i, i + size));
+    }
+    return chunkedArr;
+  };
+
   if (isLoading || isLoading2) {
     // return <div>loading</div>;
     return null;
@@ -179,7 +187,20 @@ export default function FanartWorldCup() {
             </h4>
           </div>
           <div className="mt-10 flex w-1/2 flex-col items-center justify-center text-2xl">
-            <h2 className="mb-6 text-4xl">팀 리파인드 제작</h2>
+            <h2 className="mb-6  text-4xl">도와주신 작가님들</h2>
+            {/* {CREDIT.map((author) => (
+              <p key={author} className="w-1/3">
+                {author}
+              </p>
+            ))} */}
+            <div className="flex flex-wrap">
+              {CREDIT.map((author, index) => (
+                <div key={author} className="w-1/3">
+                  <p className="writing-vertical-rl text-center">{author}</p>
+                </div>
+              ))}
+            </div>
+            <h2 className="mb-6 mt-10 text-4xl">팀 리파인드 제작</h2>
             <Image
               src={RefindLogo}
               alt="리파인드 로고"
@@ -188,14 +209,10 @@ export default function FanartWorldCup() {
               priority
               unoptimized
             />
-            <h2 className="mb-6 mt-10 text-4xl">도와주신 작가님들</h2>
-            {CREDIT.map((author) => (
-              <p key={author}>{author}</p>
-            ))}
             <p className="mt-6 text-center">
               세구님 방송 3주년 진심으로 축하드립니다!
             </p>
-            <p className="mt-1 text-center">
+            <p className="text-center">
               세구님의 모든 망상이 현실이 되는 그날까지 늘 곁에서
               응원하겠습니다. 킹아!
             </p>
