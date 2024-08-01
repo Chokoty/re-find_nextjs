@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 import BackButton from '@/components/Button/BackButton';
+import WorldcupSkipButton from '@/components/Button/WorldcupSkipButton';
 import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
 import DesktopMenuTab from '@/components/Header/DesktopMenuTab';
 import { useScroll } from '@/hooks/useScroll';
@@ -54,13 +55,17 @@ const etcPathMap = {
   '/more': '좀 더!',
   '/events': '이벤트',
   '/events/randomGacha': '이벤트',
-  '/events/fanartWorldCup': '이벤트',
+  '/events/fanartWorldCup': '고공전',
+  '/events/fanartWorldCup/credit': '크레딧',
 } as const;
 
 type EtcPathMapKeyType = keyof typeof etcPathMap;
 
 const HeaderContent = () => {
   const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
 
@@ -72,7 +77,11 @@ const HeaderContent = () => {
         <h1 className="flex items-center justify-center text-xl font-bold">
           {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
         </h1>
-        <div className="size-12" />
+        {name === 'fanartWorldCup' ? (
+          <WorldcupSkipButton />
+        ) : (
+          <div className="size-12" />
+        )}
       </>
     );
   }

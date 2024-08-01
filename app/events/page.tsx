@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BsDoorOpenFill } from 'react-icons/bs';
+import { BsDoorOpenFill, BsTrophyFill } from 'react-icons/bs';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 
 import { cn } from '@/lib/common';
@@ -35,6 +35,15 @@ const events = [
     icon: <BsDoorOpenFill className="mr-2 size-6" />,
     link: '/events/waktyhall',
     linkText: '선택을 바꾸시겠습니까?',
+  },
+  {
+    title: '[고공전]세구님 팬아트 태그 월드컵',
+    colorScheme:
+      'bg-blue-400 hover:bg-blue-500 active:bg-blue-600 dark:text-gray-900 text-gray-50',
+    // isDisabled: true,
+    icon: <BsTrophyFill className="mr-2 size-6" />,
+    link: '/events/fanartWorldCup',
+    linkText: '태그 월드컵 체험해보기',
   },
 ];
 

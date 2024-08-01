@@ -100,6 +100,16 @@ export const siteConfig = {
       description: '3종류의 팬아트 기회는 단 2번 여러분의 선택은!',
       url: '/events/WaktyHallDoor',
     },
+    goGongJeon: {
+      title: '리파인드 | 고공전 팬아트 태그 월드컵',
+      description: '세구님 팬아트 중에서 태그 월드컵',
+      url: '/events/FanartWorldCup',
+      credit: {
+        title: '리파인드 | 고공전 팬아트 태그 월드컵 - 크레딧',
+        description: '세구님 방송 3주년 진심으로 축하드립니다!',
+        url: '/events/FanartWorldCup/credit',
+      },
+    },
   },
   more: {
     main: {
