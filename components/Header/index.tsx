@@ -69,9 +69,6 @@ const HeaderContent = () => {
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
 
-  const pathNameParts = pathname.split('/');
-  const name = pathNameParts[pathNameParts.length - 1];
-
   // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
   if (isMorePath || isEvents) {
     return (
