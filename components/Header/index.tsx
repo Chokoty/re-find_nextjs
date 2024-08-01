@@ -55,13 +55,17 @@ const etcPathMap = {
   '/more': '좀 더!',
   '/events': '이벤트',
   '/events/randomGacha': '이벤트',
-  '/events/fanartWorldCup': '이벤트',
+  '/events/fanartWorldCup': '고공전',
+  '/events/fanartWorldCup/credit': '크레딧',
 } as const;
 
 type EtcPathMapKeyType = keyof typeof etcPathMap;
 
 const HeaderContent = () => {
   const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
 
