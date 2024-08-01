@@ -53,11 +53,11 @@ export default function BannerSlider() {
         </SwiperSlide>
         <SwiperSlide style={swiperSlideStyle}>
           <Event
-            title="이벤트 페이지 개설"
+            title="이벤트 페이지"
             linkContent={
               <>
                 <PiGiftBold className="mr-2 size-6" />
-                팬아트 가챠 하러가기
+                [고공전]세구님 팬아트 태그 월드컵
               </>
             }
             linkColor="purple"
