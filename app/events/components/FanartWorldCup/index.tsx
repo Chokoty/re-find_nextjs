@@ -7,10 +7,12 @@ import { useWindowSize } from 'react-use';
 
 import { CREDIT, TAGS } from '@/app/events/lib/const';
 import { useTagImages } from '@/app/events/service/client/useEventService';
+import { useEventStore } from '@/app/events/store/eventStore'; // import useEventStore
 import { RefindLogo, VS } from '@/lib/images';
 
 export default function FanartWorldCup() {
   const { width, height } = useWindowSize();
+  const { isSkipped, resetSkip } = useEventStore(); // get isSkipped from the store
   const [currentRound, setCurrentRound] = useState({
     gang: 64,
     round: 1,
@@ -25,6 +27,10 @@ export default function FanartWorldCup() {
     tag: '',
   });
   // const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태
+
+  useEffect(() => {
+    resetSkip();
+  }, []);
 
   // useEffect를 통해 매 라운드가 바뀔 때마다 사용 가능한 태그 쌍을 업데이트합니다.
   useEffect(() => {
@@ -147,10 +153,10 @@ export default function FanartWorldCup() {
     // return <div>loading</div>;
     return null;
   }
-  if (isLast) {
+  if (isLast || isSkipped) {
     return (
       <div className="w-full">
-        <div className="fixed inset-0 z-[201] size-full">
+        <div className="fixed inset-0 top-[60px] z-[201] size-full ">
           <Confetti width={width} height={height} />
         </div>
         <div className="flex size-full w-full items-center">

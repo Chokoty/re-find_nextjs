@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 import BackButton from '@/components/Button/BackButton';
+import WorldcupSkipButton from '@/components/Button/WorldcupSkipButton';
 import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
 import DesktopMenuTab from '@/components/Header/DesktopMenuTab';
 import { useScroll } from '@/hooks/useScroll';
@@ -64,6 +65,9 @@ const HeaderContent = () => {
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
 
+  const pathNameParts = pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+
   // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
   if (isMorePath || isEvents) {
     return (
@@ -72,7 +76,11 @@ const HeaderContent = () => {
         <h1 className="flex items-center justify-center text-xl font-bold">
           {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
         </h1>
-        <div className="size-12" />
+        {name === 'fanartWorldCup' ? (
+          <WorldcupSkipButton />
+        ) : (
+          <div className="size-12" />
+        )}
       </>
     );
   }
