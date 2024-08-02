@@ -7,12 +7,10 @@ import { useWindowSize } from 'react-use';
 
 import { CREDIT, TAGS } from '@/app/events/lib/const';
 import { useTagImages } from '@/app/events/service/client/useEventService';
-import { useEventStore } from '@/app/events/store/eventStore'; // import useEventStore
 import { RefindLogo, VS } from '@/lib/images';
 
 export default function FanartWorldCup() {
   const { width, height } = useWindowSize();
-  const { isSkipped, resetSkip } = useEventStore(); // get isSkipped from the store
   const [currentRound, setCurrentRound] = useState({
     gang: 64,
     round: 1,
@@ -28,10 +26,6 @@ export default function FanartWorldCup() {
   });
   // const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태
 
-  useEffect(() => {
-    resetSkip();
-  }, []);
-
   // useEffect를 통해 매 라운드가 바뀔 때마다 사용 가능한 태그 쌍을 업데이트합니다.
   useEffect(() => {
     updateSelectedTags();
@@ -39,10 +33,7 @@ export default function FanartWorldCup() {
 
   useEffect(() => {
     if (changeRound) {
-      // let filteredTags = [...TAGS];
-      // selectedTags.forEach((t) => {
-      //   filteredTags = filteredTags.filter((ft) => ft !== t);
-      // });
+      setSelectedTags([]);
       setSelectableTags(selectedTags);
       setCurrentRound({
         gang: currentRound.round,
@@ -51,15 +42,6 @@ export default function FanartWorldCup() {
       setChangeRound(false);
     }
   }, [changeRound]);
-
-  // console.log(
-  //   'selected',
-  //   selectedTags,
-  //   'selectable',
-  //   selectableTags,
-  //   currentRoundTags
-  // );
-
   // 선택된 태그 배열을 업데이트하는 함수
   const updateSelectedTags = () => {
     // 현재 라운드에서 사용할 수 있는 태그 쌍을 선택합니다.
@@ -141,19 +123,11 @@ export default function FanartWorldCup() {
     status: status2,
   } = useTagImages(currentRoundTags[1]);
 
-  const chunkArray = (array: string[], size: number) => {
-    const chunkedArr = [];
-    for (let i = 0; i < array.length; i += size) {
-      chunkedArr.push(array.slice(i, i + size));
-    }
-    return chunkedArr;
-  };
-
   if (isLoading || isLoading2) {
     // return <div>loading</div>;
     return null;
   }
-  if (isLast || isSkipped) {
+  if (isLast) {
     return (
       <div className="w-full">
         <div className="fixed inset-0 top-[60px] z-[201] size-full ">
