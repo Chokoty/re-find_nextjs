@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
+import { IoMdRefresh } from 'react-icons/io';
 import { useWindowSize } from 'react-use';
 
 import { CREDIT, TAGS } from '@/app/events/lib/const';
@@ -148,7 +149,7 @@ export default function FanartWorldCup() {
               </div>
             </div>
             <button
-              className={`absolute bottom-[-60px] z-[202] h-[60px] w-full border border-gray-300 text-xl font-semibold text-black-200 disabled:cursor-not-allowed ${isFetching || isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
+              className="absolute bottom-[-60px] z-[202] h-[60px] w-full border border-gray-300 bg-teal-200 text-xl font-bold text-black-200 hover:bg-teal-300 active:bg-teal-400 disabled:cursor-not-allowed"
               onClick={() => {
                 if (winInfo.direction === 'left') {
                   changeFanart();
@@ -158,7 +159,12 @@ export default function FanartWorldCup() {
               }}
               disabled={winInfo.direction === 'left' ? isFetching : isFetching2}
             >
-              새로고침
+              <div className="flex items-center justify-center">
+                <IoMdRefresh
+                  className={`mr-1 ${isFetching2 ? 'animate-spin' : ''}`}
+                />
+                새로고침
+              </div>
             </button>
             <h4 className="absolute bottom-[20%] text-3xl text-shadow-worldCup ">
               {winInfo.direction === 'left'
@@ -246,18 +252,28 @@ export default function FanartWorldCup() {
         </div>
         <div className="absolute bottom-0 z-[6] h-[60px] w-full text-xl font-semibold">
           <button
-            className={`h-full w-1/2 border border-r-0 border-gray-300 text-black-200 disabled:cursor-not-allowed ${isFetching ? 'bg-gray-500' : 'bg-gray-200'}`}
+            className="h-full w-1/2 border border-r-0 border-gray-300 bg-red-200 font-bold text-black-200 hover:bg-red-300 active:bg-red-400 disabled:cursor-not-allowed"
             onClick={changeFanart}
             disabled={isFetching}
           >
-            새로고침
+            <div className="flex items-center justify-center">
+              <IoMdRefresh
+                className={`mr-1 ${isFetching ? 'animate-spin' : ''}`}
+              />
+              새로고침
+            </div>
           </button>
           <button
-            className={`h-full w-1/2 border border-gray-300 text-black-200 disabled:cursor-not-allowed ${isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
+            className="h-full w-1/2 border border-gray-300 bg-blue-200 font-bold text-black-200 hover:bg-blue-300 active:bg-blue-400 disabled:cursor-not-allowed"
             onClick={changeFanart2}
             disabled={isFetching2}
           >
-            새로고침
+            <div className="flex items-center justify-center">
+              <IoMdRefresh
+                className={`mr-1 ${isFetching2 ? 'animate-spin' : ''}`}
+              />
+              새로고침
+            </div>
           </button>
         </div>
       </div>
