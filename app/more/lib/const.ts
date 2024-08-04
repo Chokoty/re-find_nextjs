@@ -468,4 +468,18 @@ export const UPDATE_LOGS: UpdateLog[] = [
       '뉴뉴릴파 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
     directLink: 'https://cafe.naver.com/steamindiegame/17019811',
   },
+  {
+    id: 46,
+    date: '2024.07.21',
+    content:
+      '데드캣 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/17250034',
+  },
+  {
+    id: 47,
+    date: '2024.08.04',
+    content:
+      '챤단콘 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    // directLink: 'https://cafe.naver.com/steamindiegame/17250034',
+  },
 ];
