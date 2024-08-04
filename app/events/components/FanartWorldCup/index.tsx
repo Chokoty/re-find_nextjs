@@ -161,7 +161,7 @@ export default function FanartWorldCup() {
             >
               <div className="flex items-center justify-center">
                 <IoMdRefresh
-                  className={`mr-1 ${isFetching2 ? 'animate-spin' : ''}`}
+                  className={`mr-1 ${winInfo.direction === 'left' ? isFetching : isFetching2 ? 'animate-spin' : ''}`}
                 />
                 새로고침
               </div>

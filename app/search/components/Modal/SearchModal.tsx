@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useRef } from 'react';
 
 import OptionModal from '@/app/search/components/Modal/OptionModal';
@@ -10,9 +9,6 @@ import { useLocalStorage } from '@/app/search/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 
 export default function SearchModal() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const q = searchParams.get('q') ?? '';
   const inputRef = useRef<HTMLInputElement>(null);
   const {
     recentSearches,
@@ -23,6 +19,7 @@ export default function SearchModal() {
   } = useLocalStorage();
 
   const { show } = useModal(OptionModal);
+
   const openOptions = () => {
     show({
       isBackdropClick: true,

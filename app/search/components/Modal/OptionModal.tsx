@@ -3,16 +3,24 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
 import { IoClose } from 'react-icons/io5';
+import { useShallow } from 'zustand/react/shallow';
 
 import MainOptions from '@/app/search/components/Option/MainOptions';
 import { useSearchFilter } from '@/app/search/hooks/useSearchFilter';
+import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import useModal from '@/hooks/useModal';
 
 export default function OptionModal(props: Record<string, unknown>) {
   const searchModalClose = props.searchModalClose as () => void;
   const searchParams = useSearchParams();
   const router = useRouter();
-  const q = searchParams.get('q') ?? '';
+  const { globalSearchValue } = useSearchFilterStore(
+    useShallow((state) => ({
+      globalSearchValue: state.searchValue,
+    }))
+  );
+
+  const q = searchParams.get('q') ?? globalSearchValue;
   const { hide } = useModal();
   const [state, actions] = useSearchFilter();
   const onClose = useCallback(() => {
@@ -49,6 +57,7 @@ export default function OptionModal(props: Record<string, unknown>) {
     // URL에 query string 추가
     const queryString = params.toString();
     router.push(`/search?q=${q}&${queryString}`);
+    console.log(`/search?q=${q}&${queryString}`);
     onClose();
     searchModalClose();
   };
