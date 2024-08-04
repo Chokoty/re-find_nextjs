@@ -44,12 +44,15 @@ export default function OptionModal(props: Record<string, unknown>) {
       params.append('viewCountMax', state.viewCountLimit.max.toString());
     }
     if (state.likeCountLimit.check) {
-      params.append('likeCountCheck', state.viewCountLimit.check.toString()); // for api
+      params.append('likeCountCheck', state.likeCountLimit.check.toString()); // for api
       params.append('likeCountMin', state.likeCountLimit.min.toString());
       params.append('likeCountMax', state.likeCountLimit.max.toString());
     }
     if (state.commentCountLimit.check) {
-      params.append('commentCountCheck', state.viewCountLimit.check.toString()); // for api
+      params.append(
+        'commentCountCheck',
+        state.commentCountLimit.check.toString()
+      ); // for api
       params.append('commentCountMin', state.commentCountLimit.min.toString());
       params.append('commentCountMax', state.commentCountLimit.max.toString());
     }
@@ -57,7 +60,6 @@ export default function OptionModal(props: Record<string, unknown>) {
     // URL에 query string 추가
     const queryString = params.toString();
     router.push(`/search?q=${q}&${queryString}`);
-    console.log(`/search?q=${q}&${queryString}`);
     onClose();
     searchModalClose();
   };
