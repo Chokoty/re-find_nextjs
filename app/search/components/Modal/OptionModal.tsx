@@ -3,16 +3,24 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react';
 import { IoClose } from 'react-icons/io5';
+import { useShallow } from 'zustand/react/shallow';
 
 import MainOptions from '@/app/search/components/Option/MainOptions';
 import { useSearchFilter } from '@/app/search/hooks/useSearchFilter';
+import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import useModal from '@/hooks/useModal';
 
 export default function OptionModal(props: Record<string, unknown>) {
   const searchModalClose = props.searchModalClose as () => void;
   const searchParams = useSearchParams();
   const router = useRouter();
-  const q = searchParams.get('q') ?? '';
+  const { globalSearchValue } = useSearchFilterStore(
+    useShallow((state) => ({
+      globalSearchValue: state.searchValue,
+    }))
+  );
+
+  const q = searchParams.get('q') ?? globalSearchValue;
   const { hide } = useModal();
   const [state, actions] = useSearchFilter();
   const onClose = useCallback(() => {
@@ -36,12 +44,15 @@ export default function OptionModal(props: Record<string, unknown>) {
       params.append('viewCountMax', state.viewCountLimit.max.toString());
     }
     if (state.likeCountLimit.check) {
-      params.append('likeCountCheck', state.viewCountLimit.check.toString()); // for api
+      params.append('likeCountCheck', state.likeCountLimit.check.toString()); // for api
       params.append('likeCountMin', state.likeCountLimit.min.toString());
       params.append('likeCountMax', state.likeCountLimit.max.toString());
     }
     if (state.commentCountLimit.check) {
-      params.append('commentCountCheck', state.viewCountLimit.check.toString()); // for api
+      params.append(
+        'commentCountCheck',
+        state.commentCountLimit.check.toString()
+      ); // for api
       params.append('commentCountMin', state.commentCountLimit.min.toString());
       params.append('commentCountMax', state.commentCountLimit.max.toString());
     }

@@ -44,8 +44,8 @@ const queryOptions = {
   tagImages: (tag: string) => ({
     queryKey: queryKeys.tagImages(tag),
     queryFn: () => EventService.getTagImages(tag),
-    staleTime: 0,
-    // enabled: false, // 초기에는 호출하지 않음
+    staleTime: 360 * 1000, // 360sec(3min)
+    refetchOnWindowFocus: false,
   }),
 };
 
