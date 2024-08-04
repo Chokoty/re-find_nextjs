@@ -82,7 +82,7 @@ export type CountLimit = {
 
 export type DateType = {
   type: string;
-  date?: string;
+  date: string | null;
 };
 
 // service (api)
