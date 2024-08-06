@@ -143,6 +143,19 @@ const GALLERY_LIST: Gallery[] = [
     query:
       'artworks?&board=isd&board=best&category=고세구&since=20240718&title=&content=&query=dead&query=cat&query=데드&query=캣&query=켓&query=강시&query=키랏&query=처음 보냐&query=뉴의상&query=빌런&query=신의상&query=qfr',
   },
+  {
+    id: 12,
+    value: 'chanDanCon',
+    type: 'special',
+    title: '역광',
+    subTitle: '챤단콘',
+    description:
+      'VIICHAN SOLO CONCERT ✦ :: 8월 3일 진행된 비챤님의 첫 단독 온라인 콘서트',
+    author: '니렝',
+    query:
+      'artworks?&board=isd&board=best&category=비챤&since=20240731&title=&content=&query=concert&query=챤단콘&query=역광&query=비챤콘&query=사스가&query=콘서트&query=빛&query=비챠니&query=단콘&query=사랑하긴했었나요',
+  },
+
   // {
   //   id: 8,
   //   value: 'Shuko',

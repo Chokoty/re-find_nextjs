@@ -1,4 +1,5 @@
 import {
+  chanDanCon,
   Christmas,
   deadCat,
   Gomem,
@@ -47,6 +48,8 @@ export const getStaticImage = (cover: string) => {
       return deadCat;
     case 'tiffanyWouldYouMia':
       return TiffanyWouldYouMia;
+    case 'chanDanCon':
+      return chanDanCon;
     case 'ine':
       return Ine;
     case 'jingburger':

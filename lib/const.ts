@@ -17,6 +17,7 @@ export const GalleryMap = {
   kissingYou: '키싱유 커버',
   newIne: '뉴이네',
   newnewLilpa: '뉴뉴릴파',
+  chanDanCon: '챤단콘',
   tiffanyWouldYouMia: '우주미아-티파니',
   deadCat: '데드캣',
 } as const;
