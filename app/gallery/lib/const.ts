@@ -153,7 +153,7 @@ const GALLERY_LIST: Gallery[] = [
       'VIICHAN SOLO CONCERT ✦ :: 8월 3일 진행된 비챤님의 첫 단독 온라인 콘서트',
     author: '니렝',
     query:
-      'artworks?&board=isd&board=best&category=비챤&since=20240731&title=&content=&query=concert&query=챤단콘&query=역광&query=비챤콘&query=사스가&query=콘서트&query=빛&query=비챠니&query=단콘&query=사랑하긴했었나요&query=플라스틱&query=heart&query=태연&query=맑아라&query=I',
+      'artworks?&board=isd&board=best&category=비챤&since=20240731&title=&content=&query=concert&query=챤단콘&query=역광&query=비챤콘&query=사스가&query=콘서트&query=빛&query=비챠니&query=단콘&query=사랑하긴했었나요&query=플라스틱&query=heart&query=태연&query=맑아라&query=I챤',
   },
 
   // {
