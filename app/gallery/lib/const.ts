@@ -75,6 +75,8 @@ const GALLERY_LIST: Gallery[] = [
     author: 'WAMELL',
     query:
       'artworks?query=kissing&query=키싱&query=키씽&query=뚜뚜뚜&query=뚜두루&query=고마워 사랑해&query=사랑해 한마디&query=너만을 사랑해&case_sensitive=false&board=isd&board=best&title=',
+    linkUrl: 'https://www.youtube.com/watch?v=OrFyzG5yTC4',
+    linkTitle: 'Kissing You(키싱유) COVER',
   },
   {
     id: 6,
@@ -96,6 +98,8 @@ const GALLERY_LIST: Gallery[] = [
     author: '참빼미',
     query:
       'artworks?query=티파니&query=우주미아&board=gomem&board=gomem_behind&title=',
+    linkUrl: 'https://www.youtube.com/watch?v=cApabFGK8VA',
+    linkTitle: '우주미아(Would You M.I.A) MV',
   },
   {
     id: 8,
@@ -154,6 +158,8 @@ const GALLERY_LIST: Gallery[] = [
     author: '니렝',
     query:
       'artworks?&board=isd&board=best&category=비챤&since=20240731&title=&content=&query=concert&query=챤단콘&query=역광&query=비챤콘&query=사스가&query=콘서트&query=빛&query=비챠니&query=단콘&query=사랑하긴했었나요&query=플라스틱&query=heart&query=태연&query=맑아라&query=I챤',
+    linkUrl: 'https://www.youtube.com/live/Ip1WwW0gwf4',
+    linkTitle: '역광 콘서트 보러가기',
   },
   {
     id: 13,
@@ -164,6 +170,8 @@ const GALLERY_LIST: Gallery[] = [
     description: '이세계아이돌의 1000일간의 여정, 축하드립니다!',
     author: 'GENTLECAT',
     query: 'artworks?board=thousand',
+    linkUrl: 'https://cafe.naver.com/steamindiegame/17543957',
+    linkTitle: '카페 공지사항',
   },
 
   // {

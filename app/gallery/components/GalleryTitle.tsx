@@ -1,8 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { FaAngleLeft } from 'react-icons/fa6';
+import { LuExternalLink } from 'react-icons/lu';
 
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
 import TotalCounter from '@/app/gallery/components/TotalCounter';
@@ -24,6 +26,8 @@ const getTitleInfo = (type: string) => {
   return {
     title: album?.title || `${member?.name ?? ''} 팬아트`,
     description: album?.description || '',
+    linkUrl: album?.linkUrl || '',
+    linkTitle: album?.linkTitle || '',
   };
 };
 
@@ -34,7 +38,7 @@ const descriptionClassName =
 
 export default function GalleryTitle({ pageType }: { pageType: string }) {
   const router = useRouter();
-  const { title, description } = getTitleInfo(pageType);
+  const { title, description, linkUrl, linkTitle } = getTitleInfo(pageType);
 
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
@@ -83,6 +87,18 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
               <p className={`font-bold ${descriptionClassName}`}>
                 {description}
               </p>
+              {linkUrl && (
+                <div className="flex items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2xs:gap-2">
+                  <Link
+                    href={linkUrl}
+                    target="_blank"
+                    className={`font-bold ${descriptionClassName} flex items-center hover:underline`}
+                  >
+                    <p className="line-clamp-1">{linkTitle}</p>
+                    <LuExternalLink className="ml-2 text-lg font-semibold 2xs:block" />
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
           <div className="flex w-full items-center justify-between">

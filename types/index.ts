@@ -71,6 +71,8 @@ export interface Gallery {
   query?: string;
   isHidden?: boolean;
   author?: string;
+  linkUrl?: string;
+  linkTitle?: string;
 }
 
 // search
