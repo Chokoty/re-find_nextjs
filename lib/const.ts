@@ -18,6 +18,7 @@ export const GalleryMap = {
   newIne: '뉴이네',
   newnewLilpa: '뉴뉴릴파',
   chanDanCon: '챤단콘',
+  thousand: '이세돌 1000일',
   tiffanyWouldYouMia: '우주미아-티파니',
   deadCat: '데드캣',
 } as const;

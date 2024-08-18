@@ -10,7 +10,7 @@ export { default as MainBanner } from '@/public/static/images/banners/banner2.we
 export { default as BoomDoor } from '@/public/static/images/events/goat.webp';
 export { default as KeyDoor } from '@/public/static/images/events/peridot.webp';
 export { default as Question } from '@/public/static/images/events/question.webp';
-export { default as chanDanCon } from '@/public/static/images/gallery/chanDanCon.webp';
+export { default as ChanDanCon } from '@/public/static/images/gallery/chanDanCon.webp';
 export { default as Christmas } from '@/public/static/images/gallery/christmas.webp';
 export { default as deadCat } from '@/public/static/images/gallery/deadCat.webp';
 export { default as Halloween } from '@/public/static/images/gallery/halloween.webp';
@@ -29,6 +29,7 @@ export { default as Wakgood } from '@/public/static/images/gallery/member/wakgoo
 export { default as newIne } from '@/public/static/images/gallery/newIne.webp';
 export { default as newnewLilpa } from '@/public/static/images/gallery/newnewLilpa.webp';
 export { default as Rewind2Year } from '@/public/static/images/gallery/rewind2year.webp';
+export { default as Thousand } from '@/public/static/images/gallery/thousand.webp';
 export { default as TiffanyWouldYouMia } from '@/public/static/images/gallery/tiffanyWouldYouMia.webp';
 export { default as ViichanBirthday } from '@/public/static/images/gallery/viichanBirthday.webp';
 export { default as VirtualIsd } from '@/public/static/images/gallery/virtualIsd.webp';

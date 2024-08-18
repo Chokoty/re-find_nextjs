@@ -40,28 +40,28 @@ export default function BannerSlider() {
         </SwiperSlide>
         <SwiperSlide style={swiperSlideStyle}>
           <Event
-            title="뉴뉴릴파 갤러리 추가"
-            linkColor="blue"
-            link="/gallery/newnewLilpa"
+            title="이세돌 1000일 기념 갤러리 추가"
+            linkColor="pink"
+            link="/gallery/thousand"
             linkContent={
               <>
                 {/* <GiPartyPopper className="mr-2 size-6" /> */}
-                뉴뉴릴파 갤러리 보러가기
+                이세돌 1000일 기념 갤러리 보러가기
               </>
             }
           />
         </SwiperSlide>
         <SwiperSlide style={swiperSlideStyle}>
           <Event
-            title="이벤트 페이지"
+            title="팬아트 태그 이상형 월드컵"
             linkContent={
               <>
                 <PiGiftBold className="mr-2 size-6" />
                 [고공전]세구님 팬아트 태그 월드컵
               </>
             }
-            linkColor="purple"
-            link="/events"
+            linkColor="blue"
+            link="/events/fanartWorldCup"
           />
         </SwiperSlide>
       </Swiper>
