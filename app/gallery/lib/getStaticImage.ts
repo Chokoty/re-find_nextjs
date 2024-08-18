@@ -1,5 +1,5 @@
 import {
-  chanDanCon,
+  ChanDanCon,
   Christmas,
   deadCat,
   Gomem,
@@ -16,6 +16,7 @@ import {
   newIne,
   newnewLilpa,
   Rewind2Year,
+  Thousand,
   TiffanyWouldYouMia,
   Viichan,
   ViichanBirthday,
@@ -49,7 +50,9 @@ export const getStaticImage = (cover: string) => {
     case 'tiffanyWouldYouMia':
       return TiffanyWouldYouMia;
     case 'chanDanCon':
-      return chanDanCon;
+      return ChanDanCon;
+    case 'thousand':
+      return Thousand;
     case 'ine':
       return Ine;
     case 'jingburger':

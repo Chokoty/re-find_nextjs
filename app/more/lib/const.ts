@@ -477,9 +477,22 @@ export const UPDATE_LOGS: UpdateLog[] = [
   },
   {
     id: 47,
+    date: '2024.08.01',
+    content: '고세구님 팬아트 태그 월드컵에서 최고의 태그 팬아트를 골라보세요!',
+    directLink: 'https://cafe.naver.com/steamindiegame/17401762',
+  },
+  {
+    id: 48,
     date: '2024.08.04',
     content:
       '챤단콘 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
-    // directLink: 'https://cafe.naver.com/steamindiegame/17250034',
+    directLink: 'https://cafe.naver.com/steamindiegame/17478408',
+  },
+  {
+    id: 49,
+    date: '2024.08.18',
+    content:
+      '이세돌 1000일 기념 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    // directLink: 'https://cafe.naver.com/steamindiegame/17601975',
   },
 ];

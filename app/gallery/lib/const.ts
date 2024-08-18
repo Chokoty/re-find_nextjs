@@ -155,6 +155,16 @@ const GALLERY_LIST: Gallery[] = [
     query:
       'artworks?&board=isd&board=best&category=비챤&since=20240731&title=&content=&query=concert&query=챤단콘&query=역광&query=비챤콘&query=사스가&query=콘서트&query=빛&query=비챠니&query=단콘&query=사랑하긴했었나요&query=플라스틱&query=heart&query=태연&query=맑아라&query=I챤',
   },
+  {
+    id: 13,
+    value: 'thousand',
+    type: 'special',
+    title: '1000일 기념 팬아트',
+    subTitle: '이세계 아이돌 1000일!',
+    description: '이세계아이돌의 1000일간의 여정, 축하드립니다!',
+    author: 'GENTLECAT',
+    query: 'artworks?board=thousand',
+  },
 
   // {
   //   id: 8,
