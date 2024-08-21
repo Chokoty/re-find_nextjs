@@ -86,19 +86,17 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
             <div className="mb-6 mt-1.5">
               <p className={`font-bold ${descriptionClassName}`}>
                 {description}
-              </p>
-              {linkUrl && (
-                <div className="flex items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2xs:gap-2">
+                {linkUrl && (
                   <Link
                     href={linkUrl}
                     target="_blank"
-                    className={`font-bold ${descriptionClassName} flex items-center hover:underline`}
+                    className="mt-1 flex items-center text-green-highlight hover:underline dark:text-pink-highlight"
                   >
-                    <p className="line-clamp-1">{linkTitle}</p>
+                    {linkTitle}
                     <LuExternalLink className="ml-2 text-lg font-semibold 2xs:block" />
                   </Link>
-                </div>
-              )}
+                )}
+              </p>
             </div>
           </div>
           <div className="flex w-full items-center justify-between">
