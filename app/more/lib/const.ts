@@ -495,4 +495,10 @@ export const UPDATE_LOGS: UpdateLog[] = [
       '이세돌 1000일 기념 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
     // directLink: 'https://cafe.naver.com/steamindiegame/17601975',
   },
+  {
+    id: 50,
+    date: '2024.08.26',
+    content: '이세계아이돌 1,000일 기념 🎉 역조공 프로젝트! (With Melon)',
+    directLink: 'https://kko.to/yV8hApkIGX',
+  },
 ];

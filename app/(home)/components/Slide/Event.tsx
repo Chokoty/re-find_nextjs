@@ -4,17 +4,25 @@ import React from 'react';
 type Props = {
   title: string;
   linkContent: React.ReactNode;
-  linkColor: 'pink' | 'purple' | 'blue';
+  linkColor: 'pink' | 'purple' | 'blue' | 'green';
   link: string;
+  isOutLink?: boolean;
 };
 
 const colors = {
   pink: 'bg-pink-200 hover:bg-pink-300 active:bg-pink-400',
   purple: 'bg-purple-200 hover:bg-purple-300 active:bg-purple-400',
   blue: 'bg-blue-200 hover:bg-blue-300 active:bg-blue-400',
+  green: 'bg-green-200 hover:bg-green-300 active:bg-green-400',
 };
 
-export default function Event({ title, linkContent, linkColor, link }: Props) {
+export default function Event({
+  title,
+  linkContent,
+  linkColor,
+  link,
+  isOutLink,
+}: Props) {
   const linkClassName = colors[linkColor];
 
   return (
@@ -22,12 +30,22 @@ export default function Event({ title, linkContent, linkColor, link }: Props) {
       <p className="mb-2 text-base font-bold 2xs:text-xl md:mb-4 md:text-[1.7rem]">
         {title}
       </p>
-      <Link
-        href={link}
-        className={`${linkClassName} flex w-10/12 items-center justify-center rounded-xl py-1.5 font-semibold text-gray-800 transition 2xs:w-4/5 2xs:p-2 md:w-3/5`}
-      >
-        {linkContent}
-      </Link>
+      {isOutLink ? (
+        <Link
+          href={link}
+          target="_blank"
+          className={`${linkClassName} flex w-10/12 items-center justify-center rounded-xl py-1.5 font-semibold text-gray-800 transition 2xs:w-4/5 2xs:p-2 md:w-3/5`}
+        >
+          {linkContent}
+        </Link>
+      ) : (
+        <Link
+          href={link}
+          className={`${linkClassName} flex w-10/12 items-center justify-center rounded-xl py-1.5 font-semibold text-gray-800 transition 2xs:w-4/5 2xs:p-2 md:w-3/5`}
+        >
+          {linkContent}
+        </Link>
+      )}
     </div>
   );
 }

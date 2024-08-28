@@ -40,6 +40,20 @@ export default function BannerSlider() {
         </SwiperSlide>
         <SwiperSlide style={swiperSlideStyle}>
           <Event
+            title="이세계아이돌 1,000일 기념 🎉 역조공 프로젝트!"
+            linkColor="green"
+            link="https://kko.to/yV8hApkIGX"
+            linkContent={
+              <>
+                {/* <GiPartyPopper className="mr-2 size-6" /> */}
+                멜론 뮤직웨이브 채팅 이벤트 참여 하러가기(~9/1)
+              </>
+            }
+            isOutLink={true}
+          />
+        </SwiperSlide>
+        <SwiperSlide style={swiperSlideStyle}>
+          <Event
             title="이세돌 1000일 기념 갤러리 추가"
             linkColor="pink"
             link="/gallery/thousand"
