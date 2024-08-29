@@ -46,7 +46,7 @@ export default function BannerSlider() {
             linkContent={
               <>
                 {/* <GiPartyPopper className="mr-2 size-6" /> */}
-                멜론 뮤직웨이브 채팅 이벤트 참여 하러가기(~9/1)
+                멜론 이벤트 참여하기(~9/1)
               </>
             }
             isOutLink={true}
