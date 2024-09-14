@@ -23,7 +23,9 @@ export function useGalleryArtworks({
   } = useInfiniteQuery(queryOptions.galleryArtworks({ query, sortType }));
   // 뉴뉴릴파 갤러리 내 릴단콘 관련 게시글 중 아이네님 사진이 존재하므로 필터
   const artworks = useMemo(() => {
-    return data?.pages.flatMap((page) => page.list);
+    return data?.pages.flatMap((page) =>
+      page.list.filter((each) => !each.title.includes('🔞'))
+    );
   }, [data]);
 
   const total = data?.pages[0].total;
