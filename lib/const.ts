@@ -14,6 +14,7 @@ export const GalleryMap = {
   viichanBirthday: '비챤님 생일',
   lilpaBirthday: '릴파님 생일',
   jururuBirthday: '주르르님 생일',
+  jingburgerBirthday: '징버거님 생일',
   kissingYou: '키싱유 커버',
   newIne: '뉴이네',
   newnewLilpa: '뉴뉴릴파',

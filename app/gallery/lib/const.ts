@@ -180,7 +180,7 @@ const GALLERY_LIST: Gallery[] = [
     title: '징버거님 생일 팬아트',
     subTitle: '🎂 징버거님 생일 팬아트 🎂',
     description: '징버거님의 탄신일을 진심으로 축하드립니다!',
-    author: '',
+    author: '지라리',
     query:
       'artworks?board=isd&board=best&category=징버거&title=&content=&since=20241007&until=20241009&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이&query=부가&query=버거',
   },
