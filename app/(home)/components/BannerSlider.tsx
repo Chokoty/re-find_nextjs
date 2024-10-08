@@ -10,7 +10,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Banner from '@/app/(home)/components/Slide/Banner';
 import Event from '@/app/(home)/components/Slide/Event';
 
-type LinkColor = 'green' | 'pink' | 'blue' | 'purple';
+type LinkColor = 'green' | 'pink' | 'blue' | 'purple' | 'yellow';
 
 interface EventData {
   title: string;
@@ -35,6 +35,12 @@ const events: EventData[] = [
   //   linkContent: <>멜론 이벤트 참여하기(~9/1)</>,
   //   isOutLink: true,
   // },
+  {
+    title: '🎂 징버거님의 생일 기념 갤러리 추가',
+    linkColor: 'yellow',
+    link: '/gallery/jingburgerBirthday',
+    linkContent: <>부가땅 생일 기념 갤러리 보러가기</>,
+  },
   {
     title: '이세돌 1000일 기념 갤러리 추가',
     linkColor: 'pink',
