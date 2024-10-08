@@ -80,16 +80,6 @@ const GALLERY_LIST: Gallery[] = [
   },
   {
     id: 6,
-    value: 'isdPick',
-    type: 'special',
-    title: '이세돌픽 팬아트',
-    subTitle: '이세돌이 고른 팬아트',
-    description: '이세계아이돌이 고른 공지사항 팬아트',
-    author: '후히이',
-    query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
-  },
-  {
-    id: 7,
     value: 'tiffanyWouldYouMia',
     type: 'special',
     title: 'RE:START',
@@ -102,7 +92,7 @@ const GALLERY_LIST: Gallery[] = [
     linkTitle: '우주미아(Would You M.I.A) MV',
   },
   {
-    id: 8,
+    id: 5,
     value: 'newIne',
     type: 'special',
     title: '뉴 아이네',
@@ -114,7 +104,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=아이네&since=20240427&title=&query=뉴이네&query=아이네&query=콘서트&query=에버퍼플&query=EVER PURPLE&query=아단콘',
   },
   {
-    id: 9,
+    id: 8,
     value: 'jururuBirthday',
     type: 'special',
     title: '주르르님 생일 팬아트',
@@ -125,7 +115,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=주르르&title=&content=&since=20240609&until=20240611&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이',
   },
   {
-    id: 10,
+    id: 9,
     value: 'newnewLilpa',
     type: 'special',
     title: '뉴뉴릴파',
@@ -137,7 +127,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=릴파&since=20240629&title=&content=&query=뉴뉴&query=릴파콘&query=릴단콘&query=콘서트&query=going&query=Going',
   },
   {
-    id: 11,
+    id: 10,
     value: 'deadCat',
     type: 'special',
     title: '데드캣',
@@ -148,7 +138,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?&board=isd&board=best&category=고세구&since=20240718&title=&content=&query=dead&query=cat&query=데드&query=캣&query=켓&query=강시&query=키랏&query=처음 보냐&query=뉴의상&query=빌런&query=신의상&query=qfr',
   },
   {
-    id: 12,
+    id: 11,
     value: 'chanDanCon',
     type: 'special',
     title: '역광',
@@ -162,7 +152,7 @@ const GALLERY_LIST: Gallery[] = [
     linkTitle: '역광 콘서트 보러가기',
   },
   {
-    id: 13,
+    id: 12,
     value: 'thousand',
     type: 'special',
     title: '1000일 기념 팬아트',
@@ -172,6 +162,27 @@ const GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=thousand',
     linkUrl: 'https://cafe.naver.com/steamindiegame/17543957',
     linkTitle: '카페 공지사항',
+  },
+  {
+    id: 13,
+    value: 'isdPick',
+    type: 'special',
+    title: '이세돌픽 팬아트',
+    subTitle: '이세돌이 고른 팬아트',
+    description: '이세계아이돌이 고른 공지사항 팬아트',
+    author: '후히이',
+    query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
+  },
+  {
+    id: 14,
+    value: 'jingburgerBirthday',
+    type: 'special',
+    title: '징버거님 생일 팬아트',
+    subTitle: '🎂 징버거님 생일 팬아트 🎂',
+    description: '징버거님의 탄신일을 진심으로 축하드립니다!',
+    author: '',
+    query:
+      'artworks?board=isd&board=best&category=징버거&title=&content=&since=20241007&until=20241009&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이&query=부가&query=버거',
   },
 
   // {

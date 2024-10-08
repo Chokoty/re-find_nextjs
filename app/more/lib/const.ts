@@ -501,4 +501,9 @@ export const UPDATE_LOGS: UpdateLog[] = [
     content: '이세계아이돌 1,000일 기념 🎉 역조공 프로젝트! (With Melon)',
     directLink: 'https://kko.to/yV8hApkIGX',
   },
+  {
+    id: 51,
+    date: '2024.10.08',
+    content: '💛💛💛 버거님의 생일을 축하합니다! 💛💛💛',
+  },
 ];
