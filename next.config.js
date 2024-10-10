@@ -69,10 +69,11 @@ const nextConfig = {
         source: `${process.env.NEXT_PUBLIC_REDIRECT_URL}/:path*`,
         destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
       },
-      {
-        source: `/api2/:path*`,
-        destination: `https://rerurureruru.com/:path*`,
-      },
+      // 배포용 설정?
+      // {
+      //   source: `/api2/:path*`,
+      //   destination: `https://rerurureruru.com/:path*`,
+      // },
     ];
   },
 };
