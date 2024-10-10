@@ -4,7 +4,7 @@ import React from 'react';
 type Props = {
   title: string;
   linkContent: React.ReactNode;
-  linkColor: 'pink' | 'purple' | 'blue' | 'green';
+  linkColor: 'pink' | 'purple' | 'blue' | 'green' | 'yellow';
   link: string;
   isOutLink?: boolean;
 };
@@ -14,6 +14,7 @@ const colors = {
   purple: 'bg-purple-200 hover:bg-purple-300 active:bg-purple-400',
   blue: 'bg-blue-200 hover:bg-blue-300 active:bg-blue-400',
   green: 'bg-green-200 hover:bg-green-300 active:bg-green-400',
+  yellow: 'bg-yellow-200 hover:bg-yellow-300 active:bg-yellow-400',
 };
 
 export default function Event({
