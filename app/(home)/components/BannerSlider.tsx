@@ -41,17 +41,17 @@ const events: EventData[] = [
   //   link: '/gallery/jingburgerBirthday',
   //   linkContent: <>부가땅 생일 기념 갤러리 보러가기</>,
   // },
+  // {
+  //   title: '이세돌 1000일 기념 갤러리 추가',
+  //   linkColor: 'pink',
+  //   link: '/gallery/thousand',
+  //   linkContent: <>이세돌 1000일 기념 갤러리 보러가기</>,
+  // },
   {
     title: '🎃 Trick or Treat! 해피 할로윈',
     linkColor: 'yellow',
     link: '/gallery/halloween',
     linkContent: <>할로윈 특집 팬아트 보러가기</>,
-  },
-  {
-    title: '이세돌 1000일 기념 갤러리 추가',
-    linkColor: 'pink',
-    link: '/gallery/thousand',
-    linkContent: <>이세돌 1000일 기념 갤러리 보러가기</>,
   },
   {
     title: '팬아트 태그 이상형 월드컵',
