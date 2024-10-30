@@ -56,15 +56,15 @@ const BOARD_LIST: Board[] = [
     board: '이세돌 사진관',
     id: '606',
   },
-  {
-    board: '1000일 기념 팬아트',
-    id: '1038',
-  },
-  {
-    board: '왁타버스 불법 AI 팬아트',
-    id: '604',
-    state: '-관-',
-  },
+  // {
+  //   board: '1000일 기념 팬아트',
+  //   id: '1038',
+  // },
+  // {
+  //   board: '왁타버스 불법 AI 팬아트',
+  //   id: '604',
+  //   state: '-관-',
+  // },
 ];
 
 export default BOARD_LIST;

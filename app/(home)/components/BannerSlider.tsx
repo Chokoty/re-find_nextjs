@@ -35,11 +35,17 @@ const events: EventData[] = [
   //   linkContent: <>멜론 이벤트 참여하기(~9/1)</>,
   //   isOutLink: true,
   // },
+  // {
+  //   title: '🎂 징버거님의 생일 기념 갤러리 추가',
+  //   linkColor: 'yellow',
+  //   link: '/gallery/jingburgerBirthday',
+  //   linkContent: <>부가땅 생일 기념 갤러리 보러가기</>,
+  // },
   {
-    title: '🎂 징버거님의 생일 기념 갤러리 추가',
+    title: '🎃 Trick or Treat! 해피 할로윈',
     linkColor: 'yellow',
-    link: '/gallery/jingburgerBirthday',
-    linkContent: <>부가땅 생일 기념 갤러리 보러가기</>,
+    link: '/gallery/halloween',
+    linkContent: <>할로윈 특집 팬아트 보러가기</>,
   },
   {
     title: '이세돌 1000일 기념 갤러리 추가',
