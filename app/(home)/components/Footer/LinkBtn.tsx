@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 
-import { Afreeca, Waksplorer, Wakzoo } from '@/lib/images';
+import { Soop, Waksplorer, Wakzoo } from '@/lib/images';
 
 const XButton = () => (
   <Link
@@ -15,19 +15,19 @@ const XButton = () => (
   </Link>
 );
 
-const AfreecaButton = () => (
+const SoopButton = () => (
   <Link
-    href="https://bj.afreecatv.com/ecvhao"
+    href="https://ch.sooplive.co.kr/ecvhao"
     target="_blank"
-    className="flex size-10 items-center justify-center rounded-lg bg-whiteAlpha-900 shadow-md"
+    className="bg-custom-dark flex size-10 items-center justify-center rounded-lg shadow-md"
   >
     <Image
       className="size-9"
       width={30}
       height={30}
       quality={90}
-      src={Afreeca}
-      alt="afreeca"
+      src={Soop}
+      alt="soop"
     />
   </Link>
 );
@@ -78,7 +78,7 @@ export default function LinkBtns() {
   return (
     <div className="flex items-center justify-center gap-2 py-2.5">
       <WakzooButton />
-      <AfreecaButton />
+      <SoopButton />
       <YoutubeButton />
       <WaksplorerButton />
       <XButton />
