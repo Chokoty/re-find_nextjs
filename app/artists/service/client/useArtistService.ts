@@ -18,6 +18,7 @@ export function useArtistInfo({
   } = useInfiniteQuery(queryOptions.artistInfo({ nickname, sortType, board }));
 
   const artworks = useMemo(() => {
+    console.log(data);
     return data?.pages.flatMap((page) => page.list);
   }, [data]);
 
