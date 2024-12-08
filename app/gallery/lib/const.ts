@@ -92,7 +92,7 @@ const GALLERY_LIST: Gallery[] = [
     linkTitle: '우주미아(Would You M.I.A) MV',
   },
   {
-    id: 5,
+    id: 7,
     value: 'newIne',
     type: 'special',
     title: '뉴 아이네',
@@ -163,8 +163,20 @@ const GALLERY_LIST: Gallery[] = [
     linkUrl: 'https://cafe.naver.com/steamindiegame/17543957',
     linkTitle: '카페 공지사항',
   },
+
   {
     id: 13,
+    value: 'jingburgerBirthday',
+    type: 'special',
+    title: '징버거님 생일 팬아트',
+    subTitle: '🎂 징버거님 생일 팬아트 🎂',
+    description: '징버거님의 탄신일을 진심으로 축하드립니다!',
+    author: '지라리',
+    query:
+      'artworks?board=isd&board=best&category=징버거&title=&content=&since=20241007&until=20241009&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이&query=부가&query=버거',
+  },
+  {
+    id: 14,
     value: 'isdPick',
     type: 'special',
     title: '이세돌픽 팬아트',
@@ -174,15 +186,15 @@ const GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
   },
   {
-    id: 14,
-    value: 'jingburgerBirthday',
-    type: 'special',
-    title: '징버거님 생일 팬아트',
-    subTitle: '🎂 징버거님 생일 팬아트 🎂',
-    description: '징버거님의 탄신일을 진심으로 축하드립니다!',
-    author: '지라리',
+    id: 15,
+    value: 'halloween',
+    type: 'keyword',
+    title: '할로윈 팬아트',
+    subTitle: '🎃 할로윈 특집 🎃',
+    description: 'Trick or Treat! 해피 할로윈',
+    author: 'COCOball',
     query:
-      'artworks?board=isd&board=best&category=징버거&title=&content=&since=20241007&until=20241009&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이&query=부가&query=버거',
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
   },
 
   // {

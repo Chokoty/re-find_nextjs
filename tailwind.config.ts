@@ -304,7 +304,7 @@ const config: Config = {
     hoverOnlyWhenSupported: true,
   },
   plugins: [
-    plugin(function ({ matchUtilities, theme }) {
+    plugin(({ matchUtilities, theme }) => {
       matchUtilities(
         {
           'text-shadow': (value) => ({

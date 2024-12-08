@@ -1,11 +1,11 @@
 import UpdateCard from '@/app/(home)/components/Card/UpdateCard';
+import { EXCEPT_LIST } from '@/app/(home)/lib/const';
 import { useRecentUpdates } from '@/app/(home)/service/client/useHomeService';
 import Alert from '@/components/Alert';
 
 export default function UpdateCardList() {
   // TODO: 에러 처리 필요? (length가 0인 경우 다른 처리 필요한가?)
   const { data: updates, status } = useRecentUpdates();
-
   return (
     <div className="flex w-[90%] flex-col items-center justify-center">
       {status === 'pending' ? (
@@ -13,9 +13,10 @@ export default function UpdateCardList() {
       ) : status === 'error' ? (
         <Alert />
       ) : (
-        updates?.map((update, index) => (
-          <UpdateCard key={index} update={update} />
-        ))
+        updates &&
+        updates
+          .filter((update) => !EXCEPT_LIST.includes(update.board))
+          .map((update, index) => <UpdateCard key={index} update={update} />)
       )}
     </div>
   );

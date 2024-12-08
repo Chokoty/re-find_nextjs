@@ -67,4 +67,6 @@ const BOARD_LIST: Board[] = [
   },
 ];
 
+export const EXCEPT_LIST = BOARD_LIST.slice(-2).map((each) => each.board);
+
 export default BOARD_LIST;
