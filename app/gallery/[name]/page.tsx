@@ -48,7 +48,8 @@ export default async function page({ params: { name } }: Params) {
         ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
         : queryOptions.galleryArtworks({
             query: endpoint ?? '',
-            sortType: 'alzaltak',
+            // sortType: 'alzaltak',
+            sortType: 'latest',
           });
 
     // 쿼리 생성
@@ -65,7 +66,13 @@ export default async function page({ params: { name } }: Params) {
         </TopBackground>
         <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-100px] md:top-[-108px] 2md:top-[-125px] xl:top-[-140px] 2xl:top-[-155px]">
           <Hydrate state={{ queries: [query] }}>
-            <DetailedGallery value={name} endpoint={endpoint ?? ''} />
+            <DetailedGallery
+              value={name}
+              albumType={
+                GALLERY_LIST.find((item) => item.value === name)?.type ?? ''
+              }
+              endpoint={endpoint ?? ''}
+            />
           </Hydrate>
         </section>
       </div>
@@ -79,7 +86,13 @@ export default async function page({ params: { name } }: Params) {
       </TopBackground>
       {/* -220px(-60px + -160px) */}
       <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-100px] md:top-[-108px] 2md:top-[-125px] xl:top-[-140px] 2xl:top-[-155px]">
-        <DetailedGallery value={name} endpoint={endpoint ?? ''} />
+        <DetailedGallery
+          value={name}
+          albumType={
+            GALLERY_LIST.find((item) => item.value === name)?.type ?? ''
+          }
+          endpoint={endpoint ?? ''}
+        />
       </section>
     </div>
   );

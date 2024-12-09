@@ -2,6 +2,8 @@ export { default as Logo } from '@/public/logo.svg';
 export { default as RealWakGood } from '@/public/real-wakgood.webp';
 export { default as RefindLogo } from '@/public/refind5.png';
 export { default as Afreeca } from '@/public/static/icons/afreecatv-logo.webp';
+export { default as Soop } from '@/public/static/icons/soop-logo.webp';
+export { default as Soop2 } from '@/public/static/icons/soop-logo2.webp';
 export { default as Waksplorer } from '@/public/static/icons/waksplorer-logo.webp';
 export { default as Wakzoo } from '@/public/static/icons/wakzoo-logo.webp';
 export { default as BBangTTi } from '@/public/static/images/4.png';
@@ -15,6 +17,7 @@ export { default as Christmas } from '@/public/static/images/gallery/christmas.w
 export { default as deadCat } from '@/public/static/images/gallery/deadCat.webp';
 export { default as Halloween } from '@/public/static/images/gallery/halloween.webp';
 export { default as Isd } from '@/public/static/images/gallery/isd.webp';
+export { default as IseLab } from '@/public/static/images/gallery/iseLab.webp';
 export { default as JingburgerBirthday } from '@/public/static/images/gallery/jingburgerBirthday.webp';
 export { default as JururuBirthday } from '@/public/static/images/gallery/jururuBirthday.webp';
 export { default as KissingYou } from '@/public/static/images/gallery/kissingYou.webp';

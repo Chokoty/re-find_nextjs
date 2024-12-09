@@ -22,6 +22,7 @@ export const GalleryMap = {
   thousand: '이세돌 1000일',
   tiffanyWouldYouMia: '우주미아-티파니',
   deadCat: '데드캣',
+  iseLab: '이세랩',
 } as const;
 
 export const RANDOM_TEXTS = ['과연', '어떤', '팬아트가', '나올까요?', '🤔'];

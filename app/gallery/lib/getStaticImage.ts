@@ -7,6 +7,7 @@ import {
   Halloween,
   Ine,
   Isd,
+  IseLab,
   Jingburger,
   JingburgerBirthday,
   Jururu,
@@ -30,6 +31,8 @@ export const getStaticImage = (cover: string) => {
       return Isd;
     case 'kissingYou':
       return KissingYou;
+    case 'iseLab':
+      return IseLab;
     case 'newIne':
       return newIne;
     case 'newnewLilpa':
