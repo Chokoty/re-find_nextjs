@@ -58,7 +58,8 @@ export default function DetailedGallery({ value, endpoint }: Props) {
     viewTypeInit !== '' ? viewTypeInit : 'masonry'
   ); // 초기 뷰 설정
   const [sortType, setSortType] = useState(
-    sortTypeInit !== '' ? sortTypeInit : isIsdPick ? 'latest' : 'alzaltak'
+    // sortTypeInit !== '' ? sortTypeInit : isIsdPick ? 'latest' : 'alzaltak'
+    'latest' // 갤러리 전체 최신순으로 변경
   ); // 초기 상태 설정
 
   const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 / 가리기
