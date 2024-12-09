@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo } from 'react';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { LuExternalLink } from 'react-icons/lu';
@@ -36,9 +37,15 @@ const getBadgeText = ({
 export default function GalleryAlbumCard({
   album: { title, value, description, type, author },
 }: Prop) {
-  const query = {
-    sortType: 'alzaltak',
-  };
+  // const query = {
+  //   sortType: 'alzaltak',
+  // };
+  const sortType = useMemo(() => {
+    if (type === 'keyword' || value === 'isdPick') {
+      return 'latest';
+    }
+    return 'alzaltak';
+  }, [type, value]);
 
   const staticImage = getStaticImage(value);
   return (
@@ -72,8 +79,12 @@ export default function GalleryAlbumCard({
         </Link>
       </div>
       {/* <Link href={`/gallery/${value}`} prefetch={false}> */}
-      <Link
+      {/* <Link
         href={`/gallery/${value}?viewType=masonry&sortType=alzaltak`}
+        prefetch={false}
+      > */}
+      <Link
+        href={`/gallery/${value}?viewType=masonry&sortType=${sortType}`}
         prefetch={false}
       >
         <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">

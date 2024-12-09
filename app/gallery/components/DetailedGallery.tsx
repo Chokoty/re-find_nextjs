@@ -17,10 +17,11 @@ import { useResponsive } from '@/hooks/useResponsive';
 
 type Props = {
   value: string;
+  albumType: string;
   endpoint: string;
 };
 // TODO: 4번 렌더링되는 문제 해결 필요
-export default function DetailedGallery({ value, endpoint }: Props) {
+export default function DetailedGallery({ value, albumType, endpoint }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sortTypeInit = searchParams.get('sortType') ?? '';
@@ -57,10 +58,26 @@ export default function DetailedGallery({ value, endpoint }: Props) {
   const [activeView, setActiveView] = useState(
     viewTypeInit !== '' ? viewTypeInit : 'masonry'
   ); // 초기 뷰 설정
-  const [sortType, setSortType] = useState(
-    // sortTypeInit !== '' ? sortTypeInit : isIsdPick ? 'latest' : 'alzaltak'
-    'latest' // 갤러리 전체 최신순으로 변경
-  ); // 초기 상태 설정
+  // const [sortType, setSortType] = useState(
+  //   // sortTypeInit !== '' ? sortTypeInit : isIsdPick ? 'latest' : 'alzaltak'
+  //   albumType === 'keyword' || isIsdPick ? 'latest' : 'alzaltak'
+
+  //   // sortTypeInit !== ''
+  //   //   ? sortTypeInit
+  //   //   : isIsdPick || albumType === 'keyword'
+  //   //     ? 'latest'
+  //   //     : 'alzaltak'
+  // ); // 초기 상태 설정'
+  const [sortType, setSortType] = useState(() => {
+    console.log(`${sortTypeInit}!!!`);
+    if (sortTypeInit !== '') {
+      return sortTypeInit;
+    }
+    if (albumType === 'keyword' || isIsdPick) {
+      return 'latest';
+    }
+    return 'alzaltak';
+  }); // 초기 상태 설정'
 
   const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 / 가리기
   const { total, status, artworks, fetchNextPage, isFetchingNextPage } =
