@@ -196,6 +196,28 @@ const GALLERY_LIST: Gallery[] = [
     query:
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
   },
+  {
+    id: 16,
+    value: 'iseLab',
+    type: 'special',
+    title: '이세랩 팬아트',
+    subTitle: '이세랩 팬아트',
+    description: '이세랩 달력 10월 일러스트',
+    author: '피엘로',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&content=&query=이세랩&query=ISE-Lab&query=데드캣&query=징마담&query=행동대장',
+  },
+  {
+    id: 17,
+    value: 'christmas',
+    type: 'keyword',
+    title: '크리스마스 팬아트',
+    subTitle: '🎅🏼 크리스마스 특집 🎄',
+    description: '이세돌과 함께 메리 크리스마스!',
+    author: '여비날',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
+  },
 
   // {
   //   id: 8,
