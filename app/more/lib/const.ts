@@ -508,4 +508,18 @@ export const UPDATE_LOGS: UpdateLog[] = [
     directLink:
       'https://re-find.xyz/gallery/jingburgerBirthday?viewType=masonry&sortType=alzaltak',
   },
+  {
+    id: 52,
+    date: '2024.12.09',
+    type: '[안내]',
+    content:
+      '작가목록 페이지가 복구되었습니다! 이전에 비해 빠른 속도로 훨씬 쾌적하게 사용하실 수 있습니다. 많은 이용 부탁드립니다!! ',
+  },
+  {
+    id: 53,
+    date: '2024.12.10',
+    content:
+      '이세랩 특집 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/14290389',
+  },
 ];
