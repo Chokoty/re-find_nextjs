@@ -2,7 +2,9 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { useShallow } from 'zustand/react/shallow';
 
+import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import Button from '@/components/Button';
 
 type Prop = {
@@ -26,6 +28,11 @@ export default function SearchBar({
   const q = searchParams.get('q') ?? '';
   const router = useRouter();
   const [input, setInput] = useState(q); // 검색어
+  const { setGlobalSearchValue } = useSearchFilterStore(
+    useShallow((state) => ({
+      setGlobalSearchValue: state.setSearchValue,
+    }))
+  );
 
   const handleSearch = () => {
     const trimedInput = input.trim();
@@ -34,6 +41,7 @@ export default function SearchBar({
     if (trimedInput.length > 0) {
       addHistoryKeyword(trimedInput);
     }
+
     router.push(
       `/search?q=${encodeURIComponent(trimedInput)}&ranktype=latest&sensitive=false`
     );
@@ -41,6 +49,7 @@ export default function SearchBar({
 
   const onBarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
+    setGlobalSearchValue(query);
     setInput(query);
   };
 
@@ -56,6 +65,7 @@ export default function SearchBar({
 
   const handleClear = () => {
     closeHistory?.();
+    setGlobalSearchValue('');
     setInput('');
   };
 
@@ -64,6 +74,7 @@ export default function SearchBar({
    *  따라서, 컴포넌트 마운트시 업데이트
    */
   useEffect(() => {
+    setGlobalSearchValue(q);
     setInput(q);
   }, [q]);
 

@@ -15,67 +15,27 @@ import Alert from '@/components/Alert';
 import MasonryView from '@/components/View/MasonryView';
 import { NotSearch } from '@/lib/images';
 
+import { useSearchParameters } from '../hooks/useSearchFilter';
+
 // 검색시 3번 렌더링되는거 최적화하기(옵션 상태때문)
 export default function SearchResult() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const defaultLimit = {
-    check: false,
-    min: 0,
-    max: 100,
-  };
   const q = searchParams.get('q') ?? '';
-  const board = searchParams.get('board') ?? 'all';
-  const rankType = searchParams.get('ranktype') ?? 'latest';
-  const sensitiveParam = searchParams.get('sensitive');
-  const hasSensitiveCase =
-    sensitiveParam === null ? false : sensitiveParam === 'true';
-  const category = searchParams.get('category') ?? 'all';
-  const dateType = searchParams.get('datetype')
-    ? {
-        type: searchParams.get('datetype') ?? 'all',
-        data: searchParams.get('datetypeDetail')!,
-      }
-    : { type: 'all' };
-  const titleParam = searchParams.get('title');
-  const contentParam = searchParams.get('content');
-  const authorParam = searchParams.get('author');
-  const hasTitle = titleParam === null ? false : titleParam === 'true';
-  const hasContent = contentParam === null ? false : contentParam === 'true';
-  const hasAuthor = authorParam === null ? false : authorParam === 'true';
-  const viewCountCheckParam = searchParams.get('viewCountCheck');
-  const likeCountCheckParam = searchParams.get('likeCountCheck');
-  const commentCountCheckParam = searchParams.get('commentCountCheck');
-
-  const viewCountCheck =
-    viewCountCheckParam === null ? false : viewCountCheckParam === 'true';
-  const likeCountCheck =
-    likeCountCheckParam === null ? false : likeCountCheckParam === 'true';
-  const commentCountCheck =
-    commentCountCheckParam === null ? false : commentCountCheckParam === 'true';
-  const viewCountLimit = viewCountCheck
-    ? {
-        check: viewCountCheck,
-        min: parseInt(searchParams.get('viewCountMin')!),
-        max: parseInt(searchParams.get('viewCountMax')!),
-      }
-    : defaultLimit;
-  const likeCountLimit = likeCountCheck
-    ? {
-        check: likeCountCheck,
-        min: parseInt(searchParams.get('likeCountMin')!),
-        max: parseInt(searchParams.get('likeCountMax')!),
-      }
-    : defaultLimit;
-  const commentCountLimit = commentCountCheck
-    ? {
-        check: commentCountCheck,
-        min: parseInt(searchParams.get('commentCountMin')!),
-        max: parseInt(searchParams.get('commentCountMax')!),
-      }
-    : defaultLimit;
-
-  const viewType = searchParams.get('viewType') ?? 'list';
+  const {
+    board,
+    category,
+    rankType,
+    hasSensitiveCase,
+    dateType,
+    hasTitle,
+    hasContent,
+    hasAuthor,
+    viewType,
+    viewCountLimit,
+    likeCountLimit,
+    commentCountLimit,
+  } = useSearchParameters();
 
   const buildQueryString = (obj: any) => {
     const queryString = Object.keys(obj)

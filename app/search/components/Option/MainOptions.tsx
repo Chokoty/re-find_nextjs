@@ -24,7 +24,9 @@ export default function MainOptions({
   options: SearchFilterState;
   actions: Record<string, (...args: any[]) => void>;
 }) {
-  const [categories, setCategories] = useState<string[]>([]);
+  const [categories, setCategories] = useState<string[]>(
+    options.category === 'all' ? [] : boardMap[options.board]
+  );
   const handleChangeBoard = (value: string) => {
     // 선택 안했을 때(전체 게시판 선택) > 빈 문자열
     actions.selectBoard(value);
@@ -98,14 +100,14 @@ export default function MainOptions({
 
   const handleChangeViewLowerCount = (_: string, valueAsNumber: number) => {
     actions.checkViewCountLimit({
-      check: options.viewCountLimit.check,
+      check: true,
       min: valueAsNumber,
       max: options.viewCountLimit.max,
     });
   };
   const handleChangeViewUpperCount = (_: string, valueAsNumber: number) => {
     actions.checkViewCountLimit({
-      check: options.viewCountLimit.check,
+      check: true,
       min: options.viewCountLimit.min,
       max: valueAsNumber,
     });
@@ -113,14 +115,14 @@ export default function MainOptions({
 
   const handleChangeLikeLowerCount = (_: string, valueAsNumber: number) => {
     actions.checkLikeCountLimit({
-      check: options.likeCountLimit.check,
+      check: true,
       min: valueAsNumber,
       max: options.likeCountLimit.max,
     });
   };
   const handleChangeLikeUpperCount = (_: string, valueAsNumber: number) => {
     actions.checkLikeCountLimit({
-      check: options.likeCountLimit.check,
+      check: true,
       min: options.likeCountLimit.min,
       max: valueAsNumber,
     });
@@ -128,7 +130,7 @@ export default function MainOptions({
 
   const handleChangeCommentLowerCount = (_: string, valueAsNumber: number) => {
     actions.checkCommentCountLimit({
-      check: options.commentCountLimit.check,
+      check: true,
       min: valueAsNumber,
       max: options.commentCountLimit.max,
     });
@@ -136,7 +138,7 @@ export default function MainOptions({
 
   const handleChangeCommentUpperCount = (_: string, valueAsNumber: number) => {
     actions.checkCommentCountLimit({
-      check: options.commentCountLimit.check,
+      check: true,
       min: options.commentCountLimit.min,
       max: valueAsNumber,
     });
@@ -239,9 +241,7 @@ export default function MainOptions({
           selected={options.category}
           options={[
             { value: 'all', label: '말머리', default: true },
-            ...categories.map((item) => {
-              return { value: item, label: item };
-            }),
+            ...categories.map((item) => ({ value: item, label: item })),
           ]}
         />
       </div>

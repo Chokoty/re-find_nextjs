@@ -1,6 +1,9 @@
 export { default as Logo } from '@/public/logo.svg';
 export { default as RealWakGood } from '@/public/real-wakgood.webp';
+export { default as RefindLogo } from '@/public/refind5.png';
 export { default as Afreeca } from '@/public/static/icons/afreecatv-logo.webp';
+export { default as Soop } from '@/public/static/icons/soop-logo.webp';
+export { default as Soop2 } from '@/public/static/icons/soop-logo2.webp';
 export { default as Waksplorer } from '@/public/static/icons/waksplorer-logo.webp';
 export { default as Wakzoo } from '@/public/static/icons/wakzoo-logo.webp';
 export { default as BBangTTi } from '@/public/static/images/4.png';
@@ -9,10 +12,13 @@ export { default as MainBanner } from '@/public/static/images/banners/banner2.we
 export { default as BoomDoor } from '@/public/static/images/events/goat.webp';
 export { default as KeyDoor } from '@/public/static/images/events/peridot.webp';
 export { default as Question } from '@/public/static/images/events/question.webp';
+export { default as ChanDanCon } from '@/public/static/images/gallery/chanDanCon.webp';
 export { default as Christmas } from '@/public/static/images/gallery/christmas.webp';
 export { default as deadCat } from '@/public/static/images/gallery/deadCat.webp';
 export { default as Halloween } from '@/public/static/images/gallery/halloween.webp';
 export { default as Isd } from '@/public/static/images/gallery/isd.webp';
+export { default as IseLab } from '@/public/static/images/gallery/iseLab.webp';
+export { default as JingburgerBirthday } from '@/public/static/images/gallery/jingburgerBirthday.webp';
 export { default as JururuBirthday } from '@/public/static/images/gallery/jururuBirthday.webp';
 export { default as KissingYou } from '@/public/static/images/gallery/kissingYou.webp';
 export { default as LilpaBirthday } from '@/public/static/images/gallery/lilpaBirthday.webp';
@@ -27,6 +33,7 @@ export { default as Wakgood } from '@/public/static/images/gallery/member/wakgoo
 export { default as newIne } from '@/public/static/images/gallery/newIne.webp';
 export { default as newnewLilpa } from '@/public/static/images/gallery/newnewLilpa.webp';
 export { default as Rewind2Year } from '@/public/static/images/gallery/rewind2year.webp';
+export { default as Thousand } from '@/public/static/images/gallery/thousand.webp';
 export { default as TiffanyWouldYouMia } from '@/public/static/images/gallery/tiffanyWouldYouMia.webp';
 export { default as ViichanBirthday } from '@/public/static/images/gallery/viichanBirthday.webp';
 export { default as VirtualIsd } from '@/public/static/images/gallery/virtualIsd.webp';

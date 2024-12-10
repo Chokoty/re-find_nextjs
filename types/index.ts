@@ -71,6 +71,8 @@ export interface Gallery {
   query?: string;
   isHidden?: boolean;
   author?: string;
+  linkUrl?: string;
+  linkTitle?: string;
 }
 
 // search
@@ -82,7 +84,7 @@ export type CountLimit = {
 
 export type DateType = {
   type: string;
-  date?: string;
+  date: string | null;
 };
 
 // service (api)

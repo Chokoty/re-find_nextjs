@@ -34,11 +34,7 @@ class EventService extends Service {
       .post(url, {
         tag,
       })
-      .then((response) => {
-        console.log('응답 받은 데이터:', response.data);
-        // string[]
-        return response.data;
-      })
+      .then((response) => response.data)
       .catch((error) => {
         console.error('오류 발생:', error);
         // 오류 처리를 여기서 합니다

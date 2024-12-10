@@ -3,11 +3,12 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Confetti from 'react-confetti';
+import { IoMdRefresh } from 'react-icons/io';
 import { useWindowSize } from 'react-use';
 
 import { CREDIT, TAGS } from '@/app/events/lib/const';
 import { useTagImages } from '@/app/events/service/client/useEventService';
-import { VS } from '@/lib/images';
+import { RefindLogo, VS } from '@/lib/images';
 
 export default function FanartWorldCup() {
   const { width, height } = useWindowSize();
@@ -33,10 +34,7 @@ export default function FanartWorldCup() {
 
   useEffect(() => {
     if (changeRound) {
-      // let filteredTags = [...TAGS];
-      // selectedTags.forEach((t) => {
-      //   filteredTags = filteredTags.filter((ft) => ft !== t);
-      // });
+      setSelectedTags([]);
       setSelectableTags(selectedTags);
       setCurrentRound({
         gang: currentRound.round,
@@ -45,15 +43,6 @@ export default function FanartWorldCup() {
       setChangeRound(false);
     }
   }, [changeRound]);
-
-  // console.log(
-  //   'selected',
-  //   selectedTags,
-  //   'selectable',
-  //   selectableTags,
-  //   currentRoundTags
-  // );
-
   // 선택된 태그 배열을 업데이트하는 함수
   const updateSelectedTags = () => {
     // 현재 라운드에서 사용할 수 있는 태그 쌍을 선택합니다.
@@ -151,28 +140,25 @@ export default function FanartWorldCup() {
   if (isLast) {
     return (
       <div className="w-full">
-        <div className="fixed inset-0 z-[201] size-full">
+        <div className="fixed inset-0 top-[60px] z-[201] size-full ">
           <Confetti width={width} height={height} />
         </div>
-        <div className="flex size-full items-center">
+        <div className="flex size-full w-full items-center">
           <div className="relative flex h-full w-1/2 flex-col items-center justify-center">
             <div className="absolute top-0 z-[4] flex w-full items-center justify-center bg-blackAlpha-400 py-2 text-2xl text-white 2xs:text-3xl md:text-5xl">
               고세구 태그 팬아트 월드컵 우승
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex w-full items-center justify-center">
               <div className="h-full w-1/2">
                 <img
                   className="bg-gray-700"
                   src={`https://rerurureruru.com${winInfo.direction === 'left' ? data : data2}`}
                   alt="test"
-                  style={{
-                    height: height - 100,
-                  }}
                 />
               </div>
             </div>
             <button
-              className={`absolute bottom-[-60px] z-[202] h-[60px] w-full border border-gray-300 text-xl font-semibold text-black-200 disabled:cursor-not-allowed ${winInfo.direction === 'left' ? isFetching : isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
+              className="absolute bottom-[-60px] z-[202] h-[60px] w-full border border-gray-300 bg-teal-200 text-xl font-bold text-black-200 hover:bg-teal-300 active:bg-teal-400 disabled:cursor-not-allowed"
               onClick={() => {
                 if (winInfo.direction === 'left') {
                   changeFanart();
@@ -182,19 +168,49 @@ export default function FanartWorldCup() {
               }}
               disabled={winInfo.direction === 'left' ? isFetching : isFetching2}
             >
-              새로고침
+              <div className="flex items-center justify-center">
+                <IoMdRefresh
+                  className={`mr-1 ${winInfo.direction === 'left' ? isFetching : isFetching2 ? 'animate-spin' : ''}`}
+                />
+                새로고침
+              </div>
             </button>
-            <h4 className="text-shadow-worldCup absolute bottom-[20%] text-3xl ">
+            <h4 className="absolute bottom-[20%] text-3xl text-shadow-worldCup ">
               {winInfo.direction === 'left'
                 ? currentRoundTags[0]
                 : currentRoundTags[1]}
             </h4>
           </div>
-          <div className="flex w-1/2 flex-col items-center justify-center text-2xl">
-            <h2 className="mb-6 text-5xl">Credit</h2>
-            {CREDIT.map((author) => (
-              <p key={author}>{author}</p>
-            ))}
+          <div className="mt-10 flex w-1/2 flex-col items-center justify-center text-2xl">
+            <h2 className="mb-6  text-4xl">도와주신 작가님들</h2>
+            {/* {CREDIT.map((author) => (
+              <p key={author} className="w-1/3">
+                {author}
+              </p>
+            ))} */}
+            <div className="flex flex-wrap">
+              {CREDIT.map((author, index) => (
+                <div key={author} className="w-1/3">
+                  <p className="writing-vertical-rl text-center">{author}</p>
+                </div>
+              ))}
+            </div>
+            <h2 className="mb-6 mt-10 text-4xl">팀 리파인드 제작</h2>
+            <Image
+              src={RefindLogo}
+              alt="리파인드 로고"
+              width={100}
+              height={100}
+              priority
+              unoptimized
+            />
+            <p className="mt-6 text-center">
+              세구님 방송 3주년 진심으로 축하드립니다!
+            </p>
+            <p className="text-center">
+              세구님의 모든 망상이 현실이 되는 그날까지 늘 곁에서
+              응원하겠습니다. 킹아!
+            </p>
           </div>
         </div>
       </div>
@@ -245,18 +261,28 @@ export default function FanartWorldCup() {
         </div>
         <div className="absolute bottom-0 z-[6] h-[60px] w-full text-xl font-semibold">
           <button
-            className={`h-full w-1/2 border border-r-0 border-gray-300 text-black-200 disabled:cursor-not-allowed ${isFetching ? 'bg-gray-500' : 'bg-gray-200'}`}
+            className="h-full w-1/2 border border-r-0 border-gray-300 bg-red-200 font-bold text-black-200 hover:bg-red-300 active:bg-red-400 disabled:cursor-not-allowed"
             onClick={changeFanart}
             disabled={isFetching}
           >
-            새로고침
+            <div className="flex items-center justify-center">
+              <IoMdRefresh
+                className={`mr-1 ${isFetching ? 'animate-spin' : ''}`}
+              />
+              새로고침
+            </div>
           </button>
           <button
-            className={`h-full w-1/2 border border-gray-300 text-black-200 disabled:cursor-not-allowed ${isFetching2 ? 'bg-gray-500' : 'bg-gray-200'}`}
+            className="h-full w-1/2 border border-gray-300 bg-blue-200 font-bold text-black-200 hover:bg-blue-300 active:bg-blue-400 disabled:cursor-not-allowed"
             onClick={changeFanart2}
             disabled={isFetching2}
           >
-            새로고침
+            <div className="flex items-center justify-center">
+              <IoMdRefresh
+                className={`mr-1 ${isFetching2 ? 'animate-spin' : ''}`}
+              />
+              새로고침
+            </div>
           </button>
         </div>
       </div>
@@ -265,7 +291,7 @@ export default function FanartWorldCup() {
           <Image src={VS} alt="vs" priority fill unoptimized />
         </div>
       </div>
-      <div className="text-shadow-worldCup pointer-events-none absolute bottom-[20%] left-0 z-[4] max-h-[50%] w-full text-2xl text-white 2xs:text-3xl md:text-5xl">
+      <div className="pointer-events-none absolute bottom-[20%] left-0 z-[4] max-h-[50%] w-full text-2xl text-white text-shadow-worldCup 2xs:text-3xl md:text-5xl">
         <p className="inline-block w-1/2 pr-[15%] text-right">
           {currentRoundTags[0]}
         </p>

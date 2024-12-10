@@ -1,3 +1,4 @@
+import { useSearchParams } from 'next/navigation';
 import { useReducer } from 'react';
 
 import { MAX_COUNT, MIN_COUNT } from '@/app/search/lib/const';
@@ -20,6 +21,7 @@ export type SearchFilterState = {
   viewCountLimit: CountLimit;
   likeCountLimit: CountLimit;
   commentCountLimit: CountLimit;
+  viewType: string; // list | gallery
 };
 
 // 액션 타입 정의
@@ -35,6 +37,7 @@ export type SearchFilterAction =
   | { type: 'CHECK_VIEW_COUNT_LIMIT'; payload: CountLimit }
   | { type: 'CHECK_LIKE_COUNT_LIMIT'; payload: CountLimit }
   | { type: 'CHECK_COMMENT_COUNT_LIMIT'; payload: CountLimit }
+  | { type: 'SELECT_VIEW_TYPE'; payload: string }
   | { type: 'RESET_FILTER' };
 
 // 초기 상태
@@ -43,6 +46,7 @@ const initialState: SearchFilterState = {
   category: 'all',
   dateType: {
     type: 'all',
+    date: null,
   },
   rankType: 'latest',
   hasSensitiveCase: false,
@@ -64,6 +68,7 @@ const initialState: SearchFilterState = {
     min: MIN_COUNT,
     max: MAX_COUNT,
   },
+  viewType: 'list',
 };
 
 // 리듀서 함수
@@ -103,7 +108,8 @@ function reducer(
 
 // 커스텀 훅 정의
 export function useSearchFilter() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const searchParams = useSearchParameters();
+  const [state, dispatch] = useReducer(reducer, searchParams);
 
   const actions = {
     selectBoard: (board: string) =>
@@ -132,4 +138,72 @@ export function useSearchFilter() {
   };
 
   return [state, actions] as const;
+}
+const defaultLimit = {
+  check: false,
+  min: MIN_COUNT,
+  max: MAX_COUNT,
+};
+
+export function useSearchParameters(): SearchFilterState {
+  const searchParams = useSearchParams();
+  const sensitiveParam = searchParams.get('sensitive');
+  const titleParam = searchParams.get('title');
+  const contentParam = searchParams.get('content');
+  const authorParam = searchParams.get('author');
+  const viewCountCheckParam = searchParams.get('viewCountCheck');
+  const likeCountCheckParam = searchParams.get('likeCountCheck');
+  const commentCountCheckParam = searchParams.get('commentCountCheck');
+  const datetypeDetail = searchParams.get('datetypeDetail');
+  const viewCountCheck =
+    viewCountCheckParam === null ? false : viewCountCheckParam === 'true';
+  const likeCountCheck =
+    likeCountCheckParam === null ? false : likeCountCheckParam === 'true';
+  const commentCountCheck =
+    commentCountCheckParam === null ? false : commentCountCheckParam === 'true';
+  const viewCountMin = parseInt(searchParams.get('viewCountMin')!);
+  const viewCountMax = parseInt(searchParams.get('viewCountMax')!);
+  const likeCountMin = parseInt(searchParams.get('likeCountMin')!);
+  const likeCountMax = parseInt(searchParams.get('likeCountMax')!);
+  const commentCountMin = parseInt(searchParams.get('commentCountMin')!);
+  const commentCountMax = parseInt(searchParams.get('commentCountMax')!);
+
+  const params = {
+    board: searchParams.get('board') ?? 'all',
+    category: searchParams.get('category') ?? 'all',
+    dateType: {
+      type: searchParams.get('datetype') ?? 'all',
+      date: datetypeDetail,
+    },
+    rankType: searchParams.get('ranktype') ?? 'latest',
+    hasSensitiveCase:
+      sensitiveParam === null ? false : sensitiveParam === 'true',
+    hasTitle: titleParam === null ? false : titleParam === 'true',
+    hasContent: contentParam === null ? false : contentParam === 'true',
+    hasAuthor: authorParam === null ? false : authorParam === 'true',
+    viewCountLimit: viewCountCheck
+      ? {
+          check: viewCountCheck,
+          min: viewCountMin,
+          max: viewCountMax,
+        }
+      : defaultLimit,
+    likeCountLimit: likeCountCheck
+      ? {
+          check: likeCountCheck,
+          min: likeCountMin,
+          max: likeCountMax,
+        }
+      : defaultLimit,
+    commentCountLimit: commentCountCheck
+      ? {
+          check: commentCountCheck,
+          min: commentCountMin,
+          max: commentCountMax,
+        }
+      : defaultLimit,
+    viewType: searchParams.get('viewType') ?? 'list',
+  };
+
+  return params;
 }

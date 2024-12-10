@@ -3,6 +3,7 @@ import type { Board } from '@/types';
 export const TARGET_COUNT = 80000; // 이벤트 타겟 카운트
 export const SUB_TITLES = ['왁타버스', '우왁굳', '이세돌', '고멤/교멤'];
 
+// 모든 게시판 menuid 볼 수 있습니다: https://apis.naver.com/cafe-web/cafe2/SideMenuList?cafeId=27842958
 const BOARD_LIST: Board[] = [
   {
     board: '이세돌┃팬아트',
@@ -48,10 +49,24 @@ const BOARD_LIST: Board[] = [
     id: '24',
   },
   {
+    board: '▶ 이세돌의 공지사항',
+    id: '345',
+  },
+  {
+    board: '이세돌 사진관',
+    id: '606',
+  },
+  {
+    board: '1000일 기념 팬아트',
+    id: '1038',
+  },
+  {
     board: '왁타버스 불법 AI 팬아트',
     id: '604',
     state: '-관-',
   },
 ];
+
+export const EXCEPT_LIST = BOARD_LIST.slice(-2).map((each) => each.board);
 
 export default BOARD_LIST;

@@ -1,5 +1,6 @@
 import { FaHardHat } from 'react-icons/fa';
 
+import ArtistList from '@/app/artists/components/ArtistList';
 import ArtistsSearchInput from '@/app/artists/components/ArtistsSearchInput';
 import RankSortButtonGroup from '@/app/artists/components/Group/RankSortButtonGroup';
 import TotalSortButtonGroup from '@/app/artists/components/Group/TotalSortButtonGroup';
@@ -36,7 +37,8 @@ export default async function ArtistsPage() {
           <TotalSortButtonGroup />
           <Hydrate state={{ queries: [query] }}>
             <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
-              <Maintenance />
+              {/* <Maintenance /> */}
+              <ArtistList />
             </div>
           </Hydrate>
         </div>
@@ -52,7 +54,8 @@ export default async function ArtistsPage() {
         <RankSortButtonGroup />
         <TotalSortButtonGroup />
         <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
-          <Maintenance />
+          {/* <Maintenance /> */}
+          <ArtistList />
         </div>
       </div>
     </div>

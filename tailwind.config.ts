@@ -47,6 +47,7 @@ const config: Config = {
           '-1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000',
       },
       colors: {
+        'custom-dark': '#17181C',
         // border: 'var(--border)',
         // background color
         'dark-background': 'var(--darkmode-bg)',
@@ -304,7 +305,7 @@ const config: Config = {
     hoverOnlyWhenSupported: true,
   },
   plugins: [
-    plugin(function ({ matchUtilities, theme }) {
+    plugin(({ matchUtilities, theme }) => {
       matchUtilities(
         {
           'text-shadow': (value) => ({

@@ -1,8 +1,10 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { FaAngleLeft } from 'react-icons/fa6';
+import { LuExternalLink } from 'react-icons/lu';
 
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
 import TotalCounter from '@/app/gallery/components/TotalCounter';
@@ -24,6 +26,8 @@ const getTitleInfo = (type: string) => {
   return {
     title: album?.title || `${member?.name ?? ''} 팬아트`,
     description: album?.description || '',
+    linkUrl: album?.linkUrl || '',
+    linkTitle: album?.linkTitle || '',
   };
 };
 
@@ -34,7 +38,7 @@ const descriptionClassName =
 
 export default function GalleryTitle({ pageType }: { pageType: string }) {
   const router = useRouter();
-  const { title, description } = getTitleInfo(pageType);
+  const { title, description, linkUrl, linkTitle } = getTitleInfo(pageType);
 
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
@@ -82,6 +86,16 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
             <div className="mb-6 mt-1.5">
               <p className={`font-bold ${descriptionClassName}`}>
                 {description}
+                {linkUrl && (
+                  <Link
+                    href={linkUrl}
+                    target="_blank"
+                    className="mt-1 flex items-center text-green-highlight hover:underline dark:text-pink-highlight"
+                  >
+                    {linkTitle}
+                    <LuExternalLink className="ml-2 text-lg font-semibold 2xs:block" />
+                  </Link>
+                )}
               </p>
             </div>
           </div>

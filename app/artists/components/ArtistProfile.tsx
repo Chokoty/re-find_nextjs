@@ -74,6 +74,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
             height={130}
             unoptimized
             priority
+            referrerPolicy="no-referrer" // 네이버 리소스 서버에서 요청 오리진 검증 우회
           />
         </PopoverTrigger>
         <PopoverContent position="bottom-center">

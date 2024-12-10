@@ -10,12 +10,61 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import Banner from '@/app/(home)/components/Slide/Banner';
 import Event from '@/app/(home)/components/Slide/Event';
 
+type LinkColor = 'green' | 'pink' | 'blue' | 'purple' | 'yellow';
+
+interface EventData {
+  title: string;
+  linkColor: LinkColor;
+  link: string;
+  linkContent: JSX.Element;
+  isOutLink?: boolean; // 선택적 속성
+}
+
 const swiperSlideStyle = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
 };
+
+const events: EventData[] = [
+  // {
+  //   title: '이세계아이돌 1,000일 기념 🎉 역조공 프로젝트!',
+  //   linkColor: 'green',
+  //   link: 'https://kko.to/yV8hApkIGX',
+  //   linkContent: <>멜론 이벤트 참여하기(~9/1)</>,
+  //   isOutLink: true,
+  // },
+  // {
+  //   title: '🎂 징버거님의 생일 기념 갤러리 추가',
+  //   linkColor: 'yellow',
+  //   link: '/gallery/jingburgerBirthday',
+  //   linkContent: <>부가땅 생일 기념 갤러리 보러가기</>,
+  // },
+  // {
+  //   title: '이세돌 1000일 기념 갤러리 추가',
+  //   linkColor: 'pink',
+  //   link: '/gallery/thousand',
+  //   linkContent: <>이세돌 1000일 기념 갤러리 보러가기</>,
+  // },
+  {
+    title: '🎃 Trick or Treat! 해피 할로윈',
+    linkColor: 'yellow',
+    link: '/gallery/halloween',
+    linkContent: <>할로윈 특집 팬아트 보러가기</>,
+  },
+  {
+    title: '팬아트 태그 이상형 월드컵',
+    linkColor: 'blue',
+    link: '/events/fanartWorldCup',
+    linkContent: (
+      <>
+        <PiGiftBold className="mr-2 size-6" />
+        [고공전]세구님 팬아트 태그 월드컵
+      </>
+    ),
+  },
+];
 
 export default function BannerSlider() {
   return (
@@ -38,32 +87,17 @@ export default function BannerSlider() {
         <SwiperSlide style={swiperSlideStyle}>
           <Banner />
         </SwiperSlide>
-        <SwiperSlide style={swiperSlideStyle}>
-          <Event
-            title="뉴뉴릴파 갤러리 추가"
-            linkColor="blue"
-            link="/gallery/newnewLilpa"
-            linkContent={
-              <>
-                {/* <GiPartyPopper className="mr-2 size-6" /> */}
-                뉴뉴릴파 갤러리 보러가기
-              </>
-            }
-          />
-        </SwiperSlide>
-        <SwiperSlide style={swiperSlideStyle}>
-          <Event
-            title="이벤트 페이지 개설"
-            linkContent={
-              <>
-                <PiGiftBold className="mr-2 size-6" />
-                팬아트 가챠 하러가기
-              </>
-            }
-            linkColor="purple"
-            link="/events"
-          />
-        </SwiperSlide>
+        {events.map((event, index) => (
+          <SwiperSlide key={index} style={swiperSlideStyle}>
+            <Event
+              title={event.title}
+              linkColor={event.linkColor}
+              link={event.link}
+              linkContent={event.linkContent}
+              isOutLink={event.isOutLink || false} // Optional, defaults to false if not present
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

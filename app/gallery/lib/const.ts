@@ -75,19 +75,11 @@ const GALLERY_LIST: Gallery[] = [
     author: 'WAMELL',
     query:
       'artworks?query=kissing&query=키싱&query=키씽&query=뚜뚜뚜&query=뚜두루&query=고마워 사랑해&query=사랑해 한마디&query=너만을 사랑해&case_sensitive=false&board=isd&board=best&title=',
+    linkUrl: 'https://www.youtube.com/watch?v=OrFyzG5yTC4',
+    linkTitle: 'Kissing You(키싱유) COVER',
   },
   {
     id: 6,
-    value: 'isdPick',
-    type: 'special',
-    title: '이세돌픽 팬아트',
-    subTitle: '이세돌이 고른 팬아트',
-    description: '이세계아이돌이 고른 공지사항 팬아트',
-    author: '후히이',
-    query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
-  },
-  {
-    id: 7,
     value: 'tiffanyWouldYouMia',
     type: 'special',
     title: 'RE:START',
@@ -96,9 +88,11 @@ const GALLERY_LIST: Gallery[] = [
     author: '참빼미',
     query:
       'artworks?query=티파니&query=우주미아&board=gomem&board=gomem_behind&title=',
+    linkUrl: 'https://www.youtube.com/watch?v=cApabFGK8VA',
+    linkTitle: '우주미아(Would You M.I.A) MV',
   },
   {
-    id: 8,
+    id: 7,
     value: 'newIne',
     type: 'special',
     title: '뉴 아이네',
@@ -110,7 +104,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=아이네&since=20240427&title=&query=뉴이네&query=아이네&query=콘서트&query=에버퍼플&query=EVER PURPLE&query=아단콘',
   },
   {
-    id: 9,
+    id: 8,
     value: 'jururuBirthday',
     type: 'special',
     title: '주르르님 생일 팬아트',
@@ -121,7 +115,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=주르르&title=&content=&since=20240609&until=20240611&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이',
   },
   {
-    id: 10,
+    id: 9,
     value: 'newnewLilpa',
     type: 'special',
     title: '뉴뉴릴파',
@@ -133,7 +127,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=릴파&since=20240629&title=&content=&query=뉴뉴&query=릴파콘&query=릴단콘&query=콘서트&query=going&query=Going',
   },
   {
-    id: 11,
+    id: 10,
     value: 'deadCat',
     type: 'special',
     title: '데드캣',
@@ -143,6 +137,88 @@ const GALLERY_LIST: Gallery[] = [
     query:
       'artworks?&board=isd&board=best&category=고세구&since=20240718&title=&content=&query=dead&query=cat&query=데드&query=캣&query=켓&query=강시&query=키랏&query=처음 보냐&query=뉴의상&query=빌런&query=신의상&query=qfr',
   },
+  {
+    id: 11,
+    value: 'chanDanCon',
+    type: 'special',
+    title: '역광',
+    subTitle: '챤단콘',
+    description:
+      'VIICHAN SOLO CONCERT ✦ :: 8월 3일 진행된 비챤님의 첫 단독 온라인 콘서트',
+    author: '니렝',
+    query:
+      'artworks?&board=isd&board=best&category=비챤&since=20240731&title=&content=&query=concert&query=챤단콘&query=역광&query=비챤콘&query=사스가&query=콘서트&query=빛&query=비챠니&query=단콘&query=사랑하긴했었나요&query=플라스틱&query=heart&query=태연&query=맑아라&query=I챤',
+    linkUrl: 'https://www.youtube.com/live/Ip1WwW0gwf4',
+    linkTitle: '역광 콘서트 보러가기',
+  },
+  {
+    id: 12,
+    value: 'thousand',
+    type: 'special',
+    title: '1000일 기념 팬아트',
+    subTitle: '이세계 아이돌 1000일!',
+    description: '이세계아이돌의 1000일간의 여정, 축하드립니다!',
+    author: 'GENTLECAT',
+    query: 'artworks?board=thousand',
+    linkUrl: 'https://cafe.naver.com/steamindiegame/17543957',
+    linkTitle: '카페 공지사항',
+  },
+
+  {
+    id: 13,
+    value: 'jingburgerBirthday',
+    type: 'special',
+    title: '징버거님 생일 팬아트',
+    subTitle: '🎂 징버거님 생일 팬아트 🎂',
+    description: '징버거님의 탄신일을 진심으로 축하드립니다!',
+    author: '지라리',
+    query:
+      'artworks?board=isd&board=best&category=징버거&title=&content=&since=20241007&until=20241009&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이&query=부가&query=버거',
+  },
+  {
+    id: 14,
+    value: 'isdPick',
+    type: 'special',
+    title: '이세돌픽 팬아트',
+    subTitle: '이세돌이 고른 팬아트',
+    description: '이세계아이돌이 고른 공지사항 팬아트',
+    author: '후히이',
+    query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
+  },
+  {
+    id: 15,
+    value: 'halloween',
+    type: 'keyword',
+    title: '할로윈 팬아트',
+    subTitle: '🎃 할로윈 특집 🎃',
+    description: 'Trick or Treat! 해피 할로윈',
+    author: 'COCOball',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+  },
+  {
+    id: 16,
+    value: 'iseLab',
+    type: 'special',
+    title: '이세랩 팬아트',
+    subTitle: '이세랩 팬아트',
+    description: '이세랩 달력 10월 일러스트',
+    author: '피엘로',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&content=&query=이세랩&query=ISE-Lab&query=데드캣&query=징마담&query=행동대장',
+  },
+  {
+    id: 17,
+    value: 'christmas',
+    type: 'keyword',
+    title: '크리스마스 팬아트',
+    subTitle: '🎅🏼 크리스마스 특집 🎄',
+    description: '이세돌과 함께 메리 크리스마스!',
+    author: '여비날',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
+  },
+
   // {
   //   id: 8,
   //   value: 'Shuko',

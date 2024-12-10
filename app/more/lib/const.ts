@@ -468,4 +468,58 @@ export const UPDATE_LOGS: UpdateLog[] = [
       '뉴뉴릴파 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
     directLink: 'https://cafe.naver.com/steamindiegame/17019811',
   },
+  {
+    id: 46,
+    date: '2024.07.21',
+    content:
+      '데드캣 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/17250034',
+  },
+  {
+    id: 47,
+    date: '2024.08.01',
+    content: '고세구님 팬아트 태그 월드컵에서 최고의 태그 팬아트를 골라보세요!',
+    directLink: 'https://cafe.naver.com/steamindiegame/17401762',
+  },
+  {
+    id: 48,
+    date: '2024.08.04',
+    content:
+      '챤단콘 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/17478408',
+  },
+  {
+    id: 49,
+    date: '2024.08.18',
+    content:
+      '이세돌 1000일 기념 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    // directLink: 'https://cafe.naver.com/steamindiegame/17601975',
+  },
+  {
+    id: 50,
+    date: '2024.08.26',
+    content: '이세계아이돌 1,000일 기념 🎉 역조공 프로젝트! (With Melon)',
+    directLink: 'https://kko.to/yV8hApkIGX',
+  },
+  {
+    id: 51,
+    date: '2024.10.08',
+    content: '💛💛💛 버거님의 생일을 축하합니다! 💛💛💛',
+    directLink:
+      'https://re-find.xyz/gallery/jingburgerBirthday?viewType=masonry&sortType=alzaltak',
+  },
+  {
+    id: 52,
+    date: '2024.12.09',
+    type: '[안내]',
+    content:
+      '작가목록 페이지가 복구되었습니다! 이전에 비해 빠른 속도로 훨씬 쾌적하게 사용하실 수 있습니다. 많은 이용 부탁드립니다!! ',
+  },
+  {
+    id: 53,
+    date: '2024.12.10',
+    content:
+      '이세랩 특집 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/14290389',
+  },
 ];
