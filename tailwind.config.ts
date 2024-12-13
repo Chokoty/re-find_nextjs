@@ -47,13 +47,18 @@ const config: Config = {
           '-1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000',
       },
       colors: {
-        'custom-dark': '#17181C',
+        'custom-dark': 'var(--darkmode-soopColor)',
         // border: 'var(--border)',
         // background color
+        'light-myText': 'var(--myText)',
+        'dark-myText': 'var(--darkmode-myText)',
+        'dark-myText-2': 'var(--darkmode-myText-2)',
         'dark-background': 'var(--darkmode-bg)',
         'light-background': 'var(--lightmode-bg)',
         // card color (white mode is bg-white)
         'dark-card': 'var(--darkmode-card-bg)',
+        'dark-card-2': 'var(--darkmode-card-bg-2)',
+        'dark-card-3': 'var(--darkmode-card-bg-3)',
         // footer color (white mode is bg-white)
         'dark-footer': 'var(--darkmode-footer-bg)',
         // hightlight color

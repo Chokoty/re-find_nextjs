@@ -27,8 +27,8 @@ export default function Header() {
 
   return (
     <header
-      className={clsx('fixed top-0 z-[200] h-[60px] w-full transition', {
-        'bg-white dark:bg-dark-card': !isNotScrollingGalleryPage,
+      className={clsx('fixed top-0 z-[200] h-[64px] w-full transition', {
+        'bg-white dark:bg-dark-background': !isNotScrollingGalleryPage,
         'bg-blackAlpha-500 backdrop-blur': isNotScrollingGalleryPage,
       })}
     >
