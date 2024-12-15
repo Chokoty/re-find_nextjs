@@ -1,6 +1,8 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 
+import { lightMode } from '@/lib/theme';
+
 const config: Config = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
@@ -56,6 +58,8 @@ const config: Config = {
         'dark-background': 'var(--darkmode-bg)',
         'light-background': 'var(--lightmode-bg)',
         // card color (white mode is bg-white)
+        'light-card': 'var(--lightmode-card-bg)',
+        'light-card-2': 'var(--lightmode-card-bg-2)',
         'dark-card': 'var(--darkmode-card-bg)',
         'dark-card-2': 'var(--darkmode-card-bg-2)',
         'dark-card-3': 'var(--darkmode-card-bg-3)',

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Suspense } from 'react';
+import { MdHomeFilled } from 'react-icons/md';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 import BackButton from '@/components/Button/BackButton';

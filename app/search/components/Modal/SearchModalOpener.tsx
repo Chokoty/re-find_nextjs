@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { FaSearch } from 'react-icons/fa';
+import { MdHomeFilled } from 'react-icons/md';
 
 import SearchModal from '@/app/search/components/Modal/SearchModal';
 import useModal from '@/hooks/useModal';
@@ -37,17 +39,19 @@ export default function SearchModalOpener() {
   const { placeholderText, placeHolderColor } = getPlaceHolder();
 
   return (
+    // <div className="flex h-12 items-center gap-4">
     <div
       className="group relative mx-4 h-12 w-[70%] max-w-[400px]"
       onClick={handleInputClick}
     >
       <div className="absolute left-0 top-0 z-[2] h-full w-12 cursor-pointer">
-        <FaSearch className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-500 dark:text-dark-myText-2 " />
+        <FaSearch className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-500 dark:text-dark-myText-2" />
       </div>
       <input
-        className={`relative size-full cursor-pointer rounded-full border border-gray-100 bg-gray-100 pl-12 pr-4 transition group-hover:border-green-highlight group-hover:bg-white dark:border-dark-card-2 dark:bg-dark-card-2 dark:group-hover:bg-dark-card-3 ${placeHolderColor}`}
+        className={`relative size-full cursor-pointer rounded-full border border-gray-100 bg-light-card pl-12 pr-4 transition group-hover:border-green-highlight group-hover:bg-light-card-2 dark:border-dark-card-2 dark:bg-dark-card-2 dark:group-hover:bg-dark-card-3 ${placeHolderColor}`}
         placeholder={placeholderText}
       />
     </div>
+    // </div>
   );
 }

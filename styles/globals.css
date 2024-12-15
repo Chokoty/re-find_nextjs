@@ -217,11 +217,14 @@
   --telegram-800: #005885;
   --telegram-900: #003f5e;
   /* custom color */
-  /* --darkmode-bg: #121212; */
   --darkmode-bg: #000000;
-  --lightmode-bg: #f8f9fa;
+  --lightmode-bg: #ffffff;
+  /* --darkmode-bg: #121212; */
+  /* --lightmode-bg: #f8f9fa; */
   /* --myblack-100: #282828;
   --myblack-200: #24292e; */
+  --lightmode-card-bg: #f1f1f1;
+  --lightmode-card-bg-2: #dedede;
   --darkmode-card-bg: #262424;
   --darkmode-card-bg-2: #1f1f1f;
   --darkmode-card-bg-3: #2a2a2a;
