@@ -525,6 +525,6 @@ export const UPDATE_LOGS: UpdateLog[] = [
   {
     id: 54,
     date: '2024.12.17',
-    content: '이세돌의 데뷔 3주년 축하드립니다!!!!!! 추카포카~❤️',
+    content: '이세돌의 데뷔 3주년 축하드립니다!!!!!! 이세돌 화이팅!!!',
   },
 ];
