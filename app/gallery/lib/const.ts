@@ -238,6 +238,115 @@ const GALLERY_LIST: Gallery[] = [
   // },
 ];
 
+export const UPDATED_GALLERY_LIST: Gallery[] = [
+  {
+    id: 18754123,
+    value: 'bestBoard',
+    type: 'keyword',
+    title: '통합 BEST 팬아트 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+  },
+  {
+    id: 18806111,
+    value: 'goldHandBoard',
+    type: 'keyword',
+    title: '금손 작가들의 방 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+  },
+  {
+    id: 18807523,
+    value: 'isdBoard',
+    type: 'keyword',
+    title: '이세돌┃팬아트 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+  },
+  {
+    id: 18806568,
+    value: 'gomemBoard',
+    type: 'keyword',
+    title: '고멤┃팬아트 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+  },
+  {
+    id: 18807405,
+    value: 'woowakgoodBoard',
+    type: 'keyword',
+    title: '우왁굳 팬아트 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+  },
+  {
+    id: 18781797,
+    value: 'isdCommentBoard',
+    type: 'keyword',
+    title: '이세돌┃작업후기 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query: '',
+  },
+  {
+    id: 18803035,
+    value: 'gomemCommentBoard',
+    type: 'keyword',
+    title: '고멤┃작업 후기 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query: '',
+  },
+  {
+    id: 18805710,
+    value: 'unofficialGoodsBoard',
+    type: 'keyword',
+    title: '왁타버스 불법 굿즈 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query: '',
+  },
+  {
+    id: 18771485,
+    value: 'unofficalBackgroundBoard',
+    type: 'keyword',
+    title: '왁타버스 불법 배경 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query: '',
+  },
+  {
+    id: 18782224,
+    value: 'isd_studioBoard',
+    type: 'keyword',
+    title: '이세돌 사진관 게시판',
+    subTitle: '',
+    description: '',
+    author: '',
+    query:
+      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+  },
+];
+
 export const MEMBERS: Member[] = [
   {
     id: 1,

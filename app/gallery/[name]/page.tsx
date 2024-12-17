@@ -3,7 +3,10 @@ import type { Metadata } from 'next';
 import DetailedGallery from '@/app/gallery/components/DetailedGallery';
 import GalleryTitle from '@/app/gallery/components/GalleryTitle';
 import TopBackground from '@/app/gallery/components/TopBackground';
-import GALLERY_LIST, { MEMBERS } from '@/app/gallery/lib/const';
+import GALLERY_LIST, {
+  MEMBERS,
+  UPDATED_GALLERY_LIST,
+} from '@/app/gallery/lib/const';
 import queryOptions from '@/app/gallery/service/client/queries';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
