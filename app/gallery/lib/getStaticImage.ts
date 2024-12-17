@@ -41,6 +41,8 @@ export const getStaticImage = (cover: string) => {
       return Halloween;
     case 'rewind2year':
       return Rewind2Year;
+    case 'isd3year':
+      return Rewind2Year;
     case 'christmas':
       return Christmas;
     case 'viichanBirthday':
