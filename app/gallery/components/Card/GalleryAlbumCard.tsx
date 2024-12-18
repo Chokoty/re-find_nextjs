@@ -73,7 +73,7 @@ export default function GalleryAlbumCard({
         </div>
         {/* 데스크탑 */}
         <Link href={`/artists/${author}?sortType=alzaltak`} className="flex">
-          <div className="absolute z-[2] hidden items-center justify-center rounded-[10px] bg-blackAlpha-500 px-3 py-2 text-sm font-normal text-white hover:bg-blackAlpha-600 active:bg-blackAlpha-400 md:inline-flex min-[840px]:px-3.5 min-[840px]:py-2.5">
+          <div className="absolute z-[2] hidden items-center justify-center rounded-[16px] bg-blackAlpha-500 px-3 py-2 text-sm font-normal text-white hover:bg-blackAlpha-600 active:bg-blackAlpha-400 md:inline-flex min-[840px]:px-3.5 min-[840px]:py-2.5">
             출처
           </div>
         </Link>
@@ -102,7 +102,7 @@ export default function GalleryAlbumCard({
           className="dark:bg-[linear-gradient(180deg,_hsla(0,_0%,_7%,_.8),_hsla(0,_0%,_7%,_.4)_0%,_hsla(0,_0%,_7%,_0)_0%,_hsla(0,_0%,_7%,_0%)_12.23%,_hsla(0,_0%,_7%,_.64)_86.23%,_#121212 101.07%)] absolute inset-0 z-[1] flex size-full flex-col items-end justify-between rounded-2xl bg-[linear-gradient(180deg,_hsla(0,_0%,_7%,_.8),_hsla(0,_0%,_7%,_.4)_0%,_hsla(0,_0%,_7%,_0)_0%,_hsla(0,_0%,_7%,_0%)_47.23%,_hsla(0,_0%,_7%,_.64)_100.23%,_#121212_100.07%)] px-2.5 pb-3.5 pt-2.5 min-[840px]:px-3 min-[840px]:pb-4 min-[840px]:pt-3 min-[1055px]:px-5 min-[1055px]:pb-7 min-[1055px]:pt-5"
           // borderRadius="0.9rem" // image 1rem 보다 작게 설정해야 아래 이미지 뜨는 현상 방지
         >
-          <div className="flex items-center justify-center rounded-[10px] bg-blackAlpha-500 px-2.5 py-1.5 md:px-3 md:py-2 min-[840px]:px-3.5 min-[840px]:py-2.5">
+          <div className="flex items-center justify-center rounded-[16px] bg-blackAlpha-500 px-2.5 py-1.5 md:px-3 md:py-2 min-[840px]:px-3.5 min-[840px]:py-2.5">
             <p className="text-xs font-normal text-white md:text-sm">
               {getBadgeText({ badgeType: type, badgeValue: value })}
             </p>
