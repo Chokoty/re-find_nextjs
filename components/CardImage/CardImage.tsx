@@ -43,9 +43,9 @@ export default function CardImage({ data, wakzooLink }: Props) {
       <Image
         width={357}
         height={357}
-        src={
-          img_url === '' ? 'http://via.placeholder.com/357x357' : modifiedUrl300
-        }
+        // sizes="100vw"
+        style={{ width: '120%', height: 'auto' }}
+        src={img_url === '' ? 'https://placehold.co/375x375' : modifiedUrl300}
         alt={title}
         className={clsx(
           'max-h-[536px] rounded-[16px] bg-[#f5f5f5] object-cover',

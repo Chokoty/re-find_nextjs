@@ -47,6 +47,10 @@ const config: Config = {
         worldCup:
           '-1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000',
       },
+      maxWidth: {
+        custom1: 'calc(-488px + 100vw)',
+        custom2: 'calc(-192px + 100vw)',
+      },
       colors: {
         'custom-dark': 'var(--darkmode-soopColor)',
         // border: 'var(--border)',
