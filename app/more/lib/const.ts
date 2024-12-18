@@ -522,4 +522,9 @@ export const UPDATE_LOGS: UpdateLog[] = [
       '이세랩 특집 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
     directLink: 'https://cafe.naver.com/steamindiegame/14290389',
   },
+  {
+    id: 54,
+    date: '2024.12.17',
+    content: '이세돌의 데뷔 3주년 축하드립니다!!!!!! 이세돌 화이팅!!!',
+  },
 ];

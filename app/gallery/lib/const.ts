@@ -218,6 +218,17 @@ const GALLERY_LIST: Gallery[] = [
     query:
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
   },
+  {
+    id: 18,
+    value: 'isd3year',
+    type: 'special',
+    title: '이세돌 3주년 팬아트',
+    subTitle: ' ❤️‍🔥 이세돌 3주년 ❤️‍🔥',
+    description: '이세돌의 데뷔 3주년을 진심으로 축하합니다!',
+    author: '코델',
+    query:
+      'artworks?board=isd&board=best&board=goldhand&case_sensitive=false&title&query=리와인드&query=rewind&query=re:wind&query=3주년&content=&since=20240826',
+  },
 
   // {
   //   id: 8,
