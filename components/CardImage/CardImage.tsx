@@ -38,14 +38,14 @@ export default function CardImage({ data, wakzooLink }: Props) {
       onFocus={() => setIsFocus(true)}
     >
       <Image
-        width={236}
-        height={236}
+        width={357}
+        height={357}
         src={
-          img_url === '' ? 'http://via.placeholder.com/236x236' : modifiedUrl300
+          img_url === '' ? 'http://via.placeholder.com/357x357' : modifiedUrl300
         }
         alt={title}
         className={clsx(
-          'max-h-[430px] rounded-[20px] bg-[#f5f5f5] object-cover',
+          'max-h-[536px] rounded-[20px] bg-[#f5f5f5] object-cover',
           {
             'blur-[6px]': deleted,
           }

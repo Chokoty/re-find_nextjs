@@ -18,7 +18,7 @@ export default function SimpleView({ artworks, isDeletedVisible }: Props) {
   };
 
   return (
-    <div className="grid w-full grid-cols-2 gap-2 2xs:gap-2.5 min-[600px]:grid-cols-3 min-[900px]:grid-cols-4 min-[1150px]:grid-cols-5 min-[1330px]:grid-cols-6 min-[1550px]:grid-cols-7 min-[1900px]:grid-cols-8">
+    <div className="grid w-full grid-cols-2 gap-2 2xs:gap-2.5 min-[922px]:grid-cols-3 min-[1224px]:grid-cols-4 min-[1526px]:grid-cols-5 min-[1828px]:grid-cols-6 min-[2130px]:grid-cols-7 min-[2432px]:grid-cols-8">
       {content()}
     </div>
   );

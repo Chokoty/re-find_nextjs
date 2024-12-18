@@ -1,7 +1,6 @@
+import aspectRatio from '@tailwindcss/aspect-ratio';
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
-
-import { lightMode } from '@/lib/theme';
 
 const config: Config = {
   content: [
@@ -324,6 +323,7 @@ const config: Config = {
         { values: theme('textShadow') }
       );
     }),
+    aspectRatio, // aspect-ratio 플러그인 추가
   ],
   darkMode: 'class',
   // important: true,
