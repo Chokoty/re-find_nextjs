@@ -61,7 +61,7 @@ export default function ContentSection({
         <p>{board.replace(/&#\d+;/g, '').trim()}</p>
       </div>
       <h3 className="mt-3 text-start text-2xl font-bold">{title}</h3>
-      <div className="mb-5 mt-3 ">
+      <div className="mb-6 mt-3 ">
         <p>{date}</p>
       </div>
       <Link
@@ -83,10 +83,10 @@ export default function ContentSection({
         ) : (
           <FaCircleUser color="#c7c6c6" size="3rem" />
         )}
-        <p>{!author?.length ? '알 수 없음' : author}</p>
+        <p className=" text-lg">{!author?.length ? '알 수 없음' : author}</p>
         {/* </div> */}
       </Link>
-      <div className="mt-4">
+      <div className="mt-2">
         <SocialStats view={view} like={like} comment={comment} />
       </div>
     </div>
