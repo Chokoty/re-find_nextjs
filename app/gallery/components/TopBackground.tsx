@@ -15,10 +15,11 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
   const bgStaticSrc = getStaticImage(pathname.slice(1));
 
   return (
-    <section className="relative top-[-80px] flex size-full max-h-[600px] flex-col items-center justify-center md:max-h-[1180px]">
-      <div className="relative z-[1] aspect-[474/600] w-full  2xs:aspect-[1920/1080]">
+    <section className="relative top-[3px] flex size-full max-h-[600px] flex-col items-center justify-center 2xs:top-[-80px] md:max-h-[800px]">
+      <div className="relative z-[1]  aspect-[474/600] w-full  sm:aspect-[1920/1080]">
+        {/* aspect-[474/600]  2xs:aspect-[1920/1080] */}
         <Image
-          className="size-full  max-h-[1180px] object-cover opacity-70 dark:opacity-80"
+          className="size-full   object-cover object-top opacity-70 dark:opacity-80"
           src={bgStaticSrc}
           alt="백그라운드 커버 이미지"
           quality={100}

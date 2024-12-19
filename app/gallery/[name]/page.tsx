@@ -67,7 +67,7 @@ export default async function page({ params: { name } }: Params) {
         <TopBackground>
           <GalleryTitle pageType={name} />
         </TopBackground>
-        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-100px] md:top-[-108px] 2md:top-[-125px] xl:top-[-140px] 2xl:top-[-155px]">
+        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
           <Hydrate state={{ queries: [query] }}>
             <DetailedGallery
               value={name}
@@ -88,7 +88,7 @@ export default async function page({ params: { name } }: Params) {
         <GalleryTitle pageType={name} />
       </TopBackground>
       {/* -220px(-60px + -160px) */}
-      <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-100px] md:top-[-108px] 2md:top-[-125px] xl:top-[-140px] 2xl:top-[-155px]">
+      <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
         <DetailedGallery
           value={name}
           albumType={
