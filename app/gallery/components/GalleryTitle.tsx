@@ -81,7 +81,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
               팬아트 갤러리로 돌아가기
             </p>
           </Button>
-          <div className="w-full max-w-[380px] md:max-w-[460px] 2md:max-w-[710px]">
+          <div className="w-full">
             <h1 className={titleClassName}>{title}</h1>
             <div className="mb-6 mt-1.5">
               <p className={`font-bold ${descriptionClassName}`}>
