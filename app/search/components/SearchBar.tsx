@@ -79,7 +79,7 @@ export default function SearchBar({
   }, [q]);
 
   return (
-    <div className="flex w-full items-center justify-center gap-4">
+    <div className="flex w-[400px] items-center justify-center gap-4">
       <div
         className="relative h-12 w-full"
         // onClick={handleInputClick}
