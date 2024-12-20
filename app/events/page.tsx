@@ -49,7 +49,7 @@ const events = [
 
 export default function Events() {
   return (
-    <div className="mx-auto flex w-[90%] flex-col items-center justify-center gap-4">
+    <div className="mx-auto mt-2 flex w-[90%] flex-col items-center justify-center gap-4">
       {events.map((event, index) => (
         <div
           key={index}
