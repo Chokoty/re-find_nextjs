@@ -43,6 +43,9 @@ const config: Config = {
       bermuda: 'var(--bermuda)',
     },
     extend: {
+      spacing: {
+        '10p': '10%', // 10%를 커스텀 값으로 추가
+      },
       textShadow: {
         worldCup:
           '-1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000',
