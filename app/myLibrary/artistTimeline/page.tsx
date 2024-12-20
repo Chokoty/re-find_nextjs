@@ -70,13 +70,15 @@ export default async function page({ params: { name } }: Params) {
         </TopBackground>
         <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
           <Hydrate state={{ queries: [query] }}>
-            <DetailedGallery
-              value={name}
-              albumType={
-                GALLERY_LIST.find((item) => item.value === name)?.type ?? ''
-              }
-              endpoint={endpoint ?? ''}
-            />
+            <Suspense>
+              <DetailedGallery
+                value={name}
+                albumType={
+                  GALLERY_LIST.find((item) => item.value === name)?.type ?? ''
+                }
+                endpoint={endpoint ?? ''}
+              />
+            </Suspense>
           </Hydrate>
         </section>
       </div>
