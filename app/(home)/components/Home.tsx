@@ -44,7 +44,7 @@ export default function Home() {
   }, [isMobile]);
 
   return (
-    <div className="mx-auto flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 md:px-4">
+    <div className="mx-auto mt-2 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 md:px-4">
       {/* desktop: left / mobile: top */}
       <section className="flex w-full max-w-[700px] flex-col items-center justify-center">
         <BannerSlider />

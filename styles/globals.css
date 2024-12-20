@@ -225,7 +225,8 @@
   --myblack-200: #24292e; */
   --lightmode-card-bg: #f1f1f1;
   --lightmode-card-bg-2: #dedede;
-  --darkmode-card-bg: #262424;
+  /* --darkmode-card-bg: #262424; */
+  --darkmode-card-bg: #121212;
   --darkmode-card-bg-2: #1f1f1f;
   --darkmode-card-bg-3: #2a2a2a;
   --darkmode-footer-bg: #292929;
