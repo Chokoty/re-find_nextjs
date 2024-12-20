@@ -34,7 +34,7 @@ const TopBackground = ({ children }: TopBackgroundProps) => {
           className="pointer-events-none absolute top-px z-[2] size-full  bg-[linear-gradient(#f8f9fa00_31.43%,_#f8f9fa_86%),_linear-gradient(91deg,_#f8f9fa_0%,_#f8f9fa00_57.72%)] dark:bg-[linear-gradient(180deg,_#12121280_51.43%,_#000000_100%),_linear-gradient(75deg,_#121212_0%,_#12121200_45.72%)]"
         />
       </div>
-      <div className="top-10p absolute z-10 w-full p-8 2xs:top-1/4">
+      <div className="absolute top-10p  z-10 w-full p-8 2xs:top-1/4">
         {children}
       </div>
     </section>
