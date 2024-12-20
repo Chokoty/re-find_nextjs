@@ -225,7 +225,6 @@
   --myblack-200: #24292e; */
   --lightmode-card-bg: #f1f1f1;
   --lightmode-card-bg-2: #dedede;
-  --lightmode-card-bg-3: #e9e9e9;
   /* --darkmode-card-bg: #262424; */
   --darkmode-card-bg: #121212;
   --darkmode-card-bg-2: #1f1f1f;
@@ -235,7 +234,7 @@
   --mainColor-200: #ef80b1;
   --darkmode-soopColor: #17181C;
   --myText: #767676;
-  --darkmode-myText: #d9d9d9;
+  --darkmode-myText: #e9e9e9;
   --darkmode-myText-2: #b3b3b3;
   /* font-body */
   --fonts-body: Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI',
