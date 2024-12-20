@@ -26,7 +26,7 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
   return (
     <div className="inline-block">
       <CardImage data={artwork} wakzooLink={wakzooLink} />
-      <div className="flex h-auto w-full max-w-[236px] flex-col items-start justify-center">
+      <div className="flex h-auto w-full max-w-[350px] flex-col items-start justify-center">
         <p className="line-clamp-1 text-left text-base font-medium">
           {artwork.title}
         </p>

@@ -51,7 +51,7 @@ export default function ImageViewModal(props: Record<string, unknown>) {
           target="_blank"
         >
           <Image
-            className="max-h-[400px] rounded-[20px] object-cover object-center shadow-img"
+            className="max-h-[400px] rounded-[16px] object-cover object-center shadow-img"
             width={475}
             height={475}
             src={modifiedUrl800}

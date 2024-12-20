@@ -26,12 +26,12 @@ export default function ImageSlider({
       {urls.map((url, idx) => (
         <SwiperSlide key={url}>
           <button
-            className="rounded-[20px] border-base border-blackAlpha-200 dark:border-none"
+            className="rounded-[16px] border-base border-blackAlpha-200 dark:border-none"
             onClick={() => handleClickImage(url)}
           >
             <Image
               // fill
-              className={clsx('rounded-[20px] bg-[#f5f5f5] object-cover', {
+              className={clsx('rounded-[16px] bg-[#f5f5f5] object-cover', {
                 'size-[100px]': size === 'small',
                 'size-[130px]': size === 'base',
                 'size-[150px]': size === 'large',

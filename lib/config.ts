@@ -153,7 +153,7 @@ export const siteConfig = {
     return {
       title,
       description: board,
-      imageUrl: img_url ?? `http://via.placeholder.com/236x236`,
+      imageUrl: img_url ?? `https://placehold.co/375x375`,
       type: 'article' as OpenGraphType,
       authors: !author?.length ? '알 수 없음' : author,
       path: `${this.mainDomain}/artwork/${id}`,

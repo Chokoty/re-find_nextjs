@@ -41,7 +41,7 @@ export default function SocialStats(props: Props) {
           className="flex items-center gap-2 text-sm text-gray-600 dark:text-whiteAlpha-700"
         >
           {IconComponent[s as keyof typeof IconComponent]}
-          <p className="text-xs">{formatArtistValue(n)}</p>
+          <p className="text-sm">{formatArtistValue(n)}</p>
         </p>
       ))}
     </div>

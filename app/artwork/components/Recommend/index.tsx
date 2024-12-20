@@ -83,7 +83,7 @@ export default function Recommend() {
           </Tooltip>
         </div>
       </div>
-      <div className="mt-8 w-full overflow-hidden px-2">
+      <div className="mt-8 w-full overflow-hidden px-1">
         <RecommendList getAp={getAp} />
       </div>
     </div>

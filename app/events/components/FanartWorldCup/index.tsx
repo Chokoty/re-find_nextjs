@@ -112,6 +112,15 @@ export default function FanartWorldCup() {
     await refetch2();
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      changeFanart();
+      changeFanart2();
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [changeFanart, changeFanart2]);
+
   // 태그 이미지 데이터 로딩
   const { data, isLoading, isFetching, refetch, status } = useTagImages(
     currentRoundTags[0]

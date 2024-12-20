@@ -57,14 +57,14 @@ export default function MasonryView({
     <ResponsiveMasonry
       className="w-full"
       columnsCountBreakPoints={{
-        350: 2,
-        590: 3,
-        830: 4,
-        1110: 5,
-        1350: 6,
-        1528: 7,
-        1792: 8,
-        2020: 9,
+        349: 2,
+        739: 3,
+        983: 4,
+        1184: 5,
+        1421: 6,
+        1658: 7,
+        1959: 8,
+        2203: 9,
       }}
     >
       <Masonry gutter="10px">{content()}</Masonry>

@@ -1,3 +1,4 @@
+import aspectRatio from '@tailwindcss/aspect-ratio';
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
 
@@ -46,14 +47,25 @@ const config: Config = {
         worldCup:
           '-1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000',
       },
+      maxWidth: {
+        custom1: 'calc(-488px + 100vw)',
+        custom2: 'calc(-192px + 100vw)',
+      },
       colors: {
-        'custom-dark': '#17181C',
+        'custom-dark': 'var(--darkmode-soopColor)',
         // border: 'var(--border)',
         // background color
+        'light-myText': 'var(--myText)',
+        'dark-myText': 'var(--darkmode-myText)',
+        'dark-myText-2': 'var(--darkmode-myText-2)',
         'dark-background': 'var(--darkmode-bg)',
         'light-background': 'var(--lightmode-bg)',
         // card color (white mode is bg-white)
+        'light-card': 'var(--lightmode-card-bg)',
+        'light-card-2': 'var(--lightmode-card-bg-2)',
         'dark-card': 'var(--darkmode-card-bg)',
+        'dark-card-2': 'var(--darkmode-card-bg-2)',
+        'dark-card-3': 'var(--darkmode-card-bg-3)',
         // footer color (white mode is bg-white)
         'dark-footer': 'var(--darkmode-footer-bg)',
         // hightlight color
@@ -315,6 +327,7 @@ const config: Config = {
         { values: theme('textShadow') }
       );
     }),
+    aspectRatio, // aspect-ratio 플러그인 추가
   ],
   darkMode: 'class',
   // important: true,

@@ -79,17 +79,23 @@ export default function SearchBar({
   }, [q]);
 
   return (
-    <div className="flex w-full items-center justify-center gap-4">
+    <div className="flex w-[400px] items-center justify-center gap-4">
       <div
-        className="relative h-9 w-full"
+        className="relative h-12 w-full"
         // onClick={handleInputClick}
       >
-        <div className="absolute left-0 top-0 z-[2] h-full w-10">
-          <span className="absolute right-[10%] top-1/2 ml-2 h-4 w-px -translate-y-1/2 bg-gray-600 dark:bg-whiteAlpha-500" />
+        <div className="absolute left-0 top-0 z-[2] h-full w-12 cursor-pointer">
+          <button
+            type="button"
+            className="absolute left-2.5 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center"
+            onClick={onSearchButtonClick}
+          >
+            <FaSearch className="size-5 text-gray-600 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-green-highlight" />
+          </button>
         </div>
         <input
           ref={inputRef}
-          className="relative size-full cursor-text rounded-full border border-gray-200 bg-gray-100 pl-12 pr-20 outline-none transition placeholder:text-gray-500 hover:border-green-highlight hover:bg-white focus:border-green-highlight focus:outline-none focus:ring-1 focus:ring-green-highlight dark:border-whiteAlpha-300 dark:bg-whiteAlpha-200 dark:placeholder:text-whiteAlpha-600 dark:hover:border-green-highlight dark:hover:bg-dark-card 2xs:pr-24"
+          className="relative size-full cursor-text rounded-full border border-gray-200 bg-gray-100 pl-12 pr-20 outline-none transition placeholder:text-gray-500 hover:border-green-highlight hover:bg-white focus:border-green-highlight focus:outline-none focus:ring-1 focus:ring-green-highlight dark:border-whiteAlpha-300 dark:bg-whiteAlpha-200 dark:placeholder:text-whiteAlpha-600 dark:hover:border-green-highlight dark:hover:bg-dark-card-3 2xs:pr-24"
           placeholder="키워드 검색 (빈 칸은 전체 검색)"
           value={input}
           onChange={onBarChange}
@@ -106,13 +112,6 @@ export default function SearchBar({
               <IoIosCloseCircle className="size-5 text-gray-600 dark:text-whiteAlpha-700" />
             </button>
           )}
-          <button
-            type="button"
-            className="flex size-8 items-center justify-center"
-            onClick={onSearchButtonClick}
-          >
-            <FaSearch className="size-5 text-gray-600 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-green-highlight" />
-          </button>
         </div>
       </div>
       {hasButton && (

@@ -34,7 +34,7 @@ const getTitleInfo = (type: string) => {
 const titleClassName =
   'mt-1.5 font-pop text-4xl sm:text-5xl 2md:text-6xl lg:text-7xl 2xl:text-8xl break-keep';
 const descriptionClassName =
-  'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[360px] 2md:max-w-[420px] 2xl:max-w-[550px] break-keep';
+  'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[530px]  break-keep';
 
 export default function GalleryTitle({ pageType }: { pageType: string }) {
   const router = useRouter();
@@ -81,7 +81,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
               팬아트 갤러리로 돌아가기
             </p>
           </Button>
-          <div className="w-full max-w-[380px] md:max-w-[460px] 2md:max-w-[710px]">
+          <div className="w-full">
             <h1 className={titleClassName}>{title}</h1>
             <div className="mb-6 mt-1.5">
               <p className={`font-bold ${descriptionClassName}`}>

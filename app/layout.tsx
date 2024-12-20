@@ -60,9 +60,8 @@ export default function RootLayout({
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />
           {/* main height: includes header + mobileTabBar */}
-          <main className="overflow-x-hidden py-[calc(60px+16px)]">
-            {children}
-          </main>
+          {/* <main className="overflow-x-hidden py-[calc(60px+16px)]"> */}
+          <main className="overflow-x-hidden py-[calc(60px)]">{children}</main>
           <MobileTabBar />
           <div id="modal-root" />
         </Providers>

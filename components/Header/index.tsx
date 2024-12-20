@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Suspense } from 'react';
+import { MdHomeFilled } from 'react-icons/md';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 import BackButton from '@/components/Button/BackButton';
@@ -27,8 +28,8 @@ export default function Header() {
 
   return (
     <header
-      className={clsx('fixed top-0 z-[200] h-[60px] w-full transition', {
-        'bg-white dark:bg-dark-card': !isNotScrollingGalleryPage,
+      className={clsx('fixed top-0 z-[200] h-[64px] w-full transition', {
+        'bg-white dark:bg-dark-background': !isNotScrollingGalleryPage,
         'bg-blackAlpha-500 backdrop-blur': isNotScrollingGalleryPage,
       })}
     >
