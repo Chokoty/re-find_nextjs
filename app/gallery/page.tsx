@@ -1,7 +1,8 @@
+// import ThisWeekTop from '@/app/gallery/components/ThisWeekTop';
+import BoardList from '@/app/gallery/components/BoardList';
 import GalleryTitle from '@/app/gallery/components/GalleryTitle';
 import MemberAlbum from '@/app/gallery/components/MemberAlbum';
 import RefindPick from '@/app/gallery/components/RefindPick';
-// import ThisWeekTop from '@/app/gallery/components/ThisWeekTop';
 import TopBackground from '@/app/gallery/components/TopBackground';
 
 export default function Gallery() {
@@ -18,6 +19,7 @@ export default function Gallery() {
       >
         {/* <ThisWeekTop /> */}
         <RefindPick />
+        <BoardList />
         <MemberAlbum />
       </section>
     </div>

@@ -8,8 +8,12 @@ import type { SwiperOptions } from 'swiper/types';
 
 import MoreButton from '@/app/gallery/components/Button/MoreButton';
 import GalleryAlbumCard from '@/app/gallery/components/Card/GalleryAlbumCard';
+import GalleryBoardCard from '@/app/gallery/components/Card/GalleryBoardCard';
 import GalleryFanartCard from '@/app/gallery/components/Card/GalleryFanartCard';
-import { LATEST_GALLERY_LIST } from '@/app/gallery/lib/const';
+import {
+  LATEST_GALLERY_LIST,
+  UPDATED_GALLERY_LIST,
+} from '@/app/gallery/lib/const';
 import { test } from '@/constants/test';
 
 interface CustomSwiperParams extends SwiperOptions {
@@ -17,7 +21,7 @@ interface CustomSwiperParams extends SwiperOptions {
   style: Record<string, string>;
 }
 
-type SliderType = 'fanart' | 'album';
+type SliderType = 'fanart' | 'album' | 'board';
 // type isFanartData = (data: FanartData | AlbumData) => data is FanartData;
 
 type Props = {
@@ -55,30 +59,50 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
     },
     ...customOptions,
   };
-  return (
-    <Swiper {...swiperParams}>
-      {type === 'fanart' ? (
-        <>
-          {test.map((data, index) => (
-            <SwiperSlide key={data.id}>
-              <GalleryFanartCard
-                key={index}
-                artwork={data}
-                num={index < 3 ? index + 1 : -1}
-              />
+
+  const renderSlides = () => {
+    switch (type) {
+      case 'fanart':
+        return (
+          <>
+            {test.map((data, index) => (
+              <SwiperSlide key={data.id}>
+                <GalleryFanartCard
+                  key={index}
+                  artwork={data}
+                  num={index < 3 ? index + 1 : -1}
+                />
+              </SwiperSlide>
+            ))}
+            <SwiperSlide>
+              <MoreButton />
             </SwiperSlide>
-          ))}
-          <SwiperSlide>
-            <MoreButton />
-          </SwiperSlide>
-        </>
-      ) : (
-        LATEST_GALLERY_LIST.map((data) => (
+          </>
+        );
+      case 'board':
+        return (
+          <>
+            {UPDATED_GALLERY_LIST.map((data) => (
+              <SwiperSlide key={data.id} className="overflow-hidden">
+                <GalleryBoardCard album={data} />
+              </SwiperSlide>
+            ))}
+          </>
+        );
+      case 'album':
+        return LATEST_GALLERY_LIST.map((data) => (
           <SwiperSlide key={data.id} className="overflow-hidden">
             <GalleryAlbumCard album={data} />
           </SwiperSlide>
-        ))
-      )}
+        ));
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Swiper {...swiperParams}>
+      {renderSlides()}
       <SlideNavButtons />
     </Swiper>
   );

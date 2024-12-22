@@ -252,31 +252,20 @@ const GALLERY_LIST: Gallery[] = [
 export const UPDATED_GALLERY_LIST: Gallery[] = [
   {
     id: 18754123,
-    value: 'bestBoard',
+    value: 'best',
     type: 'keyword',
     title: '통합 BEST 팬아트 게시판',
     subTitle: '',
     description: '',
     author: '',
     query:
-      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
+      'search?q=&board=best&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false',
   },
   {
     id: 18806111,
-    value: 'goldHandBoard',
+    value: 'goldhand',
     type: 'keyword',
-    title: '금손 작가들의 방 게시판',
-    subTitle: '',
-    description: '',
-    author: '',
-    query:
-      'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
-  },
-  {
-    id: 18807523,
-    value: 'isdBoard',
-    type: 'keyword',
-    title: '이세돌┃팬아트 게시판',
+    title: '금손 작가들의 방',
     subTitle: '',
     description: '',
     author: '',
@@ -285,9 +274,9 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
   },
   {
     id: 18806568,
-    value: 'gomemBoard',
+    value: 'gomem',
     type: 'keyword',
-    title: '고멤┃팬아트 게시판',
+    title: '고멤┃팬아트',
     subTitle: '',
     description: '',
     author: '',
@@ -296,9 +285,9 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
   },
   {
     id: 18807405,
-    value: 'woowakgoodBoard',
+    value: 'wak',
     type: 'keyword',
-    title: '우왁굳 팬아트 게시판',
+    title: '우왁굳 팬아트',
     subTitle: '',
     description: '',
     author: '',
@@ -307,9 +296,9 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
   },
   {
     id: 18781797,
-    value: 'isdCommentBoard',
+    value: 'isd_behind',
     type: 'keyword',
-    title: '이세돌┃작업후기 게시판',
+    title: '이세돌┃작업후기',
     subTitle: '',
     description: '',
     author: '',
@@ -317,29 +306,9 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
   },
   {
     id: 18803035,
-    value: 'gomemCommentBoard',
+    value: 'gomem_behind',
     type: 'keyword',
-    title: '고멤┃작업 후기 게시판',
-    subTitle: '',
-    description: '',
-    author: '',
-    query: '',
-  },
-  {
-    id: 18805710,
-    value: 'unofficialGoodsBoard',
-    type: 'keyword',
-    title: '왁타버스 불법 굿즈 게시판',
-    subTitle: '',
-    description: '',
-    author: '',
-    query: '',
-  },
-  {
-    id: 18771485,
-    value: 'unofficalBackgroundBoard',
-    type: 'keyword',
-    title: '왁타버스 불법 배경 게시판',
+    title: '고멤┃작업 후기',
     subTitle: '',
     description: '',
     author: '',
@@ -347,9 +316,9 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
   },
   {
     id: 18782224,
-    value: 'isd_studioBoard',
+    value: 'photo',
     type: 'keyword',
-    title: '이세돌 사진관 게시판',
+    title: '이세돌 사진관',
     subTitle: '',
     description: '',
     author: '',
@@ -440,6 +409,34 @@ export const MEMBERS: Member[] = [
   },
   // { id: 10, name: '뢴트게늄', value: 'rt' },
 ];
+
+// export const BOARD_MAP: Record<string, string> = {
+//   '통합 BEST 팬아트 게시판': 'best',
+//   '금손 작가들의 방': 'goldhand',
+//   '고멤┃팬아트': 'gomem',
+//   '우왁굳 팬아트': 'wak',
+//   '이세돌┃작업후기': 'isd_behind',
+//   '고멤┃작업 후기': 'gomem_behind',
+//   '이세돌 사진관': 'isd',
+// };
+
+export const BOARD_MAP: Record<string, string> = UPDATED_GALLERY_LIST.reduce(
+  (acc, gallery) => {
+    const cleanTitle = gallery.title
+      // .replace(' 게시판', '')
+      .replace(/&#\d+;/g, '')
+      .trim();
+
+    console.log(cleanTitle, gallery.title);
+
+    // 매핑 객체에 추가
+    return {
+      ...acc,
+      [cleanTitle]: gallery.value,
+    };
+  },
+  {}
+);
 
 export const LATEST_GALLERY_LIST = GALLERY_LIST.reverse();
 
