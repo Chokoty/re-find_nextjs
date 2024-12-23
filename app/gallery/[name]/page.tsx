@@ -42,7 +42,8 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
 export default async function page({ params: { name } }: Params) {
   const endpoint =
     MEMBERS.find((item) => item.value === name)?.query ||
-    GALLERY_LIST.find((item) => item.value === name)?.query;
+    GALLERY_LIST.find((item) => item.value === name)?.query ||
+    UPDATED_GALLERY_LIST.find((item) => item.value === name)?.query;
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     // name이 isdPick이면 isdNoticeArtworks를 호출하고, 그렇지 않으면 galleryArtworks를 호출한다.

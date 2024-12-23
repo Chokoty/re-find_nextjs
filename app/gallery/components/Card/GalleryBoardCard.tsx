@@ -10,24 +10,30 @@ type Prop = {
 };
 
 const PASTEL_COLORS = {
-  best: 'bg-red-200',
-  goldhand: 'bg-yellow-200',
-  gomem: 'bg-green-200',
-  wak: 'bg-blue-200',
-  isd_behind: 'bg-purple-200',
-  gomem_behind: 'bg-pink-200',
-  photo: 'bg-orange-200',
+  bestBoard: 'bg-red-200',
+  goldhandBoard: 'bg-orange-200',
+  isdBoard: 'bg-yellow-200',
+  gomemBoard: 'bg-green-200',
+  wakgoodBoard: 'bg-blue-200',
+  unofficialBoard: 'bg-purple-200',
+  isdPhoto: 'bg-pink-200',
 };
 
 export default function GalleryBoardCard({
-  album: { title, value, description, type, author },
+  album: { title, value, description, type, author, query },
 }: Prop) {
-  const boardUrl = `/search?board=${value}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
+  const boardUrl = query || '';
+
+  // const boardUrl = `/search?board=${value}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
   const bgColor =
     PASTEL_COLORS[value as keyof typeof PASTEL_COLORS] || 'bg-teal-200';
   return (
     <div className="relative w-full transition hover:scale-[1.01]">
-      <Link href={boardUrl} prefetch={false}>
+      {/* <Link href={boardUrl} prefetch={false}> */}
+      <Link
+        href={`/gallery/${value}?viewType=masonry&sortType=latest`}
+        prefetch={false}
+      >
         <div
           className={`relative h-[200px] w-full rounded-2xl 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px] ${bgColor}`}
         />
