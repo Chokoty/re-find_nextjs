@@ -14,7 +14,7 @@ export default function BoardList() {
   return (
     <div className="mt-20 flex w-full flex-col">
       <div className="mb-2 w-full px-8 md:mb-4">
-        <p className="text-left text-2xl font-extrabold md:text-4xl">
+        <p className="text-left text-xl font-extrabold md:text-2xl">
           게시판 업데이트 현황
         </p>
       </div>

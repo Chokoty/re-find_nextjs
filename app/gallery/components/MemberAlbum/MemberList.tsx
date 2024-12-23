@@ -19,20 +19,21 @@ const Member = ({ member }: { member: MemberType }) => {
   const { value, name, greetings } = member;
   const staticImage = getStaticImage(value);
   return (
-    <li className="w-[140px] list-none">
+    <li className="max-w-[200px] list-none">
       <Link
         // href={`/gallery/${value}`}
         href={`/gallery/${value}?viewType=masonry&sortType=latest`}
         prefetch={false}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '7px',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
+        className="flex size-full flex-col items-center  justify-center    gap-4 rounded-md p-4 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 "
+        // style={{
+        //   display: 'flex',
+        //   flexDirection: 'column',
+        //   gap: '7px',
+        //   justifyContent: 'center',
+        //   alignItems: 'center',
+        // }}
       >
-        <div className="relative size-[85px] md:size-[120px]">
+        <div className="relative size-[85px] md:size-[160px]">
           <Image
             className="rounded-full object-cover"
             src={staticImage}
@@ -44,8 +45,8 @@ const Member = ({ member }: { member: MemberType }) => {
             unoptimized
           />
         </div>
-        <p className="text-center">{name}</p>
-        <p className="text-xs">{`"${greetings}"`}</p>
+        <p className=" w-full text-start">{name}</p>
+        <p className="text-xs w-full text-start">{`"${greetings}"`}</p>
       </Link>
     </li>
   );
