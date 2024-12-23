@@ -30,8 +30,7 @@ export default function UpdateCard({ update }: Prop) {
   );
 
   const matchingGallery = UPDATED_GALLERY_LIST.find(
-    (gallery) =>
-      gallery.title === update.board.replace(/&#\d+;/g, '').trim()
+    (gallery) => gallery.title === update.board.replace(/&#\d+;/g, '').trim()
   ) || { value: '' };
   const board_link = `/gallery/${matchingGallery.value}?viewType=masonry&sortType=latest`;
   // const board_link = `/gallery/${BOARD_MAP[update.board]}?viewType=masonry&sortType=latest`;
@@ -66,8 +65,10 @@ export default function UpdateCard({ update }: Prop) {
       </Link>
       <div className="flex h-20 flex-1 flex-col items-start justify-between 2xs:flex-row md:h-24">
         <div className="flex flex-col items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2xs:gap-2">
-          <Link className="flex items-center" href={matchingGallery.value !== '' ? board_link : menu_link}
-           {...(matchingGallery.value !== '' ? {}: { target: '_blank' })}
+          <Link
+            className="flex items-center"
+            href={matchingGallery.value !== '' ? board_link : menu_link}
+            {...(matchingGallery.value !== '' ? {} : { target: '_blank' })}
           >
             <p className="text-sm 2xs:text-base md:text-lg">
               {update.board.replace(/&#\d+;/g, '').trim()}

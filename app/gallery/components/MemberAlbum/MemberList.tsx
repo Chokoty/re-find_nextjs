@@ -46,7 +46,7 @@ const Member = ({ member }: { member: MemberType }) => {
           />
         </div>
         <p className=" w-full text-start">{name}</p>
-        <p className="text-xs w-full text-start">{`"${greetings}"`}</p>
+        <p className="w-full text-start text-xs">{`"${greetings}"`}</p>
       </Link>
     </li>
   );

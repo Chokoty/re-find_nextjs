@@ -8,7 +8,10 @@ import { LuExternalLink } from 'react-icons/lu';
 
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
 import TotalCounter from '@/app/gallery/components/TotalCounter';
-import GALLERY_LIST, { UPDATED_GALLERY_LIST, MEMBERS } from '@/app/gallery/lib/const';
+import GALLERY_LIST, {
+  MEMBERS,
+  UPDATED_GALLERY_LIST,
+} from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
 import { BBangTTi } from '@/lib/images';
 

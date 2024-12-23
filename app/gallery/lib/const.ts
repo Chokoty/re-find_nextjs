@@ -253,7 +253,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
   {
     id: 0,
     value: 'bestBoard',
-    type: 'board', 
+    type: 'board',
     title: '통합 BEST 팬아트 게시판',
     subTitle: '',
     description: '',
@@ -278,8 +278,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     subTitle: '',
     description: '',
     author: '',
-    query:
-      'artworks?board=isd&case_sensitive=false',
+    query: 'artworks?board=isd&case_sensitive=false',
   },
   {
     id: 3,
@@ -289,8 +288,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     subTitle: '',
     description: '',
     author: '',
-    query:
-     'artworks?board=gomem&case_sensitive=false',
+    query: 'artworks?board=gomem&case_sensitive=false',
   },
   {
     id: 4,
@@ -300,8 +298,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     subTitle: '',
     description: '',
     author: '',
-    query:
-    'artworks?board=wak&case_sensitive=false',
+    query: 'artworks?board=wak&case_sensitive=false',
   },
   {
     id: 5,
@@ -311,8 +308,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     subTitle: '',
     description: '',
     author: '',
-    query:
-      'artworks?board=wallpaper&case_sensitive=false',
+    query: 'artworks?board=wallpaper&case_sensitive=false',
   },
   {
     id: 6,
@@ -322,8 +318,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     subTitle: '',
     description: '',
     author: '',
-    query:
-      'artworks?board=photo&case_sensitive=false',
+    query: 'artworks?board=photo&case_sensitive=false',
   },
 ];
 
@@ -419,7 +414,6 @@ export const MEMBERS: Member[] = [
 //   '고멤┃작업 후기': 'gomem_behind',
 //   '이세돌 사진관': 'isd',
 // };
-
 
 export const BOARD_MAP: Record<string, string> = UPDATED_GALLERY_LIST.reduce(
   (acc, gallery) => {
