@@ -4,7 +4,7 @@ import LikeFanartShelf from '@/app/myLibrary/components/LikeFanartShelf';
 
 export default function MyLibrary() {
   return (
-    <div className="w-full p-2  ">
+    <div className="w-full p-2">
       <div className=" w-full rounded-xl border-[1px] border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card ">
         <div className="w-full pt-4">
           <h1

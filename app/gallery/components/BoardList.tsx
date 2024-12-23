@@ -10,16 +10,16 @@ const GallerySlider = dynamic(
   }
 );
 
-export default function RefindPick() {
+export default function BoardList() {
   return (
-    <div className="flex w-full flex-col">
+    <div className="mt-20 flex w-full flex-col">
       <div className="mb-2 w-full px-8 md:mb-4">
         <p className="text-left text-xl font-extrabold md:text-2xl">
-          리파인드 추천 앨범
+          게시판 업데이트 현황
         </p>
       </div>
       <GallerySlider
-        type="album"
+        type="board"
         customSwiperOptions={{
           style: {
             // padding: '0 2rem',

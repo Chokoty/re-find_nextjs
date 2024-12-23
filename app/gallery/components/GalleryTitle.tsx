@@ -8,7 +8,10 @@ import { LuExternalLink } from 'react-icons/lu';
 
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
 import TotalCounter from '@/app/gallery/components/TotalCounter';
-import GALLERY_LIST, { MEMBERS } from '@/app/gallery/lib/const';
+import GALLERY_LIST, {
+  MEMBERS,
+  UPDATED_GALLERY_LIST,
+} from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
 import { BBangTTi } from '@/lib/images';
 
@@ -21,10 +24,11 @@ const getTitleInfo = (type: string) => {
   }
 
   const album = GALLERY_LIST.find((item) => item.value === type);
+  const board = UPDATED_GALLERY_LIST.find((item) => item.value === type);
   const member = MEMBERS.find((item) => item.value === type);
 
   return {
-    title: album?.title || `${member?.name ?? ''} 팬아트`,
+    title: album?.title || board?.title || `${member?.name ?? ''} 팬아트`,
     description: album?.description || '',
     linkUrl: album?.linkUrl || '',
     linkTitle: album?.linkTitle || '',
