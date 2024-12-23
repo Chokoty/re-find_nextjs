@@ -253,7 +253,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
   {
     id: 0,
     value: 'bestBoard',
-    type: 'keyword', // board
+    type: 'board', 
     title: '통합 BEST 팬아트 게시판',
     subTitle: '',
     description: '',
@@ -291,7 +291,6 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     author: '',
     query:
      'artworks?board=gomem&case_sensitive=false',
-      // 'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
   },
   {
     id: 4,
@@ -421,14 +420,14 @@ export const MEMBERS: Member[] = [
 //   '이세돌 사진관': 'isd',
 // };
 
+
 export const BOARD_MAP: Record<string, string> = UPDATED_GALLERY_LIST.reduce(
   (acc, gallery) => {
     const cleanTitle = gallery.title
       // .replace(' 게시판', '')
       .replace(/&#\d+;/g, '')
       .trim();
-
-    console.log(cleanTitle, gallery.title);
+    // console.log(cleanTitle, gallery.title);
 
     // 매핑 객체에 추가
     return {
