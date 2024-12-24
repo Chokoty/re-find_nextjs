@@ -47,7 +47,7 @@ export default function ImageViewModal(props: Record<string, unknown>) {
       <div className="flex size-full flex-col items-center justify-center px-5 py-12">
         <Link
           href={article_link}
-          className="hover:text-green-highlight dark:hover:text-pink-highlight"
+          className="link-to-wakzoo hover:text-green-highlight dark:hover:text-pink-highlight"
           target="_blank"
         >
           <Image

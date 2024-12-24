@@ -116,7 +116,11 @@ const Fanart = ({
 
   return (
     <div className="mb-2 flex w-full flex-col items-center justify-center rounded-2xl">
-      <Link className="w-full" href={article_link} target="_blank">
+      <Link
+        className="link-to-wakzoo w-full"
+        href={article_link}
+        target="_blank"
+      >
         <Image
           className="max-h-[312px] rounded-2xl object-cover shadow-cardBox"
           src={modifiedUrl800}

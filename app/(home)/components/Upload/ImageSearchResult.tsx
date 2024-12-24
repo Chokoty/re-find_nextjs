@@ -50,7 +50,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
           <div className="flex w-full flex-col items-center justify-between gap-4">
             <div className="flex w-full flex-row items-center justify-between">
               <Link
-                className="flex items-center"
+                className="link-to-wakzoo flex items-center"
                 href={board_link}
                 target="_blank"
               >

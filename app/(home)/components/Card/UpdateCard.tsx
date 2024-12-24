@@ -49,7 +49,6 @@ export default function UpdateCard({ update }: Prop) {
 
   return (
     <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-whiteAlpha-300 dark:bg-dark-card md:h-[144px] ">
-      {/* <Link href={article_link} target="_blank" className="mr-3"> */}
       <Link href={article_link} className="mr-3">
         <div className="flex w-max items-center justify-center">
           <Image
@@ -75,15 +74,13 @@ export default function UpdateCard({ update }: Prop) {
             </p>
             <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
           </Link>
-          <Link
-            className="flex items-center"
-            href={article_link}
-            // target="_blank"
-          >
+          <Link className="flex items-center" href={article_link}>
             <p className="line-clamp-1 text-base font-semibold 2xs:text-lg md:text-xl">
               {update.info.title}
             </p>
-            {/* <LuExternalLink className="ml-2 hidden text-lg font-semibold 2xs:block" /> */}
+            {/* {matchingGallery.value === '' ? (
+              <LuExternalLink className="ml-2 hidden text-lg font-semibold 2xs:block" />
+            ) : null} */}
           </Link>
         </div>
         <div className="flex flex-row items-end gap-2 2xs:flex-col">
@@ -96,7 +93,6 @@ export default function UpdateCard({ update }: Prop) {
               <p className="line-clamp-1 max-w-16 text-sm text-red-800 dark:text-red-200 2xs:max-w-20 2xs:text-base sm:max-w-32 md:text-lg">
                 {update.info.nickname}
               </p>
-              {/* <LuExternalLink className="ml-0.5 text-sm text-red-800 dark:text-red-200" /> */}
             </Link>
           </Badge>
           <Badge intent="secondary" size="lg">

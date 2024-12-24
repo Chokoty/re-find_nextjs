@@ -12,7 +12,11 @@ export default function More() {
       <div className="mb-4">
         <MoreButtons />
       </div>
-      <Link className="inline-block" href={SOURCE_URL} target="_blank">
+      <Link
+        className="link-to-wakzoo inline-block"
+        href={SOURCE_URL}
+        target="_blank"
+      >
         <div className="inline-flex min-h-10 items-center justify-center rounded-md bg-purple-500 px-4 text-gray-50 transition hover:bg-purple-600 active:bg-purple-700">
           <AiFillExperiment className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
           <p className="text-sm xs:text-base">

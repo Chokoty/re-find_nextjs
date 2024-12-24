@@ -74,7 +74,7 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
               </div>
             </Link>
             <Link
-              className="w-full flex-[2]"
+              className="link-to-wakzoo w-full flex-[2]"
               href={article_link + artwork.id}
               target="_blank"
             >

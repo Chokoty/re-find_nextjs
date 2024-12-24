@@ -113,7 +113,11 @@ export default function CardImage({ data, wakzooLink }: Props) {
               <FaArrowRightLong className="ml-1 hidden 2xs:block" />
             </div>
           </Link>
-          <Link className="w-full" href={wakzooLink} target="_blank">
+          <Link
+            className="link-to-wakzoo w-full"
+            href={wakzooLink}
+            target="_blank"
+          >
             <div
               // className={styles.textBox}
               className="flex h-[34px] w-full items-center justify-center rounded-lg bg-gradient-to-tl from-green-500 to-green-300 px-2.5 py-2 text-xs font-semibold text-white transition hover:from-green-400 hover:to-green-200 active:from-green-500 active:to-green-300"

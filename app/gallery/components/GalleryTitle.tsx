@@ -94,7 +94,7 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
                   <Link
                     href={linkUrl}
                     target="_blank"
-                    className="mt-1 flex items-center text-green-highlight hover:underline dark:text-pink-highlight"
+                    className="link-to-wakzoo mt-1 flex items-center text-green-highlight hover:underline dark:text-pink-highlight"
                   >
                     {linkTitle}
                     <LuExternalLink className="ml-2 text-lg font-semibold 2xs:block" />

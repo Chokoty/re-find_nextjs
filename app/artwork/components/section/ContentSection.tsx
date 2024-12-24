@@ -42,7 +42,11 @@ export default function ContentSection({
   return (
     <div className="my-4 flex w-full flex-col px-2 md:w-[508px]">
       <div className="flex justify-between py-2">
-        <Link href={article_link + id} target="_blank">
+        <Link
+          href={article_link + id}
+          target="_blank"
+          className="link-to-wakzoo"
+        >
           <Button additionalClass="bg-gradient-to-tl from-pink-500 to-pink-300 hover:from-pink-400 hover:to-pink-200 rounded-full gap-2 transition">
             <p className="text-white">왁물원</p>
             <FaChevronRight className="size-3 text-white" />

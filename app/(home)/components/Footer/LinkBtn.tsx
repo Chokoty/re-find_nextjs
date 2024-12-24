@@ -35,7 +35,7 @@ const WakzooButton = () => (
   <Link
     href="https://cafe.naver.com/steamindiegame"
     target="_blank"
-    className="size-10 rounded-lg bg-whiteAlpha-900 shadow-md"
+    className="link-to-wakzoo size-10 rounded-lg bg-whiteAlpha-900 shadow-md"
   >
     <Image
       width={60}
