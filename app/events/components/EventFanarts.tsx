@@ -77,7 +77,7 @@ export default function EventFanarts() {
         }
       />
       <Button
-        additionalClass="rounded-full pe-8 ps-8"
+        additionalClass="event-randomGacha-special rounded-full pe-8 ps-8"
         onClick={showRandomFanart}
         disabled={isFetching || !selectedEvent} // 여러 번 클릭시 중복 요청 방지
       >

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React, { useCallback, useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
 
+import { UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
 import useModal from '@/hooks/useModal';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
@@ -10,6 +11,8 @@ import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 export default function ImageViewModal(props: Record<string, unknown>) {
   const artwork = props.artwork as DoorBehindFanart;
   const { title, url, img_url, board } = artwork;
+  const id = url.split('/').pop();
+
   const { hide } = useModal();
   // 의존성 배열이 매번 변경되지 않도록 하기위함
   // 함수를 메모이제이션하여 의존성 배열의 값이 변경되지 않는 한 동일한 함수 참조를 유지
@@ -22,6 +25,11 @@ export default function ImageViewModal(props: Record<string, unknown>) {
     url: img_url ?? '',
     size: 800,
   });
+
+  const matchingGallery = UPDATED_GALLERY_LIST.find(
+    (gallery) => gallery.title === board.replace(/&#\d+;/g, '').trim()
+  ) || { value: '' };
+  const board_link = `/gallery/${matchingGallery.value}?viewType=masonry&sortType=latest`;
 
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => {
@@ -45,11 +53,12 @@ export default function ImageViewModal(props: Record<string, unknown>) {
         <IoClose className="size-8" />
       </button>
       <div className="flex size-full flex-col items-center justify-center px-5 py-12">
-        <Link
+        {/* <Link
           href={article_link}
           className="link-to-wakzoo hover:text-green-highlight dark:hover:text-pink-highlight"
           target="_blank"
-        >
+        > */}
+        <Link target="_blank" className="mt-4 w-full" href={`/artwork/${id}`}>
           <Image
             className="max-h-[400px] rounded-[16px] object-cover object-center shadow-img"
             width={475}
@@ -59,14 +68,25 @@ export default function ImageViewModal(props: Record<string, unknown>) {
             unoptimized
           />
         </Link>
-        <div className="mt-2 px-4 text-start">
-          <p className="line-clamp-1">게시판: {board}</p>
-          <Link
+        <div className="mt-4 w-full px-4 text-start">
+          {/* <Link
             href={article_link}
             className="hover:text-green-highlight dark:hover:text-pink-highlight"
             target="_blank"
+          > */}
+          <Link
+            target="_blank"
+            className="w-full hover:text-green-highlight dark:hover:text-pink-highlight"
+            href={`/artwork/${id}`}
           >
-            <p className="line-clamp-1">제목: {title}</p>
+            <p className=" line-clamp-1 w-full  leading-6">제목: {title}</p>
+          </Link>
+          <Link
+            target="_blank"
+            className="w-full hover:text-green-highlight dark:hover:text-pink-highlight"
+            href={board_link}
+          >
+            <p className=" line-clamp-1 w-full ">게시판: {board}</p>
           </Link>
         </div>
       </div>

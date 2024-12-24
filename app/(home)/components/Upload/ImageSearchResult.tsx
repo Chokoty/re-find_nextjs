@@ -12,6 +12,7 @@ import Badge from '@/components/Badge';
 import Button from '@/components/Button';
 import Divider from '@/components/Divider';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
+import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
 
 type Props = {
   searchTime: number;
@@ -32,14 +33,16 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
     )?.id ?? '',
     'menu'
   );
-  // ex) 2024-04-21 01:15:00 > 2024.04.21
-  const getUploadDate = (date: string) => {
-    const parts = date.split(/[\s\-.:]+/);
-    const result = `${parts[0]}.${parts[1]}.${parts[2]}`;
-    return result;
-  };
 
-  const uploadDate = getUploadDate(data.upload_date);
+  // ex) 2024-04-21 01:15:00 > 2024.04.21
+  // const getUploadDate = (date: string) => {
+  //   const parts = date.split(/[\s\-.:]+/);
+  //   const result = `${parts[0]}.${parts[1]}.${parts[2]}`;
+  //   return result;
+  // };
+
+  // const uploadDate = getUploadDate(data.upload_date);
+  const uploadTimeDiff = useUploadTimeDiff(data.upload_date);
 
   return (
     <div className="flex w-full max-w-[500px] flex-col items-center justify-center rounded-b-2xl border border-gray-200 p-4 dark:border-whiteAlpha-300">
@@ -63,15 +66,15 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
                 <div className="flex items-center">
                   <FaRegClock className="mr-1 text-sm text-green-800 dark:text-green-200" />
                   <p className="text-sm text-green-800 dark:text-green-200 2xs:text-base">
-                    {uploadDate}
+                    {uploadTimeDiff}
+                    {/* {uploadDate} */}
                   </p>
                 </div>
               </Badge>
             </div>
             <Link
-              className="mb-4 text-green-highlight dark:text-pink-highlight"
-              href={article_link + ids[0].id}
-              target="_blank"
+              className="mb-4 w-full text-green-highlight dark:text-pink-highlight"
+              href={`/artwork/${ids[0].id}`}
             >
               <p className="text-xl font-bold 2xs:text-2xl">{data.title}</p>
             </Link>

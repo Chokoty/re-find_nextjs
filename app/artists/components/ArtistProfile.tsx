@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import CountUp from 'react-countup';
 import toast from 'react-hot-toast';
 import { ImLink } from 'react-icons/im';
@@ -115,16 +116,15 @@ export default function ArtistProfile({ nickname, profile }: Props) {
       </div>
       {/* 왁물원, 팔로우 버튼 */}
       <div className="my-4 flex w-full items-center justify-center gap-4">
-        <Button
-          size="lg"
-          intent="solid-gray"
-          additionalClass="rounded-full dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-gray-100 font-semibold text-blackAlpha-900 hover:bg-gray-200 active:bg-gray-300 max-w-[73px] text-base"
-          onClick={() => {
-            window.open(member_link, '_blank');
-          }}
+        <Link
+          href={member_link}
+          target="_blank"
+          className="link-to-wakzoo_detail"
         >
-          왁물원
-        </Button>
+          <Button additionalClass="rounded-full dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-gray-100 font-semibold text-blackAlpha-900 hover:bg-gray-200 active:bg-gray-300  max-w-[73px] text-base h-[48px]">
+            <p className="text-white">왁물원</p>
+          </Button>
+        </Link>
         <Button
           size="lg"
           additionalClass="rounded-full max-w-[73px] text-base"

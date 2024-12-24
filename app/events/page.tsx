@@ -12,6 +12,7 @@ const events = [
     icon: <GiPerspectiveDiceSixFacesRandom className="mr-2 size-6" />,
     link: '/events/randomGacha',
     linkText: '무슨 팬아트가 나올까요?',
+    gtmTag: 'event-randomGacha',
   },
   // {
   //   title: '기간한정 슛코☆팬아트 갤러리 공개',
@@ -35,6 +36,7 @@ const events = [
     icon: <BsDoorOpenFill className="mr-2 size-6" />,
     link: '/events/waktyhall',
     linkText: '선택을 바꾸시겠습니까?',
+    gtmTag: 'event-waktyhall',
   },
   {
     title: '[고공전]세구님 팬아트 태그 월드컵',
@@ -44,6 +46,7 @@ const events = [
     icon: <BsTrophyFill className="mr-2 size-6" />,
     link: '/events/fanartWorldCup',
     linkText: '태그 월드컵 체험해보기',
+    gtmTag: 'event-fanartWorldCup',
   },
 ];
 
@@ -62,7 +65,8 @@ export default function Events() {
             href={event.link}
             className={cn(
               'mt-2 flex w-full justify-center rounded-xl p-2 font-semibold transition md:w-[60%]',
-              event.colorScheme
+              event.colorScheme,
+              event.gtmTag
             )}
           >
             {event.icon}

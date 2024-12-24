@@ -36,7 +36,7 @@ export default function RandomGacha() {
       />
       <div className="flex w-full flex-col items-center justify-center gap-2">
         <Button
-          additionalClass="rounded-xl w-full text-base font-bold gap-1.5"
+          additionalClass="event-randomGacha rounded-xl w-full text-base font-bold gap-1.5"
           intent="solid-purple"
           size="lg"
           onClick={showRandomFanart}
@@ -104,9 +104,9 @@ const Fanart = ({
     return (
       <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-gray-100 dark:bg-whiteAlpha-200">
         {isFetching ? (
-          <p>{displayText}</p>
+          <p className="w-full text-center text-3xl font-bold">{displayText}</p>
         ) : (
-          <BsQuestionLg className="size-14" />
+          <BsQuestionLg className="size-20" />
         )}
       </div>
     );

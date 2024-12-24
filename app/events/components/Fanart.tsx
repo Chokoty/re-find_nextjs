@@ -24,10 +24,11 @@ export default function Fanart({
 }: Props) {
   const [displayTextIndex, setDisplayTextIndex] = useState(0);
 
-  const article_link = useResponsiveLink(
-    data?.url.split('/').pop() ?? '',
-    'article'
-  );
+  // const article_link = useResponsiveLink(
+  //   data?.url.split('/').pop() ?? '',
+  //   'article'
+  // );
+  const id = data?.url.split('/').pop();
 
   const modifiedUrl800 = useModifiedImageUrl({
     url: data?.img_url ?? '',
@@ -68,9 +69,10 @@ export default function Fanart({
 
   return (
     <div className="my-4 w-full">
-      <Link href={article_link} className="w-full" target="_blank">
+      {/* <Link href={article_link} className="w-full" target="_blank"> */}
+      <Link className="w-full" href={`/artwork/${id}`}>
         <Image
-          className="max-h-[312px] rounded-2xl object-cover object-center shadow-img sm:max-h-[400px]"
+          className="max-h-[312px] rounded-2xl object-cover object-center shadow-img transition-transform duration-300 hover:scale-105 sm:max-h-[400px]"
           width={475}
           height={475}
           src={modifiedUrl800}

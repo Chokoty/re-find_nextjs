@@ -208,7 +208,7 @@ export default function Game() {
           </div>
           <Button
             intent="solid-gray"
-            additionalClass="mt-4 rounded-md"
+            additionalClass="event-waktyhall mt-4 rounded-md"
             onClick={restart}
           >
             재시작하시겠어요?
