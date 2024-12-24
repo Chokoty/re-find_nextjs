@@ -61,7 +61,7 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
           </p>
           <div className="flex h-14 w-full shrink-0 grow-0 items-center justify-center gap-2 p-2 md:px-4 md:pb-0">
             <Link
-              className="w-full flex-1"
+              className="link-to-profile w-full flex-1"
               href={`/artists/${authorName}`}
               prefetch={false}
             >
@@ -94,8 +94,8 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
         <p className="line-clamp-1 w-full text-left font-medium">
           {artwork?.title}
         </p>
-        <Link href={`/artists/${authorName}`}>
-          <p className="cursor-pointer text-left text-sm font-medium text-blackAlpha-700 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-pink-highlight">
+        <Link className="link-to-profile" href={`/artists/${authorName}`}>
+          <p className=" cursor-pointer text-left text-sm font-medium text-blackAlpha-700 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-pink-highlight">
             작가: {authorName}
           </p>
         </Link>

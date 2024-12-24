@@ -134,7 +134,7 @@ const Fanart = ({
         <p className="line-clamp-1">제목: {title}</p>
         <Link
           href={`/artists/${nickname}`}
-          className="hover:text-green-highlight dark:hover:text-pink-highlight"
+          className="link-to-profile hover:text-green-highlight dark:hover:text-pink-highlight"
         >
           <p className="line-clamp-1">작가: {nickname}</p>
         </Link>

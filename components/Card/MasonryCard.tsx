@@ -31,7 +31,11 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
           {artwork.title}
         </p>
         {!isArtistDetails && (
-          <Link href={artistLink} className="w-full" target={linkTarget}>
+          <Link
+            href={artistLink}
+            className="link-to-profile w-full"
+            target={linkTarget}
+          >
             <p className="line-clamp-1 text-left text-sm font-medium text-gray-900 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-pink-highlight">
               {`작가: ${authorName}`}
             </p>

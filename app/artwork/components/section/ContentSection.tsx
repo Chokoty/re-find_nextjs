@@ -93,7 +93,7 @@ export default function ContentSection({
       <Link
         href={!author?.length ? '' : `/artists/${author}`}
         prefetch={false}
-        className={`group relative  flex w-full items-center justify-start gap-4 border-t-base border-gray-300 py-4 transition-all duration-300 hover:text-green-highlight dark:border-whiteAlpha-300 dark:hover:text-pink-highlight `}
+        className={`link-to-profile group relative  flex w-full items-center justify-start gap-4 border-t-base border-gray-300 py-4 transition-all duration-300 hover:text-green-highlight dark:border-whiteAlpha-300 dark:hover:text-pink-highlight `}
       >
         {/* <div className="mt-3 flex items-center gap-2"> */}
         {profileUrl ? (

@@ -18,7 +18,10 @@ export default function AuthorProfileCard({
   nickname,
 }: AuthorProfileCardProps) {
   return (
-    <Link className="mb-2 size-full" href={`/artists/${nickname}`}>
+    <Link
+      className="link-to-profile mb-2 size-full"
+      href={`/artists/${nickname}`}
+    >
       <div className="flex size-full flex-col items-center justify-center gap-4 rounded-xl bg-white p-8 transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:bg-dark-card dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-200">
         <div className="flex w-full flex-col items-center justify-center gap-4 2xs:flex-row">
           <div className="size-[96px]">

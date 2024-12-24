@@ -83,7 +83,12 @@ export default function SearchCard({
             />
           </Link>
           <div className="mt-1 flex flex-wrap items-center gap-1 text-sm text-blackAlpha-800 dark:text-whiteAlpha-800 min-[698px]:text-base">
-            <Link href={`/artists/${author}`} prefetch={false} target="_blank">
+            <Link
+              href={`/artists/${author}`}
+              prefetch={false}
+              target="_blank"
+              className="link-to-profile"
+            >
               <p
                 className="hover:text-blackAlpha-600 dark:hover:text-whiteAlpha-600"
                 dangerouslySetInnerHTML={{

@@ -86,7 +86,7 @@ export default function UpdateCard({ update }: Prop) {
         <div className="flex flex-row items-end gap-2 2xs:flex-col">
           <Badge intent="danger" size="lg">
             <Link
-              className="flex items-center"
+              className="link-to-profile flex items-center"
               href={`/artists/${update.info.nickname}`}
             >
               <MdPerson className="mr-0.5 size-4 text-red-800 dark:text-red-200" />
