@@ -5,7 +5,7 @@ import { BsQuestionLg } from 'react-icons/bs';
 import { FaDice } from 'react-icons/fa';
 import { IoSettingsSharp } from 'react-icons/io5';
 
-import Fanart from '@/app/events/components/Fanart';
+import Fanart from '@/app/events/components/RandomGacha/Fanart';
 import { useRandomFanart } from '@/app/events/service/client/useEventService';
 import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { BsDoorOpenFill, BsTrophyFill } from 'react-icons/bs';
+import { FaVoteYea } from 'react-icons/fa';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
+import { PiRankingBold, PiRankingFill } from 'react-icons/pi';
 
 import { cn } from '@/lib/common';
 
@@ -39,13 +41,22 @@ const events = [
     gtmTag: 'event-waktyhall',
   },
   {
-    title: '[고공전]세구님 팬아트 태그 월드컵',
+    title: '[고공전] 세구님 팬아트 태그 월드컵',
     colorScheme:
       'bg-blue-400 hover:bg-blue-500 active:bg-blue-600 dark:text-gray-900 text-gray-50',
     // isDisabled: true,
     icon: <BsTrophyFill className="mr-2 size-6" />,
     link: '/events/fanartWorldCup',
-    linkText: '태그 월드컵 체험해보기',
+    linkText: '태그 월드컵 체험하기',
+    gtmTag: 'event-fanartWorldCup',
+  },
+  {
+    title: '재미로 보는 고멤투표 예측',
+    colorScheme:
+      'bg-green-400 hover:bg-green-500 active:bg-green-600 dark:text-gray-900 text-gray-50',
+    icon: <PiRankingFill className="mr-2 size-6" />,
+    link: '/events/gomemVotePredict',
+    linkText: '왁물원 고멤 언급 순위 레이스 보기',
     gtmTag: 'event-fanartWorldCup',
   },
 ];

@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useState } from 'react';
 import { FaDice } from 'react-icons/fa';
 
-import Fanart from '@/app/events/components/Fanart';
+import Fanart from '@/app/events/components/RandomGacha/Fanart';
 import { useUrlInfo } from '@/app/events/service/client/useEventService';
 import Button from '@/components/Button';
 import {
