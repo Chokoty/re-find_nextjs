@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import { BsDoorOpenFill, BsTrophyFill } from 'react-icons/bs';
-import { FaVoteYea } from 'react-icons/fa';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
-import { PiRankingBold, PiRankingFill } from 'react-icons/pi';
+import { PiRankingFill } from 'react-icons/pi';
 
 import { cn } from '@/lib/common';
 
