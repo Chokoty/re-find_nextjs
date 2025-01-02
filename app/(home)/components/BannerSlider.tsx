@@ -3,7 +3,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import { PiGiftBold } from 'react-icons/pi';
+import { PiGiftBold, PiRankingFill } from 'react-icons/pi';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -67,6 +67,17 @@ const events: EventData[] = [
       <>
         <PiGiftBold className="mr-2 size-6" />
         [고공전]세구님 팬아트 태그 월드컵
+      </>
+    ),
+  },
+  {
+    title: '재미로 보는 고멤 인기투표 예측',
+    linkColor: 'green',
+    link: '/events/gomemVotePredict',
+    linkContent: (
+      <>
+        <PiRankingFill className="mr-2 size-6" />
+        왁물원 고멤 언급 순위 레이스 보기
       </>
     ),
   },

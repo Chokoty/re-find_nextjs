@@ -1,5 +1,5 @@
-import EventFanarts from '@/app/events/components/EventFanarts';
-import RandomFanart from '@/app/events/components/RandomFanart';
+import EventFanarts from '@/app/events/components/RandomGacha/EventFanarts';
+import RandomFanart from '@/app/events/components/RandomGacha/RandomFanart';
 import PageTitle from '@/components/PageTitle';
 
 const topTitle = {

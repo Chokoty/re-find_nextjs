@@ -58,6 +58,7 @@ const etcPathMap = {
   '/events/randomGacha': '이벤트',
   '/events/fanartWorldCup': '고공전',
   '/events/fanartWorldCup/credit': '크레딧',
+  '/events/gomemVotePredict': '2024 고멤 인기투표 예측',
 } as const;
 
 type EtcPathMapKeyType = keyof typeof etcPathMap;
