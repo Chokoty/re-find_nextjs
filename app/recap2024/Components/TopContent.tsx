@@ -16,7 +16,6 @@ export default function TopContent({ artist }: { artist?: string }) {
     <div className="flex flex-col items-center justify-between border-4 border-red-900">
       <div className="flex w-full items-center justify-between gap-4">
         <Title artist={artist} />
-        {/* <Title artist={'아크네르'} /> */}
         <Counter />
       </div>
       {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2"> */}

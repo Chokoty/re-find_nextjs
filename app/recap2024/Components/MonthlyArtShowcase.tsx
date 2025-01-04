@@ -7,7 +7,7 @@ import { newIne } from '@/lib/images';
 
 const data = [
   { title: '전체 팬아트 작가 수', value: '25,951' },
-  { title: '왁물원 총 팬아트 수', value: '300만 4천' },
+  { title: '왁물원 총 팬아트 수', value: '5.4만' },
   { title: '총 조회 수', value: '8.4천' },
   { title: '총 좋아요 수', value: '8.4천' },
   { title: '총 댓글 수', value: '8.4천' },

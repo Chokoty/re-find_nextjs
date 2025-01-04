@@ -9,9 +9,12 @@ export default function Recap2024({
 }: {
   params: { nickname: string };
 }) {
-  const nickname = decodeURIComponent(params.nickname);
+  // const router = useRouter();
+  // const { nickname } = router.query;
+  // const artist = nickname as string | undefined;
+  const { nickname } = params;
   return (
-    <div className="m-auto flex  w-[90%] flex-col items-center   justify-start bg-recap-pattern p-8">
+    <div className="flex h-screen w-4/5 flex-col items-center justify-start bg-recap-pattern">
       <TopContent artist={nickname} />
       <BestOfTheYear artist={nickname} />
       <MonthlyArtShowcase />
