@@ -8,7 +8,7 @@ import { ImLink } from 'react-icons/im';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
-import Button from '@/components/Button';
+import Button, { type CustomVariantProps } from '@/components/Button';
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
 import Popover, {
@@ -121,16 +121,27 @@ export default function ArtistProfile({ nickname, profile }: Props) {
           target="_blank"
           className="link-to-wakzoo_detail"
         >
-          <Button additionalClass="rounded-full dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-gray-100 font-semibold text-blackAlpha-900 hover:bg-gray-200 active:bg-gray-300  max-w-[73px] text-base h-[48px]">
+          <Button additionalClass="rounded-full dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-blackAlpha-700 font-semibold text-blackAlpha-900 hover:bg-blackAlpha-900 active:bg-gray-300  max-w-[73px] text-base h-[48px]">
             <p className="text-white">왁물원</p>
+          </Button>
+        </Link>
+        <Link
+          href={`/artists/${nickname}/recap2024`}
+          className="link-to-wakzoo_detail"
+        >
+          <Button
+            intent={`solid-purple` as CustomVariantProps['intent']}
+            additionalClass="rounded-full text-whiteAlpha-900 font-semibold dark:text-blackAlpha-900   text-base h-[48px] p-4"
+          >
+            <p className="">2024 리캡</p>
           </Button>
         </Link>
         <Button
           size="lg"
-          additionalClass="rounded-full max-w-[73px] text-base"
+          additionalClass="rounded-full max-w-[73px] text-base font-semibold "
           onClick={handleSubscribe}
         >
-          + 구독
+          <p className="">+ 구독</p>
         </Button>
       </div>
     </div>
