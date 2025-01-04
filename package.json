@@ -42,6 +42,7 @@
     "react-snowfall": "^1.2.1",
     "react-spinners": "^0.13.8",
     "react-use": "^17.5.0",
+    "recharts": "^2.15.0",
     "sharp": "^0.33.2",
     "swiper": "^11.0.6",
     "tailwind-merge": "^2.2.2",

@@ -1,8 +1,8 @@
 'use client';
 
-import Counter from '@/app/recap2024/Components/Counter';
-import StatisticCard from '@/app/recap2024/Components/StatisticCard';
-import Title from '@/app/recap2024/Components/Title';
+import Counter from '@/app/recap2024/components/Counter';
+import StatisticCard from '@/app/recap2024/components/StatisticCard';
+import Title from '@/app/recap2024/components/Title';
 
 const data = [
   { title: '전체 페이지뷰', value: '33만' },
@@ -11,11 +11,11 @@ const data = [
   { title: '재방문자 수', value: '8.4천' },
 ];
 
-export default function TopContent() {
+export default function TopContent({ artist }: { artist?: string }) {
   return (
-    <div className="flex flex-col items-center justify-between ">
+    <div className="flex flex-col items-center justify-between border-4 border-red-900">
       <div className="flex w-full items-center justify-between gap-4">
-        <Title artist={''} />
+        <Title artist={artist} />
         {/* <Title artist={'아크네르'} /> */}
         <Counter />
       </div>

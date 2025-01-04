@@ -29,5 +29,9 @@ export default function MoreLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <>{children}</>;
+  return (
+    <div className="bg-recap-pattern flex w-full flex-col items-center justify-start bg-repeat">
+      {children}
+    </div>
+  );
 }

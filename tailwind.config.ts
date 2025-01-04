@@ -312,8 +312,11 @@ const config: Config = {
       },
       fontFamily: {
         pop: ['var(--font-one-mobile-pop)'],
+        sbAggro: ['SBAggroB', 'sans-serif'],
       },
-      backgroundImage: {},
+      backgroundImage: {
+        'recap-pattern': "url('/static/images/recap_pattern.webp')",
+      },
     },
   },
   future: {
