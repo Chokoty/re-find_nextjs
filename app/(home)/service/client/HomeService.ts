@@ -3,14 +3,14 @@ import Service from '@/lib/service';
 class HomeService extends Service {
   async getImageInfoByHash(hash: string) {
     const startTime = new Date().getTime();
-    const source = await this.http.get<Source>(`/receive?dhash=${hash}`);
+    const source = await this.http.get<Source>(`/v2/receive?dhash=${hash}`);
     const endTime = new Date().getTime();
     const elapsedTime = endTime - startTime;
     return { source, elapsedTime };
   }
 
   getCounts() {
-    return this.http.get<Counter>(`/counter`);
+    return this.http.get<Counter>(`/v2/counter`);
   }
 
   getRecentUpdates() {
