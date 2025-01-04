@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { SOURCE_URL } from '@/app/more/lib/const';
-import RefindRecap from '@/app/recap2024/refindRecap';
+import RefindRecap from '@/app/recap2024/Components/RefindRecap';
 import { recap2024Background } from '@/lib/images';
 
 export default function More() {
