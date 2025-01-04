@@ -16,13 +16,13 @@ export default function StatisticCard({
   return (
     <div
       className={clsx(
-        'flex h-[200px] flex-col items-center justify-center bg-whiteAlpha-300 p-8 transition-all  duration-300',
+        'flex h-[200px] flex-col items-center justify-center bg-whiteAlpha-300 px-6 py-8 transition-all  duration-300',
         {
           'w-[312px]': isWidthFixed, // 기본 너비
         }
       )}
     >
-      <h2 className="font-pop text-[80px] font-bold">{value}</h2>
+      <h2 className="font-sbAggro text-[80px] font-bold">{value}</h2>
       <p className="text-3xl">{title}</p>
     </div>
   );

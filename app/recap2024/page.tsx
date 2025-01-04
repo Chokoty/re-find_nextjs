@@ -1,20 +1,13 @@
-import Link from 'next/link';
+'use client';
 
-import { SOURCE_URL } from '@/app/more/lib/const';
-import RefindRecap from '@/app/recap2024/Components/RefindRecap';
-import { recap2024Background } from '@/lib/images';
+import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
+import TopContent from '@/app/recap2024/components/TopContent';
 
-export default function More() {
+export default function RefindRecap() {
   return (
-    <div
-      className="flex h-screen w-full flex-col items-center justify-start bg-repeat"
-      style={{
-        backgroundImage: `url(${recap2024Background})`,
-        backgroundSize: 'auto',
-      }}
-    >
-      <RefindRecap />
-      <div className="mb-4"></div>
+    <div className="flex w-full max-w-[1440px] flex-col gap-4 p-8">
+      <TopContent />
+      <MonthlyArtShowcase />
     </div>
   );
 }
