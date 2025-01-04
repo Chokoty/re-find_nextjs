@@ -38,7 +38,7 @@ export default function MonthlyArtShowcase({ artist }: { artist?: string }) {
   return (
     <div className="mb-4 mt-28 flex flex-col items-center justify-between border-4 border-red-900">
       <div className="flex w-full flex-col items-start justify-center">
-        <h2 className="font-sbAggro items-start justify-center text-center text-[10px] font-bold leading-tight 2xs:text-[20px] md:text-[30px] lg:text-[60px]">
+        <h2 className="items-start justify-center text-center font-sbAggro  text-[10px] font-bold leading-tight 2xs:text-[20px] md:text-[30px] lg:text-[60px]">
           2024년 연말 정산
         </h2>
         <p className="text-start text-3xl text-whiteAlpha-600">

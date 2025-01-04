@@ -30,7 +30,7 @@ export default function MoreLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="bg-recap-pattern flex w-full flex-col items-center justify-start bg-repeat">
+    <div className="flex w-full flex-col items-center justify-start bg-recap-pattern bg-repeat">
       {children}
     </div>
   );

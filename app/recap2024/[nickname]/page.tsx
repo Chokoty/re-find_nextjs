@@ -1,5 +1,3 @@
-import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
-import TopContent from '@/app/recap2024/components/TopContent';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 
@@ -7,10 +5,12 @@ import ArtistProfile from '@/app/artists/components/ArtistProfile';
 import DetailedArtists from '@/app/artists/components/DetailedArtists';
 import queryOptions from '@/app/artists/service/client/queries';
 import { getAuthorInfo } from '@/app/artists/service/server';
+import BestOfTheYear from '@/app/recap2024/components/BestOfTheYear';
+import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
+import TopContent from '@/app/recap2024/components/TopContent';
 import { siteConfig } from '@/lib/config';
 import { NotSearch } from '@/lib/images';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
-import BestOfTheYear from '@/app/recap2024//components/BestOfTheYear';
 
 type Params = {
   params: { nickname: string };

@@ -1,4 +1,5 @@
 import Image, { type StaticImageData } from 'next/image';
+
 import { newIne } from '@/lib/images';
 
 export default function BestOfTheYear({ artist }: { artist?: string }) {
