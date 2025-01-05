@@ -5,23 +5,25 @@ import Link from 'next/link';
 
 import StatisticCard from '@/app/recap2024/components/StatisticCard';
 import type { MonthlyResult } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
-import type { StatisticItem } from '@/app/recap2024/page';
+import type { StatisticsData } from '@/app/recap2024/page';
 import { newIne } from '@/lib/images';
 
-const data = [
-  { title: '전체 팬아트 작가 수', value: 25951, unit: '' },
-  { title: '왁물원 총 팬아트 수', value: 5.4, unit: '만' },
-  { title: '총 조회 수', value: 8.4, unit: '천' },
-  { title: '총 좋아요 수', value: 8.4, unit: '천' },
-  { title: '총 댓글 수', value: 8.4, unit: '천' },
-] as StatisticItem[];
+// const data = [
+//   { title: '전체 팬아트 작가 수', value: 25951, unit: '' },
+//   { title: '왁물원 총 팬아트 수', value: 5.4, unit: '만' },
+//   { title: '총 조회 수', value: 8.4, unit: '천' },
+//   { title: '총 좋아요 수', value: 8.4, unit: '천' },
+//   { title: '총 댓글 수', value: 8.4, unit: '천' },
+// ] as StatisticItem[];
 
 export default function MonthlyArtShowcase({
   artist,
   imageUrls,
+  statistics,
 }: {
   artist?: string;
   imageUrls: MonthlyResult[];
+  statistics: StatisticsData;
 }) {
   // const modifiedUrl300 = useModifiedImageUrl({
   //   url: img_url_list[0],
@@ -44,7 +46,7 @@ export default function MonthlyArtShowcase({
   ];
 
   return (
-    <div className="mb-4 mt-28 flex flex-col items-center justify-between border-4 border-red-900">
+    <div className="mb-4 mt-28 flex flex-col items-center justify-between ">
       <div className="flex w-full flex-col items-start justify-center">
         <h2 className="items-start justify-center text-center font-sbAggro  text-[10px] font-bold leading-tight 2xs:text-[20px] md:text-[30px] lg:text-[60px]">
           2024년 연말 정산
@@ -58,8 +60,9 @@ export default function MonthlyArtShowcase({
           <div key={index} className="flex flex-col items-center gap-2">
             <p className="mt-2 text-3xl font-bold text-white">{month}월</p>
             <Link
-              href={`https://cafe.naver.com/steamindiegame/${result}`}
-              target="_blank"
+              href={`/artwork/18872155`}
+              // href={`https://cafe.naver.com/steamindiegame/${result}`}
+              // target="_blank"
             >
               {/* TODO: 담다님이 이미지 url 던져주면 수정하기 */}
               <Image
@@ -79,14 +82,14 @@ export default function MonthlyArtShowcase({
           </div>
         ))}
       </div>
-      <div className="mb-4 mt-28 flex flex-col justify-center gap-4">
+      <div className="mb-4 mt-28 flex w-4/5 flex-col justify-center gap-4">
         <div className="flex w-full items-center justify-between gap-4">
-          {data.slice(0, 2).map((item, index) => (
+          {statistics.slice(0, 3).map((item, index) => (
             <StatisticCard key={index} item={item} isWidthFixed={false} />
           ))}
         </div>
         <div className="flex w-full items-center justify-between gap-4">
-          {data.slice(2, 5).map((item, index) => (
+          {statistics.slice(3, 5).map((item, index) => (
             <StatisticCard key={index} item={item} isWidthFixed={false} />
           ))}
         </div>

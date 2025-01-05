@@ -20,24 +20,7 @@ export type StatisticsData = StatisticItem[];
 export default async function RefindRecap() {
   const { statistics, best_article } = await getReFindRecapResults();
 
-  // const data = [
-  //   {
-  //     title: '총 조회 수',
-  //     value: getFormattedNumber(statistics.views),
-  //     unit: getUnit(statistics.views),
-  //   },
-  //   {
-  //     title: '총 좋아요 수',
-  //     value: getFormattedNumber(statistics.likes),
-  //     unit: getUnit(statistics.likes),
-  //   },
-  //   {
-  //     title: '총 댓글 수',
-  //     value: getFormattedNumber(statistics.comments),
-  //     unit: getUnit(statistics.likes),
-  //   },
-  // ] as StatisticsData;
-  const data = [
+  const refindData = [
     {
       title: '전체 페이지뷰',
       value: getFormattedNumber(330000),
@@ -60,12 +43,40 @@ export default async function RefindRecap() {
     },
   ] as StatisticsData;
 
+  const data = [
+    {
+      title: '전체 팬아트 작가 수',
+      value: getFormattedNumber(21669),
+      unit: getUnit(21669),
+    },
+    {
+      title: '왁물원 총 팬아트 수',
+      value: getFormattedNumber(statistics.total),
+      unit: getUnit(statistics.total),
+    },
+    {
+      title: '총 조회 수',
+      value: getFormattedNumber(statistics.views),
+      unit: getUnit(statistics.views),
+    },
+    {
+      title: '총 좋아요 수',
+      value: getFormattedNumber(statistics.likes),
+      unit: getUnit(statistics.likes),
+    },
+    {
+      title: '총 댓글 수',
+      value: getFormattedNumber(statistics.comments),
+      unit: getUnit(statistics.likes),
+    },
+  ] as StatisticsData;
+
   const monthlyInfos = convertBestArticleToMonthlyArray(best_article);
 
   return (
     <div className="flex w-full max-w-[1440px] flex-col gap-4 p-8">
-      <TopContent total={statistics.total} statistics={data} />
-      <MonthlyArtShowcase imageUrls={monthlyInfos} />
+      <TopContent total={53000} statistics={refindData} />
+      <MonthlyArtShowcase imageUrls={monthlyInfos} statistics={data} />
     </div>
   );
 }

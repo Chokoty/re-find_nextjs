@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { BsDoorOpenFill, BsTrophyFill } from 'react-icons/bs';
+import { FaRegSquareCaretLeft } from 'react-icons/fa6';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 import { PiRankingFill } from 'react-icons/pi';
 
@@ -56,6 +57,15 @@ const events = [
     icon: <PiRankingFill className="mr-2 size-6" />,
     link: '/events/gomemVotePredict',
     linkText: '왁물원 고멤 언급 순위 레이스 보기',
+    gtmTag: 'event-gomemVotePredict',
+  },
+  {
+    title: '2024 리파인드 돌아보기',
+    colorScheme:
+      'bg-green-400 hover:bg-green-500 active:bg-green-600 dark:text-gray-900 text-gray-50',
+    icon: <FaRegSquareCaretLeft className="mr-2 size-6" />,
+    link: '/recap2024',
+    linkText: '리파인드 팬아트 연말정산',
     gtmTag: 'event-fanartWorldCup',
   },
 ];
