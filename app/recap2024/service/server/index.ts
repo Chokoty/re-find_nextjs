@@ -8,6 +8,7 @@ export async function getReFindRecapResults() {
   try {
     const response = await axios<TotalRecapResult>(`${baseURL}/v2/recap`);
     return response.data;
+    console.log(response.data);
   } catch (error) {
     console.error('Error:', error);
     throw error;

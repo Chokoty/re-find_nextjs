@@ -15,7 +15,7 @@ export default function TopContent({
   statistics: StatisticsData;
 }) {
   return (
-    <div className="flex flex-col items-center justify-between border-4 border-red-900">
+    <div className="flex flex-col items-center justify-between ">
       <div className="flex w-full items-center justify-between gap-4">
         <Title artist={artist} />
         <Counter total={total} isAuthor={!!artist} />
@@ -31,7 +31,7 @@ export default function TopContent({
           10명 중 7명은 왁물원 접속
         </p>
         <p className="w-2/5 text-center text-3xl font-semibold">
-          10명 중 3명은 리파인드 단골 (감사합니다)
+          10명 중 3명은 리파인드 단골 (감사합니다!)
         </p>
       </div>
     </div>
