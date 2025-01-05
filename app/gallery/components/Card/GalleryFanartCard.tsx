@@ -6,7 +6,7 @@ import { FiClock } from 'react-icons/fi';
 import { MdPerson } from 'react-icons/md';
 
 import RankingBadge from '@/app/gallery/components/Badge/RankingBadge';
-import { formatArtistValue } from '@/hooks/useFormatArtistValue';
+import { formatNumberToEnglishUnit } from '@/hooks/useFormatNumberToCompactString';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 type Props = {
@@ -48,13 +48,13 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
               <div className="flex items-center justify-center gap-1.5">
                 <FaEye className="size-4" />
                 <p className="text-center text-sm font-normal">
-                  {formatArtistValue(artwork.view)}
+                  {formatNumberToEnglishUnit(artwork.view)}
                 </p>
               </div>
               <div className="flex items-center justify-center gap-1.5">
                 <FaThumbsUp className="size-4" />
                 <p className="text-center text-sm font-normal">
-                  {formatArtistValue(artwork.like)}
+                  {formatNumberToEnglishUnit(artwork.like)}
                 </p>
               </div>
             </div>

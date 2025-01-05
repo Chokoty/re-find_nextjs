@@ -1,3 +1,4 @@
+import { Modal } from '@/app/@RecapModal/(.)artists/[nickname]/recap2024/modal';
 import BestOfTheYear from '@/app/recap2024/components/BestOfTheYear';
 import GrowthChart from '@/app/recap2024/components/GrowthChart';
 import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
@@ -17,22 +18,23 @@ type Params = {
   params: { nickname: string };
 };
 
+// 추후 modal로 변경하기
 export default async function Recap2024({ params: { nickname } }: Params) {
   const { statistics, best_article } = await getAuthorRecapResults(nickname);
   const bestOfYearInfo = await getBestOfYearFanartInfo(nickname);
   /**
-     "statistics": {
-      "total": 148,
-      "2023": 324,
-      "best": 30,
-      "art_total": 319,
-      "best_art_total": 40,
-      "views": 1063349,
-      "likes": 147195,
-      "comments": 26339,
-      "growth": -54.3
-    },
-     */
+   "statistics": {
+    "total": 148,
+    "2023": 324,
+    "best": 30,
+    "art_total": 319,
+    "best_art_total": 40,
+    "views": 1063349,
+    "likes": 147195,
+    "comments": 26339,
+    "growth": -54.3
+  },
+   */
 
   const data = [
     {
@@ -51,24 +53,24 @@ export default async function Recap2024({ params: { nickname } }: Params) {
       unit: getUnit(statistics.likes),
     },
   ] as StatisticsData;
+
   const monthlyInfos = convertBestArticleToMonthlyArray(best_article);
 
   return (
-    <div className="m-auto flex  w-[90%] flex-col items-center   justify-start bg-recap-pattern p-8">
-      <TopContent
-        artist={decodeURIComponent(nickname)}
-        total={statistics.total}
-        statistics={data}
-      />
-      <BestOfTheYear
-        artist={decodeURIComponent(nickname)}
-        data={bestOfYearInfo}
-      />
-      <GrowthChart
-        growth={statistics.growth}
-        data={{ value1: statistics.total, value2: statistics[2023] }}
-      />
-      <MonthlyArtShowcase imageUrls={monthlyInfos} />
-    </div>
+    <Modal>
+      <div className="flex flex-col items-center justify-start">
+        <TopContent
+          artist={decodeURIComponent(nickname)}
+          total={statistics.total}
+          statistics={data}
+        />
+        <BestOfTheYear artist={nickname} data={bestOfYearInfo} />
+        <GrowthChart
+          growth={statistics.growth}
+          data={{ value1: statistics.total, value2: statistics[2023] }}
+        />
+        <MonthlyArtShowcase imageUrls={monthlyInfos} />
+      </div>
+    </Modal>
   );
 }

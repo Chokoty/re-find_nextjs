@@ -1,13 +1,49 @@
-'use client';
-
 import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
 import TopContent from '@/app/recap2024/components/TopContent';
+import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
+import { getReFindRecapResults } from '@/app/recap2024/service/server';
+import {
+  getFormattedNumber,
+  getUnit,
+} from '@/hooks/useFormatNumberToCompactString';
 
-export default function RefindRecap() {
+// 개별 통계 항목에 대한 타입
+export type StatisticItem = {
+  title: string;
+  value: number;
+  unit: string;
+};
+
+// 전체 통계 배열에 대한 타입
+export type StatisticsData = StatisticItem[];
+
+export default async function RefindRecap() {
+  const { statistics, best_article } = await getReFindRecapResults();
+
+  const data = [
+    {
+      title: '총 조회 수',
+      value: getFormattedNumber(statistics.views),
+      unit: getUnit(statistics.views),
+    },
+    {
+      title: '총 좋아요 수',
+      value: getFormattedNumber(statistics.likes),
+      unit: getUnit(statistics.likes),
+    },
+    {
+      title: '총 댓글 수',
+      value: getFormattedNumber(statistics.comments),
+      unit: getUnit(statistics.likes),
+    },
+  ] as StatisticsData;
+
+  const monthlyInfos = convertBestArticleToMonthlyArray(best_article);
+
   return (
     <div className="flex w-full max-w-[1440px] flex-col gap-4 p-8">
-      <TopContent />
-      <MonthlyArtShowcase />
+      <TopContent total={statistics.total} statistics={data} />
+      <MonthlyArtShowcase imageUrls={monthlyInfos} />
     </div>
   );
 }

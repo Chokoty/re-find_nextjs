@@ -6,7 +6,7 @@ import SearchResult from '@/app/search/components/SearchResult';
 
 export default function Search() {
   return (
-    <div className="w-full px-2.5 text-center md:px-4">
+    <div className="w-full px-2.5 pb-[60px] text-center md:px-4">
       <Suspense>
         <SearchResult />
       </Suspense>

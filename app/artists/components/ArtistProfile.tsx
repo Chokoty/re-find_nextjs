@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import CountUp from 'react-countup';
 import toast from 'react-hot-toast';
 import { ImLink } from 'react-icons/im';
@@ -17,6 +19,7 @@ import Popover, {
   PopoverTrigger,
 } from '@/components/Popover';
 import Tooltip from '@/components/Tooltip';
+import useLocalStorage from '@/hooks/useLocalStorage';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 interface Props {
@@ -42,6 +45,13 @@ export default function ArtistProfile({ nickname, profile }: Props) {
     }))
   );
 
+  const router = useRouter();
+
+  const [value, setValue] = useLocalStorage({
+    key: 'showAuthorRecapModal',
+    initialValue: true,
+  });
+
   const handleSubscribe = () => {
     toast.error('구독 기능 준비 중입니다.');
   };
@@ -61,6 +71,13 @@ export default function ArtistProfile({ nickname, profile }: Props) {
       toast.success('프로필 링크가 클립보드에 복사되었습니다.');
     });
   };
+
+  useEffect(() => {
+    if (value) {
+      setValue(false);
+      router.push(`/artists/${nickname}/recap2024`);
+    }
+  }, []);
 
   const total = best_cnt + goldhand_cnt + wak_cnt + isd_cnt + gomem_cnt;
   return (

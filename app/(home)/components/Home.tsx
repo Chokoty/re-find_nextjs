@@ -14,6 +14,7 @@ import UpdateLogBoard from '@/components/UpdateLogBoard';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
+// import { useRouter } from 'next/navigation';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),
@@ -28,6 +29,12 @@ export default function Home() {
     key: 'showAppInstallModal',
     initialValue: false,
   });
+
+  // const [isOpenAuthorRecapModal, setIsOpenAuthorRecapModal] = useLocalStorage({
+  //   key: 'showRefindRecapModal',
+  //   initialValue: true,
+  // });
+  // const router = useRouter();
   const { show } = useModal(AppInstallModal);
   const isMobile = useResponsive();
   const openPwaInstallModal = () => {
@@ -43,8 +50,15 @@ export default function Home() {
     }
   }, [isMobile]);
 
+  // useEffect(() => {
+  //   if (isOpenAuthorRecapModal) {
+  //     setIsOpenAuthorRecapModal(false);
+  //     router.push(`/recap2024`);
+  //   }
+  // }, []);
+
   return (
-    <div className="mx-auto mt-2 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 md:px-4">
+    <div className="mx-auto mt-2 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 pb-[60px] md:px-4">
       {/* desktop: left / mobile: top */}
       <section className="flex w-full max-w-[700px] flex-col items-center justify-center">
         <BannerSlider />

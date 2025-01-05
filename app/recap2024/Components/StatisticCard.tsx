@@ -2,15 +2,15 @@
 
 import clsx from 'clsx';
 
+import type { StatisticItem } from '@/app/recap2024/page';
+
 interface StatisticCardProps {
-  title: string;
-  value: string;
+  item: StatisticItem;
   isWidthFixed?: boolean;
 }
 
 export default function StatisticCard({
-  title,
-  value,
+  item: { title, value, unit },
   isWidthFixed = true,
 }: StatisticCardProps) {
   return (
@@ -22,7 +22,12 @@ export default function StatisticCard({
         }
       )}
     >
-      <h2 className="font-sbAggro text-[80px] font-bold">{value}</h2>
+      <p
+        className={`font-sbAggro font-bold ${value.toString().length > 3 ? 'text-6xl' : 'text-7xl'}`}
+      >
+        {value}
+        <span className="font-sbAggro">{unit}</span>
+      </p>
       <p className="text-3xl">{title}</p>
     </div>
   );

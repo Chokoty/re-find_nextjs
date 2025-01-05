@@ -30,9 +30,9 @@ export default function MoreLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div className="pb-[60px]">
       <div className="mx-auto my-6 h-1 w-full max-w-40 rounded-md bg-green-highlight dark:bg-pink-highlight" />
       {children}
-    </>
+    </div>
   );
 }

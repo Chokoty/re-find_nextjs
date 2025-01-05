@@ -44,8 +44,10 @@ const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID!;
 
 export default function RootLayout({
   children,
+  RecapModal,
 }: Readonly<{
   children: React.ReactNode;
+  RecapModal: React.ReactNode;
 }>) {
   return (
     <html
@@ -59,13 +61,15 @@ export default function RootLayout({
           {/* var(--green-200) - #9ae6b4 */}
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />
+          {RecapModal}
           {/* main height: includes header + mobileTabBar */}
           {/* <main className="overflow-x-hidden py-[calc(60px+16px)]"> */}
-          <main className="h-full overflow-x-hidden py-[calc(60px)]">
+          <main className="h-full overflow-x-hidden pt-[calc(60px)]">
             {children}
           </main>
           <MobileTabBar />
           <div id="modal-root" />
+          <div id="recap-modal-root" />
         </Providers>
       </body>
       <GoogleAnalytics gaId={GA_ID} />

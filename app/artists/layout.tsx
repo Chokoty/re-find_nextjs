@@ -31,9 +31,9 @@ export default function ArtistLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div className="pb-[60px]">
       {children}
       <BackToTopButton />
-    </>
+    </div>
   );
 }

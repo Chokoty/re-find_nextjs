@@ -24,13 +24,13 @@ export const metadata: Metadata = {
   icons: siteConfig.icons,
 };
 
-export default function MoreLayout({
+export default function RecapLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <div className="flex w-full flex-col items-center justify-start bg-recap-pattern bg-repeat">
+    <div className="flex w-full flex-col items-center justify-start bg-recap-pattern bg-repeat pb-[60px]">
       {children}
     </div>
   );

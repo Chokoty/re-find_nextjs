@@ -10,7 +10,7 @@ import {
 } from 'react-icons/fa';
 
 import { SORT_TYPES } from '@/constants/artists';
-import { formatArtistValue } from '@/hooks/useFormatArtistValue';
+import { formatNumberToEnglishUnit } from '@/hooks/useFormatNumberToCompactString';
 import type { SortTotalCriteria } from '@/types';
 
 const iconClassName = 'w-4 h-4';
@@ -56,7 +56,7 @@ export default function SortTypeIcons({ artist, totalCountCriteria }: Props) {
               >
                 <IconComponent sortTypeName={sortType.name} />
                 <p className="text-xs">
-                  {formatArtistValue(artist[sortType.value])}
+                  {formatNumberToEnglishUnit(artist[sortType.value])}
                 </p>
               </div>
             )
@@ -77,7 +77,7 @@ export default function SortTypeIcons({ artist, totalCountCriteria }: Props) {
               >
                 <IconComponent sortTypeName={sortType.name} />
                 <p className="text-xs">
-                  {formatArtistValue(artist[sortType.value])}
+                  {formatNumberToEnglishUnit(artist[sortType.value])}
                 </p>
               </div>
             )

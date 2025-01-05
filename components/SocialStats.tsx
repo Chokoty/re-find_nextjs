@@ -6,7 +6,7 @@ import {
   FaThumbsUp,
 } from 'react-icons/fa';
 
-import { formatArtistValue } from '@/hooks/useFormatArtistValue';
+import { formatNumberToEnglishUnit } from '@/hooks/useFormatNumberToCompactString';
 
 const IconComponent = {
   article: <FaImage className="size-4" />,
@@ -41,7 +41,7 @@ export default function SocialStats(props: Props) {
           className="flex items-center gap-2 text-sm text-gray-600 dark:text-whiteAlpha-700"
         >
           {IconComponent[s as keyof typeof IconComponent]}
-          <p className="text-sm">{formatArtistValue(n)}</p>
+          <p className="text-sm">{formatNumberToEnglishUnit(n)}</p>
         </p>
       ))}
     </div>

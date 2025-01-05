@@ -131,6 +131,50 @@ export type GetSearchResultParams = {
   commentCountLimit: CountLimit;
 };
 
+// 기본 리캡 결과 인터페이스
+export interface BaseRecapResult {
+  statistics: {
+    total: number;
+    best: number;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  best_article: BestArticle;
+}
+
+// 전체 리캡 결과 인터페이스
+export interface TotalRecapResult extends BaseRecapResult {}
+
+// 작가별 리캡 결과 인터페이스
+export interface AuthorRecapResult extends BaseRecapResult {
+  statistics: StatisticsType;
+}
+
+export type StatisticsType = BaseRecapResult['statistics'] & {
+  '2023': number;
+  art_total: number;
+  best_art_total: number;
+  growth: number;
+};
+
+// BestArticle 인터페이스는 그대로 유지
+export interface BestArticle {
+  '1': number;
+  '2': number;
+  '3': number;
+  '4': number;
+  '5': number;
+  '6': number;
+  '7': number;
+  '8': number;
+  '9': number;
+  '10': number;
+  '11': number;
+  '12': number;
+  overall: number;
+}
+
 // constants
 export type Board = {
   board: string;
@@ -150,4 +194,14 @@ export type OptionType = {
   label: string;
   default?: boolean;
   hasCustomDateRangePicker?: boolean;
+};
+
+// recap
+type FanartType = 'view' | 'like' | 'comment';
+
+export type BestFanart = {
+  type: FanartType;
+  imgUrl: string;
+  id: string | number;
+  cnt: number;
 };
