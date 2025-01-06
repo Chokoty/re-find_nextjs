@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import Footer from '@/app/(home)/components/Footer';
 import RandomGacha from '@/app/(home)/components/RandomGacha';
+import RefindRecapNotificationModal from '@/app/(home)/components/RefindRecapNotificationModal';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
 import MoreButtons from '@/components/Button/MoreButtons';
@@ -30,12 +31,14 @@ export default function Home() {
     initialValue: false,
   });
 
-  // const [isOpenAuthorRecapModal, setIsOpenAuthorRecapModal] = useLocalStorage({
-  //   key: 'showRefindRecapModal',
-  //   initialValue: true,
-  // });
-  // const router = useRouter();
+  const [isOpenAuthorRecapModal, setIsOpenAuthorRecapModal] = useLocalStorage({
+    key: 'showRefindRecapModal',
+    initialValue: false,
+  });
   const { show } = useModal(AppInstallModal);
+  const { show: showRefindRecapNotification } = useModal(
+    RefindRecapNotificationModal
+  );
   const isMobile = useResponsive();
   const openPwaInstallModal = () => {
     show({ animateDir: 'bottom', position: 'bottom', setStorage: setValue });
@@ -50,12 +53,14 @@ export default function Home() {
     }
   }, [isMobile]);
 
-  // useEffect(() => {
-  //   if (isOpenAuthorRecapModal) {
-  //     setIsOpenAuthorRecapModal(false);
-  //     router.push(`/recap2024`);
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!isOpenAuthorRecapModal) {
+      showRefindRecapNotification({
+        animateDir: 'bottom',
+        setStorage: setIsOpenAuthorRecapModal,
+      });
+    }
+  }, []);
 
   return (
     <div className="mx-auto mt-2 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 pb-[60px] md:px-4">
