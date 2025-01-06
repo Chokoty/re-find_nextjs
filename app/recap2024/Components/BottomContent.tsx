@@ -1,0 +1,25 @@
+'use client';
+
+import StatisticCard from '@/app/recap2024/components/StatisticCard';
+import type { StatisticsData } from '@/app/recap2024/page';
+
+export default function BottomContent({
+  statistics,
+}: {
+  statistics: StatisticsData;
+}) {
+  return (
+    <div className="mx-auto mb-4 mt-28 flex w-4/5 flex-col justify-center gap-4">
+      <div className="flex w-full items-center justify-between gap-4">
+        {statistics.slice(0, 3).map((item, index) => (
+          <StatisticCard key={index} item={item} isWidthFixed={false} />
+        ))}
+      </div>
+      <div className="flex w-full items-center justify-between gap-4">
+        {statistics.slice(3, 5).map((item, index) => (
+          <StatisticCard key={index} item={item} isWidthFixed={false} />
+        ))}
+      </div>
+    </div>
+  );
+}

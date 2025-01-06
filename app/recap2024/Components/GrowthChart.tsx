@@ -62,14 +62,14 @@ export default function GrowthChart({
   ];
 
   return (
-    <div className="flex items-center">
-      <div className="flex flex-col">
-        <span className="font-sbAggro text-7xl font-bold">2024</span>
-        <span className="font-sbAggro text-7xl font-bold">2023</span>
+    <div className="mt-20 flex items-center">
+      <div className="flex flex-col gap-4">
+        <span className="font-sbAggro text-6xl font-bold">2024</span>
+        <span className="font-sbAggro text-6xl font-bold">2023</span>
       </div>
       {/* Use DynamicBarChart with data prop */}
       <DynamicBarChart data={chartData} />
-      {growth < 0 && (
+      {growth > 0 && (
         <div className="font-sbAg`gro font-bold">
           <p className="text-8xl">
             {growth}
@@ -84,7 +84,14 @@ export default function GrowthChart({
 const CustomLabel = (props: any) => {
   const { x, y, width, height, value } = props;
   return (
-    <text x={x + 10} y={y + height / 2} dy={4} textAnchor="start" fill="#fff">
+    <text
+      x={x + 10}
+      y={y + height / 2}
+      dy={4}
+      textAnchor="start"
+      fill="#fff"
+      className="text-xl"
+    >
       {value}개
     </text>
   );

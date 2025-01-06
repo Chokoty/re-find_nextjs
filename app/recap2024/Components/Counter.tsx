@@ -22,8 +22,8 @@ export default function Counter({
         <CountUp end={num} duration={2} decimals={decimals} />
         <span>{getUnit(total)}</span>
       </div>
-      <p className="text-center text-5xl font-semibold">
-        {isAuthor ? '업로드한 팬아트' : '개의 원본을 찾았습니다.'}
+      <p className="text-center text-4xl font-semibold">
+        {isAuthor ? '업로드한 팬아트 수' : '개의 원본을 찾았습니다.'}
       </p>
     </div>
   );

@@ -65,7 +65,9 @@ export default function DesktopMenuTab() {
                 {Icon ? (
                   <Icon className={iconStyle} />
                 ) : (
-                  <span className="text-base font-medium">{name}</span>
+                  <span className="text-base font-medium text-green-highlight">
+                    {name}
+                  </span>
                 )}
               </div>
             </Tooltip>

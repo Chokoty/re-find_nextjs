@@ -1,3 +1,6 @@
+import html2canvas from 'html2canvas';
+import { MdOutlineSaveAlt } from 'react-icons/md';
+
 import BestOfTheYear from '@/app/recap2024/components/BestOfTheYear';
 import GrowthChart from '@/app/recap2024/components/GrowthChart';
 import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
@@ -54,7 +57,7 @@ export default async function Recap2024({ params: { nickname } }: Params) {
   const monthlyInfos = convertBestArticleToMonthlyArray(best_article);
 
   return (
-    <div className="m-auto flex  w-[90%] flex-col items-center   justify-start bg-recap-pattern p-8">
+    <div className="m-auto flex   flex-col items-center   justify-start bg-recap-pattern p-8">
       <TopContent
         artist={decodeURIComponent(nickname)}
         total={statistics.total}

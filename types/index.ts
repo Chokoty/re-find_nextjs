@@ -158,21 +158,36 @@ export type StatisticsType = BaseRecapResult['statistics'] & {
   growth: number;
 };
 
-// BestArticle 인터페이스는 그대로 유지
+// // BestArticle 인터페이스는 그대로 유지
+// export interface BestArticle {
+//   '1': number;
+//   '2': number;
+//   '3': number;
+//   '4': number;
+//   '5': number;
+//   '6': number;
+//   '7': number;
+//   '8': number;
+//   '9': number;
+//   '10': number;
+//   '11': number;
+//   '12': number;
+//   overall: number;
+// }
 export interface BestArticle {
-  '1': number;
-  '2': number;
-  '3': number;
-  '4': number;
-  '5': number;
-  '6': number;
-  '7': number;
-  '8': number;
-  '9': number;
-  '10': number;
-  '11': number;
-  '12': number;
-  overall: number;
+  '1': { id: number; img_url: string };
+  '2': { id: number; img_url: string };
+  '3': { id: number; img_url: string };
+  '4': { id: number; img_url: string };
+  '5': { id: number; img_url: string };
+  '6': { id: number; img_url: string };
+  '7': { id: number; img_url: string };
+  '8': { id: number; img_url: string };
+  '9': { id: number; img_url: string };
+  '10': { id: number; img_url: string };
+  '11': { id: number; img_url: string };
+  '12': { id: number; img_url: string };
+  overall: { id: number; img_url: string };
 }
 
 // constants

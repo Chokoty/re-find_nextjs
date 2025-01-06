@@ -22,6 +22,7 @@ export default function Title({ artist }: { artist?: string }) {
             height={80}
             priority
             unoptimized
+            // className="size-12 xl:size-20 "
           />
         </div>
         <span>

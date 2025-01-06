@@ -1,3 +1,4 @@
+import BottomContent from '@/app/recap2024/components/BottomContent';
 import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
 import TopContent from '@/app/recap2024/components/TopContent';
 import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
@@ -76,7 +77,8 @@ export default async function RefindRecap() {
   return (
     <div className="flex w-full max-w-[1440px] flex-col gap-4 p-8">
       <TopContent total={53000} statistics={refindData} />
-      <MonthlyArtShowcase imageUrls={monthlyInfos} statistics={data} />
+      <MonthlyArtShowcase imageUrls={monthlyInfos} />
+      <BottomContent statistics={data} />
     </div>
   );
 }

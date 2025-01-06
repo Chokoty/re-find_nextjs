@@ -11,7 +11,7 @@ export default function BestOfTheYear({
   data: BestFanart[];
 }) {
   return (
-    <div className="mt-[70px] flex flex-col items-center">
+    <div className="mt-[70px]  flex flex-col items-center">
       <h3 className="font-sbAggro text-5xl font-bold">올해의 베스트 팬아트</h3>
       <h4 className="mb-12 mt-2 text-3xl">
         왁물원 기준 조회수, 좋아요, 댓글수 1위
@@ -48,7 +48,7 @@ const FanartInfo = ({
   console.log('test', modifiedUrl800);
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-2 text-3xl">
       <Image
         src={modifiedUrl800 ?? 'https://placehold.co/375x375'}
         alt={altObj[type]}
@@ -57,7 +57,7 @@ const FanartInfo = ({
         className="  h-[450px] w-[300px] bg-[#f5f5f5] object-cover"
         unoptimized
       />
-      <p className="text-xl font-bold">
+      <p className="">
         {type === 'like' ? '좋아요' : type === 'view' ? '조회수' : '댓글수'}
         <span className="ml-1">{cnt.toLocaleString('ko-KR')}</span>
         <span>{type === 'view' ? '회' : '개'}</span>
