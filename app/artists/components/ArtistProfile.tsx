@@ -48,10 +48,6 @@ export default function ArtistProfile({ nickname, profile }: Props) {
   const router = useRouter();
 
   //  const [isPopoverOpen, setIsPopoverOpen] = useState(true); // Popover 상태 관리
-  const [value, setValue] = useLocalStorage({
-    key: 'showAuthorRecapModal',
-    initialValue: true,
-  });
 
   const handleSubscribe = () => {
     toast.error('구독 기능 준비 중입니다.');
@@ -72,13 +68,6 @@ export default function ArtistProfile({ nickname, profile }: Props) {
       toast.success('프로필 링크가 클립보드에 복사되었습니다.');
     });
   };
-
-  useEffect(() => {
-    if (value) {
-      setValue(false);
-      router.push(`/artists/${nickname}/recap2024`);
-    }
-  }, []);
 
   const total = best_cnt + goldhand_cnt + wak_cnt + isd_cnt + gomem_cnt;
   return (
