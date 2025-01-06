@@ -1,5 +1,5 @@
+import MonthlyArtShowcase from '@/app/artists/components/Recap/MonthlyArtShowcase';
 import BottomContent from '@/app/recap2024/components/BottomContent';
-import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
 import TopContent from '@/app/recap2024/components/TopContent';
 import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
 import { getReFindRecapResults } from '@/app/recap2024/service/server';

@@ -1,8 +1,8 @@
-import BackToArtistButton from '@/app/recap2024/components/BackToArtistButton';
-import BestOfTheYear from '@/app/recap2024/components/BestOfTheYear';
-import { CaptureButton } from '@/app/recap2024/components/CaptureButton';
-import GrowthChart from '@/app/recap2024/components/GrowthChart';
-import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
+import BackToArtistButton from '@/app/artists/components/Recap/BackToArtistButton';
+import BestOfTheYear from '@/app/artists/components/Recap/BestOfTheYear';
+import { CaptureButton } from '@/app/artists/components/Recap/CaptureButton';
+import GrowthChart from '@/app/artists/components/Recap/GrowthChart';
+import MonthlyArtShowcase from '@/app/artists/components/Recap/MonthlyArtShowcase';
 import TopContent from '@/app/recap2024/components/TopContent';
 import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
 import type { StatisticsData } from '@/app/recap2024/page';
