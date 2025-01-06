@@ -16,7 +16,7 @@ export default function StatisticCard({
   return (
     <div
       className={clsx(
-        'flex h-[200px] flex-1 flex-col items-center justify-center bg-whiteAlpha-300 p-4 transition-all  duration-300',
+        'flex h-[120px] min-w-[120px] flex-1 flex-col items-center justify-center bg-whiteAlpha-300 p-4 transition-all  duration-300 lg:h-[200px]',
         {
           'w-[312px]': isWidthFixed, // 기본 너비
         }
@@ -24,12 +24,12 @@ export default function StatisticCard({
     >
       <p
         // // className={`font-sbAggro font-bold ${value.toString().length > 3 ? 'text-6xl' : 'text-7xl'}`}
-        className={`font-sbAggro text-[80px] font-bold`}
+        className={` font-sbAggro text-4xl font-bold lg:text-[80px]`}
       >
         {value}
         <span className="font-sbAggro">{unit}</span>
       </p>
-      <p className="text-3xl">{title}</p>
+      <p className="mt-2 text-lg lg:mt-8 lg:text-3xl">{title}</p>
     </div>
   );
 }

@@ -15,13 +15,16 @@ import {
   getUnit,
 } from '@/hooks/useFormatNumberToCompactString';
 
+import { CopyRecapLinkButton } from '@/app/recap2024/components/CopyRecapLinkButton';
+
 type Params = {
   params: { nickname: string };
 };
 
 export default async function Recap2024({ params: { nickname } }: Params) {
-  const { statistics, best_article } = await getAuthorRecapResults(nickname);
-  const bestOfYearInfo = await getBestOfYearFanartInfo(nickname);
+  const { statistics, best_article, monthly_top_articles } =
+    await getAuthorRecapResults(nickname);
+  // const bestOfYearInfo = await getBestOfYearFanartInfo(nickname);
   /**
      "statistics": {
       "total": 148,
@@ -67,19 +70,29 @@ export default async function Recap2024({ params: { nickname } }: Params) {
           total={statistics.total}
           statistics={data}
         />
-        <BestOfTheYear
+        {/* <BestOfTheYear
           artist={decodeURIComponent(nickname)}
-          data={bestOfYearInfo}
-        />
+          // data={bestOfYearInfo}
+          data={best_article['overall']}
+        /> */}
         <GrowthChart
           growth={statistics.growth}
           data={{ value1: statistics.total, value2: statistics[2023] }}
         />
-        <MonthlyArtShowcase imageUrls={monthlyInfos} />
-        <CaptureButton
-          sectionId="recap2024"
-          fileName={`${decodeURIComponent(nickname)}님의 2024 리캡`}
+        <MonthlyArtShowcase
+          imageUrls={monthlyInfos}
+          isMonth={monthly_top_articles}
         />
+        <div
+          className="align -center mt-8 flex justify-center
+        gap-4"
+        >
+          <CaptureButton
+            sectionId="recap2024"
+            fileName={`${decodeURIComponent(nickname)}님의 2024 리캡`}
+          />
+          <CopyRecapLinkButton />
+        </div>
       </div>
     </div>
   );

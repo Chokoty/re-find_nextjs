@@ -72,7 +72,7 @@ export default function GrowthChart({
       {growth > 0 && (
         <div className="font-sbAg`gro font-bold">
           <p className="text-8xl">
-            {growth}
+            +{growth}
             <span>%</span>
           </p>
         </div>

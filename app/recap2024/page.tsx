@@ -75,7 +75,7 @@ export default async function RefindRecap() {
   const monthlyInfos = convertBestArticleToMonthlyArray(best_article);
 
   return (
-    <div className="flex w-full max-w-[1440px] flex-col gap-4 p-8 text-whiteAlpha-900 ">
+    <div className="flex w-full max-w-[1440px] flex-col gap-4 p-4 text-whiteAlpha-900 xl:p-8">
       <TopContent total={53000} statistics={refindData} />
       <MonthlyArtShowcase imageUrls={monthlyInfos} />
       <BottomContent statistics={data} />

@@ -15,8 +15,8 @@ export default function TopContent({
   statistics: StatisticsData;
 }) {
   return (
-    <div className="m-auto flex w-[90%] flex-col items-center justify-between">
-      <div className="mt-8 flex w-full flex-col items-start justify-between gap-0 xl:flex-row xl:items-center xl:gap-4">
+    <div className="m-auto flex w-full flex-col items-center justify-between lg:w-[90%]">
+      <div className="mt-8 flex w-full flex-col items-start justify-between gap-0 lg:gap-4 xl:flex-row xl:items-center">
         <Title artist={artist} />
         <Counter total={total} isAuthor={!!artist} />
       </div>
@@ -27,11 +27,11 @@ export default function TopContent({
         ))}
       </div>
       {!artist && (
-        <div className="flex w-full items-center justify-center gap-16 text-green-highlight">
-          <p className="w-2/5 text-center text-3xl font-semibold text-green-highlight ">
+        <div className="flex w-full flex-col items-center justify-center gap-4 text-2xl text-green-highlight lg:flex-row lg:gap-16 lg:text-3xl ">
+          <p className="w-full text-center  font-semibold text-green-highlight lg:w-2/5 ">
             10명 중 7명은 왁물원 접속
           </p>
-          <p className="w-2/5 text-center text-3xl font-semibold">
+          <p className="w-full text-center  font-semibold lg:w-2/5">
             10명 중 3명은 리파인드 단골
           </p>
         </div>

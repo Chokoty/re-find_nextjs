@@ -141,6 +141,7 @@ export interface BaseRecapResult {
     comments: number;
   };
   best_article: BestArticle;
+  monthly_top_articles?: boolean;
 }
 
 // 전체 리캡 결과 인터페이스
@@ -215,8 +216,11 @@ export type OptionType = {
 type FanartType = 'view' | 'like' | 'comment';
 
 export type BestFanart = {
-  type: FanartType;
+  type?: FanartType;
   imgUrl: string;
   id: string | number;
-  cnt: number;
+  cnt?: number;
+  view?: number;
+  like?: number;
+  comment?: number;
 };

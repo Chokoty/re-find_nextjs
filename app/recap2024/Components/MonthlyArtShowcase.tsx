@@ -8,9 +8,11 @@ import type { MonthlyResult } from '@/app/recap2024/lib/convertBestArticleToMont
 export default function MonthlyArtShowcase({
   artist,
   imageUrls,
+  isMonth,
 }: {
   artist?: string;
   imageUrls: MonthlyResult[];
+  isMonth?: boolean;
 }) {
   // const modifiedUrl300 = useModifiedImageUrl({
   //   url: img_url_list[0],
@@ -18,19 +20,24 @@ export default function MonthlyArtShowcase({
   // });
 
   return (
-    <div className="mx-auto mb-20 mt-28 flex w-[90%] flex-col items-center justify-between">
+    <div className="mx-auto mb-20 mt-14 flex w-[90%] flex-col items-center justify-between lg:mt-28">
       <div className="flex w-full flex-col items-start justify-center">
-        <h2 className="items-start justify-center text-center font-sbAggro  text-[10px] font-bold leading-tight 2xs:text-[20px] md:text-[30px] lg:text-[60px]">
+        <h2 className="items-start justify-center text-center font-sbAggro  text-3xl font-bold leading-tight lg:text-6xl">
           2024년 연말 정산
         </h2>
-        <p className="text-start text-3xl text-whiteAlpha-600">
-          월별 베스트 팬아트(왁물원 기준 좋아요, 조회수, 댓글수 종합)
+        <p className="text-start text-base text-whiteAlpha-600 lg:text-3xl">
+          {isMonth
+            ? '월별 베스트 팬아트(왁물원 기준 좋아요, 조회수, 댓글수 종합)'
+            : '연간 베스트 팬아트(왁물원 기준 좋아요, 조회수, 댓글수 종합)'}
         </p>
       </div>
       <div className="mt-8 grid grid-cols-6 gap-4">
         {imageUrls.map(({ month, id, img_url }, index) => (
           <div key={index} className="flex flex-col items-center gap-2">
-            <p className="mt-2 text-3xl font-bold text-white">{month}월</p>
+            <p className="mt-2 text-xl font-bold text-white lg:text-3xl">
+              {month}
+              {isMonth ? '월' : '위'}
+            </p>
             <Link href={`/artwork/${id}`}>
               <Image
                 src={img_url === '' ? 'https://placehold.co/375x375' : img_url}

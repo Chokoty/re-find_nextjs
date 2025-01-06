@@ -8,8 +8,12 @@ export default function BestOfTheYear({
   data,
 }: {
   artist?: string;
-  data: BestFanart[];
+  data: BestFanart;
 }) {
+  const modifiedUrl800 = useModifiedImageUrl({
+    url: data.imgUrl,
+    size: 800,
+  });
   return (
     <div className="mt-[70px]  flex flex-col items-center">
       <h3 className="font-sbAggro text-5xl font-bold">올해의 베스트 팬아트</h3>
@@ -17,9 +21,24 @@ export default function BestOfTheYear({
         왁물원 기준 조회수, 좋아요, 댓글수 1위
       </h4>
       <div className="flex items-center justify-center gap-5">
-        {data.map(({ id, imgUrl, type, cnt }) => (
+        <div className="flex flex-col items-center gap-2 text-3xl">
+          <Image
+            src={modifiedUrl800 ?? 'https://placehold.co/375x375'}
+            alt={'올해 베스트 팬아트'}
+            width={800} // 적절한 너비 (커스터마이징 가능)
+            height={800} // 적절한 높이 (커스터마이징 가능)
+            className="  h-[450px] w-[300px] bg-[#f5f5f5] object-cover"
+            unoptimized
+          />
+          <div className="flex items-center justify-center gap-4">
+            <p className="">조회수 {data.view}회</p>
+            <p className="">좋아요 {data.like}개</p>
+            <p className="">댓글 {data.comment}개</p>
+          </div>
+        </div>
+        {/* {data.map(({ id, imgUrl, type, cnt }) => (
           <FanartInfo key={id} type={type} imgUrl={imgUrl} cnt={cnt} />
-        ))}
+        ))} */}
       </div>
     </div>
   );
