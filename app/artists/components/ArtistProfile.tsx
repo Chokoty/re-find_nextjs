@@ -48,10 +48,6 @@ export default function ArtistProfile({ nickname, profile }: Props) {
   const router = useRouter();
 
   //  const [isPopoverOpen, setIsPopoverOpen] = useState(true); // Popover 상태 관리
-  const [value, setValue] = useLocalStorage({
-    key: 'showAuthorRecapModal',
-    initialValue: true,
-  });
 
   const handleSubscribe = () => {
     toast.error('구독 기능 준비 중입니다.');
@@ -73,13 +69,6 @@ export default function ArtistProfile({ nickname, profile }: Props) {
     });
   };
 
-  useEffect(() => {
-    if (value) {
-      setValue(false);
-      router.push(`/artists/${nickname}/recap2024`);
-    }
-  }, []);
-
   const total = best_cnt + goldhand_cnt + wak_cnt + isd_cnt + gomem_cnt;
   return (
     <div className="mt-2.5 flex flex-col items-center">
@@ -96,14 +85,14 @@ export default function ArtistProfile({ nickname, profile }: Props) {
             referrerPolicy="no-referrer" // 네이버 리소스 서버에서 요청 오리진 검증 우회
           />
         </PopoverTrigger>
-        <PopoverContent position="bottom-center">
+        <PopoverContent position="bottom-center" isForceOpen>
           <PopoverBody>
             <p className="my-2 text-center text-lg font-bold">
               작가님들의 2024 활동 돌아보기
               {/* 좋아요, 댓글 부탁드려요! */}
             </p>
             <p className="text-center text-base font-light">
-              2024 리캡 버튼을 눌러서 확인해보세요!
+              아래 2024 리캡 버튼을 눌러서 확인해보세요!
             </p>
           </PopoverBody>
         </PopoverContent>

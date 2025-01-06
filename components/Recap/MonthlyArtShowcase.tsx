@@ -40,7 +40,11 @@ export default function MonthlyArtShowcase({
             </p>
             <Link href={`/artwork/${id}`}>
               <Image
-                src={img_url === '' ? 'https://placehold.co/375x375' : img_url}
+                src={
+                  img_url === ''
+                    ? 'https://placehold.co/375x375'
+                    : `http://proxy.nxtmnt.cc:8080/${img_url}`
+                }
                 alt={`${month} 팬아트`}
                 width={800}
                 height={800}
