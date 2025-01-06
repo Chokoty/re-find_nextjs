@@ -62,7 +62,7 @@ export default function GrowthChart({
   ];
 
   return (
-    <div className="mt-20 flex items-center">
+    <div className="mx-auto mt-20 flex items-center">
       <div className="flex flex-col gap-4">
         <span className="font-sbAggro text-6xl font-bold">2024</span>
         <span className="font-sbAggro text-6xl font-bold">2023</span>

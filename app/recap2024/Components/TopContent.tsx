@@ -32,7 +32,7 @@ export default function TopContent({
             10명 중 7명은 왁물원 접속
           </p>
           <p className="w-2/5 text-center text-3xl font-semibold">
-            10명 중 3명은 리파인드 단골 (감사합니다!)
+            10명 중 3명은 리파인드 단골 (킹아!)
           </p>
         </div>
       )}

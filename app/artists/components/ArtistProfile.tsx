@@ -47,6 +47,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
 
   const router = useRouter();
 
+  //  const [isPopoverOpen, setIsPopoverOpen] = useState(true); // Popover 상태 관리
   const [value, setValue] = useLocalStorage({
     key: 'showAuthorRecapModal',
     initialValue: true,
@@ -98,10 +99,11 @@ export default function ArtistProfile({ nickname, profile }: Props) {
         <PopoverContent position="bottom-center">
           <PopoverBody>
             <p className="my-2 text-center text-lg font-bold">
-              좋아요, 댓글 부탁드려요!
+              작가님들의 2024 활동 돌아보기
+              {/* 좋아요, 댓글 부탁드려요! */}
             </p>
             <p className="text-center text-base font-light">
-              작가님들에게 큰 힘이 됩니다 킹아!
+              2024 리캡 버튼을 눌러서 확인해보세요!
             </p>
           </PopoverBody>
         </PopoverContent>

@@ -1,7 +1,6 @@
-import html2canvas from 'html2canvas';
-import { MdOutlineSaveAlt } from 'react-icons/md';
-
+import BackToArtistButton from '@/app/recap2024/components/BackToArtistButton';
 import BestOfTheYear from '@/app/recap2024/components/BestOfTheYear';
+import { CaptureButton } from '@/app/recap2024/components/CaptureButton';
 import GrowthChart from '@/app/recap2024/components/GrowthChart';
 import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
 import TopContent from '@/app/recap2024/components/TopContent';
@@ -57,21 +56,31 @@ export default async function Recap2024({ params: { nickname } }: Params) {
   const monthlyInfos = convertBestArticleToMonthlyArray(best_article);
 
   return (
-    <div className="m-auto flex   flex-col items-center   justify-start bg-recap-pattern p-8">
-      <TopContent
-        artist={decodeURIComponent(nickname)}
-        total={statistics.total}
-        statistics={data}
-      />
-      <BestOfTheYear
-        artist={decodeURIComponent(nickname)}
-        data={bestOfYearInfo}
-      />
-      <GrowthChart
-        growth={statistics.growth}
-        data={{ value1: statistics.total, value2: statistics[2023] }}
-      />
-      <MonthlyArtShowcase imageUrls={monthlyInfos} />
+    <div>
+      <BackToArtistButton />
+      <div
+        id="recap2024"
+        className="flex flex-col items-center justify-start bg-recap-pattern p-8  pb-16  text-whiteAlpha-900"
+      >
+        <TopContent
+          artist={decodeURIComponent(nickname)}
+          total={statistics.total}
+          statistics={data}
+        />
+        <BestOfTheYear
+          artist={decodeURIComponent(nickname)}
+          data={bestOfYearInfo}
+        />
+        <GrowthChart
+          growth={statistics.growth}
+          data={{ value1: statistics.total, value2: statistics[2023] }}
+        />
+        <MonthlyArtShowcase imageUrls={monthlyInfos} />
+        <CaptureButton
+          sectionId="recap2024"
+          fileName={`${decodeURIComponent(nickname)}님의 2024 리캡`}
+        />
+      </div>
     </div>
   );
 }
