@@ -1,8 +1,8 @@
-import MonthlyArtShowcase from '@/app/artists/components/Recap/MonthlyArtShowcase';
-import BottomContent from '@/app/recap2024/components/BottomContent';
-import TopContent from '@/app/recap2024/components/TopContent';
 import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
 import { getReFindRecapResults } from '@/app/recap2024/service/server';
+import BottomContent from '@/components/Recap/BottomContent';
+import MonthlyArtShowcase from '@/components/Recap/MonthlyArtShowcase';
+import TopContent from '@/components/Recap/TopContent';
 import {
   getFormattedNumber,
   getUnit,
