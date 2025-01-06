@@ -31,7 +31,7 @@ export default function MonthlyArtShowcase({
             : '연간 베스트 팬아트(왁물원 기준 좋아요, 조회수, 댓글수 종합)'}
         </p>
       </div>
-      <div className="mt-8 grid grid-cols-6 gap-4">
+      <div className="mt-8 grid grid-cols-3  gap-4 lg:grid-cols-6">
         {imageUrls.map(({ month, id, img_url }, index) => (
           <div key={index} className="flex flex-col items-center gap-2">
             <p className="mt-2 text-xl font-bold text-white lg:text-3xl">
@@ -44,8 +44,9 @@ export default function MonthlyArtShowcase({
                 alt={`${month} 팬아트`}
                 width={800}
                 height={800}
-                className="  bg-[#f5f5f5] object-cover"
-                style={{ objectFit: 'cover', height: '400px', width: '200px' }}
+                // className="  bg-[#f5f5f5] object-cover"
+                className="h-[200px] w-[100px] bg-[#f5f5f5] object-cover lg:h-[400px] lg:w-[200px]"
+                // style={{ objectFit: 'cover', height: '400px', width: '200px' }}
                 unoptimized
               />
             </Link>

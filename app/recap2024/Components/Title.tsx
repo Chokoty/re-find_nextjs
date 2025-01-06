@@ -9,7 +9,7 @@ export default function Title({ artist }: { artist?: string }) {
     <div className="flex h-40 flex-col  items-start justify-end xl:h-72">
       {artist ? (
         <div className="items-top flex justify-center gap-4">
-          <h2 className="flex flex-col items-start justify-center text-center font-sbAggro text-[10px] font-bold leading-tight text-pink-highlight 2xs:text-[20px] md:text-[30px] lg:text-[40px]">
+          <h2 className="flex flex-col items-start justify-center text-center font-sbAggro text-2xl font-bold leading-tight text-pink-highlight lg:text-[40px]">
             {artist}님의
           </h2>
         </div>

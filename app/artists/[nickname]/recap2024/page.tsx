@@ -1,6 +1,7 @@
 import BackToArtistButton from '@/app/recap2024/components/BackToArtistButton';
 import BestOfTheYear from '@/app/recap2024/components/BestOfTheYear';
 import { CaptureButton } from '@/app/recap2024/components/CaptureButton';
+import { CopyRecapLinkButton } from '@/app/recap2024/components/CopyRecapLinkButton';
 import GrowthChart from '@/app/recap2024/components/GrowthChart';
 import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
 import TopContent from '@/app/recap2024/components/TopContent';
@@ -14,8 +15,6 @@ import {
   getFormattedNumber,
   getUnit,
 } from '@/hooks/useFormatNumberToCompactString';
-
-import { CopyRecapLinkButton } from '@/app/recap2024/components/CopyRecapLinkButton';
 
 type Params = {
   params: { nickname: string };
@@ -84,8 +83,8 @@ export default async function Recap2024({ params: { nickname } }: Params) {
           isMonth={monthly_top_articles}
         />
         <div
-          className="align -center mt-8 flex justify-center
-        gap-4"
+          className="align -center mb-12 mt-8 flex
+        justify-center gap-4"
         >
           <CaptureButton
             sectionId="recap2024"

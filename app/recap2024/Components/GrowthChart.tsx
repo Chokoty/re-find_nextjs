@@ -62,16 +62,22 @@ export default function GrowthChart({
   ];
 
   return (
-    <div className="mx-auto mt-20 flex items-center">
-      <div className="flex flex-col gap-4">
-        <span className="font-sbAggro text-6xl font-bold">2024</span>
-        <span className="font-sbAggro text-6xl font-bold">2023</span>
+    <div className="mx-auto mb-10 mt-20 flex flex-col items-center lg:flex-row">
+      <div className="flex  items-center gap-4">
+        <div className="flex flex-col gap-4">
+          <span className="font-sbAggro text-2xl font-bold lg:text-6xl">
+            2024
+          </span>
+          <span className="font-sbAggro text-2xl font-bold lg:text-6xl">
+            2023
+          </span>
+        </div>
+        {/* Use DynamicBarChart with data prop */}
+        <DynamicBarChart data={chartData} />
       </div>
-      {/* Use DynamicBarChart with data prop */}
-      <DynamicBarChart data={chartData} />
       {growth > 0 && (
         <div className="font-sbAg`gro font-bold">
-          <p className="text-8xl">
+          <p className="text-4xl lg:text-8xl">
             +{growth}
             <span>%</span>
           </p>
