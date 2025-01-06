@@ -6,7 +6,7 @@ import { FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { FiClock } from 'react-icons/fi';
 
-import { formatArtistValue } from '@/hooks/useFormatArtistValue';
+import { formatNumberToEnglishUnit } from '@/hooks/useFormatNumberToCompactString';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
 import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
@@ -91,13 +91,13 @@ export default function CardImage({ data, wakzooLink }: Props) {
             <div className="flex items-center justify-center gap-1">
               <FaEye size="14px" />
               <p className="select-none text-center text-base font-normal">
-                {formatArtistValue(view)}
+                {formatNumberToEnglishUnit(view)}
               </p>
             </div>
             <div className="flex items-center justify-center gap-1">
               <FaThumbsUp size="14px" />
               <p className="touch-none select-none text-center text-base font-normal">
-                {formatArtistValue(like)}
+                {formatNumberToEnglishUnit(like)}
               </p>
             </div>
           </div>

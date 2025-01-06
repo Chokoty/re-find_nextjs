@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import Footer from '@/app/(home)/components/Footer';
 import RandomGacha from '@/app/(home)/components/RandomGacha';
+import RefindRecapNotificationModal from '@/app/(home)/components/RefindRecapNotificationModal';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
 import MoreButtons from '@/components/Button/MoreButtons';
@@ -14,6 +15,7 @@ import UpdateLogBoard from '@/components/UpdateLogBoard';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
+// import { useRouter } from 'next/navigation';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),
@@ -28,7 +30,15 @@ export default function Home() {
     key: 'showAppInstallModal',
     initialValue: false,
   });
+
+  const [isOpenAuthorRecapModal, setIsOpenAuthorRecapModal] = useLocalStorage({
+    key: 'showRefindRecapModal',
+    initialValue: false,
+  });
   const { show } = useModal(AppInstallModal);
+  const { show: showRefindRecapNotification } = useModal(
+    RefindRecapNotificationModal
+  );
   const isMobile = useResponsive();
   const openPwaInstallModal = () => {
     show({ animateDir: 'bottom', position: 'bottom', setStorage: setValue });
@@ -43,8 +53,17 @@ export default function Home() {
     }
   }, [isMobile]);
 
+  useEffect(() => {
+    if (!isOpenAuthorRecapModal) {
+      showRefindRecapNotification({
+        animateDir: 'bottom',
+        setStorage: setIsOpenAuthorRecapModal,
+      });
+    }
+  }, []);
+
   return (
-    <div className="mx-auto mt-2 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 md:px-4">
+    <div className="mx-auto mt-2 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 pb-[60px] md:px-4">
       {/* desktop: left / mobile: top */}
       <section className="flex w-full max-w-[700px] flex-col items-center justify-center">
         <BannerSlider />
