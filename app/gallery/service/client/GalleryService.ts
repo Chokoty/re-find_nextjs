@@ -33,7 +33,8 @@ class GalleryService extends Service {
 
   // 작품(게시글)의 상세 정보를 가져옵니다.
   getArtworkDetail(artworkId: number) {
-    const url = `/fanart_info?id=${artworkId}`;
+    // const url = `/fanart_info?id=${artworkId}`;
+    const url = `/v2/fanart_info?id=${artworkId}`;
     return this.http.get<ArtworkDetail>(url);
   }
 }
