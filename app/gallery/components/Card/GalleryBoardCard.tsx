@@ -25,13 +25,20 @@ export default function GalleryBoardCard({
   const boardUrl = query || '';
 
   // const boardUrl = `/search?board=${value}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
+
+  const transformedValue =
+    value === 'gomemBoard'
+      ? 'gomem'
+      : value === 'wakgoodBoard'
+        ? 'woowakgood'
+        : value;
   const bgColor =
     PASTEL_COLORS[value as keyof typeof PASTEL_COLORS] || 'bg-teal-200';
   return (
     <div className="relative w-full transition hover:scale-[1.01]">
       {/* <Link href={boardUrl} prefetch={false}> */}
       <Link
-        href={`/gallery/${value}?viewType=masonry&sortType=latest`}
+        href={`/gallery/${transformedValue}?viewType=masonry&sortType=latest`}
         prefetch={false}
       >
         <div

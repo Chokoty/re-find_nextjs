@@ -32,7 +32,13 @@ export default function UpdateCard({ update }: Prop) {
   const matchingGallery = UPDATED_GALLERY_LIST.find(
     (gallery) => gallery.title === update.board.replace(/&#\d+;/g, '').trim()
   ) || { value: '' };
-  const board_link = `/gallery/${matchingGallery.value}?viewType=masonry&sortType=latest`;
+  const board_link = `/gallery/${
+    matchingGallery.value === 'gomemBoard'
+      ? 'gomem'
+      : matchingGallery.value === 'wakgoodBoard'
+        ? 'woowakgood'
+        : matchingGallery.value
+  }?viewType=masonry&sortType=latest`;
   // const board_link = `/gallery/${BOARD_MAP[update.board]}?viewType=masonry&sortType=latest`;
   // const boardUrl = `/search?board=${BOARD_MAP[update.board]}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
 
