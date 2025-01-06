@@ -31,7 +31,7 @@ export default function CardImage({ data, wakzooLink }: Props) {
   useOnClickOutside(cardRef, () => {
     setIsFocus(false);
   });
-
+  //
   return (
     <div
       ref={cardRef}
