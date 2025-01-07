@@ -23,7 +23,7 @@ export default function Counter({
         <span>{getUnit(total)}</span>
       </div>
       <p className="text-center text-2xl font-semibold lg:text-4xl">
-        {isAuthor ? '업로드한 팬아트 수' : '개의 원본을 찾았습니다.'}
+        {isAuthor ? '올해 업로드한 팬아트 수' : '개의 원본을 찾았습니다.'}
       </p>
     </div>
   );
