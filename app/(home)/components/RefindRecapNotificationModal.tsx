@@ -32,7 +32,15 @@ export default function RefindRecapNotificationModal(
         <IoClose className="size-8" />
       </button>
       <div className="flex size-full flex-col items-center justify-center break-keep px-3 py-6 text-center text-sm 2xs:px-4 2xs:py-12 2xs:text-base lg:px-8">
-        <Button onClick={onMove}>Refind 2024 리캡 보러가기</Button>
+        <p>
+          리파인드에서 2025년을 맞이하여 리파인드 전체 리캡과 작가님들의 개별
+          리캡 페이지를 만들었습니다!
+        </p>
+        <p>
+          작가님들의 2024 리캡은 작가 개별 페이지에서 확인하실 수 있습니다.
+          리파인드를 이용해주셔서 감사합니다.
+        </p>
+        <Button onClick={onMove}>리파인드 2024 리캡 보러가기</Button>
       </div>
     </section>
   );
