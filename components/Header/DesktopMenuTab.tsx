@@ -14,11 +14,11 @@ type RouterItem = {
 };
 
 const routerMap: Record<string, RouterItem> = {
-  recap2024: {
-    path: '/recap2024',
-    name: '2024 리캡',
-    className: 'size-6',
-  },
+  // recap2024: {
+  //   path: '/recap2024',
+  //   name: '2024 리캡',
+  //   className: 'size-6',
+  // },
   event: {
     path: '/events',
     name: '이벤트관',

@@ -107,7 +107,6 @@ const HeaderContent = () => {
       <Suspense>
         <SearchModalOpener />
       </Suspense>
-
       <DesktopMenuTab />
     </>
   );
