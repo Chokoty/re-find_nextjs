@@ -22,7 +22,7 @@ export default function MonthlyArtShowcase({
   return (
     <div className="mx-auto mt-14 flex w-[90%] flex-col items-center justify-between lg:mb-20 lg:mt-28">
       <div className="flex w-full max-w-screen-xl flex-col items-start justify-center">
-        <h2 className="items-start justify-center text-center font-sbAggro  text-3xl font-bold leading-tight lg:text-6xl">
+        <h2 className="items-start justify-center text-center font-sbAggro  text-3xl font-medium leading-tight lg:text-6xl">
           2024년 연말 정산
         </h2>
         <p className="text-start text-base text-whiteAlpha-600 lg:text-3xl">
@@ -37,7 +37,7 @@ export default function MonthlyArtShowcase({
       <div className="mt-8 grid grid-cols-3  gap-4 lg:grid-cols-6">
         {imageUrls.map(({ month, id, img_url }, index) => (
           <div key={index} className="flex flex-col items-center gap-2">
-            <p className="mt-2 text-xl font-bold text-white lg:text-3xl">
+            <p className="mt-2 text-xl font-medium text-white lg:text-3xl">
               {month}
               {isMonth || !artist ? '월' : '위'}
             </p>

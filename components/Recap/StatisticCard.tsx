@@ -24,7 +24,7 @@ export default function StatisticCard({
     >
       <p
         // // className={`font-sbAggro font-bold ${value.toString().length > 3 ? 'text-6xl' : 'text-7xl'}`}
-        className={` mt-4 font-sbAggro text-4xl font-bold lg:text-5xl xl:mt-7 xl:text-7xl`}
+        className={` mt-4 font-sbAggro text-4xl font-medium lg:text-5xl xl:mt-7 xl:text-7xl`}
       >
         {value}
         <span className="font-sbAggro">{unit}</span>
