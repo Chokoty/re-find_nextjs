@@ -15,13 +15,13 @@ export default function TopContent({
   statistics: StatisticsData;
 }) {
   return (
-    <div className="m-auto flex w-full flex-col items-center justify-between lg:w-[90%]">
-      <div className="mt-8 flex w-full flex-col items-start justify-between gap-0 lg:gap-4 xl:flex-row xl:items-center">
+    <div className="m-auto flex w-full max-w-screen-xl flex-col items-center justify-between lg:w-[90%]">
+      <div className="mt-8 flex w-full flex-col items-start justify-between gap-16 lg:gap-4 xl:flex-row xl:items-center">
         <Title artist={artist} />
         <Counter total={total} isAuthor={!!artist} />
       </div>
       {/* <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2"> */}
-      <div className="mb-4 mt-28 flex flex-wrap justify-center gap-4">
+      <div className="mb-4 mt-14 flex flex-wrap justify-center gap-4 lg:mt-28">
         {statistics.map((item, index) => (
           <StatisticCard key={index} item={item} />
         ))}

@@ -74,6 +74,12 @@ const config: Config = {
         // hightlight color
         'green-highlight': 'var(--mainColor-100)',
         'pink-highlight': 'var(--mainColor-200)',
+        secondary: {
+          DEFAULT: '#6C757D', // 기본 색상
+          light: '#ADB5BD',
+          dark: '#495057',
+          darker: '#343A40',
+        },
         whiteAlpha: {
           50: 'var(--whiteAlpha-50)',
           100: 'var(--whiteAlpha-100)',

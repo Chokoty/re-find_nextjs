@@ -3,28 +3,32 @@
 import toast from 'react-hot-toast';
 import { ImLink } from 'react-icons/im';
 
-import Tooltip from '@/components/Tooltip';
+import Button, { type CustomVariantProps } from '@/components/Button';
 
 export function CopyRecapLinkButton() {
   const handleCopyLink = () => {
-    // 복사하려는 링크를 여기에 입력하세요.
-    // const linkToCopy = `https://re-find.xyz/artists/${encodeURIComponent(
-    //   profile?.author_nickname
-    // )}`;
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast.success('리캡페이지 링크가 클립보드에 복사되었습니다.');
+      toast.success('링크가 클립보드에 복사되었어요.');
     });
   };
   return (
-    <Tooltip label="프로필 공유">
-      <button
-        className=" flex size-12 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400"
-        onClick={handleCopyLink}
-      >
-        <ImLink className="size-8" />
-      </button>
-    </Tooltip>
+    <Button
+      size="lg"
+      intent={`solid-secondary` as CustomVariantProps['intent']}
+      additionalClass="lg:w-[150px] flex gap-2 rounded-xl text-whiteAlpha-900 font-semibold  lg:text-lg  p-4"
+      onClick={handleCopyLink}
+    >
+      <ImLink className="size-4 lg:size-6" />
+      링크공유
+    </Button>
   );
 }
+
+// <Button
+//   intent={`solid-purple` as CustomVariantProps['intent']}
+//   additionalClass="rounded-full text-whiteAlpha-900 font-semibold dark:text-blackAlpha-900   text-base h-[48px] p-4"
+// >
+//   <p className="">2024 리캡</p>
+// </Button>;

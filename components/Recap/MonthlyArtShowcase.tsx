@@ -20,8 +20,8 @@ export default function MonthlyArtShowcase({
   // });
 
   return (
-    <div className="mx-auto mb-20 mt-14 flex w-[90%] flex-col items-center justify-between lg:mt-28">
-      <div className="flex w-full flex-col items-start justify-center">
+    <div className="mx-auto mt-14 flex w-[90%] flex-col items-center justify-between lg:mb-20 lg:mt-28">
+      <div className="flex w-full max-w-screen-xl flex-col items-start justify-center">
         <h2 className="items-start justify-center text-center font-sbAggro  text-3xl font-bold leading-tight lg:text-6xl">
           2024년 연말 정산
         </h2>
@@ -30,20 +30,23 @@ export default function MonthlyArtShowcase({
             ? '월별 베스트 팬아트(왁물원 기준 좋아요, 조회수, 댓글수 종합)'
             : '연간 베스트 팬아트(왁물원 기준 좋아요, 조회수, 댓글수 종합)'}
         </p>
+        <p className="mt-2 text-start text-base text-whiteAlpha-600 lg:text-xl">
+          ※ 카페 억까로 인해 일부 썸네일이 누락될 수 있습니다.
+        </p>
       </div>
       <div className="mt-8 grid grid-cols-3  gap-4 lg:grid-cols-6">
         {imageUrls.map(({ month, id, img_url }, index) => (
           <div key={index} className="flex flex-col items-center gap-2">
             <p className="mt-2 text-xl font-bold text-white lg:text-3xl">
               {month}
-              {isMonth ? '월' : '위'}
+              {isMonth || !artist ? '월' : '위'}
             </p>
             <Link href={`/artwork/${id}`}>
               <Image
                 src={
                   img_url === ''
                     ? 'https://placehold.co/375x375'
-                    : `https://proxy.nxtmnt.cc:8080/${img_url}`
+                    : `https://proxy.nxtmnt.cc:60024/${img_url}`
                 }
                 alt={`${month} 팬아트`}
                 width={800}

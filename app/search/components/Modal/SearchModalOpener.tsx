@@ -56,11 +56,11 @@ export default function SearchModalOpener() {
         </div>
         <Link
           href="/recap2024"
-          className="absolute right-[-120px] z-[3] hidden h-12 w-auto items-center  rounded-full border border-green-highlight px-4  font-medium text-green-highlight hover:scale-105   hover:bg-blackAlpha-200  active:bg-blackAlpha-300 dark:border-none dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-300 md:flex"
+          className="group absolute right-[-120px] z-[3] hidden h-12 w-auto  items-center rounded-full border border-green-highlight  px-4 font-medium text-green-highlight   hover:bg-blackAlpha-200  active:bg-blackAlpha-300 dark:border-none dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-300 md:flex"
           style={{ top: 0 }}
         >
           <Tooltip label={'2024 리캡'}>
-            <span className="font-pop  text-base font-medium text-green-highlight">
+            <span className="font-pop  text-base font-medium text-green-highlight hover:scale-105">
               🎉RE:CAP
             </span>
           </Tooltip>

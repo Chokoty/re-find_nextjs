@@ -9,7 +9,7 @@ export default function BottomContent({
   statistics: StatisticsData;
 }) {
   return (
-    <div className="mx-auto mb-4 mt-28 flex flex-col justify-center gap-4 lg:w-4/5">
+    <div className="mx-auto mb-4 mt-14 flex flex-col justify-center gap-4 lg:mt-28 lg:w-4/5">
       <div
         className="flex w-full flex-wrap items-center justify-between
       gap-4

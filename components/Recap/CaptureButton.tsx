@@ -52,12 +52,12 @@ export function CaptureButton({
   return (
     <Button
       size="lg"
-      additionalClass="rounded-full  text-base font-semibold flex items-center justify-center gap-2"
+      additionalClass="rounded-xl  text-base font-semibold flex items-center justify-center gap-2"
       onClick={captureSection}
     >
-      <MdOutlineSaveAlt className="inline-block size-8" />
-      <p className="inline-block text-lg font-semibold ">
-        {isLoading ? '처리중...' : '저장하기'}
+      <MdOutlineSaveAlt className="inline-block size-6 lg:size-8 " />
+      <p className="inline-block font-semibold lg:text-lg ">
+        {isLoading ? '요청중...' : '사진저장'}
       </p>
     </Button>
   );

@@ -1,4 +1,4 @@
-import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
+// import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
 import TopContent from '@/app/recap2024/components/TopContent';
 import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
 import type { StatisticsData } from '@/app/recap2024/page';
@@ -11,6 +11,7 @@ import BestOfTheYear from '@/components/Recap/BestOfTheYear';
 import { CaptureButton } from '@/components/Recap/CaptureButton';
 import { CopyRecapLinkButton } from '@/components/Recap/CopyRecapLinkButton';
 import GrowthChart from '@/components/Recap/GrowthChart';
+import MonthlyArtShowcase from '@/components/Recap/MonthlyArtShowcase';
 import {
   getFormattedNumber,
   getUnit,
@@ -69,10 +70,7 @@ export default async function Recap2024({ params: { nickname } }: Params) {
           imageUrls={monthlyInfos}
           isMonth={monthly_top_articles}
         />
-        <div
-          className="align -center mb-12 mt-8 flex
-        justify-center gap-4"
-        >
+        <div className="mb-12 mt-8 flex items-center justify-center gap-4">
           <CaptureButton
             sectionId="recap2024"
             fileName={`${decodeURIComponent(nickname)}님의 2024 리캡`}
