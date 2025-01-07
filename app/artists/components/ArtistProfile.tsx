@@ -72,7 +72,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
   const total = best_cnt + goldhand_cnt + wak_cnt + isd_cnt + gomem_cnt;
   return (
     <div className="mt-2.5 flex flex-col items-center">
-      <Popover>
+      <Popover openAtFirstTime>
         <PopoverTrigger size="9xl">
           <Image
             src={author_prof_url}
@@ -85,7 +85,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
             referrerPolicy="no-referrer" // 네이버 리소스 서버에서 요청 오리진 검증 우회
           />
         </PopoverTrigger>
-        <PopoverContent position="bottom-center" isForceOpen>
+        <PopoverContent position="bottom-center">
           <PopoverBody>
             <p className="my-2 text-center text-lg font-bold">
               작가님들의 2024 활동 돌아보기
