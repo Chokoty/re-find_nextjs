@@ -1,6 +1,7 @@
 'use client';
 
 import html2canvas from 'html2canvas';
+import { useState } from 'react';
 import { MdOutlineSaveAlt } from 'react-icons/md';
 
 import Button from '@/components/Button';
@@ -12,6 +13,7 @@ export function CaptureButton({
   sectionId: string;
   fileName: string;
 }) {
+  const [isLoading, setIsLoading] = useState(false);
   const captureSection = async () => {
     const section = document.getElementById(sectionId);
     const button = document.querySelector(`#${sectionId} .capture-button`);
@@ -20,11 +22,18 @@ export function CaptureButton({
       if (button) {
         (button as HTMLElement).style.display = 'none';
       }
-
+      setIsLoading(true);
+      const { fonts } = document;
       // 캡처 실행
       const canvas = await html2canvas(section, {
         backgroundColor: null,
-        useCORS: true,
+        useCORS: true, // CORS사용한 서버로부터 이미지를 로드할 것인지
+        // proxy: 'http://proxy.nxtmnt.cc:8080', // proxy를 통해 받아온 url을 원본 이미지 로드하는데 사용.
+        onclone: (document) => {
+          fonts.forEach((font) => {
+            document.fonts.add(font);
+          });
+        },
       });
 
       // 캡처 버튼 다시 보이게
@@ -35,6 +44,7 @@ export function CaptureButton({
       const link = document.createElement('a');
       link.href = image;
       link.download = fileName;
+      setIsLoading(false);
       link.click();
     }
   };
@@ -46,7 +56,9 @@ export function CaptureButton({
       onClick={captureSection}
     >
       <MdOutlineSaveAlt className="inline-block size-8" />
-      <p className="inline-block text-lg font-semibold ">저장하기</p>
+      <p className="inline-block text-lg font-semibold ">
+        {isLoading ? '처리중...' : '저장하기'}
+      </p>
     </Button>
   );
 }

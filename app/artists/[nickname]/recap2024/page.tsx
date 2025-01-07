@@ -24,19 +24,6 @@ export default async function Recap2024({ params: { nickname } }: Params) {
   const { statistics, best_article, monthly_top_articles } =
     await getAuthorRecapResults(nickname);
   // const bestOfYearInfo = await getBestOfYearFanartInfo(nickname);
-  /**
-     "statistics": {
-      "total": 148,
-      "2023": 324,
-      "best": 30,
-      "art_total": 319,
-      "best_art_total": 40,
-      "views": 1063349,
-      "likes": 147195,
-      "comments": 26339,
-      "growth": -54.3
-    },
-     */
 
   const data = [
     {
@@ -62,7 +49,7 @@ export default async function Recap2024({ params: { nickname } }: Params) {
       <BackToArtistButton />
       <div
         id="recap2024"
-        className="flex flex-col items-center justify-start bg-recap-pattern p-8  pb-16  text-whiteAlpha-900"
+        className="flex flex-col items-center justify-start bg-recap-pattern p-8 py-16 text-whiteAlpha-900"
       >
         <TopContent
           artist={decodeURIComponent(nickname)}

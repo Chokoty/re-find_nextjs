@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
+
 /* 해당 폰트는 ttf otf 포맷만 지원하고 있어 woff를 사용하기위해 아래와 같은 방법을 사용 > tailwind.config.ts에 추가*/
 @font-face {
   font-family: 'SBAggroB';

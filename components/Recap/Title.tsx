@@ -6,7 +6,7 @@ import { RefindLogo } from '@/lib/images';
 
 export default function Title({ artist }: { artist?: string }) {
   return (
-    <div className="flex h-40 flex-col  items-start justify-end xl:h-72">
+    <div className="flex flex-col  items-start justify-end">
       {artist ? (
         <div className="items-top flex justify-center gap-4">
           <h2 className="flex flex-col items-start justify-center text-center font-sbAggro text-2xl font-bold leading-tight text-pink-highlight lg:text-[40px]">
@@ -24,7 +24,7 @@ export default function Title({ artist }: { artist?: string }) {
             height={80}
             priority
             unoptimized
-            className="size-12 xl:size-20 "
+            className="size-12 xl:size-20"
           />
         </div>
         <span>
