@@ -5,6 +5,7 @@ import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
 import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { RiFullscreenFill } from 'react-icons/ri';
 
 import TotalCounter from '@/app/gallery/components/TotalCounter';
 import { MEMBERS } from '@/app/gallery/lib/const';
@@ -51,6 +52,7 @@ export default function ViewSelectBar({
     { id: 1, name: '전체', value: 'isd' },
     ...MEMBERS.slice(1, 7),
   ];
+  const imageRatio = '16:9';
   return (
     <div className="relative mb-4 flex w-full items-center justify-between px-8 py-2">
       <div className="flex gap-[5px]">
@@ -76,6 +78,25 @@ export default function ViewSelectBar({
         >
           <IoGrid size="24px" />
         </button>
+        {/* <Menu>
+          <MenuButton
+            size="lg"
+            rightIcon={<MdOutlineKeyboardArrowDown />}
+            rightMobileIcon={<RiFullscreenFill />}
+          >
+            {imageRatio}
+          </MenuButton>
+          <MenuList>
+            {memberList.map((member) => (
+              <MenuItem
+                key={member.id}
+                onClick={() => onMemberClick?.(member.value)}
+              >
+                {member.name}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu> */}
       </div>
       {hasTotalCounter && (
         <p className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 dark:text-whiteAlpha-900 2md:block">
