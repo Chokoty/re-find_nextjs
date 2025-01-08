@@ -47,7 +47,11 @@ export default function BestOfTheYear({
       <div className="flex items-center justify-center gap-5">
         <div className="flex flex-col items-center gap-2 text-3xl">
           <Image
-            src={modifiedUrl800 ?? 'https://placehold.co/375x375'}
+            src={
+              modifiedUrl800
+                ? `${process.env.NEXT_PUBLIC_PROXY_URL}/${modifiedUrl800}`
+                : 'https://placehold.co/375x375'
+            }
             alt={'올해 베스트 팬아트'}
             width={800} // 적절한 너비 (커스터마이징 가능)
             height={800} // 적절한 높이 (커스터마이징 가능)
