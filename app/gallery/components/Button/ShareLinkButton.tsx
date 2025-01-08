@@ -19,10 +19,10 @@ export default function ShareLinkButton() {
       additionalClass="bg-green-highlight dark:hover:bg-pink-400 dark:active:bg-pink-500 dark:bg-pink-highlight hover:bg-teal-500 active:bg-teal-600 rounded-full"
       onClick={handleCopyLink}
     >
+      <MdShare className="mr-2 text-white" />
       <p className="text-white">
         <span className="hidden 2xs:inline-block">갤러리</span> 공유하기
       </p>
-      <MdShare className="ml-1 text-white" />
     </Button>
   );
 }
