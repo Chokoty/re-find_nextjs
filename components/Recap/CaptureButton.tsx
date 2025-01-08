@@ -1,5 +1,6 @@
 'use client';
 
+import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
 import { useState } from 'react';
 import { MdOutlineSaveAlt } from 'react-icons/md';
@@ -28,7 +29,7 @@ export function CaptureButton({
       const canvas = await html2canvas(section, {
         backgroundColor: null,
         useCORS: true, // CORS사용한 서버로부터 이미지를 로드할 것인지
-        // proxy: 'http://proxy.nxtmnt.cc:8080', // proxy를 통해 받아온 url을 원본 이미지 로드하는데 사용.
+        // proxy: '', // proxy를 통해 받아온 url을 원본 이미지 로드하는데 사용.
         onclone: (document) => {
           fonts.forEach((font) => {
             document.fonts.add(font);
@@ -40,12 +41,13 @@ export function CaptureButton({
       if (button) {
         (button as HTMLElement).style.display = 'block';
       }
-      const image = canvas.toDataURL('image/png');
-      const link = document.createElement('a');
-      link.href = image;
-      link.download = fileName;
+      canvas.toDataURL('image/png');
+      canvas.toBlob((blob) => {
+        if (blob) {
+          saveAs(blob, fileName);
+        }
+      });
       setIsLoading(false);
-      link.click();
     }
   };
 
@@ -57,7 +59,7 @@ export function CaptureButton({
     >
       <MdOutlineSaveAlt className="inline-block size-6 lg:size-8 " />
       <p className="inline-block font-semibold lg:text-lg ">
-        {isLoading ? '요청중...' : '사진저장'}
+        {isLoading ? '처리중...' : '사진저장'}
       </p>
     </Button>
   );
