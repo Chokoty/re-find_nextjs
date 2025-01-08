@@ -2,7 +2,7 @@
 
 export type CheckBoxType = {
   isd: boolean;
-  wak: boolean;
+  woowakgood: boolean;
   gomem: boolean;
 };
 
