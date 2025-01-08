@@ -2,6 +2,7 @@ import BottomContent from '@/app/recap2024/components/BottomContent';
 import TopContent from '@/app/recap2024/components/TopContent';
 import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
 import { getReFindRecapResults } from '@/app/recap2024/service/server';
+import { CopyRecapLinkButton } from '@/components/Recap/CopyRecapLinkButton';
 import MonthlyArtShowcase from '@/components/Recap/MonthlyArtShowcase';
 import {
   getFormattedNumber,
@@ -79,6 +80,9 @@ export default async function RefindRecap() {
       <TopContent total={53000} statistics={refindData} />
       <MonthlyArtShowcase imageUrls={monthlyInfos} />
       <BottomContent statistics={data} />
+      <div className="my-9 flex items-center justify-center gap-4 md:my-12">
+        <CopyRecapLinkButton />
+      </div>
     </div>
   );
 }
