@@ -131,7 +131,6 @@ export default function ArtistProfile({ nickname, profile }: Props) {
         >
           <Button
             intent={`solid-secondary` as CustomVariantProps['intent']}
-            // additionalClass="rounded-full dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-blackAlpha-700 font-semibold text-blackAlpha-900 hover:bg-blackAlpha-900 active:bg-gray-300  max-w-[73px] text-base h-[48px]"
             additionalClass=" flex rounded-full text-whiteAlpha-900 font-semibold h-[48px] p-4"
           >
             <p className="text-white">왁물원</p>

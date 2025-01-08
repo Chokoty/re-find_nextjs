@@ -25,7 +25,7 @@ export default function MonthlyArtShowcase({
         <h2 className="items-start justify-center text-center font-sbAggro  text-3xl font-medium leading-tight lg:text-6xl">
           2024년 연말 정산
         </h2>
-        <p className="text-start text-base text-whiteAlpha-600 lg:text-3xl">
+        <p className="text-start text-base  lg:text-3xl">
           {isMonth
             ? '월별 베스트 팬아트(왁물원 기준 좋아요, 조회수, 댓글수 종합)'
             : '연간 베스트 팬아트(왁물원 기준 좋아요, 조회수, 댓글수 종합)'}
@@ -37,7 +37,7 @@ export default function MonthlyArtShowcase({
       <div className="mt-8 grid grid-cols-3  gap-4 lg:grid-cols-6">
         {imageUrls.map(({ month, id, img_url }, index) => (
           <div key={index} className="flex flex-col items-center gap-2">
-            <p className="mt-2 text-xl font-medium text-white lg:text-3xl">
+            <p className="mt-2 text-xl font-semibold text-white lg:text-3xl">
               {month}
               {isMonth || !artist ? '월' : '위'}
             </p>

@@ -40,7 +40,7 @@ export default async function Recap2024({ params: { nickname } }: Params) {
     {
       title: '총 댓글 수',
       value: getFormattedNumber(statistics.comments),
-      unit: getUnit(statistics.likes),
+      unit: getUnit(statistics.comments),
     },
   ] as StatisticsData;
   const monthlyInfos = convertBestArticleToMonthlyArray(best_article);
@@ -57,11 +57,10 @@ export default async function Recap2024({ params: { nickname } }: Params) {
           total={statistics.total}
           statistics={data}
         />
-        {/* <BestOfTheYear
+        <BestOfTheYear
           artist={decodeURIComponent(nickname)}
-          // data={bestOfYearInfo}
-          data={best_article['overall']}
-        /> */}
+          data={best_article.overall}
+        />
         <GrowthChart
           growth={statistics.growth}
           data={{ value1: statistics.total, value2: statistics[2023] }}

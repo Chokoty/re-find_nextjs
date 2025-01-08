@@ -176,19 +176,97 @@ export type StatisticsType = BaseRecapResult['statistics'] & {
 //   overall: number;
 // }
 export interface BestArticle {
-  '1': { id: number; img_url: string };
-  '2': { id: number; img_url: string };
-  '3': { id: number; img_url: string };
-  '4': { id: number; img_url: string };
-  '5': { id: number; img_url: string };
-  '6': { id: number; img_url: string };
-  '7': { id: number; img_url: string };
-  '8': { id: number; img_url: string };
-  '9': { id: number; img_url: string };
-  '10': { id: number; img_url: string };
-  '11': { id: number; img_url: string };
-  '12': { id: number; img_url: string };
-  overall: { id: number; img_url: string };
+  '1': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '2': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '3': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '4': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '5': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '6': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '7': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '8': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '9': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '10': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '11': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  '12': {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
+  overall: {
+    id: number;
+    img_url: string;
+    views: number;
+    likes: number;
+    comments: number;
+  };
 }
 
 // constants
@@ -213,14 +291,12 @@ export type OptionType = {
 };
 
 // recap
-type FanartType = 'view' | 'like' | 'comment';
+// type FanartType = 'view' | 'like' | 'comment';
 
 export type BestFanart = {
-  type?: FanartType;
-  imgUrl: string;
-  id: string | number;
-  cnt?: number;
-  view?: number;
-  like?: number;
-  comment?: number;
+  id: number;
+  img_url: string;
+  views: number;
+  likes: number;
+  comments: number;
 };
