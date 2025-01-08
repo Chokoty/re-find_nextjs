@@ -70,13 +70,19 @@ export default async function Recap2024({ params: { nickname } }: Params) {
           imageUrls={monthlyInfos}
           isMonth={monthly_top_articles}
         />
-        <div className="mb-12 mt-8 flex items-center justify-center gap-4">
+        <div className="my-9 flex items-center justify-center gap-4 md:my-12">
           <CaptureButton
             sectionId="recap2024"
             fileName={`${decodeURIComponent(nickname)}님의 2024 리캡`}
           />
           <CopyRecapLinkButton />
         </div>
+        <p className="mt-2 text-start text-base text-whiteAlpha-600 lg:text-xl">
+          ※ 현재 사진저장 기능이 사파리 등 일부 브라우저에서 작동하지 않습니다.
+        </p>
+        <p className="mb-20 mt-2 text-start text-base text-whiteAlpha-600 md:mb-0 lg:text-xl">
+          ※ 모바일에서는 기본 스크롤 캡쳐를 이용해주세요!
+        </p>
       </div>
     </div>
   );

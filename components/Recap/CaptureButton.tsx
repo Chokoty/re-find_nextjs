@@ -54,7 +54,7 @@ export function CaptureButton({
   return (
     <Button
       size="lg"
-      additionalClass="rounded-xl  text-base font-semibold flex items-center justify-center gap-2"
+      additionalClass=" hidden rounded-xl  text-base font-semibold md:flex items-center justify-center gap-2 "
       onClick={captureSection}
     >
       <MdOutlineSaveAlt className="inline-block size-6 lg:size-8 " />

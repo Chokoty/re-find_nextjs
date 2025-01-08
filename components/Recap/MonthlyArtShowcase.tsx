@@ -20,7 +20,7 @@ export default function MonthlyArtShowcase({
   // });
 
   return (
-    <div className="mx-auto mt-14 flex w-[90%] flex-col items-center justify-between lg:mb-20 lg:mt-28">
+    <div className="mx-auto mt-14 flex w-[90%] flex-col items-center justify-between lg:mb-16 lg:mt-28">
       <div className="flex w-full max-w-screen-xl flex-col items-start justify-center">
         <h2 className="items-start justify-center text-center font-sbAggro  text-3xl font-medium leading-tight lg:text-6xl">
           2024년 연말 정산
