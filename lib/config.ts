@@ -148,6 +148,21 @@ export const siteConfig = {
     },
     // 추후 업데이트
   },
+  recap2024: {
+    main: {
+      title: '리파인드 | RECAP 2024',
+      description: '2024년 한 해 동안 리파인드에서의 팬아트 활동을 돌아보세요!',
+      url: '/recap2024',
+    },
+    detailed(nickname: string) {
+      const decodedNickname = decodeURIComponent(nickname);
+      return {
+        title: `리파인드 | ${decodedNickname}님의 RECAP 2024`,
+        description: `${decodedNickname}님의 2024년 리파인드 팬아트 활동 기록을 확인해보세요.`,
+        url: `/artists/${decodedNickname}/recap2024`,
+      };
+    },
+  },
   artwork(item: ArtworkDetail) {
     const { title, board, img_url, author, id } = item;
     return {
