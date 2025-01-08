@@ -4,7 +4,7 @@ import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBes
 import type { StatisticsData } from '@/app/recap2024/page';
 import {
   getAuthorRecapResults,
-  getBestOfYearFanartInfo,
+  // getBestOfYearFanartInfo,
 } from '@/app/recap2024/service/server';
 import BackToArtistButton from '@/components/Recap/BackToArtistButton';
 import BestOfTheYear from '@/components/Recap/BestOfTheYear';

@@ -27,40 +27,40 @@ export async function getAuthorRecapResults(name: string) {
   }
 }
 
-export async function getBestOfYearFanartInfo(
-  name: string
-): Promise<BestFanart[]> {
-  try {
-    const [viewResponse, likeResponse, commentResponse] = await Promise.all([
-      axios(`${baseURL}/author_artworks?name=${name}&type="view"&page=1`),
-      axios(`${baseURL}/author_artworks?name=${name}&type="like"&page=1`),
-      axios(`${baseURL}/author_artworks?name=${name}&type="comment"&page=1`),
-    ]);
+// export async function getBestOfYearFanartInfo(
+//   name: string
+// ): Promise<BestFanart[]> {
+//   try {
+//     const [viewResponse, likeResponse, commentResponse] = await Promise.all([
+//       axios(`${baseURL}/author_artworks?name=${name}&type="view"&page=1`),
+//       axios(`${baseURL}/author_artworks?name=${name}&type="like"&page=1`),
+//       axios(`${baseURL}/author_artworks?name=${name}&type="comment"&page=1`),
+//     ]);
 
-    // return null;
+//     // return null;
 
-    return [
-      {
-        type: 'view',
-        imgUrl: viewResponse.data.list[0].img_url_list[0],
-        id: viewResponse.data.list[0].id,
-        cnt: viewResponse.data.list[0].view,
-      },
-      {
-        type: 'like',
-        imgUrl: likeResponse.data.list[0].img_url_list[0],
-        id: likeResponse.data.list[0].id,
-        cnt: viewResponse.data.list[0].like,
-      },
-      {
-        type: 'comment',
-        imgUrl: commentResponse.data.list[0].img_url_list[0],
-        id: commentResponse.data.list[0].id,
-        cnt: viewResponse.data.list[0].comment,
-      },
-    ];
-  } catch (error) {
-    console.error('Error:', error);
-    throw error;
-  }
-}
+//     return [
+//       {
+//         type: 'view',
+//         imgUrl: viewResponse.data.list[0].img_url_list[0],
+//         id: viewResponse.data.list[0].id,
+//         cnt: viewResponse.data.list[0].view,
+//       },
+//       {
+//         type: 'like',
+//         imgUrl: likeResponse.data.list[0].img_url_list[0],
+//         id: likeResponse.data.list[0].id,
+//         cnt: viewResponse.data.list[0].like,
+//       },
+//       {
+//         type: 'comment',
+//         imgUrl: commentResponse.data.list[0].img_url_list[0],
+//         id: commentResponse.data.list[0].id,
+//         cnt: viewResponse.data.list[0].comment,
+//       },
+//     ];
+//   } catch (error) {
+//     console.error('Error:', error);
+//     throw error;
+//   }
+// }
