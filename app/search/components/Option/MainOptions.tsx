@@ -179,6 +179,51 @@ export default function MainOptions({
         />
       </div>
       <Divider />
+      <div className="m-2 flex flex-col gap-2 md:m-4 md:flex-row md:gap-4">
+        {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
+        <Select
+          onChange={handleChangeBoard}
+          selected={options.board}
+          options={[
+            { value: 'all', label: '전체 게시판', default: true },
+            { value: 'isd', label: '이세돌┃팬아트' },
+            { value: 'goldhand', label: '금손 작가들의 방' },
+            { value: 'best', label: '통합 BEST 팬아트 게시판' },
+            { value: 'wak', label: '우왁굳팬아트' },
+            { value: 'gomem', label: '고멤┃팬아트' },
+            { value: 'isd_behind', label: '이세돌┃작업후기' },
+            { value: 'gomem_behind', label: '고멤┃작업 후기' },
+            { value: 'notice', label: '전체 공지사항' },
+            { value: 'ai', label: 'AI 팬아트' },
+          ]}
+        />
+        {/* 카테고리 */}
+        <Select
+          disabled={categories.length === 0}
+          onChange={handleChangeCategory}
+          selected={options.category}
+          options={[
+            { value: 'all', label: '말머리', default: true },
+            ...categories.map((item) => ({ value: item, label: item })),
+          ]}
+        />
+      </div>
+      {/* <Divider /> */}
+      {/* <div className="m-2 flex flex-col gap-2 md:m-4 md:flex-row md:gap-4">
+        <Select
+          onChange={handleChangeBoard}
+          selected={options.board}
+          options={[
+            { value: 'all', label: '이미지 비율 전체', default: true },
+            { value: 'desktop', label: '데스크탑' },
+            { value: 'mobile', label: '모바일' },
+            { value: 'profile', label: '프로필' },
+            { value: '16_9', label: '16:9' },
+            { value: '4_3', label: '4:3' },
+          ]}
+        />
+      </div> */}
+      <Divider />
       <div className="m-2 flex items-center justify-between md:m-4">
         <div className="flex gap-5">
           <Checkbox
@@ -214,36 +259,6 @@ export default function MainOptions({
             </PopoverBody>
           </PopoverContent>
         </Popover>
-      </div>
-      <Divider />
-      <div className="m-2 flex flex-col gap-2 md:m-4 md:flex-row md:gap-4">
-        {/* 각 게시판을 눌렀을 때 해당 카테고리 활성 */}
-        <Select
-          onChange={handleChangeBoard}
-          selected={options.board}
-          options={[
-            { value: 'all', label: '전체 게시판', default: true },
-            { value: 'isd', label: '이세돌┃팬아트' },
-            { value: 'goldhand', label: '금손 작가들의 방' },
-            { value: 'best', label: '통합 BEST 팬아트 게시판' },
-            { value: 'wak', label: '우왁굳팬아트' },
-            { value: 'gomem', label: '고멤┃팬아트' },
-            { value: 'isd_behind', label: '이세돌┃작업후기' },
-            { value: 'gomem_behind', label: '고멤┃작업 후기' },
-            { value: 'notice', label: '전체 공지사항' },
-            { value: 'ai', label: 'AI 팬아트' },
-          ]}
-        />
-        {/* 카테고리 */}
-        <Select
-          disabled={categories.length === 0}
-          onChange={handleChangeCategory}
-          selected={options.category}
-          options={[
-            { value: 'all', label: '말머리', default: true },
-            ...categories.map((item) => ({ value: item, label: item })),
-          ]}
-        />
       </div>
       <Divider />
       <div className="m-2 flex items-center justify-between md:m-4">

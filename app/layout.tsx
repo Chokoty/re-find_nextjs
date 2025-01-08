@@ -50,18 +50,18 @@ export default function RootLayout({
   return (
     <html
       lang="kr"
-      className={`dark ${pretendard.className} ${oneMobilePop.variable}`}
+      className={`dark ${pretendard.className} ${oneMobilePop.variable} h-full`}
       suppressHydrationWarning
     >
       {/** className="h-full bg-light-background text-gray-900 dark:bg-dark-background dark:text-gray-50" */}
-      <body>
+      <body className="h-full">
         <Providers>
           {/* var(--green-200) - #9ae6b4 */}
           <NextTopLoader color="#9ae6b4" showSpinner={false} shadow={false} />
           <Header />
           {/* main height: includes header + mobileTabBar */}
           {/* <main className="overflow-x-hidden py-[calc(60px+16px)]"> */}
-          <main className="overflow-x-hidden py-[calc(60px)]">{children}</main>
+          <main className="overflow-x-hidden pt-[calc(60px)]">{children}</main>
           <MobileTabBar />
           <div id="modal-root" />
         </Providers>

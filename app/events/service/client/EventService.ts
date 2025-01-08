@@ -7,8 +7,8 @@ class EventService extends Service {
   getRandomFanart(checkboxValues: CheckBoxType) {
     const queryParams = Object.keys(checkboxValues)
       .filter((key) => checkboxValues[key as keyof CheckBoxType])
-      .join('&');
-    return this.http.get<EventFanart>(`/rand?${queryParams}`);
+      .join(';');
+    return this.http.get<EventFanart>(`/v2/rand?galleries=${queryParams}`);
   }
 
   getIsdArtworks() {

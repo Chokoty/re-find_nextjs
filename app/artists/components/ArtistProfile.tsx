@@ -2,13 +2,15 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import CountUp from 'react-countup';
 import toast from 'react-hot-toast';
 import { ImLink } from 'react-icons/im';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
-import Button from '@/components/Button';
+import Button, { type CustomVariantProps } from '@/components/Button';
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
 import Popover, {
@@ -17,6 +19,7 @@ import Popover, {
   PopoverTrigger,
 } from '@/components/Popover';
 import Tooltip from '@/components/Tooltip';
+import useLocalStorage from '@/hooks/useLocalStorage';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 interface Props {
@@ -42,6 +45,10 @@ export default function ArtistProfile({ nickname, profile }: Props) {
     }))
   );
 
+  const router = useRouter();
+
+  //  const [isPopoverOpen, setIsPopoverOpen] = useState(true); // Popover 상태 관리
+
   const handleSubscribe = () => {
     toast.error('구독 기능 준비 중입니다.');
   };
@@ -58,14 +65,14 @@ export default function ArtistProfile({ nickname, profile }: Props) {
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast.success('프로필 링크가 클립보드에 복사되었습니다.');
+      toast.success('링크가 클립보드에 복사되었어요.');
     });
   };
 
   const total = best_cnt + goldhand_cnt + wak_cnt + isd_cnt + gomem_cnt;
   return (
     <div className="mt-2.5 flex flex-col items-center">
-      <Popover>
+      <Popover openAtFirstTime>
         <PopoverTrigger size="9xl">
           <Image
             src={author_prof_url}
@@ -81,10 +88,11 @@ export default function ArtistProfile({ nickname, profile }: Props) {
         <PopoverContent position="bottom-center">
           <PopoverBody>
             <p className="my-2 text-center text-lg font-bold">
-              좋아요, 댓글 부탁드려요!
+              작가님들의 2024 활동 돌아보기
+              {/* 좋아요, 댓글 부탁드려요! */}
             </p>
             <p className="text-center text-base font-light">
-              작가님들에게 큰 힘이 됩니다 킹아!
+              아래 2024 리캡 버튼을 눌러서 확인해보세요!
             </p>
           </PopoverBody>
         </PopoverContent>
@@ -121,16 +129,30 @@ export default function ArtistProfile({ nickname, profile }: Props) {
           target="_blank"
           className="link-to-wakzoo_detail"
         >
-          <Button additionalClass="rounded-full dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-gray-100 font-semibold text-blackAlpha-900 hover:bg-gray-200 active:bg-gray-300  max-w-[73px] text-base h-[48px]">
+          <Button
+            intent={`solid-secondary` as CustomVariantProps['intent']}
+            additionalClass=" flex rounded-full text-whiteAlpha-900 font-semibold h-[48px] p-4"
+          >
             <p className="text-white">왁물원</p>
+          </Button>
+        </Link>
+        <Link
+          href={`/artists/${nickname}/recap2024`}
+          className="link-to-wakzoo_detail"
+        >
+          <Button
+            intent={`solid-purple` as CustomVariantProps['intent']}
+            additionalClass="rounded-full text-whiteAlpha-900 font-semibold dark:text-blackAlpha-900   text-base h-[48px] p-4"
+          >
+            <p className="">2024 리캡</p>
           </Button>
         </Link>
         <Button
           size="lg"
-          additionalClass="rounded-full max-w-[73px] text-base"
+          additionalClass="rounded-full max-w-[73px] text-base font-semibold "
           onClick={handleSubscribe}
         >
-          + 구독
+          <p className="">+ 구독</p>
         </Button>
       </div>
     </div>

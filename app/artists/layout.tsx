@@ -31,9 +31,10 @@ export default function ArtistLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    // <div className="pb-[60px] dark:bg-recap-pattern">
+    <div className="">
       {children}
       <BackToTopButton />
-    </>
+    </div>
   );
 }

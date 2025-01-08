@@ -20,7 +20,7 @@ export default function Footer() {
           만들어진 팬메이드 비공식 사이트입니다.
         </p>
         <p className="mt-8 text-center text-sm">
-          Copyright &copy; 2023 RE:FIND. All Rights Reserved.
+          Copyright &copy; 2025 RE:FIND. All Rights Reserved.
         </p>
       </div>
     </footer>

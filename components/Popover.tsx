@@ -33,8 +33,14 @@ export const usePopoverContext = () => {
 };
 
 // TODO: 현재 Content는 고정적으로 top right에 위치해있다. 이를 동적으로 변경할 수 있도록 수정해야함
-export default function Popover({ children }: { children: React.ReactNode }) {
-  const [visible, setVisible] = useState(false);
+export default function Popover({
+  children,
+  openAtFirstTime = false,
+}: {
+  children: React.ReactNode;
+  openAtFirstTime?: boolean;
+}) {
+  const [visible, setVisible] = useState(openAtFirstTime);
   const innerContentRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 

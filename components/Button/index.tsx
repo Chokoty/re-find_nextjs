@@ -98,6 +98,14 @@ const buttonStyles = cva(
         'ghost-pink':
           'text-pink-600 hover:bg-pink-100 active:bg-pink-200 dark:text-pink-200 dark:hover:bg-pinkAlpha-200 dark:active:bg-pinkAlpha-300',
         'link-pink': 'text-pink-500 hover:underline dark:text-pink-200',
+        // Secondary 색상 추가
+        'solid-secondary':
+          'bg-gray-600 text-white hover:bg-gray-700 active:bg-gray-800',
+        'outline-secondary':
+          'border border-gray-500 text-gray-500 hover:bg-gray-100 active:bg-gray-200 dark:border-gray-400 dark:text-gray-400 dark:hover:bg-gray-300 dark:active:bg-gray-400',
+        'ghost-secondary':
+          'text-gray-500 hover:bg-gray-100 active:bg-gray-200 dark:text-gray-400 dark:hover:bg-gray-300 dark:active:bg-gray-400',
+        'link-secondary': 'text-gray-500 hover:underline dark:text-gray-400',
       },
       size: {
         xs: 'h-6 min-h-6 pe-2 ps-2 text-xs',

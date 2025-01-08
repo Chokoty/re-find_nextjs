@@ -33,12 +33,12 @@ export default function NoticeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div className="pb-[60px]">
       {children}
       <Suspense>
         <Loading />
       </Suspense>
       <BackToTopButton />
-    </>
+    </div>
   );
 }

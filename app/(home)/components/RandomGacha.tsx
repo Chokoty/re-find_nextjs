@@ -14,7 +14,7 @@ import { RANDOM_TEXTS } from '@/lib/const';
 export default function RandomGacha() {
   const { data, isLoading, isFetching, refetch, status } = useRandomFanart({
     isd: true,
-    wak: true,
+    woowakgood: true,
     gomem: true,
   });
 

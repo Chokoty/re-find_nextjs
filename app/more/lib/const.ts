@@ -8,6 +8,7 @@ import {
   레루루,
   바게트빵옴뇸뇸,
   아르키메트리스,
+  아크네르,
   에이요,
   초코넛밀크티,
   카닌,
@@ -172,6 +173,14 @@ export const DEVELOPERS: Developer[] = [
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/ILudmLEjWir3qKfErZ5xNg',
     profURL: NotFoundProfileURL,
     contribute: ['백엔드'],
+  },
+  {
+    group: 'credit',
+    nickname: '아크네르르',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/XN2cLG15KT8xHmE0sCZThg',
+    profURL: 아크네르,
+    contribute: ['2024 리캡 배경 일러스트'],
   },
 ];
 
@@ -526,5 +535,11 @@ export const UPDATE_LOGS: UpdateLog[] = [
     id: 54,
     date: '2024.12.17',
     content: '이세돌의 데뷔 3주년 축하드립니다!!!!!! 이세돌 화이팅!!!',
+  },
+  {
+    id: 55,
+    date: '2025.01.08',
+    content:
+      'RE:CAP 2024 리파인드 돌아보기를 오픈했습니다. 작가님 개별리캡은 작가페이지에서 보실 수 있습니다.',
   },
 ];
