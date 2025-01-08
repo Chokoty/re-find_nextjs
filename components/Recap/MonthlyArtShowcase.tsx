@@ -39,7 +39,7 @@ export default function MonthlyArtShowcase({
           <div key={index} className="flex flex-col items-center gap-2">
             <p className="mt-2 text-xl font-semibold text-white lg:text-3xl">
               {month}
-              {isMonth || !artist ? '월' : '위'}
+              {artist && !isMonth ? '위' : '월'}
             </p>
             <Link href={`/artwork/${id}`}>
               <Image

@@ -66,6 +66,7 @@ export default async function Recap2024({ params: { nickname } }: Params) {
           data={{ value1: statistics.total, value2: statistics[2023] }}
         />
         <MonthlyArtShowcase
+          artist={decodeURIComponent(nickname)}
           imageUrls={monthlyInfos}
           isMonth={monthly_top_articles}
         />
