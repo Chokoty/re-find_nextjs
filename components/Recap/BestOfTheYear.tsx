@@ -55,7 +55,7 @@ export default function BestOfTheYear({
             alt={'올해 베스트 팬아트'}
             width={800} // 적절한 너비 (커스터마이징 가능)
             height={800} // 적절한 높이 (커스터마이징 가능)
-            className="  h-[450px] w-[300px] bg-[#f5f5f5] object-cover"
+            className="h-[300px] w-[150px] bg-[#f5f5f5] object-cover lg:h-[500px] lg:w-[250px]"
             unoptimized
           />
           {/* <div className="flex items-center justify-center gap-4">
