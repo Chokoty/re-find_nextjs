@@ -111,15 +111,16 @@ const Fanart = ({
       </div>
     );
   }
-
   const { title, nickname } = data;
+  const id = data?.url.split('/').pop();
 
   return (
     <div className="mb-2 flex w-full flex-col items-center justify-center rounded-2xl">
       <Link
         className="link-to-wakzoo w-full"
-        href={article_link}
-        target="_blank"
+        // href={article_link}
+        href={`/artwork/${id}`}
+        // target="_blank"
       >
         <Image
           className="max-h-[312px] rounded-2xl object-cover shadow-cardBox"
