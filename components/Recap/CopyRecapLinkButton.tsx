@@ -10,7 +10,7 @@ export function CopyRecapLinkButton() {
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast.success('링크가 클립보드에 복사되었어요.');
+      toast.success('링크를 클립보드에 복사했어요.');
     });
   };
   return (

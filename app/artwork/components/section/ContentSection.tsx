@@ -37,7 +37,7 @@ export default function ContentSection({
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast.success('갤러리 링크가 복사되었습니다.');
+      toast.success('링크를 클립보드에 복사했어요.');
     });
   };
 
