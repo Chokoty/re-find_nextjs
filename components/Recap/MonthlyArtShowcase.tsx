@@ -35,30 +35,32 @@ export default function MonthlyArtShowcase({
         </p>
       </div>
       <div className="mt-8 grid grid-cols-3  gap-4 lg:grid-cols-6">
-        {imageUrls.map(({ month, id, img_url }, index) => (
-          <div key={index} className="flex flex-col items-center gap-2">
-            <p className="mt-2 text-xl font-semibold text-white lg:text-3xl">
-              {month}
-              {artist && !isMonth ? '위' : '월'}
-            </p>
-            <Link href={`/artwork/${id}`}>
-              <Image
-                src={
-                  img_url === ''
-                    ? 'https://placehold.co/375x375'
-                    : `${process.env.NEXT_PUBLIC_PROXY_URL}/${img_url}`
-                }
-                alt={`${month} 팬아트`}
-                width={800}
-                height={800}
-                // className="  bg-[#f5f5f5] object-cover"
-                className="h-[200px] w-[100px] bg-[#f5f5f5] object-cover lg:h-[400px] lg:w-[200px]"
-                // style={{ objectFit: 'cover', height: '400px', width: '200px' }}
-                unoptimized
-              />
-            </Link>
-          </div>
-        ))}
+        {imageUrls
+          .filter(({ id }) => id !== 0) // id가 0인 항목 제외
+          .map(({ month, id, img_url }, index) => (
+            <div key={index} className="flex flex-col items-center gap-2">
+              <p className="mt-2 text-xl font-semibold text-white lg:text-3xl">
+                {month}
+                {artist && !isMonth ? '위' : '월'}
+              </p>
+              <Link href={`/artwork/${id}`}>
+                <Image
+                  src={
+                    img_url === ''
+                      ? 'https://placehold.co/375x375'
+                      : `${process.env.NEXT_PUBLIC_PROXY_URL}/${img_url}`
+                  }
+                  alt={`${month} 팬아트`}
+                  width={800}
+                  height={800}
+                  // className="  bg-[#f5f5f5] object-cover"
+                  className="h-[200px] w-[100px] bg-[#f5f5f5] object-cover lg:h-[400px] lg:w-[200px]"
+                  // style={{ objectFit: 'cover', height: '400px', width: '200px' }}
+                  unoptimized
+                />
+              </Link>
+            </div>
+          ))}
       </div>
     </div>
   );
