@@ -64,7 +64,7 @@ export default async function ArtworkPage({ params: { id } }: Params) {
         />
       </div>
       {/* 하단(유사이미지 추천) */}
-      {/* <Recommend /> */}
+      <Recommend />
     </div>
   );
 }
