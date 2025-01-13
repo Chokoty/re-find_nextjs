@@ -152,7 +152,7 @@ export default function FanartWorldCup() {
               <div className="h-full w-1/2">
                 <img
                   className="bg-gray-700"
-                  src={`https://rerurureruru.com${winInfo.direction === 'left' ? data : data2}`}
+                  src={`fanart_info${winInfo.direction === 'left' ? data : data2}`}
                   alt="test"
                 />
               </div>

@@ -61,9 +61,7 @@ export default function RootLayout({
           <Header />
           {/* main height: includes header + mobileTabBar */}
           {/* <main className="overflow-x-hidden py-[calc(60px+16px)]"> */}
-          <main className="h-full overflow-x-hidden pt-[calc(60px)]">
-            {children}
-          </main>
+          <main className="overflow-x-hidden pt-[calc(60px)]">{children}</main>
           <MobileTabBar />
           <div id="modal-root" />
         </Providers>

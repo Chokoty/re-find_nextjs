@@ -65,14 +65,14 @@ export default function ArtistProfile({ nickname, profile }: Props) {
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast.success('프로필 링크가 클립보드에 복사되었습니다.');
+      toast.success('링크를 클립보드에 복사했어요.');
     });
   };
 
   const total = best_cnt + goldhand_cnt + wak_cnt + isd_cnt + gomem_cnt;
   return (
     <div className="mt-2.5 flex flex-col items-center">
-      <Popover>
+      <Popover openAtFirstTime>
         <PopoverTrigger size="9xl">
           <Image
             src={author_prof_url}
@@ -85,7 +85,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
             referrerPolicy="no-referrer" // 네이버 리소스 서버에서 요청 오리진 검증 우회
           />
         </PopoverTrigger>
-        <PopoverContent position="bottom-center" isForceOpen>
+        <PopoverContent position="bottom-center">
           <PopoverBody>
             <p className="my-2 text-center text-lg font-bold">
               작가님들의 2024 활동 돌아보기
@@ -129,7 +129,10 @@ export default function ArtistProfile({ nickname, profile }: Props) {
           target="_blank"
           className="link-to-wakzoo_detail"
         >
-          <Button additionalClass="rounded-full dark:bg-whiteAlpha-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-blackAlpha-700 font-semibold text-blackAlpha-900 hover:bg-blackAlpha-900 active:bg-gray-300  max-w-[73px] text-base h-[48px]">
+          <Button
+            intent={`solid-secondary` as CustomVariantProps['intent']}
+            additionalClass=" flex rounded-full text-whiteAlpha-900 font-semibold h-[48px] p-4"
+          >
             <p className="text-white">왁물원</p>
           </Button>
         </Link>

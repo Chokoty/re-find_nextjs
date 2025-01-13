@@ -4,6 +4,9 @@ export type MonthlyResult = {
   month: number;
   id: number;
   img_url: string;
+  // view: number;
+  // likes: number;
+  // comments: number;
 };
 
 export function convertBestArticleToMonthlyArray(

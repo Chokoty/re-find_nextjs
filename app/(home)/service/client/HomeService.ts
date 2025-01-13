@@ -14,7 +14,7 @@ class HomeService extends Service {
   }
 
   getRecentUpdates() {
-    return this.http.get<RecentBoardData[]>(`/last_update_info`);
+    return this.http.get<RecentBoardData[]>(`/v2/last_update_info`);
   }
 }
 

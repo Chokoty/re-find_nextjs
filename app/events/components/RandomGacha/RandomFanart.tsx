@@ -20,7 +20,7 @@ import type { CheckBoxType } from '@/types';
 
 const initCheckboxValues = {
   isd: true,
-  wak: true,
+  woowakgood: true,
   gomem: true,
 };
 
@@ -85,9 +85,9 @@ export default function RandomFanart() {
                   이세돌
                 </Checkbox>
                 <Checkbox
-                  name="wak"
+                  name="woowakgood"
                   onChange={handleCheckboxChange}
-                  defaultChecked={checkboxValues.wak}
+                  defaultChecked={checkboxValues.woowakgood}
                 >
                   우왁굳
                 </Checkbox>
