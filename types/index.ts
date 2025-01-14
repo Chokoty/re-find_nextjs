@@ -62,8 +62,7 @@ export interface Member {
 }
 
 export interface Gallery {
-  id: number;
-  value: string;
+  id: string;
   type: string;
   title: string;
   subTitle: string;
