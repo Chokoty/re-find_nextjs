@@ -89,7 +89,7 @@ export type DateType = {
 // service (api)
 
 export type GetKeywordGalleryArtworksParams = {
-  query: string;
+  galleryType: string;
   sortType: string;
 };
 

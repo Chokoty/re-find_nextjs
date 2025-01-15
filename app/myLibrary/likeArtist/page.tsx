@@ -55,7 +55,7 @@ export default async function page({ params: { name } }: Params) {
       name === 'isdPick'
         ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
         : queryOptions.galleryArtworks({
-            query: endpoint ?? '',
+            galleryType: endpoint ?? '',
             // sortType: 'alzaltak',
             sortType: 'latest',
           });

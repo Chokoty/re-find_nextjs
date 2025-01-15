@@ -40,7 +40,6 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
 }
 
 export default async function page({ params: { name } }: Params) {
-  const endpoint = `v2/gallery_artworks?gallery=${name}`;
   // const endpoint =
   // MEMBERS.find((item) => item.value === name)?.query ||
   // GALLERY_LIST.find((item) => item.id === name)?.query ||
@@ -48,16 +47,21 @@ export default async function page({ params: { name } }: Params) {
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     // name이 isdPick이면 isdNoticeArtworks를 호출하고, 그렇지 않으면 galleryArtworks를 호출한다.
-    const { queryKey, queryFn } =
-      name === 'isdPick'
-        ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
-        : queryOptions.galleryArtworks({
-            // query: endpoint ?? '',
-            query: `v2/gallery_artworks?gallery=${name}`,
-            // sortType: 'alzaltak',
-            sortType: 'latest',
-          });
-
+    // const { queryKey, queryFn } =
+    //   name === 'isdPick'
+    //     ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
+    //     : queryOptions.galleryArtworks({
+    //         // query: endpoint ?? '',
+    //         galleryType: `v2/gallery_artworks?gallery=${name}`,
+    //         // sortType: 'alzaltak',
+    //         sortType: 'latest',
+    //       });
+        const { queryKey, queryFn } = queryOptions.galleryArtworks({
+          // query: endpoint ?? '',
+          galleryType: name,
+          // sortType: 'alzaltak',
+          sortType: 'latest',
+        })
     // 쿼리 생성
     const query = await getDehydratedInfiniteQuery({
       queryKey,
@@ -77,8 +81,6 @@ export default async function page({ params: { name } }: Params) {
               albumType={
                 GALLERY_LIST.find((item) => item.id === name)?.type ?? ''
               }
-              // endpoint={endpoint ?? ''}
-              endpoint={endpoint ?? ''}
             />
           </Hydrate>
         </section>
@@ -96,7 +98,6 @@ export default async function page({ params: { name } }: Params) {
         <DetailedGallery
           value={name}
           albumType={GALLERY_LIST.find((item) => item.id === name)?.type ?? ''}
-          endpoint={endpoint ?? ''}
         />
       </section>
     </div>
