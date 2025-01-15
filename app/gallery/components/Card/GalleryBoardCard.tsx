@@ -27,11 +27,7 @@ export default function GalleryBoardCard({
   // const boardUrl = `/search?board=${value}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
 
   const transformedValue =
-    id === 'gomemBoard'
-      ? 'gomem'
-      : id === 'wakgoodBoard'
-        ? 'woowakgood'
-        : id;
+    id === 'gomemBoard' ? 'gomem' : id === 'wakgoodBoard' ? 'woowakgood' : id;
   const bgColor =
     PASTEL_COLORS[id as keyof typeof PASTEL_COLORS] || 'bg-teal-200';
   return (

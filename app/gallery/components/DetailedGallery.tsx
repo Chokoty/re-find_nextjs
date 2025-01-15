@@ -20,7 +20,10 @@ type Props = {
   albumType: string;
 };
 // TODO: 4번 렌더링되는 문제 해결 필요
-export default function DetailedGallery({ value: galleryType, albumType }: Props) {
+export default function DetailedGallery({
+  value: galleryType,
+  albumType,
+}: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sortTypeInit = searchParams.get('sortType') ?? '';
@@ -79,7 +82,7 @@ export default function DetailedGallery({ value: galleryType, albumType }: Props
 
   const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 / 가리기
   const { total, status, artworks, fetchNextPage, isFetchingNextPage } =
-  useGalleryArtworks({ sortType, galleryType });
+    useGalleryArtworks({ sortType, galleryType });
   const { setTotal } = useFanartTotalCountStore((state) => ({
     setTotal: state.setTotal,
   }));
