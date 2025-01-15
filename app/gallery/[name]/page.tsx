@@ -56,12 +56,12 @@ export default async function page({ params: { name } }: Params) {
     //         // sortType: 'alzaltak',
     //         sortType: 'latest',
     //       });
-        const { queryKey, queryFn } = queryOptions.galleryArtworks({
-          // query: endpoint ?? '',
-          galleryType: name,
-          // sortType: 'alzaltak',
-          sortType: 'latest',
-        })
+    const { queryKey, queryFn } = queryOptions.galleryArtworks({
+      // query: endpoint ?? '',
+      galleryType: name,
+      // sortType: 'alzaltak',
+      sortType: 'latest',
+    });
     // 쿼리 생성
     const query = await getDehydratedInfiniteQuery({
       queryKey,
