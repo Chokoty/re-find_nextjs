@@ -5,7 +5,10 @@ import type {
 } from '@/types';
 
 const queryKeys = {
-  galleryArtworks: ({ galleryType, sortType }: GetKeywordGalleryArtworksParams) =>
+  galleryArtworks: ({
+    galleryType,
+    sortType,
+  }: GetKeywordGalleryArtworksParams) =>
     ['galleryArtworks', galleryType, sortType] as const,
   isdNotices: ({ member, ranktype }: GetIsdNoticeArtworksParams) =>
     ['isdNotices', member, ranktype] as const,
@@ -13,7 +16,10 @@ const queryKeys = {
 };
 
 const queryOptions = {
-  galleryArtworks: ({ galleryType, sortType }: GetKeywordGalleryArtworksParams) => ({
+  galleryArtworks: ({
+    galleryType,
+    sortType,
+  }: GetKeywordGalleryArtworksParams) => ({
     queryKey: queryKeys.galleryArtworks({ galleryType, sortType }),
     queryFn: ({ pageParam }: { pageParam: number }) =>
       GalleryService.getGalleryArtworksByKeyword({
