@@ -72,6 +72,20 @@ declare global {
     is_hyum: boolean;
   }
 
+  export interface GalleryInfo {
+    id: string;
+    title: string;
+    description: string;
+    cover_image: string;
+    query: string;
+    author: string;
+    subTitle: string;
+  }
+
+  export interface GalleryList {
+    list: GalleryInfo[];
+  }
+
   export interface GalleryArtworks {
     lastPage: boolean;
     total: number;

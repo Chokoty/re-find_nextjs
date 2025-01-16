@@ -62,8 +62,7 @@ export interface Member {
 }
 
 export interface Gallery {
-  id: number;
-  value: string;
+  id: string;
   type: string;
   title: string;
   subTitle: string;
@@ -90,7 +89,7 @@ export type DateType = {
 // service (api)
 
 export type GetKeywordGalleryArtworksParams = {
-  query: string;
+  galleryType: string;
   sortType: string;
 };
 

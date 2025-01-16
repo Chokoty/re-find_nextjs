@@ -8,28 +8,34 @@ import type {
 class GalleryService extends Service {
   // 키워드 갤러리 작품들 가져오기
   async getGalleryArtworksByKeyword({
-    query,
+    galleryType,
     sortType,
     page,
   }: GetKeywordGalleryArtworksParams & PageNum) {
-    const url = `/${query}&ranktype=${sortType}&per_page=${ROWS_PER_PAGE}&page=${page}`;
+    const url = `/v2/gallery_artworks?gallery=${galleryType}&sorttype=${sortType}&per_page=${ROWS_PER_PAGE}&page=${page}`;
     return this.http.get<GalleryArtworks>(url);
+  }
+
+  // 갤러리 목록 가져오기 (추가된 메서드)
+  async getGalleries() {
+    const url = `/v2/galleries`;
+    return this.http.get<GalleryList>(url);
   }
 
   // 이세돌 공지사항에 이세돌 멤버들이 직접 골라서 업로드한 팬아트들을 확인할 수 있습니다.
   // ranktype Type 만들어서 사용하기
-  getIsdNoticesArtworks({
-    member,
-    ranktype,
-    page,
-  }: GetIsdNoticeArtworksParams & PageNum) {
-    const memberQuery = member !== 'isd' ? `&member=${member}` : '';
-    const url =
-      `/isd_notice_per_page?ranktype=${ranktype}&per_page=${ROWS_PER_PAGE}&page=${page}`.concat(
-        memberQuery
-      );
-    return this.http.get<IsdNoticeArtworks>(url);
-  }
+  // getIsdNoticesArtworks({
+  //   member,
+  //   ranktype,
+  //   page,
+  // }: GetIsdNoticeArtworksParams & PageNum) {
+  //   const memberQuery = member !== 'isd' ? `&member=${member}` : '';
+  //   const url =
+  //     `/isd_notice_per_page?ranktype=${ranktype}&per_page=${ROWS_PER_PAGE}&page=${page}`.concat(
+  //       memberQuery
+  //     );
+  //   return this.http.get<IsdNoticeArtworks>(url);
+  // }
 
   // 작품(게시글)의 상세 정보를 가져옵니다.
   getArtworkDetail(artworkId: number) {

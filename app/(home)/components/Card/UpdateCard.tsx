@@ -31,14 +31,16 @@ export default function UpdateCard({ update }: Prop) {
 
   const matchingGallery = UPDATED_GALLERY_LIST.find(
     (gallery) => gallery.title === update.board.replace(/&#\d+;/g, '').trim()
-  ) || { value: '' };
+  ) || { id: '' };
+
   const board_link = `/gallery/${
-    matchingGallery.value === 'gomemBoard'
+    matchingGallery.id === 'gomemBoard'
       ? 'gomem'
-      : matchingGallery.value === 'wakgoodBoard'
+      : matchingGallery.id === 'wakgoodBoard'
         ? 'woowakgood'
-        : matchingGallery.value
+        : matchingGallery.id
   }?viewType=masonry&sortType=latest`;
+
   // const board_link = `/gallery/${BOARD_MAP[update.board]}?viewType=masonry&sortType=latest`;
   // const boardUrl = `/search?board=${BOARD_MAP[update.board]}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
 
@@ -72,8 +74,8 @@ export default function UpdateCard({ update }: Prop) {
         <div className="flex flex-col items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2xs:gap-2">
           <Link
             className="flex items-center"
-            href={matchingGallery.value !== '' ? board_link : menu_link}
-            {...(matchingGallery.value !== '' ? {} : { target: '_blank' })}
+            href={matchingGallery.id !== '' ? board_link : menu_link}
+            {...(matchingGallery.id !== '' ? {} : { target: '_blank' })}
           >
             <p className="text-sm 2xs:text-base md:text-lg">
               {update.board.replace(/&#\d+;/g, '').trim()}

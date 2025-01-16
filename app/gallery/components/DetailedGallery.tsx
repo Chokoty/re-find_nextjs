@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import GALLERY_LIST from '@/app/gallery/lib/const';
-import { useArtworks } from '@/app/gallery/service/client/useGalleryService';
+import { useGalleryArtworks } from '@/app/gallery/service/client/useGalleryService';
 import { useFanartTotalCountStore } from '@/app/gallery/store/fanartTotalCountStore';
 import Alert from '@/components/Alert';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
@@ -18,10 +18,12 @@ import { useResponsive } from '@/hooks/useResponsive';
 type Props = {
   value: string;
   albumType: string;
-  endpoint: string;
 };
 // TODO: 4번 렌더링되는 문제 해결 필요
-export default function DetailedGallery({ value, albumType, endpoint }: Props) {
+export default function DetailedGallery({
+  value: galleryType,
+  albumType,
+}: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sortTypeInit = searchParams.get('sortType') ?? '';
@@ -46,7 +48,7 @@ export default function DetailedGallery({ value, albumType, endpoint }: Props) {
 
   // // infinite scroll을 위한 옵저버
   const isMobile = useResponsive();
-  const isIsdPick = value === 'isdPick';
+  // const isIsdPick = value === 'isdPick';
   const option = isMobile ? { rootMargin: '1000px 0px' } : undefined;
   const { ref, inView } = useInView(option);
   // 멤버 선택 > isdPick일 경우
@@ -69,28 +71,27 @@ export default function DetailedGallery({ value, albumType, endpoint }: Props) {
   //   //     : 'alzaltak'
   // ); // 초기 상태 설정'
   const [sortType, setSortType] = useState(() => {
-    console.log(`${sortTypeInit}!!!`);
     if (sortTypeInit !== '') {
       return sortTypeInit;
     }
-    if (albumType === 'keyword' || isIsdPick) {
-      return 'latest';
-    }
+    // if (albumType === 'keyword' || isIsdPick) {
+    //   return 'latest';
+    // }
     return 'alzaltak';
   }); // 초기 상태 설정'
 
   const [isDeletedVisible, setIsDeletedVisible] = useState(false); // 혐잘딱 보이기 / 가리기
   const { total, status, artworks, fetchNextPage, isFetchingNextPage } =
-    useArtworks({ endpoint, sortType, isIsdPick, selected });
+    useGalleryArtworks({ sortType, galleryType });
   const { setTotal } = useFanartTotalCountStore((state) => ({
     setTotal: state.setTotal,
   }));
 
   const updateURL = (SortType: string, ViewType: string, member?: string) => {
     const params = new URLSearchParams();
-    if (isIsdPick && member) {
-      params.append('member', member);
-    }
+    // if (isIsdPick && member) {
+    //   params.append('member', member);
+    // }
     params.append('viewType', ViewType);
     params.append('sortType', SortType);
     // URL에 query string 추가
@@ -161,7 +162,7 @@ export default function DetailedGallery({ value, albumType, endpoint }: Props) {
         onMemberClick={handleMemberClick}
         topOffset={59}
         hasTotalCounter={!shouldHideTotalCounter(name) && !!total}
-        isIsdPick={isIsdPick}
+        // isIsdPick={isIsdPick}
       />
       {status === 'pending' ? (
         <ViewSkeleton view={activeView} />
@@ -177,7 +178,7 @@ export default function DetailedGallery({ value, albumType, endpoint }: Props) {
                     ? artworks
                     : artworks.filter((artwork) => artwork?.is_hyum === false)
                 }
-                isIsdPick={isIsdPick}
+                // isIsdPick={isIsdPick}
                 isDeletedVisible={isDeletedVisible}
               />
             )}

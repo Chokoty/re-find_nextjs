@@ -20,20 +20,16 @@ const PASTEL_COLORS = {
 };
 
 export default function GalleryBoardCard({
-  album: { title, value, description, type, author, query },
+  album: { title, id, description, type, author, query },
 }: Prop) {
   const boardUrl = query || '';
 
   // const boardUrl = `/search?board=${value}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
 
   const transformedValue =
-    value === 'gomemBoard'
-      ? 'gomem'
-      : value === 'wakgoodBoard'
-        ? 'woowakgood'
-        : value;
+    id === 'gomemBoard' ? 'gomem' : id === 'wakgoodBoard' ? 'woowakgood' : id;
   const bgColor =
-    PASTEL_COLORS[value as keyof typeof PASTEL_COLORS] || 'bg-teal-200';
+    PASTEL_COLORS[id as keyof typeof PASTEL_COLORS] || 'bg-teal-200';
   return (
     <div className="relative w-full transition hover:scale-[1.01]">
       {/* <Link href={boardUrl} prefetch={false}> */}

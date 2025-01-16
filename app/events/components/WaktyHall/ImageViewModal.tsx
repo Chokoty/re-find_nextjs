@@ -28,8 +28,8 @@ export default function ImageViewModal(props: Record<string, unknown>) {
 
   const matchingGallery = UPDATED_GALLERY_LIST.find(
     (gallery) => gallery.title === board.replace(/&#\d+;/g, '').trim()
-  ) || { value: '' };
-  const board_link = `/gallery/${matchingGallery.value}?viewType=masonry&sortType=latest`;
+  ) || { id: '' };
+  const board_link = `/gallery/${matchingGallery.id}?viewType=masonry&sortType=latest`;
 
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => {

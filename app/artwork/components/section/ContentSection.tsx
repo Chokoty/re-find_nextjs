@@ -43,8 +43,8 @@ export default function ContentSection({
 
   const matchingGallery = UPDATED_GALLERY_LIST.find(
     (gallery) => gallery.title === board.replace(/&#\d+;/g, '').trim()
-  ) || { value: '' };
-  const board_link = `/gallery/${matchingGallery.value}?viewType=masonry&sortType=latest`;
+  ) || { id: '' };
+  const board_link = `/gallery/${matchingGallery.id}?viewType=masonry&sortType=latest`;
 
   return (
     <div className="my-4 flex w-full flex-col px-2 md:w-[508px]">

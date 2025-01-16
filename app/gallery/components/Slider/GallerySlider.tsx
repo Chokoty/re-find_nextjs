@@ -14,6 +14,7 @@ import {
   LATEST_GALLERY_LIST,
   UPDATED_GALLERY_LIST,
 } from '@/app/gallery/lib/const';
+import queryOptions from '@/app/gallery/service/client/queries';
 import { test } from '@/constants/test';
 
 interface CustomSwiperParams extends SwiperOptions {
@@ -32,6 +33,8 @@ type Props = {
 export default function GallerySlider({ customSwiperOptions, type }: Props) {
   const { style: customStyle, ...customOptions } = customSwiperOptions || {};
 
+  // const { data } = queryOptions.galleries();
+  // console.log(data);
   const swiperParams = {
     // centerInsufficientSlides
     style: {

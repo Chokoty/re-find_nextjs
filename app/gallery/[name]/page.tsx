@@ -40,22 +40,28 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
 }
 
 export default async function page({ params: { name } }: Params) {
-  const endpoint =
-    MEMBERS.find((item) => item.value === name)?.query ||
-    GALLERY_LIST.find((item) => item.value === name)?.query ||
-    UPDATED_GALLERY_LIST.find((item) => item.value === name)?.query;
+  // const endpoint =
+  // MEMBERS.find((item) => item.value === name)?.query ||
+  // GALLERY_LIST.find((item) => item.id === name)?.query ||
+  // UPDATED_GALLERY_LIST.find((item) => item.id === name)?.query;
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     // name이 isdPick이면 isdNoticeArtworks를 호출하고, 그렇지 않으면 galleryArtworks를 호출한다.
-    const { queryKey, queryFn } =
-      name === 'isdPick'
-        ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
-        : queryOptions.galleryArtworks({
-            query: endpoint ?? '',
-            // sortType: 'alzaltak',
-            sortType: 'latest',
-          });
-
+    // const { queryKey, queryFn } =
+    //   name === 'isdPick'
+    //     ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
+    //     : queryOptions.galleryArtworks({
+    //         // query: endpoint ?? '',
+    //         galleryType: `v2/gallery_artworks?gallery=${name}`,
+    //         // sortType: 'alzaltak',
+    //         sortType: 'latest',
+    //       });
+    const { queryKey, queryFn } = queryOptions.galleryArtworks({
+      // query: endpoint ?? '',
+      galleryType: name,
+      // sortType: 'alzaltak',
+      sortType: 'latest',
+    });
     // 쿼리 생성
     const query = await getDehydratedInfiniteQuery({
       queryKey,
@@ -73,9 +79,8 @@ export default async function page({ params: { name } }: Params) {
             <DetailedGallery
               value={name}
               albumType={
-                GALLERY_LIST.find((item) => item.value === name)?.type ?? ''
+                GALLERY_LIST.find((item) => item.id === name)?.type ?? ''
               }
-              endpoint={endpoint ?? ''}
             />
           </Hydrate>
         </section>
@@ -92,10 +97,7 @@ export default async function page({ params: { name } }: Params) {
       <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
         <DetailedGallery
           value={name}
-          albumType={
-            GALLERY_LIST.find((item) => item.value === name)?.type ?? ''
-          }
-          endpoint={endpoint ?? ''}
+          albumType={GALLERY_LIST.find((item) => item.id === name)?.type ?? ''}
         />
       </section>
     </div>

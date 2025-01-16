@@ -23,8 +23,8 @@ const getTitleInfo = (type: string) => {
     };
   }
 
-  const album = GALLERY_LIST.find((item) => item.value === type);
-  const board = UPDATED_GALLERY_LIST.find((item) => item.value === type);
+  const album = GALLERY_LIST.find((item) => item.id === type);
+  const board = UPDATED_GALLERY_LIST.find((item) => item.id === type);
   const member = MEMBERS.find((item) => item.value === type);
 
   return {
