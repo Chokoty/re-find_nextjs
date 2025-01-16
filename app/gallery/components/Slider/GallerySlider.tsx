@@ -10,11 +10,8 @@ import MoreButton from '@/app/gallery/components/Button/MoreButton';
 import GalleryAlbumCard from '@/app/gallery/components/Card/GalleryAlbumCard';
 import GalleryBoardCard from '@/app/gallery/components/Card/GalleryBoardCard';
 import GalleryFanartCard from '@/app/gallery/components/Card/GalleryFanartCard';
-import {
-  LATEST_GALLERY_LIST,
-  UPDATED_GALLERY_LIST,
-} from '@/app/gallery/lib/const';
-import queryOptions from '@/app/gallery/service/client/queries';
+import { UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
+import { useGalleryList } from '@/app/gallery/service/client/useGalleryService';
 import { test } from '@/constants/test';
 
 interface CustomSwiperParams extends SwiperOptions {
@@ -32,9 +29,7 @@ type Props = {
 
 export default function GallerySlider({ customSwiperOptions, type }: Props) {
   const { style: customStyle, ...customOptions } = customSwiperOptions || {};
-
-  // const { data } = queryOptions.galleries();
-  // console.log(data);
+  const { data: galleryList, isLoading, isError } = useGalleryList();
   const swiperParams = {
     // centerInsufficientSlides
     style: {
@@ -92,12 +87,24 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
             ))}
           </>
         );
-      case 'album':
-        return LATEST_GALLERY_LIST.map((data) => (
+      case 'album': {
+        if (isError) {
+          return <div>error</div>;
+        }
+        if (isLoading) {
+          return null;
+          // return <div>isLoading</div>
+        }
+        if (!galleryList) {
+          return null;
+        }
+
+        return galleryList.galleries.map((data) => (
           <SwiperSlide key={data.id} className="overflow-hidden">
             <GalleryAlbumCard album={data} />
           </SwiperSlide>
         ));
+      }
       default:
         return null;
     }

@@ -83,7 +83,7 @@ declare global {
   }
 
   export interface GalleryList {
-    list: GalleryInfo[];
+    galleries: GalleryInfo[];
   }
 
   export interface GalleryArtworks {

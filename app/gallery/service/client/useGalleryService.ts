@@ -39,6 +39,10 @@ export function useGalleryArtworks({
   };
 }
 
+export function useGalleryList() {
+  return useQuery(queryOptions.galleries());
+}
+
 // export function useNoticeArtworks({
 //   member,
 //   ranktype,

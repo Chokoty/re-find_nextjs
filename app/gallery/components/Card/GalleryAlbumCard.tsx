@@ -12,10 +12,9 @@ import Popover, {
   PopoverHeader,
   PopoverTrigger,
 } from '@/components/Popover';
-import type { Gallery } from '@/types';
 
 type Prop = {
-  album: Gallery;
+  album: GalleryInfo;
 };
 
 const getBadgeText = ({
@@ -35,19 +34,19 @@ const getBadgeText = ({
 };
 
 export default function GalleryAlbumCard({
-  album: { title, id, description, type, author },
+  album: { title, id, description, author, cover_image },
 }: Prop) {
   // const query = {
   //   sortType: 'alzaltak',
   // };
-  const sortType = useMemo(() => {
-    if (type === 'keyword' || id === 'isdPick') {
-      return 'latest';
-    }
-    return 'alzaltak';
-  }, [type, id]);
+  // const sortType = useMemo(() => {
+  //   if (type === 'keyword' || id === 'isdPick') {
+  //     return 'latest';
+  //   }
+  //   return 'alzaltak';
+  // }, [type, id]);
 
-  const staticImage = getStaticImage(id);
+  // const staticImage = getStaticImage(id);
   return (
     <div className="relative w-full transition hover:scale-[1.01]">
       {/* 출처(작가) */}
@@ -90,13 +89,14 @@ export default function GalleryAlbumCard({
         prefetch={false}
       > */}
       <Link
-        href={`/gallery/${id}?viewType=masonry&sortType=${sortType}`}
+        // href={`/gallery/${id}?viewType=masonry&sortType=${sortType}`}
+        href={`/gallery/${id}?viewType=masonry`}
         prefetch={false}
       >
         <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">
           <Image
             className="rounded-2xl object-cover"
-            src={staticImage}
+            src={cover_image}
             alt={title}
             fill
             priority
@@ -110,7 +110,7 @@ export default function GalleryAlbumCard({
         >
           <div className="flex items-center justify-center rounded-[16px] bg-blackAlpha-500 px-2.5 py-1.5 md:px-3 md:py-2 min-[840px]:px-3.5 min-[840px]:py-2.5">
             <p className="text-xs font-normal text-white md:text-sm">
-              {getBadgeText({ badgeType: type, badgeValue: id })}
+              {/* {getBadgeText({ badgeType: type, badgeValue: id })} */}
             </p>
           </div>
           <div className="flex w-full items-center justify-between">
