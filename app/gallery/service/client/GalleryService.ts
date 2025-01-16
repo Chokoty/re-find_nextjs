@@ -16,6 +16,12 @@ class GalleryService extends Service {
     return this.http.get<GalleryArtworks>(url);
   }
 
+  // 갤러리 목록 가져오기 (추가된 메서드)
+  async getGalleries() {
+    const url = `/v2/galleries`;
+    return this.http.get<GalleryList>(url);
+  }
+
   // 이세돌 공지사항에 이세돌 멤버들이 직접 골라서 업로드한 팬아트들을 확인할 수 있습니다.
   // ranktype Type 만들어서 사용하기
   // getIsdNoticesArtworks({
