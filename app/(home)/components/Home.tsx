@@ -66,20 +66,20 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="mx-auto mt-2 flex w-full  flex-wrap items-start justify-center gap-2  px-2 pb-[60px]">
+    <div className="mx-auto mt-2 flex w-full items-start justify-center gap-2 px-2 pb-[60px]">
       {/* desktop: left / mobile: top */}
-      <section className="flex w-[360px] flex-col items-center justify-center overflow-y-auto rounded-2xl dark:bg-dark-card">
+      <section className="flex w-1/3 flex-col items-center justify-center overflow-y-auto rounded-2xl dark:bg-dark-card">
         <TopTitle />
         <Upload />
         <RandomGacha />
       </section>
       {/* desktop: right / mobile: bottom */}
-      <section className="flex grow  flex-col items-center justify-center overflow-y-auto rounded-2xl">
-        {/* <BannerSlider /> */}
+      <section className="flex w-2/3 grow flex-col items-center justify-center overflow-y-auto rounded-2xl">
+        <BannerSlider />
         <div className="w-full rounded-xl border-[1px] border-dark-myText bg-white py-6 shadow-sm dark:border-0 dark:bg-dark-card">
           {/* <ThisWeekTop /> */}
-          {/* <RefindPick /> */}
-          {/* <BoardList /> */}
+          <RefindPick />
+          <BoardList />
           <MemberAlbum />
         </div>
         <Footer />

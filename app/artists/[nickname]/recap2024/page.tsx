@@ -1,4 +1,5 @@
 // import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
+
 import TopContent from '@/app/recap2024/components/TopContent';
 import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
 import type { StatisticsData } from '@/app/recap2024/page';

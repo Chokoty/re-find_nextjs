@@ -1,9 +1,9 @@
 'use client';
 
-import Counter from '@/app/recap2024/components/Counter';
-import StatisticCard from '@/app/recap2024/components/StatisticCard';
-import Title from '@/app/recap2024/components/Title';
 import type { StatisticsData } from '@/app/recap2024/page';
+import Counter from '@/components/Recap/Counter';
+import StatisticCard from '@/components/Recap/StatisticCard';
+import Title from '@/components/Recap/Title';
 
 export default function TopContent({
   artist,

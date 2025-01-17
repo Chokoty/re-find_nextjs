@@ -1,7 +1,7 @@
 'use client';
 
-import StatisticCard from '@/app/recap2024/components/StatisticCard';
 import type { StatisticsData } from '@/app/recap2024/page';
+import StatisticCard from '@/components/Recap/StatisticCard';
 
 export default function BottomContent({
   statistics,
