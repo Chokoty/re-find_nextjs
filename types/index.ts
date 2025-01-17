@@ -23,6 +23,8 @@ export type FileWithPreview = File & {
   preview: string;
 };
 
+export type GetLoginQueryParams = { code: string | null; state: string | null };
+
 // artists
 export type SortTotalCriteria = keyof Pick<
   AuthorCommon,
