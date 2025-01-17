@@ -7,7 +7,7 @@ import type { Member as MemberType } from '@/types';
 
 export default function MemberList() {
   return (
-    <ul className="grid w-full grid-cols-2 gap-4 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-8">
+    <ul className="grid w-full grid-cols-2  2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
       {MEMBERS.map((member) => (
         <Member key={member.id} member={member} />
       ))}
@@ -19,14 +19,14 @@ const Member = ({ member }: { member: MemberType }) => {
   const { value, name, greetings } = member;
   const staticImage = getStaticImage(value);
   return (
-    <li className="max-w-[200px] list-none">
+    <li className="max-w-[180px] list-none">
       <Link
         // href={`/gallery/${value}`}
         href={`/gallery/${value}?viewType=masonry&sortType=latest`}
         prefetch={false}
-        className="flex size-full flex-col items-center  justify-center    gap-4 rounded-md p-2 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:p-4 "
+        className="flex size-full flex-col items-center  justify-center    gap-2 rounded-md p-2 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 "
       >
-        <div className="relative size-[85px] md:size-[160px]">
+        <div className="relative size-[85px] md:size-[150px]">
           <Image
             className="rounded-full object-cover"
             src={staticImage}

@@ -15,11 +15,11 @@ export default function Footer() {
         <Link href="/more/support">
           <p className="mb-6 text-sm">문의 및 지원</p>
         </Link>
-        <p className="w-full max-w-[310px] text-sm">
+        <p className="w-full  text-sm">
           RE:FIND는 수익 창출을 하지 않으며 왁타버스 구성원과 팬들을 위해
-          만들어진 팬메이드 비공식 사이트입니다.
+          만들어진 비공식 팬메이드 사이트입니다.
         </p>
-        <p className="mt-8 text-center text-sm">
+        <p className="mt-4 text-start text-sm">
           Copyright &copy; 2025 RE:FIND. All Rights Reserved.
         </p>
       </div>

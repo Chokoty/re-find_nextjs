@@ -22,6 +22,13 @@ const badgeStyles = cva(
         md: 'rounded-sm px-1',
         lg: ' rounded-md px-1.5 py-0.5',
       },
+      rounded: {
+        none: 'rounded-none',
+        sm: 'rounded-sm',
+        md: 'rounded-md',
+        lg: 'rounded-lg',
+        full: 'rounded-full',
+      },
     },
     defaultVariants: {
       size: 'md',
@@ -34,6 +41,7 @@ export default function Badge({ children, intent, size }: BadgeProps) {
   const badgeClassName = badgeStyles({
     intent,
     size,
+    rounded: 'md',
   });
   return <span className={badgeClassName}>{children}</span>;
 }

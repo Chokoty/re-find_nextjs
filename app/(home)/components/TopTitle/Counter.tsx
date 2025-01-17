@@ -14,13 +14,13 @@ export default function Counter() {
           <div className="h-5 w-full rounded-full bg-gray-125 dark:bg-gray-700" />
         </div>
       ) : status === 'error' ? (
-        <p className="text-xs 2xs:text-sm md:text-base lg:text-lg">
+        <p className="text-xs 2xs:text-sm ">
           현재 서버와의 연결이 불안정합니다.
         </p>
       ) : (
         counts && (
           <div className="flex flex-row items-center justify-center gap-1">
-            <p className="text-xs 2xs:text-sm md:text-base lg:text-lg">
+            <p className="text-xs 2xs:text-sm ">
               <CountUp end={parseInt(counts.total_counter)} duration={2} />
             </p>
             <Tooltip
@@ -29,14 +29,12 @@ export default function Counter() {
               bg="gray-150"
               color="black"
             >
-              <Badge>
+              <Badge rounded="full">
                 +
                 <CountUp end={parseInt(counts.today_counter)} duration={5} />
               </Badge>
             </Tooltip>
-            <p className="text-xs 2xs:text-sm md:text-base lg:text-lg">
-              개의 출처를 찾았습니다.
-            </p>
+            <p className="text-xs 2xs:text-sm ">개의 출처를 찾았습니다.</p>
           </div>
         )
       )}

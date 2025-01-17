@@ -9,13 +9,16 @@ import RandomGacha from '@/app/(home)/components/RandomGacha';
 import RefindRecapNotificationModal from '@/app/(home)/components/RefindRecapNotificationModal';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
+import BoardList from '@/app/gallery/components/BoardList';
+import MemberAlbum from '@/app/gallery/components/MemberAlbum';
+// import { useRouter } from 'next/navigation';
+import RefindPick from '@/app/gallery/components/RefindPick';
 import MoreButtons from '@/components/Button/MoreButtons';
 import AppInstallModal from '@/components/Modal/AppInstallModal';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
-// import { useRouter } from 'next/navigation';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),
@@ -63,23 +66,22 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="mx-auto mt-2 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 pb-[60px] md:px-4">
+    <div className="mx-auto mt-2 flex w-full  flex-wrap items-start justify-center gap-2  px-2 pb-[60px]">
       {/* desktop: left / mobile: top */}
-      <section className="flex w-full max-w-[700px] flex-col items-center justify-center">
-        <BannerSlider />
+      <section className="flex w-[360px] flex-col items-center justify-center overflow-y-auto rounded-2xl dark:bg-dark-card">
         <TopTitle />
         <Upload />
+        <RandomGacha />
       </section>
       {/* desktop: right / mobile: bottom */}
-      <section className="flex max-w-[360px] flex-col items-center justify-center">
-        <div className="hidden w-full flex-col items-center rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card md:flex">
-          <h2 className="w-full text-start text-xl font-bold leading-5">
-            좀 더!
-          </h2>
-          <MoreButtons />
+      <section className="flex grow  flex-col items-center justify-center overflow-y-auto rounded-2xl">
+        {/* <BannerSlider /> */}
+        <div className="w-full rounded-xl border-[1px] border-dark-myText bg-white py-6 shadow-sm dark:border-0 dark:bg-dark-card">
+          {/* <ThisWeekTop /> */}
+          {/* <RefindPick /> */}
+          {/* <BoardList /> */}
+          <MemberAlbum />
         </div>
-        <RandomGacha />
-        <UpdateLogBoard />
         <Footer />
       </section>
     </div>
