@@ -5,9 +5,12 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Suspense } from 'react';
+import { MdHomeFilled } from 'react-icons/md';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 import BackButton from '@/components/Button/BackButton';
+import WorldcupSkipButton from '@/components/Button/WorldcupSkipButton';
 import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
 import DesktopMenuTab from '@/components/Header/DesktopMenuTab';
 import { useScroll } from '@/hooks/useScroll';
@@ -25,8 +28,8 @@ export default function Header() {
 
   return (
     <header
-      className={clsx('fixed top-0 z-[200] h-[60px] w-full transition', {
-        'bg-white dark:bg-dark-card': !isNotScrollingGalleryPage,
+      className={clsx('fixed top-0 z-[200] h-[64px] w-full transition', {
+        'bg-white dark:bg-dark-background': !isNotScrollingGalleryPage,
         'bg-blackAlpha-500 backdrop-blur': isNotScrollingGalleryPage,
       })}
     >
@@ -51,31 +54,36 @@ const etcPathMap = {
   '/more/support': '문의',
   '/more/about': '소개',
   '/more': '좀 더!',
-  '/events': '이벤트관',
-  '/events/randomGacha': '이벤트관',
-  '/register': '회원가입',
-  '/register_success': '회원가입',
+  '/events': '이벤트',
+  '/events/randomGacha': '이벤트',
+  '/events/fanartWorldCup': '고공전',
+  '/events/fanartWorldCup/credit': '크레딧',
+  '/events/gomemVotePredict': '2024 고멤 인기투표 예측',
 } as const;
 
 type EtcPathMapKeyType = keyof typeof etcPathMap;
 
 const HeaderContent = () => {
   const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
-  const isRegister = pathname.startsWith('/register');
-  const isRegisterSucess = pathname.startsWith('/register_success');
-  const isSearchPage = pathname.startsWith('/search');
 
   // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
-  if (isMorePath || isEvents || isRegister || isRegisterSucess) {
+  if (isMorePath || isEvents) {
     return (
       <>
         <BackButton />
         <h1 className="flex items-center justify-center text-xl font-bold">
           {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
         </h1>
-        <div className="size-12" />
+        {name === 'fanartWorldCup' ? (
+          <WorldcupSkipButton />
+        ) : (
+          <div className="size-12" />
+        )}
       </>
     );
   }
@@ -96,7 +104,9 @@ const HeaderContent = () => {
         </div>
         <DesktopHeaderTab />
       </div>
-      {!isSearchPage && <SearchModalOpener />}
+      <Suspense>
+        <SearchModalOpener />
+      </Suspense>
       <DesktopMenuTab />
     </>
   );

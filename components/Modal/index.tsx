@@ -20,32 +20,36 @@ const animationMap = {
   },
   bottom: {
     render: 'animate-modalRenderFromBottom',
-    // remove: 'animate-modalRemove',
-    remove: 'animate-modalRemoveFromBottom',
+    remove: 'animate-modalRemove',
+  },
+  default: {
+    render: 'animate-modalRender',
+    remove: 'animate-modalRemove',
   },
 } as const;
 
 // 디폴트: 포지션(가운데), 렌더 애니메이션(밑)
 export default function Modal({ Component, modalProps, hide }: Props) {
   const position = modalProps?.position ?? 'center';
-  const animationPosition = modalProps?.position ?? 'bottom';
-  const size = modalProps?.size ?? 'basic';
+  const animationPosition = modalProps?.animateDir ?? 'default';
   const ANIMATION_RENDER =
     animationMap[animationPosition as AnimationRenderPositionType].render;
   const ANIMATION_REMOVE =
     animationMap[animationPosition as AnimationRenderPositionType].remove;
   const isCelebrating = (modalProps?.congrat as boolean) || undefined;
+  // applyCustomMaxWidth가 true일경우 custom modal 내부에서도 max-width를 주어야 적용됩니다. (ex. OptionModal.tsx)
+  const applyCustomMaxWidth = modalProps?.applyCustomMaxWidth ?? false;
 
   const modalRef = useRef<HTMLDivElement>(null);
   const { width, height } = useWindowSize();
   const [className, setClassName] = useState<string>(ANIMATION_RENDER);
 
   // 모달이 렌더링 될 때 focus를 modal로 이동
-  useEffect(() => {
-    if (modalRef.current) {
-      modalRef.current.focus();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (modalRef.current) {
+  //     modalRef.current.focus();
+  //   }
+  // }, []);
 
   // 기본은 backdrop 클릭시 닫히지않도록 설정, show함수에 isBackdropClick: true를 넘겨주면 backdrop 클릭시 닫히도록 설정
   const handleBackdropClick = () => {
@@ -83,9 +87,11 @@ export default function Modal({ Component, modalProps, hide }: Props) {
   return (
     <FocusLock>
       <div
-        className={clsx('fixed inset-0 z-[201] size-full bg-blackAlpha-600', {
-          'flex items-center justify-center': position === 'center',
-          block: position === 'top',
+        className={clsx('fixed inset-0 z-[201] size-full', {
+          'block bg-blackAlpha-600': position === 'top',
+          'flex items-center justify-center bg-blackAlpha-600':
+            position === 'center',
+          'flex items-end justify-center': position === 'bottom',
         })}
         onClick={handleBackdropClick}
       >
@@ -94,15 +100,18 @@ export default function Modal({ Component, modalProps, hide }: Props) {
           <div
             tabIndex={-1}
             ref={modalRef}
-            className={clsx(className, {
-              'sm:mx-auto sm:w-full sm:max-w-[70%]': size === 'basic',
-              'size-full': size === 'full',
-            })}
+            className={clsx(
+              `flex justify-center transition-all duration-500 ease-out sm:mx-auto sm:w-full ${applyCustomMaxWidth ? 'sm:max-w-fit' : 'sm:max-w-[435px]'}`,
+              {
+                [className]: true,
+                'mb-[60px] w-full': position === 'bottom',
+              }
+            )}
             onClick={(e) => e.stopPropagation()} // modal 바깥 클릭시 닫히지 않도록 설정
             onAnimationEnd={handleAnimationEnd}
             onKeyDown={handleKeyDown}
           >
-            <Component {...modalProps} /> {/* 모달을 렌더링 */}
+            <Component {...modalProps} />
           </div>
         </ModalHideContext.Provider>
       </div>

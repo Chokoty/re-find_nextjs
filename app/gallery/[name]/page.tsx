@@ -3,7 +3,10 @@ import type { Metadata } from 'next';
 import DetailedGallery from '@/app/gallery/components/DetailedGallery';
 import GalleryTitle from '@/app/gallery/components/GalleryTitle';
 import TopBackground from '@/app/gallery/components/TopBackground';
-import GALLERY_LIST, { MEMBERS } from '@/app/gallery/lib/const';
+import GALLERY_LIST, {
+  MEMBERS,
+  UPDATED_GALLERY_LIST,
+} from '@/app/gallery/lib/const';
 import queryOptions from '@/app/gallery/service/client/queries';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
@@ -37,20 +40,28 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
 }
 
 export default async function page({ params: { name } }: Params) {
-  const endpoint =
-    MEMBERS.find((item) => item.value === name)?.query ||
-    GALLERY_LIST.find((item) => item.value === name)?.query;
+  // const endpoint =
+  // MEMBERS.find((item) => item.value === name)?.query ||
+  // GALLERY_LIST.find((item) => item.id === name)?.query ||
+  // UPDATED_GALLERY_LIST.find((item) => item.id === name)?.query;
 
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     // name이 isdPick이면 isdNoticeArtworks를 호출하고, 그렇지 않으면 galleryArtworks를 호출한다.
-    const { queryKey, queryFn } =
-      name === 'isdPick'
-        ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
-        : queryOptions.galleryArtworks({
-            query: endpoint ?? '',
-            sortType: 'alzaltak',
-          });
-
+    // const { queryKey, queryFn } =
+    //   name === 'isdPick'
+    //     ? queryOptions.isdNoticeArtworks({ member: 'isd', ranktype: 'latest' })
+    //     : queryOptions.galleryArtworks({
+    //         // query: endpoint ?? '',
+    //         galleryType: `v2/gallery_artworks?gallery=${name}`,
+    //         // sortType: 'alzaltak',
+    //         sortType: 'latest',
+    //       });
+    const { queryKey, queryFn } = queryOptions.galleryArtworks({
+      // query: endpoint ?? '',
+      galleryType: name,
+      // sortType: 'alzaltak',
+      sortType: 'latest',
+    });
     // 쿼리 생성
     const query = await getDehydratedInfiniteQuery({
       queryKey,
@@ -63,9 +74,14 @@ export default async function page({ params: { name } }: Params) {
         <TopBackground>
           <GalleryTitle pageType={name} />
         </TopBackground>
-        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-100px] md:top-[-108px] 2md:top-[-180px] xl:top-[-220px]">
+        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
           <Hydrate state={{ queries: [query] }}>
-            <DetailedGallery value={name} endpoint={endpoint ?? ''} />
+            <DetailedGallery
+              value={name}
+              albumType={
+                GALLERY_LIST.find((item) => item.id === name)?.type ?? ''
+              }
+            />
           </Hydrate>
         </section>
       </div>
@@ -78,8 +94,11 @@ export default async function page({ params: { name } }: Params) {
         <GalleryTitle pageType={name} />
       </TopBackground>
       {/* -220px(-60px + -160px) */}
-      <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-100px] md:top-[-108px] 2md:top-[-180px] xl:top-[-220px]">
-        <DetailedGallery value={name} endpoint={endpoint ?? ''} />
+      <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
+        <DetailedGallery
+          value={name}
+          albumType={GALLERY_LIST.find((item) => item.id === name)?.type ?? ''}
+        />
       </section>
     </div>
   );

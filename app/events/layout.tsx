@@ -29,5 +29,5 @@ export default function ArtistLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return <div className="pb-[60px]">{children}</div>;
 }

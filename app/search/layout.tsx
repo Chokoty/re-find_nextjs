@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
+import Loading from '@/app/search/components/Loading';
+import BackToTopButton from '@/components/BackToTopButton';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
@@ -29,5 +32,13 @@ export default function NoticeLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    <div className="pb-[60px]">
+      {children}
+      <Suspense>
+        <Loading />
+      </Suspense>
+      <BackToTopButton />
+    </div>
+  );
 }

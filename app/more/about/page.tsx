@@ -32,7 +32,7 @@ export default function About() {
     <div className="flex w-full flex-col items-center justify-center px-4 text-center">
       <h1 className="mx-auto my-4 text-3xl font-bold">왁물원 게시글</h1>
       <Link
-        className="flex items-center text-green-highlight transition hover:underline dark:text-pink-highlight"
+        className="link-to-wakzoo_about flex items-center text-green-highlight transition hover:underline dark:text-pink-highlight"
         href={'https://cafe.naver.com/steamindiegame/9859159'}
         target="_blank"
       >

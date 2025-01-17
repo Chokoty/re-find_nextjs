@@ -6,16 +6,25 @@ import MasonryCard from '@/components/Card/MasonryCard';
 type Props = {
   artworks: ArtworkList[];
   isDeletedVisible: boolean;
+  isIsdPick?: boolean;
 };
 
-export default function MasonryView({ artworks, isDeletedVisible }: Props) {
+export default function MasonryView({
+  artworks,
+  isDeletedVisible,
+  isIsdPick = false,
+}: Props) {
   const content = () => {
     if (isDeletedVisible) {
       return artworks.map((artwork) => (
         <Measure key={artwork.id}>
           {({ measureRef }) => (
             <div ref={measureRef}>
-              <MasonryCard key={artwork.id} artwork={artwork} />
+              <MasonryCard
+                key={artwork.id}
+                artwork={artwork}
+                isIsdPick={isIsdPick}
+              />
             </div>
           )}
         </Measure>
@@ -31,7 +40,11 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
                 ref={measureRef}
                 className="flex items-center justify-center"
               >
-                <MasonryCard key={artwork.id} artwork={artwork} />
+                <MasonryCard
+                  key={artwork.id}
+                  artwork={artwork}
+                  isIsdPick={isIsdPick}
+                />
               </div>
             )}
           </Measure>
@@ -44,14 +57,14 @@ export default function MasonryView({ artworks, isDeletedVisible }: Props) {
     <ResponsiveMasonry
       className="w-full"
       columnsCountBreakPoints={{
-        350: 2,
-        590: 3,
-        830: 4,
-        1110: 5,
-        1350: 6,
-        1528: 7,
-        1792: 8,
-        2020: 9,
+        349: 2,
+        739: 3,
+        983: 4,
+        1184: 5,
+        1421: 6,
+        1658: 7,
+        1959: 8,
+        2203: 9,
       }}
     >
       <Masonry gutter="10px">{content()}</Masonry>

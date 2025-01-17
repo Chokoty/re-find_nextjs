@@ -18,7 +18,7 @@ export default function NoticeCard({ date, type, content, directLink }: Props) {
           <Link
             href={directLink}
             target="_blank"
-            className="text-green-highlight dark:text-pink-highlight"
+            className="link-to-wakzoo text-green-highlight dark:text-pink-highlight"
           >
             <div className="flex items-center">
               <p className="text-sm">링크</p>

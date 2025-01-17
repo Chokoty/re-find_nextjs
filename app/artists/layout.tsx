@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 
+import BackToTopButton from '@/components/BackToTopButton';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
@@ -29,5 +30,11 @@ export default function ArtistLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  return (
+    // <div className="pb-[60px] dark:bg-recap-pattern">
+    <div className="">
+      {children}
+      <BackToTopButton />
+    </div>
+  );
 }

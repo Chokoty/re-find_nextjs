@@ -8,8 +8,10 @@ import type { SwiperOptions } from 'swiper/types';
 
 import MoreButton from '@/app/gallery/components/Button/MoreButton';
 import GalleryAlbumCard from '@/app/gallery/components/Card/GalleryAlbumCard';
+import GalleryBoardCard from '@/app/gallery/components/Card/GalleryBoardCard';
 import GalleryFanartCard from '@/app/gallery/components/Card/GalleryFanartCard';
-import GALLERY_LIST from '@/app/gallery/lib/const';
+import { UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
+import { useGalleryList } from '@/app/gallery/service/client/useGalleryService';
 import { test } from '@/constants/test';
 
 interface CustomSwiperParams extends SwiperOptions {
@@ -17,7 +19,7 @@ interface CustomSwiperParams extends SwiperOptions {
   style: Record<string, string>;
 }
 
-type SliderType = 'fanart' | 'album';
+type SliderType = 'fanart' | 'album' | 'board';
 // type isFanartData = (data: FanartData | AlbumData) => data is FanartData;
 
 type Props = {
@@ -27,7 +29,7 @@ type Props = {
 
 export default function GallerySlider({ customSwiperOptions, type }: Props) {
   const { style: customStyle, ...customOptions } = customSwiperOptions || {};
-
+  const { data: galleryList, isLoading, isError } = useGalleryList();
   const swiperParams = {
     // centerInsufficientSlides
     style: {
@@ -55,30 +57,62 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
     },
     ...customOptions,
   };
-  return (
-    <Swiper {...swiperParams}>
-      {type === 'fanart' ? (
-        <>
-          {test.map((data, index) => (
-            <SwiperSlide key={data.id}>
-              <GalleryFanartCard
-                key={index}
-                artwork={data}
-                num={index < 3 ? index + 1 : -1}
-              />
+
+  const renderSlides = () => {
+    switch (type) {
+      case 'fanart':
+        return (
+          <>
+            {test.map((data, index) => (
+              <SwiperSlide key={data.id}>
+                <GalleryFanartCard
+                  key={index}
+                  artwork={data}
+                  num={index < 3 ? index + 1 : -1}
+                />
+              </SwiperSlide>
+            ))}
+            <SwiperSlide>
+              <MoreButton />
             </SwiperSlide>
-          ))}
-          <SwiperSlide>
-            <MoreButton />
-          </SwiperSlide>
-        </>
-      ) : (
-        GALLERY_LIST.map((data) => (
-          <SwiperSlide key={data.id}>
+          </>
+        );
+      case 'board':
+        return (
+          <>
+            {UPDATED_GALLERY_LIST.map((data) => (
+              <SwiperSlide key={data.id} className="overflow-hidden">
+                <GalleryBoardCard album={data} />
+              </SwiperSlide>
+            ))}
+          </>
+        );
+      case 'album': {
+        if (isError) {
+          return <div>error</div>;
+        }
+        if (isLoading) {
+          return null;
+          // return <div>isLoading</div>
+        }
+        if (!galleryList) {
+          return null;
+        }
+
+        return galleryList.galleries.map((data) => (
+          <SwiperSlide key={data.id} className="overflow-hidden">
             <GalleryAlbumCard album={data} />
           </SwiperSlide>
-        ))
-      )}
+        ));
+      }
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Swiper {...swiperParams}>
+      {renderSlides()}
       <SlideNavButtons />
     </Swiper>
   );
@@ -101,18 +135,20 @@ const SlideNavButtons = () => {
     swiper.slideNext();
   };
 
+  const commonClassName =
+    'absolute top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-300 active:bg-blackAlpha-400 dark:bg-blackAlpha-300 dark:hover:bg-blackAlpha-400 dark:active:bg-blackAlpha-500 md:block';
+
   return (
     <div>
       <button
-        className="absolute left-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
+        className={`left-0 ${commonClassName}`}
         type="button"
         onClick={handlePrevClick}
       >
         <GrFormPrevious size="22px" className="mb-8" />
       </button>
       <button
-        className="absolute right-0 top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-500 dark:bg-blackAlpha-400 dark:hover:bg-blackAlpha-600 md:block"
-        type="button"
+        className={`right-0 ${commonClassName}`}
         onClick={handleNextClick}
       >
         <GrFormNext size="22px" className="mb-8" />

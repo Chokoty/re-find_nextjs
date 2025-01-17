@@ -19,7 +19,7 @@ export default function RankSortButtonGroup() {
   );
 
   return (
-    <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
+    <div className=" flex w-full flex-col items-center rounded-2xl bg-white  p-4 shadow-cardBox dark:bg-dark-card">
       <p className="mb-4">
         총&nbsp;
         {total ? (
@@ -41,7 +41,7 @@ export default function RankSortButtonGroup() {
               }
               additionalClass={
                 rankCriteria !== viewType.value
-                  ? 'dark:bg-whiteAlpha-200 dark:hover:bg-whiteAlpha-300 bg-gray-100 hover:bg-gray-200 dark:text-white text-gray-900'
+                  ? 'dark:bg-whiteAlpha-200 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 dark:text-white text-gray-900'
                   : ''
               }
             >

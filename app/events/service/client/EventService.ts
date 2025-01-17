@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import Service from '@/lib/service';
 import type { CheckBoxType } from '@/types';
 
@@ -5,8 +7,8 @@ class EventService extends Service {
   getRandomFanart(checkboxValues: CheckBoxType) {
     const queryParams = Object.keys(checkboxValues)
       .filter((key) => checkboxValues[key as keyof CheckBoxType])
-      .join('&');
-    return this.http.get<EventFanart>(`/rand?${queryParams}`);
+      .join(';');
+    return this.http.get<EventFanart>(`/v2/rand?galleries=${queryParams}`);
   }
 
   getIsdArtworks() {
@@ -23,6 +25,21 @@ class EventService extends Service {
 
   getWaktyHallArts() {
     return this.http.get<WaktyHall>(`/waktyhall`);
+  }
+
+  // 추후 변경
+  async getTagImages(tag: string) {
+    const url = '/api2/get_images';
+    return axios
+      .post(url, {
+        tag,
+      })
+      .then((response) => response.data)
+      .catch((error) => {
+        console.error('오류 발생:', error);
+        // 오류 처리를 여기서 합니다
+        return null;
+      });
   }
 }
 

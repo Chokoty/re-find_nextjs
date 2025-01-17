@@ -20,7 +20,6 @@ type Props = {
 };
 
 export default function ImageSearchResult({ searchTime, data }: Props) {
-  const uploadTimeDiff = useUploadTimeDiff(data.upload_date);
   const article_link = useResponsiveLink('', 'article');
   const ids = data.ids.slice(0, 15); // 검색결과 10~15개 제한
   const { resetFiles } = useImageUploadStore(
@@ -35,6 +34,16 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
     'menu'
   );
 
+  // ex) 2024-04-21 01:15:00 > 2024.04.21
+  // const getUploadDate = (date: string) => {
+  //   const parts = date.split(/[\s\-.:]+/);
+  //   const result = `${parts[0]}.${parts[1]}.${parts[2]}`;
+  //   return result;
+  // };
+
+  // const uploadDate = getUploadDate(data.upload_date);
+  const uploadTimeDiff = useUploadTimeDiff(data.upload_date);
+
   return (
     <div className="flex w-full max-w-[500px] flex-col items-center justify-center rounded-b-2xl border border-gray-200 p-4 dark:border-whiteAlpha-300">
       {ids?.length === 0 ? (
@@ -43,34 +52,31 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
         <div className=" flex w-full flex-col items-center justify-center rounded-b-2xl bg-white dark:bg-dark-card">
           <div className="flex w-full flex-col items-center justify-between gap-4">
             <div className="flex w-full flex-row items-center justify-between">
-              <div className="w-full">
-                <Link
-                  className="flex items-center"
-                  href={board_link}
-                  target="_blank"
-                >
-                  <p className="text-lg font-bold 2xs:text-xl">
-                    {data.board.replace(/&#\d+;/g, '').trim()}
-                  </p>
-                  <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
-                </Link>
-              </div>
+              <Link
+                className="link-to-wakzoo flex items-center"
+                href={board_link}
+                target="_blank"
+              >
+                <p className="text-lg font-bold 2xs:text-xl">
+                  {data.board.replace(/&#\d+;/g, '').trim()}
+                </p>
+                <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
+              </Link>
               <Badge intent="secondary" size="lg">
                 <div className="flex items-center">
                   <FaRegClock className="mr-1 text-sm text-green-800 dark:text-green-200" />
-                  <p className="line-clamp-1 max-w-16 text-sm text-green-800 dark:text-green-200 2xs:max-w-20 2xs:text-base sm:max-w-32">
+                  <p className="text-sm text-green-800 dark:text-green-200 2xs:text-base">
                     {uploadTimeDiff}
+                    {/* {uploadDate} */}
                   </p>
                 </div>
               </Badge>
             </div>
             <Link
-              className="mb-4 flex w-full items-center text-green-highlight dark:text-pink-highlight"
-              href={article_link + ids[0].id}
-              target="_blank"
+              className="mb-4 w-full text-green-highlight dark:text-pink-highlight"
+              href={`/artwork/${ids[0].id}`}
             >
               <p className="text-xl font-bold 2xs:text-2xl">{data.title}</p>
-              <LuExternalLink className="ml-2 hidden text-lg font-semibold 2xs:block" />
             </Link>
           </div>
           <AuthorProfileCard
@@ -87,7 +93,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
             {ids.map((item, index) => (
               <Link
                 key={index}
-                className="mb-4 w-full text-lg text-green-highlight dark:text-pink-highlight"
+                className="mb-4 w-full text-green-highlight dark:text-pink-highlight"
                 href={article_link + item.id}
                 target="_blank"
               >
@@ -96,10 +102,10 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
                     삭제된 게시글입니다.
                   </p>
                 ) : (
-                  <div className="flex items-center">
-                    <p className="line-clamp-1">{article_link + item.id}</p>
-                    <LuExternalLink className="ml-2 hidden text-lg font-semibold 2xs:block" />
-                  </div>
+                  <p className="line-clamp-1 break-all text-lg sm:flex sm:items-center">
+                    {article_link + item.id}
+                    <LuExternalLink className="ml-2 hidden size-[17px] text-lg font-semibold sm:inline-block" />
+                  </p>
                 )}
                 {item.is_shukkou === true && (
                   <p className="mb-4 text-center text-xl">

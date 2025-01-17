@@ -1,5 +1,6 @@
 'use client';
 
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { HashLoader } from 'react-spinners';
@@ -25,21 +26,44 @@ export default function DetailedArtists({ nickname }: Props) {
   const isMobile = useResponsive();
   const option = isMobile ? { rootMargin: '1000px 0px' } : undefined;
   const { ref, inView } = useInView(option);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const viewTypeInit = searchParams.get('viewType') ?? '';
+  const sortTypeInit = searchParams.get('sortType') ?? '';
+
   // 뷰 선택 메뉴
-  const [activeView, setActiveView] = useState('masonry'); // 초기 뷰 설정
-  const [sortType, setSortType] = useState('latest'); // TODO: 이전 부분 삭제 (query가 들어갈 수 있는 상황이 없는 것 같아서)
+  const [activeView, setActiveView] = useState(
+    viewTypeInit !== '' ? viewTypeInit : 'masonry'
+  ); // 초기 뷰 설정
+  const [sortType, setSortType] = useState(
+    sortTypeInit !== '' ? sortTypeInit : 'latest'
+  ); // TODO: 이전 부분 삭제 (query가 들어갈 수 있는 상황이 없는 것 같아서)
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
   const { rankCriteria } = useArtistSearchInfoStore(
     useShallow((state) => ({ rankCriteria: state.rankCriteria }))
   );
 
-  const { fetchNextPage, artworks, isError, isFetchingNextPage, isLoading } =
-    useArtistInfo({
+  const { fetchNextPage, artworks, status, isFetchingNextPage } = useArtistInfo(
+    {
       nickname,
       sortType,
       board: rankCriteria ? convertBoardParams(rankCriteria) : null,
-    });
+    }
+  );
+
+  const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+
+  const updateURL = (ViewType: string, SortType: string) => {
+    const params = new URLSearchParams();
+    params.append('viewType', ViewType);
+    params.append('sortType', SortType);
+    // URL에 query string 추가
+    const queryString = params.toString();
+    router.push(`/artists/${name}?${queryString}`);
+  };
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback(
@@ -47,14 +71,18 @@ export default function DetailedArtists({ nickname }: Props) {
       // console.log(menuText);
       if (menuText === sortType) return;
       setSortType(menuText);
+      updateURL(activeView, menuText);
     },
     [sortType]
   );
 
   // 뷰 선택하기
-  const handleViewChange = useCallback((view: string) => {
+  // const handleViewChange = useCallback((view: string) => {
+  const handleViewChange = (view: string) => {
     setActiveView(view);
-  }, []);
+    updateURL(view, sortType);
+  };
+  // }, []);
 
   // 삭제된 게시글 보이기
   const handleShowDeleted = useCallback(() => {
@@ -66,41 +94,7 @@ export default function DetailedArtists({ nickname }: Props) {
     if (inView) {
       fetchNextPage();
     }
-  }, [inView]);
-
-  const content = () => {
-    if (isLoading) {
-      return <ViewSkeleton view={activeView} />;
-    }
-
-    if (isError) {
-      return <Alert />;
-    }
-
-    if (!artworks || artworks.length === 0) return;
-
-    return (
-      <div className="w-full overflow-hidden px-2 py-0 2xs:px-6">
-        {activeView === 'masonry' && (
-          <MasonryView
-            artworks={artworks}
-            isDeletedVisible={isDeletedVisible}
-          />
-        )}
-        {activeView === 'grid' && (
-          <SimpleView artworks={artworks} isDeletedVisible={isDeletedVisible} />
-        )}
-        {isFetchingNextPage ? (
-          <div className="my-6 flex w-full items-center justify-center">
-            <HashLoader color="#01BFA2" />
-          </div>
-        ) : (
-          // Observer를 위한 div
-          <div ref={ref} className="h-20 w-full" />
-        )}
-      </div>
-    );
-  };
+  }, [fetchNextPage, inView]);
 
   return (
     <>
@@ -112,9 +106,37 @@ export default function DetailedArtists({ nickname }: Props) {
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
         topOffset={59}
-        isdPick={false}
       />
-      {content()}
+      {status === 'pending' ? (
+        <ViewSkeleton view={activeView} />
+      ) : status === 'error' ? (
+        <Alert />
+      ) : (
+        artworks && (
+          <div className="w-full overflow-hidden px-2 py-0 2xs:px-6">
+            {activeView === 'masonry' && (
+              <MasonryView
+                artworks={artworks}
+                isDeletedVisible={isDeletedVisible}
+              />
+            )}
+            {activeView === 'grid' && (
+              <SimpleView
+                artworks={artworks}
+                isDeletedVisible={isDeletedVisible}
+              />
+            )}
+            {isFetchingNextPage ? (
+              <div className="my-6 flex w-full items-center justify-center">
+                <HashLoader color="#01BFA2" />
+              </div>
+            ) : (
+              // Observer를 위한 div
+              <div ref={ref} className="h-20 w-full" />
+            )}
+          </div>
+        )
+      )}
     </>
   );
 }

@@ -14,7 +14,7 @@ import { RANDOM_TEXTS } from '@/lib/const';
 export default function RandomGacha() {
   const { data, isLoading, isFetching, refetch, status } = useRandomFanart({
     isd: true,
-    wak: true,
+    woowakgood: true,
     gomem: true,
   });
 
@@ -24,7 +24,7 @@ export default function RandomGacha() {
     await refetch();
   };
   return (
-    <div className="mt-4 flex w-[90%] flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
+    <div className="mt-4 flex w-full flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
       <div className="flex w-full items-center justify-start">
         <h2 className="text-xl font-bold">팬아트 가챠</h2>
       </div>
@@ -36,7 +36,7 @@ export default function RandomGacha() {
       />
       <div className="flex w-full flex-col items-center justify-center gap-2">
         <Button
-          additionalClass="rounded-xl w-full text-base font-bold gap-1.5"
+          additionalClass="event-randomGacha rounded-xl w-full text-base font-bold gap-1.5"
           intent="solid-purple"
           size="lg"
           onClick={showRandomFanart}
@@ -46,7 +46,7 @@ export default function RandomGacha() {
           랜덤가챠 굴리기
         </Button>
         <Link href="/events/randomGacha" className="w-full">
-          <div className="inline-flex h-12 min-h-12 w-full select-none items-center justify-center whitespace-nowrap rounded-xl bg-gray-100 pe-4 ps-4 align-middle text-base font-bold leading-tight text-gray-800 outline-none outline-offset-2 transition hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300">
+          <div className="inline-flex h-12 min-h-12 w-full select-none items-center justify-center whitespace-nowrap rounded-xl bg-gray-100 pe-4 ps-4 align-middle text-base font-bold leading-tight text-gray-800 outline-none outline-offset-2 transition hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400">
             랜덤가챠 더보기(4개)
           </div>
         </Link>
@@ -104,19 +104,24 @@ const Fanart = ({
     return (
       <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-gray-100 dark:bg-whiteAlpha-200">
         {isFetching ? (
-          <p>{displayText}</p>
+          <p className="w-full text-center text-3xl font-bold">{displayText}</p>
         ) : (
-          <BsQuestionLg className="size-14" />
+          <BsQuestionLg className="size-20" />
         )}
       </div>
     );
   }
-
   const { title, nickname } = data;
+  const id = data?.url.split('/').pop();
 
   return (
     <div className="mb-2 flex w-full flex-col items-center justify-center rounded-2xl">
-      <Link className="w-full" href={article_link} target="_blank">
+      <Link
+        className="link-to-wakzoo w-full"
+        // href={article_link}
+        href={`/artwork/${id}`}
+        // target="_blank"
+      >
         <Image
           className="max-h-[312px] rounded-2xl object-cover shadow-cardBox"
           src={modifiedUrl800}
@@ -130,7 +135,7 @@ const Fanart = ({
         <p className="line-clamp-1">제목: {title}</p>
         <Link
           href={`/artists/${nickname}`}
-          className="hover:text-green-highlight dark:hover:text-pink-highlight"
+          className="link-to-profile hover:text-green-highlight dark:hover:text-pink-highlight"
         >
           <p className="line-clamp-1">작가: {nickname}</p>
         </Link>

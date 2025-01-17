@@ -1,3 +1,21 @@
+import type { StaticImageData } from 'next/image';
+
+import { NotFoundProfileURL } from '@/lib/const';
+import {
+  그적미적,
+  녹두레기,
+  람쥐썬더펀치,
+  레루루,
+  바게트빵옴뇸뇸,
+  아르키메트리스,
+  아크네르,
+  에이요,
+  초코넛밀크티,
+  카닌,
+  카미루,
+  팔구,
+} from '@/lib/images';
+
 interface UpdateLog {
   id: number;
   date: string;
@@ -10,7 +28,7 @@ interface Developer {
   group: string;
   nickname: string;
   writerURL: string;
-  profURL: string;
+  profURL: string | StaticImageData;
   contribute: string[];
 }
 
@@ -33,8 +51,7 @@ export const DEVELOPERS: Developer[] = [
     nickname: '레루루',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/N8dX1e0GCf7CmHWtLoksOA',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMjEwMThfMjU3/MDAxNjY2MDI3MTE1NDM4.GcNku002LAjEqDaeMgW1sMX1uu07_FfxHIGkCLHcLoog.7Ex7jOQ6n4b9mSGJF4nPop-nVgwoXXGJupH_tQKSgCgg.PNG/frame_19_delay-0.04s.png?type=s3',
+    profURL: 레루루,
     contribute: ['팀장', '검색엔진', '백엔드 개발'],
   },
   {
@@ -42,17 +59,15 @@ export const DEVELOPERS: Developer[] = [
     nickname: '초코넛밀크티',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/fZ8VSlTngMBcoxspZWPPDw',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzEyMDdfMjU1/MDAxNzAxOTYwMDA0NTMz.8shLrSER3mvtdVyhfMKYVMa-pbe73--FCH1ixEJhAgUg.IIoutNP5PaTxmEFaddXpkWEn1fG5yJ0VCwpWtdI4-Kgg.PNG/%25EB%25B0%2580%25ED%2581%25AC%25ED%258B%25B0%25EB%25A7%2588%25EC%258B%259C%25EB%258A%2594%25EC%2584%25B8%25EA%25B5%25AC.png?type=s3',
+    profURL: 초코넛밀크티,
     contribute: ['기획', 'UX 디자인', '프론트엔드 개발'],
   },
   {
     group: 'member',
     nickname: '람쥐썬더펀치',
     writerURL:
-      'https://cafe.naver.com/ca-fe/cafes/27842958/members/N27vMPTAxmQvTsmC9DDBvw?tab=articles',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMjEyMzFfMzAw/MDAxNjcyNDE4NDMwMDY4.M-KVuEbK3g-t_dtXfF5HD3R5owyRoTTdDs4JVW2Xrk0g.jZtoVCyqTUJPYnn8B-WBq5MyNEOagFgIXgb-kYbVerwg.GIF/e4bdb81317f7d2f1feb233c4d0164737.gif?type=s3',
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/N27vMPTAxmQvTsmC9DDBvw',
+    profURL: 람쥐썬더펀치,
     contribute: ['UX 디자인'],
   },
   {
@@ -60,8 +75,7 @@ export const DEVELOPERS: Developer[] = [
     nickname: '아이김',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/h_34S-J91nEd_7rculSuyQ',
-    profURL:
-      'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png',
+    profURL: NotFoundProfileURL,
     contribute: ['키워드검색 연구'],
   },
   {
@@ -69,8 +83,7 @@ export const DEVELOPERS: Developer[] = [
     nickname: '카닌',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/ecdtW4j1s3HMWY-28CkPbA',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA4MDNfMTQg/MDAxNjkxMDUyMzM5NzQw.nUzXx1Bqx_AGlvVaMkWjsOfF7zmQ4U3sg7jl44Uybtog.gLnPyIW3TYn6tr35c_OEDVm-FF4RedXbH0nplr2FE1wg.JPEG/externalFile.jpg?type=s3',
+    profURL: 카닌,
     contribute: ['QA'],
   },
   {
@@ -78,8 +91,7 @@ export const DEVELOPERS: Developer[] = [
     nickname: 'cosmos1122',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/-NxoStVDRfi-5l0gDrwz0Q',
-    profURL:
-      'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_77.png',
+    profURL: NotFoundProfileURL,
     contribute: ['보안'],
   },
   {
@@ -87,17 +99,15 @@ export const DEVELOPERS: Developer[] = [
     nickname: '89',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/1MItD9uVwQKvZgopAxV4Og',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzA1MjZfMTI1/MDAxNjg1MTAwNTY2NTY2.cCitDbWemAnOtfRiNIzdVmOijuzUWXE8ZFtz5IiqL00g.Nsz762AIfFGN1OFaXrUH1OtkQszaqxp_VnZbJwSQFw4g.PNG/89.png?type=s3',
-    contribute: ['배너,카드 디자인'],
+    profURL: 팔구,
+    contribute: ['배너 디자인', '카드 디자인'],
   },
   {
     group: 'credit',
     nickname: '바게트빵 옴뇸뇸',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/NyPZKCn8JER0USsj8xCz5w',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMjA2MzBfMTcz/MDAxNjU2NTc3Mjg1MjEw.MpG1tZI0WuXFa5nCnNIFTpSZbpqkIyWbD-X5OBJPGUUg.2IUoqi5wgYsppBwfZ6xTzsFHrmKtsuy1LwI8DF3YhH4g.JPEG/%25EB%25A6%25AC%25EC%2596%25BC_%25EC%2598%25B4%25EB%2587%25B8%25EB%2587%25B8_-_%25EA%25B8%2580%25EC%259E%2590%25EC%25B6%2594%25EA%25B0%2580.jpg?type=s3',
+    profURL: 바게트빵옴뇸뇸,
     contribute: ['웰컴키트 굿즈 디자인'],
   },
   {
@@ -105,8 +115,7 @@ export const DEVELOPERS: Developer[] = [
     nickname: '에이요',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/zUv2yd9ckk1pVYViXRZ-tg',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMTlfOTcg/MDAxNzEwODExMjAzNTEw.ISuLxAfO2tZoKscxlCYlQX-Sm7UyD6tvbyjSjD_9xH4g.qd7AN3ioVvvlRQWRAUqU5dID0XxTLMyM9MokD8SCeiwg.PNG/%25EC%25BB%25AC%25EB%259F%25AC%25EC%25B2%25B4%25EC%259D%25B8%25EC%25A7%2580.png?type=s3',
+    profURL: 에이요,
     contribute: ['UX 디자인'],
   },
   {
@@ -114,8 +123,7 @@ export const DEVELOPERS: Developer[] = [
     nickname: '그적미적',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/pOPKPO_oxEcNS6b1i73B2g',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAzMDZfMTQ1/MDAxNzA5NzMxMDQ5NDc4.qnnwengsJRA_77cigQ90BeSTEm5u5Gfqy0XJ2sBEI8Ug.dyiXa3pUBlXpcfKZg-HcS-237TmRyby68wMoiBq8LZkg.JPEG/externalFile.jpeg?type=s3',
+    profURL: 그적미적,
     contribute: ['프론트엔드 개발'],
   },
   {
@@ -123,8 +131,7 @@ export const DEVELOPERS: Developer[] = [
     nickname: '카미루',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/QT_1TSjBK6C4WyE4n2k1zA',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyNDAyMjVfMTQg/MDAxNzA4ODI1OTc0NDkx.JgD5-XssP94bZSMZpKDZiGKPOFAy3ewmEHYu8i4I9HMg.SydE_wsSgCVjf9NLfys88sADxT-FKeTXGcU9-p-OBeEg.PNG/%25ED%2586%25B0.png?type=s3',
+    profURL: 카미루,
     contribute: ['UX 디자인', '프론트엔드 개발'],
   },
   {
@@ -132,8 +139,7 @@ export const DEVELOPERS: Developer[] = [
     nickname: '아르키메트리스',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/0toml42cSQFNZFvU0Ex4Kw',
-    profURL:
-      'https://cafeptthumb-phinf.pstatic.net/MjAyMzEyMjVfMjI3/MDAxNzAzNTE1NzkwNTM5.KDMFpay8W3nx67NGcqAXMzQg6IwQolNNInOZLJgjwyIg.piaxZx1HQLukxmg1JvSmZp2yA8V3rlPEz1_Z1F-AXD8g.JPEG/IMG_6353.jpeg?type=s3',
+    profURL: 아르키메트리스,
     contribute: ['QA'],
   },
   {
@@ -141,9 +147,40 @@ export const DEVELOPERS: Developer[] = [
     nickname: '청춘은지금이다',
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/T8zKwDjv8_CiE3Pvo-FHVw',
-    profURL:
-      'https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_363.png',
+    profURL: NotFoundProfileURL,
     contribute: ['백엔드, AI연구'],
+  },
+  {
+    group: 'member',
+    nickname: '춘향의 사랑',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/Bb5h-v6AoCGacBz76C7gJg',
+    profURL: NotFoundProfileURL,
+    contribute: ['AI연구'],
+  },
+  {
+    group: 'credit',
+    nickname: '녹두레기',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/2ZB1kx_FI9Qhs-jaAORemw',
+    profURL: 녹두레기,
+    contribute: ['백엔드'],
+  },
+  {
+    group: 'member',
+    nickname: '담다',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/ILudmLEjWir3qKfErZ5xNg',
+    profURL: NotFoundProfileURL,
+    contribute: ['백엔드'],
+  },
+  {
+    group: 'credit',
+    nickname: '아크네르르',
+    writerURL:
+      'https://cafe.naver.com/ca-fe/cafes/27842958/members/XN2cLG15KT8xHmE0sCZThg',
+    profURL: 아크네르,
+    contribute: ['2024 리캡 배경 일러스트'],
   },
 ];
 
@@ -419,5 +456,90 @@ export const UPDATE_LOGS: UpdateLog[] = [
     content:
       '갤러리 페이지가 리뉴얼 되었습니다. 더불어 추가된 팬아트 세부 페이지에서 추천 시스템(beta)을 이용할 수 있습니다.',
     directLink: 'https://cafe.naver.com/steamindiegame/15913134',
+  },
+  {
+    id: 43,
+    date: '2024.05.11',
+    content:
+      '뉴이네 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/16370339',
+  },
+  {
+    id: 44,
+    date: '2024.06.10',
+    content: '💗💗💗주르르님 생일 축하드립니다!💗💗💗',
+    directLink: 'https://cafe.naver.com/steamindiegame/16782114',
+  },
+  {
+    id: 45,
+    date: '2024.07.01',
+    content:
+      '뉴뉴릴파 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/17019811',
+  },
+  {
+    id: 46,
+    date: '2024.07.21',
+    content:
+      '데드캣 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/17250034',
+  },
+  {
+    id: 47,
+    date: '2024.08.01',
+    content: '고세구님 팬아트 태그 월드컵에서 최고의 태그 팬아트를 골라보세요!',
+    directLink: 'https://cafe.naver.com/steamindiegame/17401762',
+  },
+  {
+    id: 48,
+    date: '2024.08.04',
+    content:
+      '챤단콘 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/17478408',
+  },
+  {
+    id: 49,
+    date: '2024.08.18',
+    content:
+      '이세돌 1000일 기념 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    // directLink: 'https://cafe.naver.com/steamindiegame/17601975',
+  },
+  {
+    id: 50,
+    date: '2024.08.26',
+    content: '이세계아이돌 1,000일 기념 🎉 역조공 프로젝트! (With Melon)',
+    directLink: 'https://kko.to/yV8hApkIGX',
+  },
+  {
+    id: 51,
+    date: '2024.10.08',
+    content: '💛💛💛 버거님의 생일을 축하합니다! 💛💛💛',
+    directLink:
+      'https://re-find.xyz/gallery/jingburgerBirthday?viewType=masonry&sortType=alzaltak',
+  },
+  {
+    id: 52,
+    date: '2024.12.09',
+    type: '[안내]',
+    content:
+      '작가목록 페이지가 복구되었습니다! 이전에 비해 빠른 속도로 훨씬 쾌적하게 사용하실 수 있습니다. 많은 이용 부탁드립니다!! ',
+  },
+  {
+    id: 53,
+    date: '2024.12.10',
+    content:
+      '이세랩 특집 갤러리가 추가되었습니다. 갤러리 페이지에서 확인하실 수 있습니다.',
+    directLink: 'https://cafe.naver.com/steamindiegame/14290389',
+  },
+  {
+    id: 54,
+    date: '2024.12.17',
+    content: '이세돌의 데뷔 3주년 축하드립니다!!!!!! 이세돌 화이팅!!!',
+  },
+  {
+    id: 55,
+    date: '2025.01.08',
+    content:
+      'RE:CAP 2024 리파인드 돌아보기를 오픈했습니다. 작가님 개별리캡은 작가페이지에서 보실 수 있습니다.',
   },
 ];

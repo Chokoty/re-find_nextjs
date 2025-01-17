@@ -1,19 +1,52 @@
 import Link from 'next/link';
-import { PiGiftBold } from 'react-icons/pi';
+import React from 'react';
 
-export default function Event() {
+type Props = {
+  title: string;
+  linkContent: React.ReactNode;
+  linkColor: 'pink' | 'purple' | 'blue' | 'green' | 'yellow';
+  link: string;
+  isOutLink?: boolean;
+};
+
+const colors = {
+  pink: 'bg-pink-200 hover:bg-pink-300 active:bg-pink-400',
+  purple: 'bg-purple-200 hover:bg-purple-300 active:bg-purple-400',
+  blue: 'bg-blue-200 hover:bg-blue-300 active:bg-blue-400',
+  green: 'bg-green-200 hover:bg-green-300 active:bg-green-400',
+  yellow: 'bg-yellow-200 hover:bg-yellow-300 active:bg-yellow-400',
+};
+
+export default function Event({
+  title,
+  linkContent,
+  linkColor,
+  link,
+  isOutLink,
+}: Props) {
+  const linkClassName = colors[linkColor];
+
   return (
     <div className="flex size-full max-h-[130px] flex-col items-center justify-center rounded-2xl bg-white py-3 shadow-cardBox dark:bg-dark-card 2xs:py-6 md:py-11">
-      <p className="mb-4 text-lg font-bold 2xs:text-base md:text-[1.7rem]">
-        이벤트 페이지 개설!
+      <p className="mb-2 text-base font-bold 2xs:text-xl md:mb-4 md:text-[1.7rem]">
+        {title}
       </p>
-      <Link
-        href="/events"
-        className="flex w-3/5 items-center justify-center rounded-2xl bg-purple-200 p-2 font-semibold text-gray-800 transition hover:bg-purple-300"
-      >
-        <PiGiftBold className="mr-2 size-6" />
-        팬아트 가챠 하러가기
-      </Link>
+      {isOutLink ? (
+        <Link
+          href={link}
+          target="_blank"
+          className={`${linkClassName} flex w-10/12 items-center justify-center rounded-xl py-1.5 font-semibold text-gray-800 transition 2xs:w-4/5 2xs:p-2 md:w-3/5`}
+        >
+          {linkContent}
+        </Link>
+      ) : (
+        <Link
+          href={link}
+          className={`${linkClassName} flex w-10/12 items-center justify-center rounded-xl py-1.5 font-semibold text-gray-800 transition 2xs:w-4/5 2xs:p-2 md:w-3/5`}
+        >
+          {linkContent}
+        </Link>
+      )}
     </div>
   );
 }

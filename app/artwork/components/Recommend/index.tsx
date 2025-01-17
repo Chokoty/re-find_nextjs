@@ -61,7 +61,7 @@ export default function Recommend() {
               <button
                 key={i}
                 className={clsx(
-                  'flex items-center justify-center rounded-full border-4 text-white transition hover:bg-whiteAlpha-500',
+                  'flex items-center justify-center rounded-full border-4 text-white transition hover:bg-whiteAlpha-500 active:bg-whiteAlpha-500',
                   {
                     'text-4 size-[50px] border-green-300': i === 0,
                     'text-3 size-[38px] border-gray-300': i === 1,
@@ -83,7 +83,7 @@ export default function Recommend() {
           </Tooltip>
         </div>
       </div>
-      <div className="mt-8 w-full overflow-hidden px-2">
+      <div className="mt-8 w-full overflow-hidden px-1">
         <RecommendList getAp={getAp} />
       </div>
     </div>

@@ -2,6 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
+
+/* 해당 폰트는 ttf otf 포맷만 지원하고 있어 woff를 사용하기위해 아래와 같은 방법을 사용 > tailwind.config.ts에 추가*/
+@font-face {
+  font-family: 'SBAggroB';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   /* standard color */
   --black: #000000;
@@ -34,14 +49,23 @@
   --blackAlpha-800: rgba(0, 0, 0, 0.8);
   --blackAlpha-900: rgba(0, 0, 0, 0.92);
   --redAlpha-200: rgba(254, 178, 178, 0.12);
+  --redAlpha-300: rgba(254, 178, 178, 0.24);
   --orangeAlpha-200: rgba(251, 211, 141, 0.12);
+  --orangeAlpha-300: rgba(251, 211, 141, 0.24);
   --yellowAlpha-200: rgba(250, 240, 137, 0.12);
+  --yellowAlpha-300: rgba(250, 240, 137, 0.24);
   --greenAlpha-200: rgba(154, 230, 180, 0.12);
+  --greenAlpha-300: rgba(154, 230, 180, 0.24);
   --tealAlpha-200: rgba(129, 230, 217, 0.12);
+  --tealAlpha-300: rgba(129, 230, 217, 0.24);
   --blueAlpha-200: rgba(144, 205, 244, 0.12);
+  --blueAlpha-300: rgba(144, 205, 244, 0.24);
   --cyanAlpha-200: rgba(157, 236, 249, 0.12);
+  --cyanAlpha-300: rgba(157, 236, 249, 0.24);
   --purpleAlpha-200: rgba(214, 188, 250, 0.12);
+  --purpleAlpha-300: rgba(214, 188, 250, 0.24);
   --pinkAlpha-200: rgba(251, 182, 206, 0.12);
+  --pinkAlpha-300: rgba(251, 182, 206, 0.24);
   --black-200: #434343;
   --gray-50: #f7fafc;
   --gray-100: #edf2f7;
@@ -208,14 +232,25 @@
   --telegram-800: #005885;
   --telegram-900: #003f5e;
   /* custom color */
-  --darkmode-bg: #121212;
-  --lightmode-bg: #f8f9fa;
+  --darkmode-bg: #000000;
+  --lightmode-bg: #ffffff;
+  /* --darkmode-bg: #121212; */
+  /* --lightmode-bg: #f8f9fa; */
   /* --myblack-100: #282828;
   --myblack-200: #24292e; */
-  --darkmode-card-bg: #262424;
+  --lightmode-card-bg: #f1f1f1;
+  --lightmode-card-bg-2: #dedede;
+  /* --darkmode-card-bg: #262424; */
+  --darkmode-card-bg: #121212;
+  --darkmode-card-bg-2: #1f1f1f;
+  --darkmode-card-bg-3: #2a2a2a;
   --darkmode-footer-bg: #292929;
   --mainColor-100: #01bda1;
   --mainColor-200: #ef80b1;
+  --darkmode-soopColor: #17181c;
+  --myText: #767676;
+  --darkmode-myText: #e9e9e9;
+  --darkmode-myText-2: #b3b3b3;
   /* font-body */
   --fonts-body: Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -250,6 +285,8 @@
   &.dark {
     --background: var(--darkmode-bg);
     --color: var(--gray-50);
+    /* for scrollbar color when refreshing page */
+    color-scheme: dark;
   }
 }
 

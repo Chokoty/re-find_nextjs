@@ -1,4 +1,6 @@
+import aspectRatio from '@tailwindcss/aspect-ratio';
 import type { Config } from 'tailwindcss';
+import plugin from 'tailwindcss/plugin';
 
 const config: Config = {
   content: [
@@ -7,6 +9,26 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    screens: {
+      xxs: '320px',
+      // => @media (min-width: 320px) { ... }
+      xs: '375px',
+      // => @media (min-width: 375px) { ... }
+      '2xs': '478px',
+      // => @media (min-width: 478px) { ... }
+      sm: '640px',
+      // => @media (min-width: 640px) { ... }
+      md: '768px',
+      // => @media (min-width: 768px) { ... } // isMobile
+      '2md': '992px',
+      // => @media (min-width: 992px) { ... }
+      lg: '1024px',
+      // => @media (min-width: 1024px) { ... }
+      xl: '1280px',
+      // => @media (min-width: 1280px) { ... }
+      '2xl': '1536px',
+      // => @media (min-width: 1536px) { ... }
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
@@ -21,18 +43,43 @@ const config: Config = {
       bermuda: 'var(--bermuda)',
     },
     extend: {
+      spacing: {
+        '10p': '10%', // 10%를 커스텀 값으로 추가
+      },
+      textShadow: {
+        worldCup:
+          '-1px 0 #000000, 0 1px #000000, 1px 0 #000000, 0 -1px #000000',
+      },
+      maxWidth: {
+        custom1: 'calc(-488px + 100vw)',
+        custom2: 'calc(-192px + 100vw)',
+      },
       colors: {
+        'custom-dark': 'var(--darkmode-soopColor)',
         // border: 'var(--border)',
         // background color
+        'light-myText': 'var(--myText)',
+        'dark-myText': 'var(--darkmode-myText)',
+        'dark-myText-2': 'var(--darkmode-myText-2)',
         'dark-background': 'var(--darkmode-bg)',
         'light-background': 'var(--lightmode-bg)',
         // card color (white mode is bg-white)
+        'light-card': 'var(--lightmode-card-bg)',
+        'light-card-2': 'var(--lightmode-card-bg-2)',
         'dark-card': 'var(--darkmode-card-bg)',
+        'dark-card-2': 'var(--darkmode-card-bg-2)',
+        'dark-card-3': 'var(--darkmode-card-bg-3)',
         // footer color (white mode is bg-white)
         'dark-footer': 'var(--darkmode-footer-bg)',
         // hightlight color
         'green-highlight': 'var(--mainColor-100)',
         'pink-highlight': 'var(--mainColor-200)',
+        secondary: {
+          DEFAULT: '#6C757D', // 기본 색상
+          light: '#ADB5BD',
+          dark: '#495057',
+          darker: '#343A40',
+        },
         whiteAlpha: {
           50: 'var(--whiteAlpha-50)',
           100: 'var(--whiteAlpha-100)',
@@ -59,30 +106,39 @@ const config: Config = {
         },
         redAlpha: {
           200: 'var(--redAlpha-200)',
+          300: 'var(--redAlpha-300)',
         },
         yellowAlpha: {
           200: 'var(--yellowAlpha-200)',
+          300: 'var(--yellowAlpha-300)',
         },
         orangeAlpha: {
           200: 'var(--orangeAlpha-200)',
+          300: 'var(--orangeAlpha-300)',
         },
         greenAlpha: {
           200: 'var(--greenAlpha-200)',
+          300: 'var(--greenAlpha-300)',
         },
         tealAlpha: {
           200: 'var(--tealAlpha-200)',
+          300: 'var(--tealAlpha-300)',
         },
         blueAlpha: {
           200: 'var(--blueAlpha-200)',
+          300: 'var(--blueAlpha-300)',
         },
         cyanAlpha: {
           200: 'var(--cyanAlpha-200)',
+          300: 'var(--cyanAlpha-300)',
         },
         purpleAlpha: {
           200: 'var(--purpleAlpha-200)',
+          300: 'var(--purpleAlpha-300)',
         },
         pinkAlpha: {
           200: 'var(--pinkAlpha-200)',
+          300: 'var(--pinkAlpha-300)',
         },
         black: {
           200: 'var(--black-200)',
@@ -210,30 +266,6 @@ const config: Config = {
           800: 'var(--pink-800)',
           900: 'var(--pink-900)',
         },
-        icon: {
-          naver: '#02C759',
-          naverDark: '#48484B',
-        },
-      },
-      screens: {
-        xxs: '320px',
-        // => @media (min-width: 320px) { ... }
-        xs: '375px',
-        // => @media (min-width: 375px) { ... }
-        '2xs': '478px',
-        // => @media (min-width: 478px) { ... }
-        sm: '640px',
-        // => @media (min-width: 640px) { ... }
-        md: '768px',
-        // => @media (min-width: 768px) { ... } // isMobile
-        '2md': '992px',
-        // => @media (min-width: 992px) { ... }
-        lg: '1024px',
-        // => @media (min-width: 1024px) { ... }
-        xl: '1280px',
-        // => @media (min-width: 1280px) { ... }
-        '2xl': '1536px',
-        // => @media (min-width: 1536px) { ... }
       },
       borderWidth: {
         base: '1px',
@@ -257,12 +289,16 @@ const config: Config = {
       },
       keyframes: {
         modalRenderFromBottom: {
-          '0%': { opacity: '0', transform: 'translateY(100%)', scale: '0.5' }, // 최하단으로부터 시작
-          '100%': { opacity: '1', transform: 'translateY(0)', scale: '1' },
+          '0%': { opacity: '0', transform: 'translateY(100%)' }, // 최하단으로부터 시작
+          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         modalRenderFromTop: {
           '0%': { opacity: '0', transform: 'translateY(-100%)' }, // 최상단으로부터 시작
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        modalRender: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
         },
         modalRemove: {
           '0%': { opacity: '1', transform: 'translateY(0)' },
@@ -272,28 +308,39 @@ const config: Config = {
           '0%': { opacity: '1', transform: 'translateY(0)' }, // 최상단으로 끝
           '100%': { opacity: '0', transform: 'translateY(-100%)' },
         },
-        modalRemoveFromBottom: {
-          '0%': { opacity: '1', transform: 'translateY(0)' }, // 최하단으로 끝
-          '100%': {
-            opacity: '0',
-            transform: 'translateY(100%)',
-          },
-        },
       },
       animation: {
+        modalRender: 'modalRender 0.2s ease-out',
         modalRenderFromTop: 'modalRenderFromTop 0.3s ease-out',
         modalRenderFromBottom: 'modalRenderFromBottom 0.3s ease-out',
         modalRemove: 'modalRemove 0.2s ease-out',
-        modalRemoveFromTop: 'modalRemoveFromTop 0.2s ease-out',
-        modalRemoveFromBottom: 'modalRemoveFromBottom 0.2s ease-out',
+        modalRemoveFromTop: 'modalRemoveFromTop 0.3s ease-out',
       },
       fontFamily: {
         pop: ['var(--font-one-mobile-pop)'],
+        sbAggro: ['SBAggroB', 'sans-serif'],
       },
-      backgroundImage: {},
+      backgroundImage: {
+        'recap-pattern': "url('/static/images/recap_pattern.webp')",
+      },
     },
   },
-  plugins: [],
+  future: {
+    hoverOnlyWhenSupported: true,
+  },
+  plugins: [
+    plugin(({ matchUtilities, theme }) => {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      );
+    }),
+    aspectRatio, // aspect-ratio 플러그인 추가
+  ],
   darkMode: 'class',
   // important: true,
 };

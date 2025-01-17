@@ -85,6 +85,13 @@ export const siteConfig = {
             '문 뒤에는 고퀄팬아트와 혐잘딱팬아트, 왁두팬아트가 있습니다, 당신의 선택은?',
         };
       }
+      if (keyword === 'fanartWorldCup') {
+        return {
+          ...result,
+          description:
+            '고세구님 팬아트 태그 월드컵에서 최고의 태그 팬아트를 골라보세요!',
+        };
+      }
 
       return result;
     },
@@ -92,6 +99,16 @@ export const siteConfig = {
       title: '리파인드 | 왁티홀의 문',
       description: '3종류의 팬아트 기회는 단 2번 여러분의 선택은!',
       url: '/events/WaktyHallDoor',
+    },
+    goGongJeon: {
+      title: '리파인드 | 고공전 팬아트 태그 월드컵',
+      description: '세구님 팬아트 중에서 태그 월드컵',
+      url: '/events/FanartWorldCup',
+      credit: {
+        title: '리파인드 | 고공전 팬아트 태그 월드컵 - 크레딧',
+        description: '세구님 방송 3주년 진심으로 축하드립니다!',
+        url: '/events/FanartWorldCup/credit',
+      },
     },
   },
   more: {
@@ -116,6 +133,12 @@ export const siteConfig = {
       description: '리파인드의 공지사항을 확인해보세요!',
       url: '/more/notice',
     },
+    install: {
+      title: '리파인드 | 설치 가이드',
+      description:
+        '홈 화면에서 리파인드 아이콘을 클릭하여 한 번의 탭으로 접속할 수 있는 설치가이드를 확인해보세요.',
+      url: '/more/install-info',
+    },
   },
   search: {
     main: {
@@ -125,12 +148,27 @@ export const siteConfig = {
     },
     // 추후 업데이트
   },
+  recap2024: {
+    main: {
+      title: '리파인드 | RECAP 2024',
+      description: '2024년 한 해 동안 리파인드에서의 팬아트 활동을 돌아보세요!',
+      url: '/recap2024',
+    },
+    detailed(nickname: string) {
+      const decodedNickname = decodeURIComponent(nickname);
+      return {
+        title: `리파인드 | ${decodedNickname}님의 RECAP 2024`,
+        description: `${decodedNickname}님의 2024년 리파인드 팬아트 활동 기록을 확인해보세요.`,
+        url: `/artists/${decodedNickname}/recap2024`,
+      };
+    },
+  },
   artwork(item: ArtworkDetail) {
     const { title, board, img_url, author, id } = item;
     return {
       title,
       description: board,
-      imageUrl: img_url ?? `http://via.placeholder.com/236x236`,
+      imageUrl: img_url ?? `https://placehold.co/375x375`,
       type: 'article' as OpenGraphType,
       authors: !author?.length ? '알 수 없음' : author,
       path: `${this.mainDomain}/artwork/${id}`,

@@ -1,11 +1,17 @@
 'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 import { FaAngleLeft } from 'react-icons/fa6';
+import { LuExternalLink } from 'react-icons/lu';
 
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
-import GALLERY_LIST, { MEMBERS } from '@/app/gallery/lib/const';
+import TotalCounter from '@/app/gallery/components/TotalCounter';
+import GALLERY_LIST, {
+  MEMBERS,
+  UPDATED_GALLERY_LIST,
+} from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
 import { BBangTTi } from '@/lib/images';
 
@@ -17,29 +23,49 @@ const getTitleInfo = (type: string) => {
     };
   }
 
-  const album = GALLERY_LIST.find((item) => item.value === type);
+  const album = GALLERY_LIST.find((item) => item.id === type);
+  const board = UPDATED_GALLERY_LIST.find((item) => item.id === type);
   const member = MEMBERS.find((item) => item.value === type);
 
   return {
-    title: album?.title || `${member?.name ?? ''} 팬아트`,
+    title: album?.title || board?.title || `${member?.name ?? ''} 팬아트`,
     description: album?.description || '',
+    linkUrl: album?.linkUrl || '',
+    linkTitle: album?.linkTitle || '',
   };
 };
 
 const titleClassName =
-  'mt-1.5 font-pop text-4xl sm:text-5xl 2md:text-6xl lg:text-7xl 2xl:text-8xl';
+  'mt-1.5 font-pop text-4xl sm:text-5xl 2md:text-6xl lg:text-7xl 2xl:text-8xl break-keep';
 const descriptionClassName =
-  'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[360px] 2md:max-w-[420px] 2xl:max-w-[550px]';
+  'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[530px]  break-keep';
 
 export default function GalleryTitle({ pageType }: { pageType: string }) {
   const router = useRouter();
-  const { title, description } = getTitleInfo(pageType);
+  const { title, description, linkUrl, linkTitle } = getTitleInfo(pageType);
+
+  const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
+  const name = pathNameParts[pathNameParts.length - 1];
+  // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
+  const shouldHideTotalCounter = (n: string) => {
+    const hiddenNames = [
+      'gosegu',
+      'ine',
+      'viichan',
+      'jingburger',
+      'lilpa',
+      'jururu',
+    ];
+    return hiddenNames.includes(n);
+  };
+
   const handleBackButton = () => {
     router.push('/gallery');
   };
 
   return (
-    <div className="flex w-full max-w-[380px] flex-col items-start justify-start md:max-w-[460px] 2md:max-w-[710px]">
+    <div className="flex w-full flex-col items-start justify-start">
       {pageType === 'galleryHome' ? (
         <>
           <p className={`font-semibold ${descriptionClassName}`}>
@@ -59,11 +85,30 @@ export default function GalleryTitle({ pageType }: { pageType: string }) {
               팬아트 갤러리로 돌아가기
             </p>
           </Button>
-          <h1 className={titleClassName}>{title}</h1>
-          <div className="mb-6 mt-1.5">
-            <p className={`font-bold ${descriptionClassName}`}>{description}</p>
+          <div className="w-full">
+            <h1 className={titleClassName}>{title}</h1>
+            <div className="mb-6 mt-1.5">
+              <p className={`font-bold ${descriptionClassName}`}>
+                {description}
+                {linkUrl && (
+                  <Link
+                    href={linkUrl}
+                    target="_blank"
+                    className="link-to-wakzoo mt-1 flex items-center text-green-highlight hover:underline dark:text-pink-highlight"
+                  >
+                    {linkTitle}
+                    <LuExternalLink className="ml-2 text-lg font-semibold 2xs:block" />
+                  </Link>
+                )}
+              </p>
+            </div>
           </div>
-          <ShareLinkButton />
+          <div className="flex w-full items-center justify-between">
+            <ShareLinkButton />
+            <div className="2md:hidden">
+              {!shouldHideTotalCounter(name) && <TotalCounter />}
+            </div>
+          </div>
         </>
       )}
     </div>

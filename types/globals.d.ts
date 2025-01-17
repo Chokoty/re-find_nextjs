@@ -72,6 +72,20 @@ declare global {
     is_hyum: boolean;
   }
 
+  export interface GalleryInfo {
+    id: string;
+    title: string;
+    description: string;
+    cover_image: string;
+    query: string;
+    author: string;
+    subTitle: string;
+  }
+
+  export interface GalleryList {
+    galleries: GalleryInfo[];
+  }
+
   export interface GalleryArtworks {
     lastPage: boolean;
     total: number;
@@ -142,6 +156,7 @@ declare global {
     like: number;
     comment: number;
     deleted: boolean;
+    source?: null | number[];
   }
 
   // export interface Author {

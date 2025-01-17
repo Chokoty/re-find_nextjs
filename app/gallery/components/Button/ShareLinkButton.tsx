@@ -10,19 +10,19 @@ export default function ShareLinkButton() {
     const currentUrl = window.location.href;
 
     navigator.clipboard.writeText(currentUrl).then(() => {
-      toast.success('갤러리 링크 복사됨');
+      toast.success('링크를 클립보드에 복사했어요.');
     });
   };
 
   return (
     <Button
-      additionalClass="bg-green-highlight dark:hover:bg-pink-400 dark:bg-pink-highlight hover:bg-teal-500 rounded-full"
+      additionalClass="bg-green-highlight dark:hover:bg-pink-400 dark:active:bg-pink-500 dark:bg-pink-highlight hover:bg-teal-500 active:bg-teal-600 rounded-full"
       onClick={handleCopyLink}
     >
+      <MdShare className="mr-2 text-white" />
       <p className="text-white">
         <span className="hidden 2xs:inline-block">갤러리</span> 공유하기
       </p>
-      <MdShare className="ml-1 text-white" />
     </Button>
   );
 }

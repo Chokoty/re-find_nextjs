@@ -9,10 +9,10 @@ export default function Banner() {
       <NextLink href="/more/about">
         <NextImage
           className="rounded-2xl"
-          width={700}
-          height={130}
+          width={750}
+          height={134}
           priority
-          quality={90}
+          quality={100}
           src={MainBanner}
           alt="배너2"
           // layout="fill"

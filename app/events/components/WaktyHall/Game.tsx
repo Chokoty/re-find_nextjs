@@ -6,10 +6,10 @@ import { PuffLoader } from 'react-spinners';
 
 import Door from '@/app/events/components/WaktyHall/Door';
 import ScoreResult from '@/app/events/components/WaktyHall/ScoreResult';
-import useLocalStorage from '@/app/events/hooks/useLocalStorage';
 import MontyHall from '@/app/events/lib/montyhall';
 import { useWaktyHallArts } from '@/app/events/service/client/useEventService';
 import Button from '@/components/Button';
+import useLocalStorage from '@/hooks/useLocalStorage';
 import type { WaktyHallResultType } from '@/types';
 
 // 점수, 게임횟수, 변경해서 이긴횟수, 변경해서 진횟수, 유지해서 이긴횟수, 유지해서 진횟수
@@ -208,7 +208,7 @@ export default function Game() {
           </div>
           <Button
             intent="solid-gray"
-            additionalClass="mt-4 rounded-md"
+            additionalClass="event-waktyhall mt-4 rounded-md"
             onClick={restart}
           >
             재시작하시겠어요?

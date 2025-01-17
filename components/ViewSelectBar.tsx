@@ -5,7 +5,9 @@ import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
 import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
+import { RiFullscreenFill } from 'react-icons/ri';
 
+import TotalCounter from '@/app/gallery/components/TotalCounter';
 import { MEMBERS } from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
 import Menu, { MenuButton, MenuItem, MenuList } from '@/components/Menu';
@@ -26,7 +28,8 @@ type Props = {
   handleShowDeleted: () => void;
   onMemberClick?: (member: string) => void;
   topOffset: number;
-  isdPick: boolean;
+  isIsdPick?: boolean;
+  hasTotalCounter?: boolean;
 };
 
 export default function ViewSelectBar({
@@ -38,7 +41,8 @@ export default function ViewSelectBar({
   isDeletedVisible,
   handleShowDeleted,
   onMemberClick,
-  isdPick,
+  isIsdPick = false,
+  hasTotalCounter = false,
 }: Props) {
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -48,15 +52,15 @@ export default function ViewSelectBar({
     { id: 1, name: '전체', value: 'isd' },
     ...MEMBERS.slice(1, 7),
   ];
-
+  const imageRatio = '16:9';
   return (
-    <div className="mb-4 flex w-full items-center justify-between px-8 py-2">
+    <div className="relative mb-4 flex w-full items-center justify-between px-8 py-2">
       <div className="flex gap-[5px]">
         <button
           className={clsx('h-10 rounded-full px-4 transition', {
-            'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300':
+            'bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
               activeView === 'masonry',
-            'text-blackAlpha-400 hover:bg-gray-100 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200':
+            'text-blackAlpha-400 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300':
               activeView !== 'masonry',
           })}
           onClick={() => onViewChange('masonry')}
@@ -65,18 +69,42 @@ export default function ViewSelectBar({
         </button>
         <button
           className={clsx('h-10 rounded-full px-4 transition', {
-            'bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300':
+            'bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
               activeView === 'grid',
-            'text-blackAlpha-400 hover:bg-gray-100 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200':
+            'text-blackAlpha-400 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-400 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300':
               activeView !== 'grid',
           })}
           onClick={() => onViewChange('grid')}
         >
           <IoGrid size="24px" />
         </button>
+        {/* <Menu>
+          <MenuButton
+            size="lg"
+            rightIcon={<MdOutlineKeyboardArrowDown />}
+            rightMobileIcon={<RiFullscreenFill />}
+          >
+            {imageRatio}
+          </MenuButton>
+          <MenuList>
+            {memberList.map((member) => (
+              <MenuItem
+                key={member.id}
+                onClick={() => onMemberClick?.(member.value)}
+              >
+                {member.name}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu> */}
       </div>
+      {hasTotalCounter && (
+        <p className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 dark:text-whiteAlpha-900 2md:block">
+          <TotalCounter />
+        </p>
+      )}
       <div className="flex items-center justify-center gap-4">
-        {isdPick && (
+        {isIsdPick && (
           <Menu>
             <MenuButton
               size="lg"
@@ -106,7 +134,7 @@ export default function ViewSelectBar({
             {sortLabel}
           </MenuButton>
           <MenuList>
-            {isdPick === true &&
+            {isIsdPick === true &&
               MENU_ITEMS.filter((item) => item.isdPick === true).map((item) => (
                 <MenuItem
                   key={item.id}
@@ -115,7 +143,7 @@ export default function ViewSelectBar({
                   {item.label}
                 </MenuItem>
               ))}
-            {isdPick === false &&
+            {isIsdPick === false &&
               MENU_ITEMS.map((item) => (
                 <MenuItem
                   key={item.id}

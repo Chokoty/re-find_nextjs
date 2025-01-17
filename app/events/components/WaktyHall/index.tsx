@@ -24,7 +24,7 @@ export default function WaktyHall() {
         </div>
         <div className="mb-2 flex flex-col items-start">
           <Link
-            className="flex items-center text-green-highlight transition hover:underline dark:text-pink-highlight"
+            className="link-to-wakzoo flex items-center text-green-highlight transition hover:underline dark:text-pink-highlight"
             href={WAK_URL}
             target="_blank"
           >
