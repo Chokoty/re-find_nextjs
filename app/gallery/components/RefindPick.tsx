@@ -12,7 +12,7 @@ const GallerySlider = dynamic(
 
 export default function RefindPick() {
   return (
-    <div className="flex w-full flex-col">
+    <div className="flex w-full flex-col " style={{ userSelect: 'none' }}>
       <div className="mb-2 w-full px-8 md:mb-4">
         <p className="text-left text-xl font-extrabold md:text-2xl">
           리파인드 추천 앨범
@@ -27,13 +27,18 @@ export default function RefindPick() {
           spaceBetween: 8,
           breakpoints: {
             480: {
-              slidesPerView: 2.5,
-              spaceBetween: 10,
+              slidesPerView: 4.5,
             },
-            1055: {
-              slidesPerView: 3.5,
-              spaceBetween: 16,
+            1440: {
+              slidesPerView: 5.5,
             },
+            1800: {
+              slidesPerView: 6.5,
+            },
+            // 1055: {
+            //   slidesPerView: 3.5,
+            //   spaceBetween: 16,
+            // },
             // 1024: {
             //   slidesPerView: 3.5,
             // },

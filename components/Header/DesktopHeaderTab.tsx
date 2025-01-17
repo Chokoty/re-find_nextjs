@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const tabs = [
-  { path: '/gallery', name: '갤러리', width: 'w-12' },
+  // { path: '/gallery', name: '갤러리', width: 'w-12' },
   { path: '/artists', name: '작가', width: 'w-8' },
 ];
 

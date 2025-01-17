@@ -91,7 +91,7 @@ const events: EventData[] = [
 
 export default function BannerSlider() {
   return (
-    <div className="mb-1 w-full">
+    <div className="mb-1 w-full max-w-[750px]">
       <Swiper
         className="mySwiper"
         // navigation={true}
