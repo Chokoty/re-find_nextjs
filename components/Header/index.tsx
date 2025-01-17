@@ -53,6 +53,8 @@ const etcPathMap = {
   '/more/notice': '공지사항',
   '/more/support': '문의',
   '/more/about': '소개',
+  '/register': '회원가입',
+  '/register_success': '회원가입',
   '/more': '좀 더!',
   '/events': '이벤트',
   '/events/randomGacha': '이벤트',
@@ -70,9 +72,11 @@ const HeaderContent = () => {
 
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
+  const isRegister = pathname.startsWith('/register');
+  const isRegisterSucess = pathname.startsWith('/register_success');
 
   // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
-  if (isMorePath || isEvents) {
+  if (isMorePath || isEvents || isRegister || isRegisterSucess) {
     return (
       <>
         <BackButton />

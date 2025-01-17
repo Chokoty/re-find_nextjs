@@ -4,7 +4,9 @@ import type { IconType } from 'react-icons';
 import { FiMenu } from 'react-icons/fi';
 import { PiGiftBold } from 'react-icons/pi';
 
+import LoginModal from '@/components/LoginModal';
 import Tooltip from '@/components/Tooltip';
+import useModal from '@/hooks/useModal';
 
 type RouterItem = {
   path: string;
@@ -19,12 +21,12 @@ const routerMap: Record<string, RouterItem> = {
   //   name: '2024 리캡',
   //   className: 'size-6',
   // },
-  event: {
-    path: '/events',
-    name: '이벤트관',
-    icon: PiGiftBold,
-    className: 'size-6',
-  },
+  // event: {
+  //   path: '/events',
+  //   name: '이벤트관',
+  //   icon: PiGiftBold,
+  //   className: 'size-6',
+  // },
   more: {
     path: '/more',
     name: '더보기',
@@ -34,8 +36,19 @@ const routerMap: Record<string, RouterItem> = {
 };
 
 export default function DesktopMenuTab() {
+  const { show } = useModal(LoginModal);
+  const handleClick = () => {
+    show({ isBackdropClick: true });
+  };
+
   return (
     <div className="flex items-center justify-end md:min-w-[174px] ">
+      <button
+        className="hidden px-2.5 font-semibold transition hover:text-green-highlight md:block"
+        onClick={handleClick}
+      >
+        로그인
+      </button>
       {Object.keys(routerMap).map((key) => {
         const typedKey = key as keyof typeof routerMap;
         const {
