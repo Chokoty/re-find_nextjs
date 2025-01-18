@@ -10,12 +10,12 @@ type Prop = {
 };
 
 const PASTEL_COLORS = {
-  bestBoard: 'bg-red-200',
-  goldhandBoard: 'bg-orange-200',
-  isdBoard: 'bg-yellow-200',
-  gomemBoard: 'bg-green-200',
-  wakgoodBoard: 'bg-blue-200',
-  unofficialBoard: 'bg-purple-200',
+  best: 'bg-red-200',
+  goldhand: 'bg-orange-200',
+  isd: 'bg-yellow-200',
+  gomem: 'bg-green-200',
+  wakgood: 'bg-blue-200',
+  wallpaper: 'bg-purple-200',
   isdPhoto: 'bg-pink-200',
 };
 
@@ -27,7 +27,7 @@ export default function GalleryBoardCard({
   // const boardUrl = `/search?board=${value}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
 
   const transformedValue =
-    id === 'gomemBoard' ? 'gomem' : id === 'wakgoodBoard' ? 'woowakgood' : id;
+    id === 'gomem' ? 'gomem' : id === 'wakgood' ? 'woowakgood' : id;
   const bgColor =
     PASTEL_COLORS[id as keyof typeof PASTEL_COLORS] || 'bg-teal-200';
   return (

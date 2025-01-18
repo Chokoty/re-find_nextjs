@@ -34,9 +34,9 @@ export default function UpdateCard({ update }: Prop) {
   ) || { id: '' };
 
   const board_link = `/gallery/${
-    matchingGallery.id === 'gomemBoard'
+    matchingGallery.id === 'gomem'
       ? 'gomem'
-      : matchingGallery.id === 'wakgoodBoard'
+      : matchingGallery.id === 'wakgood'
         ? 'woowakgood'
         : matchingGallery.id
   }?viewType=masonry&sortType=latest`;
