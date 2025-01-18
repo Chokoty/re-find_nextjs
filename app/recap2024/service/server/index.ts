@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import type { AuthorRecapResult, BestFanart, TotalRecapResult } from '@/types';
 
-const baseURL = process.env.NEXT_PUBLIC_SERVER_URL!;
+const baseURL = process.env.NEXT_PUBLIC_NEW_SERVER_URL!;
 
 export async function getReFindRecapResults() {
   try {
