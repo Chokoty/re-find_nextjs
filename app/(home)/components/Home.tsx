@@ -78,7 +78,7 @@ export default function Home() {
         <RandomGacha />
       </section>
       {/* desktop: right / mobile: bottom */}
-      <section className="mb-2 flex w-2/3 grow flex-col items-center justify-center overflow-y-auto rounded-lg border-[1px] border-dark-myText bg-white py-6 shadow-sm dark:border-0 dark:bg-dark-card">
+      <section className="mb-2 flex w-2/3 grow flex-col items-center justify-center overflow-y-auto rounded-lg border-[1px] border-dark-myText bg-white  shadow-sm dark:border-0 dark:bg-dark-card">
         {/* <ThisWeekTop /> */}
 
         <PageButtonList />

@@ -19,12 +19,12 @@ const routerMap: Record<string, RouterItem> = {
   //   name: '2024 리캡',
   //   className: 'size-6',
   // },
-  event: {
-    path: '/events',
-    name: '이벤트관',
-    icon: PiGiftBold,
-    className: 'size-6',
-  },
+  // event: {
+  //   path: '/events',
+  //   name: '이벤트관',
+  //   icon: PiGiftBold,
+  //   className: 'size-6',
+  // },
   more: {
     path: '/more',
     name: '더보기',

@@ -7,7 +7,7 @@ import type { Member as MemberType } from '@/types';
 
 export default function MemberList() {
   return (
-    <ul className="grid w-full grid-cols-2  gap-y-6 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
+    <ul className="grid w-full grid-cols-2  gap-y-6 pl-6 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-5">
       {MEMBERS.map((member) => (
         <Member key={member.id} member={member} />
       ))}
