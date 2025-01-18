@@ -13,12 +13,16 @@ import BoardList from '@/app/gallery/components/BoardList';
 import MemberAlbum from '@/app/gallery/components/MemberAlbum';
 // import { useRouter } from 'next/navigation';
 import RefindPick from '@/app/gallery/components/RefindPick';
+import Button from '@/components/Button';
 import MoreButtons from '@/components/Button/MoreButtons';
 import AppInstallModal from '@/components/Modal/AppInstallModal';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
+
+import PageButton from './PageButton';
+import PageButtonList from './PageButtonList';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),
@@ -66,22 +70,21 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="mx-auto  flex w-full items-start justify-center gap-2 px-2 pb-[60px]">
+    <div className="mx-auto mt-1  flex w-full items-start justify-center gap-2 px-2 pb-[60px]">
       {/* desktop: left / mobile: top */}
-      <section className="flex w-[360px] flex-col items-center justify-center overflow-y-auto rounded-2xl dark:bg-dark-card">
+      <section className="flex w-[360px] flex-col items-center justify-center overflow-y-auto rounded-lg dark:bg-dark-card">
         <TopTitle />
         <Upload />
         <RandomGacha />
       </section>
       {/* desktop: right / mobile: bottom */}
-      <section className="flex w-2/3 grow flex-col items-center justify-center overflow-y-auto rounded-2xl">
-        <div className="mb-2 w-full rounded-xl border-[1px] border-dark-myText bg-white py-6 shadow-sm dark:border-0 dark:bg-dark-card">
-          {/* <ThisWeekTop /> */}
+      <section className="mb-2 flex w-2/3 grow flex-col items-center justify-center overflow-y-auto rounded-lg border-[1px] border-dark-myText bg-white py-6 shadow-sm dark:border-0 dark:bg-dark-card">
+        {/* <ThisWeekTop /> */}
 
-          <RefindPick />
-          <BoardList />
-          <MemberAlbum />
-        </div>
+        <PageButtonList />
+        <RefindPick />
+        <BoardList />
+        <MemberAlbum />
         <BannerSlider />
 
         <Footer />
