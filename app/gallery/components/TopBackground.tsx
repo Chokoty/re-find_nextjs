@@ -1,26 +1,23 @@
 'use client';
 
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 
-import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
+import { Isd } from '@/lib/images';
 
 interface TopBackgroundProps {
   children: ReactNode;
+  coverImageUrl?: string;
 }
 
-const TopBackground = ({ children }: TopBackgroundProps) => {
-  const pathname = usePathname().replace('/gallery', '');
-  const bgStaticSrc = getStaticImage(pathname.slice(1));
-
+const TopBackground = ({ children, coverImageUrl }: TopBackgroundProps) => {
   return (
     <section className="relative top-[3px] flex size-full max-h-[600px] flex-col items-center justify-center 2xs:top-[-80px] md:max-h-[800px]">
       <div className="relative z-[1]  aspect-[474/600] w-full  sm:aspect-[1920/1080]">
         {/* aspect-[474/600]  2xs:aspect-[1920/1080] */}
         <Image
           className="size-full   object-cover object-top opacity-70 dark:opacity-80"
-          src={bgStaticSrc}
+          src={coverImageUrl ?? Isd}
           alt="백그라운드 커버 이미지"
           quality={100}
           width={1920}

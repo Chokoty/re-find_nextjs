@@ -9,7 +9,11 @@ export default function Gallery() {
   return (
     <div className="w-full">
       <TopBackground>
-        <GalleryTitle pageType="galleryHome" />
+        <GalleryTitle
+          pageType="galleryHome"
+          title="팬아트 갤러리"
+          description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
+        />
       </TopBackground>
       <section
         // -220px(-60px + -160px)
