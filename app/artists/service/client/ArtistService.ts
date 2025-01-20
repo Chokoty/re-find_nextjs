@@ -13,7 +13,7 @@ class ArtistService extends Service {
     page,
   }: GetArtistListParams & { page: number }) {
     const url =
-      `/author_list_per_page?query=${q}&ranktype=${ranktype}&page=${page}&per_page=${ROWS_PER_PAGE}`.concat(
+      `/v2/author_list_per_page?query=${q}&ranktype=${ranktype}&page=${page}&per_page=${ROWS_PER_PAGE}`.concat(
         board ? `&board=${board}` : ''
       );
     return this.http.get<AuthorList>(url);
