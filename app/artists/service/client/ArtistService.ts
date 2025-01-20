@@ -5,7 +5,7 @@ import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
 // TODO: 네이밍 통일하기 (artists vs authors)
 
 class ArtistService extends Service {
-  // 왁타버스 작가 리스트 가져오기
+  // 왁타버스 작가 리스트 가져오기 - 쿼리 있는 경우 : /v2/author_list_per_page
   getArtistList({
     q,
     ranktype,
@@ -13,11 +13,24 @@ class ArtistService extends Service {
     page,
   }: GetArtistListParams & { page: number }) {
     const url =
-      `/author_list_per_page?query=${q}&ranktype=${ranktype}&page=${page}&per_page=${ROWS_PER_PAGE}`.concat(
+      `/v2/author_list_per_page?query=${q}&ranktype=${ranktype}&page=${page}&per_page=${ROWS_PER_PAGE}`.concat(
         board ? `&board=${board}` : ''
       );
     return this.http.get<AuthorList>(url);
   }
+
+  // 왁타버스 작가 리스트 가져오기 - 쿼리 없는 경우 : /author_list_per_page
+  // getArtistListWithoutQuery({
+  //   ranktype,
+  //   board,
+  //   page,
+  // }: GetArtistListParams & PageNum) {
+  //   const url =
+  //     `/author_list_per_page?ranktype=${ranktype}&page=${page}&per_page=${ROWS_PER_PAGE}`.concat(
+  //       board ? `&board=${board}` : ''
+  //     );
+  //   return this.http.get<AuthorList>(url);
+  // }
 
   // 작가의 작품들 가져오기
   // {"lastPage": true, "list": []}
