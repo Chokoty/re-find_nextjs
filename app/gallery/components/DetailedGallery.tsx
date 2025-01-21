@@ -17,13 +17,9 @@ import { useResponsive } from '@/hooks/useResponsive';
 
 type Props = {
   value: string;
-  albumType: string;
 };
 // TODO: 4번 렌더링되는 문제 해결 필요
-export default function DetailedGallery({
-  value: galleryType,
-  albumType,
-}: Props) {
+export default function DetailedGallery({ value: galleryType }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const sortTypeInit = searchParams.get('sortType') ?? '';

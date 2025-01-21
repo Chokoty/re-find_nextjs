@@ -15,6 +15,8 @@ type Props = {
   title: string;
   description: string;
   pageType: string;
+  linkUrl?: string;
+  linkTitle?: string;
 };
 
 // const getTitleInfo = (type: string) => {
@@ -36,7 +38,13 @@ const titleClassName =
 const descriptionClassName =
   'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[530px]  break-keep';
 
-export default function GalleryTitle({ pageType, title, description }: Props) {
+export default function GalleryTitle({
+  pageType,
+  title,
+  description,
+  linkUrl,
+  linkTitle,
+}: Props) {
   const router = useRouter();
   // TODO: link URL 서버에서 데이터 요청
   // const {  linkUrl, linkTitle } = getTitleInfo(pageType);
@@ -87,7 +95,7 @@ export default function GalleryTitle({ pageType, title, description }: Props) {
             <div className="mb-6 mt-1.5">
               <p className={`font-bold ${descriptionClassName}`}>
                 {description}
-                {/* {linkUrl && (
+                {linkUrl && (
                   <Link
                     href={linkUrl}
                     target="_blank"
@@ -96,7 +104,7 @@ export default function GalleryTitle({ pageType, title, description }: Props) {
                     {linkTitle}
                     <LuExternalLink className="ml-2 text-lg font-semibold 2xs:block" />
                   </Link>
-                )} */}
+                )}
               </p>
             </div>
           </div>

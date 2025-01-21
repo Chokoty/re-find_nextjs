@@ -19,7 +19,7 @@ class ArtistService extends Service {
     return this.http.get<AuthorList>(url);
   }
 
-  // 작가의 작품들 가져오기
+  // 작가의 작품들 가져오기 (기본 30개 - 서버 지정)
   // {"lastPage": true, "list": []}
   async getArtistArtworks({
     nickname,
@@ -28,7 +28,7 @@ class ArtistService extends Service {
     board,
   }: GetArtistInfoParams & PageNum) {
     const url =
-      `/author_artworks?name=${nickname}&type=${sortType}&page=${page}`.concat(
+      `/v2/author_artworks?name=${nickname}&sorttype=${sortType}&page=${page}`.concat(
         board ? `&board=${board}` : ''
       );
 

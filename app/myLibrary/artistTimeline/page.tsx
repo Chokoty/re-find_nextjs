@@ -80,9 +80,6 @@ export default async function page({ params: { name } }: Params) {
             <Suspense>
               <DetailedGallery
                 value={name}
-                albumType={
-                  GALLERY_LIST.find((item) => item.id === name)?.type ?? ''
-                }
                 // endpoint={endpoint ?? ''}
               />
             </Suspense>
@@ -102,9 +99,6 @@ export default async function page({ params: { name } }: Params) {
         <Suspense>
           <DetailedGallery
             value={name}
-            albumType={
-              GALLERY_LIST.find((item) => item.id === name)?.type ?? ''
-            }
             // endpoint={endpoint ?? ''}
           />
         </Suspense>

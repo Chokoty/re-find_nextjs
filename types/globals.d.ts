@@ -92,6 +92,8 @@ declare global {
     description: string;
     cover_image: string;
     query: string;
+    linkTitle?: string;
+    linkUrl?: string;
   }
 
   export interface GalleryArtworks {
