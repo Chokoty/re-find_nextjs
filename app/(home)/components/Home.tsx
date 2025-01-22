@@ -70,15 +70,15 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="mx-auto mt-1  flex w-full items-start justify-center gap-2 px-2 pb-[60px]">
+    <div className="mx-auto mt-1 flex h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 ">
       {/* desktop: left / mobile: top */}
-      <section className="flex w-[360px] flex-col items-center justify-center overflow-y-auto rounded-lg dark:bg-dark-card">
+      <section className="flex h-full w-[360px] flex-col items-center justify-start  overflow-y-auto rounded-lg dark:bg-dark-card">
         <TopTitle />
         <Upload />
         <RandomGacha />
       </section>
       {/* desktop: right / mobile: bottom */}
-      <section className="mb-2 flex w-2/3 grow flex-col items-center justify-center overflow-y-auto rounded-lg border-[1px] border-dark-myText bg-white  shadow-sm dark:border-0 dark:bg-dark-card">
+      <section className="custom-scrollbar mb-2 flex h-full w-2/3 grow flex-col items-center justify-start overflow-y-auto rounded-lg border-[1px] border-dark-myText bg-white  pt-4 shadow-sm dark:border-0 dark:bg-dark-card">
         {/* <ThisWeekTop /> */}
 
         <PageButtonList />
