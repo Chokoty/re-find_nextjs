@@ -14,3 +14,7 @@ export function useVerificationRequest(email: string) {
 export function useVerifyEmail(token: string) {
   return useQuery(queryOptions.verifyEmail(token));
 }
+
+export function useRequestNaverLoginInServer(currentPageUrl: string) {
+  return useQuery(queryOptions.requestNaverLoginInServer(currentPageUrl));
+}

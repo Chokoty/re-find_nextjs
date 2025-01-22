@@ -1,28 +1,17 @@
 'use client';
 
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 
 import NaverButton from '@/components/Button/NaverButton';
-import {
-  useLogin,
-  useVerificationRequest,
-} from '@/service/client/useCommonService';
+import { useVerificationRequest } from '@/service/client/useCommonService';
 
 export default function Register() {
   // TODO:  ⨯ useSearchParams() should be wrapped in a suspense boundary at page "/register". Read more: https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout
-  const searchParams = useSearchParams();
   const inputRef = useRef<HTMLInputElement>(null);
   const [animate, setAnimate] = useState(false);
   const [input, setInput] = useState('');
-  const code = searchParams.get('code');
-  const state = searchParams.get('state');
-  const {
-    isFetching: loginIsFetcing,
-    refetch: login,
-    status: loginStatus,
-  } = useLogin({ code, state });
+
   const {
     isFetching: verifyIsFetcing,
     refetch: verify,
@@ -34,13 +23,11 @@ export default function Register() {
     inputRef.current?.focus();
   }, []);
 
-  const isError = loginStatus === 'error' || verifyStatus === 'error';
-  const isFetching = loginIsFetcing || verifyIsFetcing;
+  const isError = verifyStatus === 'error';
+  const isFetching = verifyIsFetcing;
   const isDisabledButton = isFetching || !input.length;
   const animateClassName = 'opacity-100 transition-opacity duration-1000';
   const handleVerificationRequest = async () => {
-    // console.log('test');
-    await login();
     await verify();
   };
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {

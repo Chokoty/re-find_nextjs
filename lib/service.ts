@@ -24,7 +24,8 @@ class Service {
 
   constructor() {
     // this.baseURL = process.env.NEXT_PUBLIC_SERVER_URL!;
-    this.baseURL = process.env.NEXT_PUBLIC_REDIRECT_URL!;
+    this.baseURL = process.env.NEXT_PUBLIC_NEW_SERVER_URL!;
+    // this.baseURL = process.env.NEXT_PUBLIC_REDIRECT_URL!;
 
     // this.headers = {
     //   csrf: 'token',

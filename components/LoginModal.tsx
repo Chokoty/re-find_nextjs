@@ -5,6 +5,7 @@ import useModal from '@/hooks/useModal';
 import { Logo } from '@/lib/images';
 
 import NaverButton from './Button/NaverButton';
+import { usePathname } from 'next/navigation';
 
 const redirect_uri = `${
   process.env.NEXT_PUBLIC_IS_LOCAL
@@ -12,11 +13,16 @@ const redirect_uri = `${
     : process.env.NEXT_PUBLIC_CLIENT_URL
 }/register`;
 const client_id = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
+const testApiBase = process.env.NEXT_PUBLIC_DEV_CLIENT_URL;
+const serverUrl = process.env.NEXT_PUBLIC_NEW_SERVER_URL;
 
 export default function LoginModal() {
   const { hide } = useModal();
+  const pathname = usePathname();
   const goToNaverLogin = () => {
-    window.location.href = `https://nid.naver.com/oauth2.0/authorize?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}&state=abcd`;
+    // window.location.href = `https://nid.naver.com/oauth2.0/authorize?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}&state=abcd`;
+    console.log(`${serverUrl}/v2/authorize?prev_loc=${testApiBase + pathname}`);
+    window.location.href = `${serverUrl}/v2/authorize?prev_loc=${testApiBase + pathname}`;
   };
 
   return (

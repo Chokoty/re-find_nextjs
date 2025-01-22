@@ -248,4 +248,11 @@ declare global {
     author_url: string;
     date: string;
   }
+
+  // login
+  export interface NaverloginResponse {
+    status: 'success';
+    state: 'register' | 'login';
+    redirect_uri: string;
+  }
 }

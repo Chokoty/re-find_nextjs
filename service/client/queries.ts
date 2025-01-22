@@ -7,9 +7,17 @@ const queryKeys = {
   requestVerification: (email: string) =>
     ['requestVerification', email] as const,
   verifyEmail: (token: string) => ['verifyEmail', token] as const,
+  requestNaverLoginInServer: (currentPageUrl: string) =>
+    ['requestNaverLoginInServer', currentPageUrl] as const,
 };
 
 const queryOptions = {
+  requestNaverLoginInServer: (currentPageUrl: string) => ({
+    queryKey: queryKeys.requestNaverLoginInServer(currentPageUrl),
+    queryFn: () => CommonService.requestNaverLoginInServer(currentPageUrl),
+    // gcTime: 0,
+    enabled: false, // 초기에는 호출하지 않음
+  }),
   login: ({ code, state }: GetLoginQueryParams) => ({
     queryKey: queryKeys.login({ code, state }),
     queryFn: () => CommonService.callbackUrl({ code, state }),
