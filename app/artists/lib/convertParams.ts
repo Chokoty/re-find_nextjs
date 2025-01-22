@@ -10,7 +10,7 @@ export const convertBoardParams = (selectedView: keyof AuthorCommon | null) => {
 export const convertRankTypeParams = (field: keyof AuthorCommon) => {
   switch (field) {
     case 'total_likes':
-      return 'like';
+      return 'likes';
     case 'total_comments':
       return 'comment';
     case 'total_views':
@@ -20,6 +20,6 @@ export const convertRankTypeParams = (field: keyof AuthorCommon) => {
     case 'total_articles':
       return 'num';
     default:
-      return 'like';
+      return 'likes';
   }
 };

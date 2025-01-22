@@ -14,6 +14,7 @@ const queryKeys = {
     ['isdNotices', member, ranktype] as const,
   artworkDetail: (id: number) => ['artworkDetail', id] as const,
   galleries: () => ['galleries'] as const,
+  galleryPageInfo: (id: string) => ['galleryPageInfo', id] as const,
 };
 
 const queryOptions = {
@@ -67,6 +68,11 @@ const queryOptions = {
     queryKey: queryKeys.galleries(), // queryKey 설정
     queryFn: () => GalleryService.getGalleries(), // 메서드 호출
   }),
+
+  // galleryPageInfo: (id: string) => ({
+  //   queryKey: queryKeys.galleryPageInfo(id), // queryKey 설정
+  //   queryFn: () => GalleryService.getGalleryPageInfo(id), // 메서드 호출
+  // }),
 };
 
 export default queryOptions;

@@ -22,6 +22,6 @@ export const MENU_ITEMS = [
   { id: 'latest', label: '최신순', isdPick: true },
   { id: 'oldest', label: '업로드순', isdPick: true },
   { id: 'view', label: '조회수순', isdPick: true },
-  { id: 'like', label: '좋아요순', isdPick: true },
+  { id: 'likes', label: '좋아요순', isdPick: true },
   { id: 'comment', label: '댓글순', isdPick: true },
 ];

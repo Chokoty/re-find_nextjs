@@ -86,6 +86,16 @@ declare global {
     galleries: GalleryInfo[];
   }
 
+  export interface GalleryPageInfo {
+    id: string;
+    name: string;
+    description: string;
+    cover_image: string;
+    query: string;
+    linkTitle?: string;
+    linkUrl?: string;
+  }
+
   export interface GalleryArtworks {
     lastPage: boolean;
     total: number;

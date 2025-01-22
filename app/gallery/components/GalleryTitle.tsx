@@ -8,41 +8,46 @@ import { LuExternalLink } from 'react-icons/lu';
 
 import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
 import TotalCounter from '@/app/gallery/components/TotalCounter';
-import GALLERY_LIST, {
-  MEMBERS,
-  UPDATED_GALLERY_LIST,
-} from '@/app/gallery/lib/const';
 import Button from '@/components/Button';
 import { BBangTTi } from '@/lib/images';
 
-const getTitleInfo = (type: string) => {
-  if (type === 'galleryHome') {
-    return {
-      title: '팬아트 갤러리',
-      description: '왁물원에 올라온 모든 팬아트들을 한 곳에서!',
-    };
-  }
-
-  const album = GALLERY_LIST.find((item) => item.id === type);
-  const board = UPDATED_GALLERY_LIST.find((item) => item.id === type);
-  const member = MEMBERS.find((item) => item.value === type);
-
-  return {
-    title: album?.title || board?.title || `${member?.name ?? ''} 팬아트`,
-    description: album?.description || '',
-    linkUrl: album?.linkUrl || '',
-    linkTitle: album?.linkTitle || '',
-  };
+type Props = {
+  title: string;
+  description: string;
+  pageType: string;
+  linkUrl?: string;
+  linkTitle?: string;
 };
+
+// const getTitleInfo = (type: string) => {
+
+//   const album = GALLERY_LIST.find((item) => item.id === type);
+//   const board = UPDATED_GALLERY_LIST.find((item) => item.id === type);
+//   const member = MEMBERS.find((item) => item.value === type);
+
+//   return {
+//     title: album?.title || board?.title || `${member?.name ?? ''} 팬아트`,
+//     description: album?.description || '',
+//     linkUrl: album?.linkUrl || '',
+//     linkTitle: album?.linkTitle || '',
+//   };
+// };
 
 const titleClassName =
   'mt-1.5 font-pop text-4xl sm:text-5xl 2md:text-6xl lg:text-7xl 2xl:text-8xl break-keep';
 const descriptionClassName =
   'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[530px]  break-keep';
 
-export default function GalleryTitle({ pageType }: { pageType: string }) {
+export default function GalleryTitle({
+  pageType,
+  title,
+  description,
+  linkUrl,
+  linkTitle,
+}: Props) {
   const router = useRouter();
-  const { title, description, linkUrl, linkTitle } = getTitleInfo(pageType);
+  // TODO: link URL 서버에서 데이터 요청
+  // const {  linkUrl, linkTitle } = getTitleInfo(pageType);
 
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');

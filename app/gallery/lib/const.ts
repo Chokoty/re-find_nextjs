@@ -232,7 +232,7 @@ const GALLERY_LIST: Gallery[] = [
 
 export const UPDATED_GALLERY_LIST: Gallery[] = [
   {
-    id: 'bestBoard',
+    id: 'best',
     type: 'board',
     title: '통합 BEST 팬아트 게시판',
     subTitle: '',
@@ -241,7 +241,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=best&case_sensitive=false',
   },
   {
-    id: 'goldhandBoard',
+    id: 'goldhand',
     type: 'board',
     title: '금손 작가들의 방',
     subTitle: '',
@@ -250,7 +250,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=goldhand&case_sensitive=false',
   },
   {
-    id: 'isdBoard',
+    id: 'isd',
     type: 'board',
     title: '이세돌┃팬아트',
     subTitle: '',
@@ -259,7 +259,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=isd&case_sensitive=false',
   },
   {
-    id: 'gomemBoard',
+    id: 'gomem',
     type: 'board',
     title: '고멤┃팬아트',
     subTitle: '',
@@ -268,7 +268,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=gomem&case_sensitive=false',
   },
   {
-    id: 'wakgoodBoard',
+    id: 'wakgood',
     type: 'board',
     title: '우왁굳 팬아트',
     subTitle: '',
@@ -277,7 +277,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=wak&case_sensitive=false',
   },
   {
-    id: 'unofficialBoard',
+    id: 'wallpaper',
     type: 'board',
     title: '왁타버스 불법 배경',
     subTitle: '',

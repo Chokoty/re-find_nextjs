@@ -3,11 +3,9 @@ import type { Metadata } from 'next';
 import DetailedGallery from '@/app/gallery/components/DetailedGallery';
 import GalleryTitle from '@/app/gallery/components/GalleryTitle';
 import TopBackground from '@/app/gallery/components/TopBackground';
-import GALLERY_LIST, {
-  MEMBERS,
-  UPDATED_GALLERY_LIST,
-} from '@/app/gallery/lib/const';
+import GALLERY_LIST from '@/app/gallery/lib/const';
 import queryOptions from '@/app/gallery/service/client/queries';
+import { getGalleryPageInfo } from '@/app/gallery/service/server';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 
@@ -44,7 +42,14 @@ export default async function page({ params: { name } }: Params) {
   // MEMBERS.find((item) => item.value === name)?.query ||
   // GALLERY_LIST.find((item) => item.id === name)?.query ||
   // UPDATED_GALLERY_LIST.find((item) => item.id === name)?.query;
-
+  const {
+    id,
+    name: title,
+    description,
+    cover_image,
+    linkTitle,
+    linkUrl,
+  } = await getGalleryPageInfo(name);
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     // name이 isdPick이면 isdNoticeArtworks를 호출하고, 그렇지 않으면 galleryArtworks를 호출한다.
     // const { queryKey, queryFn } =
@@ -71,17 +76,18 @@ export default async function page({ params: { name } }: Params) {
 
     return (
       <div className="w-full">
-        <TopBackground>
-          <GalleryTitle pageType={name} />
+        <TopBackground coverImageUrl={cover_image}>
+          <GalleryTitle
+            pageType={id}
+            title={title}
+            description={description}
+            linkTitle={linkTitle}
+            linkUrl={linkUrl}
+          />
         </TopBackground>
         <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
           <Hydrate state={{ queries: [query] }}>
-            <DetailedGallery
-              value={name}
-              albumType={
-                GALLERY_LIST.find((item) => item.id === name)?.type ?? ''
-              }
-            />
+            <DetailedGallery value={name} />
           </Hydrate>
         </section>
       </div>
@@ -90,15 +96,18 @@ export default async function page({ params: { name } }: Params) {
 
   return (
     <div className="w-full">
-      <TopBackground>
-        <GalleryTitle pageType={name} />
+      <TopBackground coverImageUrl={cover_image}>
+        <GalleryTitle
+          pageType={id}
+          title={title}
+          description={description}
+          linkTitle={linkTitle}
+          linkUrl={linkUrl}
+        />
       </TopBackground>
       {/* -220px(-60px + -160px) */}
       <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
-        <DetailedGallery
-          value={name}
-          albumType={GALLERY_LIST.find((item) => item.id === name)?.type ?? ''}
-        />
+        <DetailedGallery value={name} />
       </section>
     </div>
   );
