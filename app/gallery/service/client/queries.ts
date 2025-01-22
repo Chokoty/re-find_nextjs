@@ -31,8 +31,8 @@ const queryOptions = {
       }),
     initialPageParam: 1,
     getNextPageParam: (
-      lastPage: GalleryArtworks,
-      allPages: GalleryArtworks[],
+      lastPage: AlbumArtworks,
+      allPages: AlbumArtworks[],
       lastPageParam: number,
       allPageParams: number[]
     ) => {
@@ -40,25 +40,7 @@ const queryOptions = {
       return lastPageParam + 1;
     },
   }),
-  // isdNoticeArtworks: ({ member, ranktype }: GetIsdNoticeArtworksParams) => ({
-  //   queryKey: queryKeys.isdNotices({ member, ranktype }),
-  //   queryFn: ({ pageParam }: { pageParam: number }) =>
-  //     GalleryService.getIsdNoticesArtworks({
-  //       member,
-  //       ranktype,
-  //       page: pageParam,
-  //     }),
-  //   initialPageParam: 1,
-  //   getNextPageParam: (
-  //     lastPage: IsdNoticeArtworks,
-  //     allPages: IsdNoticeArtworks[],
-  //     lastPageParam: number,
-  //     allPageParams: number[]
-  //   ) => {
-  //     if (lastPage.lastPage) return;
-  //     return lastPageParam + 1;
-  //   },
-  // }),
+
   artworkDetail: (id: number) => ({
     queryKey: queryKeys.artworkDetail(id),
     queryFn: () => GalleryService.getArtworkDetail(id),

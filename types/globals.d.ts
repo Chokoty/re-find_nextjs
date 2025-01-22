@@ -72,7 +72,16 @@ declare global {
     is_hyum: boolean;
   }
 
-  export interface GalleryInfo {
+  // export interface AlbumInfo {
+  //   id: string;
+  //   title: string;
+  //   description: string;
+  //   cover_image: string;
+  //   query: string;
+  //   author: string;
+  //   subTitle: string;
+  // }
+  export interface AlbumInfo {
     id: string;
     title: string;
     description: string;
@@ -80,35 +89,27 @@ declare global {
     query: string;
     author: string;
     subTitle: string;
-  }
-
-  export interface GalleryList {
-    galleries: GalleryInfo[];
-  }
-
-  export interface GalleryPageInfo {
-    id: string;
-    name: string;
-    description: string;
-    cover_image: string;
-    query: string;
     linkTitle?: string;
     linkUrl?: string;
   }
 
-  export interface GalleryArtworks {
-    lastPage: boolean;
-    total: number;
-    list: GalleryArtworkList[];
+  export interface AlbumList {
+    albums: AlbumInfo[];
   }
 
-  export interface GalleryArtworkList extends ArtworkList {
+  export interface AlbumArtworks {
+    lastPage: boolean;
+    total: number;
+    list: AlbumArtworkList[];
+  }
+
+  export interface AlbumArtworkList extends ArtworkList {
     author: null | string;
     is_shukkou: boolean;
     is_hyum: boolean;
   }
 
-  export interface ArtworkDetail extends GalleryArtworkList {
+  export interface ArtworkDetail extends AlbumArtworkList {
     prof_url: null | string;
   }
 
