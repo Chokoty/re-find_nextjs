@@ -21,7 +21,7 @@ export default function LeftSection() {
   };
 
   return (
-    <div
+    <section
       className={`relative flex h-full overflow-hidden ${
         isOpen ? 'w-[360px]' : 'w-[60px]'
       }  flex-col items-center justify-start  rounded-lg dark:bg-dark-card`}
@@ -56,6 +56,6 @@ export default function LeftSection() {
           <RandomGacha />
         </div>
       )}
-    </div>
+    </section>
   );
 }
