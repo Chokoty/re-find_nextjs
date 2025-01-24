@@ -314,3 +314,19 @@ body {
   align-items: center;
 }
 
+/* 스크롤바 스타일 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* 배경색 제거 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* 스크롤바 색상 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* 호버 상태 색상 */
+}
