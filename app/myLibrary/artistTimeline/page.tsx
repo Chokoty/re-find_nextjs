@@ -73,16 +73,13 @@ export default async function page({ params: { name } }: Params) {
     return (
       <div className="w-full">
         <TopBackground>
-          <GalleryTitle pageType={name} />
+          <GalleryTitle pageType={name} title="" description="" />
         </TopBackground>
         <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
           <Hydrate state={{ queries: [query] }}>
             <Suspense>
               <DetailedGallery
                 value={name}
-                albumType={
-                  GALLERY_LIST.find((item) => item.id === name)?.type ?? ''
-                }
                 // endpoint={endpoint ?? ''}
               />
             </Suspense>
@@ -95,16 +92,13 @@ export default async function page({ params: { name } }: Params) {
   return (
     <div className="w-full">
       <TopBackground>
-        <GalleryTitle pageType={name} />
+        <GalleryTitle pageType={name} title="" description="" />
       </TopBackground>
       {/* -220px(-60px + -160px) */}
       <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
         <Suspense>
           <DetailedGallery
             value={name}
-            albumType={
-              GALLERY_LIST.find((item) => item.id === name)?.type ?? ''
-            }
             // endpoint={endpoint ?? ''}
           />
         </Suspense>

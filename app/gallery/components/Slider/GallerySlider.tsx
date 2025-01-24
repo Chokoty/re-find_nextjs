@@ -29,7 +29,7 @@ type Props = {
 
 export default function GallerySlider({ customSwiperOptions, type }: Props) {
   const { style: customStyle, ...customOptions } = customSwiperOptions || {};
-  const { data: galleryList, isLoading, isError } = useGalleryList();
+  const { data: gallery, isLoading, isError } = useGalleryList();
   const swiperParams = {
     // centerInsufficientSlides
     style: {
@@ -95,11 +95,11 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
           return null;
           // return <div>isLoading</div>
         }
-        if (!galleryList) {
+        if (!gallery) {
           return null;
         }
 
-        return galleryList.galleries.map((data) => (
+        return gallery.albums.map((data) => (
           <SwiperSlide key={data.id} className="overflow-hidden">
             <GalleryAlbumCard album={data} />
           </SwiperSlide>

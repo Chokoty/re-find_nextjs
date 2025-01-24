@@ -18,7 +18,7 @@ export default async function ArtistsPage() {
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     const { queryKey, queryFn } = queryOptions.artistList({
       q: '',
-      ranktype: 'like',
+      ranktype: 'likes',
       board: null,
     });
 

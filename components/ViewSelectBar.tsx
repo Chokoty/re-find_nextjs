@@ -30,6 +30,7 @@ type Props = {
   topOffset: number;
   isIsdPick?: boolean;
   hasTotalCounter?: boolean;
+  isArtist?: boolean;
 };
 
 export default function ViewSelectBar({
@@ -43,6 +44,7 @@ export default function ViewSelectBar({
   onMemberClick,
   isIsdPick = false,
   hasTotalCounter = false,
+  isArtist = false,
 }: Props) {
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -144,7 +146,7 @@ export default function ViewSelectBar({
                 </MenuItem>
               ))}
             {isIsdPick === false &&
-              MENU_ITEMS.map((item) => (
+              (isArtist ? MENU_ITEMS.slice(0, -3) : MENU_ITEMS).map((item) => (
                 <MenuItem
                   key={item.id}
                   onClick={() => onMenuItemClick(item.id)}

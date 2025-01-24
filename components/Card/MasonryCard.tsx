@@ -5,7 +5,7 @@ import CardImage from '@/components/CardImage/CardImage';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 type Props = {
-  artwork: ArtworkList | GalleryArtworkList;
+  artwork: ArtworkList | AlbumArtworkList;
   isIsdPick?: boolean;
 };
 

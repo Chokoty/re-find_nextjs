@@ -15,7 +15,7 @@ import Popover, {
 } from '@/components/Popover';
 
 type Prop = {
-  album: GalleryInfo;
+  album: AlbumInfo;
 };
 
 const getBadgeText = ({

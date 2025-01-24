@@ -5,6 +5,7 @@ import Counter from '@/components/Recap/Counter';
 import StatisticCard from '@/components/Recap/StatisticCard';
 import Title from '@/components/Recap/Title';
 
+// !
 export default function TopContent({
   artist,
   total,
