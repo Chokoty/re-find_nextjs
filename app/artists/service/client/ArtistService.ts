@@ -5,7 +5,7 @@ import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
 // TODO: 네이밍 통일하기 (artists vs authors)
 
 class ArtistService extends Service {
-  // 왁타버스 작가 리스트 가져오기
+  // 왁타버스 작가 리스트 가져오기 - 쿼리 있는 경우 : /v2/author_list_per_page
   getArtistList({
     q,
     ranktype,
