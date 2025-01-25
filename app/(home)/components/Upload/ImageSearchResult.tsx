@@ -44,6 +44,12 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
   // const uploadDate = getUploadDate(data.upload_date);
   const uploadTimeDiff = useUploadTimeDiff(data.upload_date);
 
+  // 스크롤 맨 위로 올리기
+  const handleResetFiles = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // 스크롤 맨 위로 부드럽게 이동
+    resetFiles(); // 기존 함수 호출
+  };
+
   return (
     <div className="flex w-full max-w-[500px] flex-col items-center justify-center rounded-b-2xl border border-gray-200 p-4 dark:border-whiteAlpha-300">
       {ids?.length === 0 ? (
@@ -120,7 +126,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
       <p className="m-5 text-center text-xl">
         검색시간: <span className="font-semibold">{searchTime / 1000}s</span>
       </p>
-      <Button onClick={resetFiles} size="lg" intent="solid-blue">
+      <Button onClick={handleResetFiles} size="lg" intent="solid-blue">
         다른 이미지 검색
       </Button>
     </div>

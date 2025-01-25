@@ -50,7 +50,7 @@ export default function GalleryAlbumCard({
   // const staticImage = getStaticImage(id);
   return (
     <Link
-      href={`/gallery/${id}?viewType=masonry`}
+      href={`/album/${id}?viewType=masonry`}
       prefetch={false}
       className="m-auto flex h-[280px] w-full flex-col items-center justify-start  gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200"
     >

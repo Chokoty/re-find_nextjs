@@ -16,9 +16,10 @@ import useModal from '@/hooks/useModal';
 
 type Prop = {
   hashs: string[];
+  scrollToTop: () => void;
 };
 
-export default function ImageViewer({ hashs }: Prop) {
+export default function ImageViewer({ hashs, scrollToTop }: Prop) {
   const { data, isLoading } = useImageInfo({ hash: hashs[0] });
   const { resetFiles } = useImageUploadStore(
     useShallow((state) => ({
@@ -50,10 +51,15 @@ export default function ImageViewer({ hashs }: Prop) {
     }
   }, [data]);
 
+  const handleResetFiles = () => {
+    scrollToTop();
+    resetFiles();
+  };
+
   const getResult = () => {
     if (!data) {
       return (
-        <Button onClick={resetFiles} size="lg">
+        <Button onClick={handleResetFiles} size="lg">
           다른 이미지 검색
         </Button>
       );

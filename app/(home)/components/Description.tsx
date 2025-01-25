@@ -25,7 +25,7 @@ export default function Description() {
                 </AccordionButton>
               </div>
               <AccordionPanel>
-                <div className="my-4 w-full break-keep rounded-md border-2 border-green-highlight p-4 text-sm dark:border-pink-highlight md:p-6 md:text-base">
+                <div className="my-4 w-full break-keep rounded-md border-2 border-green-highlight p-4 text-sm dark:border-pink-highlight md:p-6 ">
                   <p className="mb-3 font-bold">
                     다음과 같은 경우에 검색결과가 나오지 않을 수 있습니다!
                   </p>
