@@ -12,7 +12,7 @@ const GallerySlider = dynamic(
 
 export default function RefindPick() {
   return (
-    <div className="flex w-full flex-col " style={{ userSelect: 'none' }}>
+    <div className="mt-10 flex w-full flex-col " style={{ userSelect: 'none' }}>
       <div className="mb-2 w-full px-8 md:mb-4">
         <p className="text-left text-xl font-extrabold md:text-2xl">
           리파인드 추천 앨범

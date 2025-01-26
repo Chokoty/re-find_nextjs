@@ -3,14 +3,14 @@
 import type { ReactNode } from 'react';
 import { useRef } from 'react';
 
-import PageButtonList from '@/app/(home)/components/PageButtonList';
+import PageButtonListForSearch from '@/app/(home)/components/PageButtonListForSearch';
 import BackToTopButton2 from '@/components/Button/BackToTopButton2';
 
 interface PageContentProps {
   children: ReactNode;
 }
 
-const PageContent = ({ children }: PageContentProps) => {
+const PageContentForSearch = ({ children }: PageContentProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null); // 내부 스크롤 컨테이너 참조
   return (
     <section className="flex h-full w-2/3 grow flex-col items-center justify-start overflow-hidden rounded-lg border-base border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card">
@@ -18,7 +18,7 @@ const PageContent = ({ children }: PageContentProps) => {
         ref={scrollContainerRef} // 참조 전달
         className="custom-scrollbar  flex size-full flex-col items-center justify-start overflow-y-auto border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card"
       >
-        <PageButtonList scrollContainerRef={scrollContainerRef} />
+        <PageButtonListForSearch scrollContainerRef={scrollContainerRef} />
         {children}
       </div>
       <BackToTopButton2 scrollContainerRef={scrollContainerRef} />
@@ -26,4 +26,4 @@ const PageContent = ({ children }: PageContentProps) => {
   );
 };
 
-export default PageContent;
+export default PageContentForSearch;

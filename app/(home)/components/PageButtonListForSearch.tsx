@@ -5,10 +5,9 @@ import PageButton from '@/app/(home)/components/PageButton';
 const buttons = [
   { text: '갤러리', path: '/gallery' },
   { text: '작가', path: '/artists' },
-  { text: '이벤트', path: '/events' },
 ];
 
-export default function PageButtonList({
+export default function PageButtonListForSearch({
   scrollContainerRef,
 }: {
   scrollContainerRef: React.RefObject<HTMLDivElement>;

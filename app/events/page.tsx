@@ -4,7 +4,13 @@ import { FaRegSquareCaretLeft } from 'react-icons/fa6';
 import { GiPerspectiveDiceSixFacesRandom } from 'react-icons/gi';
 import { PiRankingFill } from 'react-icons/pi';
 
+import PageTitle from '@/components/PageTitle';
 import { cn } from '@/lib/common';
+
+const topTitle = {
+  title: '이벤트 페이지',
+  description: '리파인드팀에서 기획한 컨텐츠들을 즐겨보세요',
+};
 
 const events = [
   {
@@ -72,7 +78,9 @@ const events = [
 
 export default function Events() {
   return (
-    <div className="mx-auto mt-2 flex w-[90%] flex-col items-center justify-center gap-4">
+    // <div className="mx-auto mt-2 flex w-[90%] flex-col items-center justify-center gap-4">
+    <div className="flex w-full flex-col items-center justify-center gap-4">
+      <PageTitle topTitle={topTitle} />
       {events.map((event, index) => (
         <div
           key={index}

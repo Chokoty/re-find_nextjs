@@ -1,11 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 
-import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import Footer from '@/app/(home)/components/Footer';
-// import PageButtonList from '@/app/(home)/components/PageButtonList';
 import RefindRecapNotificationModal from '@/app/(home)/components/RefindRecapNotificationModal';
 import BoardList from '@/app/gallery/components/BoardList';
 import MemberAlbum from '@/app/gallery/components/MemberAlbum';

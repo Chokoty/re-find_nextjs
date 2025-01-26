@@ -68,25 +68,26 @@ const HeaderContent = () => {
   const pathNameParts = pathname.split('/');
   const name = pathNameParts[pathNameParts.length - 1];
 
-  const isMorePath = pathname.startsWith('/more');
-  const isEvents = pathname.startsWith('/events');
+  // const isMorePath = pathname.startsWith('/more');
+  // const isEvents = pathname.startsWith('/events');
 
   // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
-  if (isMorePath || isEvents) {
-    return (
-      <>
-        <BackButton />
-        <h1 className="flex items-center justify-center text-xl font-bold">
-          {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
-        </h1>
-        {name === 'fanartWorldCup' ? (
-          <WorldcupSkipButton />
-        ) : (
-          <div className="size-12" />
-        )}
-      </>
-    );
-  }
+  // if (isMorePath || isEvents) {
+  // if (isMorePath) {
+  //   return (
+  //     <>
+  //       <BackButton />
+  //       <h1 className="flex items-center justify-center text-xl font-bold">
+  //         {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
+  //       </h1>
+  //       {name === 'fanartWorldCup' ? (
+  //         <WorldcupSkipButton />
+  //       ) : (
+  //         <div className="size-12" />
+  //       )}
+  //     </>
+  //   );
+  // }
 
   return (
     <>

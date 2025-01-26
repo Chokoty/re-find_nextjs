@@ -1,13 +1,20 @@
+'use client';
+
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
-import { FaArrowUp } from 'react-icons/fa';
+import { AiFillExperiment } from 'react-icons/ai';
+import { FaArrowUp, FaBookOpen } from 'react-icons/fa';
 import { IoGrid, IoGridOutline } from 'react-icons/io5';
 
 import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
+import { SOURCE_URL } from '@/app/more/lib/const';
+import MoreButtons from '@/components/Button/MoreButtons';
 import Tooltip from '@/components/Tooltip';
+import UpdateLogBoard from '@/components/UpdateLogBoard';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),
@@ -98,6 +105,35 @@ export default function LeftSection() {
           <TopTitle />
           <Upload scrollToTop={scrollToTop} />
           <RandomGacha />
+          <div className="mb-4">
+            <MoreButtons />
+          </div>
+          <Link
+            className="link-to-wakzoo inline-block"
+            href={SOURCE_URL}
+            target="_blank"
+          >
+            <div className="inline-flex min-h-10 items-center justify-center rounded-md bg-purple-500 px-4 text-gray-50 transition hover:bg-purple-600 active:bg-purple-700">
+              <AiFillExperiment className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
+              <p className="text-sm xs:text-base">
+                (beta)이세돌 팬아트를 키워드로 찾아주는 AI
+              </p>
+            </div>
+          </Link>
+          <Link
+            className="mt-2 inline-block md:hidden"
+            href="/more/install-info"
+          >
+            <div className="inline-flex min-h-10 items-center justify-start rounded-md bg-gray-700 px-4 text-gray-50 transition hover:bg-gray-800 active:bg-gray-900">
+              <FaBookOpen className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
+              <p className="text-sm xs:text-base">
+                (안드로이드/IOS)리파인드 홈화면 설치 가이드
+              </p>
+            </div>
+          </Link>
+          <div className="p-4">
+            <UpdateLogBoard />
+          </div>
         </div>
       )}
       {/* Back to Top Button */}

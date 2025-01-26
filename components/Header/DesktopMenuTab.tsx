@@ -25,9 +25,15 @@ const routerMap: Record<string, RouterItem> = {
   //   icon: PiGiftBold,
   //   className: 'size-6',
   // },
-  more: {
-    path: '/more',
-    name: '더보기',
+  // more: {
+  //   path: '/more',
+  //   name: '더보기',
+  //   icon: FiMenu,
+  //   className: 'size-7',
+  // },
+  profile: {
+    path: '/myLibrary',
+    name: '내 라이브러리',
     icon: FiMenu,
     className: 'size-7',
   },
