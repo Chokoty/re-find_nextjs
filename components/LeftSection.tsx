@@ -1,19 +1,21 @@
+import dynamic from 'next/dynamic';
 import React, { useEffect, useRef, useState } from 'react';
 import { FaArrowUp } from 'react-icons/fa';
-import {
-  RiAlignItemBottomFill,
-  RiAlignItemBottomLine,
-  RiAlignItemLeftFill,
-  RiAlignItemLeftLine,
-  RiSignpostFill,
-  RiSignpostLine,
-} from 'react-icons/ri';
+import { IoGrid, IoGridOutline } from 'react-icons/io5';
 
+import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
 import Tooltip from '@/components/Tooltip';
 
+const BannerSlider = dynamic(
+  () => import('@/app/(home)/components/BannerSlider'),
+  {
+    ssr: false,
+    loading: () => <BannerSkeleton />,
+  }
+);
 export default function LeftSection() {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [isBackToTopVisible, setIsBackToTopVisible] = useState<boolean>(false);
@@ -78,11 +80,11 @@ export default function LeftSection() {
         >
           {isOpen ? (
             <div className="flex items-center justify-start gap-2">
-              <RiAlignItemBottomFill className="size-6" />
+              <IoGrid className="size-6" />
               <p className="">리파인드 메뉴</p>
             </div>
           ) : (
-            <RiAlignItemBottomLine className="size-6" />
+            <IoGridOutline className="size-6" />
           )}
         </button>
         {/* </Tooltip> */}
@@ -92,6 +94,7 @@ export default function LeftSection() {
           ref={scrollContainerRef} // 스크롤 이벤트 연결
           className="custom-scrollbar flex flex-col items-center overflow-y-auto "
         >
+          <BannerSlider />
           <TopTitle />
           <Upload scrollToTop={scrollToTop} />
           <RandomGacha />

@@ -5,7 +5,7 @@ import { MainBanner } from '@/lib/images';
 
 export default function Banner() {
   return (
-    <div className="w-full">
+    <div className="w-[90%]">
       <NextLink href="/more/about">
         <NextImage
           className="rounded-2xl"
