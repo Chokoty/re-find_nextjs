@@ -88,7 +88,7 @@ export default function LeftSection() {
           {isOpen ? (
             <div className="flex items-center justify-start gap-2">
               <IoGrid className="size-6" />
-              <p className="">리파인드 메뉴</p>
+              <p className="text-xl">리파인드 메뉴</p>
             </div>
           ) : (
             <IoGridOutline className="size-6" />

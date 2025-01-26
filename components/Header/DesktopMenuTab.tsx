@@ -32,8 +32,8 @@ const routerMap: Record<string, RouterItem> = {
   //   className: 'size-7',
   // },
   profile: {
-    path: '/myLibrary',
-    name: '내 라이브러리',
+    path: '/profile',
+    name: '프로필',
     icon: FiMenu,
     className: 'size-7',
   },

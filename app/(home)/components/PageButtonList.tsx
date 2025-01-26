@@ -6,6 +6,7 @@ const buttons = [
   { text: '갤러리', path: '/gallery' },
   { text: '작가', path: '/artists' },
   { text: '이벤트', path: '/events' },
+  { text: '내 라이브러리', path: '/myLibrary' },
 ];
 
 export default function PageButtonList({
