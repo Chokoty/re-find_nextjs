@@ -41,7 +41,7 @@ class ArtistService extends Service {
     board,
   }: GetArtistInfoParams & PageNum) {
     const url =
-      `/author_artworks?name=${nickname}&type=${sortType}&page=${page}`.concat(
+      `/v2/author/artworks?name=${nickname}&sorttype=${sortType}&page=${page}`.concat(
         board ? `&board=${board}` : ''
       );
 
