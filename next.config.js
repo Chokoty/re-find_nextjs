@@ -71,15 +71,15 @@ const nextConfig = {
   rewrites: async () => {
     return [
       // 개발 환경을 위한 proxy 설정입니다.
-      // {
-      //   source: `${process.env.NEXT_PUBLIC_REDIRECT_URL}/:path*`,
-      //   destination: `${process.env.NEXT_PUBLIC_NEW_SERVER_URL}/:path*`,
-      // },
-      // vercel 배포용 설정입니다.
       {
-        source: `/api2/:path*`,
-        destination: `https://rerurureruru.com/:path*`,
+        source: `${process.env.NEXT_PUBLIC_REDIRECT_URL}/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
       },
+      // vercel 배포용 설정입니다.
+      // {
+      //   source: `/api2/:path*`,
+      //   destination: `https://rerurureruru.com/:path*`,
+      // },
     ];
   },
 };

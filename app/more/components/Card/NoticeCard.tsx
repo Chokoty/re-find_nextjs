@@ -10,7 +10,7 @@ type Props = {
 
 export default function NoticeCard({ date, type, content, directLink }: Props) {
   return (
-    <div className="w-full gap-2 rounded-xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
+    <div className="w-full gap-2 rounded-xl bg-white p-4 shadow-cardBox dark:bg-dark-card-2">
       <p>{`${type ?? ''} ${content}`}</p>
       <div className="mt-2 flex flex-row justify-between">
         <p className="text-sm">{date}</p>

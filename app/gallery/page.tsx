@@ -6,7 +6,7 @@ import RefindPick from '@/app/gallery/components/RefindPick';
 
 export default function Gallery() {
   return (
-    <div className="w-full">
+    <div className="flex w-full flex-col items-center justify-center gap-4 py-4">
       <GalleryTitle
         pageType="galleryHome"
         title="팬아트 갤러리"

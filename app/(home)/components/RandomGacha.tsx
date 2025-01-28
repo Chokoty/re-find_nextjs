@@ -108,7 +108,7 @@ const Fanart = ({
 
   if (isLoading || isFetching || !data) {
     return (
-      <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-gray-100 dark:bg-whiteAlpha-200">
+      <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-gray-100 dark:bg-dark-card-2">
         {isFetching ? (
           <p className="w-full text-center text-3xl font-bold">{displayText}</p>
         ) : (

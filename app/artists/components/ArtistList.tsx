@@ -88,7 +88,7 @@ export default function ArtistList() {
   }
 
   return (
-    <div className="mt-6 w-full px-6">
+    <div className=" w-full rounded-xl px-6 pt-6 dark:bg-dark-card-2">
       {artists.map((artist, index) => {
         return (
           !artist.nick.includes('탈퇴회원') && (

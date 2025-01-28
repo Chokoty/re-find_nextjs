@@ -64,7 +64,7 @@ export default function RandomFanart() {
   };
 
   return (
-    <div className="mx-auto mt-8 flex min-h-[120px] w-full max-w-[540px] flex-col items-center justify-center rounded-2xl bg-white p-6 shadow-cardBox dark:bg-dark-card">
+    <div className="mx-auto mt-8 flex min-h-[120px] w-full max-w-[540px] flex-col items-center justify-center rounded-2xl bg-white p-6 shadow-cardBox dark:bg-dark-card-2">
       <div className="flex w-full items-center justify-between">
         <p className="text-lg font-bold">왁타버스 팬아트 랜덤 가챠</p>
         <Popover>

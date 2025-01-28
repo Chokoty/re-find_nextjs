@@ -10,7 +10,7 @@ const topTitle = {
 export default function RandomGacha() {
   return (
     <div className="mx-auto flex w-[90%] flex-col items-center justify-center gap-4">
-      <div className="mt-6">
+      <div className="mt-6 ">
         <PageTitle topTitle={topTitle} />
       </div>
       <RandomFanart />

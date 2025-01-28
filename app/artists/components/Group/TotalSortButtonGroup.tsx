@@ -19,7 +19,7 @@ export default function TotalSortButtonGroup() {
     );
 
   return (
-    <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
+    <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card-2">
       <ul className="flex list-none flex-wrap justify-center gap-4">
         {SORT_TYPES.map((sortType, index) => (
           <li key={index}>

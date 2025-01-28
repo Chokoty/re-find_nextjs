@@ -1,7 +1,9 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 
+import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import Footer from '@/app/(home)/components/Footer';
 import RefindRecapNotificationModal from '@/app/(home)/components/RefindRecapNotificationModal';
 import BoardList from '@/app/gallery/components/BoardList';
@@ -32,7 +34,13 @@ export default function Home() {
   const openPwaInstallModal = () => {
     show({ animateDir: 'bottom', position: 'bottom', setStorage: setValue });
   };
-
+  const BannerSlider = dynamic(
+    () => import('@/app/(home)/components/BannerSlider'),
+    {
+      ssr: false,
+      loading: () => <BannerSkeleton />,
+    }
+  );
   useEffect(() => {
     const isDisPlayModeFullScreen = window.matchMedia(
       '(display-mode: fullscreen)'
@@ -55,6 +63,7 @@ export default function Home() {
     <div className="mx-auto mt-1 flex h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 ">
       <LeftSection />
       <PageContent>
+        <BannerSlider />
         <RefindPick />
         <BoardList />
         <MemberAlbum />

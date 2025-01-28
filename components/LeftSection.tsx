@@ -1,13 +1,11 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 import { FaArrowUp, FaBookOpen } from 'react-icons/fa';
 import { IoGrid, IoGridOutline } from 'react-icons/io5';
 
-import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
@@ -16,13 +14,6 @@ import MoreButtons from '@/components/Button/MoreButtons';
 import Tooltip from '@/components/Tooltip';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 
-const BannerSlider = dynamic(
-  () => import('@/app/(home)/components/BannerSlider'),
-  {
-    ssr: false,
-    loading: () => <BannerSkeleton />,
-  }
-);
 export default function LeftSection() {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [isBackToTopVisible, setIsBackToTopVisible] = useState<boolean>(false);
@@ -101,7 +92,6 @@ export default function LeftSection() {
           ref={scrollContainerRef} // 스크롤 이벤트 연결
           className="custom-scrollbar flex flex-col items-center overflow-y-auto "
         >
-          <BannerSlider />
           <TopTitle />
           <Upload scrollToTop={scrollToTop} />
           <RandomGacha />

@@ -64,6 +64,8 @@ const config: Config = {
         'dark-background': 'var(--darkmode-bg)',
         'light-background': 'var(--lightmode-bg)',
         // card color (white mode is bg-white)
+        'light-button': 'var(--lightmode-button)',
+        'light-button-hover': 'var(--lightmode-button-hover)',
         'light-card': 'var(--lightmode-card-bg)',
         'light-card-2': 'var(--lightmode-card-bg-2)',
         'dark-card': 'var(--darkmode-card-bg)',

@@ -79,12 +79,12 @@ const events = [
 export default function Events() {
   return (
     // <div className="mx-auto mt-2 flex w-[90%] flex-col items-center justify-center gap-4">
-    <div className="flex w-full flex-col items-center justify-center gap-4">
+    <div className="flex w-full flex-col items-center justify-center gap-8 py-4">
       <PageTitle topTitle={topTitle} />
       {events.map((event, index) => (
         <div
           key={index}
-          className="mx-auto flex min-h-[120px] w-full max-w-[540px] flex-col items-center justify-between rounded-2xl bg-white p-5 shadow-cardBox dark:bg-dark-card"
+          className="mx-auto flex min-h-[120px] w-full max-w-[540px] flex-col items-center justify-between rounded-2xl bg-white p-5 shadow-cardBox dark:bg-dark-card-2"
         >
           <p className="mb-2 w-full px-4 text-center text-lg font-bold">
             {event.title}
