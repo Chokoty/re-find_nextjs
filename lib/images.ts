@@ -38,6 +38,12 @@ export { default as TiffanyWouldYouMia } from '@/public/static/images/gallery/ti
 export { default as ViichanBirthday } from '@/public/static/images/gallery/viichanBirthday.webp';
 export { default as VirtualIsd } from '@/public/static/images/gallery/virtualIsd.webp';
 export { default as NotSearch } from '@/public/static/images/original_18.png';
+export { default as 똥강아지1 } from '@/public/static/images/profile/똥강아지1.webp';
+export { default as 똥강아지2 } from '@/public/static/images/profile/똥강아지2.webp';
+export { default as 뚤기1 } from '@/public/static/images/profile/뚤기1.webp';
+export { default as 뚤기2 } from '@/public/static/images/profile/뚤기2.webp';
+export { default as 박쥐1 } from '@/public/static/images/profile/박쥐1.webp';
+export { default as 박쥐2 } from '@/public/static/images/profile/박쥐2.webp';
 export { default as UploadImage } from '@/public/static/images/refind-1.webp';
 export { default as UploadHoverImage } from '@/public/static/images/refind-2.webp';
 export { default as VS } from '@/public/static/images/vs.png';

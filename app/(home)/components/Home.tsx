@@ -60,7 +60,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="mx-auto mt-1 flex h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 ">
+    <div className="mx-auto mt-2 flex h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 ">
       <LeftSection />
       <PageContent>
         <BannerSlider />

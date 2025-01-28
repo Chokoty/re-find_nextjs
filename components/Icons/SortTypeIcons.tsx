@@ -50,7 +50,7 @@ export default function SortTypeIcons({ artist, totalCountCriteria }: Props) {
                 className={clsx(
                   'flex flex-row gap-2',
                   totalCountCriteria !== sortType.value
-                    ? 'text-gray-900 dark:text-whiteAlpha-700'
+                    ? 'text-gray-700 dark:text-whiteAlpha-700'
                     : 'text-green-highlight'
                 )}
               >
@@ -71,7 +71,7 @@ export default function SortTypeIcons({ artist, totalCountCriteria }: Props) {
                 className={clsx(
                   'flex flex-row gap-2',
                   totalCountCriteria !== sortType.value
-                    ? 'text-gray-900 dark:text-whiteAlpha-700'
+                    ? 'text-gray-700 dark:text-whiteAlpha-700'
                     : 'text-green-highlight'
                 )}
               >

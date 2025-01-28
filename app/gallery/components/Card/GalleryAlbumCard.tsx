@@ -105,10 +105,10 @@ export default function GalleryAlbumCard({
       </div>
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-col items-start gap-1 pr-0 min-[840px]:pr-2 min-[1055px]:pr-5 min-[1400px]:pr-[25px] min-[1600px]:pr-[30px]">
-          <p className="line-clamp-1 text-base font-bold text-white ">
+          <p className="line-clamp-1 text-base font-bold dark:text-white ">
             {title}
           </p>
-          <p className="line-clamp-2 text-sm font-normal text-blackAlpha-600 dark:text-whiteAlpha-600 min-[1055px]:text-sm">
+          <p className="line-clamp-2 text-sm font-normal text-blackAlpha-700 dark:text-whiteAlpha-600 min-[1055px]:text-sm">
             {description}
           </p>
         </div>

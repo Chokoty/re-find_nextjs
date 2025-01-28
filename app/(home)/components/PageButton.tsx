@@ -19,8 +19,8 @@ export default function PageButton({
       <button
         className={`flex h-10 min-w-16 items-center justify-center rounded-full px-3 py-1 text-base font-bold ${
           isSelected
-            ? 'bg-gray-600 text-white dark:bg-whiteAlpha-900 dark:text-blackAlpha-900' // 선택된 버튼 스타일
-            : 'bg-gray-200 text-blackAlpha-900 hover:bg-gray-700 active:bg-gray-800 group-hover:bg-light-card-2 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3'
+            ? 'bg-gray-900 text-white dark:bg-whiteAlpha-900 dark:text-blackAlpha-900' // 선택된 버튼 스타일
+            : 'bg-light-button text-blackAlpha-900 hover:bg-light-button-hover active:bg-gray-800 group-hover:bg-light-card-2 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3'
         }`}
       >
         {text}

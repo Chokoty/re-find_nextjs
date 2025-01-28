@@ -233,7 +233,8 @@
   --telegram-900: #003f5e;
   /* custom color */
   --darkmode-bg: #000000;
-  --lightmode-bg: #ffffff;
+  --lightmode-bg: #f5f6fb;
+  --lightmode-bg-2: #ffffff;
   /* --darkmode-bg: #121212; */
   /* --lightmode-bg: #f8f9fa; */
   /* --myblack-100: #282828;

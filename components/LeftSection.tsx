@@ -5,6 +5,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 import { FaArrowUp, FaBookOpen } from 'react-icons/fa';
 import { IoGrid, IoGridOutline } from 'react-icons/io5';
+import {
+  TbLayoutSidebarLeftCollapseFilled,
+  TbLayoutSidebarRightCollapseFilled,
+} from 'react-icons/tb';
 
 import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
@@ -62,9 +66,9 @@ export default function LeftSection() {
     <section
       className={`relative flex h-full overflow-hidden ${
         isOpen ? 'w-[360px]' : 'w-[60px]'
-      }  flex-col items-center justify-start  rounded-lg dark:bg-dark-card`}
+      }  flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
-      <header className="flex w-full items-center justify-start gap-2 px-3 py-4  shadow-md dark:border-dark-myText">
+      <header className="z-10 flex w-full items-center justify-start gap-2 px-3 py-4 shadow-md dark:border-dark-myText">
         {/* <Tooltip
           label={isOpen ? '리파인드 메뉴 숨기기' : '리파인드 메뉴 펼치기'}
           position={isOpen ? 'top-center' : 'right-center'}
@@ -72,17 +76,17 @@ export default function LeftSection() {
         > */}
         <button
           onClick={toggleSection}
-          className="flex items-center justify-start rounded px-2 py-1 
-        text-whiteAlpha-700 hover:text-whiteAlpha-900
+          className="ml-1 flex items-center justify-start  rounded 
+        py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900 
         "
         >
           {isOpen ? (
             <div className="flex items-center justify-start gap-2">
-              <IoGrid className="size-6" />
+              <TbLayoutSidebarLeftCollapseFilled className="size-8" />
               <p className="text-xl">리파인드 메뉴</p>
             </div>
           ) : (
-            <IoGridOutline className="size-6" />
+            <TbLayoutSidebarRightCollapseFilled className="size-8" />
           )}
         </button>
         {/* </Tooltip> */}

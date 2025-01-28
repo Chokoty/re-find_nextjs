@@ -63,6 +63,7 @@ const config: Config = {
         'dark-myText-2': 'var(--darkmode-myText-2)',
         'dark-background': 'var(--darkmode-bg)',
         'light-background': 'var(--lightmode-bg)',
+        'light-background-2': 'var(--lightmode-bg-2)',
         // card color (white mode is bg-white)
         'light-button': 'var(--lightmode-button)',
         'light-button-hover': 'var(--lightmode-button-hover)',

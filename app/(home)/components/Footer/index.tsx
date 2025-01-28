@@ -4,7 +4,7 @@ import LinkBtns from '@/app/(home)/components/Footer/LinkBtn';
 
 export default function Footer() {
   return (
-    <footer className="my-5 flex w-[90%] flex-col justify-center lg:mt-1">
+    <footer className="mb-5 mt-10 flex w-[90%] flex-col justify-center ">
       <LinkBtns />
       <div className="mb-4 mt-5 px-2 text-gray-600 dark:text-whiteAlpha-700">
         <p className="mb-4 font-bold">고객센터</p>
