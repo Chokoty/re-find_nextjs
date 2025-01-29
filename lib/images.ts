@@ -42,8 +42,16 @@ export { default as 똥강아지1 } from '@/public/static/images/profile/똥강�
 export { default as 똥강아지2 } from '@/public/static/images/profile/똥강아지2.webp';
 export { default as 뚤기1 } from '@/public/static/images/profile/뚤기1.webp';
 export { default as 뚤기2 } from '@/public/static/images/profile/뚤기2.webp';
+export { default as 라니1 } from '@/public/static/images/profile/라니1.webp';
+export { default as 라니2 } from '@/public/static/images/profile/라니2.webp';
 export { default as 박쥐1 } from '@/public/static/images/profile/박쥐1.webp';
 export { default as 박쥐2 } from '@/public/static/images/profile/박쥐2.webp';
+export { default as 세균이1 } from '@/public/static/images/profile/세균이1.webp';
+export { default as 세균이2 } from '@/public/static/images/profile/세균이2.webp';
+export { default as 이파리1 } from '@/public/static/images/profile/이파리1.webp';
+export { default as 이파리2 } from '@/public/static/images/profile/이파리2.webp';
+export { default as 주폭도1 } from '@/public/static/images/profile/주폭도1.webp';
+export { default as 주폭도2 } from '@/public/static/images/profile/주폭도2.webp';
 export { default as UploadImage } from '@/public/static/images/refind-1.webp';
 export { default as UploadHoverImage } from '@/public/static/images/refind-2.webp';
 export { default as VS } from '@/public/static/images/vs.png';
