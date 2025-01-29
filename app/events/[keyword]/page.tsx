@@ -37,7 +37,7 @@ export function generateMetadata({ params: { keyword } }: Params): Metadata {
   };
 }
 
-export default async function page({ params: { keyword } }: Params) {
+export default async function Page({ params: { keyword } }: Params) {
   const decodedKeyword = decodeURIComponent(keyword);
 
   if (keyword === 'randomGacha') {
@@ -53,17 +53,29 @@ export default async function page({ params: { keyword } }: Params) {
     return <GomemVotePredict />;
   }
 
-  if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+  // ✅ 환경 변수를 안전하게 체크 (undefined 방지)
+  const isLocal = process.env.NEXT_PUBLIC_IS_LOCAL === 'true';
+
+  if (!isLocal) {
+    // ✅ 서버에서 실행될 경우 window 사용 방지
+    if (typeof window === 'undefined') {
+      console.log('Running on server, skipping client-side logic.');
+    } else {
+      console.log('Running on client.');
+    }
+
     const { queryKey, queryFn } = queryOptions.artistInfo({
       nickname: decodedKeyword,
       sortType: 'latest',
       board: null,
     });
+
     const query = await getDehydratedInfiniteQuery({
       queryKey,
       queryFn,
       initialPageParam: 1,
     });
+
     return (
       <Hydrate state={{ queries: [query] }}>
         <DetailedEvent keyword={decodedKeyword} />
