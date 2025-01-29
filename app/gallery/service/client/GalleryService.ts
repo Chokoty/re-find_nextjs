@@ -12,7 +12,7 @@ class GalleryService extends Service {
     sortType,
     page,
   }: GetKeywordGalleryArtworksParams & PageNum) {
-    const url = `/v2/album_artworks?album=${galleryType}&sorttype=${sortType}&per_page=${ROWS_PER_PAGE}&page=${page}`;
+    const url = `/v2//album/artworks?album=${galleryType}&sorttype=${sortType}&per_page=${ROWS_PER_PAGE}&page=${page}`;
     return this.http.get<AlbumArtworks>(url);
   }
 

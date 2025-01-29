@@ -49,7 +49,7 @@ export default function MobileTabBar() {
   return (
     <nav className="fixed bottom-0 z-[200] flex w-full justify-center md:hidden">
       <div
-        className={`dark:shadow-navBottomDark flex w-full items-center justify-evenly  bg-white shadow-navBottom backdrop-blur-md  dark:border-whiteAlpha-300 dark:bg-dark-background ${isIOS ? 'h-[80px] pb-2' : 'h-[60px]'} `}
+        className={` flex w-full items-center  justify-evenly bg-white shadow-navBottom backdrop-blur-md dark:border-whiteAlpha-300 dark:bg-dark-background  ${isIOS ? 'h-[80px] pb-2' : 'h-[60px] '} dark:shadow-navBottomDark  `}
       >
         {Object.keys(routerMap).map((key) => {
           const typedKey = key as keyof typeof routerMap;
@@ -70,7 +70,7 @@ export default function MobileTabBar() {
                   'flex size-16 flex-col items-center justify-center gap-0.5 rounded-full active:bg-blackAlpha-100 dark:active:bg-whiteAlpha-300',
                   {
                     'text-gray-700 dark:text-white': isActive,
-                    'text-blackAlpha-500 dark:text-whiteAlpha-600': !isActive,
+                    'text-blackAlpha-500 dark:text-whiteAlpha-500': !isActive,
                   }
                 )}
               >

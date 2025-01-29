@@ -9,13 +9,12 @@ export default function PageButton({
   path: string;
 }) {
   const currentPath = usePathname(); // 현재 경로 가져오기
-  const isGallerySelected =
-    path === '/gallery' &&
-    (currentPath === '/' || currentPath.startsWith('/gallery')); // 루트 또는 /gallery일 때 선택
-  const isSelected = isGallerySelected || currentPath.startsWith(path); // 나머지는 일반적인 경로 비교
+  const adjustedPath = path === '/gallery' ? '/' : path;
+  const isGallerySelected = path === '/gallery' && currentPath === '/';
+  const isSelected = isGallerySelected || currentPath.startsWith(path);
 
   return (
-    <Link href={path}>
+    <Link href={adjustedPath}>
       <button
         className={`flex h-10 min-w-16 items-center justify-center rounded-full px-3 py-1 text-base font-bold ${
           isSelected
