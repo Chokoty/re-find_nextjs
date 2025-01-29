@@ -32,7 +32,7 @@ export default function GalleryBoardCard({
     PASTEL_COLORS[id as keyof typeof PASTEL_COLORS] || 'bg-teal-200';
   return (
     <Link
-      href={`/gallery/${transformedValue}?viewType=masonry&sortType=latest`}
+      href={`/album/${transformedValue}?viewType=masonry&sortType=latest`}
       prefetch={false}
       className="m-auto flex h-[180px] max-w-[144px] flex-col  items-center justify-start gap-2 rounded-md p-3  transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[280px] md:w-full md:max-w-[204px]"
     >
