@@ -16,7 +16,7 @@ const PageContentForSearch = ({ children }: PageContentProps) => {
     <section className="flex h-full w-2/3 grow flex-col items-center justify-start overflow-hidden rounded-lg border-base border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card">
       <div
         ref={scrollContainerRef} // 참조 전달
-        className="custom-scrollbar  flex size-full flex-col items-center justify-start overflow-y-auto border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card"
+        className="custom-scrollbar flex size-full flex-col items-center justify-start overflow-y-auto border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card"
       >
         <PageButtonListForSearch scrollContainerRef={scrollContainerRef} />
         {children}

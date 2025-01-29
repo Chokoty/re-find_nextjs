@@ -20,7 +20,7 @@ const badgeStyles = cva(
       },
       size: {
         md: 'rounded-sm px-1',
-        lg: ' rounded-md px-1.5 py-0.5',
+        lg: 'rounded-md px-1.5 py-0.5',
       },
       rounded: {
         none: 'rounded-none',

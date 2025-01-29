@@ -10,11 +10,7 @@ export default function BottomContent({
 }) {
   return (
     <div className="mx-auto mb-4 mt-28 flex flex-col justify-center gap-4 lg:w-4/5">
-      <div
-        className="flex w-full flex-wrap items-center justify-between
-      gap-4
-      "
-      >
+      <div className="flex w-full flex-wrap items-center justify-between gap-4">
         {statistics.slice(0, 3).map((item, index) => (
           <StatisticCard key={index} item={item} isWidthFixed={false} />
         ))}

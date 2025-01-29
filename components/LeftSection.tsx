@@ -66,7 +66,7 @@ export default function LeftSection() {
     <section
       className={`relative hidden h-full overflow-hidden md:flex ${
         isOpen ? 'w-[360px]' : 'w-[60px]'
-      }  flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
+      } flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
       <header className="z-10 flex w-full items-center justify-start gap-2 px-3 py-4 shadow-md dark:border-dark-myText">
         {/* <Tooltip
@@ -76,9 +76,7 @@ export default function LeftSection() {
         > */}
         <button
           onClick={toggleSection}
-          className="ml-1 flex items-center justify-start  rounded 
-        py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900 
-        "
+          className="ml-1 flex items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
         >
           {isOpen ? (
             <div className="flex items-center justify-start gap-2">
@@ -94,7 +92,7 @@ export default function LeftSection() {
       {isOpen && (
         <div
           ref={scrollContainerRef} // 스크롤 이벤트 연결
-          className="custom-scrollbar flex flex-col items-center overflow-y-auto "
+          className="custom-scrollbar flex flex-col items-center overflow-y-auto"
         >
           <TopTitle />
           <Upload scrollToTop={scrollToTop} />
@@ -132,7 +130,7 @@ export default function LeftSection() {
       )}
       {/* Back to Top Button */}
       {isBackToTopVisible && (
-        <div className="absolute bottom-4 right-4 z-[200] ">
+        <div className="absolute bottom-4 right-4 z-[200]">
           <Tooltip label="맨 위로" position="left-center">
             <button
               onClick={scrollToTop}

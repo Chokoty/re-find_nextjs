@@ -35,7 +35,7 @@ export default function PageButtonListForSearch({
 
   return (
     <div
-      className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 py-4 pl-8  transition-colors ${
+      className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 py-4 pl-8 transition-colors ${
         hasScrolled
           ? 'bg-white shadow-md dark:bg-dark-card' // 스크롤 시 배경색 추가
           : 'bg-transparent' // 맨 위에서는 배경색 제거

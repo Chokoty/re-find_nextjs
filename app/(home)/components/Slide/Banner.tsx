@@ -8,7 +8,7 @@ export default function Banner() {
     <div className="flex w-full justify-center">
       <NextLink href="/more/about">
         <NextImage
-          className=" m-auto  rounded-2xl"
+          className="m-auto rounded-2xl"
           width={750}
           height={134}
           priority

@@ -34,7 +34,7 @@ export default function GalleryBoardCard({
     <Link
       href={`/album/${transformedValue}?viewType=masonry&sortType=latest`}
       prefetch={false}
-      className="m-auto flex h-[180px] max-w-[144px] flex-col  items-center justify-start gap-2 rounded-md p-3  transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[280px] md:w-full md:max-w-[204px]"
+      className="m-auto flex h-[180px] max-w-[144px] flex-col items-center justify-start gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[280px] md:w-full md:max-w-[204px]"
     >
       <div
         className={`relative flex size-[120px] min-h-[120px] w-full max-w-[120px] rounded-lg md:size-[180px] md:min-h-[180px] md:max-w-[180px] ${bgColor}`}
@@ -44,7 +44,7 @@ export default function GalleryBoardCard({
       </div>
       <div className="flex w-full items-center justify-between">
         <div className="flex flex-col items-start gap-1 pr-0 min-[840px]:pr-2 min-[1055px]:pr-5 min-[1400px]:pr-[25px] min-[1600px]:pr-[30px]">
-          <p className="line-clamp-1 text-base font-bold dark:text-white ">
+          <p className="line-clamp-1 text-base font-bold dark:text-white">
             {title}
           </p>
           <p className="line-clamp-2 text-sm font-normal text-blackAlpha-700 dark:text-whiteAlpha-600 min-[1055px]:text-sm">

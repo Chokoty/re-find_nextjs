@@ -19,7 +19,7 @@ export default function RankSortButtonGroup() {
   );
 
   return (
-    <div className=" flex w-full flex-col items-center rounded-2xl bg-white  p-4 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2">
+    <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2">
       <p className="mb-4">
         총&nbsp;
         {total ? (

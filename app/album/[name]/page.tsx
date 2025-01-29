@@ -79,7 +79,7 @@ export default async function page({ params: { name } }: Params) {
             linkUrl={linkUrl}
           />
         </TopBackground>
-        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
+        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px] sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
           <Hydrate state={{ queries: [query] }}>
             <DetailedGallery value={name} />
           </Hydrate>
@@ -100,7 +100,7 @@ export default async function page({ params: { name } }: Params) {
         />
       </TopBackground>
       {/* -220px(-60px + -160px) */}
-      <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-400px] ">
+      <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px] sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-400px]">
         <DetailedGallery value={name} />
       </section>
     </div>

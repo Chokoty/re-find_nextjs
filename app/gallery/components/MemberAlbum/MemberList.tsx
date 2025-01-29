@@ -24,7 +24,7 @@ const Member = ({ member }: { member: MemberType }) => {
         // href={`/gallery/${value}`}
         href={`/album/${value}?viewType=masonry&sortType=latest`}
         prefetch={false}
-        className="flex size-full flex-col items-center  justify-center    gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 "
+        className="flex size-full flex-col items-center justify-center gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200"
       >
         <div className="relative size-[120px] md:size-[150px]">
           <Image
@@ -40,7 +40,7 @@ const Member = ({ member }: { member: MemberType }) => {
         </div>
         <div className="w-full">
           <p className="w-full text-start font-bold">{name}</p>
-          <p className="w-full text-start text-[14px] leading-6  text-blackAlpha-700 dark:text-whiteAlpha-600">{`"${greetings}"`}</p>
+          <p className="w-full text-start text-[14px] leading-6 text-blackAlpha-700 dark:text-whiteAlpha-600">{`"${greetings}"`}</p>
         </div>
       </Link>
     </li>

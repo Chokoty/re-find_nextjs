@@ -27,11 +27,11 @@ export default function TopContent({
         ))}
       </div>
       {!artist && (
-        <div className="flex w-full flex-col items-center justify-center gap-4 text-2xl text-green-highlight lg:flex-row lg:gap-16 lg:text-3xl ">
-          <p className="w-full text-center  font-semibold text-green-highlight lg:w-2/5 ">
+        <div className="flex w-full flex-col items-center justify-center gap-4 text-2xl text-green-highlight lg:flex-row lg:gap-16 lg:text-3xl">
+          <p className="w-full text-center font-semibold text-green-highlight lg:w-2/5">
             10명 중 7명은 왁물원 접속
           </p>
-          <p className="w-full text-center  font-semibold lg:w-2/5">
+          <p className="w-full text-center font-semibold lg:w-2/5">
             10명 중 3명은 리파인드 단골
           </p>
         </div>

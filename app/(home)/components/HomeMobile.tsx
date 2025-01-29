@@ -20,7 +20,7 @@ export default function HomeMobile() {
   return (
     <div
       ref={scrollContainerRef} // 스크롤 이벤트 연결
-      className=" flex w-full flex-col items-center justify-start px-3 md:hidden"
+      className="flex w-full flex-col items-center justify-start px-3 md:hidden"
     >
       <GalleryTitle
         pageType="galleryHome"

@@ -12,7 +12,7 @@ const GallerySlider = dynamic(
 
 export default function BoardList() {
   return (
-    <div className="mt-10  flex w-full flex-col" style={{ userSelect: 'none' }}>
+    <div className="mt-10 flex w-full flex-col" style={{ userSelect: 'none' }}>
       <div className="mb-2 w-full pl-2 md:mb-4 md:p-0 md:px-8">
         <p className="text-left text-xl font-extrabold md:text-2xl">
           왁물원 게시판 앨범

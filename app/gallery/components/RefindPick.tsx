@@ -13,7 +13,7 @@ const GallerySlider = dynamic(
 export default function RefindPick() {
   return (
     <div
-      className="mb:mt-10 mt-4 flex w-full flex-col "
+      className="mb:mt-10 mt-4 flex w-full flex-col"
       style={{ userSelect: 'none' }}
     >
       <div className="mb-2 w-full md:mb-4 md:px-8">

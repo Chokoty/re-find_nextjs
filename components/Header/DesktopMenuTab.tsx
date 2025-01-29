@@ -41,7 +41,7 @@ const routerMap: Record<string, RouterItem> = {
 
 export default function DesktopMenuTab() {
   return (
-    <div className="flex items-center justify-end  ">
+    <div className="flex items-center justify-end">
       {Object.keys(routerMap).map((key) => {
         const typedKey = key as keyof typeof routerMap;
         const {

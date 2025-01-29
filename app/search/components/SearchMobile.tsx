@@ -30,7 +30,7 @@ export default function SearchMobile() {
   return (
     <div
       ref={scrollContainerRef} // 스크롤 이벤트 연결
-      className="mt-2 flex w-full flex-col items-center justify-start gap-2  px-3 pb-[60px] md:hidden"
+      className="mt-2 flex w-full flex-col items-center justify-start gap-2 px-3 pb-[60px] md:hidden"
     >
       <SearchModalOpener />
       <BannerSlider />

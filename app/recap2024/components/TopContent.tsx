@@ -17,8 +17,8 @@ export default function TopContent({
 }) {
   return (
     <div className="m-auto flex w-full max-w-screen-xl flex-col items-center justify-between lg:w-[90%]">
-      <div className="m-8 flex w-full items-center justify-start text-start text-base lg:text-3xl ">
-        <div className="flex flex-col gap-2 rounded-lg bg-whiteAlpha-300 p-6 ">
+      <div className="m-8 flex w-full items-center justify-start text-start text-base lg:text-3xl">
+        <div className="flex flex-col gap-2 rounded-lg bg-whiteAlpha-300 p-6">
           <p className="w-full">
             신년을 맞이하여 왁물원 팬아트 2024 리캡 페이지를 만들었어요.
           </p>
@@ -43,11 +43,11 @@ export default function TopContent({
         ))}
       </div>
       {!artist && (
-        <div className="flex w-full flex-col items-center justify-center gap-4 text-2xl text-green-highlight lg:flex-row lg:gap-16 lg:text-3xl ">
-          <p className="w-full text-center  font-semibold text-green-highlight lg:w-2/5 ">
+        <div className="flex w-full flex-col items-center justify-center gap-4 text-2xl text-green-highlight lg:flex-row lg:gap-16 lg:text-3xl">
+          <p className="w-full text-center font-semibold text-green-highlight lg:w-2/5">
             10명 중 7명은 왁물원 접속
           </p>
-          <p className="w-full text-center  font-semibold lg:w-2/5">
+          <p className="w-full text-center font-semibold lg:w-2/5">
             10명 중 3명은 리파인드 단골
           </p>
         </div>

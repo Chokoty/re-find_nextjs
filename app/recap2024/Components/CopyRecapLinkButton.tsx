@@ -20,7 +20,7 @@ export function CopyRecapLinkButton() {
   return (
     <Tooltip label="프로필 공유">
       <button
-        className=" flex size-12 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400"
+        className="flex size-12 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400"
         onClick={handleCopyLink}
       >
         <ImLink className="size-8" />

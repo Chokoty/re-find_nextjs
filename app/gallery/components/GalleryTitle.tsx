@@ -123,7 +123,7 @@ const GalleryHomeTitle = () => {
   return (
     <div className={`flex items-center justify-center gap-1 ${titleClassName}`}>
       <p>팬아트</p>
-      <div className="relative h-10 w-20 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-10 2xs:w-24 ">
+      <div className="relative h-10 w-20 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-10 2xs:w-24">
         <Image
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
           src={BBangTTi}

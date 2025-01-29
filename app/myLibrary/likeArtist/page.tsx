@@ -79,7 +79,7 @@ export default async function page({ params: { name } }: Params) {
         <TopBackground>
           <GalleryTitle pageType={name} title="" description="" />
         </TopBackground>
-        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px]  sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
+        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px] sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
           <Hydrate state={{ queries: [query] }}>
             <DetailedGallery value={name} />
           </Hydrate>
@@ -90,7 +90,7 @@ export default async function page({ params: { name } }: Params) {
 
   return (
     <div className="w-full">
-      <div className="mt-8 flex size-full flex-col px-8 ">
+      <div className="mt-8 flex size-full flex-col px-8">
         <BackToLibraryLink />
         <div className="mb-12 flex items-end justify-start gap-4">
           <p className="text-left text-xl font-extrabold md:text-3xl">

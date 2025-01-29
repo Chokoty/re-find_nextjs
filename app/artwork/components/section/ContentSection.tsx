@@ -73,7 +73,7 @@ export default function ContentSection({
         <Link
           href={board_link}
           prefetch={false}
-          className={`group relative  flex w-full items-center justify-start gap-4  border-gray-300  transition-all duration-300 hover:text-green-highlight dark:border-whiteAlpha-300 dark:hover:text-pink-highlight `}
+          className={`group relative flex w-full items-center justify-start gap-4 border-gray-300 transition-all duration-300 hover:text-green-highlight dark:border-whiteAlpha-300 dark:hover:text-pink-highlight`}
         >
           <p className="text-lg">{board.replace(/&#\d+;/g, '').trim()}</p>
         </Link>
@@ -81,19 +81,19 @@ export default function ContentSection({
       <Link
         href={article_link + id}
         target="_blank"
-        className="link-to-wakzoo_detail transition-all duration-300 hover:text-green-highlight dark:border-whiteAlpha-300 dark:hover:text-pink-highlight "
+        className="link-to-wakzoo_detail transition-all duration-300 hover:text-green-highlight dark:border-whiteAlpha-300 dark:hover:text-pink-highlight"
       >
         <h3 className="mt-3 text-start text-2xl font-bold">{title}</h3>
       </Link>
       <div className="mb-3">
-        <p className="leading-6  text-blackAlpha-600 dark:text-whiteAlpha-600">
+        <p className="leading-6 text-blackAlpha-600 dark:text-whiteAlpha-600">
           {date}
         </p>
       </div>
       <Link
         href={!author?.length ? '' : `/artists/${author}`}
         prefetch={false}
-        className={`link-to-profile group relative  flex w-full items-center justify-start gap-4 border-t-base border-gray-300 py-4 transition-all duration-300 hover:text-green-highlight dark:border-whiteAlpha-300 dark:hover:text-pink-highlight `}
+        className={`link-to-profile group relative flex w-full items-center justify-start gap-4 border-t-base border-gray-300 py-4 transition-all duration-300 hover:text-green-highlight dark:border-whiteAlpha-300 dark:hover:text-pink-highlight`}
       >
         {/* <div className="mt-3 flex items-center gap-2"> */}
         {profileUrl ? (
@@ -109,7 +109,7 @@ export default function ContentSection({
         ) : (
           <FaCircleUser color="#c7c6c6" size="3rem" />
         )}
-        <p className=" text-lg">{!author?.length ? '알 수 없음' : author}</p>
+        <p className="text-lg">{!author?.length ? '알 수 없음' : author}</p>
         {/* </div> */}
       </Link>
       <div className="mt-2">

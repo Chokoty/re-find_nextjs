@@ -49,7 +49,7 @@ export default function MobileTabBar() {
   return (
     <nav className="fixed bottom-0 z-[200] flex w-full justify-center md:hidden">
       <div
-        className={` flex w-full items-center  justify-evenly bg-white shadow-navBottom backdrop-blur-md dark:border-whiteAlpha-300 dark:bg-dark-background  ${isIOS ? 'h-[80px] pb-2' : 'h-[60px] '} dark:shadow-navBottomDark  `}
+        className={`flex w-full items-center justify-evenly bg-white shadow-navBottom backdrop-blur-md dark:border-whiteAlpha-300 dark:bg-dark-background ${isIOS ? 'h-[80px] pb-2' : 'h-[60px]'} dark:shadow-navBottomDark`}
       >
         {Object.keys(routerMap).map((key) => {
           const typedKey = key as keyof typeof routerMap;

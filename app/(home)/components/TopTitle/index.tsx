@@ -6,7 +6,7 @@ export default function TopTitle() {
   return (
     <div
       className={
-        'mt-2 flex w-full flex-col items-center justify-center  rounded-lg bg-white py-4 dark:bg-dark-card'
+        'mt-2 flex w-full flex-col items-center justify-center rounded-lg bg-white py-4 dark:bg-dark-card'
       }
     >
       <Counter />

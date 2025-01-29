@@ -140,7 +140,7 @@ export default function FanartWorldCup() {
   if (isLast) {
     return (
       <div className="w-full">
-        <div className="fixed inset-0 top-[60px] z-[201] size-full ">
+        <div className="fixed inset-0 top-[60px] z-[201] size-full">
           <Confetti width={width} height={height} />
         </div>
         <div className="flex size-full w-full items-center">
@@ -175,14 +175,14 @@ export default function FanartWorldCup() {
                 새로고침
               </div>
             </button>
-            <h4 className="absolute bottom-[20%] text-3xl text-shadow-worldCup ">
+            <h4 className="absolute bottom-[20%] text-3xl text-shadow-worldCup">
               {winInfo.direction === 'left'
                 ? currentRoundTags[0]
                 : currentRoundTags[1]}
             </h4>
           </div>
           <div className="mt-10 flex w-1/2 flex-col items-center justify-center text-2xl">
-            <h2 className="mb-6  text-4xl">도와주신 작가님들</h2>
+            <h2 className="mb-6 text-4xl">도와주신 작가님들</h2>
             {/* {CREDIT.map((author) => (
               <p key={author} className="w-1/3">
                 {author}
@@ -286,7 +286,7 @@ export default function FanartWorldCup() {
           </button>
         </div>
       </div>
-      <div className="pointer-events-none absolute bottom-[30%] left-0 z-[4] flex h-32 max-h-[50%] w-full justify-center xl:bottom-[40%] ">
+      <div className="pointer-events-none absolute bottom-[30%] left-0 z-[4] flex h-32 max-h-[50%] w-full justify-center xl:bottom-[40%]">
         <div className="absolute h-[33px] w-[50px] 2md:h-[77px] 2md:w-[100px] xl:h-[154px] xl:w-[200px]">
           <Image src={VS} alt="vs" priority fill unoptimized />
         </div>

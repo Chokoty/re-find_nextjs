@@ -21,7 +21,7 @@ const Member = ({ member }: { member: MemberType }) => {
   return (
     <li className="max-w-[200px] list-none">
       <Link
-        className="link-to-profile flex size-full flex-col items-center  justify-center    gap-4 rounded-md p-2 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:p-4 "
+        className="link-to-profile flex size-full flex-col items-center justify-center gap-4 rounded-md p-2 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:p-4"
         href={`/artists/${name}`}
         prefetch={false}
       >

@@ -43,7 +43,7 @@ export default function Support() {
   return (
     <div className="flex flex-col items-center justify-center gap-8 py-8">
       <PageTitle topTitle={topTitle} />
-      <div className=" flex flex-wrap items-center justify-center gap-10">
+      <div className="flex flex-wrap items-center justify-center gap-10">
         {SUPPORT_INFOS.map((info, index) => (
           <Link
             className="flex h-[144px] w-[160px] flex-col items-center justify-center rounded-lg border-base border-gray-200 bg-white p-4 shadow-base transition hover:bg-gray-200 active:bg-gray-300 dark:border-whiteAlpha-300 dark:bg-dark-card dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400"

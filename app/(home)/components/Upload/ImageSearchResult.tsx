@@ -55,7 +55,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
       {ids?.length === 0 ? (
         <Description />
       ) : (
-        <div className=" flex w-full flex-col items-center justify-center rounded-b-2xl bg-white dark:bg-dark-card">
+        <div className="flex w-full flex-col items-center justify-center rounded-b-2xl bg-white dark:bg-dark-card">
           <div className="flex w-full flex-col items-center justify-between gap-4">
             <div className="flex w-full flex-row items-center justify-between">
               <Link
@@ -63,7 +63,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
                 href={board_link}
                 target="_blank"
               >
-                <p className="text-lg font-bold ">
+                <p className="text-lg font-bold">
                   {data.board.replace(/&#\d+;/g, '').trim()}
                 </p>
                 <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
@@ -71,7 +71,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
               <Badge intent="secondary" size="lg">
                 <div className="flex items-center">
                   <FaRegClock className="mr-1 text-sm text-green-800 dark:text-green-200" />
-                  <p className="text-sm text-green-800 dark:text-green-200 ">
+                  <p className="text-sm text-green-800 dark:text-green-200">
                     {uploadTimeDiff}
                     {/* {uploadDate} */}
                   </p>
@@ -82,7 +82,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
               className="mb-4 w-full text-green-highlight dark:text-pink-highlight"
               href={`/artwork/${ids[0].id}`}
             >
-              <p className="text-xl font-bold ">{data.title}</p>
+              <p className="text-xl font-bold">{data.title}</p>
             </Link>
           </div>
           <AuthorProfileCard
