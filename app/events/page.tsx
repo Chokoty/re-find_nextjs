@@ -79,7 +79,7 @@ const events = [
 export default function Events() {
   return (
     // <div className="mx-auto mt-2 flex w-[90%] flex-col items-center justify-center gap-4">
-    <div className="flex w-full flex-col items-center justify-center gap-8 py-4">
+    <div className="flex w-full flex-col items-center justify-center gap-8 px-3 py-4">
       <PageTitle topTitle={topTitle} />
       {events.map((event, index) => (
         <div

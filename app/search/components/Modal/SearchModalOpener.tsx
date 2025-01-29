@@ -41,7 +41,7 @@ export default function SearchModalOpener() {
 
   return (
     <div className="flex w-full">
-      <div className=" relative m-auto h-12 w-[70%] max-w-[400px] ">
+      <div className=" relative m-auto h-12 w-full max-w-[400px] md:w-[70%] ">
         <div
           onClick={handleInputClick}
           className="group size-full cursor-pointer"

@@ -33,11 +33,17 @@ export default function ArtistLayout({
   children: React.ReactNode;
 }>) {
   return (
-    // <div className="pb-[60px] dark:bg-recap-pattern">
-    <div className="mx-auto mt-1 flex h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2">
-      <LeftSection />
-      <PageContent>{children}</PageContent>
-      <BackToTopButton />
+    <div className="flex w-full flex-col items-center justify-start">
+      {/** 모바일 레이아웃 */}
+      <div className="flex w-full flex-col items-center justify-center pb-[60px] md:hidden">
+        {children}
+      </div>
+      {/** 데스크톱 레이아웃 */}
+      <div className="mx-auto mt-1 hidden h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 md:flex">
+        <LeftSection />
+        <PageContent>{children}</PageContent>
+        <BackToTopButton />
+      </div>
     </div>
   );
 }

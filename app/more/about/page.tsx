@@ -33,7 +33,7 @@ const topTitle = {
 };
 export default function About() {
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-8 px-4 py-8 text-center">
+    <div className="flex w-full flex-col items-center justify-center gap-8 px-3 py-8 text-center">
       <PageTitle topTitle={topTitle} />
       <div className="flex flex-col items-center justify-center ">
         <h1 className="mx-auto my-6 text-2xl font-bold">왁물원 게시글</h1>

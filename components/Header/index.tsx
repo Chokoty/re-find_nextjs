@@ -13,8 +13,9 @@ import BackButton from '@/components/Button/BackButton';
 import WorldcupSkipButton from '@/components/Button/WorldcupSkipButton';
 import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
 import DesktopMenuTab from '@/components/Header/DesktopMenuTab';
+import { useResponsive } from '@/hooks/useResponsive';
 import { useScroll } from '@/hooks/useScroll';
-import { Logo } from '@/lib/images';
+import { Logo, 똥강아지1 } from '@/lib/images';
 
 const Modals = dynamic(() => import('@/components/Modal/Modals'), {
   ssr: false,
@@ -25,6 +26,7 @@ export default function Header() {
   const isGalleryPage = pathname.includes('/gallery');
   const isScrolling = useScroll(60);
   const isNotScrollingGalleryPage = isGalleryPage && !isScrolling;
+  const isMobile = useResponsive();
 
   return (
     <header
@@ -37,12 +39,12 @@ export default function Header() {
         className={clsx(
           'flex size-full items-center justify-between px-4 shadow-navTop transition',
           {
-            'dark:shadow-navTopDark': isScrolling,
+            'dark:shadow-navTopDark2': isScrolling,
             'dark:shadow-none': !isScrolling,
           }
         )}
       >
-        <HeaderContent />
+        <HeaderContent isMobile={isMobile} />
       </nav>
       <Modals />
     </header>
@@ -63,7 +65,7 @@ const etcPathMap = {
 
 type EtcPathMapKeyType = keyof typeof etcPathMap;
 
-const HeaderContent = () => {
+const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
   const name = pathNameParts[pathNameParts.length - 1];
@@ -89,6 +91,25 @@ const HeaderContent = () => {
   //   );
   // }
 
+  // 모바일 헤더 표시
+  if (isMobile) {
+    return (
+      <div className="flex items-center justify-center gap-2 md:hidden">
+        <div className="flex size-[48px] items-center justify-center rounded-full shadow-sm hover:bg-white dark:shadow-none hover:dark:bg-dark-card">
+          <Image
+            width={100}
+            height={100}
+            className="size-[32px] rounded-full object-cover"
+            src={똥강아지1}
+            alt={''}
+            unoptimized
+          />
+        </div>
+        <h2>모바일 헤더입니다</h2>
+      </div>
+    );
+  }
+  // 데스크톱 헤더 표시
   return (
     <>
       <div className="flex items-center justify-center">

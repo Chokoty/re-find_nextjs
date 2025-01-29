@@ -33,7 +33,7 @@ const topTitle = {
 
 export default function Notice() {
   return (
-    <div className="flex flex-col gap-8 p-8">
+    <div className="flex flex-col gap-8 p-3">
       <PageTitle topTitle={topTitle} />
       <UpdateLog />
     </div>

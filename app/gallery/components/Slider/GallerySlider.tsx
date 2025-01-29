@@ -34,11 +34,11 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
     // centerInsufficientSlides
     style: {
       width: '100%',
-      padding: '0 2rem',
+      padding: '0',
       ...(customStyle || {}),
     },
     allowTouchMove: true,
-    className: 'mySwiper2',
+    className: 'mySwiper2 md:!px-8',
     slidesPerView: 1.5,
     spaceBetween: 8,
     breakpoints: {
@@ -81,7 +81,10 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
         return (
           <>
             {UPDATED_GALLERY_LIST.map((data) => (
-              <SwiperSlide key={data.id} className="overflow-hidden">
+              <SwiperSlide
+                key={data.id}
+                className="max-w-[144px] overflow-hidden md:max-w-[204px]"
+              >
                 <GalleryBoardCard album={data} />
               </SwiperSlide>
             ))}
@@ -100,7 +103,10 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
         }
 
         return gallery.albums.map((data) => (
-          <SwiperSlide key={data.id} className="overflow-hidden">
+          <SwiperSlide
+            key={data.id}
+            className="max-w-[144px] overflow-hidden md:max-w-[204px]"
+          >
             <GalleryAlbumCard album={data} />
           </SwiperSlide>
         ));

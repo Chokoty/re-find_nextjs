@@ -64,7 +64,7 @@ export default function LeftSection() {
 
   return (
     <section
-      className={`relative flex h-full overflow-hidden ${
+      className={`relative hidden h-full overflow-hidden md:flex ${
         isOpen ? 'w-[360px]' : 'w-[60px]'
       }  flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >

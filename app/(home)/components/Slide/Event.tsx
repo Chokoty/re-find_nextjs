@@ -27,7 +27,7 @@ export default function Event({
   const linkClassName = colors[linkColor];
 
   return (
-    <div className="flex max-h-[114px] w-[95%] flex-col items-center justify-center rounded-2xl bg-white py-3 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2 2xs:py-6 md:py-11 ">
+    <div className="flex max-h-[114px] w-full flex-col items-center justify-center rounded-2xl bg-white py-3 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2 2xs:py-6 md:py-11 ">
       <p className="mb-2 text-base font-bold 2xs:text-xl md:mb-4">{title}</p>
       {isOutLink ? (
         <Link
@@ -40,7 +40,7 @@ export default function Event({
       ) : (
         <Link
           href={link}
-          className={`${linkClassName} flex  w-3/5 items-center justify-center rounded-xl py-1.5 font-semibold text-gray-800 transition 2xs:p-2`}
+          className={`${linkClassName} flex  w-4/5 items-center justify-center rounded-xl py-1.5 font-semibold text-gray-800 transition 2xs:p-2`}
         >
           {linkContent}
         </Link>

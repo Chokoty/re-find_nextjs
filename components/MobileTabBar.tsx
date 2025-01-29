@@ -22,17 +22,17 @@ const routerMap = {
     icon: FaSearch,
     className: 'size-6',
   },
-  gallery: {
-    path: '/gallery',
-    name: '갤러리',
-    icon: IoMdImages,
-    className: 'size-7',
-  },
   artists: {
     path: '/artists',
     name: '작가',
     icon: FaUserGroup,
     className: 'size-6',
+  },
+  gallery: {
+    path: '/myLibrary',
+    name: '내 라이브러리',
+    icon: IoMdImages,
+    className: 'size-7',
   },
 };
 
@@ -49,7 +49,7 @@ export default function MobileTabBar() {
   return (
     <nav className="fixed bottom-0 z-[200] flex w-full justify-center md:hidden">
       <div
-        className={`flex w-full items-center justify-evenly bg-white shadow-navBottom dark:border-t-base dark:border-whiteAlpha-300 dark:bg-dark-footer dark:shadow ${isIOS ? 'h-[80px] pb-2' : 'h-[60px]'}`}
+        className={`dark:shadow-navBottomDark flex w-full items-center justify-evenly  bg-white shadow-navBottom backdrop-blur-md  dark:border-whiteAlpha-300 dark:bg-dark-background ${isIOS ? 'h-[80px] pb-2' : 'h-[60px]'} `}
       >
         {Object.keys(routerMap).map((key) => {
           const typedKey = key as keyof typeof routerMap;
@@ -67,17 +67,17 @@ export default function MobileTabBar() {
             <Link href={eachPath} key={name}>
               <div
                 className={clsx(
-                  'flex size-12 flex-col items-center justify-center rounded-full active:bg-blackAlpha-100 dark:active:bg-whiteAlpha-300',
+                  'flex size-16 flex-col items-center justify-center gap-0.5 rounded-full active:bg-blackAlpha-100 dark:active:bg-whiteAlpha-300',
                   {
                     'text-gray-700 dark:text-white': isActive,
-                    'text-blackAlpha-500 dark:text-whiteAlpha-500': !isActive,
+                    'text-blackAlpha-500 dark:text-whiteAlpha-600': !isActive,
                   }
                 )}
               >
                 <div className="flex size-7 items-center justify-center">
                   <Icon className={iconStyle} />
                 </div>
-                <span className="text-xs">{name}</span>
+                <span className="w-20 text-center text-xs">{name}</span>
               </div>
             </Link>
           );

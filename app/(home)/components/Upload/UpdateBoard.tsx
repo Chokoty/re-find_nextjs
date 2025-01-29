@@ -2,7 +2,7 @@ import UpdateCardList from '@/app/(home)/components/Upload/UpdateCardList';
 
 export default function UpdateBoard() {
   return (
-    <div className="mx-auto mb-4 flex w-[98%] flex-col items-center justify-center rounded-2xl bg-white shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2">
+    <div className="mx-auto mb-4 flex w-full flex-col items-center justify-center rounded-lg bg-white shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card">
       <div className="flex w-[90%] items-center justify-start pb-4 pt-8">
         <h2 className="text-xl font-bold leading-tight">
           게시판 업데이트 현황

@@ -34,10 +34,10 @@ export default function GalleryBoardCard({
     <Link
       href={`/gallery/${transformedValue}?viewType=masonry&sortType=latest`}
       prefetch={false}
-      className="m-auto flex h-[280px] w-full flex-col items-center justify-start  gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200"
+      className="m-auto flex h-[180px] max-w-[144px] flex-col  items-center justify-start gap-2 rounded-md p-3  transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[280px] md:w-full md:max-w-[204px]"
     >
       <div
-        className={`relative flex size-[180px] min-h-[180px] w-full rounded-lg ${bgColor}`}
+        className={`relative flex size-[120px] min-h-[120px] w-full max-w-[120px] rounded-lg md:size-[180px] md:min-h-[180px] md:max-w-[180px] ${bgColor}`}
       />
       <div className="absolute right-6 top-6 flex items-center justify-center rounded-[16px] bg-blackAlpha-500 px-2.5 py-1.5 md:px-3 md:py-2 min-[840px]:px-3.5 min-[840px]:py-2.5">
         <p className="text-xs font-normal text-white md:text-sm">게시판</p>

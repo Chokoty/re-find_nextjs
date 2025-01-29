@@ -4,7 +4,11 @@ import Title from '@/app/(home)/components/TopTitle/Title';
 
 export default function TopTitle() {
   return (
-    <div className="flex w-full flex-col items-center justify-center rounded-2xl bg-white py-4 dark:bg-dark-card">
+    <div
+      className={
+        'mt-2 flex w-full flex-col items-center justify-center  rounded-lg bg-white py-4 dark:bg-dark-card'
+      }
+    >
       <Counter />
       <Title />
       <SubTitle />

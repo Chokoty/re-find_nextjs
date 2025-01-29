@@ -69,7 +69,7 @@ export default function GalleryTitle({
   };
 
   return (
-    <div className="mt-2 flex w-full flex-col items-start justify-start pl-8">
+    <div className="my-6 flex w-full flex-col items-start justify-start pl-2 md:pl-8">
       {pageType === 'galleryHome' ? (
         <>
           <p className={`font-semibold ${descriptionClassName}`}>
