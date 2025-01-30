@@ -9,6 +9,8 @@ const queryKeys = {
   verifyEmail: (token: string) => ['verifyEmail', token] as const,
   requestNaverLoginInServer: (currentPageUrl: string) =>
     ['requestNaverLoginInServer', currentPageUrl] as const,
+  myInfo: () => ['myInfo'] as const,
+  logout: () => ['logout'] as const,
 };
 
 const queryOptions = {
@@ -32,6 +34,16 @@ const queryOptions = {
   verifyEmail: (token: string) => ({
     queryKey: queryKeys.verifyEmail(token),
     queryFn: () => CommonService.verifyEmail(token),
+    enabled: false, // 초기에는 호출하지 않음
+  }),
+  myInfo: () => ({
+    queryKey: queryKeys.myInfo(),
+    queryFn: () => CommonService.myInfo(),
+    // gcTime: 0,
+  }),
+  logout: () => ({
+    queryKey: queryKeys.logout(),
+    queryFn: () => CommonService.logout(),
     enabled: false, // 초기에는 호출하지 않음
   }),
 };

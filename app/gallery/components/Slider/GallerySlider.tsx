@@ -10,26 +10,26 @@ import MoreButton from '@/app/gallery/components/Button/MoreButton';
 import GalleryAlbumCard from '@/app/gallery/components/Card/GalleryAlbumCard';
 import GalleryBoardCard from '@/app/gallery/components/Card/GalleryBoardCard';
 import GalleryFanartCard from '@/app/gallery/components/Card/GalleryFanartCard';
-import { UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
-import { useGalleryList } from '@/app/gallery/service/client/useGalleryService';
-import { test } from '@/constants/test';
+import GalleryLikedAlbumCard from '@/app/gallery/components/Card/GalleryLikedAlbumCard';
 
 interface CustomSwiperParams extends SwiperOptions {
   // 다른 타입을 추가하거나 필요에 따라 수정
   style: Record<string, string>;
 }
 
-type SliderType = 'fanart' | 'album' | 'board';
+type SliderType = 'fanart' | 'album' | 'board' | 'liked';
 // type isFanartData = (data: FanartData | AlbumData) => data is FanartData;
 
 type Props = {
-  type: SliderType;
+  data: {
+    type: SliderType;
+    list: any[];
+  };
   customSwiperOptions?: CustomSwiperParams;
 };
 
-export default function GallerySlider({ customSwiperOptions, type }: Props) {
+export default function GallerySlider({ customSwiperOptions, data }: Props) {
   const { style: customStyle, ...customOptions } = customSwiperOptions || {};
-  const { data: gallery, isLoading, isError } = useGalleryList();
   const swiperParams = {
     // centerInsufficientSlides
     style: {
@@ -59,28 +59,28 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
   };
 
   const renderSlides = () => {
-    switch (type) {
+    switch (data.type) {
       case 'fanart':
         return (
           <>
-            {test.map((data, index) => (
-              <SwiperSlide key={data.id}>
+            {data.list.map((item, index) => (
+              <SwiperSlide key={item.id}>
                 <GalleryFanartCard
                   key={index}
-                  artwork={data}
+                  artwork={item}
                   num={index < 3 ? index + 1 : -1}
                 />
               </SwiperSlide>
             ))}
             <SwiperSlide>
-              <MoreButton />
+              <MoreButton type="link" url="/album/weekRanking" />
             </SwiperSlide>
           </>
         );
       case 'board':
         return (
           <>
-            {UPDATED_GALLERY_LIST.map((data) => (
+            {data.list.map((data) => (
               <SwiperSlide key={data.id} className="overflow-hidden">
                 <GalleryBoardCard album={data} />
               </SwiperSlide>
@@ -88,20 +88,16 @@ export default function GallerySlider({ customSwiperOptions, type }: Props) {
           </>
         );
       case 'album': {
-        if (isError) {
-          return <div>error</div>;
-        }
-        if (isLoading) {
-          return null;
-          // return <div>isLoading</div>
-        }
-        if (!gallery) {
-          return null;
-        }
-
-        return gallery.albums.map((data) => (
+        return data.list.map((data) => (
           <SwiperSlide key={data.id} className="overflow-hidden">
             <GalleryAlbumCard album={data} />
+          </SwiperSlide>
+        ));
+      }
+      case 'liked': {
+        return data.list.map((data) => (
+          <SwiperSlide key={data.id} className="overflow-hidden">
+            <GalleryLikedAlbumCard album={data} />
           </SwiperSlide>
         ));
       }

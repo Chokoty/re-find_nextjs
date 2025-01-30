@@ -1,11 +1,11 @@
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { IoClose } from 'react-icons/io5';
 
 import useModal from '@/hooks/useModal';
 import { Logo } from '@/lib/images';
 
 import NaverButton from './Button/NaverButton';
-import { usePathname } from 'next/navigation';
 
 const redirect_uri = `${
   process.env.NEXT_PUBLIC_IS_LOCAL
@@ -14,7 +14,7 @@ const redirect_uri = `${
 }/register`;
 const client_id = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
 const testApiBase = process.env.NEXT_PUBLIC_DEV_CLIENT_URL;
-const serverUrl = process.env.NEXT_PUBLIC_NEW_SERVER_URL;
+const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
 export default function LoginModal() {
   const { hide } = useModal();

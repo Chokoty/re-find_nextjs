@@ -14,6 +14,13 @@ import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
 import ViewSelectBar from '@/components/ViewSelectBar';
 import { useResponsive } from '@/hooks/useResponsive';
+import {
+  useDeleteCustomAlbum,
+  useEditCustomAlbum,
+} from '@/app/myLibrary/service/client/useMyService';
+import { useMyInfo } from '@/service/client/useCommonService';
+import useModal from '@/hooks/useModal';
+import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
 
 type Props = {
   value: string;
@@ -28,7 +35,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
 
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
-  const name = pathNameParts[pathNameParts.length - 1];
+  const albumName = pathNameParts[pathNameParts.length - 1];
   // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
   const shouldHideTotalCounter = (n: string) => {
     const hiddenNames = [
@@ -41,6 +48,27 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     ];
     return hiddenNames.includes(n);
   };
+
+  // -----------커스텀 앨범일 경우(start)------------
+  const { data: user } = useMyInfo();
+  const customAlbumInfo = user?.albums.find((album) => album.id === albumName);
+  const isMyCustomAlbum = customAlbumInfo !== undefined;
+  const { show: showDeleteCustomAlbumModal } = useModal(DeleteCustomAlbumModal);
+  const { mutate: editCustomAlbumInfo, status: editStatus } =
+    useEditCustomAlbum('user--3635', {
+      name: 'test',
+      is_public: true,
+    });
+  const handleEditCustomAlbumInfo = () => {
+    editCustomAlbumInfo();
+  };
+  const handleDeleteCustomAlbum = () => {
+    showDeleteCustomAlbumModal({
+      animateDir: 'bottom',
+      title: customAlbumInfo?.name,
+    });
+  };
+  // -----------커스텀 앨범일 경우(end)------------
 
   // // infinite scroll을 위한 옵저버
   const isMobile = useResponsive();
@@ -56,23 +84,10 @@ export default function DetailedGallery({ value: galleryType }: Props) {
   const [activeView, setActiveView] = useState(
     viewTypeInit !== '' ? viewTypeInit : 'masonry'
   ); // 초기 뷰 설정
-  // const [sortType, setSortType] = useState(
-  //   // sortTypeInit !== '' ? sortTypeInit : isIsdPick ? 'latest' : 'alzaltak'
-  //   albumType === 'keyword' || isIsdPick ? 'latest' : 'alzaltak'
-
-  //   // sortTypeInit !== ''
-  //   //   ? sortTypeInit
-  //   //   : isIsdPick || albumType === 'keyword'
-  //   //     ? 'latest'
-  //   //     : 'alzaltak'
-  // ); // 초기 상태 설정'
   const [sortType, setSortType] = useState(() => {
     if (sortTypeInit !== '') {
       return sortTypeInit;
     }
-    // if (albumType === 'keyword' || isIsdPick) {
-    //   return 'latest';
-    // }
     return 'alzaltak';
   }); // 초기 상태 설정'
 
@@ -85,14 +100,11 @@ export default function DetailedGallery({ value: galleryType }: Props) {
 
   const updateURL = (SortType: string, ViewType: string, member?: string) => {
     const params = new URLSearchParams();
-    // if (isIsdPick && member) {
-    //   params.append('member', member);
-    // }
     params.append('viewType', ViewType);
     params.append('sortType', SortType);
     // URL에 query string 추가
     const queryString = params.toString();
-    router.push(`/gallery/${name}?${queryString}`);
+    router.push(`/gallery/${albumName}?${queryString}`);
   };
 
   // 정렬 선택하기
@@ -102,15 +114,6 @@ export default function DetailedGallery({ value: galleryType }: Props) {
       setSortType(menuText);
 
       updateURL(menuText, activeView, selected);
-      // const params = new URLSearchParams();
-      // if (isIsdPick) {
-      //   params.append('member', selected);
-      // }
-      // params.append('sortType', menuText);
-      // params.append('viewType', activeView);
-      // // URL에 query string 추가
-      // const queryString = params.toString();
-      // router.push(`/gallery/${name}?${queryString}`);
     },
     [sortType]
   );
@@ -156,8 +159,11 @@ export default function DetailedGallery({ value: galleryType }: Props) {
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
         onMemberClick={handleMemberClick}
+        isMyCustomAlbum={isMyCustomAlbum}
+        handleEditAlbum={handleEditCustomAlbumInfo}
+        handleDeleteAlbum={handleDeleteCustomAlbum}
         topOffset={59}
-        hasTotalCounter={!shouldHideTotalCounter(name) && !!total}
+        hasTotalCounter={!shouldHideTotalCounter(albumName) && !!total}
         // isIsdPick={isIsdPick}
       />
       {status === 'pending' ? (

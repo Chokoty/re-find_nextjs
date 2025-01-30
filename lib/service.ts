@@ -23,7 +23,7 @@ class Service {
   // private headers: Record<string, string>;
 
   constructor() {
-    this.baseURL = process.env.NEXT_PUBLIC_NEW_SERVER_URL!;
+    this.baseURL = process.env.NEXT_PUBLIC_SERVER_URL!;
 
     // this.headers = {
     //   csrf: 'token',
@@ -33,7 +33,7 @@ class Service {
     const axiosInstance: AxiosInstance = axios.create({
       baseURL: this.baseURL,
       timeout: 30000, // 30초동안 응답이 없으면 요청 중단
-      // withCredentials: true,
+      withCredentials: true, // test
       // headers: {
       //   'Content-Type': 'application/json',
       //   ...this.headers,

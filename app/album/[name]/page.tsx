@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 
-import DetailedGallery from '@/app/gallery/components/DetailedGallery';
+import DetailedGallery from '@/app/album/components/DetailedGallery';
 import GalleryTitle from '@/app/gallery/components/GalleryTitle';
 import TopBackground from '@/app/gallery/components/TopBackground';
-import GALLERY_LIST from '@/app/gallery/lib/const';
 import queryOptions from '@/app/gallery/service/client/queries';
 import { getGalleryPageInfo } from '@/app/gallery/service/server';
 import { siteConfig } from '@/lib/config';

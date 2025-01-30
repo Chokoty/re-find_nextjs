@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import CountUp from 'react-countup';
 import toast from 'react-hot-toast';
 import { ImLink } from 'react-icons/im';
@@ -19,8 +18,11 @@ import Popover, {
   PopoverTrigger,
 } from '@/components/Popover';
 import Tooltip from '@/components/Tooltip';
-import useLocalStorage from '@/hooks/useLocalStorage';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
+import {
+  useSubscribeArtist,
+  useUnsubscribeArtist,
+} from '@/app/myLibrary/service/client/useMyService';
 
 interface Props {
   nickname: string;
@@ -37,6 +39,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
     wak_cnt,
     isd_cnt,
     gomem_cnt,
+    following = false,
   } = profile;
   const { rankCriteria, sortRankCriteria } = useArtistSearchInfoStore(
     useShallow((state) => ({
@@ -44,13 +47,14 @@ export default function ArtistProfile({ nickname, profile }: Props) {
       sortRankCriteria: state.sortRankCriteria,
     }))
   );
-
-  const router = useRouter();
-
-  //  const [isPopoverOpen, setIsPopoverOpen] = useState(true); // Popover 상태 관리
-
+  const { mutate: subscribeArtist } = useSubscribeArtist(nickname);
+  const { mutate: unSubscribeArtist } = useUnsubscribeArtist(nickname);
   const handleSubscribe = () => {
-    toast.error('구독 기능 준비 중입니다.');
+    if (following) {
+      unSubscribeArtist();
+      return;
+    }
+    subscribeArtist();
   };
 
   const member_link = useResponsiveLink(
@@ -152,7 +156,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
           additionalClass="rounded-full max-w-[73px] text-base font-semibold "
           onClick={handleSubscribe}
         >
-          <p className="">+ 구독</p>
+          <p className="">{following ? '구독 중' : '+ 구독'}</p>
         </Button>
       </div>
     </div>

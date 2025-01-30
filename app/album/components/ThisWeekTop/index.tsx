@@ -5,6 +5,7 @@ import { useState } from 'react';
 
 import GalleryFanartSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryFanartSliderSkeleton';
 import ThisWeekBtnList from '@/app/gallery/components/ThisWeekTop/ThisWeekBtnList';
+import { test } from '@/constants/test';
 
 const GallerySlider = dynamic(
   () => import('@/app/gallery/components/Slider/GallerySlider'),
@@ -30,7 +31,12 @@ export default function ThisWeekTop() {
         setSelected={setSelectedItem}
         isdPick={false}
       />
-      <GallerySlider type="fanart" />
+      <GallerySlider
+        data={{
+          type: 'fanart',
+          list: test,
+        }}
+      />
     </div>
   );
 }

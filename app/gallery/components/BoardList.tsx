@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 
 import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
+import { UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
 
 const GallerySlider = dynamic(
   () => import('@/app/gallery/components/Slider/GallerySlider'),
@@ -19,7 +20,10 @@ export default function BoardList() {
         </p>
       </div>
       <GallerySlider
-        type="board"
+        data={{
+          type: 'board',
+          list: UPDATED_GALLERY_LIST,
+        }}
         customSwiperOptions={{
           style: {
             // padding: '0 2rem',

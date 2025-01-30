@@ -1,15 +1,17 @@
 'use client';
 
-import useModal from '@/hooks/useModal';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaSearch, FaUserCircle } from 'react-icons/fa';
 import { FaUserGroup } from 'react-icons/fa6';
 import { IoMdImages } from 'react-icons/io';
 import { MdHomeFilled } from 'react-icons/md';
+
 import LoginModal from '@/components/LoginModal';
+import useModal from '@/hooks/useModal';
+import { useMyInfo } from '@/service/client/useCommonService';
 
 const routerMap = {
   home: {
@@ -42,7 +44,7 @@ const routerMap = {
   },
   me: {
     type: 'button',
-    path: '/me',
+    path: '/myLibrary',
     name: '나',
     icon: FaUserCircle,
     className: 'size-6',
@@ -52,9 +54,15 @@ const routerMap = {
 export default function MobileTabBar() {
   const currentPathname = usePathname();
   const [isIOS, setIsIOS] = useState(false);
+  const router = useRouter();
+  const { isFetching, status, data } = useMyInfo();
   const { show } = useModal(LoginModal);
-  const handleClick = () => {
-    show({ isBackdropClick: true, size: 'full' });
+  const handleClick = (path: string) => {
+    if (data) {
+      router.push(path);
+    } else {
+      show({ isBackdropClick: true, size: 'full' });
+    }
   };
 
   useEffect(() => {
@@ -96,7 +104,7 @@ export default function MobileTabBar() {
                 key={name}
                 className={tabClassName}
                 onClick={() => {
-                  handleClick();
+                  handleClick(eachPath);
                   // router.push(`/${eachPath}`) > 유저가 로그인되어있을시
                 }}
               >

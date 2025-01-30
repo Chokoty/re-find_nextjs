@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
+import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
 
 const GallerySlider = dynamic(
   () => import('@/app/gallery/components/Slider/GallerySlider'),
@@ -11,6 +12,15 @@ const GallerySlider = dynamic(
   }
 );
 export default function ArtistTimelineShelf() {
+  const {
+    total,
+    status,
+    artworks,
+    refetch,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useGalleryArtworks({ sortType: 'recent', galleryType: 'artistTimeline' });
+  console.log('artistTimeline', artworks);
   return (
     <div className="mb-10 flex w-full flex-col p-2 md:px-6">
       <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
@@ -31,28 +41,33 @@ export default function ArtistTimelineShelf() {
           </p>
         </Link>
       </div>
-      <GallerySlider
-        type="album"
-        customSwiperOptions={{
-          style: {
-            // padding: '0 2rem',
-          },
-          spaceBetween: 8,
-          breakpoints: {
-            480: {
-              slidesPerView: 2.5,
-              spaceBetween: 10,
+      {artworks && (
+        <GallerySlider
+          data={{
+            type: 'album',
+            list: artworks,
+          }}
+          customSwiperOptions={{
+            style: {
+              // padding: '0 2rem',
             },
-            1055: {
-              slidesPerView: 3.5,
-              spaceBetween: 16,
+            spaceBetween: 8,
+            breakpoints: {
+              480: {
+                slidesPerView: 2.5,
+                spaceBetween: 10,
+              },
+              1055: {
+                slidesPerView: 3.5,
+                spaceBetween: 16,
+              },
+              // 1024: {
+              //   slidesPerView: 3.5,
+              // },
             },
-            // 1024: {
-            //   slidesPerView: 3.5,
-            // },
-          },
-        }}
-      />
+          }}
+        />
+      )}
     </div>
   );
 }

@@ -31,6 +31,9 @@ type Props = {
   isIsdPick?: boolean;
   hasTotalCounter?: boolean;
   isArtist?: boolean;
+  isMyCustomAlbum?: boolean;
+  handleEditAlbum?: () => void;
+  handleDeleteAlbum?: () => void;
 };
 
 export default function ViewSelectBar({
@@ -42,9 +45,12 @@ export default function ViewSelectBar({
   isDeletedVisible,
   handleShowDeleted,
   onMemberClick,
+  isMyCustomAlbum = false,
   isIsdPick = false,
   hasTotalCounter = false,
   isArtist = false,
+  handleEditAlbum,
+  handleDeleteAlbum,
 }: Props) {
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -169,6 +175,24 @@ export default function ViewSelectBar({
                 <Button intent="ghost-gray" onClick={handleShowDeleted}>
                   혐잘딱 게시글 {isDeletedVisible ? '가리기' : '보이기'}
                 </Button>
+                {isMyCustomAlbum && (
+                  <>
+                    <Button
+                      intent="ghost-gray"
+                      additionalClass="w-full justify-start"
+                      onClick={handleEditAlbum}
+                    >
+                      앨범 세부 정보 수정
+                    </Button>
+                    <Button
+                      intent="ghost-gray"
+                      additionalClass="w-full justify-start"
+                      onClick={handleDeleteAlbum}
+                    >
+                      앨범 삭제하기
+                    </Button>
+                  </>
+                )}
               </div>
             </PopoverBody>
           </PopoverContent>

@@ -7,6 +7,7 @@ import { PiGiftBold } from 'react-icons/pi';
 import LoginModal from '@/components/LoginModal';
 import Tooltip from '@/components/Tooltip';
 import useModal from '@/hooks/useModal';
+import { useMyInfo } from '@/service/client/useCommonService';
 
 type RouterItem = {
   path: string;
@@ -37,18 +38,23 @@ const routerMap: Record<string, RouterItem> = {
 
 export default function DesktopMenuTab() {
   const { show } = useModal(LoginModal);
+  const { isFetching, status, data } = useMyInfo();
   const handleClick = () => {
     show({ isBackdropClick: true });
   };
 
   return (
     <div className="flex items-center justify-end md:min-w-[174px] ">
-      <button
-        className="hidden px-2.5 font-semibold transition hover:text-green-highlight md:block"
-        onClick={handleClick}
-      >
-        로그인
-      </button>
+      {data ? (
+        <Link href="/myLibrary">{data.nick}</Link>
+      ) : (
+        <button
+          className="hidden px-2.5 font-semibold transition hover:text-green-highlight md:block"
+          onClick={handleClick}
+        >
+          로그인
+        </button>
+      )}
       {Object.keys(routerMap).map((key) => {
         const typedKey = key as keyof typeof routerMap;
         const {

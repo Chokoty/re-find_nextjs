@@ -89,10 +89,15 @@ export type DateType = {
 };
 
 // service (api)
+export type DeleteArtworkParams = {
+  albumId: string;
+  artworksIdList: number[];
+  isDeleteAlbum?: boolean;
+};
 
 export type GetKeywordGalleryArtworksParams = {
   galleryType: string;
-  sortType: string;
+  sortType?: string;
 };
 
 export type GetIsdNoticeArtworksParams = {

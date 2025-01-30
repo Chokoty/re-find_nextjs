@@ -187,6 +187,7 @@ declare global {
   // }
 
   export interface AuthorOverview extends AuthorCommon {
+    following?: boolean;
     num_artworks: number;
     author_nickname: string;
     author_url: string;
@@ -266,4 +267,48 @@ declare global {
     state: 'register' | 'login';
     redirect_uri: string;
   }
+
+  export interface CustomAlbumAddResponse {
+    album: string; // id (ex. "user--8cb6")
+    message: string;
+    sliced: boolean; //입력한 게시글이 제한을 넘어갔는지 여부
+    status: string; // 'success'
+  }
+
+  export interface CustomAlbumEditResponse {
+    status: string; // 'success'
+    edited: string[]; // ["name", "articles"] or ["name"] or ["articles"]
+  }
+
+  export interface ArtistSubscribeResponse {
+    status: string; // 'success'
+    message: string;
+  }
+
+  export interface SubscribedArtistsResponse {
+    status: string; // 'success'
+    list: SbuscribedArtist[];
+  }
+
+  type SbuscribedArtist = {
+    nick: string;
+    profimg: stirng;
+  };
+
+  type CustomAlbumInfos = {
+    id: string;
+    name: string;
+  };
+
+  export type UserInfo = {
+    naver_id: string;
+    nick: string;
+    albums: CustomAlbumInfos[];
+  };
+
+  export type CustomAlbumEditParams = {
+    name: string;
+    articles?: number[];
+    is_public?: boolean;
+  };
 }

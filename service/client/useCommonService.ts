@@ -18,3 +18,11 @@ export function useVerifyEmail(token: string) {
 export function useRequestNaverLoginInServer(currentPageUrl: string) {
   return useQuery(queryOptions.requestNaverLoginInServer(currentPageUrl));
 }
+
+export function useMyInfo() {
+  return useQuery(queryOptions.myInfo());
+}
+
+export function useLogout() {
+  return useQuery(queryOptions.logout());
+}

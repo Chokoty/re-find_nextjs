@@ -15,7 +15,6 @@ import UpdateLogBoard from '@/components/UpdateLogBoard';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
-// import { useRouter } from 'next/navigation';
 
 const BannerSlider = dynamic(
   () => import('@/app/(home)/components/BannerSlider'),

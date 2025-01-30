@@ -59,7 +59,7 @@ export default function SuccessPage() {
           type="button"
           onClick={handleClick}
           disabled={isError && isFetching} // 여러 번 클릭시 중복 요청 방지
-          className="flex h-[55px] w-full items-center justify-center rounded-md border bg-icon-naver px-2.5 text-white transition disabled:cursor-not-allowed disabled:opacity-75 dark:border-whiteAlpha-300 dark:bg-green-500 dark:text-whiteAlpha-900 [&:not(:disabled):active]:bg-[#009f28] dark:[&:not(:disabled):active]:bg-green-700 [&:not(:disabled):hover]:bg-[#06bd34] dark:[&:not(:disabled):hover]:bg-green-600"
+          className="bg-icon-naver flex h-[55px] w-full items-center justify-center rounded-md border px-2.5 text-white transition disabled:cursor-not-allowed disabled:opacity-75 dark:border-whiteAlpha-300 dark:bg-green-500 dark:text-whiteAlpha-900 [&:not(:disabled):active]:bg-[#009f28] dark:[&:not(:disabled):active]:bg-green-700 [&:not(:disabled):hover]:bg-[#06bd34] dark:[&:not(:disabled):hover]:bg-green-600"
         >
           {buttonText}
         </button>
