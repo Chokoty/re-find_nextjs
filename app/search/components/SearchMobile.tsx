@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useRef } from 'react';
 
 import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import TopTitle from '@/app/(home)/components/TopTitle';
@@ -32,7 +32,9 @@ export default function SearchMobile() {
       ref={scrollContainerRef} // 스크롤 이벤트 연결
       className="mt-2 flex w-full flex-col items-center justify-start gap-2 px-3 pb-[60px] md:hidden"
     >
-      <SearchModalOpener />
+      <Suspense>
+        <SearchModalOpener />
+      </Suspense>
       <BannerSlider />
       <TopTitle />
       <Upload scrollToTop={scrollToTop} />
