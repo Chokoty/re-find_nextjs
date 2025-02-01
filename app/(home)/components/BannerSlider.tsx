@@ -91,9 +91,10 @@ const events: EventData[] = [
 
 export default function BannerSlider() {
   return (
-    <div className="mb-1 w-full">
+    <div className="mb-1 mt-4 w-full md:w-3/5">
       <Swiper
         className="mySwiper"
+        spaceBetween={20} // 슬라이드 간격 추가
         // navigation={true}
         pagination={{ clickable: true }}
         modules={[Autoplay, Navigation, Pagination]}

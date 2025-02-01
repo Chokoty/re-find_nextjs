@@ -13,8 +13,9 @@ import BackButton from '@/components/Button/BackButton';
 import WorldcupSkipButton from '@/components/Button/WorldcupSkipButton';
 import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
 import DesktopMenuTab from '@/components/Header/DesktopMenuTab';
+import { useResponsive } from '@/hooks/useResponsive';
 import { useScroll } from '@/hooks/useScroll';
-import { Logo } from '@/lib/images';
+import { Logo, 똥강아지1 } from '@/lib/images';
 
 const Modals = dynamic(() => import('@/components/Modal/Modals'), {
   ssr: false,
@@ -25,6 +26,7 @@ export default function Header() {
   const isGalleryPage = pathname.includes('/gallery');
   const isScrolling = useScroll(60);
   const isNotScrollingGalleryPage = isGalleryPage && !isScrolling;
+  const isMobile = useResponsive();
 
   return (
     <header
@@ -37,12 +39,12 @@ export default function Header() {
         className={clsx(
           'flex size-full items-center justify-between px-4 shadow-navTop transition',
           {
-            'dark:shadow-navTopDark': isScrolling,
+            'dark:shadow-navTopDark2': isScrolling,
             'dark:shadow-none': !isScrolling,
           }
         )}
       >
-        <HeaderContent />
+        <HeaderContent isMobile={isMobile} />
       </nav>
       <Modals />
     </header>
@@ -65,7 +67,7 @@ const etcPathMap = {
 
 type EtcPathMapKeyType = keyof typeof etcPathMap;
 
-const HeaderContent = () => {
+const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
   const name = pathNameParts[pathNameParts.length - 1];
@@ -75,23 +77,49 @@ const HeaderContent = () => {
   const isRegister = pathname.startsWith('/register');
   const isRegisterSucess = pathname.startsWith('/register_success');
 
+  // // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
+  // if (isMorePath || isEvents || isRegister || isRegisterSucess) {
+
+  // const isMorePath = pathname.startsWith('/more');
+  // const isEvents = pathname.startsWith('/events');
+
   // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
-  if (isMorePath || isEvents || isRegister || isRegisterSucess) {
+  // if (isMorePath || isEvents) {
+  // if (isMorePath) {
+  //   return (
+  //     <>
+  //       <BackButton />
+  //       <h1 className="flex items-center justify-center text-xl font-bold">
+  //         {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
+  //       </h1>
+  //       {name === 'fanartWorldCup' ? (
+  //         <WorldcupSkipButton />
+  //       ) : (
+  //         <div className="size-12" />
+  //       )}
+  //     </>
+  //   );
+  // }
+
+  // 모바일 헤더 표시
+  if (isMobile) {
     return (
-      <>
-        <BackButton />
-        <h1 className="flex items-center justify-center text-xl font-bold">
-          {etcPathMap[pathname as EtcPathMapKeyType] ?? '기타'}
-        </h1>
-        {name === 'fanartWorldCup' ? (
-          <WorldcupSkipButton />
-        ) : (
-          <div className="size-12" />
-        )}
-      </>
+      <div className="flex items-center justify-center gap-2 md:hidden">
+        <div className="flex size-[48px] items-center justify-center rounded-full shadow-sm hover:bg-white dark:shadow-none hover:dark:bg-dark-card">
+          <Image
+            width={100}
+            height={100}
+            className="size-[32px] rounded-full object-cover"
+            src={똥강아지1}
+            alt={''}
+            unoptimized
+          />
+        </div>
+        <h2>모바일 헤더입니다</h2>
+      </div>
     );
   }
-
+  // 데스크톱 헤더 표시
   return (
     <>
       <div className="flex items-center justify-center">

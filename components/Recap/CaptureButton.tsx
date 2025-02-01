@@ -57,8 +57,8 @@ export function CaptureButton({
       additionalClass=" hidden rounded-xl  text-base font-semibold md:flex items-center justify-center gap-2 "
       onClick={captureSection}
     >
-      <MdOutlineSaveAlt className="inline-block size-6 lg:size-8 " />
-      <p className="inline-block font-semibold lg:text-lg ">
+      <MdOutlineSaveAlt className="inline-block size-6 lg:size-8" />
+      <p className="inline-block font-semibold lg:text-lg">
         {isLoading ? '처리중...' : '사진저장'}
       </p>
     </Button>

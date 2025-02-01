@@ -2,10 +2,10 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-const tabs = [
-  { path: '/gallery', name: '갤러리', width: 'w-12' },
-  { path: '/artists', name: '작가', width: 'w-8' },
-];
+// const tabs = [
+// { path: '/gallery', name: '갤러리', width: 'w-12' },
+// { path: '/artists', name: '작가', width: 'w-8' },
+// ];
 
 // gallery or artists 페이지일 경우만 isActive style 적용
 export default function DesktopHeaderTab() {
@@ -31,7 +31,7 @@ export default function DesktopHeaderTab() {
   };
   return (
     <div className="mr-3 hidden items-center md:flex">
-      {tabs.map(({ path: tabPath, name, width }) => (
+      {/* {tabs.map(({ path: tabPath, name, width }) => (
         <div
           key={tabPath}
           className="relative flex w-[60px] items-center justify-center"
@@ -50,7 +50,7 @@ export default function DesktopHeaderTab() {
             />
           )}
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }

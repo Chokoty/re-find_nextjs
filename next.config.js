@@ -76,10 +76,10 @@ const nextConfig = {
       //   destination: `${process.env.NEXT_PUBLIC_SERVER_URL}/:path*`,
       // },
       // vercel 배포용 설정입니다.
-      {
-        source: `/api2/:path*`,
-        destination: `https://rerurureruru.com/:path*`,
-      },
+      // {
+      //   source: `/api2/:path*`,
+      //   destination: `https://rerurureruru.com/:path*`,
+      // },
     ];
   },
 };

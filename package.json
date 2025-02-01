@@ -80,8 +80,8 @@
     "eslint-plugin-tailwindcss": "^3.15.1",
     "next-compose-plugins": "^2.2.1",
     "postcss": "^8.4.38",
-    "prettier": "^3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "sass": "^1.71.1",
     "tailwindcss": "^3.4.3",
     "typescript": "^5"

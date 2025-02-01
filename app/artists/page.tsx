@@ -29,9 +29,9 @@ export default async function ArtistsPage() {
     });
 
     return (
-      <div className="flex w-full flex-col items-center justify-center px-2.5 py-4 md:px-4">
+      <div className="flex w-full flex-col items-center justify-center gap-4 px-3 py-4">
         <PageTitle topTitle={topTitle} />
-        <div className="mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
+        <div className="mx-auto mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
           <ArtistsSearchInput />
           <RankSortButtonGroup />
           <TotalSortButtonGroup />
@@ -47,9 +47,10 @@ export default async function ArtistsPage() {
   }
   // 로컬에서 실행할 경우
   return (
-    <div className="flex w-full flex-col items-center justify-center px-2.5 py-4 md:px-4">
+    // <div className="flex w-full  items-center justify-center px-2.5 py-4 md:px-4">
+    <div className="flex w-full flex-col items-center justify-center gap-4 px-3 py-4">
       <PageTitle topTitle={topTitle} />
-      <div className="mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
+      <div className="mx-auto mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
         <ArtistsSearchInput />
         <RankSortButtonGroup />
         <TotalSortButtonGroup />

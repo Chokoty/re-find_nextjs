@@ -51,7 +51,7 @@ export default function SearchModal() {
             onClose={onClose}
           />
         </div>
-        <div className="flex justify-end ">
+        <div className="flex justify-end">
           <button onClick={openOptions} className={buttonClassName}>
             필터 더보기
           </button>

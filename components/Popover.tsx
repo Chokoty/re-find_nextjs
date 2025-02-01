@@ -120,6 +120,7 @@ type PopoverContentProps = {
     | 'bottom-right'
     | 'bottom-center';
   children: React.ReactNode;
+  isForceOpen?: boolean;
 };
 
 function PopoverContent({
@@ -127,7 +128,37 @@ function PopoverContent({
   size = 'md',
   position = 'bottom-left',
   hasCloseButton = true,
+  isForceOpen = false,
 }: PopoverContentProps) {
+  if (isForceOpen) {
+    const visible = true;
+    const onClose = () => {};
+    const innerContentRef = null;
+
+    return (
+      <div
+        ref={innerContentRef}
+        className={clsx(
+          'absolute z-50 rounded-md border-base border-gray-200 bg-white transition dark:border-whiteAlpha-300 dark:bg-black-200',
+          {
+            'visible scale-100 opacity-100': visible,
+            'invisible scale-95 opacity-0': !visible,
+            'w-[155px]': size === 'ss',
+            'w-[200px]': size === 'sm',
+            'w-[320px]': size === 'md',
+            'w-[400px]': size === 'lg',
+            'right-[-30px] top-[calc(100%+10px)]': position === 'bottom-left',
+            'left-0 top-[calc(100%+10px)] translate-x-[-30%]':
+              position === 'bottom-center',
+            'left-0 top-[calc(100%+10px)]': position === 'bottom-right',
+          }
+        )}
+      >
+        {children}
+      </div>
+    );
+  }
+
   const { visible, onClose, innerContentRef } = usePopoverContext();
   // const buttonHeight = buttonRef.current?.clientHeight;
   useOnClickOutside(innerContentRef, (e) => {

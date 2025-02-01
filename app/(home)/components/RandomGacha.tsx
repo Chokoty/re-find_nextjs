@@ -24,9 +24,15 @@ export default function RandomGacha() {
     await refetch();
   };
   return (
-    <div className="mt-4 flex w-full flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
-      <div className="flex w-full items-center justify-start">
+    <div className="my-10 flex w-full flex-col items-center justify-start gap-4 rounded-2xl bg-white px-6 pb-4 pt-6 dark:bg-dark-card">
+      <div className="flex w-full items-end justify-between">
         <h2 className="text-xl font-bold">팬아트 가챠</h2>
+        <Link
+          href="/events/randomGacha"
+          className="decoration-purple-500 hover:underline"
+        >
+          <p className="text-sm text-whiteAlpha-700">더보기</p>
+        </Link>
       </div>
       <Fanart
         data={data}
@@ -36,7 +42,7 @@ export default function RandomGacha() {
       />
       <div className="flex w-full flex-col items-center justify-center gap-2">
         <Button
-          additionalClass="event-randomGacha rounded-xl w-full text-base font-bold gap-1.5"
+          additionalClass="event-randomGacha rounded-xl w-[60%] text-base font-bold gap-1.5"
           intent="solid-purple"
           size="lg"
           onClick={showRandomFanart}
@@ -45,11 +51,11 @@ export default function RandomGacha() {
           <FaDice className="size-5" />
           랜덤가챠 굴리기
         </Button>
-        <Link href="/events/randomGacha" className="w-full">
+        {/* <Link href="/events/randomGacha" className="w-full">
           <div className="inline-flex h-12 min-h-12 w-full select-none items-center justify-center whitespace-nowrap rounded-xl bg-gray-100 pe-4 ps-4 align-middle text-base font-bold leading-tight text-gray-800 outline-none outline-offset-2 transition hover:bg-gray-200 active:bg-gray-300 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400">
             랜덤가챠 더보기(4개)
           </div>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );
@@ -102,7 +108,7 @@ const Fanart = ({
 
   if (isLoading || isFetching || !data) {
     return (
-      <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-gray-100 dark:bg-whiteAlpha-200">
+      <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-gray-100 dark:bg-dark-card-2">
         {isFetching ? (
           <p className="w-full text-center text-3xl font-bold">{displayText}</p>
         ) : (

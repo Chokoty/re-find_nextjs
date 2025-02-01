@@ -60,7 +60,7 @@ export default function SimpleCard({ artwork }: Prop) {
         className="mb-2"
         // rel="noopener noreferrer" // 보안상의 이유료 이 부분도 추가합니다.
       >
-        <div className="group relative aspect-[16/9] max-w-[440px] overflow-hidden rounded-2xl ">
+        <div className="group relative aspect-[16/9] max-w-[440px] overflow-hidden rounded-2xl">
           <div
             className="flex size-full items-center justify-between"
             // h={['120px', '157px']}

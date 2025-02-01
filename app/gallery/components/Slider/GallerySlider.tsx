@@ -38,11 +38,11 @@ export default function GallerySlider({ customSwiperOptions, data }: Props) {
     // centerInsufficientSlides
     style: {
       width: '100%',
-      padding: '0 2rem',
+      padding: '0',
       ...(customStyle || {}),
     },
     allowTouchMove: true,
-    className: 'mySwiper2',
+    className: 'mySwiper2 md:!px-8',
     slidesPerView: 1.5,
     spaceBetween: 8,
     breakpoints: {
@@ -97,7 +97,10 @@ export default function GallerySlider({ customSwiperOptions, data }: Props) {
         return (
           <>
             {data.list.map((d) => (
-              <SwiperSlide key={d.id} className="overflow-hidden">
+              <SwiperSlide
+                key={d.id}
+                className="max-w-[144px] overflow-hidden md:max-w-[204px]"
+              >
                 <GalleryBoardCard album={d} />
               </SwiperSlide>
             ))}
@@ -105,14 +108,20 @@ export default function GallerySlider({ customSwiperOptions, data }: Props) {
         );
       case 'album': {
         return data.list.map((d) => (
-          <SwiperSlide key={d.id} className="overflow-hidden">
+          <SwiperSlide
+            key={d.id}
+            className="max-w-[144px] overflow-hidden md:max-w-[204px]"
+          >
             <GalleryAlbumCard album={d} />
           </SwiperSlide>
         ));
       }
       case 'liked': {
         return data.list.map((d) => (
-          <SwiperSlide key={d.id} className="overflow-hidden">
+          <SwiperSlide
+            key={d.id}
+            className="max-w-[144px] overflow-hidden md:max-w-[204px]"
+          >
             <GalleryLikedAlbumCard album={d} />
           </SwiperSlide>
         ));
@@ -124,7 +133,10 @@ export default function GallerySlider({ customSwiperOptions, data }: Props) {
               <AddButton handleClick={handleAddCustomAlbum} />
             </SwiperSlide>
             {data.list.map((d) => (
-              <SwiperSlide key={d.name} className="overflow-hidden">
+              <SwiperSlide
+                key={d.name}
+                className="max-w-[144px] overflow-hidden md:max-w-[204px]"
+              >
                 <GalleryCustomCard info={d} />
               </SwiperSlide>
             ))}
@@ -137,10 +149,12 @@ export default function GallerySlider({ customSwiperOptions, data }: Props) {
   };
 
   return (
-    <Swiper {...swiperParams}>
-      {renderSlides()}
-      <SlideNavButtons />
-    </Swiper>
+    <div className="group relative">
+      <Swiper {...swiperParams}>
+        {renderSlides()}
+        <SlideNavButtons />
+      </Swiper>
+    </div>
   );
 }
 
@@ -162,22 +176,22 @@ const SlideNavButtons = () => {
   };
 
   const commonClassName =
-    'absolute top-1/2 z-10 hidden h-full -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 text-white transition hover:bg-blackAlpha-300 active:bg-blackAlpha-400 dark:bg-blackAlpha-300 dark:hover:bg-blackAlpha-400 dark:active:bg-blackAlpha-500 md:block';
+    'absolute top-1/2 z-10 hidden  -translate-y-1/2 cursor-pointer border-none bg-blackAlpha-200 p-2.5 hover:text-white text-whiteAlpha-600 transition hover:bg-blackAlpha-600  dark:bg-dark-card-2  dark:hover:bg-dark-card-3 md:block rounded-full opacity-0 group-hover:opacity-100';
 
   return (
-    <div>
+    <div className="size-full justify-between">
       <button
-        className={`left-0 ${commonClassName}`}
+        className={`left-4 m-auto ${commonClassName}`}
         type="button"
         onClick={handlePrevClick}
       >
-        <GrFormPrevious size="22px" className="mb-8" />
+        <GrFormPrevious size="22px" className="" />
       </button>
       <button
-        className={`right-0 ${commonClassName}`}
+        className={`right-4 ${commonClassName}`}
         onClick={handleNextClick}
       >
-        <GrFormNext size="22px" className="mb-8" />
+        <GrFormNext size="22px" className="" />
       </button>
     </div>
   );

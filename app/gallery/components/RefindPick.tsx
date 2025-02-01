@@ -16,9 +16,12 @@ const GallerySlider = dynamic(
 export default function RefindPick() {
   const { data: gallery, isLoading, isError } = useGalleryList();
   return (
-    <div className="flex w-full flex-col">
-      <div className="mb-2 w-full px-8 md:mb-4">
-        <p className="text-left text-xl font-extrabold md:text-2xl">
+    <div
+      className="mb:mt-10 mt-4 flex w-full flex-col"
+      style={{ userSelect: 'none' }}
+    >
+      <div className="mb-2 w-full md:mb-4 md:px-8">
+        <p className="pl-2 text-left text-xl font-extrabold md:p-0 md:text-2xl">
           리파인드 추천 앨범
         </p>
       </div>
@@ -36,17 +39,22 @@ export default function RefindPick() {
             },
             spaceBetween: 8,
             breakpoints: {
-              480: {
+              768: {
                 slidesPerView: 2.5,
-                spaceBetween: 10,
+                spaceBetween: 2,
               },
-              1055: {
+              1200: {
                 slidesPerView: 3.5,
-                spaceBetween: 16,
               },
-              // 1024: {
-              //   slidesPerView: 3.5,
-              // },
+              1400: {
+                slidesPerView: 4.5,
+              },
+              1600: {
+                slidesPerView: 5.5,
+              },
+              1800: {
+                slidesPerView: 6.5,
+              },
             },
           }}
         />

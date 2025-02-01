@@ -47,7 +47,7 @@ export default function ImageViewModal(props: Record<string, unknown>) {
   return (
     <section className="relative m-5 rounded-2xl bg-white dark:bg-dark-card sm:mx-auto sm:w-full sm:max-w-lg">
       <button
-        className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition active:bg-gray-300  dark:active:bg-whiteAlpha-300"
+        className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition active:bg-gray-300 dark:active:bg-whiteAlpha-300"
         onClick={onClose}
       >
         <IoClose className="size-8" />
@@ -79,14 +79,14 @@ export default function ImageViewModal(props: Record<string, unknown>) {
             className="w-full hover:text-green-highlight dark:hover:text-pink-highlight"
             href={`/artwork/${id}`}
           >
-            <p className=" line-clamp-1 w-full  leading-6">제목: {title}</p>
+            <p className="line-clamp-1 w-full leading-6">제목: {title}</p>
           </Link>
           <Link
             target="_blank"
             className="w-full hover:text-green-highlight dark:hover:text-pink-highlight"
             href={board_link}
           >
-            <p className=" line-clamp-1 w-full ">게시판: {board}</p>
+            <p className="line-clamp-1 w-full">게시판: {board}</p>
           </Link>
         </div>
       </div>

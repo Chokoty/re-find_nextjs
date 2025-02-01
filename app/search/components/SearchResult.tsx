@@ -9,13 +9,12 @@ import { HashLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
 
 import SearchCard from '@/app/search/components/Card/SearchCard';
+import { useSearchParameters } from '@/app/search/hooks/useSearchFilter';
 import { useSearchResults } from '@/app/search/service/client/useSearchService';
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import Alert from '@/components/Alert';
 import MasonryView from '@/components/View/MasonryView';
 import { NotSearch } from '@/lib/images';
-
-import { useSearchParameters } from '../hooks/useSearchFilter';
 
 // 검색시 3번 렌더링되는거 최적화하기(옵션 상태때문)
 export default function SearchResult() {

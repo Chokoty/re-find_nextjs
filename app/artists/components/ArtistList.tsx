@@ -88,17 +88,17 @@ export default function ArtistList() {
   }
 
   return (
-    <div className="mt-6 w-full px-6">
-      {artists.map((item, index) => {
+    <div className="w-full rounded-xl px-6 pt-6 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2">
+      {artists.map((artist, index) => {
         return (
-          !item.nick.includes('탈퇴회원') && (
+          !artist.nick.includes('탈퇴회원') && (
             <ArtistCard
-              artist={item}
+              artist={artist}
               nth={index + 1}
               inputText={q}
               rankCriteria={rankCriteria}
               totalCountCriteria={totalCountCriteria}
-              key={`${item.nick}-${index}`}
+              key={`${artist.nick}-${index}`}
             />
           )
         );
