@@ -1,27 +1,14 @@
 'use client';
 
 import ArtistTimelineShelf from '@/app/myLibrary/components/ArtistTimelineShelf';
+import CustomAlbums from '@/app/myLibrary/components/CustomAlbums';
 import LikeArtistShelf from '@/app/myLibrary/components/LikeArtistShelf';
 import LikeFanartShelf from '@/app/myLibrary/components/LikeFanartShelf';
 import Button from '@/components/Button';
-import { useCreateCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
-import AddButton from '@/app/myLibrary/components/AddButton';
-import { useRouter } from 'next/navigation';
 import { useLogout } from '@/service/client/useCommonService';
 
 export default function MyLibrary() {
-  const router = useRouter();
-  const handleOnSuccess = (albumId: string) => {
-    router.push(`/album/${albumId}`);
-  };
-  const { mutate: createCustomAlbum, status } = useCreateCustomAlbum(
-    [],
-    handleOnSuccess
-  );
   const { refetch } = useLogout();
-  const handleAddCustomAlbum = () => {
-    createCustomAlbum();
-  };
 
   return (
     <div className="w-full p-2">
@@ -46,23 +33,7 @@ export default function MyLibrary() {
           <ArtistTimelineShelf />
           <LikeFanartShelf />
           <LikeArtistShelf />
-          <div className="mb-10 flex w-full flex-col p-2 md:px-6">
-            <div className="flex flex-wrap items-center justify-start gap-4">
-              <AddButton handleClick={handleAddCustomAlbum} />
-              <div className="size-40 rounded-md bg-gray-100"></div>
-              <div className="size-40 rounded-md bg-gray-100"></div>
-            </div>
-          </div>
-          {/* <div className="mb-10 flex w-full flex-col p-2 md:px-6">
-            <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
-              <p className="text-left text-xl font-extrabold md:text-2xl">
-                앨범 작품
-              </p>
-            </div>
-            {albumArtworksStatus === 'success' && (
-              <p>{JSON.stringify(artworks)}</p>
-            )}
-          </div> */}
+          <CustomAlbums />
         </section>
       </div>
     </div>

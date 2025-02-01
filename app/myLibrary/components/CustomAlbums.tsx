@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
 import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
+import { useMyInfo } from '@/service/client/useCommonService';
 
 const GallerySlider = dynamic(
   () => import('@/app/gallery/components/Slider/GallerySlider'),
@@ -11,41 +11,26 @@ const GallerySlider = dynamic(
     loading: () => <GalleryAlbumSliderSkeleton />,
   }
 );
-export default function ArtistTimelineShelf() {
-  const {
-    total,
-    status,
-    artworks,
-    refetch,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useGalleryArtworks({ sortType: 'recent', galleryType: 'artistTimeline' });
-  console.log('artistTimeline', artworks);
+
+export default function CustomAlbums() {
+  const { data: user } = useMyInfo();
   return (
     <div className="mb-10 flex w-full flex-col p-2 md:px-6">
       <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
         <Link
-          href="/myLibrary/artistTimeline"
+          href="/myLibrary/likeFanart"
           className="flex items-center hover:underline"
         >
           <p className="text-left text-xl font-extrabold md:text-2xl">
-            구독중인 작가 팬아트 타임라인
-          </p>
-        </Link>
-        <Link
-          href="/myLibrary/artistTimeline"
-          className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
-        >
-          <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-            모두보기
+            좋아요한 팬아트
           </p>
         </Link>
       </div>
-      {artworks && (
+      {user && (
         <GallerySlider
           data={{
-            type: 'liked',
-            list: artworks,
+            type: 'custom',
+            list: user.albums,
           }}
           customSwiperOptions={{
             style: {

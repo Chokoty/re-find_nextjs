@@ -1,5 +1,5 @@
 import Service from '@/lib/service';
-import { DeleteArtworkParams } from '@/types';
+import type { DeleteArtworkParams } from '@/types';
 
 class MyService extends Service {
   // async getImageInfoByHash(hash: string) {
@@ -23,12 +23,14 @@ class MyService extends Service {
       articles: items,
     });
   }
+
   putCustomAlbum(albumId: string, info: CustomAlbumEditParams) {
     return this.http.post<CustomAlbumEditResponse>(
       `/v2/album?album=${albumId}`,
       info
     );
   }
+
   deleteCustomAlbum({
     albumId,
     artworksIdList,
@@ -41,18 +43,22 @@ class MyService extends Service {
       },
     });
   }
+
   updateLikedArticles() {
     const url = '/v2/me/update';
     return this.http.get(url);
   }
+
   subscribeArtist(author: string) {
     const url = `/v2/me/follows/${author}`;
     return this.http.put<ArtistSubscribeResponse>(url);
   }
+
   unsubscribeArtist(author: string) {
     const url = `/v2/me/follows/${author}`;
     return this.http.delete<ArtistSubscribeResponse>(url);
   }
+
   subscribedArtists() {
     const url = '/v2/me/follows';
     return this.http.get<SubscribedArtistsResponse>(url);

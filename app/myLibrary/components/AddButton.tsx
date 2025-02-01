@@ -6,9 +6,9 @@ export default function AddButton({
   handleClick: () => void;
 }) {
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex h-[200px] w-full items-center justify-center 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">
       <button
-        className="flex size-40 items-center justify-center rounded-md bg-gray-100"
+        className="flex size-full items-center justify-center rounded-2xl bg-gray-100"
         onClick={handleClick}
       >
         <FaPlus size="50" className="text-black-200" />

@@ -13,7 +13,7 @@ export default function NaverButton({
       type="button"
       onClick={onClick}
       disabled={disabled}
-      className="bg-icon-naver dark:bg-icon-naverDark flex h-[55px] w-full items-center rounded-md border px-2.5 text-white transition disabled:cursor-not-allowed disabled:opacity-75 dark:border-whiteAlpha-300 dark:text-whiteAlpha-800 [&:not(:disabled):active]:bg-[#009f28] dark:[&:not(:disabled):active]:bg-whiteAlpha-100 [&:not(:disabled):hover]:bg-[#06bd34] dark:[&:not(:disabled):hover]:bg-black-200"
+      className="flex h-[55px] w-full items-center rounded-md border bg-icon-naver px-2.5 text-white transition disabled:cursor-not-allowed disabled:opacity-75 dark:border-whiteAlpha-300 dark:bg-icon-naverDark dark:text-whiteAlpha-800 [&:not(:disabled):active]:bg-[#009f28] dark:[&:not(:disabled):active]:bg-whiteAlpha-100 [&:not(:disabled):hover]:bg-[#06bd34] dark:[&:not(:disabled):hover]:bg-black-200"
     >
       <span className="absolute block size-6">
         <svg

@@ -1,6 +1,7 @@
-import myService from '@/app/myLibrary/service/client/myService';
-import { DeleteArtworkParams } from '@/types';
 import toast from 'react-hot-toast';
+
+import myService from '@/app/myLibrary/service/client/myService';
+import type { DeleteArtworkParams } from '@/types';
 
 const queryKeys = {
   updateLikedArticles: () => ['updateLikedArticles'] as const,

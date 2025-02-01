@@ -1,11 +1,14 @@
+import Image from 'next/image';
 import Link from 'next/link';
 
-import ArtistList from '@/app/myLibrary/components/ArtistList';
 import { useSubscribedArtists } from '@/app/myLibrary/service/client/useMyService';
 
 export default function LikeArtistShelf() {
   const { data } = useSubscribedArtists();
-  console.log(`구독중인 작가: ${JSON.stringify(data)}`);
+
+  /**
+   {"status":"success","list":[{"nick":"라면조리기","profimg":"https://cafeptthumb-phinf.pstatic.net/MjAyMzA0MDFfOTkg/MDAxNjgwMzI4ODM5NDE1.TQDFFDUmP5alAfbzK3Rwe_lt5VVl92k98MYRC8jjghgg.FCx7oxr63R-qSr9sAmg1SKYyFjiYmMq-BaOxDLaTJn0g.JPEG/600_%25281%2529.jpg?type=s3"}]}
+   */
   return (
     <div className="mb-10 flex w-full flex-col p-2 md:px-6">
       <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
@@ -26,7 +29,32 @@ export default function LikeArtistShelf() {
           </p>
         </Link>
       </div>
-      <ArtistList />
+      <ul className="grid w-full grid-cols-2 gap-6 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-8">
+        {data?.list &&
+          data.list.map(({ nick, profimg }) => (
+            <li key={nick} className="max-w-[200px] list-none">
+              <Link
+                className="link-to-profile flex size-full flex-col items-center  justify-center    gap-4 rounded-md p-2 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:p-4 "
+                href={`/artists/${nick}`}
+                prefetch={false}
+              >
+                <div className="relative size-[85px] md:size-[160px]">
+                  <Image
+                    className="rounded-full object-cover"
+                    src={profimg}
+                    alt={nick}
+                    sizes="(max-width: 1000px) 10vw, 15vw"
+                    quality={100}
+                    fill
+                    priority
+                    unoptimized
+                  />
+                </div>
+                <p className="w-full text-start">{nick}</p>
+              </Link>
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }

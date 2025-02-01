@@ -5,22 +5,24 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
+import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
 import GALLERY_LIST from '@/app/gallery/lib/const';
 import { useGalleryArtworks } from '@/app/gallery/service/client/useGalleryService';
 import { useFanartTotalCountStore } from '@/app/gallery/store/fanartTotalCountStore';
-import Alert from '@/components/Alert';
-import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
-import MasonryView from '@/components/View/MasonryView';
-import SimpleView from '@/components/View/SimpleView';
-import ViewSelectBar from '@/components/ViewSelectBar';
-import { useResponsive } from '@/hooks/useResponsive';
 import {
   useDeleteCustomAlbum,
   useEditCustomAlbum,
 } from '@/app/myLibrary/service/client/useMyService';
-import { useMyInfo } from '@/service/client/useCommonService';
+import Alert from '@/components/Alert';
+import Button from '@/components/Button';
+import CreateCustomAlbumModal from '@/components/Modal/CreateCustomAlbumModal';
+import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
+import MasonryView from '@/components/View/MasonryView';
+import SimpleView from '@/components/View/SimpleView';
+import ViewSelectBar from '@/components/ViewSelectBar';
 import useModal from '@/hooks/useModal';
-import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
+import { useResponsive } from '@/hooks/useResponsive';
+import { useMyInfo } from '@/service/client/useCommonService';
 
 type Props = {
   value: string;
@@ -53,6 +55,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
   const { data: user } = useMyInfo();
   const customAlbumInfo = user?.albums.find((album) => album.id === albumName);
   const isMyCustomAlbum = customAlbumInfo !== undefined;
+  console.log(isMyCustomAlbum);
   const { show: showDeleteCustomAlbumModal } = useModal(DeleteCustomAlbumModal);
   const { mutate: editCustomAlbumInfo, status: editStatus } =
     useEditCustomAlbum('user--3635', {
@@ -67,6 +70,11 @@ export default function DetailedGallery({ value: galleryType }: Props) {
       animateDir: 'bottom',
       title: customAlbumInfo?.name,
     });
+  };
+  const { show } = useModal(CreateCustomAlbumModal);
+
+  const openCustomAddAlbumModal = () => {
+    show();
   };
   // -----------커스텀 앨범일 경우(end)------------
 
@@ -150,6 +158,13 @@ export default function DetailedGallery({ value: galleryType }: Props) {
 
   return (
     <>
+      {isMyCustomAlbum && (
+        <div className="w-full px-8 py-2">
+          <Button onClick={openCustomAddAlbumModal}>
+            앨범에 팬아트 추가하기
+          </Button>
+        </div>
+      )}
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}

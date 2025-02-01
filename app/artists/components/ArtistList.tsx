@@ -89,16 +89,16 @@ export default function ArtistList() {
 
   return (
     <div className="mt-6 w-full px-6">
-      {artists.map((artist, index) => {
+      {artists.map((item, index) => {
         return (
-          !artist.nick.includes('탈퇴회원') && (
+          !item.nick.includes('탈퇴회원') && (
             <ArtistCard
-              artist={artist}
+              artist={item}
               nth={index + 1}
               inputText={q}
               rankCriteria={rankCriteria}
               totalCountCriteria={totalCountCriteria}
-              key={`${artist.nick}-${index}`}
+              key={`${item.nick}-${index}`}
             />
           )
         );

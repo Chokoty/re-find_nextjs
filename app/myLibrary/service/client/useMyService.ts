@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { DeleteArtworkParams } from '@/types';
+
 import queryOptions from '@/app/myLibrary/service/client/queries';
+import type { DeleteArtworkParams } from '@/types';
 
 // export function useImageInfo({ hash }: { hash: string }) {
 //   return useQuery(queryOptions.imageInfo(hash));

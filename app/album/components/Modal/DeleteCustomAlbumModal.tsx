@@ -1,15 +1,16 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { IoClose } from 'react-icons/io5';
+
+import { useDeleteCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 import Button from '@/components/Button';
 import useModal from '@/hooks/useModal';
-import { useDeleteCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
-import { useRouter } from 'next/navigation';
 
 export default function DeleteCustomAlbumModal(props: Record<string, unknown>) {
   const { hide } = useModal();
   const router = useRouter();
-  const title = props.title;
+  const { title } = props;
   const { mutate: deleteCustomAlbumInfo } = useDeleteCustomAlbum({
     albumId: 'user--e0b5',
     artworksIdList: [],

@@ -266,6 +266,10 @@ const config: Config = {
           800: 'var(--pink-800)',
           900: 'var(--pink-900)',
         },
+        icon: {
+          naver: '#02C759',
+          naverDark: '#48484B',
+        },
       },
       borderWidth: {
         base: '1px',

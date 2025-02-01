@@ -2,6 +2,7 @@
 
 import 'swiper/css';
 
+import { useRouter } from 'next/navigation';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import type { SwiperOptions } from 'swiper/types';
@@ -9,15 +10,18 @@ import type { SwiperOptions } from 'swiper/types';
 import MoreButton from '@/app/gallery/components/Button/MoreButton';
 import GalleryAlbumCard from '@/app/gallery/components/Card/GalleryAlbumCard';
 import GalleryBoardCard from '@/app/gallery/components/Card/GalleryBoardCard';
+import GalleryCustomCard from '@/app/gallery/components/Card/GalleryCustomCard';
 import GalleryFanartCard from '@/app/gallery/components/Card/GalleryFanartCard';
 import GalleryLikedAlbumCard from '@/app/gallery/components/Card/GalleryLikedAlbumCard';
+import AddButton from '@/app/myLibrary/components/AddButton';
+import { useCreateCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 
 interface CustomSwiperParams extends SwiperOptions {
   // 다른 타입을 추가하거나 필요에 따라 수정
   style: Record<string, string>;
 }
 
-type SliderType = 'fanart' | 'album' | 'board' | 'liked';
+type SliderType = 'fanart' | 'album' | 'board' | 'liked' | 'custom';
 // type isFanartData = (data: FanartData | AlbumData) => data is FanartData;
 
 type Props = {
@@ -58,6 +62,18 @@ export default function GallerySlider({ customSwiperOptions, data }: Props) {
     ...customOptions,
   };
 
+  const router = useRouter();
+  const handleOnSuccess = (albumId: string) => {
+    router.push(`/album/${albumId}`);
+  };
+  const { mutate: createCustomAlbum, status } = useCreateCustomAlbum(
+    [],
+    handleOnSuccess
+  );
+  const handleAddCustomAlbum = () => {
+    createCustomAlbum();
+  };
+
   const renderSlides = () => {
     switch (data.type) {
       case 'fanart':
@@ -80,26 +96,40 @@ export default function GallerySlider({ customSwiperOptions, data }: Props) {
       case 'board':
         return (
           <>
-            {data.list.map((data) => (
-              <SwiperSlide key={data.id} className="overflow-hidden">
-                <GalleryBoardCard album={data} />
+            {data.list.map((d) => (
+              <SwiperSlide key={d.id} className="overflow-hidden">
+                <GalleryBoardCard album={d} />
               </SwiperSlide>
             ))}
           </>
         );
       case 'album': {
-        return data.list.map((data) => (
-          <SwiperSlide key={data.id} className="overflow-hidden">
-            <GalleryAlbumCard album={data} />
+        return data.list.map((d) => (
+          <SwiperSlide key={d.id} className="overflow-hidden">
+            <GalleryAlbumCard album={d} />
           </SwiperSlide>
         ));
       }
       case 'liked': {
-        return data.list.map((data) => (
-          <SwiperSlide key={data.id} className="overflow-hidden">
-            <GalleryLikedAlbumCard album={data} />
+        return data.list.map((d) => (
+          <SwiperSlide key={d.id} className="overflow-hidden">
+            <GalleryLikedAlbumCard album={d} />
           </SwiperSlide>
         ));
+      }
+      case 'custom': {
+        return (
+          <>
+            <SwiperSlide>
+              <AddButton handleClick={handleAddCustomAlbum} />
+            </SwiperSlide>
+            {data.list.map((d) => (
+              <SwiperSlide key={d.name} className="overflow-hidden">
+                <GalleryCustomCard info={d} />
+              </SwiperSlide>
+            ))}
+          </>
+        );
       }
       default:
         return null;

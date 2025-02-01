@@ -9,6 +9,10 @@ import { ImLink } from 'react-icons/im';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
+import {
+  useSubscribeArtist,
+  useUnsubscribeArtist,
+} from '@/app/myLibrary/service/client/useMyService';
 import Button, { type CustomVariantProps } from '@/components/Button';
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
@@ -19,10 +23,6 @@ import Popover, {
 } from '@/components/Popover';
 import Tooltip from '@/components/Tooltip';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
-import {
-  useSubscribeArtist,
-  useUnsubscribeArtist,
-} from '@/app/myLibrary/service/client/useMyService';
 
 interface Props {
   nickname: string;

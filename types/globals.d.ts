@@ -271,7 +271,7 @@ declare global {
   export interface CustomAlbumAddResponse {
     album: string; // id (ex. "user--8cb6")
     message: string;
-    sliced: boolean; //입력한 게시글이 제한을 넘어갔는지 여부
+    sliced: boolean; // 입력한 게시글이 제한을 넘어갔는지 여부
     status: string; // 'success'
   }
 
@@ -295,9 +295,10 @@ declare global {
     profimg: stirng;
   };
 
-  type CustomAlbumInfos = {
+  export type CustomAlbumInfos = {
     id: string;
     name: string;
+    cover_image: string;
   };
 
   export type UserInfo = {

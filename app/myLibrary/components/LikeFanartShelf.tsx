@@ -1,10 +1,10 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
 import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
-import Button from '@/components/Button';
+import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
 import { useUpdateLikedArticles } from '@/app/myLibrary/service/client/useMyService';
+import Button from '@/components/Button';
 
 const GallerySlider = dynamic(
   () => import('@/app/gallery/components/Slider/GallerySlider'),
@@ -41,14 +41,24 @@ export default function LikeFanartShelf() {
             좋아요한 팬아트
           </p>
         </Link>
-        <Link
-          href="/myLibrary/likeFanart"
-          className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
-        >
-          <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-            모두보기
-          </p>
-        </Link>
+        <div className="flex items-center gap-4">
+          <button
+            className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
+            onClick={handleUpdateClick}
+          >
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+              업데이트
+            </p>
+          </button>
+          <Link
+            href="/myLibrary/likeFanart"
+            className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
+          >
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+              모두보기
+            </p>
+          </Link>
+        </div>
       </div>
 
       {artworks && (
@@ -78,7 +88,6 @@ export default function LikeFanartShelf() {
           }}
         />
       )}
-      <Button onClick={handleUpdateClick}>좋아요한 게시글 업데이트</Button>
     </div>
   );
 }
