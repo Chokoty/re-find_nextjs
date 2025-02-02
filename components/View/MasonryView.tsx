@@ -7,12 +7,14 @@ type Props = {
   artworks: ArtworkList[];
   isDeletedVisible: boolean;
   isIsdPick?: boolean;
+  isCheckable?: boolean;
 };
 
 export default function MasonryView({
   artworks,
   isDeletedVisible,
   isIsdPick = false,
+  isCheckable = false,
 }: Props) {
   const content = () => {
     if (isDeletedVisible) {
@@ -24,6 +26,7 @@ export default function MasonryView({
                 key={artwork.id}
                 artwork={artwork}
                 isIsdPick={isIsdPick}
+                isCheckable={isCheckable}
               />
             </div>
           )}
@@ -44,6 +47,7 @@ export default function MasonryView({
                   key={artwork.id}
                   artwork={artwork}
                   isIsdPick={isIsdPick}
+                  isCheckable={isCheckable}
                 />
               </div>
             )}

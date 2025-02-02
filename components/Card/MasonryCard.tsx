@@ -7,9 +7,14 @@ import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 type Props = {
   artwork: ArtworkList | AlbumArtworkList;
   isIsdPick?: boolean;
+  isCheckable?: boolean;
 };
 
-export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
+export default function MasonryCard({
+  artwork,
+  isIsdPick = false,
+  isCheckable = false,
+}: Props) {
   const authorName = 'author' in artwork ? artwork.author : '';
   const pathname = usePathname();
   const isArtistDetails = pathname.startsWith('/artists');
@@ -25,7 +30,11 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
 
   return (
     <div className="inline-block w-full">
-      <CardImage data={artwork} wakzooLink={wakzooLink} />
+      <CardImage
+        data={artwork}
+        wakzooLink={wakzooLink}
+        isCheckable={isCheckable}
+      />
       <div className="flex h-auto w-full max-w-[350px] flex-col items-start justify-center">
         <p className="line-clamp-1 text-left text-base font-medium">
           {artwork.title}

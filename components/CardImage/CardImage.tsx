@@ -1,11 +1,13 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
-import { FaEye, FaThumbsUp } from 'react-icons/fa';
+import { useEffect, useRef, useState } from 'react';
+import { FaCheck, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { FiClock } from 'react-icons/fi';
+import { useShallow } from 'zustand/react/shallow';
 
+import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
 import { formatNumberToEnglishUnit } from '@/hooks/useFormatNumberToCompactString';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useOnClickOutside } from '@/hooks/useOnClickOutside';
@@ -14,9 +16,14 @@ import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
 type Props = {
   data: ArtworkList;
   wakzooLink: string;
+  isCheckable?: boolean;
 };
 
-export default function CardImage({ data, wakzooLink }: Props) {
+export default function CardImage({
+  data,
+  wakzooLink,
+  isCheckable = false,
+}: Props) {
   const [isFocus, setIsFocus] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
   const { img_url, img_url_list, title, board, view, like, date, deleted, id } =
@@ -31,6 +38,57 @@ export default function CardImage({ data, wakzooLink }: Props) {
   useOnClickOutside(cardRef, () => {
     setIsFocus(false);
   });
+
+  const [isCheck, setIsCheck] = useState(false);
+  const { fanarts, setFanarts } = useCheckFanartStore(
+    useShallow((state) => ({
+      fanarts: state.fanarts,
+      setFanarts: state.setFanarts,
+    }))
+  );
+  useEffect(() => {
+    if (isCheck) {
+      setFanarts([...fanarts, id]);
+    }
+  }, [isCheck]);
+
+  if (isCheckable) {
+    return (
+      <div
+        onClick={() => {
+          setIsCheck(!isCheck);
+        }}
+        className="group relative w-full rounded-[16px] border-base border-blackAlpha-200 dark:border-none"
+      >
+        <Image
+          width={357}
+          height={357}
+          // sizes="100vw"
+          style={{ width: '120%', height: 'auto' }}
+          src={img_url === '' ? 'https://placehold.co/375x375' : modifiedUrl300}
+          alt={title}
+          className={clsx(
+            'max-h-[536px] rounded-[16px] bg-[#f5f5f5] object-cover',
+            {
+              'blur-[6px]': deleted,
+            }
+          )}
+          unoptimized
+        />
+        <div
+          className={clsx(
+            'absolute inset-0 z-[1] rounded-[16px] bg-blackAlpha-500',
+            {
+              block: isCheck,
+              hidden: !isCheck,
+            }
+          )}
+        >
+          <FaCheck className="absolute left-1/2 top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 text-4xl text-white" />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
