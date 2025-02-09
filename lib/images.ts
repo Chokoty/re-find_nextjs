@@ -52,6 +52,8 @@ export { default as 이파리1 } from '@/public/static/images/profile/이파리1
 export { default as 이파리2 } from '@/public/static/images/profile/이파리2.webp';
 export { default as 주폭도1 } from '@/public/static/images/profile/주폭도1.webp';
 export { default as 주폭도2 } from '@/public/static/images/profile/주폭도2.webp';
+export { default as 팬치1 } from '@/public/static/images/profile/팬치1.webp';
+export { default as 팬치2 } from '@/public/static/images/profile/팬치2.webp';
 export { default as UploadImage } from '@/public/static/images/refind-1.webp';
 export { default as UploadHoverImage } from '@/public/static/images/refind-2.webp';
 export { default as VS } from '@/public/static/images/vs.png';
