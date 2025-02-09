@@ -49,21 +49,20 @@ export default function CardImage({
   useEffect(() => {
     if (isCheck) {
       setFanarts([...fanarts, id]);
+    } else {
+      setFanarts(fanarts.filter((fanartId) => fanartId !== id));
     }
   }, [isCheck]);
 
   if (isCheckable) {
     return (
       <div
-        onClick={() => {
-          setIsCheck(!isCheck);
-        }}
-        className="group relative w-full rounded-[16px] border-base border-blackAlpha-200 dark:border-none"
+        onClick={() => setIsCheck(!isCheck)}
+        className="group relative w-full cursor-pointer rounded-[16px] border-base border-blackAlpha-200 dark:border-none"
       >
         <Image
           width={357}
           height={357}
-          // sizes="100vw"
           style={{ width: '120%', height: 'auto' }}
           src={img_url === '' ? 'https://placehold.co/375x375' : modifiedUrl300}
           alt={title}
@@ -77,14 +76,23 @@ export default function CardImage({
         />
         <div
           className={clsx(
-            'absolute inset-0 z-[1] rounded-[16px] bg-blackAlpha-500',
-            {
-              block: isCheck,
-              hidden: !isCheck,
-            }
+            'absolute inset-0 z-[1] rounded-[16px] transition-all duration-300 ease-in-out',
+            isCheck ? 'bg-blackAlpha-500' : 'bg-transparent'
           )}
         >
-          <FaCheck className="absolute left-1/2 top-1/2 z-[2] -translate-x-1/2 -translate-y-1/2 text-4xl text-white" />
+          <div
+            className={clsx(
+              'absolute right-2 top-2 rounded-full p-2 transition-all duration-300 ease-in-out',
+              isCheck ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-400'
+            )}
+          >
+            <FaCheck
+              className={clsx(
+                'transition-transform duration-300',
+                isCheck ? 'scale-100' : 'scale-0'
+              )}
+            />
+          </div>
         </div>
       </div>
     );

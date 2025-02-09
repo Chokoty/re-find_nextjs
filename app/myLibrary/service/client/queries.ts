@@ -23,6 +23,9 @@ const queryOptions = {
   editCustomAlbuminfo: (albumId: string, info: CustomAlbumEditParams) => ({
     mutationFn: () => myService.putCustomAlbum(albumId, info),
   }),
+  addFanartsInToCustomAlbum: (albumId: string, items: number[]) => ({
+    mutationFn: () => myService.putFanartsInToCustomAlbum(albumId, items),
+  }),
   deleteCustomAlbum: ({
     albumId,
     artworksIdList,

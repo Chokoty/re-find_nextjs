@@ -88,6 +88,7 @@ export default function SearchResult() {
     viewCountLimit,
     likeCountLimit,
     commentCountLimit,
+    enabled: true,
   });
 
   // 무한 스크롤

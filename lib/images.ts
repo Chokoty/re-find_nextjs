@@ -46,8 +46,8 @@ export { default as 라니1 } from '@/public/static/images/profile/라니1.webp'
 export { default as 라니2 } from '@/public/static/images/profile/라니2.webp';
 export { default as 박쥐1 } from '@/public/static/images/profile/박쥐1.webp';
 export { default as 박쥐2 } from '@/public/static/images/profile/박쥐2.webp';
-export { default as 세균이1 } from '@/public/static/images/profile/세균이1.webp';
-export { default as 세균이2 } from '@/public/static/images/profile/세균이2.webp';
+export { default as 세균단1 } from '@/public/static/images/profile/세균단1.webp';
+export { default as 세균단2 } from '@/public/static/images/profile/세균단2.webp';
 export { default as 이파리1 } from '@/public/static/images/profile/이파리1.webp';
 export { default as 이파리2 } from '@/public/static/images/profile/이파리2.webp';
 export { default as 주폭도1 } from '@/public/static/images/profile/주폭도1.webp';

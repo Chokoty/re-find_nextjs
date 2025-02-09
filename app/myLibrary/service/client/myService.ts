@@ -24,10 +24,20 @@ class MyService extends Service {
     });
   }
 
+  // 커스텀 앨범 정보 수정
   putCustomAlbum(albumId: string, info: CustomAlbumEditParams) {
     return this.http.post<CustomAlbumEditResponse>(
       `/v2/album?album=${albumId}`,
       info
+    );
+  }
+
+  putFanartsInToCustomAlbum(albumId: string, items: number[]) {
+    return this.http.put<CustomAlbumEditResponse>(
+      `/v2/album?album=${albumId}`,
+      {
+        articles: items,
+      }
     );
   }
 

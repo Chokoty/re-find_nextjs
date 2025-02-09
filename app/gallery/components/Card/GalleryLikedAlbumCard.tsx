@@ -79,7 +79,7 @@ export default function GalleryLikedAlbumCard({
       > */}
       <Link
         // href={`/gallery/${id}?viewType=masonry&sortType=${sortType}`}
-        href={`/gallery/${id}?viewType=masonry`}
+        href={`/album/${id}?viewType=masonry`}
         prefetch={false}
       >
         <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">

@@ -53,3 +53,7 @@ export function useUnsubscribeArtist(author: string) {
 export function useSubscribedArtists() {
   return useQuery(queryOptions.subscribedArtists());
 }
+
+export function ussAddFanartsInToCustomAlbum(albumId: string, items: number[]) {
+  return useMutation(queryOptions.addFanartsInToCustomAlbum(albumId, items));
+}

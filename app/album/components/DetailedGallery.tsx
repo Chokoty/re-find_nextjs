@@ -16,8 +16,8 @@ import {
 } from '@/app/myLibrary/service/client/useMyService';
 import Alert from '@/components/Alert';
 import Button from '@/components/Button';
-import addFanartsToCustomAlbumModal from '@/components/Modal/addFanartsToCustomAlbumModal';
-import CreateCustomAlbumModal from '@/components/Modal/CreateCustomAlbumModal';
+import AddCheckedFanartsToCustomAlbumModal from '@/components/Modal/AddCheckedFanartsToCustomAlbumModal';
+import AddFanartToAlbumFinderModal from '@/components/Modal/AddFanartToAlbumFinderModal';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
@@ -62,7 +62,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     }))
   );
   const { show: showAddFanartsToCustomAlbumModal } = useModal(
-    addFanartsToCustomAlbumModal
+    AddCheckedFanartsToCustomAlbumModal
   );
   const handleShowAddFanartsModal = () => {
     showAddFanartsToCustomAlbumModal({ fanarts, animateDir: 'bottom' });
@@ -86,10 +86,12 @@ export default function DetailedGallery({ value: galleryType }: Props) {
       title: customAlbumInfo?.name,
     });
   };
-  const { show } = useModal(CreateCustomAlbumModal);
+  const { show } = useModal(AddFanartToAlbumFinderModal);
 
-  const openCustomAddAlbumModal = () => {
-    show();
+  const openAddFanartToAlbumFinderModal = () => {
+    show({
+      applyCustomMaxWidth: true,
+    });
   };
   // -----------커스텀 앨범일 경우(end)------------
 
@@ -174,19 +176,21 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     <>
       {isMyCustomAlbum && (
         <div className="w-full px-8 py-2">
-          <Button onClick={openCustomAddAlbumModal}>
+          <Button onClick={openAddFanartToAlbumFinderModal}>
             앨범에 팬아트 추가하기
           </Button>
         </div>
       )}
       {!!user && (
-        <Button
-          onClick={() => {
-            setIsCheckable(true);
-          }}
-        >
-          체크엘범으로 활성화하기
-        </Button>
+        <div className="w-full px-8 py-2">
+          <Button
+            onClick={() => {
+              setIsCheckable(true);
+            }}
+          >
+            체크앨범 활성화
+          </Button>
+        </div>
       )}
       {fanarts.length > 0 && (
         <Button onClick={handleShowAddFanartsModal}>체크된 앨범 저장</Button>
