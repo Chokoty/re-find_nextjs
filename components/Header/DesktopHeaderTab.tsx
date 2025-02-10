@@ -3,14 +3,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 // const tabs = [
-// { path: '/gallery', name: '갤러리', width: 'w-12' },
+// { path: '/album', name: '갤러리', width: 'w-12' },
 // { path: '/artists', name: '작가', width: 'w-8' },
 // ];
 
 // gallery or artists 페이지일 경우만 isActive style 적용
 export default function DesktopHeaderTab() {
   const currentPathname = usePathname();
-  const isInGallery = currentPathname.includes('/gallery');
+  const isInGallery = currentPathname.includes('/album');
   const isInArtist = currentPathname.includes('/artists');
   const isInGalleryOrArtists = isInGallery || isInArtist;
 

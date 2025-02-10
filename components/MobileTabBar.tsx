@@ -30,7 +30,7 @@ const routerMap = {
   },
   // gallery: {
   //   type: 'link',
-  //   path: '/gallery',
+  //   path: '/album',
   //   name: '갤러리',
   //   icon: IoMdImages,
   //   className: 'size-7',
@@ -42,7 +42,7 @@ const routerMap = {
     icon: FaUserGroup,
     className: 'size-6',
   },
-  gallery: {
+  album: {
     type: 'button',
     path: '/myLibrary',
     name: '내 라이브러리',

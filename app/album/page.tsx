@@ -1,9 +1,9 @@
-// import ThisWeekTop from '@/app/gallery/components/ThisWeekTop';
-import BoardList from '@/app/gallery/components/BoardList';
-import GalleryTitle from '@/app/gallery/components/GalleryTitle';
-import MemberAlbum from '@/app/gallery/components/MemberAlbum';
-import RefindPick from '@/app/gallery/components/RefindPick';
-import TopBackground from '@/app/gallery/components/TopBackground';
+// import ThisWeekTop from '@/app/album/components/ThisWeekTop';
+import BoardList from '@/app/album/components/BoardList';
+import GalleryTitle from '@/app/album/components/GalleryTitle';
+import MemberAlbum from '@/app/album/components/MemberAlbum';
+import RefindPick from '@/app/album/components/RefindPick';
+import TopBackground from '@/app/album/components/TopBackground';
 
 export default function Gallery() {
   return (

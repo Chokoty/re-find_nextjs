@@ -7,9 +7,9 @@ import HashLoader from 'react-spinners/HashLoader';
 import { useShallow } from 'zustand/react/shallow';
 
 import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
-import GALLERY_LIST from '@/app/gallery/lib/const';
-import { useGalleryArtworks } from '@/app/gallery/service/client/useGalleryService';
-import { useFanartTotalCountStore } from '@/app/gallery/store/fanartTotalCountStore';
+import GALLERY_LIST from '@/app/album/lib/const';
+import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
+import { useFanartTotalCountStore } from '@/app/album/store/fanartTotalCountStore';
 import {
   useDeleteCustomAlbum,
   useEditCustomAlbum,
@@ -129,7 +129,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     params.append('sortType', SortType);
     // URL에 query string 추가
     const queryString = params.toString();
-    router.push(`/gallery/${albumName}?${queryString}`);
+    router.push(`/album/${albumName}?${queryString}`);
   };
 
   // 정렬 선택하기

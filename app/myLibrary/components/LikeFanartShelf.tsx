@@ -1,13 +1,13 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
+import GalleryAlbumSliderSkeleton from '@/app/album/components/Skeleton/GalleryAlbumSliderSkeleton';
 import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
-import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
 import { useUpdateLikedArticles } from '@/app/myLibrary/service/client/useMyService';
 import Button from '@/components/Button';
 
 const GallerySlider = dynamic(
-  () => import('@/app/gallery/components/Slider/GallerySlider'),
+  () => import('@/app/album/components/Slider/GallerySlider'),
   {
     ssr: false,
     loading: () => <GalleryAlbumSliderSkeleton />,

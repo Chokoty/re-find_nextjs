@@ -4,11 +4,11 @@ import { NextResponse } from 'next/server';
 export default function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  if (pathname === '/gallery/AprilFool' || pathname === '/gallery/Shuko') {
-    return NextResponse.redirect(new URL('/gallery', req.nextUrl));
+  if (pathname === '/album/AprilFool' || pathname === '/album/Shuko') {
+    return NextResponse.redirect(new URL('/album', req.nextUrl));
   }
 }
 
 export const config = {
-  matcher: ['/', '/gallery/:path*'],
+  matcher: ['/', '/album/:path*'],
 };

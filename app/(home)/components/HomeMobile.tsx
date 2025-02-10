@@ -6,10 +6,10 @@ import { AiFillExperiment } from 'react-icons/ai';
 import { FaBookOpen } from 'react-icons/fa';
 
 import Footer from '@/app/(home)/components/Footer';
-import BoardList from '@/app/gallery/components/BoardList';
-import GalleryTitle from '@/app/gallery/components/GalleryTitle';
-import MemberAlbum from '@/app/gallery/components/MemberAlbum';
-import RefindPick from '@/app/gallery/components/RefindPick';
+import BoardList from '@/app/album/components/BoardList';
+import GalleryTitle from '@/app/album/components/GalleryTitle';
+import MemberAlbum from '@/app/album/components/MemberAlbum';
+import RefindPick from '@/app/album/components/RefindPick';
 import { SOURCE_URL } from '@/app/more/lib/const';
 import MoreButtons from '@/components/Button/MoreButtons';
 import UpdateLogBoard from '@/components/UpdateLogBoard';

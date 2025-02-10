@@ -1,8 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { MEMBERS } from '@/app/gallery/lib/const';
-import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
+import { MEMBERS } from '@/app/album/lib/const';
+import { getStaticImage } from '@/app/album/lib/getStaticImage';
 import type { Member as MemberType } from '@/types';
 
 export default function MemberList() {

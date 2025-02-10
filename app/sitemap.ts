@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${domain}/gallery`,
+      url: `${domain}/album`,
       lastModified: new Date(),
       priority: 0.8,
     },

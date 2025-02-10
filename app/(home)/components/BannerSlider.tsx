@@ -38,19 +38,19 @@ const events: EventData[] = [
   // {
   //   title: '🎂 징버거님의 생일 기념 갤러리 추가',
   //   linkColor: 'yellow',
-  //   link: '/gallery/jingburgerBirthday',
+  //   link: '/album/jingburgerBirthday',
   //   linkContent: <>부가땅 생일 기념 갤러리 보러가기</>,
   // },
   // {
   //   title: '이세돌 1000일 기념 갤러리 추가',
   //   linkColor: 'pink',
-  //   link: '/gallery/thousand',
+  //   link: '/album/thousand',
   //   linkContent: <>이세돌 1000일 기념 갤러리 보러가기</>,
   // },
   // {
   //   title: '🎃 Trick or Treat! 해피 할로윈',
   //   linkColor: 'yellow',
-  //   link: '/gallery/halloween',
+  //   link: '/album/halloween',
   //   linkContent: <>할로윈 특집 팬아트 보러가기</>,
   // },
   {
@@ -62,7 +62,7 @@ const events: EventData[] = [
   {
     title: '❤️‍🔥 이세돌 데뷔 3주년 축하드립니다!!! ❤️‍🔥',
     linkColor: 'pink',
-    link: '/gallery/isd3year',
+    link: '/album/isd3year',
     linkContent: <>이세돌 3주년 기념 팬아트 보러가기</>,
   },
   {

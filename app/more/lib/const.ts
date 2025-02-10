@@ -515,7 +515,7 @@ export const UPDATE_LOGS: UpdateLog[] = [
     date: '2024.10.08',
     content: '💛💛💛 버거님의 생일을 축하합니다! 💛💛💛',
     directLink:
-      'https://re-find.xyz/gallery/jingburgerBirthday?viewType=masonry&sortType=alzaltak',
+      'https://re-find.xyz/album/jingburgerBirthday?viewType=masonry&sortType=alzaltak',
   },
   {
     id: 52,

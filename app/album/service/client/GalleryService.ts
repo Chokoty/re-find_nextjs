@@ -1,4 +1,4 @@
-import { ROWS_PER_PAGE } from '@/app/gallery/lib/const';
+import { ROWS_PER_PAGE } from '@/app/album/lib/const';
 import Service from '@/lib/service';
 import type {
   // GetIsdNoticeArtworksParams,

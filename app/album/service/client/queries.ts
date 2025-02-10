@@ -1,4 +1,4 @@
-import GalleryService from '@/app/gallery/service/client/GalleryService';
+import GalleryService from '@/app/album/service/client/GalleryService';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,

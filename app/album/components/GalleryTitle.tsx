@@ -6,8 +6,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { LuExternalLink } from 'react-icons/lu';
 
-import ShareLinkButton from '@/app/gallery/components/Button/ShareLinkButton';
-import TotalCounter from '@/app/gallery/components/TotalCounter';
+import ShareLinkButton from '@/app/album/components/Button/ShareLinkButton';
+import TotalCounter from '@/app/album/components/TotalCounter';
 import Button from '@/components/Button';
 import { BBangTTi } from '@/lib/images';
 
@@ -33,10 +33,9 @@ type Props = {
 //   };
 // };
 
-const titleClassName =
-  'mt-1.5 font-pop text-4xl sm:text-5xl 2md:text-6xl lg:text-7xl 2xl:text-8xl break-keep';
+const titleClassName = 'mt-1.5 font-pop text-4xl sm:text-5xl   break-keep';
 const descriptionClassName =
-  'text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl text-wrap max-w-[280px] md:max-w-[530px]  break-keep';
+  'text-base md:text-lg lg:text-xl  text-wrap max-w-[280px] md:max-w-[530px]  break-keep';
 
 export default function GalleryTitle({
   pageType,
@@ -66,11 +65,11 @@ export default function GalleryTitle({
   };
 
   const handleBackButton = () => {
-    router.push('/gallery');
+    router.push('/album');
   };
 
   return (
-    <div className="flex w-full flex-col items-start justify-start">
+    <div className="my-6 flex w-full flex-col items-start justify-start pl-2 md:pl-8">
       {pageType === 'galleryHome' ? (
         <>
           <p className={`font-semibold ${descriptionClassName}`}>
@@ -122,9 +121,9 @@ export default function GalleryTitle({
 
 const GalleryHomeTitle = () => {
   return (
-    <div className={`flex items-center justify-center ${titleClassName}`}>
+    <div className={`flex items-center justify-center gap-1 ${titleClassName}`}>
       <p>팬아트</p>
-      <div className="relative h-10 w-20 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-12 2xs:w-24 md:h-16 md:w-40 2xl:h-20 2xl:w-48">
+      <div className="relative h-10 w-20 overflow-hidden rounded-full bg-green-highlight px-2 dark:bg-pink-highlight 2xs:h-10 2xs:w-24">
         <Image
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 object-cover"
           src={BBangTTi}

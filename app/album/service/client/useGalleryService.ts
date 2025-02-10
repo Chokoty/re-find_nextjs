@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
-import queryOptions from '@/app/gallery/service/client/queries';
+import queryOptions from '@/app/album/service/client/queries';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
@@ -44,3 +44,56 @@ export function useGalleryArtworks({
 export function useGalleryList() {
   return useQuery(queryOptions.galleries());
 }
+
+// export function useGalleryPageInfo(id: string) {
+//   return useQuery(queryOptions.galleryPageInfo(id));
+// }
+// export function useNoticeArtworks({
+//   member,
+//   ranktype,
+// }: GetIsdNoticeArtworksParams) {
+//   const { data, fetchNextPage, isFetchingNextPage, status } = useInfiniteQuery(
+//     queryOptions.isdNoticeArtworks({ member, ranktype })
+//   );
+
+//   const artworks = useMemo(() => {
+//     return data?.pages.flatMap((page) => page.list);
+//   }, [data]);
+
+//   const total = data?.pages[0].total;
+
+//   return {
+//     total,
+//     status,
+//     artworks,
+//     fetchNextPage,
+//     isFetchingNextPage,
+//   };
+// }
+
+// export function useArtworkDetail(artworkId: number) {
+//   return useQuery(queryOptions.artworkDetail(artworkId));
+// }
+
+// export function useArtworks({
+//   isIsdPick,
+//   selected,
+//   sortType,
+// }: {
+//   isIsdPick: boolean;
+//   endpoint: string;
+//   sortType: string;
+//   selected: string;
+// }) {
+//   let artworkHook;
+//   // TODO: api 통합해달라고 요청하기
+//   if (isIsdPick) {
+//     const isdPickParams = { member: selected, ranktype: sortType };
+//     artworkHook = useNoticeArtworks(isdPickParams);
+//   } else {
+//     const galleryParams = { galleryType, sortType };
+//     artworkHook = useGalleryArtworks(galleryParams);
+//   }
+
+//   return artworkHook;
+// }

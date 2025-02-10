@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React, { useCallback, useEffect } from 'react';
 import { IoClose } from 'react-icons/io5';
 
-import { UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
+import { UPDATED_GALLERY_LIST } from '@/app/album/lib/const';
 import useModal from '@/hooks/useModal';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
@@ -29,7 +29,7 @@ export default function ImageViewModal(props: Record<string, unknown>) {
   const matchingGallery = UPDATED_GALLERY_LIST.find(
     (gallery) => gallery.title === board.replace(/&#\d+;/g, '').trim()
   ) || { id: '' };
-  const board_link = `/gallery/${matchingGallery.id}?viewType=masonry&sortType=latest`;
+  const board_link = `/album/${matchingGallery.id}?viewType=masonry&sortType=latest`;
 
   useEffect(() => {
     const closeOnEscapeKey = (e: KeyboardEvent) => {

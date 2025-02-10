@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 
 import DetailedGallery from '@/app/album/components/DetailedGallery';
-import GalleryTitle from '@/app/gallery/components/GalleryTitle';
-import TopBackground from '@/app/gallery/components/TopBackground';
-import queryOptions from '@/app/gallery/service/client/queries';
-import { getGalleryPageInfo } from '@/app/gallery/service/server';
+import GalleryTitle from '@/app/album/components/GalleryTitle';
+import TopBackground from '@/app/album/components/TopBackground';
+import queryOptions from '@/app/album/service/client/queries';
+import { getGalleryPageInfo } from '@/app/album/service/server';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 
@@ -12,7 +12,7 @@ type Params = { params: { name: string } };
 
 // Image url 고민
 export function generateMetadata({ params: { name } }: Params): Metadata {
-  const { title, description, url } = siteConfig.gallery.detailed(name);
+  const { title, description, url } = siteConfig.album.detailed(name);
   return {
     title,
     description,

@@ -4,14 +4,14 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import type { ReactNode } from 'react';
 
-import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
+import { getStaticImage } from '@/app/album/lib/getStaticImage';
 
 interface TopBackgroundProps {
   children: ReactNode;
 }
 
 const TopBackground = ({ children }: TopBackgroundProps) => {
-  const pathname = usePathname().replace('/gallery', '');
+  const pathname = usePathname().replace('/album', '');
   const bgStaticSrc = getStaticImage(pathname.slice(1));
 
   return (

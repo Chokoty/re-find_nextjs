@@ -3,12 +3,12 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 
-import GalleryFanartSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryFanartSliderSkeleton';
-import ThisWeekBtnList from '@/app/gallery/components/ThisWeekTop/ThisWeekBtnList';
+import GalleryFanartSliderSkeleton from '@/app/album/components/Skeleton/GalleryFanartSliderSkeleton';
+import ThisWeekBtnList from '@/app/album/components/ThisWeekTop/ThisWeekBtnList';
 import { test } from '@/constants/test';
 
 const GallerySlider = dynamic(
-  () => import('@/app/gallery/components/Slider/GallerySlider'),
+  () => import('@/app/album/components/Slider/GallerySlider'),
   {
     ssr: false,
     loading: () => <GalleryFanartSliderSkeleton />,

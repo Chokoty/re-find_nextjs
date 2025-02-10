@@ -1,6 +1,6 @@
 import CountUp from 'react-countup';
 
-import { useFanartTotalCountStore } from '@/app/gallery/store/fanartTotalCountStore';
+import { useFanartTotalCountStore } from '@/app/album/store/fanartTotalCountStore';
 
 export default function TotalCounter() {
   const { total } = useFanartTotalCountStore((state) => ({

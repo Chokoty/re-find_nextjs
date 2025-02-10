@@ -9,8 +9,8 @@ export default function PageButton({
   path: string;
 }) {
   const currentPath = usePathname(); // 현재 경로 가져오기
-  const adjustedPath = path === '/gallery' ? '/' : path;
-  const isGallerySelected = path === '/gallery' && currentPath === '/';
+  const adjustedPath = path === '/album' ? '/' : path;
+  const isGallerySelected = path === '/album' && currentPath === '/';
   const isSelected = isGallerySelected || currentPath.startsWith(path);
 
   return (

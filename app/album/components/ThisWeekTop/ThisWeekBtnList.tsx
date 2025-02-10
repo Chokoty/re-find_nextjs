@@ -2,7 +2,7 @@
 
 import clsx from 'clsx';
 
-import { BUTTON_LIST } from '@/app/gallery/lib/const';
+import { BUTTON_LIST } from '@/app/album/lib/const';
 import Button from '@/components/Button';
 
 type Props = {

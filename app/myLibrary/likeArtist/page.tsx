@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
-import DetailedGallery from '@/app/gallery/components/DetailedGallery';
-import GalleryTitle from '@/app/gallery/components/GalleryTitle';
-import TopBackground from '@/app/gallery/components/TopBackground';
+import DetailedGallery from '@/app/album/components/DetailedGallery';
+import GalleryTitle from '@/app/album/components/GalleryTitle';
+import TopBackground from '@/app/album/components/TopBackground';
 import GALLERY_LIST, {
   MEMBERS,
   UPDATED_GALLERY_LIST,
-} from '@/app/gallery/lib/const';
-import queryOptions from '@/app/gallery/service/client/queries';
+} from '@/app/album/lib/const';
+import queryOptions from '@/app/album/service/client/queries';
 import ArtistList from '@/app/myLibrary/components/ArtistList';
 import BackToLibraryLink from '@/app/myLibrary/components/BackToLibraryLink';
 import TotalCount from '@/app/myLibrary/components/TotalCount';
@@ -18,7 +18,7 @@ type Params = { params: { name: string } };
 
 // Image url 고민
 export function generateMetadata({ params: { name } }: Params): Metadata {
-  const { title, description, url } = siteConfig.gallery.detailed(name);
+  const { title, description, url } = siteConfig.album.detailed(name);
   return {
     title,
     description,

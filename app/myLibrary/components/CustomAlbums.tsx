@@ -1,11 +1,11 @@
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
+import GalleryAlbumSliderSkeleton from '@/app/album/components/Skeleton/GalleryAlbumSliderSkeleton';
 import { useMyInfo } from '@/service/client/useCommonService';
 
 const GallerySlider = dynamic(
-  () => import('@/app/gallery/components/Slider/GallerySlider'),
+  () => import('@/app/album/components/Slider/GallerySlider'),
   {
     ssr: false,
     loading: () => <GalleryAlbumSliderSkeleton />,

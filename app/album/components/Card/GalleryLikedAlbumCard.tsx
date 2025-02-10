@@ -1,12 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo } from 'react';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
-import { FaArrowRightLong } from 'react-icons/fa6';
-import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { LuExternalLink } from 'react-icons/lu';
 
-import { getStaticImage } from '@/app/gallery/lib/getStaticImage';
 import Popover, {
   PopoverBody,
   PopoverContent,

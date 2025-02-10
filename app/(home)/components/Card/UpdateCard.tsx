@@ -5,7 +5,7 @@ import { LuExternalLink } from 'react-icons/lu';
 import { MdArrowForwardIos, MdPerson } from 'react-icons/md';
 
 import BOARD_LIST from '@/app/(home)/lib/const';
-import { BOARD_MAP, UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
+import { BOARD_MAP, UPDATED_GALLERY_LIST } from '@/app/album/lib/const';
 import Badge from '@/components/Badge';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
@@ -33,7 +33,7 @@ export default function UpdateCard({ update }: Prop) {
     (gallery) => gallery.title === update.board.replace(/&#\d+;/g, '').trim()
   ) || { id: '' };
 
-  const board_link = `/gallery/${
+  const board_link = `/album/${
     matchingGallery.id === 'gomem'
       ? 'gomem'
       : matchingGallery.id === 'wakgood'

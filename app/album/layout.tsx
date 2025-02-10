@@ -7,22 +7,22 @@ import PageContentForMore from '@/components/PageContentForMore';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
-  title: siteConfig.gallery.main.title,
-  description: siteConfig.gallery.main.description,
+  title: siteConfig.album.main.title,
+  description: siteConfig.album.main.description,
   openGraph: {
     type: siteConfig.type,
-    title: siteConfig.gallery.main.title,
-    description: siteConfig.gallery.main.description,
+    title: siteConfig.album.main.title,
+    description: siteConfig.album.main.description,
     images: siteConfig.image,
-    url: siteConfig.gallery.main.url,
+    url: siteConfig.album.main.url,
     siteName: siteConfig.siteName,
   },
   twitter: {
     card: 'summary_large_image',
     site: siteConfig.siteName,
     creator: siteConfig.creator,
-    title: siteConfig.gallery.main.title,
-    description: siteConfig.gallery.main.description,
+    title: siteConfig.album.main.title,
+    description: siteConfig.album.main.description,
     images: siteConfig.image,
   },
   icons: siteConfig.icons,

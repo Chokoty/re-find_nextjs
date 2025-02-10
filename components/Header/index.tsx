@@ -23,7 +23,7 @@ const Modals = dynamic(() => import('@/components/Modal/Modals'), {
 
 export default function Header() {
   const pathname = usePathname();
-  const isGalleryPage = pathname.includes('/gallery');
+  const isGalleryPage = pathname.includes('/album');
   const isScrolling = useScroll(60);
   const isNotScrollingGalleryPage = isGalleryPage && !isScrolling;
   const isMobile = useResponsive();

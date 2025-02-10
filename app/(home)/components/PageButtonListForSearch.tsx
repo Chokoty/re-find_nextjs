@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import PageButton from '@/app/(home)/components/PageButton';
 
 const buttons = [
-  { text: '갤러리', path: '/gallery' },
+  { text: '갤러리', path: '/album' },
   { text: '작가', path: '/artists' },
 ];
 

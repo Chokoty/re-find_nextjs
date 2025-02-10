@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import { FaChevronRight, FaShare } from 'react-icons/fa';
 import { FaCircleUser } from 'react-icons/fa6';
 
-import { UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
+import { UPDATED_GALLERY_LIST } from '@/app/album/lib/const';
 import Button from '@/components/Button';
 import SocialStats from '@/components/SocialStats';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
@@ -44,7 +44,7 @@ export default function ContentSection({
   const matchingGallery = UPDATED_GALLERY_LIST.find(
     (gallery) => gallery.title === board.replace(/&#\d+;/g, '').trim()
   ) || { id: '' };
-  const board_link = `/gallery/${matchingGallery.id}?viewType=masonry&sortType=latest`;
+  const board_link = `/album/${matchingGallery.id}?viewType=masonry&sortType=latest`;
 
   return (
     <div className="my-4 flex w-full flex-col px-2 md:w-[508px]">
