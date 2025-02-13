@@ -304,6 +304,7 @@ declare global {
   export type UserInfo = {
     naver_id: string;
     nick: string;
+    profimg: string;
     albums: CustomAlbumInfos[];
   };
 

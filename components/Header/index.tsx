@@ -6,13 +6,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Suspense } from 'react';
-import { MdHomeFilled } from 'react-icons/md';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 import BackButton from '@/components/Button/BackButton';
 import WorldcupSkipButton from '@/components/Button/WorldcupSkipButton';
 import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
 import DesktopMenuTab from '@/components/Header/DesktopMenuTab';
+import Tooltip from '@/components/Tooltip';
 import { useResponsive } from '@/hooks/useResponsive';
 import { useScroll } from '@/hooks/useScroll';
 import { Logo, 똥강아지1 } from '@/lib/images';
@@ -122,16 +122,18 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
   // 데스크톱 헤더 표시
   return (
     <>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center md:min-w-[80px]">
         <div className="mr-2 size-11 rounded-full p-2 transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 md:mr-4">
           <Link href="/">
-            <Image
-              alt="리파인드 로고"
-              width={32}
-              height={32}
-              src={Logo}
-              priority
-            />
+            <Tooltip label="re:find">
+              <Image
+                alt="리파인드 로고"
+                width={32}
+                height={32}
+                src={Logo}
+                priority
+              />
+            </Tooltip>
           </Link>
         </div>
         <DesktopHeaderTab />
