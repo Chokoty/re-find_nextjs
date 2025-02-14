@@ -65,7 +65,7 @@ export default function GalleryTitle({
   };
 
   const handleBackButton = () => {
-    router.push('/album');
+    router.push('/');
   };
 
   return (

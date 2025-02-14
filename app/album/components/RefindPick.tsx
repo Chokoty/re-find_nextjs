@@ -25,8 +25,8 @@ export default function RefindPick() {
           리파인드 추천 앨범
         </p>
       </div>
-      {isError && <div>에러가 발생했습니다.</div>}
-      {isLoading && <div>로딩 중...</div>}
+      {isError && <div className="pl-2 md:pl-8">에러가 발생했습니다.</div>}
+      {isLoading && <div className="pl-2 md:pl-8">로딩 중...</div>}
       {gallery && (
         <GallerySlider
           data={{

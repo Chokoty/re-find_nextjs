@@ -18,15 +18,7 @@ export default function MyLibrary() {
             내 라이브러리
           </h1>
         </div>
-        <Button
-          onClick={() => {
-            refetch();
-          }}
-        >
-          로그아웃
-        </Button>
-
-        <section className="relative ">
+        <section className="relative">
           <ArtistTimelineShelf />
           <LikeFanartShelf />
           <LikeArtistShelf />

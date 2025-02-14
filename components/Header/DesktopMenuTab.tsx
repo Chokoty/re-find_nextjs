@@ -1,13 +1,13 @@
 import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import type { IconType } from 'react-icons';
 import { FaUserEdit } from 'react-icons/fa';
 import { FiMenu } from 'react-icons/fi';
 import { LuLogOut } from 'react-icons/lu';
 
-import Button from '@/components/Button';
 import Divider from '@/components/Divider';
 import LoginModal from '@/components/LoginModal';
 import Tooltip from '@/components/Tooltip';
@@ -65,11 +65,6 @@ const routerMap: Record<string, RouterItem> = {
   },
 };
 
-// // 프로필 이미지 선택 함수
-// const getUserImage = (profimg: string | null) => {
-//   return profimg || 이파리1; // profimg가 있으면 사용, 없으면 기본값 이파리1
-// };
-
 // 프로필 이미지 선택 함수 (호버 여부 추가)
 const getUserImage = (
   nick: string | undefined,
@@ -91,28 +86,44 @@ const getUserImage = (
     주폭도: { default: 주폭도1, hover: 주폭도2 },
     팬치: { default: 팬치1, hover: 팬치2 },
   };
-
+  //   return profimg || 이파리1; // profimg가 있으면 사용, 없으면 기본값 이파리1
   return (
     userImages[nick || '이파리']?.[isHovered ? 'hover' : 'default'] || 이파리1
   );
 };
 
 export default function DesktopMenuTab() {
-  const { show } = useModal(LoginModal);
+  const router = useRouter();
+  const { show } = useModal(LoginModal); // 사용자 정보 가져오기
   const { isFetching, status, data } = useMyInfo();
+  const { refetch: logoutRefetch } = useLogout(); // 로그아웃 요청
+  const [userData, setUserData] = useState<UserInfo | null>(data ?? null);
   const [isHovered, setIsHovered] = useState(false); // 호버 상태 관리
   const [isMenuOpen, setIsMenuOpen] = useState(false); // 메뉴 토글 상태
   const menuRef = useRef<HTMLDivElement>(null);
-  const { refetch } = useLogout();
+  // const { refetch } = useLogout();
+
+  useEffect(() => {
+    setUserData(data ?? null);
+  }, [data]);
 
   const handleClick = () => {
     show({ isBackdropClick: true });
   };
 
-  const handleLogout = () => {
-    // TODO: 로그아웃 기능 추가 (API 요청)
-    console.log('로그아웃 실행');
-    setIsMenuOpen(false);
+  // 로그아웃 기능: 홈으로 이동 + 사용자 정보 초기화
+  const handleLogout = async () => {
+    try {
+      await logoutRefetch(); // 서버에서 로그아웃 요청 실행
+      setIsMenuOpen(false);
+      setUserData(null); // 로컬 상태에서 사용자 정보 제거
+      await router.push('/'); // 🚀 홈으로 이동 후
+      setTimeout(() => {
+        window.location.reload(); // 🚀 홈에서 새로고침
+      }, 100); // 100ms 대기 후 새로고침
+    } catch (error) {
+      console.error('로그아웃 중 오류 발생:', error);
+    }
   };
 
   useEffect(() => {
@@ -131,11 +142,14 @@ export default function DesktopMenuTab() {
     };
   }, []);
 
+  console.log('data', data);
+  console.log('userdata', userData);
+
   return (
     <div className="flex items-center justify-end md:min-w-[80px]">
-      {data ? (
+      {userData ? (
         <div className="relative" ref={menuRef}>
-          <Tooltip label={data.nick}>
+          <Tooltip label={userData.nick}>
             <div
               className="flex size-[48px] cursor-pointer items-center justify-center rounded-full shadow-sm hover:bg-white dark:shadow-none hover:dark:bg-dark-card"
               onMouseEnter={() => setIsHovered(true)}
@@ -146,22 +160,23 @@ export default function DesktopMenuTab() {
                 width={100}
                 height={100}
                 className="size-[32px] rounded-full object-cover"
-                src={getUserImage(data.nick, data.profimg, isHovered) as string}
-                alt={data.nick || '프로필 이미지'}
+                src={
+                  getUserImage(
+                    userData.nick,
+                    userData.profimg,
+                    isHovered
+                  ) as string
+                }
+                alt={userData.nick || '프로필 이미지'}
                 unoptimized
               />
             </div>
           </Tooltip>
-
           {isMenuOpen && (
             <div className="absolute right-0 top-0 z-10 mt-12 w-60 rounded-lg bg-white shadow-lg dark:bg-dark-card">
-              {/* <p className="mt-2 px-4 py-2 text-sm">{data.nick}</p> */}
               <ul className="py-2">
                 <li className="px-2">
-                  <button
-                    className="w-full rounded-md p-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
-                    onClick={handleLogout}
-                  >
+                  <button className="w-full rounded-md p-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700">
                     <Link href="/profile" className="flex items-center gap-2">
                       <FaUserEdit className="size-5" />
                       <span>프로필</span>
