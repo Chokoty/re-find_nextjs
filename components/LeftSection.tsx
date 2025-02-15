@@ -21,6 +21,7 @@ import UpdateLogBoard from '@/components/UpdateLogBoard';
 export default function LeftSection() {
   const [isOpen, setIsOpen] = useState<boolean>(true);
   const [isBackToTopVisible, setIsBackToTopVisible] = useState<boolean>(false);
+  const [isHovered, setIsHovered] = useState<boolean>(false); // 마우스 오버 상태
   const scrollContainerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 참조
 
   const toggleSection = () => {
@@ -92,7 +93,11 @@ export default function LeftSection() {
       {isOpen && (
         <div
           ref={scrollContainerRef} // 스크롤 이벤트 연결
-          className="custom-scrollbar flex flex-col items-center overflow-y-auto"
+          className={`custom-scrollbar flex flex-col items-center overflow-y-auto transition-all duration-300 ${
+            isHovered ? 'scrollbar-visible' : 'scrollbar-hidden'
+          }`}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
           <TopTitle />
           <Upload scrollToTop={scrollToTop} />

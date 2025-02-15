@@ -322,14 +322,47 @@ body {
   width: 10px;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* 배경색 제거 */
-}
+/* .custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* 배경색 제거 
+} */
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #888; /* 스크롤바 색상 */
-}
+/* .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* 스크롤바 색상 
+} */
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #555; /* 호버 상태 색상 */
+}
+
+/* 기본적으로 스크롤바를 숨김 */
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 10px; /* 스크롤바 공간 유지 */
+}
+.scrollbar-hidden::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0); /* 완전 투명 */
+  height: 100px;
+  opacity: 0;
+  transition:
+    background 0.3s ease-in-out,
+    opacity 2s ease-in-out; /* 사라질 때 2초 */
+  border-radius: 5px;
+}
+
+/* hover 시 스크롤바를 보이게 함 */
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.8); /* 흐린 회색 */
+  height: 100px;
+  opacity: 1;
+  transition:
+    background 0.3s ease-in-out,
+    opacity 0.3s ease-in-out; /* 나타날 때 0.3초 */
+}
+
+/* hover 시 더 진하게 */
+.scrollbar-visible::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 1); /* 진한 회색 */
 }
