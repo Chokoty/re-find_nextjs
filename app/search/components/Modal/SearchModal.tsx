@@ -42,7 +42,7 @@ export default function SearchModal() {
     'flex items-center justify-center gap-1 rounded-lg py-1.5 px-3 text-center text-base transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 w-auto font-medium text-gray-900 dark:text-gray-50';
 
   return (
-    <div className="flex w-full max-w-[432px] items-center justify-center">
+    <div className="flex w-full max-w-[432px] items-start justify-center">
       <section className="w-full max-w-[432px] rounded-b-2xl border border-gray-200 bg-white px-4 dark:border-whiteAlpha-300 dark:bg-dark-card">
         <div className="flex justify-center py-2">
           <SearchBar
