@@ -80,7 +80,7 @@ export default function Modal({ Component, modalProps, hide }: Props) {
     const htmlElement = document.documentElement;
     htmlElement.style.overflowY = 'hidden';
     return () => {
-      htmlElement.style.overflowY = 'scroll';
+      htmlElement.style.overflowY = 'auto';
     };
   }, []);
 
