@@ -13,7 +13,7 @@ const BOARD_LIST: Board[] = [
     // https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=344%26search.boardtype=I
   },
   {
-    board: '통합 BEST 팬아트 게시판',
+    board: 'BEST 팬아트 게시판',
     id: '551',
   },
   {
@@ -21,7 +21,7 @@ const BOARD_LIST: Board[] = [
     id: '552',
   },
   {
-    board: '이세돌┃작업후기',
+    board: '이세돌┃작업 후기',
     id: '467',
   },
   {

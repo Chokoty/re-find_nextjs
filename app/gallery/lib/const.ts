@@ -254,7 +254,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     id: 0,
     value: 'bestBoard',
     type: 'board',
-    title: '통합 BEST 팬아트 게시판',
+    title: 'BEST 팬아트 게시판',
     subTitle: '',
     description: '',
     author: '',
