@@ -19,7 +19,20 @@ class ArtistService extends Service {
     return this.http.get<AuthorList>(url);
   }
 
-  // 작가의 작품들 가져오기 (기본 30개 - 서버 지정)
+  // 왁타버스 작가 리스트 가져오기 - 쿼리 없는 경우 : /author_list_per_page
+  // getArtistListWithoutQuery({
+  //   ranktype,
+  //   board,
+  //   page,
+  // }: GetArtistListParams & PageNum) {
+  //   const url =
+  //     `/author_list_per_page?ranktype=${ranktype}&page=${page}&per_page=${ROWS_PER_PAGE}`.concat(
+  //       board ? `&board=${board}` : ''
+  //     );
+  //   return this.http.get<AuthorList>(url);
+  // }
+
+  // 작가의 작품들 가져오기
   // {"lastPage": true, "list": []}
   async getArtistArtworks({
     nickname,
@@ -28,7 +41,7 @@ class ArtistService extends Service {
     board,
   }: GetArtistInfoParams & PageNum) {
     const url =
-      `/v2/author_artworks?name=${nickname}&sorttype=${sortType}&page=${page}`.concat(
+      `/v2/author/artworks?name=${nickname}&sorttype=${sortType}&page=${page}`.concat(
         board ? `&board=${board}` : ''
       );
 

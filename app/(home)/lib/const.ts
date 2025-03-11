@@ -13,7 +13,7 @@ const BOARD_LIST: Board[] = [
     // https://cafe.naver.com/steamindiegame?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27842958%26search.menuid=344%26search.boardtype=I
   },
   {
-    board: '통합 BEST 팬아트 게시판',
+    board: 'BEST 팬아트 게시판',
     id: '551',
   },
   {
