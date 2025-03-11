@@ -21,7 +21,7 @@ const BOARD_LIST: Board[] = [
     id: '552',
   },
   {
-    board: '이세돌┃작업 후기',
+    board: '이세돌┃작업후기',
     id: '467',
   },
   {
