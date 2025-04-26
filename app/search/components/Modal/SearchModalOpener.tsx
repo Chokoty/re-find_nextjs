@@ -16,7 +16,7 @@ export default function SearchModalOpener() {
     const searchedTextColor =
       'placeholder:text-light-myText dark:placeholder:text-dark-myText-2';
     const noteSearchedTextColor =
-      'placeholder:tex  t-light-myText dark:placeholder:text-dark-myText-2';
+      'placeholder:text-light-myText dark:placeholder:text-dark-myText-2';
     // 'placeholder:text-gray-500 dark:placeholder:text-whiteAlpha-400';
     if (isNotSearch) {
       return {
