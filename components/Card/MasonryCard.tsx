@@ -39,17 +39,26 @@ export default function MasonryCard({
         <p className="line-clamp-1 text-left text-base font-medium">
           {artwork.title}
         </p>
-        {!isArtistDetails && (
-          <Link
-            href={artistLink}
-            className="link-to-profile w-full"
-            target={linkTarget}
-          >
-            <p className="line-clamp-1 text-left text-sm font-medium text-gray-900 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-pink-highlight">
+        {!isArtistDetails &&
+          (isCheckable ? (
+            // 체크 모드일 때는 링크 대신 텍스트만 표시
+            <span
+              className="line-clamp-1 w-full cursor-not-allowed text-left text-sm font-medium text-gray-400 dark:text-gray-500"
+              title={authorName ?? undefined}
+            >
               {`작가: ${authorName}`}
-            </p>
-          </Link>
-        )}
+            </span>
+          ) : (
+            <Link
+              href={artistLink}
+              className="link-to-profile w-full"
+              target={linkTarget}
+            >
+              <p className="line-clamp-1 text-left text-sm font-medium text-gray-900 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-pink-highlight">
+                {`작가: ${authorName}`}
+              </p>
+            </Link>
+          ))}
       </div>
     </div>
   );
