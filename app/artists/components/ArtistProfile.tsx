@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { ImLink } from 'react-icons/im';
 import { useShallow } from 'zustand/react/shallow';
 
+import SubscribeConfirmModal from '@/app/artists/components/SubscribeConfirmModal';
 import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
 import {
@@ -22,6 +23,7 @@ import Popover, {
   PopoverTrigger,
 } from '@/components/Popover';
 import Tooltip from '@/components/Tooltip';
+import useModal from '@/hooks/useModal';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 interface Props {
@@ -52,6 +54,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
     author: nickname,
     getArtistInfo: refetch,
   });
+  const { show } = useModal(SubscribeConfirmModal);
   const { mutate: unSubscribeArtist } = useUnsubscribeArtist({
     author: nickname,
     getArtistInfo: refetch,
@@ -63,6 +66,15 @@ export default function ArtistProfile({ nickname, profile }: Props) {
       return;
     }
     subscribeArtist();
+  };
+
+  const openSubscribeConfirmModal = () => {
+    if (!clientArtistInfo) return;
+    show({
+      // animateDir: 'bottom',
+      handleSubscribe,
+      isSubscribed: clientArtistInfo.following,
+    });
   };
 
   const member_link = useResponsiveLink(
@@ -163,7 +175,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
           <Button
             size="lg"
             additionalClass="rounded-full max-w-[73px] text-base font-semibold "
-            onClick={handleSubscribe}
+            onClick={openSubscribeConfirmModal}
           >
             <p className="">
               {clientArtistInfo.following ? '구독 중' : '+ 구독'}
