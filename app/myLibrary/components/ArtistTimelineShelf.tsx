@@ -13,14 +13,13 @@ const GallerySlider = dynamic(
 );
 export default function ArtistTimelineShelf() {
   const {
-    total,
-    status,
     artworks,
-    refetch,
-    fetchNextPage,
-    isFetchingNextPage,
+    // total,
+    // status,
+    // refetch,
+    // fetchNextPage,
+    // isFetchingNextPage,
   } = useGalleryArtworks({ sortType: 'recent', galleryType: 'artistTimeline' });
-  console.log('artistTimeline', artworks);
   return (
     <div className="mb-10 flex w-full flex-col p-2 md:px-6">
       <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">

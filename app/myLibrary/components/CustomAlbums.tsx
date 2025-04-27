@@ -18,7 +18,7 @@ export default function CustomAlbums() {
     <div className="mb-10 flex w-full flex-col p-2 md:px-6">
       <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
         <Link
-          href="/myLibrary/likeFanart"
+          href="/myLibrary/likedFanarts"
           className="flex items-center hover:underline"
         >
           <p className="text-left text-xl font-extrabold md:text-2xl">
