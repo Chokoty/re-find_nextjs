@@ -1,7 +1,15 @@
+import type {
+  QueryObserverResult,
+  RefetchOptions,
+} from '@tanstack/react-query';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/app/myLibrary/service/client/queries';
 import type { DeleteArtworkParams } from '@/types';
+
+export type RefetchFn = (
+  options?: RefetchOptions
+) => Promise<QueryObserverResult<AuthorOverview, Error>>;
 
 // export function useImageInfo({ hash }: { hash: string }) {
 //   return useQuery(queryOptions.imageInfo(hash));
@@ -43,11 +51,23 @@ export function useUpdateLikedArticles() {
   return useQuery(queryOptions.updateLikedArticles());
 }
 
-export function useSubscribeArtist(author: string) {
-  return useMutation(queryOptions.subscribeArtist(author));
+export function useSubscribeArtist({
+  author,
+  getArtistInfo,
+}: {
+  author: string;
+  getArtistInfo: RefetchFn;
+}) {
+  return useMutation(queryOptions.subscribeArtist({ author, getArtistInfo }));
 }
-export function useUnsubscribeArtist(author: string) {
-  return useMutation(queryOptions.unsubscribeArtist(author));
+export function useUnsubscribeArtist({
+  author,
+  getArtistInfo,
+}: {
+  author: string;
+  getArtistInfo: RefetchFn;
+}) {
+  return useMutation(queryOptions.unsubscribeArtist({ author, getArtistInfo }));
 }
 
 export function useSubscribedArtists() {

@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 
 import myService from '@/app/myLibrary/service/client/myService';
+import type { RefetchFn } from '@/app/myLibrary/service/client/useMyService';
 import type { DeleteArtworkParams } from '@/types';
 
 const queryKeys = {
@@ -39,22 +40,36 @@ const queryOptions = {
     queryFn: () => myService.updateLikedArticles(),
     enabled: false,
   }),
-  subscribeArtist: (author: string) => ({
+  subscribeArtist: ({
+    author,
+    getArtistInfo,
+  }: {
+    author: string;
+    getArtistInfo: RefetchFn;
+  }) => ({
     mutationFn: () => myService.subscribeArtist(author),
     onSuccess: (data: ArtistSubscribeResponse) => {
       console.log(data);
       toast.success('구독이 추가되었습니다.');
+      getArtistInfo();
     },
     onError: (data: ArtistSubscribeResponse) => {
       console.log(data);
       toast.error('구독 기능 준비 중입니다.');
     },
   }),
-  unsubscribeArtist: (author: string) => ({
+  unsubscribeArtist: ({
+    author,
+    getArtistInfo,
+  }: {
+    author: string;
+    getArtistInfo: RefetchFn;
+  }) => ({
     mutationFn: () => myService.unsubscribeArtist(author),
     onSuccess: (data: ArtistSubscribeResponse) => {
       console.log(data);
       toast.success(`${author} 작가님 구독을 취소했습니다.`);
+      getArtistInfo();
     },
     onError: (data: ArtistSubscribeResponse) => {
       console.log(data);

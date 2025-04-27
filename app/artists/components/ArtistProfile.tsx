@@ -47,11 +47,18 @@ export default function ArtistProfile({ nickname, profile }: Props) {
       sortRankCriteria: state.sortRankCriteria,
     }))
   );
-  const { data: clientArtistInfo } = useArtistInfo(nickname);
-  const { mutate: subscribeArtist } = useSubscribeArtist(nickname);
-  const { mutate: unSubscribeArtist } = useUnsubscribeArtist(nickname);
+  const { data: clientArtistInfo, refetch } = useArtistInfo(nickname);
+  const { mutate: subscribeArtist } = useSubscribeArtist({
+    author: nickname,
+    getArtistInfo: refetch,
+  });
+  const { mutate: unSubscribeArtist } = useUnsubscribeArtist({
+    author: nickname,
+    getArtistInfo: refetch,
+  });
   const handleSubscribe = () => {
-    if (following) {
+    if (!clientArtistInfo) return;
+    if (clientArtistInfo.following) {
       unSubscribeArtist();
       return;
     }
