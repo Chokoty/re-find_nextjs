@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { FaCheck, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { FiClock } from 'react-icons/fi';
@@ -39,25 +39,26 @@ export default function CardImage({
     setIsFocus(false);
   });
 
-  const [isCheck, setIsCheck] = useState(false);
   const { fanarts, setFanarts } = useCheckFanartStore(
     useShallow((state) => ({
       fanarts: state.fanarts,
       setFanarts: state.setFanarts,
     }))
   );
-  useEffect(() => {
+  const isCheck = fanarts.includes(id);
+
+  const handleToggleCheck = () => {
     if (isCheck) {
-      setFanarts([...fanarts, id]);
-    } else {
       setFanarts(fanarts.filter((fanartId) => fanartId !== id));
+    } else {
+      setFanarts([...fanarts, id]);
     }
-  }, [isCheck]);
+  };
 
   if (isCheckable) {
     return (
       <div
-        onClick={() => setIsCheck(!isCheck)}
+        onClick={handleToggleCheck}
         className="group relative w-full cursor-pointer rounded-[16px] border-base border-blackAlpha-200 dark:border-none"
       >
         <Image
@@ -82,14 +83,27 @@ export default function CardImage({
         >
           <div
             className={clsx(
-              'absolute right-2 top-2 rounded-full p-2 transition-all duration-300 ease-in-out',
-              isCheck ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-400'
+              // group-hover로 강조 효과 추가
+              `absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 shadow-lg transition-all
+            duration-300
+            ${
+              isCheck
+                ? 'border-green-500 bg-green-500 text-white'
+                : 'border-gray-300 bg-white text-gray-400 group-hover:bg-green-50'
+            } group-hover:border-green-400 group-hover:shadow-xl`
             )}
+            style={{
+              boxShadow: isCheck
+                ? '0 0 0 4px rgba(34,197,94,0.15)'
+                : '0 0 0 2px rgba(0,0,0,0.06)',
+            }}
           >
             <FaCheck
               className={clsx(
-                'transition-transform duration-300',
-                isCheck ? 'scale-100' : 'scale-0'
+                'text-lg transition-transform duration-200',
+                isCheck
+                  ? 'scale-100 opacity-100'
+                  : 'scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100'
               )}
             />
           </div>

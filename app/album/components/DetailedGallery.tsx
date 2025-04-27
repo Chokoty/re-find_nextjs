@@ -4,20 +4,14 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
-import { useShallow } from 'zustand/react/shallow';
 
 import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
 import GALLERY_LIST from '@/app/album/lib/const';
 import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
 import { useFanartTotalCountStore } from '@/app/album/store/fanartTotalCountStore';
-import {
-  useDeleteCustomAlbum,
-  useEditCustomAlbum,
-} from '@/app/myLibrary/service/client/useMyService';
+import { useEditCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 import Alert from '@/components/Alert';
-import Button from '@/components/Button';
-import AddCheckedFanartsToCustomAlbumModal from '@/components/Modal/AddCheckedFanartsToCustomAlbumModal';
-import AddFanartToAlbumFinderModal from '@/components/Modal/AddFanartToAlbumFinderModal';
+import AlbumAddButtonsBar from '@/components/AlumAddButtonsBar';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
@@ -25,8 +19,6 @@ import ViewSelectBar from '@/components/ViewSelectBar';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
 import { useMyInfo } from '@/service/client/useCommonService';
-
-import { useCheckFanartStore } from '../store/checkFanartStore';
 
 type Props = {
   value: string;
@@ -56,17 +48,6 @@ export default function DetailedGallery({ value: galleryType }: Props) {
   };
 
   const [isCheckable, setIsCheckable] = useState(false);
-  const { fanarts } = useCheckFanartStore(
-    useShallow((state) => ({
-      fanarts: state.fanarts,
-    }))
-  );
-  const { show: showAddFanartsToCustomAlbumModal } = useModal(
-    AddCheckedFanartsToCustomAlbumModal
-  );
-  const handleShowAddFanartsModal = () => {
-    showAddFanartsToCustomAlbumModal({ fanarts, animateDir: 'bottom' });
-  };
   // -----------커스텀 앨범일 경우(start)------------
   const { data: user } = useMyInfo();
   const customAlbumInfo = user?.albums.find((album) => album.id === albumName);
@@ -86,13 +67,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
       title: customAlbumInfo?.name,
     });
   };
-  const { show } = useModal(AddFanartToAlbumFinderModal);
 
-  const openAddFanartToAlbumFinderModal = () => {
-    show({
-      applyCustomMaxWidth: true,
-    });
-  };
   // -----------커스텀 앨범일 경우(end)------------
 
   // // infinite scroll을 위한 옵저버
@@ -174,27 +149,12 @@ export default function DetailedGallery({ value: galleryType }: Props) {
   }, [total]);
   return (
     <>
-      {isMyCustomAlbum && (
-        <div className="w-full px-8 py-2">
-          <Button onClick={openAddFanartToAlbumFinderModal}>
-            앨범에 팬아트 추가하기
-          </Button>
-        </div>
-      )}
-      {!!user && (
-        <div className="w-full px-8 py-2">
-          <Button
-            onClick={() => {
-              setIsCheckable(true);
-            }}
-          >
-            체크앨범 활성화
-          </Button>
-        </div>
-      )}
-      {fanarts.length > 0 && (
-        <Button onClick={handleShowAddFanartsModal}>체크된 앨범 저장</Button>
-      )}
+      <AlbumAddButtonsBar
+        isMyCustomAlbum={isMyCustomAlbum}
+        user={user}
+        isCheckable={isCheckable}
+        setIsCheckable={setIsCheckable}
+      />
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}
