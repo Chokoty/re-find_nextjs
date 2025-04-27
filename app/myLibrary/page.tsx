@@ -19,9 +19,9 @@ export default function MyLibrary() {
           </h1>
         </div>
         <section className="relative">
+          <LikeArtistShelf />
           <ArtistTimelineShelf />
           <LikeFanartShelf />
-          <LikeArtistShelf />
           <CustomAlbums />
         </section>
       </div>

@@ -29,16 +29,16 @@ export default function LikeArtistShelf() {
           </p>
         </Link>
       </div>
-      <ul className="grid w-full grid-cols-2 gap-6 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-8">
+      <ul className="grid w-full grid-cols-2 gap-6 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
         {data?.list &&
           data.list.map(({ nick, profimg }) => (
             <li key={nick} className="max-w-[200px] list-none">
               <Link
-                className="link-to-profile flex size-full flex-col items-center  justify-center    gap-4 rounded-md p-2 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:p-4 "
+                className="link-to-profile flex size-full flex-col items-center justify-center gap-4 rounded-md p-2 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:p-4 "
                 href={`/artists/${nick}`}
                 prefetch={false}
               >
-                <div className="relative size-[85px] md:size-[160px]">
+                <div className="relative size-[85px] sm:size-[100px] xl:size-[130px] 2xl:size-[160px]">
                   <Image
                     className="rounded-full object-cover"
                     src={profimg}
