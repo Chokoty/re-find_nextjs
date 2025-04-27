@@ -110,7 +110,7 @@ export type GetRecommendArtworksParams = {
   ap?: number;
 };
 
-export type GetArtistInfoParams = {
+export type GetArtistArtworksParams = {
   nickname: string;
   sortType: string;
   board: string | null;

@@ -45,7 +45,7 @@ export default async function page({ params: { nickname } }: Params) {
   const { author_nickname, num_artworks } = result;
   // 배포 서버에서 실행할 경우
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
-    const { queryKey, queryFn } = queryOptions.artistInfo({
+    const { queryKey, queryFn } = queryOptions.artistArtworks({
       nickname: decodedNickname,
       sortType: 'latest',
       board: null,

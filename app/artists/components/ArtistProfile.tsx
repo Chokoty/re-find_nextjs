@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import CountUp from 'react-countup';
 import toast from 'react-hot-toast';
 import { ImLink } from 'react-icons/im';
 import { useShallow } from 'zustand/react/shallow';
 
+import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
 import {
   useSubscribeArtist,
@@ -39,7 +39,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
     wak_cnt,
     isd_cnt,
     gomem_cnt,
-    following = false,
+    following = false, // 추후 따로 빼달라고 하기(?) 아니면 클라에서 처리하기
   } = profile;
   const { rankCriteria, sortRankCriteria } = useArtistSearchInfoStore(
     useShallow((state) => ({
@@ -47,6 +47,7 @@ export default function ArtistProfile({ nickname, profile }: Props) {
       sortRankCriteria: state.sortRankCriteria,
     }))
   );
+  const { data: clientArtistInfo } = useArtistInfo(nickname);
   const { mutate: subscribeArtist } = useSubscribeArtist(nickname);
   const { mutate: unSubscribeArtist } = useUnsubscribeArtist(nickname);
   const handleSubscribe = () => {
@@ -151,13 +152,17 @@ export default function ArtistProfile({ nickname, profile }: Props) {
             <p className="">2024 리캡</p>
           </Button>
         </Link>
-        <Button
-          size="lg"
-          additionalClass="rounded-full max-w-[73px] text-base font-semibold "
-          onClick={handleSubscribe}
-        >
-          <p className="">{following ? '구독 중' : '+ 구독'}</p>
-        </Button>
+        {clientArtistInfo && (
+          <Button
+            size="lg"
+            additionalClass="rounded-full max-w-[73px] text-base font-semibold "
+            onClick={handleSubscribe}
+          >
+            <p className="">
+              {clientArtistInfo.following ? '구독 중' : '+ 구독'}
+            </p>
+          </Button>
+        )}
       </div>
     </div>
   );

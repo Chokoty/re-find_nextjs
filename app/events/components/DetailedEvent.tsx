@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
-import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
+import { useArtistArtworks } from '@/app/artists/service/client/useArtistService';
 import Alert from '@/components/Alert';
 import PageTitle from '@/components/PageTitle';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
@@ -30,9 +30,8 @@ export default function DetailedEvent({ keyword }: Prop) {
   const [sortType, setSortType] = useState('latest'); // 초기 상태 설정
   const [isDeletedVisible, setIsDeletedVisible] = useState(false);
 
-  const { fetchNextPage, artworks, status, isFetchingNextPage } = useArtistInfo(
-    { nickname: keyword, sortType, board: null }
-  );
+  const { fetchNextPage, artworks, status, isFetchingNextPage } =
+    useArtistArtworks({ nickname: keyword, sortType, board: null });
 
   // 정렬 선택하기
   const handleMenuItemClick = useCallback((menuText: string) => {

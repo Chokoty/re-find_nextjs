@@ -1,10 +1,16 @@
 import { ROWS_PER_PAGE } from '@/app/artists/lib/const';
 import Service from '@/lib/service';
-import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
+import type { GetArtistArtworksParams, GetArtistListParams } from '@/types';
 
 // TODO: 네이밍 통일하기 (artists vs authors)
 
 class ArtistService extends Service {
+  // 작가 정보 가져오기
+  getArtistInfo(nickname: string) {
+    const url = `/v2/author?nick=${nickname}`;
+    return this.http.get<AuthorOverview>(url);
+  }
+
   // 왁타버스 작가 리스트 가져오기 - 쿼리 있는 경우 : /v2/author_list_per_page
   getArtistList({
     q,
@@ -26,7 +32,7 @@ class ArtistService extends Service {
     sortType,
     page,
     board,
-  }: GetArtistInfoParams & PageNum) {
+  }: GetArtistArtworksParams & PageNum) {
     const url =
       `/v2/author/artworks?name=${nickname}&sorttype=${sortType}&page=${page}`.concat(
         board ? `&board=${board}` : ''

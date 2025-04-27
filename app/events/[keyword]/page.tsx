@@ -64,7 +64,7 @@ export default async function Page({ params: { keyword } }: Params) {
       console.log('Running on client.');
     }
 
-    const { queryKey, queryFn } = queryOptions.artistInfo({
+    const { queryKey, queryFn } = queryOptions.artistArtworks({
       nickname: decodedKeyword,
       sortType: 'latest',
       board: null,
