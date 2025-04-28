@@ -24,8 +24,20 @@ const queryOptions = {
   editCustomAlbuminfo: (albumId: string, info: CustomAlbumEditParams) => ({
     mutationFn: () => myService.putCustomAlbum(albumId, info),
   }),
-  addFanartsInToCustomAlbum: (albumId: string, items: number[]) => ({
+  addFanartsInToCustomAlbum: ({
+    albumId,
+    items,
+    handleOnSuccess,
+  }: {
+    albumId: string;
+    items: number[];
+    handleOnSuccess: () => void;
+  }) => ({
     mutationFn: () => myService.putFanartsInToCustomAlbum(albumId, items),
+    onSuccess: () => {
+      handleOnSuccess();
+      toast.success('팬아트가 앨범에 추가되었습니다.');
+    },
   }),
   deleteCustomAlbum: ({
     albumId,

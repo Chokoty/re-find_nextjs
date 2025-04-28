@@ -32,6 +32,7 @@ class MyService extends Service {
     );
   }
 
+  // 커스텀 앨범에 팬아트 추가
   putFanartsInToCustomAlbum(albumId: string, items: number[]) {
     return this.http.put<CustomAlbumEditResponse>(
       `/v2/album?album=${albumId}`,

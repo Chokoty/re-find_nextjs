@@ -74,6 +74,16 @@ export function useSubscribedArtists() {
   return useQuery(queryOptions.subscribedArtists());
 }
 
-export function ussAddFanartsInToCustomAlbum(albumId: string, items: number[]) {
-  return useMutation(queryOptions.addFanartsInToCustomAlbum(albumId, items));
+export function ussAddFanartsInToCustomAlbum({
+  albumId,
+  items,
+  handleOnSuccess,
+}: {
+  albumId: string;
+  items: number[];
+  handleOnSuccess: () => void;
+}) {
+  return useMutation(
+    queryOptions.addFanartsInToCustomAlbum({ albumId, items, handleOnSuccess })
+  );
 }

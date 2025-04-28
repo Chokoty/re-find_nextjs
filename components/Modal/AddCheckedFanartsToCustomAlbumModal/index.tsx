@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { ClipLoader } from 'react-spinners';
 
 import { ussAddFanartsInToCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 import Button from '@/components/Button';
@@ -16,14 +17,20 @@ export default function AddCheckedFanartsToCustomAlbumModal(
   const { data: user } = useMyInfo();
   const { hide } = useModal();
   const { fanarts } = props;
-  const handleAddToCustomAlbum = () => {
-    console.log(fanarts);
-  };
 
-  const { mutate: addFanartsIntoCustomAlbum } = ussAddFanartsInToCustomAlbum(
-    selected || '',
-    fanarts as number[]
-  );
+  const { mutate: addFanartsIntoCustomAlbum, isPending } =
+    ussAddFanartsInToCustomAlbum({
+      albumId: selected || '',
+      items: fanarts as number[],
+      handleOnSuccess: () => {
+        hide();
+      },
+    });
+  const handleAddToCustomAlbum = () => {
+    // console.log(fanarts);
+    if (!selected) return;
+    addFanartsIntoCustomAlbum();
+  };
 
   const toggleSelection = (id: string) => {
     setSelected((prevSelected) => (prevSelected === id ? null : id));
@@ -42,14 +49,31 @@ export default function AddCheckedFanartsToCustomAlbumModal(
                 album={album}
                 toggleSelection={toggleSelection}
                 isSelected={selected === album.id}
+                disabled={isPending}
               />
             ))}
         </div>
         <div className="mt-3 flex items-center justify-center gap-4">
-          <Button intent="ghost-gray" onClick={hide}>
+          <Button intent="ghost-gray" onClick={hide} disabled={isPending}>
             취소하기
           </Button>
-          <Button onClick={handleAddToCustomAlbum}>추가하기</Button>
+          <Button
+            onClick={handleAddToCustomAlbum}
+            disabled={!selected || isPending}
+          >
+            {isPending ? (
+              <div className="flex items-center gap-1">
+                <span>추가 중</span>
+                <ClipLoader
+                  size={20} // 사이즈 조절
+                  color="#3B82F6" // tailwind blue-500
+                  speedMultiplier={0.75} // 회전 속도 조절
+                />
+              </div>
+            ) : (
+              '추가하기'
+            )}
+          </Button>
         </div>
       </div>
     </section>

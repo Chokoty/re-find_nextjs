@@ -68,14 +68,16 @@ export default function AlbumAddButtonsBar({
           <Button onClick={handleToggleCheckable}>
             앨범 선택 모드 {isCheckable ? '끄기' : '켜기'}
           </Button>
-          {isCheckable && fanarts.length > 0 && (
-            <Button onClick={handleClearFanarts}>전체 선택 해제</Button>
-          )}
-          {fanarts.length > 0 && (
-            <Button onClick={handleShowAddFanartsModal}>
-              선택한 앨범 저장({fanarts.length})
-            </Button>
-          )}
+          <div className="flex gap-2">
+            {isCheckable && fanarts.length > 0 && (
+              <Button onClick={handleClearFanarts}>전체 선택 해제</Button>
+            )}
+            {fanarts.length > 0 && (
+              <Button onClick={handleShowAddFanartsModal}>
+                선택한 앨범 저장({fanarts.length})
+              </Button>
+            )}
+          </div>
         </div>
       )}
     </>
