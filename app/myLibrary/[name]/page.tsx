@@ -3,6 +3,7 @@
 import DetailedGallery from '@/app/album/components/DetailedGallery';
 import ArtistList from '@/app/myLibrary/components/ArtistList';
 import BackToLibraryLink from '@/app/myLibrary/components/BackToLibraryLink';
+import CustomAlbumsList from '@/app/myLibrary/components/CustomAlbumsList';
 
 type Params = { params: { name: string } };
 
@@ -32,6 +33,9 @@ const SECTION_CONFIG: Record<
   likedFanarts: {
     header: '좋아요한 팬아트',
     content: <DetailedGallery value="likedFanarts" />,
+  },
+  customAlbums: {
+    content: <CustomAlbumsList />,
   },
 };
 

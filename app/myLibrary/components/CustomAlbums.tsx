@@ -18,11 +18,19 @@ export default function CustomAlbums() {
     <div className="mb-10 flex w-full flex-col p-2 md:px-6">
       <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
         <Link
-          href="/myLibrary/likedFanarts"
+          href="/myLibrary/customAlbums"
           className="flex items-center hover:underline"
         >
           <p className="text-left text-xl font-extrabold md:text-2xl">
-            좋아요한 팬아트
+            나만의 팬아트 앨범
+          </p>
+        </Link>
+        <Link
+          href="/myLibrary/customAlbums"
+          className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
+        >
+          <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+            모두보기
           </p>
         </Link>
       </div>

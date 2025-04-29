@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import BackToLibraryLink from '@/app/myLibrary/components/BackToLibraryLink';
 import TotalCount from '@/app/myLibrary/components/TotalCount';
 import { useSubscribedArtists } from '@/app/myLibrary/service/client/useMyService';
 
