@@ -5,20 +5,15 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
-import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
 import GALLERY_LIST from '@/app/album/lib/const';
 import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
 import { useFanartTotalCountStore } from '@/app/album/store/fanartTotalCountStore';
-import { useEditCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 import Alert from '@/components/Alert';
-import AlbumAddButtonsBar from '@/components/AlumAddButtonsBar';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
 import ViewSelectBar from '@/components/ViewSelectBar';
-import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
-import { useMyInfo } from '@/service/client/useCommonService';
 
 type Props = {
   value: string;
@@ -47,28 +42,6 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     ];
     return hiddenNames.includes(n);
   };
-  // -----------커스텀 앨범일 경우(start)------------
-  const { data: user } = useMyInfo();
-  const customAlbumInfo = user?.albums.find((album) => album.id === albumName);
-  const isMyCustomAlbum = customAlbumInfo !== undefined;
-  const { show: showDeleteCustomAlbumModal } = useModal(DeleteCustomAlbumModal);
-  const { mutate: editCustomAlbumInfo, status: editStatus } =
-    useEditCustomAlbum('user--3635', {
-      name: 'test',
-      is_public: true,
-    });
-
-  const handleEditCustomAlbumInfo = () => {
-    editCustomAlbumInfo();
-  };
-  const handleDeleteCustomAlbum = () => {
-    showDeleteCustomAlbumModal({
-      animateDir: 'bottom',
-      title: customAlbumInfo?.name,
-    });
-  };
-
-  // -----------커스텀 앨범일 경우(end)------------
 
   // // infinite scroll을 위한 옵저버
   const isMobile = useResponsive();
@@ -150,7 +123,6 @@ export default function DetailedGallery({ value: galleryType }: Props) {
 
   return (
     <>
-      <AlbumAddButtonsBar isMyCustomAlbum={isMyCustomAlbum} user={user} />
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}
@@ -160,9 +132,6 @@ export default function DetailedGallery({ value: galleryType }: Props) {
         isDeletedVisible={isDeletedVisible}
         handleShowDeleted={handleShowDeleted}
         onMemberClick={handleMemberClick}
-        isMyCustomAlbum={isMyCustomAlbum}
-        handleEditAlbum={handleEditCustomAlbumInfo}
-        handleDeleteAlbum={handleDeleteCustomAlbum}
         topOffset={59}
         hasTotalCounter={!shouldHideTotalCounter(albumName) && !!total}
         // isIsdPick={isIsdPick}

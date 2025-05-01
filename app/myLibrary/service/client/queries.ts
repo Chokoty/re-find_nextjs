@@ -34,7 +34,8 @@ const queryOptions = {
     handleOnSuccess: () => void;
   }) => ({
     mutationFn: () => myService.putFanartsInToCustomAlbum(albumId, items),
-    onSuccess: () => {
+    onSuccess: (data: any) => {
+      console.log('putFanartsInToCustomAlbum', data);
       handleOnSuccess();
       toast.success('팬아트가 앨범에 추가되었습니다.');
     },

@@ -1,20 +1,26 @@
 'use client';
 
+import { useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { LuExternalLink } from 'react-icons/lu';
-import { MdEdit } from 'react-icons/md';
+import { MdAdd, MdDelete, MdEdit } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
 import ShareLinkButton from '@/app/album/components/Button/ShareLinkButton';
+import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
 import TotalCounter from '@/app/album/components/TotalCounter';
+import queryOptions from '@/app/album/service/client/queries';
 import { useGalleryPageInfo } from '@/app/album/service/client/useGalleryService';
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
 import { useEditModeStore } from '@/app/album/store/editModeStore';
+import { useEditCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 import Button from '@/components/Button';
+import AddFanartToAlbumFinderModal from '@/components/Modal/AddFanartToAlbumFinderModal';
+import useModal from '@/hooks/useModal';
 import { BBangTTi } from '@/lib/images';
 import { useMyInfo } from '@/service/client/useCommonService';
 
@@ -28,6 +34,11 @@ const descriptionClassName =
 
 export default function GalleryTitle({ pageName }: Props) {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const sortTypeInit = searchParams.get('sortType') ?? '';
+  const pathNameParts = pathname.split('/');
+  const albumName = pathNameParts[pathNameParts.length - 1];
   // TODO: link URL 서버에서 데이터 요청
   const { data } = useGalleryPageInfo(pageName);
   const { data: user } = useMyInfo();
@@ -37,11 +48,37 @@ export default function GalleryTitle({ pageName }: Props) {
       setIsEdit: state.setIsEdit,
     }))
   );
+  const { mutate: editCustomAlbumInfo, status: editStatus } =
+    useEditCustomAlbum(albumName, {
+      name: 'test',
+      is_public: true,
+    });
+
+  const { show: showAddFanartToAlbumFinderModal } = useModal(
+    AddFanartToAlbumFinderModal
+  );
+  const { show: showDeleteCustomAlbumModal } = useModal(DeleteCustomAlbumModal);
+  const { queryKey } = queryOptions.galleryArtworks({
+    sortType: sortTypeInit === '' ? 'alzaltak' : sortTypeInit,
+    galleryType: pageName,
+  });
+  const queryClient = useQueryClient();
+  const refreshAlbumArtworks = () => {
+    queryClient.invalidateQueries({ queryKey });
+  };
+  const handleOpenAddFanartToAlbumFinderModal = () => {
+    showAddFanartToAlbumFinderModal({
+      applyCustomMaxWidth: true,
+      id: albumName,
+      refreshAlbumArtworks,
+    });
+  };
+
+  const handleEditCustomAlbumInfo = () => {
+    editCustomAlbumInfo();
+  };
 
   const setFanarts = useCheckFanartStore((state) => state.setFanarts);
-  const pathname = usePathname();
-  const pathNameParts = pathname.split('/');
-  const albumName = pathNameParts[pathNameParts.length - 1];
   const customAlbumInfo = user?.albums.find((album) => album.id === albumName);
   const isMyCustomAlbum = customAlbumInfo !== undefined;
   // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
@@ -69,6 +106,12 @@ export default function GalleryTitle({ pageName }: Props) {
       setIsEdit(true); // 편집 시작
     }
   };
+  const handleDeleteCustomAlbum = () => {
+    showDeleteCustomAlbumModal({
+      animateDir: 'bottom',
+      title: customAlbumInfo?.name,
+    });
+  };
   // 페이지 벗어날 때 편집 모드 초기화
   useEffect(() => {
     return () => {
@@ -78,6 +121,9 @@ export default function GalleryTitle({ pageName }: Props) {
 
   if (!data) return null;
   const { id: pageType, title, description, linkTitle, linkUrl } = data;
+
+  const activeColor = 'text-green-600';
+  const inactiveColor = 'text-blackAlpha-700 dark:text-whiteAlpha-700';
 
   return (
     <div className="my-6 flex w-full flex-col items-start justify-start pl-2 md:pl-8">
@@ -102,16 +148,47 @@ export default function GalleryTitle({ pageName }: Props) {
               </p>
             </Button>
             {isMyCustomAlbum && (
-              <Button
-                intent="link-gray"
-                onClick={handleEditButtonClick}
-                additionalClass="ml-2 h-7 min-h-7 px-3 text-sm"
-              >
-                <MdEdit className="mr-1" size={14} />
-                <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-                  {isEdit ? '편집 취소' : '편집'}
-                </p>
-              </Button>
+              <div className="flex items-center gap-1">
+                <Button
+                  intent="ghost-gray"
+                  onClick={handleOpenAddFanartToAlbumFinderModal}
+                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
+                >
+                  <MdAdd
+                    className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                    size={20}
+                  />
+                  <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+                    추가
+                  </span>
+                </Button>
+                <Button
+                  intent="ghost-gray"
+                  onClick={handleDeleteCustomAlbum}
+                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
+                >
+                  <MdDelete
+                    className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                    size={20}
+                  />
+                  <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+                    삭제
+                  </span>
+                </Button>
+                <Button
+                  intent="ghost-gray"
+                  onClick={handleEditButtonClick}
+                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
+                >
+                  <MdEdit
+                    className={`mr-1 ${isEdit ? activeColor : inactiveColor}`}
+                    size={14}
+                  />
+                  <span className={isEdit ? activeColor : inactiveColor}>
+                    편집
+                  </span>
+                </Button>
+              </div>
             )}
           </div>
           <div className="w-full">

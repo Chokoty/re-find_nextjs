@@ -29,7 +29,7 @@ const BackToLibraryLink = ({
   );
   const handleChoiceButtonClick = () => {
     if (isEdit) {
-      setIsEdit(false); // 편집 취소
+      setIsEdit(false); // 선택 모드 해제
       setFanarts([]); // 체크된 팬아트 초기화
     } else {
       setIsEdit(true); // 편집 시작

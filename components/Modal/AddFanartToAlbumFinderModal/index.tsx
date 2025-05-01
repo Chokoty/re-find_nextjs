@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer';
 import { PuffLoader } from 'react-spinners';
 import { useDebounce } from 'react-use';
 
-import { useCreateCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
+import { ussAddFanartsInToCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 import { useSearchResults } from '@/app/search/service/client/useSearchService';
 import Alert from '@/components/Alert';
 import Button from '@/components/Button';
@@ -17,12 +17,16 @@ import { NotSearch } from '@/lib/images';
 
 import SearchItemRow from './SearchItemRow';
 
-export default function AddFanartToAlbumFinderModal() {
+export default function AddFanartToAlbumFinderModal(
+  props: Record<string, unknown>
+) {
   const { hide } = useModal();
-  const router = useRouter();
+  // const router = useRouter();
   const onClose = () => {
     hide();
   };
+  const id = props.id as string;
+  const refreshAlbumArtworks = props.refreshAlbumArtworks as () => void;
 
   const [input, setInput] = useState('');
   const [debounceValue, setDebounceValue] = useState('');
@@ -36,15 +40,18 @@ export default function AddFanartToAlbumFinderModal() {
   };
 
   const [selected, setSelected] = useState<number[]>([]);
-  const handleOnSuccess = (albumId: string) => {
-    router.push(`/album/${albumId}`);
-  };
-  const { mutate: createCustomAlbum, status } = useCreateCustomAlbum(
-    selected,
-    handleOnSuccess
-  );
-  const handleAddCustomAlbum = () => {
-    createCustomAlbum();
+  const { mutate: addFanartsIntoCustomAlbum, isPending } =
+    ussAddFanartsInToCustomAlbum({
+      albumId: id,
+      items: selected,
+      handleOnSuccess: () => {
+        refreshAlbumArtworks();
+        onClose();
+      },
+    });
+  const handleAddToCustomAlbum = () => {
+    if (!selected) return;
+    addFanartsIntoCustomAlbum();
   };
 
   const {
@@ -80,7 +87,6 @@ export default function AddFanartToAlbumFinderModal() {
 
   useEffect(() => {
     if (debounceValue.length > 0) {
-      console.log('refetch');
       refetch(); // 검색어가 있을 때 수동으로 쿼리 실행
     }
   }, [debounceValue, refetch]);
@@ -128,22 +134,37 @@ export default function AddFanartToAlbumFinderModal() {
             )}
           </div>
         </div>
-        <Contents
-          artworks={searchResults}
-          total={total}
-          isFetchingNextPage={isFetchingNextPage}
-          fetchNextPage={fetchNextPage}
-          isError={isError}
-          isLoading={isLoading}
-          selected={selected}
-          setSelected={setSelected}
-        />
+        {input === '' ? (
+          <div className="flex size-full flex-col items-center justify-center py-8">
+            <Image
+              src={NotSearch}
+              alt="검색 전 안내"
+              width={202}
+              height={172}
+              priority
+              unoptimized
+            />
+            <h3 className="my-6 text-center">검색어를 입력해 주세요.</h3>
+          </div>
+        ) : (
+          <Contents
+            artworks={searchResults}
+            total={total}
+            isFetchingNextPage={isFetchingNextPage}
+            fetchNextPage={fetchNextPage}
+            isError={isError}
+            isLoading={isLoading}
+            selected={selected}
+            setSelected={setSelected}
+          />
+        )}
         <div className="mt-4 flex items-center justify-center gap-4">
-          <Button intent="ghost-gray" onClick={onClose}>
+          <Button intent="ghost-gray" onClick={onClose} disabled={isPending}>
             취소하기
           </Button>
           <Button
-            onClick={handleAddCustomAlbum}
+            onClick={handleAddToCustomAlbum}
+            disabled={isPending || selected.length === 0}
           >{`추가하기(${selected.length})`}</Button>
         </div>
       </div>
