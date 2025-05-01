@@ -45,9 +45,9 @@ export function useGalleryList() {
   return useQuery(queryOptions.galleries());
 }
 
-// export function useGalleryPageInfo(id: string) {
-//   return useQuery(queryOptions.galleryPageInfo(id));
-// }
+export function useGalleryPageInfo(id: string) {
+  return useQuery(queryOptions.galleryPageInfo(id));
+}
 // export function useNoticeArtworks({
 //   member,
 //   ranktype,

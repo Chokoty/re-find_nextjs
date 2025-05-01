@@ -6,6 +6,12 @@ import type {
 } from '@/types';
 
 class GalleryService extends Service {
+  // 갤러리 페이지 정보 가져오기 (제목 / 설명 / 배경 이미지)
+  async getGalleryPageInfo(id: string) {
+    const url = `/v2/album?album=${id}`;
+    return this.http.get<AlbumInfo>(url);
+  }
+
   // 키워드 갤러리 작품들 가져오기
   async getGalleryArtworksByKeyword({
     galleryType,

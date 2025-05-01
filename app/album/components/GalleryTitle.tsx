@@ -8,45 +8,22 @@ import { LuExternalLink } from 'react-icons/lu';
 
 import ShareLinkButton from '@/app/album/components/Button/ShareLinkButton';
 import TotalCounter from '@/app/album/components/TotalCounter';
+import { useGalleryPageInfo } from '@/app/album/service/client/useGalleryService';
 import Button from '@/components/Button';
 import { BBangTTi } from '@/lib/images';
 
 type Props = {
-  title: string;
-  description: string;
-  pageType: string;
-  linkUrl?: string;
-  linkTitle?: string;
+  pageName: string;
 };
-
-// const getTitleInfo = (type: string) => {
-
-//   const album = GALLERY_LIST.find((item) => item.id === type);
-//   const board = UPDATED_GALLERY_LIST.find((item) => item.id === type);
-//   const member = MEMBERS.find((item) => item.value === type);
-
-//   return {
-//     title: album?.title || board?.title || `${member?.name ?? ''} 팬아트`,
-//     description: album?.description || '',
-//     linkUrl: album?.linkUrl || '',
-//     linkTitle: album?.linkTitle || '',
-//   };
-// };
 
 const titleClassName = 'mt-1.5 font-pop text-4xl sm:text-5xl   break-keep';
 const descriptionClassName =
   'text-base md:text-lg lg:text-xl  text-wrap max-w-[280px] md:max-w-[530px]  break-keep';
 
-export default function GalleryTitle({
-  pageType,
-  title,
-  description,
-  linkUrl,
-  linkTitle,
-}: Props) {
+export default function GalleryTitle({ pageName }: Props) {
   const router = useRouter();
   // TODO: link URL 서버에서 데이터 요청
-  // const {  linkUrl, linkTitle } = getTitleInfo(pageType);
+  const { data } = useGalleryPageInfo(pageName);
 
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
@@ -67,6 +44,9 @@ export default function GalleryTitle({
   const handleBackButton = () => {
     router.push('/');
   };
+
+  if (!data) return null;
+  const { id: pageType, title, description, linkTitle, linkUrl } = data;
 
   return (
     <div className="my-6 flex w-full flex-col items-start justify-start pl-2 md:pl-8">
