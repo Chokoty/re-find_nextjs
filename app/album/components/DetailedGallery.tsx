@@ -34,6 +34,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
   const albumName = pathNameParts[pathNameParts.length - 1];
+  const parentPath = pathNameParts[pathNameParts.length - 2];
   // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
   const shouldHideTotalCounter = (n: string) => {
     const hiddenNames = [
@@ -46,8 +47,6 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     ];
     return hiddenNames.includes(n);
   };
-
-  const [isCheckable, setIsCheckable] = useState(false);
   // -----------커스텀 앨범일 경우(start)------------
   const { data: user } = useMyInfo();
   const customAlbumInfo = user?.albums.find((album) => album.id === albumName);
@@ -58,6 +57,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
       name: 'test',
       is_public: true,
     });
+
   const handleEditCustomAlbumInfo = () => {
     editCustomAlbumInfo();
   };
@@ -104,7 +104,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     params.append('sortType', SortType);
     // URL에 query string 추가
     const queryString = params.toString();
-    router.push(`/album/${albumName}?${queryString}`);
+    router.push(`/${parentPath}/${albumName}?${queryString}`);
   };
 
   // 정렬 선택하기
@@ -147,14 +147,10 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     if (!total) return;
     setTotal(total);
   }, [total]);
+
   return (
     <>
-      <AlbumAddButtonsBar
-        isMyCustomAlbum={isMyCustomAlbum}
-        user={user}
-        isCheckable={isCheckable}
-        setIsCheckable={setIsCheckable}
-      />
+      <AlbumAddButtonsBar isMyCustomAlbum={isMyCustomAlbum} user={user} />
       <ViewSelectBar
         activeView={activeView}
         onViewChange={handleViewChange}
@@ -187,7 +183,6 @@ export default function DetailedGallery({ value: galleryType }: Props) {
                 }
                 // isIsdPick={isIsdPick}
                 isDeletedVisible={isDeletedVisible}
-                isCheckable={isCheckable}
               />
             )}
             {activeView === 'grid' && (

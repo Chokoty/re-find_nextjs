@@ -16,16 +16,22 @@ export default function AddCheckedFanartsToCustomAlbumModal(
   const [selected, setSelected] = useState<string | null>(null);
   const { data: user } = useMyInfo();
   const { hide } = useModal();
-  const { fanarts } = props;
+  const fanarts = props.fanarts as number[];
+  const showSaveButton = props.showSaveButton as () => void;
 
   const { mutate: addFanartsIntoCustomAlbum, isPending } =
     ussAddFanartsInToCustomAlbum({
       albumId: selected || '',
-      items: fanarts as number[],
+      items: fanarts,
       handleOnSuccess: () => {
         hide();
+        showSaveButton();
       },
     });
+  const handleClose = () => {
+    hide();
+    showSaveButton();
+  };
   const handleAddToCustomAlbum = () => {
     // console.log(fanarts);
     if (!selected) return;
@@ -54,7 +60,11 @@ export default function AddCheckedFanartsToCustomAlbumModal(
             ))}
         </div>
         <div className="mt-3 flex items-center justify-center gap-4">
-          <Button intent="ghost-gray" onClick={hide} disabled={isPending}>
+          <Button
+            intent="ghost-gray"
+            onClick={handleClose}
+            disabled={isPending}
+          >
             취소하기
           </Button>
           <Button

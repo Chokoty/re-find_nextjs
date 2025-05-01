@@ -3,21 +3,10 @@
 import DetailedGallery from '@/app/album/components/DetailedGallery';
 import ArtistList from '@/app/myLibrary/components/ArtistList';
 import BackToLibraryLink from '@/app/myLibrary/components/BackToLibraryLink';
+import CommonTitle from '@/app/myLibrary/components/CommonHeader';
 import CustomAlbumsList from '@/app/myLibrary/components/CustomAlbumsList';
 
 type Params = { params: { name: string } };
-
-interface SectionHeaderProps {
-  title: string;
-}
-
-function SectionHeader({ title }: SectionHeaderProps) {
-  return (
-    <div className="mb-12 flex items-end justify-start gap-4">
-      <p className="text-left text-xl font-extrabold md:text-3xl">{title}</p>
-    </div>
-  );
-}
 
 const SECTION_CONFIG: Record<
   string,
@@ -45,10 +34,14 @@ export default function Page({ params: { name } }: Params) {
   return (
     <div className="w-full">
       <div className="mt-8 flex size-full flex-col px-8">
-        <BackToLibraryLink />
         {section ? (
           <>
-            {section.header && <SectionHeader title={section.header} />}
+            <BackToLibraryLink
+              hasRightButton={
+                name === 'likedFanarts' || name === 'artistTimeline'
+              }
+            />
+            {section.header && <CommonTitle title={section.header} />}
             {section.content}
           </>
         ) : (

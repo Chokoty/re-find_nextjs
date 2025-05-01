@@ -3,14 +3,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { LuExternalLink } from 'react-icons/lu';
+import { MdEdit } from 'react-icons/md';
+import { useShallow } from 'zustand/react/shallow';
 
 import ShareLinkButton from '@/app/album/components/Button/ShareLinkButton';
 import TotalCounter from '@/app/album/components/TotalCounter';
 import { useGalleryPageInfo } from '@/app/album/service/client/useGalleryService';
+import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
+import { useEditModeStore } from '@/app/album/store/editModeStore';
 import Button from '@/components/Button';
 import { BBangTTi } from '@/lib/images';
+import { useMyInfo } from '@/service/client/useCommonService';
 
 type Props = {
   pageName: string;
@@ -24,10 +30,20 @@ export default function GalleryTitle({ pageName }: Props) {
   const router = useRouter();
   // TODO: link URL 서버에서 데이터 요청
   const { data } = useGalleryPageInfo(pageName);
+  const { data: user } = useMyInfo();
+  const { isEdit, setIsEdit } = useEditModeStore(
+    useShallow((state) => ({
+      isEdit: state.isEdit,
+      setIsEdit: state.setIsEdit,
+    }))
+  );
 
+  const setFanarts = useCheckFanartStore((state) => state.setFanarts);
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
-  const name = pathNameParts[pathNameParts.length - 1];
+  const albumName = pathNameParts[pathNameParts.length - 1];
+  const customAlbumInfo = user?.albums.find((album) => album.id === albumName);
+  const isMyCustomAlbum = customAlbumInfo !== undefined;
   // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
   const shouldHideTotalCounter = (n: string) => {
     const hiddenNames = [
@@ -44,6 +60,21 @@ export default function GalleryTitle({ pageName }: Props) {
   const handleBackButton = () => {
     router.push('/');
   };
+  // 편집/편집 취소 버튼 핸들러
+  const handleEditButtonClick = () => {
+    if (isEdit) {
+      setIsEdit(false); // 편집 취소
+      setFanarts([]); // 체크된 팬아트 초기화
+    } else {
+      setIsEdit(true); // 편집 시작
+    }
+  };
+  // 페이지 벗어날 때 편집 모드 초기화
+  useEffect(() => {
+    return () => {
+      setIsEdit(false); // 컴포넌트 언마운트 시 상태 리셋
+    };
+  }, []);
 
   if (!data) return null;
   const { id: pageType, title, description, linkTitle, linkUrl } = data;
@@ -59,16 +90,30 @@ export default function GalleryTitle({ pageName }: Props) {
         </>
       ) : (
         <>
-          <Button
-            intent="link-gray"
-            onClick={handleBackButton}
-            additionalClass="p-0 h-7 min-h-7"
-          >
-            <FaAngleLeft className="mr-1" />
-            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-              팬아트 갤러리로 돌아가기
-            </p>
-          </Button>
+          <div className="flex w-full items-center justify-between">
+            <Button
+              intent="link-gray"
+              onClick={handleBackButton}
+              additionalClass="p-0 h-7 min-h-7"
+            >
+              <FaAngleLeft className="mr-1" />
+              <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+                팬아트 갤러리로 돌아가기
+              </p>
+            </Button>
+            {isMyCustomAlbum && (
+              <Button
+                intent="link-gray"
+                onClick={handleEditButtonClick}
+                additionalClass="ml-2 h-7 min-h-7 px-3 text-sm"
+              >
+                <MdEdit className="mr-1" size={14} />
+                <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+                  {isEdit ? '편집 취소' : '편집'}
+                </p>
+              </Button>
+            )}
+          </div>
           <div className="w-full">
             <h1 className={titleClassName}>{title}</h1>
             <div className="mb-6 mt-1.5">
@@ -90,7 +135,7 @@ export default function GalleryTitle({ pageName }: Props) {
           <div className="flex w-full items-center justify-between">
             <ShareLinkButton />
             <div className="2md:hidden">
-              {!shouldHideTotalCounter(name) && <TotalCounter />}
+              {!shouldHideTotalCounter(albumName) && <TotalCounter />}
             </div>
           </div>
         </>

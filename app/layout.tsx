@@ -4,6 +4,7 @@ import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import NextTopLoader from 'nextjs-toploader';
 
+import AlbumSelectionSaveButton from '@/components/AlbumSelectionSaveButton';
 import Header from '@/components/Header';
 import MobileTabBar from '@/components/MobileTabBar';
 import { siteConfig } from '@/lib/config';
@@ -63,6 +64,7 @@ export default function RootLayout({
           {/* <main className="overflow-x-hidden py-[calc(60px+16px)]"> */}
           <main className="overflow-x-hidden pt-[calc(60px)]">{children}</main>
           <MobileTabBar />
+          <AlbumSelectionSaveButton />
           <div id="modal-root" />
         </Providers>
       </body>

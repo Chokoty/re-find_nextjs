@@ -1,20 +1,16 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { useEditModeStore } from '@/app/album/store/editModeStore';
 import CardImage from '@/components/CardImage/CardImage';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 type Props = {
   artwork: ArtworkList | AlbumArtworkList;
   isIsdPick?: boolean;
-  isCheckable?: boolean;
 };
 
-export default function MasonryCard({
-  artwork,
-  isIsdPick = false,
-  isCheckable = false,
-}: Props) {
+export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
   const authorName = 'author' in artwork ? artwork.author : '';
   const pathname = usePathname();
   const isArtistDetails = pathname.startsWith('/artists');
@@ -27,20 +23,17 @@ export default function MasonryCard({
   // 이세돌픽 갤러리는 작가 링크가 올린 게시글이고 그렇지 않다면 리파인드 작가입니다.
   const artistLink = isIsdPick ? postLink : `/artists/${authorName}`;
   const linkTarget = isIsdPick ? '_blank' : '_self';
+  const isEdit = useEditModeStore((state) => state.isEdit);
 
   return (
     <div className="inline-block w-full">
-      <CardImage
-        data={artwork}
-        wakzooLink={wakzooLink}
-        isCheckable={isCheckable}
-      />
+      <CardImage data={artwork} wakzooLink={wakzooLink} isCheckable={isEdit} />
       <div className="flex h-auto w-full max-w-[350px] flex-col items-start justify-center">
         <p className="line-clamp-1 text-left text-base font-medium">
           {artwork.title}
         </p>
         {!isArtistDetails &&
-          (isCheckable ? (
+          (isEdit ? (
             // 체크 모드일 때는 링크 대신 텍스트만 표시
             <span
               className="line-clamp-1 w-full cursor-not-allowed text-left text-sm font-medium text-gray-400 dark:text-gray-500"
