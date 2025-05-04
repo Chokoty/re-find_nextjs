@@ -1,4 +1,6 @@
 // import ThisWeekTop from '@/app/album/components/ThisWeekTop';
+import { Suspense } from 'react';
+
 import BoardList from '@/app/album/components/BoardList';
 import GalleryTitle from '@/app/album/components/GalleryTitle';
 import MemberAlbum from '@/app/album/components/MemberAlbum';
@@ -8,12 +10,14 @@ import TopBackground from '@/app/album/components/TopBackground';
 export default function Gallery() {
   return (
     <div className="w-full">
-      <TopBackground>
-        <GalleryTitle
-          pageType="galleryHome"
-          title="팬아트 갤러리"
-          description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
-        />
+      <TopBackground pageName="galleryHome">
+        <Suspense>
+          <GalleryTitle
+            pageName="galleryHome"
+            // title="팬아트 갤러리"
+            // description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
+          />
+        </Suspense>
       </TopBackground>
       <section
         // -220px(-60px + -160px)

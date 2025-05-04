@@ -4,7 +4,6 @@ import Image from 'next/image';
 import type { ReactNode } from 'react';
 
 import { useGalleryPageInfo } from '@/app/album/service/client/useGalleryService';
-import { Isd } from '@/lib/images';
 
 interface TopBackgroundProps {
   children: ReactNode;

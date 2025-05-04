@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
 import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import Footer from '@/app/(home)/components/Footer';
@@ -69,11 +69,13 @@ export default function Home() {
       <div className="mx-auto mt-2 hidden h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 md:flex">
         <LeftSection />
         <PageContent>
-          <GalleryTitle
-            pageType="galleryHome"
-            title="팬아트 갤러리"
-            description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
-          />
+          <Suspense>
+            <GalleryTitle
+              pageName="galleryHome"
+              // title="팬아트 갤러리"
+              // description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
+            />
+          </Suspense>
           <RefindPick />
           <BoardList />
           <MemberAlbum />

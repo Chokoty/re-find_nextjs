@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 
 import DetailedGallery from '@/app/album/components/DetailedGallery';
 import GalleryTitle from '@/app/album/components/GalleryTitle';
@@ -54,11 +55,15 @@ export default async function page({ params: { name } }: Params) {
     return (
       <div className="w-full">
         <TopBackground pageName={name}>
-          <GalleryTitle pageName={name} />
+          <Suspense>
+            <GalleryTitle pageName={name} />
+          </Suspense>
         </TopBackground>
         <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px] sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
           <Hydrate state={{ queries: [query] }}>
-            <DetailedGallery value={name} />
+            <Suspense>
+              <DetailedGallery value={name} />
+            </Suspense>
           </Hydrate>
         </section>
       </div>
@@ -68,11 +73,15 @@ export default async function page({ params: { name } }: Params) {
   return (
     <div className="w-full">
       <TopBackground pageName={name}>
-        <GalleryTitle pageName={name} />
+        <Suspense>
+          <GalleryTitle pageName={name} />
+        </Suspense>
       </TopBackground>
       {/* -220px(-60px + -160px) */}
       <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px] sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-400px]">
-        <DetailedGallery value={name} />
+        <Suspense>
+          <DetailedGallery value={name} />
+        </Suspense>
       </section>
     </div>
   );

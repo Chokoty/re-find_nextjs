@@ -1,5 +1,7 @@
 // TODO: 로그인된 사용자만 접근 가능하도록 수정하기
 
+import { Suspense } from 'react';
+
 import DetailedGallery from '@/app/album/components/DetailedGallery';
 import ArtistList from '@/app/myLibrary/components/ArtistList';
 import BackToLibraryLink from '@/app/myLibrary/components/BackToLibraryLink';
@@ -17,11 +19,19 @@ const SECTION_CONFIG: Record<
   },
   artistTimeline: {
     header: '구독중인 작가 팬아트 타임라인',
-    content: <DetailedGallery value="artistTimeline" />,
+    content: (
+      <Suspense>
+        <DetailedGallery value="artistTimeline" />
+      </Suspense>
+    ),
   },
   likedFanarts: {
     header: '좋아요한 팬아트',
-    content: <DetailedGallery value="likedFanarts" />,
+    content: (
+      <Suspense>
+        <DetailedGallery value="likedFanarts" />
+      </Suspense>
+    ),
   },
   customAlbums: {
     content: <CustomAlbumsList />,

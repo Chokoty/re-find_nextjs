@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import { Suspense } from 'react';
 
 import ArtistProfile from '@/app/artists/components/ArtistProfile';
 import DetailedArtists from '@/app/artists/components/DetailedArtists';
@@ -62,7 +63,9 @@ export default async function page({ params: { nickname } }: Params) {
       <div className="mb-8 mt-16 flex w-full flex-col items-center">
         <ArtistProfile nickname={decodedNickname} profile={result} />
         <Hydrate state={{ queries: [query] }}>
-          <DetailedArtists nickname={decodedNickname} artistInfo={result} />
+          <Suspense>
+            <DetailedArtists nickname={decodedNickname} artistInfo={result} />
+          </Suspense>
         </Hydrate>
       </div>
     );
@@ -73,7 +76,9 @@ export default async function page({ params: { nickname } }: Params) {
   ) : (
     <div className="mb-8 mt-16 flex w-full flex-col items-center">
       <ArtistProfile nickname={decodedNickname} profile={result} />
-      <DetailedArtists nickname={decodedNickname} artistInfo={result} />
+      <Suspense>
+        <DetailedArtists nickname={decodedNickname} artistInfo={result} />
+      </Suspense>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import React, { useRef } from 'react';
+import React, { Suspense, useRef } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 import { FaBookOpen } from 'react-icons/fa';
 
@@ -22,11 +22,13 @@ export default function HomeMobile() {
       ref={scrollContainerRef} // 스크롤 이벤트 연결
       className="flex w-full flex-col items-center justify-start px-3 md:hidden"
     >
-      <GalleryTitle
-        pageType="galleryHome"
-        title="팬아트 갤러리"
-        description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
-      />
+      <Suspense>
+        <GalleryTitle
+          pageName="galleryHome"
+          // title="팬아트 갤러리"
+          // description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
+        />
+      </Suspense>
       <RefindPick />
       <BoardList />
       <MemberAlbum />
