@@ -116,6 +116,7 @@ export default function GalleryTitle({ pageName }: Props) {
   useEffect(() => {
     return () => {
       setIsEdit(false); // 컴포넌트 언마운트 시 상태 리셋
+      setFanarts([]);
     };
   }, []);
 
