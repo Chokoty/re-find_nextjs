@@ -7,7 +7,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { LuExternalLink } from 'react-icons/lu';
-import { MdAdd, MdDelete, MdEdit } from 'react-icons/md';
+import { MdAdd, MdCheck, MdDelete, MdEdit } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
 import ShareLinkButton from '@/app/album/components/Button/ShareLinkButton';
@@ -17,12 +17,11 @@ import queryOptions from '@/app/album/service/client/queries';
 import { useGalleryPageInfo } from '@/app/album/service/client/useGalleryService';
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
 import { useEditModeStore } from '@/app/album/store/editModeStore';
-import { useEditCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 import Button from '@/components/Button';
 import AddFanartToAlbumFinderModal from '@/components/Modal/AddFanartToAlbumFinderModal';
 import useModal from '@/hooks/useModal';
 import { BBangTTi } from '@/lib/images';
-import { useMyInfo } from '@/service/client/useCommonService';
+import EditCustomAlbumInfoModal from '@/components/Modal/EditCustomAlbumInfoModal';
 
 type Props = {
   pageName: string;
@@ -40,24 +39,21 @@ export default function GalleryTitle({ pageName }: Props) {
   const pathNameParts = pathname.split('/');
   const albumName = pathNameParts[pathNameParts.length - 1];
   // TODO: link URL 서버에서 데이터 요청
-  const { data } = useGalleryPageInfo(pageName);
-  const { data: user } = useMyInfo();
+  const { data: pageInfo } = useGalleryPageInfo(pageName);
   const { isEdit, setIsEdit } = useEditModeStore(
     useShallow((state) => ({
       isEdit: state.isEdit,
       setIsEdit: state.setIsEdit,
     }))
   );
-  const { mutate: editCustomAlbumInfo, status: editStatus } =
-    useEditCustomAlbum(albumName, {
-      name: 'test',
-      is_public: true,
-    });
 
   const { show: showAddFanartToAlbumFinderModal } = useModal(
     AddFanartToAlbumFinderModal
   );
   const { show: showDeleteCustomAlbumModal } = useModal(DeleteCustomAlbumModal);
+  const { show: showEditCustomAlbumInfoModal } = useModal(
+    EditCustomAlbumInfoModal
+  );
   const { queryKey } = queryOptions.galleryArtworks({
     sortType: sortTypeInit === '' ? 'alzaltak' : sortTypeInit,
     galleryType: pageName,
@@ -74,13 +70,7 @@ export default function GalleryTitle({ pageName }: Props) {
     });
   };
 
-  const handleEditCustomAlbumInfo = () => {
-    editCustomAlbumInfo();
-  };
-
   const setFanarts = useCheckFanartStore((state) => state.setFanarts);
-  const customAlbumInfo = user?.albums.find((album) => album.id === albumName);
-  const isMyCustomAlbum = customAlbumInfo !== undefined;
   // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
   const shouldHideTotalCounter = (n: string) => {
     const hiddenNames = [
@@ -106,12 +96,6 @@ export default function GalleryTitle({ pageName }: Props) {
       setIsEdit(true); // 편집 시작
     }
   };
-  const handleDeleteCustomAlbum = () => {
-    showDeleteCustomAlbumModal({
-      animateDir: 'bottom',
-      title: customAlbumInfo?.name,
-    });
-  };
   // 페이지 벗어날 때 편집 모드 초기화
   useEffect(() => {
     return () => {
@@ -119,9 +103,31 @@ export default function GalleryTitle({ pageName }: Props) {
       setFanarts([]);
     };
   }, []);
+  if (!pageInfo) return null;
+  const {
+    id: pageType,
+    title,
+    description,
+    linkTitle,
+    linkUrl,
+    owned,
+  } = pageInfo;
+  const handleDeleteCustomAlbum = () => {
+    showDeleteCustomAlbumModal({
+      animateDir: 'bottom',
+      title,
+    });
+  };
 
-  if (!data) return null;
-  const { id: pageType, title, description, linkTitle, linkUrl } = data;
+  const showEditModal = () => {
+    showEditCustomAlbumInfoModal({
+      animateDir: 'bottom',
+      albumName: pageName,
+      initialTitle: title,
+      initialDescription: description,
+      isBackdropClick: true,
+    });
+  };
 
   const activeColor = 'text-green-600';
   const inactiveColor = 'text-blackAlpha-700 dark:text-whiteAlpha-700';
@@ -148,7 +154,7 @@ export default function GalleryTitle({ pageName }: Props) {
                 팬아트 갤러리로 돌아가기
               </p>
             </Button>
-            {isMyCustomAlbum && (
+            {owned && (
               <div className="flex items-center gap-1">
                 <Button
                   intent="ghost-gray"
@@ -176,24 +182,36 @@ export default function GalleryTitle({ pageName }: Props) {
                     삭제
                   </span>
                 </Button>
-                <Button
+                {/* <Button
                   intent="ghost-gray"
                   onClick={handleEditButtonClick}
                   additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
                 >
-                  <MdEdit
+                  <MdCheck
                     className={`mr-1 ${isEdit ? activeColor : inactiveColor}`}
                     size={14}
                   />
                   <span className={isEdit ? activeColor : inactiveColor}>
-                    편집
+                    선택
                   </span>
-                </Button>
+                </Button> */}
               </div>
             )}
           </div>
           <div className="w-full">
-            <h1 className={titleClassName}>{title}</h1>
+            {/* <h1 className={titleClassName}>{title}</h1> */}
+            {owned ? (
+              <button
+                type="button"
+                className={`m-0 mt-1.5 cursor-pointer break-keep p-0 font-pop text-4xl sm:text-5xl`}
+                onClick={showEditModal}
+                style={{ outline: 'none' }}
+              >
+                {title}
+              </button>
+            ) : (
+              <h1 className={titleClassName}>{title}</h1>
+            )}
             <div className="mb-6 mt-1.5">
               <p className={`font-bold ${descriptionClassName}`}>
                 {description}

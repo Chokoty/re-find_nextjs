@@ -30,11 +30,18 @@ export function useCreateCustomAlbum(
   return useMutation(queryOptions.createCustomAlbum(items, handleOnSuccess));
 }
 
-export function useEditCustomAlbum(
-  albumId: string,
-  info: CustomAlbumEditParams
-) {
-  return useMutation(queryOptions.editCustomAlbuminfo(albumId, info));
+export function useEditCustomAlbum({
+  albumId,
+  info,
+  handleOnSuccess,
+}: {
+  albumId: string;
+  info: CustomAlbumEditParams;
+  handleOnSuccess: () => void;
+}) {
+  return useMutation(
+    queryOptions.editCustomAlbuminfo({ albumId, info, handleOnSuccess })
+  );
 }
 
 export function useDeleteCustomAlbum({
