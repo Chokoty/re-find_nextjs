@@ -16,12 +16,13 @@ import queryOptions from '@/app/album/service/client/queries';
 import { useGalleryPageInfo } from '@/app/album/service/client/useGalleryService';
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
 import { useDeleteModeStore } from '@/app/album/store/deleteModeStore';
-import { useEditModeStore } from '@/app/album/store/editModeStore';
 import Button from '@/components/Button';
+import SelectionMode from '@/components/Button/SelectionMode';
 import AddFanartToAlbumFinderModal from '@/components/Modal/AddFanartToAlbumFinderModal';
 import EditCustomAlbumInfoModal from '@/components/Modal/EditCustomAlbumInfoModal';
 import useModal from '@/hooks/useModal';
 import { BBangTTi } from '@/lib/images';
+import { useMyInfo } from '@/service/client/useCommonService';
 
 type Props = {
   pageName: string;
@@ -38,14 +39,9 @@ export default function GalleryTitle({ pageName }: Props) {
   const sortTypeInit = searchParams.get('sortType') ?? '';
   const pathNameParts = pathname.split('/');
   const albumName = pathNameParts[pathNameParts.length - 1];
+  const { data: userInfo } = useMyInfo();
   // TODO: link URL 서버에서 데이터 요청
   const { data: pageInfo } = useGalleryPageInfo(pageName);
-  const { isEdit, setIsEdit } = useEditModeStore(
-    useShallow((state) => ({
-      isEdit: state.isEdit,
-      setIsEdit: state.setIsEdit,
-    }))
-  );
   const { isDelete, setIsDelete } = useDeleteModeStore(
     useShallow((state) => ({
       isDelete: state.isDelete,
@@ -76,6 +72,7 @@ export default function GalleryTitle({ pageName }: Props) {
   };
 
   const setFanarts = useCheckFanartStore((state) => state.setFanarts);
+
   // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
   const shouldHideTotalCounter = (n: string) => {
     const hiddenNames = [
@@ -92,15 +89,6 @@ export default function GalleryTitle({ pageName }: Props) {
   const handleBackButton = () => {
     router.push('/');
   };
-  // 편집/편집 취소 버튼 핸들러
-  const handleEditButtonClick = () => {
-    if (isEdit) {
-      setIsEdit(false); // 편집 취소
-      setFanarts([]); // 체크된 팬아트 초기화
-    } else {
-      setIsEdit(true); // 편집 시작
-    }
-  };
   const handleDeleteButtonClick = () => {
     if (isDelete) {
       setIsDelete(false); // 삭제 모드 취소
@@ -112,7 +100,6 @@ export default function GalleryTitle({ pageName }: Props) {
   // 페이지 벗어날 때 편집 모드 초기화
   useEffect(() => {
     return () => {
-      setIsEdit(false); // 컴포넌트 언마운트 시 상태 리셋
       setIsDelete(false);
       setFanarts([]);
     };
@@ -162,35 +149,36 @@ export default function GalleryTitle({ pageName }: Props) {
                 팬아트 갤러리로 돌아가기
               </p>
             </Button>
-            {owned && (
-              <div className="flex items-center gap-1">
-                <Button
-                  intent="ghost-gray"
-                  onClick={handleOpenAddFanartToAlbumFinderModal}
-                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
-                >
-                  <MdAdd
-                    className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
-                    size={20}
-                  />
-                  <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-                    추가
-                  </span>
-                </Button>
-                <Button
-                  intent="ghost-gray"
-                  onClick={handleDeleteButtonClick}
-                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
-                >
-                  <MdDelete
-                    className={`mr-1 ${isDelete ? activeColor : inactiveColor}`}
-                    size={20}
-                  />
-                  <span className={isDelete ? activeColor : inactiveColor}>
-                    삭제
-                  </span>
-                </Button>
-                {/* <Button
+            {userInfo &&
+              (owned ? (
+                <div className="flex items-center gap-1">
+                  <Button
+                    intent="ghost-gray"
+                    onClick={handleOpenAddFanartToAlbumFinderModal}
+                    additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
+                  >
+                    <MdAdd
+                      className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                      size={20}
+                    />
+                    <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+                      추가
+                    </span>
+                  </Button>
+                  <Button
+                    intent="ghost-gray"
+                    onClick={handleDeleteButtonClick}
+                    additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
+                  >
+                    <MdDelete
+                      className={`mr-1 ${isDelete ? activeColor : inactiveColor}`}
+                      size={20}
+                    />
+                    <span className={isDelete ? activeColor : inactiveColor}>
+                      삭제
+                    </span>
+                  </Button>
+                  {/* <Button
                   intent="ghost-gray"
                   onClick={handleEditButtonClick}
                   additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
@@ -203,8 +191,10 @@ export default function GalleryTitle({ pageName }: Props) {
                     선택
                   </span>
                 </Button> */}
-              </div>
-            )}
+                </div>
+              ) : (
+                <SelectionMode />
+              ))}
           </div>
           <div className="w-full">
             {/* <h1 className={titleClassName}>{title}</h1> */}
