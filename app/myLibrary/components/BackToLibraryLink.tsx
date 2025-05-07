@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { FaAngleLeft } from 'react-icons/fa';
 
-import SelectionMode from '@/components/Button/SelectionMode';
+import SelectionModeButton from '@/components/Button/SelectionModeButton';
 
 const BackToLibraryLink = ({
   hasRightButton = false,
@@ -23,7 +23,7 @@ const BackToLibraryLink = ({
         </span>
       </Link>
       {/* 오른쪽: 선택 모드 버튼 */}
-      {hasRightButton && <SelectionMode />}
+      {hasRightButton && <SelectionModeButton />}
     </div>
   );
 };

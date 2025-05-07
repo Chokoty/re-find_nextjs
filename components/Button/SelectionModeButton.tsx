@@ -6,7 +6,7 @@ import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
 import { useEditModeStore } from '@/app/album/store/editModeStore';
 import Button from '@/components/Button';
 
-export default function SelectionMode() {
+export default function SelectionModeButton() {
   const { isEdit: isCheckable, setIsEdit: setIsCheckable } = useEditModeStore(
     useShallow((state) => ({
       isEdit: state.isEdit,

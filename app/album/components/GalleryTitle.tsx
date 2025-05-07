@@ -17,7 +17,7 @@ import { useGalleryPageInfo } from '@/app/album/service/client/useGalleryService
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
 import { useDeleteModeStore } from '@/app/album/store/deleteModeStore';
 import Button from '@/components/Button';
-import SelectionMode from '@/components/Button/SelectionMode';
+import SelectionModeButton from '@/components/Button/SelectionModeButton';
 import AddFanartToAlbumFinderModal from '@/components/Modal/AddFanartToAlbumFinderModal';
 import EditCustomAlbumInfoModal from '@/components/Modal/EditCustomAlbumInfoModal';
 import useModal from '@/hooks/useModal';
@@ -193,7 +193,7 @@ export default function GalleryTitle({ pageName }: Props) {
                 </Button> */}
                 </div>
               ) : (
-                <SelectionMode />
+                <SelectionModeButton />
               ))}
           </div>
           <div className="w-full">
