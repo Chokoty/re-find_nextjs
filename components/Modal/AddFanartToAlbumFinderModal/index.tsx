@@ -94,9 +94,11 @@ export default function AddFanartToAlbumFinderModal(
   const isInputNotEmpty = input.length > 0;
 
   return (
-    <section className="relative m-auto flex h-5/6 w-full max-w-[760px] flex-col rounded-2xl bg-white dark:bg-dark-card sm:w-full">
-      <h1 className="text-xl font-bold">앨범에 추가할 팬아트를 찾아보세요</h1>
-      <div className="flex size-full flex-col items-center justify-between px-6 py-8 text-center text-sm 2xs:text-base md:py-6 lg:px-8">
+    <section className="relative m-auto flex h-[80vh] w-full max-w-[760px] flex-col rounded-2xl bg-white dark:bg-dark-card sm:w-full">
+      <h1 className="px-6 py-8 text-xl font-bold">
+        앨범에 추가할 팬아트를 찾아보세요
+      </h1>
+      <div className="flex size-full flex-col items-center justify-between px-6 pb-8 text-center text-sm 2xs:text-base md:pb-6 lg:px-8">
         <div className="relative h-10 w-full max-w-[400px]">
           <div className="absolute left-1 top-0 z-[2] flex h-full w-10 items-center justify-center">
             <FaSearch
@@ -108,7 +110,7 @@ export default function AddFanartToAlbumFinderModal(
           </div>
           <input
             className="relative size-full cursor-text rounded-full border border-gray-200 bg-gray-100 pl-12 pr-14 outline-none transition placeholder:text-gray-500 hover:border-green-highlight hover:bg-white focus:border-green-highlight focus:outline-none focus:ring-1 focus:ring-green-highlight dark:border-whiteAlpha-300 dark:bg-whiteAlpha-200 dark:placeholder:text-whiteAlpha-600 dark:hover:bg-dark-card"
-            placeholder="팬아트 제목 또는 작가명을 검색해보세요"
+            placeholder="팬아트 제목 또는 작가명"
             value={input}
             onChange={handleSearch}
           />
@@ -248,7 +250,8 @@ const Contents = ({
   }
 
   return (
-    <div className="mt-6 h-2/4 w-full grow overflow-y-auto px-1.5">
+    // 80vh-(92px+40px+40px)
+    <div className="mt-6 max-h-[calc(80vh-280px)] w-full overflow-y-auto px-1.5">
       {searchResults.map((item) => (
         <SearchItemRow
           item={item}
