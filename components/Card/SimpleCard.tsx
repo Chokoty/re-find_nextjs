@@ -3,9 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { FaCheck } from 'react-icons/fa';
+import { MdClose } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
+import { useDeleteModeStore } from '@/app/album/store/deleteModeStore';
 import { useEditModeStore } from '@/app/album/store/editModeStore';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
@@ -18,6 +20,7 @@ export default function SimpleCard({ artwork }: Prop) {
   // const article_link = useResponsiveLink('', 'article');
   const [isFocus, setIsFocus] = useState(false);
   const isCheckable = useEditModeStore((state) => state.isEdit);
+  const isDelete = useDeleteModeStore((state) => state.isDelete);
   const { fanarts, setFanarts } = useCheckFanartStore(
     useShallow((state) => ({
       fanarts: state.fanarts,
@@ -62,7 +65,7 @@ export default function SimpleCard({ artwork }: Prop) {
   const isCheck = fanarts.includes(artwork.id);
 
   const handleToggleCheck = () => {
-    if (!isCheckable) return;
+    if (!(isCheckable || isDelete)) return;
     if (isCheck) {
       setFanarts(fanarts.filter((fanartId) => fanartId !== artwork.id));
     } else {
@@ -75,11 +78,11 @@ export default function SimpleCard({ artwork }: Prop) {
       className={clsx(
         'group relative aspect-[16/9] max-w-[440px] overflow-hidden rounded-2xl',
         {
-          'cursor-pointer': isCheckable,
+          'cursor-pointer': isCheckable || isDelete,
         }
       )}
-      onClick={isCheckable ? handleToggleCheck : undefined}
-      tabIndex={isCheckable ? 0 : undefined}
+      onClick={isCheckable || isDelete ? handleToggleCheck : undefined}
+      tabIndex={isCheckable || isDelete ? 0 : undefined}
     >
       <div className="flex size-full items-center justify-between">
         <div className="h-full w-[65.5%]">
@@ -116,13 +119,13 @@ export default function SimpleCard({ artwork }: Prop) {
         </div>
       </div>
       {/* 체크 UI */}
-      {isCheckable && (
+      {isCheckable && !isDelete && (
         <div
           className={clsx(
-            'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 bg-white text-green-600 shadow-lg transition-all duration-300',
+            'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 text-green-600 shadow-lg transition-all duration-300',
             {
-              'border-green-600': isCheck,
-              'border-gray-300 text-gray-400 group-hover:border-green-400 group-hover:text-green-500':
+              'border-green-600  bg-green-500 text-white': isCheck,
+              'border-gray-300 bg-white text-gray-400 group-hover:border-green-400 group-hover:text-green-500':
                 !isCheck,
             }
           )}
@@ -136,8 +139,29 @@ export default function SimpleCard({ artwork }: Prop) {
           />
         </div>
       )}
+      {/* 삭제 모드 UI */}
+      {isDelete && (
+        <div
+          className={clsx(
+            'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 shadow-lg transition-all duration-300',
+            {
+              'border-red-600 bg-red-500 text-white': isCheck,
+              'border-gray-300 bg-white text-gray-400 group-hover:border-red-400 group-hover:text-red-500':
+                !isCheck,
+            }
+          )}
+        >
+          <MdClose
+            className={clsx('text-lg transition-transform duration-200', {
+              'scale-100 opacity-100': isCheck,
+              'scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100':
+                !isCheck,
+            })}
+          />
+        </div>
+      )}
       {/* 오버레이/자세히: 선택모드 아닐 때만 */}
-      {!isCheckable && (
+      {!isCheckable && !isDelete && (
         <>
           <div
             className={clsx(
@@ -171,7 +195,7 @@ export default function SimpleCard({ artwork }: Prop) {
       onBlur={() => setIsFocus(false)}
     >
       {/* 선택모드일 때는 Link 제거, 아닐 때만 Link로 감싼다 */}
-      {isCheckable ? (
+      {isCheckable || isDelete ? (
         CardInner
       ) : (
         <Link href={`/artwork/${artwork.id}`} className="mb-2">
@@ -179,7 +203,7 @@ export default function SimpleCard({ artwork }: Prop) {
         </Link>
       )}
       <div className="w-full px-1">
-        {isCheckable ? (
+        {isCheckable || isDelete ? (
           <p className="line-clamp-1 text-left text-base font-semibold hover:text-whiteAlpha-700 active:text-whiteAlpha-800 2xs:text-xl">
             {artwork.title}
           </p>

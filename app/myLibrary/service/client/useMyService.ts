@@ -48,9 +48,15 @@ export function useDeleteCustomAlbum({
   albumId,
   artworksIdList,
   isDeleteAlbum = false,
+  handleOnSuccess,
 }: DeleteArtworkParams) {
   return useMutation(
-    queryOptions.deleteCustomAlbum({ albumId, artworksIdList, isDeleteAlbum })
+    queryOptions.deleteCustomAlbum({
+      albumId,
+      artworksIdList,
+      isDeleteAlbum,
+      handleOnSuccess,
+    })
   );
 }
 

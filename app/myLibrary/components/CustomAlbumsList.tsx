@@ -72,7 +72,7 @@ export default function CustomAlbumsList() {
                   unoptimized
                 />
               </div>
-              <p className="w-[100px] truncate text-center 2xl:size-[130px]">
+              <p className="w-[100px] truncate text-center 2xl:w-[130px]">
                 {album.name}
               </p>
             </Link>

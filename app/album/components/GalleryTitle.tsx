@@ -7,21 +7,21 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { LuExternalLink } from 'react-icons/lu';
-import { MdAdd, MdCheck, MdDelete, MdEdit } from 'react-icons/md';
+import { MdAdd, MdDelete } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
 import ShareLinkButton from '@/app/album/components/Button/ShareLinkButton';
-import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
 import TotalCounter from '@/app/album/components/TotalCounter';
 import queryOptions from '@/app/album/service/client/queries';
 import { useGalleryPageInfo } from '@/app/album/service/client/useGalleryService';
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
+import { useDeleteModeStore } from '@/app/album/store/deleteModeStore';
 import { useEditModeStore } from '@/app/album/store/editModeStore';
 import Button from '@/components/Button';
 import AddFanartToAlbumFinderModal from '@/components/Modal/AddFanartToAlbumFinderModal';
+import EditCustomAlbumInfoModal from '@/components/Modal/EditCustomAlbumInfoModal';
 import useModal from '@/hooks/useModal';
 import { BBangTTi } from '@/lib/images';
-import EditCustomAlbumInfoModal from '@/components/Modal/EditCustomAlbumInfoModal';
 
 type Props = {
   pageName: string;
@@ -46,11 +46,16 @@ export default function GalleryTitle({ pageName }: Props) {
       setIsEdit: state.setIsEdit,
     }))
   );
+  const { isDelete, setIsDelete } = useDeleteModeStore(
+    useShallow((state) => ({
+      isDelete: state.isDelete,
+      setIsDelete: state.setIsDelete,
+    }))
+  );
 
   const { show: showAddFanartToAlbumFinderModal } = useModal(
     AddFanartToAlbumFinderModal
   );
-  const { show: showDeleteCustomAlbumModal } = useModal(DeleteCustomAlbumModal);
   const { show: showEditCustomAlbumInfoModal } = useModal(
     EditCustomAlbumInfoModal
   );
@@ -96,10 +101,19 @@ export default function GalleryTitle({ pageName }: Props) {
       setIsEdit(true); // 편집 시작
     }
   };
+  const handleDeleteButtonClick = () => {
+    if (isDelete) {
+      setIsDelete(false); // 삭제 모드 취소
+      setFanarts([]);
+    } else {
+      setIsDelete(true);
+    }
+  };
   // 페이지 벗어날 때 편집 모드 초기화
   useEffect(() => {
     return () => {
       setIsEdit(false); // 컴포넌트 언마운트 시 상태 리셋
+      setIsDelete(false);
       setFanarts([]);
     };
   }, []);
@@ -112,12 +126,6 @@ export default function GalleryTitle({ pageName }: Props) {
     linkUrl,
     owned,
   } = pageInfo;
-  const handleDeleteCustomAlbum = () => {
-    showDeleteCustomAlbumModal({
-      animateDir: 'bottom',
-      title,
-    });
-  };
 
   const showEditModal = () => {
     showEditCustomAlbumInfoModal({
@@ -129,7 +137,7 @@ export default function GalleryTitle({ pageName }: Props) {
     });
   };
 
-  const activeColor = 'text-green-600';
+  const activeColor = 'text-red-600';
   const inactiveColor = 'text-blackAlpha-700 dark:text-whiteAlpha-700';
 
   return (
@@ -171,14 +179,14 @@ export default function GalleryTitle({ pageName }: Props) {
                 </Button>
                 <Button
                   intent="ghost-gray"
-                  onClick={handleDeleteCustomAlbum}
+                  onClick={handleDeleteButtonClick}
                   additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
                 >
                   <MdDelete
-                    className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                    className={`mr-1 ${isDelete ? activeColor : inactiveColor}`}
                     size={20}
                   />
-                  <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+                  <span className={isDelete ? activeColor : inactiveColor}>
                     삭제
                   </span>
                 </Button>

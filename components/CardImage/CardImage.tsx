@@ -5,6 +5,7 @@ import { useRef, useState } from 'react';
 import { FaCheck, FaEye, FaThumbsUp } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { FiClock } from 'react-icons/fi';
+import { MdClose } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
@@ -17,12 +18,14 @@ type Props = {
   data: ArtworkList;
   wakzooLink: string;
   isCheckable?: boolean;
+  isDeletable?: boolean;
 };
 
 export default function CardImage({
   data,
   wakzooLink,
   isCheckable = false,
+  isDeletable = false,
 }: Props) {
   const [isFocus, setIsFocus] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -54,6 +57,61 @@ export default function CardImage({
       setFanarts([...fanarts, id]);
     }
   };
+
+  // 삭제 모드 UI
+  if (isDeletable) {
+    return (
+      <div
+        onClick={handleToggleCheck}
+        className="group relative w-full cursor-pointer rounded-[16px] border-base border-blackAlpha-200 dark:border-none"
+      >
+        <Image
+          width={357}
+          height={357}
+          style={{ width: '120%', height: 'auto' }}
+          src={img_url === '' ? 'https://placehold.co/375x375' : modifiedUrl300}
+          alt={title}
+          className={clsx(
+            'max-h-[536px] rounded-[16px] bg-[#f5f5f5] object-cover',
+            { 'blur-[6px]': deleted }
+          )}
+          unoptimized
+        />
+        <div
+          className={clsx(
+            'absolute inset-0 z-[1] rounded-[16px] transition-all duration-300 ease-in-out',
+            isCheck ? 'bg-red-500/30' : 'bg-transparent' // 빨간색 배경
+          )}
+        >
+          <div
+            className={clsx(
+              `absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 shadow-lg transition-all
+              duration-300
+              ${
+                isCheck
+                  ? 'border-red-500 bg-red-500 text-white' // 빨간색 테두리
+                  : 'border-gray-300 bg-white text-gray-400 group-hover:bg-red-50' // 호버시 빨간 배경
+              } group-hover:border-red-400 group-hover:shadow-xl`
+            )}
+            style={{
+              boxShadow: isCheck
+                ? '0 0 0 4px rgba(239,68,68,0.15)' // 빨간색 그림자
+                : '0 0 0 2px rgba(0,0,0,0.06)',
+            }}
+          >
+            <MdClose // 삭제 아이콘으로 변경
+              className={clsx(
+                'text-lg transition-transform duration-200',
+                isCheck
+                  ? 'scale-100 opacity-100'
+                  : 'scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100'
+              )}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (isCheckable) {
     return (

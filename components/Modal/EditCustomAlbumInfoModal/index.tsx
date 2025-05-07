@@ -19,7 +19,7 @@ export default function EditCustomAlbumInfoModal(
   const onClose = () => {
     hide();
   };
-  const refreshAlbumArtworks = () => {
+  const refreshAlbumInfo = () => {
     queryClient.invalidateQueries({ queryKey });
   };
   const { mutate: editCustomAlbumInfo, isPending } = useEditCustomAlbum({
@@ -30,7 +30,7 @@ export default function EditCustomAlbumInfoModal(
       is_public: true,
     },
     handleOnSuccess: () => {
-      refreshAlbumArtworks();
+      refreshAlbumInfo();
       onClose();
     },
   });

@@ -56,9 +56,20 @@ const queryOptions = {
     albumId,
     artworksIdList,
     isDeleteAlbum = false,
+    handleOnSuccess,
   }: DeleteArtworkParams) => ({
     mutationFn: () =>
       myService.deleteCustomAlbum({ albumId, artworksIdList, isDeleteAlbum }),
+    onSuccess: () => {
+      handleOnSuccess?.();
+      toast.success(
+        '팬아트가 앨범에서 삭제되었습니다. vs 앨범이 삭제되었습니다'
+      );
+    },
+    onError: (error: any) => {
+      // TODO: 에러처리하기 //error obj (status, data)
+      toast.error(`${error.response.status}: ${error.response.data.message}`);
+    },
   }),
   updateLikedArticles: () => ({
     queryKey: queryKeys.updateLikedArticles(),

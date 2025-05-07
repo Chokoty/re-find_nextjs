@@ -15,7 +15,7 @@ const BackToLibraryLink = ({
 }: {
   hasRightButton?: boolean;
 }) => {
-  const { isEdit, setIsEdit } = useEditModeStore(
+  const { isEdit: isCheckable, setIsEdit: setIsCheckable } = useEditModeStore(
     useShallow((state) => ({
       isEdit: state.isEdit,
       setIsEdit: state.setIsEdit,
@@ -28,11 +28,11 @@ const BackToLibraryLink = ({
     }))
   );
   const handleChoiceButtonClick = () => {
-    if (isEdit) {
-      setIsEdit(false); // 선택 모드 해제
+    if (isCheckable) {
+      setIsCheckable(false); // 선택 모드 해제
       setFanarts([]); // 체크된 팬아트 초기화
     } else {
-      setIsEdit(true); // 편집 시작
+      setIsCheckable(true); // 편집 시작
     }
   };
   const handleClearFanarts = () => {
@@ -42,7 +42,7 @@ const BackToLibraryLink = ({
   // 페이지 벗어날 때 편집 모드 초기화
   useEffect(() => {
     return () => {
-      setIsEdit(false); // 컴포넌트 언마운트 시 상태 리셋
+      setIsCheckable(false); // 컴포넌트 언마운트 시 상태 리셋
       setFanarts([]);
     };
   }, []);
@@ -86,10 +86,10 @@ const BackToLibraryLink = ({
             additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
           >
             <MdCheckCircle
-              className={`mr-1 ${isEdit ? activeColor : inactiveColor}`}
+              className={`mr-1 ${isCheckable ? activeColor : inactiveColor}`}
               size={14}
             />
-            <span className={isEdit ? activeColor : inactiveColor}>
+            <span className={isCheckable ? activeColor : inactiveColor}>
               선택모드
             </span>
           </Button>

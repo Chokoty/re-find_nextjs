@@ -93,6 +93,7 @@ export type DeleteArtworkParams = {
   albumId: string;
   artworksIdList: number[];
   isDeleteAlbum?: boolean;
+  handleOnSuccess?: () => void;
 };
 
 export type GetKeywordGalleryArtworksParams = {

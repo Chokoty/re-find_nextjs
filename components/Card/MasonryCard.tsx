@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import { useDeleteModeStore } from '@/app/album/store/deleteModeStore';
 import { useEditModeStore } from '@/app/album/store/editModeStore';
 import CardImage from '@/components/CardImage/CardImage';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
@@ -24,16 +25,22 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
   const artistLink = isIsdPick ? postLink : `/artists/${authorName}`;
   const linkTarget = isIsdPick ? '_blank' : '_self';
   const isEdit = useEditModeStore((state) => state.isEdit);
+  const isDelete = useDeleteModeStore((state) => state.isDelete);
 
   return (
     <div className="inline-block w-full">
-      <CardImage data={artwork} wakzooLink={wakzooLink} isCheckable={isEdit} />
+      <CardImage
+        data={artwork}
+        wakzooLink={wakzooLink}
+        isCheckable={isEdit}
+        isDeletable={isDelete}
+      />
       <div className="flex h-auto w-full max-w-[350px] flex-col items-start justify-center">
         <p className="line-clamp-1 text-left text-base font-medium">
           {artwork.title}
         </p>
         {!isArtistDetails &&
-          (isEdit ? (
+          (isEdit || isDelete ? (
             // 체크 모드일 때는 링크 대신 텍스트만 표시
             <span
               className="line-clamp-1 w-full cursor-not-allowed text-left text-sm font-medium text-gray-400 dark:text-gray-500"
