@@ -1,14 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { BsFillQuestionCircleFill } from 'react-icons/bs';
-import { LuExternalLink } from 'react-icons/lu';
-
-import Popover, {
-  PopoverBody,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-} from '@/components/Popover';
 
 type Prop = {
   album: AlbumArtworkList;
@@ -30,54 +21,7 @@ export default function GalleryLikedAlbumCard({
   // const staticImage = getStaticImage(id);
   return (
     <div className="relative w-full transition hover:scale-[1.01]">
-      {/* 출처(작가) */}
-      <div className="absolute inset-0 rounded-2xl px-2.5 pb-3.5 pt-2.5 min-[840px]:px-3 min-[840px]:pb-4 min-[840px]:pt-3 min-[1055px]:px-5 min-[1055px]:pb-7 min-[1055px]:pt-5">
-        {/* 모바일 */}
-        <div className="relative z-[2] flex size-7 items-center justify-center md:hidden md:size-9 min-[840px]:size-10">
-          <Popover>
-            <PopoverTrigger color="sub">
-              <div className="rounded-full bg-whiteAlpha-500">
-                <BsFillQuestionCircleFill className="size-5 rounded-full text-blackAlpha-600" />
-              </div>
-            </PopoverTrigger>
-            <PopoverContent size="ss" position="bottom-right">
-              <PopoverHeader>일러스트레이터</PopoverHeader>
-              <PopoverBody>
-                <Link
-                  className="link-to-profile flex items-center"
-                  href={`/artists/${author}`}
-                >
-                  {author}
-                  <LuExternalLink className="ml-1 text-base font-semibold" />
-                </Link>
-              </PopoverBody>
-            </PopoverContent>
-          </Popover>
-        </div>
-        {/* 데스크탑 */}
-        {/* <Link
-          href={`/artists/${author}?sortType=alzaltak`}
-          className="link-to-profile flex"
-        >
-          <div className="absolute z-[2] hidden items-center justify-center rounded-[32px] bg-blackAlpha-400 p-2 text-sm font-normal text-white hover:bg-blackAlpha-500 active:bg-blackAlpha-400 md:inline-flex min-[840px]:p-2">
-            <IoMdInformationCircleOutline
-              className="hidden 2md:block"
-              size={24}
-              color="white"
-            />
-          </div>
-        </Link> */}
-      </div>
-      {/* <Link href={`/gallery/${value}`} prefetch={false}> */}
-      {/* <Link
-        href={`/gallery/${value}?viewType=masonry&sortType=alzaltak`}
-        prefetch={false}
-      > */}
-      <Link
-        // href={`/gallery/${id}?viewType=masonry&sortType=${sortType}`}
-        href={`/album/${id}?viewType=masonry`}
-        prefetch={false}
-      >
+      <Link href={`/artwork/${id}`} prefetch={false}>
         <div className="relative h-[200px] w-full 2xs:h-[230px] md:h-[280px] 2md:h-[350px] xl:h-[400px]">
           <Image
             className="rounded-2xl object-cover"

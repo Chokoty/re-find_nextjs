@@ -4,11 +4,10 @@ import ArtistTimelineShelf from '@/app/myLibrary/components/ArtistTimelineShelf'
 import CustomAlbums from '@/app/myLibrary/components/CustomAlbums';
 import LikeArtistShelf from '@/app/myLibrary/components/LikeArtistShelf';
 import LikeFanartShelf from '@/app/myLibrary/components/LikeFanartShelf';
-import Button from '@/components/Button';
-import { useLogout } from '@/service/client/useCommonService';
+// import { useLogout } from '@/service/client/useCommonService';
 
 export default function MyLibrary() {
-  const { refetch } = useLogout();
+  // const { refetch } = useLogout();
 
   return (
     <div className="w-full p-2">

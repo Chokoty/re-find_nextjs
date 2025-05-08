@@ -4,7 +4,6 @@ import Link from 'next/link';
 import GalleryAlbumSliderSkeleton from '@/app/album/components/Skeleton/GalleryAlbumSliderSkeleton';
 import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
 import { useUpdateLikedArticles } from '@/app/myLibrary/service/client/useMyService';
-import Button from '@/components/Button';
 
 const GallerySlider = dynamic(
   () => import('@/app/album/components/Slider/GallerySlider'),
