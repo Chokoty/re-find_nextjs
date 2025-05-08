@@ -1,11 +1,12 @@
 'use client';
 
+import { useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-// import TotalCount from '@/app/myLibrary/components/TotalCount';
 import { useRouter } from 'next/navigation';
 
 import { useCreateCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
+import queryOptions from '@/service/client/queries';
 import { useMyInfo } from '@/service/client/useCommonService';
 
 export default function CustomAlbumsList() {
@@ -14,12 +15,19 @@ export default function CustomAlbumsList() {
 
   const router = useRouter();
   const handleOnSuccess = (albumId: string) => {
+    refreshAlbumArtworks();
     router.push(`/album/${albumId}`);
   };
   const { mutate: createCustomAlbum, status } = useCreateCustomAlbum(
     [],
     handleOnSuccess
   );
+  const { queryKey } = queryOptions.myInfo();
+  const queryClient = useQueryClient();
+  const refreshAlbumArtworks = () => {
+    queryClient.invalidateQueries({ queryKey });
+  };
+
   const handleAddCustomAlbum = () => {
     createCustomAlbum();
   };
@@ -28,7 +36,7 @@ export default function CustomAlbumsList() {
     return (
       <div className="col-span-full py-12 text-center">
         <p className="text-gray-500">생성된 앨범이 없습니다</p>
-        <button className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-white">
+        <button className="mt-4 rounded-md bg-green-500 px-4 py-2 text-white">
           새 앨범 만들기
         </button>
       </div>
@@ -42,19 +50,19 @@ export default function CustomAlbumsList() {
           나의 커스텀 앨범
         </p>
         <button
-          className="rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
+          className="rounded-md bg-green-600 px-4 py-2 text-white transition hover:bg-green-700"
           onClick={handleAddCustomAlbum}
           disabled={status === 'pending'}
         >
           + 새 앨범 만들기
         </button>
       </div>
-      <ul className="grid w-full grid-cols-1 gap-6 xs:grid-cols-2 sm:grid-cols-3 2md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
+      <ul className="grid w-full grid-cols-2 gap-1 xs:grid-cols-3 xs:gap-2 2xs:gap-4 sm:grid-cols-4 md:grid-cols-3 2md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
         {user?.albums.map((album) => (
           <li key={album.id} className="mx-auto max-w-[200px] list-none">
             <Link
               href={`/album/${album.id}?viewType=masonry`}
-              className="flex flex-col items-center gap-4 rounded-md p-2 transition hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="flex flex-col items-center gap-4 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800 2xs:p-2"
               prefetch={false}
             >
               <div className="aspect-square  relative size-[100px] overflow-hidden rounded-md 2xl:size-[130px]">
