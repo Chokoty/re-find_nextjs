@@ -297,6 +297,14 @@ const config: Config = {
         'auto-fit': 'repeat(auto-fit, minmax(236px, 1fr))',
       },
       keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeInOut: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.3' },
+        },
         modalRenderFromBottom: {
           '0%': { opacity: '0', transform: 'translateY(100%)' }, // 최하단으로부터 시작
           '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -319,6 +327,8 @@ const config: Config = {
         },
       },
       animation: {
+        'fade-in': 'fadeIn 1s ease-in forwards',
+        'fade-in-out': 'fadeInOut 1.7s ease-in-out infinite',
         modalRender: 'modalRender 0.2s ease-out',
         modalRenderFromTop: 'modalRenderFromTop 0.3s ease-out',
         modalRenderFromBottom: 'modalRenderFromBottom 0.3s ease-out',

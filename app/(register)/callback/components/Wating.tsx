@@ -8,9 +8,9 @@ import { useLogin } from '@/service/client/useCommonService';
 export default function Wating() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [animate, setAnimate] = useState(false);
   const codeValue = searchParams.get('code');
   const stateValue = searchParams.get('state');
+  const [phase, setPhase] = useState<'fadeIn' | 'loop'>('fadeIn');
   const { isError, refetch: login } = useLogin({
     code: codeValue,
     state: stateValue,
@@ -29,16 +29,15 @@ export default function Wating() {
         }
       }
     }
-    setAnimate(true);
     handleIsRefindUser();
+    const timer = setTimeout(() => setPhase('loop'), 1000);
+    return () => clearTimeout(timer);
   }, []);
-
-  const animateClassName = 'opacity-100 transition-opacity duration-1000';
 
   return (
     <>
       <h1
-        className={`${animate ? animateClassName : 'opacity-0'} text-3xl font-semibold`}
+        className={`${phase === 'fadeIn' ? 'animate-fade-in' : 'animate-fade-in-out'} text-3xl font-semibold`}
       >
         잠시만 기다려주세요
       </h1>
