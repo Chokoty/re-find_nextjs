@@ -3,14 +3,14 @@ import { MdCheckCircle, MdClose } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
-import { useEditModeStore } from '@/app/album/store/editModeStore';
+import { useSelectModeStore } from '@/app/album/store/selectModeStore';
 import Button from '@/components/Button';
 
 export default function SelectionModeButton() {
-  const { isEdit: isCheckable, setIsEdit: setIsCheckable } = useEditModeStore(
+  const { isSelectMode, setSelectMode } = useSelectModeStore(
     useShallow((state) => ({
-      isEdit: state.isEdit,
-      setIsEdit: state.setIsEdit,
+      isSelectMode: state.isSelectMode,
+      setSelectMode: state.setSelectMode,
     }))
   );
   const { fanarts, setFanarts } = useCheckFanartStore(
@@ -20,11 +20,11 @@ export default function SelectionModeButton() {
     }))
   );
   const handleChoiceButtonClick = () => {
-    if (isCheckable) {
-      setIsCheckable(false); // 선택 모드 해제
+    if (isSelectMode) {
+      setSelectMode(false); // 선택 모드 해제
       setFanarts([]); // 체크된 팬아트 초기화
     } else {
-      setIsCheckable(true); // 편집 시작
+      setSelectMode(true); // 편집 시작
     }
   };
   const handleClearFanarts = () => {
@@ -34,7 +34,7 @@ export default function SelectionModeButton() {
   // 페이지 벗어날 때 편집 모드 초기화
   useEffect(() => {
     return () => {
-      setIsCheckable(false); // 컴포넌트 언마운트 시 상태 리셋
+      setSelectMode(false); // 컴포넌트 언마운트 시 상태 리셋
       setFanarts([]);
     };
   }, []);
@@ -65,10 +65,10 @@ export default function SelectionModeButton() {
         additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
       >
         <MdCheckCircle
-          className={`mr-1 ${isCheckable ? activeColor : inactiveColor}`}
+          className={`mr-1 ${isSelectMode ? activeColor : inactiveColor}`}
           size={14}
         />
-        <span className={isCheckable ? activeColor : inactiveColor}>
+        <span className={isSelectMode ? activeColor : inactiveColor}>
           선택모드
         </span>
       </Button>

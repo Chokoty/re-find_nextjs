@@ -3,14 +3,14 @@
 import { useState } from 'react';
 
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
-import { useEditModeStore } from '@/app/album/store/editModeStore';
+import { useSelectModeStore } from '@/app/album/store/selectModeStore';
 import Button from '@/components/Button';
 import AddCheckedFanartsToCustomAlbumModal from '@/components/Modal/AddCheckedFanartsToCustomAlbumModal';
 import useModal from '@/hooks/useModal';
 
 export default function AlbumSelectionSaveButton() {
   const fanarts = useCheckFanartStore((state) => state.fanarts);
-  const isEdit = useEditModeStore((state) => state.isEdit);
+  const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
   const [isShow, setIsShow] = useState(true);
 
   const { show: showAddFanartsToCustomAlbumModal } = useModal(
@@ -30,7 +30,7 @@ export default function AlbumSelectionSaveButton() {
     setIsShow(false); // 모달이 열리면 버튼 숨기기
   };
 
-  if (!isShow || fanarts.length < 1 || !isEdit) {
+  if (!isShow || fanarts.length < 1 || !isSelectMode) {
     return null; // 팬아트가 없거나 모달이 열리면 버튼 숨기기
   }
 

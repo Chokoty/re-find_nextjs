@@ -8,7 +8,7 @@ import { useShallow } from 'zustand/react/shallow';
 
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
 import { useDeleteModeStore } from '@/app/album/store/deleteModeStore';
-import { useEditModeStore } from '@/app/album/store/editModeStore';
+import { useSelectModeStore } from '@/app/album/store/selectModeStore';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useUploadTimeDiff } from '@/hooks/useUploadTimeDiff';
 
@@ -19,7 +19,7 @@ type Prop = {
 export default function SimpleCard({ artwork }: Prop) {
   // const article_link = useResponsiveLink('', 'article');
   const [isFocus, setIsFocus] = useState(false);
-  const isCheckable = useEditModeStore((state) => state.isEdit);
+  const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
   const isDelete = useDeleteModeStore((state) => state.isDelete);
   const { fanarts, setFanarts } = useCheckFanartStore(
     useShallow((state) => ({
@@ -65,7 +65,7 @@ export default function SimpleCard({ artwork }: Prop) {
   const isCheck = fanarts.includes(artwork.id);
 
   const handleToggleCheck = () => {
-    if (!(isCheckable || isDelete)) return;
+    if (!(isSelectMode || isDelete)) return;
     if (isCheck) {
       setFanarts(fanarts.filter((fanartId) => fanartId !== artwork.id));
     } else {
@@ -78,11 +78,11 @@ export default function SimpleCard({ artwork }: Prop) {
       className={clsx(
         'group relative aspect-[16/9] max-w-[440px] overflow-hidden rounded-2xl',
         {
-          'cursor-pointer': isCheckable || isDelete,
+          'cursor-pointer': isSelectMode || isDelete,
         }
       )}
-      onClick={isCheckable || isDelete ? handleToggleCheck : undefined}
-      tabIndex={isCheckable || isDelete ? 0 : undefined}
+      onClick={isSelectMode || isDelete ? handleToggleCheck : undefined}
+      tabIndex={isSelectMode || isDelete ? 0 : undefined}
     >
       <div className="flex size-full items-center justify-between">
         <div className="h-full w-[65.5%]">
@@ -119,7 +119,7 @@ export default function SimpleCard({ artwork }: Prop) {
         </div>
       </div>
       {/* 체크 UI */}
-      {isCheckable && !isDelete && (
+      {isSelectMode && !isDelete && (
         <div
           className={clsx(
             'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 text-green-600 shadow-lg transition-all duration-300',
@@ -161,7 +161,7 @@ export default function SimpleCard({ artwork }: Prop) {
         </div>
       )}
       {/* 오버레이/자세히: 선택모드 아닐 때만 */}
-      {!isCheckable && !isDelete && (
+      {!isSelectMode && !isDelete && (
         <>
           <div
             className={clsx(
@@ -195,7 +195,7 @@ export default function SimpleCard({ artwork }: Prop) {
       onBlur={() => setIsFocus(false)}
     >
       {/* 선택모드일 때는 Link 제거, 아닐 때만 Link로 감싼다 */}
-      {isCheckable || isDelete ? (
+      {isSelectMode || isDelete ? (
         CardInner
       ) : (
         <Link href={`/artwork/${artwork.id}`} className="mb-2">
@@ -203,7 +203,7 @@ export default function SimpleCard({ artwork }: Prop) {
         </Link>
       )}
       <div className="w-full px-1">
-        {isCheckable || isDelete ? (
+        {isSelectMode || isDelete ? (
           <p className="line-clamp-1 text-left text-base font-semibold hover:text-whiteAlpha-700 active:text-whiteAlpha-800 2xs:text-xl">
             {artwork.title}
           </p>
