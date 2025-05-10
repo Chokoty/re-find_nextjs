@@ -1,6 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { ClipLoader } from 'react-spinners';
 
 import { ussAddFanartsInToCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
@@ -17,20 +19,45 @@ export default function AddCheckedFanartsToCustomAlbumModal(
   const { data: user } = useMyInfo();
   const { hide } = useModal();
   const fanarts = props.fanarts as number[];
-  const showSaveButton = props.showSaveButton as () => void;
+  const handleAfterSuccessCallback =
+    props.handleAfterSuccessCallback as () => void;
 
   const { mutate: addFanartsIntoCustomAlbum, isPending } =
     ussAddFanartsInToCustomAlbum({
       albumId: selected || '',
       items: fanarts,
       handleOnSuccess: () => {
-        hide();
-        showSaveButton();
+        handleClose();
+        if (!selected) return;
+        showAlbumAddedToast(selected);
       },
     });
+
+  function showAlbumAddedToast(albumId: string) {
+    toast.custom(
+      (t) => (
+        <div
+          className={`flex items-center justify-between rounded bg-white px-4 py-3 shadow-lg dark:bg-dark-card ${t.visible ? 'animate-enter' : 'animate-leave'}`}
+          style={{ minWidth: 320 }}
+        >
+          <span className="font-medium">팬아트가 앨범에 추가되었습니다.</span>
+          <Link
+            href={`/album/${albumId}?viewType=masonry`}
+            // target="_blank"
+            className="ml-4 rounded-md bg-green-500 px-3 py-1 text-white transition hover:bg-green-600"
+            onClick={() => toast.dismiss(t.id)}
+          >
+            앨범으로 이동
+          </Link>
+        </div>
+      ),
+      { duration: 4000 }
+    );
+  }
+
   const handleClose = () => {
     hide();
-    showSaveButton();
+    handleAfterSuccessCallback();
   };
   const handleAddToCustomAlbum = () => {
     // console.log(fanarts);
@@ -42,11 +69,11 @@ export default function AddCheckedFanartsToCustomAlbumModal(
     setSelected((prevSelected) => (prevSelected === id ? null : id));
   };
   return (
-    <section className="m-auto flex size-full flex-col items-center justify-center bg-white p-4 shadow-xl dark:bg-dark-card md:h-[550px] md:w-[430px] md:rounded-md">
+    <section className="mx-5 my-auto flex h-[560px] w-full flex-col items-center justify-center rounded-md bg-white p-4 shadow-xl dark:bg-dark-card 2xs:mx-auto md:m-auto md:h-[550px] md:w-full md:max-w-[760px]">
       <h1 className="mb-4 w-full text-xl font-bold">
         팬아트를 추가할 앨범을 선택하세요
       </h1>
-      <div className="flex size-full flex-col items-center justify-between px-2 pt-3 text-center text-sm 2xs:text-base">
+      <div className="flex size-full flex-col items-center justify-between pt-3 text-center text-sm 2xs:text-base md:px-2">
         <div className="h-[400px] w-full overflow-auto">
           {user &&
             user.albums.map((album) => (

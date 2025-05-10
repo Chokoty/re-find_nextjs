@@ -49,7 +49,6 @@ const queryOptions = {
     onSuccess: (data: any) => {
       console.log('putFanartsInToCustomAlbum', data);
       handleOnSuccess();
-      toast.success('팬아트가 앨범에 추가되었습니다.');
     },
   }),
   deleteCustomAlbum: ({
