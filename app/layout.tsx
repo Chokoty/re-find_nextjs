@@ -67,7 +67,9 @@ export default function RootLayout({
           {/* <main className="overflow-x-hidden py-[calc(60px+16px)]"> */}
           <main className="overflow-x-hidden pt-[calc(60px)]">{children}</main>
           <MobileTabBar />
-          <MobileActionBar />
+          <Suspense>
+            <MobileActionBar />
+          </Suspense>
           <AlbumSelectionSaveButton />
           <Suspense>
             {/* TODO: Popover 를 활용하여 삭제 버튼 쪽에 위치 변경하기 */}

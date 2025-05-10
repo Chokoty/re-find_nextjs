@@ -39,8 +39,8 @@ export default function SelectionModeButton() {
     >
       {isSelectMode ? (
         <>
-          <MdClose className="mr-1 text-green-600" size={16} />
-          <span className="text-green-600">선택취소</span>
+          <MdClose className="mr-1 text-green-300" size={16} />
+          <span className="text-green-300">선택해제</span>
         </>
       ) : (
         <>

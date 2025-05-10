@@ -25,7 +25,7 @@ export default function AlbumSelectionSaveButton() {
     showAddFanartsToCustomAlbumModal({
       fanarts,
       animateDir: 'bottom',
-      showSaveButton,
+      handleAfterSuccessCallback: showSaveButton,
     });
     setIsShow(false); // 모달이 열리면 버튼 숨기기
   };

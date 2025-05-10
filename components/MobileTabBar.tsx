@@ -9,6 +9,7 @@ import { FaUserGroup } from 'react-icons/fa6';
 import { IoMdImages } from 'react-icons/io';
 import { MdHomeFilled } from 'react-icons/md';
 
+import { useDeleteModeStore } from '@/app/album/store/deleteModeStore';
 import { useSelectModeStore } from '@/app/album/store/selectModeStore';
 import LoginModal from '@/components/LoginModal';
 import useModal from '@/hooks/useModal';
@@ -70,6 +71,7 @@ export default function MobileTabBar() {
   const [isIOS, setIsIOS] = useState(false);
   const router = useRouter();
   const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
+  const isDeleteMode = useDeleteModeStore((state) => state.isDeleteMode);
   const { isFetching, status, data } = useMyInfo();
   const { show } = useModal(LoginModal);
   const handleClick = (path: string) => {
@@ -90,7 +92,7 @@ export default function MobileTabBar() {
     <nav
       className={clsx(
         'fixed bottom-0 z-[200] flex w-full justify-center transition-transform duration-200 ease-in-out md:hidden',
-        isSelectMode ? '-translate-y-[-60px]' : 'translate-y-0'
+        isSelectMode || isDeleteMode ? '-translate-y-[-60px]' : 'translate-y-0'
       )}
     >
       <div

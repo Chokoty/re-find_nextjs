@@ -219,7 +219,8 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
       <div className="flex h-auto w-full max-w-[350px] flex-col items-start justify-center">
         <p
           className={clsx('line-clamp-1 text-left text-base font-medium', {
-            'text-green-500': isCheck,
+            // 'text-red-500': isCheck && isDeleteMode,
+            'text-green-500': isCheck && isSelectMode,
           })}
         >
           {title}
@@ -230,7 +231,8 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
               className={clsx(
                 'line-clamp-1 w-full text-left text-sm font-medium',
                 {
-                  'text-green-500': isCheck,
+                  // 'text-red-500': isCheck && isDeleteMode,
+                  'text-green-500': isCheck && isSelectMode,
                   'text-gray-400 dark:text-gray-500': !isCheck,
                 }
               )}

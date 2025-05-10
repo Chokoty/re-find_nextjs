@@ -214,8 +214,11 @@ export default function SimpleCard({ artwork }: Prop) {
         {isSelectMode || isDeleteMode ? (
           <p
             className={clsx(
-              'line-clamp-1 text-left text-base font-semibold hover:text-whiteAlpha-700 active:text-whiteAlpha-800 2xs:text-xl',
-              { 'text-green-500': isCheck }
+              'line-clamp-1 text-left text-base font-semibold 2xs:text-xl',
+              {
+                // 'text-red-500': isCheck && isDeleteMode,
+                'text-green-500': isCheck && isSelectMode,
+              }
             )}
           >
             {artwork.title}
@@ -230,7 +233,10 @@ export default function SimpleCard({ artwork }: Prop) {
         <div
           className={clsx(
             'flex items-center justify-between text-xs font-light 2xs:text-sm',
-            { 'text-green-500': isCheck }
+            {
+              // 'text-red-500': isCheck && isDeleteMode,
+              'text-green-500': isCheck && isSelectMode,
+            }
           )}
         >
           {/* 팬아트 개수에 green 적용 */}

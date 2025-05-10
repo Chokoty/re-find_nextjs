@@ -61,9 +61,6 @@ const queryOptions = {
       myService.deleteCustomAlbum({ albumId, artworksIdList, isDeleteAlbum }),
     onSuccess: () => {
       handleOnSuccess?.();
-      toast.success(
-        '팬아트가 앨범에서 삭제되었습니다. vs 앨범이 삭제되었습니다'
-      );
     },
     onError: (error: any) => {
       // TODO: 에러처리하기 //error obj (status, data)

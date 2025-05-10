@@ -22,7 +22,7 @@ export default function DeleteCustomAlbumModal(props: Record<string, unknown>) {
   });
   const onClose = () => {
     hide();
-    showSaveButton();
+    showSaveButton?.();
   };
 
   const onDelete = () => {

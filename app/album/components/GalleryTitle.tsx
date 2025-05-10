@@ -7,7 +7,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { FaAngleLeft } from 'react-icons/fa6';
 import { LuExternalLink } from 'react-icons/lu';
-import { MdAdd, MdDelete } from 'react-icons/md';
+import { MdAdd, MdClose, MdDelete } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
 
 import ShareLinkButton from '@/app/album/components/Button/ShareLinkButton';
@@ -124,9 +124,6 @@ export default function GalleryTitle({ pageName }: Props) {
     });
   };
 
-  const activeColor = 'text-red-600';
-  const inactiveColor = 'text-blackAlpha-700 dark:text-whiteAlpha-700';
-
   return (
     <div className="my-6 flex w-full flex-col items-start justify-start pl-2 md:pl-8">
       {pageType === 'galleryHome' ? (
@@ -170,29 +167,23 @@ export default function GalleryTitle({ pageName }: Props) {
                     onClick={handleDeleteButtonClick}
                     additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
                   >
-                    <MdDelete
-                      className={`mr-1 ${isDeleteMode ? activeColor : inactiveColor}`}
-                      size={20}
-                    />
-                    <span
-                      className={isDeleteMode ? activeColor : inactiveColor}
-                    >
-                      삭제
-                    </span>
+                    {isDeleteMode ? (
+                      <>
+                        <MdClose className="mr-1 text-red-300" size={16} />
+                        <span className="text-red-300">삭제취소</span>
+                      </>
+                    ) : (
+                      <>
+                        <MdDelete
+                          className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                          size={20}
+                        />
+                        <span className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700">
+                          삭제
+                        </span>
+                      </>
+                    )}
                   </Button>
-                  {/* <Button
-                  intent="ghost-gray"
-                  onClick={handleEditButtonClick}
-                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
-                >
-                  <MdCheck
-                    className={`mr-1 ${isEdit ? activeColor : inactiveColor}`}
-                    size={14}
-                  />
-                  <span className={isEdit ? activeColor : inactiveColor}>
-                    선택
-                  </span>
-                </Button> */}
                 </div>
               ) : (
                 <SelectionModeButton />
