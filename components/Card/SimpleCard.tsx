@@ -101,7 +101,14 @@ export default function SimpleCard({ artwork }: Prop) {
             unoptimized
           />
         </div>
-        <div className="flex h-full w-[32.5%] flex-col items-center justify-between">
+        <div
+          className={clsx(
+            'flex h-full w-[32.5%] flex-col items-center justify-between',
+            {
+              'opacity-70': isCheck,
+            }
+          )}
+        >
           {modifiedUrls100.slice(1).map((imgUrl, idx) => (
             <div key={idx} className="h-[49%] w-full bg-gray-150">
               {imgUrl !== '' && (
@@ -203,8 +210,14 @@ export default function SimpleCard({ artwork }: Prop) {
         </Link>
       )}
       <div className="w-full px-1">
+        {/* artwork.title에 green 적용 */}
         {isSelectMode || isDelete ? (
-          <p className="line-clamp-1 text-left text-base font-semibold hover:text-whiteAlpha-700 active:text-whiteAlpha-800 2xs:text-xl">
+          <p
+            className={clsx(
+              'line-clamp-1 text-left text-base font-semibold hover:text-whiteAlpha-700 active:text-whiteAlpha-800 2xs:text-xl',
+              { 'text-green-500': isCheck }
+            )}
+          >
             {artwork.title}
           </p>
         ) : (
@@ -214,7 +227,13 @@ export default function SimpleCard({ artwork }: Prop) {
             </p>
           </Link>
         )}
-        <div className="flex items-center justify-between text-xs font-light 2xs:text-sm">
+        <div
+          className={clsx(
+            'flex items-center justify-between text-xs font-light 2xs:text-sm',
+            { 'text-green-500': isCheck }
+          )}
+        >
+          {/* 팬아트 개수에 green 적용 */}
           <p>팬아트 {artwork.img_url_list.length}개</p>
           <p>{uploadTimeDiff}</p>
         </div>
