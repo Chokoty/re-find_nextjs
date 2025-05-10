@@ -4,11 +4,12 @@ import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FaSearch, FaUserCircle } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 import { FaUserGroup } from 'react-icons/fa6';
 import { IoMdImages } from 'react-icons/io';
 import { MdHomeFilled } from 'react-icons/md';
 
+import { useSelectModeStore } from '@/app/album/store/selectModeStore';
 import LoginModal from '@/components/LoginModal';
 import useModal from '@/hooks/useModal';
 import { useMyInfo } from '@/service/client/useCommonService';
@@ -68,6 +69,7 @@ export default function MobileTabBar() {
   const currentPathname = usePathname();
   const [isIOS, setIsIOS] = useState(false);
   const router = useRouter();
+  const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
   const { isFetching, status, data } = useMyInfo();
   const { show } = useModal(LoginModal);
   const handleClick = (path: string) => {
@@ -85,7 +87,12 @@ export default function MobileTabBar() {
   }, []);
 
   return (
-    <nav className="fixed bottom-0 z-[200] flex w-full justify-center md:hidden">
+    <nav
+      className={clsx(
+        'fixed bottom-0 z-[200] flex w-full justify-center transition-transform duration-200 ease-in-out md:hidden',
+        isSelectMode ? '-translate-y-[-60px]' : 'translate-y-0'
+      )}
+    >
       <div
         className={`flex w-full items-center justify-evenly bg-white shadow-navBottom backdrop-blur-md dark:border-whiteAlpha-300 dark:bg-dark-background ${isIOS ? 'h-[80px] pb-2' : 'h-[60px]'} dark:shadow-navBottomDark`}
       >

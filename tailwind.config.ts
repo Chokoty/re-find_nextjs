@@ -290,7 +290,7 @@ const config: Config = {
         navTop: '0 2px 4px 0 hsla(0,0%,80.8%,.5)',
         navTopDark: '0 2px 6px 0 hsl(0deg 0.17% 44.65% / 31%)',
         navTopDark2: '0 4px 10px 0 rgba(0, 0, 0, 0.6)', // 더 진한 검은색 그림자
-        navBottomDark: '0 -4px 10px 0 rgba(0, 0, 0, 0.6)',
+        navBottomDark: '0 -4px 10px 0 rgba(0, 0, 0, 0.4)',
         navBottom: '0 -2px 4px 0 rgba(33,37,41,.08)',
       },
       gridTemplateColumns: {
