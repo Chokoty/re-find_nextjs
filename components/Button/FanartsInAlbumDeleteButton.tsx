@@ -14,7 +14,7 @@ import queryOptions1 from '@/service/client/queries';
 
 export default function FanartsInAlbumDeleteButton() {
   const fanarts = useCheckFanartStore((state) => state.fanarts);
-  const isDelete = useDeleteModeStore((state) => state.isDelete);
+  const isDeleteMode = useDeleteModeStore((state) => state.isDeleteMode);
   const [isShow, setIsShow] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
@@ -71,7 +71,7 @@ export default function FanartsInAlbumDeleteButton() {
   };
 
   // 삭제 모드가 아닐 때는 아무 것도 렌더링하지 않음
-  if (!isShow || !isDelete) {
+  if (!isShow || !isDeleteMode) {
     return null;
   }
 

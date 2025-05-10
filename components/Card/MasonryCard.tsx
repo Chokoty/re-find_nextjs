@@ -36,7 +36,7 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
   const artistLink = isIsdPick ? postLink : `/artists/${authorName}`;
   const linkTarget = isIsdPick ? '_blank' : '_self';
   const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
-  const isDelete = useDeleteModeStore((state) => state.isDelete);
+  const isDeleteMode = useDeleteModeStore((state) => state.isDeleteMode);
 
   // CardImage 내부 상태 및 로직
   const [isFocus, setIsFocus] = useState(false);
@@ -58,7 +58,7 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
   const isCheck = fanarts.includes(id);
 
   const handleToggleCheck = () => {
-    if (!(isSelectMode || isDelete)) return;
+    if (!(isSelectMode || isDeleteMode)) return;
     if (isCheck) {
       setFanarts(fanarts.filter((fanartId) => fanartId !== id));
     } else {
@@ -71,14 +71,14 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
       {/* CardImage 영역 */}
       <div
         ref={cardRef}
-        tabIndex={isSelectMode || isDelete ? 0 : undefined}
+        tabIndex={isSelectMode || isDeleteMode ? 0 : undefined}
         className={clsx(
           'group relative w-full rounded-[16px] border-base border-blackAlpha-200 dark:border-none',
           {
-            'cursor-pointer': isSelectMode || isDelete,
+            'cursor-pointer': isSelectMode || isDeleteMode,
           }
         )}
-        onClick={isSelectMode || isDelete ? handleToggleCheck : undefined}
+        onClick={isSelectMode || isDeleteMode ? handleToggleCheck : undefined}
         onFocus={() => setIsFocus(true)}
         onBlur={() => setIsFocus(false)}
       >
@@ -99,7 +99,7 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
         />
 
         {/* 선택모드 체크 UI */}
-        {isSelectMode && !isDelete && (
+        {isSelectMode && !isDeleteMode && (
           <div
             className={clsx(
               'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 text-green-600 shadow-lg transition-all duration-300',
@@ -126,7 +126,7 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
         )}
 
         {/* 삭제 모드 UI */}
-        {isDelete && (
+        {isDeleteMode && (
           <div
             className={clsx(
               'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 shadow-lg transition-all duration-300',
@@ -148,7 +148,7 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
         )}
 
         {/* 오버레이/자세히: 선택/삭제모드 아닐 때만 */}
-        {!isSelectMode && !isDelete && (
+        {!isSelectMode && !isDeleteMode && (
           <>
             <div
               className={clsx(
@@ -225,7 +225,7 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
           {title}
         </p>
         {!isArtistDetails &&
-          (isSelectMode || isDelete ? (
+          (isSelectMode || isDeleteMode ? (
             <span
               className={clsx(
                 'line-clamp-1 w-full text-left text-sm font-medium',

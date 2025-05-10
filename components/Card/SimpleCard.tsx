@@ -20,7 +20,7 @@ export default function SimpleCard({ artwork }: Prop) {
   // const article_link = useResponsiveLink('', 'article');
   const [isFocus, setIsFocus] = useState(false);
   const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
-  const isDelete = useDeleteModeStore((state) => state.isDelete);
+  const isDeleteMode = useDeleteModeStore((state) => state.isDeleteMode);
   const { fanarts, setFanarts } = useCheckFanartStore(
     useShallow((state) => ({
       fanarts: state.fanarts,
@@ -65,7 +65,7 @@ export default function SimpleCard({ artwork }: Prop) {
   const isCheck = fanarts.includes(artwork.id);
 
   const handleToggleCheck = () => {
-    if (!(isSelectMode || isDelete)) return;
+    if (!(isSelectMode || isDeleteMode)) return;
     if (isCheck) {
       setFanarts(fanarts.filter((fanartId) => fanartId !== artwork.id));
     } else {
@@ -78,11 +78,11 @@ export default function SimpleCard({ artwork }: Prop) {
       className={clsx(
         'group relative aspect-[16/9] max-w-[440px] overflow-hidden rounded-2xl',
         {
-          'cursor-pointer': isSelectMode || isDelete,
+          'cursor-pointer': isSelectMode || isDeleteMode,
         }
       )}
-      onClick={isSelectMode || isDelete ? handleToggleCheck : undefined}
-      tabIndex={isSelectMode || isDelete ? 0 : undefined}
+      onClick={isSelectMode || isDeleteMode ? handleToggleCheck : undefined}
+      tabIndex={isSelectMode || isDeleteMode ? 0 : undefined}
     >
       <div className="flex size-full items-center justify-between">
         <div className="h-full w-[65.5%]">
@@ -126,7 +126,7 @@ export default function SimpleCard({ artwork }: Prop) {
         </div>
       </div>
       {/* 체크 UI */}
-      {isSelectMode && !isDelete && (
+      {isSelectMode && !isDeleteMode && (
         <div
           className={clsx(
             'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 text-green-600 shadow-lg transition-all duration-300',
@@ -147,7 +147,7 @@ export default function SimpleCard({ artwork }: Prop) {
         </div>
       )}
       {/* 삭제 모드 UI */}
-      {isDelete && (
+      {isDeleteMode && (
         <div
           className={clsx(
             'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 shadow-lg transition-all duration-300',
@@ -168,7 +168,7 @@ export default function SimpleCard({ artwork }: Prop) {
         </div>
       )}
       {/* 오버레이/자세히: 선택모드 아닐 때만 */}
-      {!isSelectMode && !isDelete && (
+      {!isSelectMode && !isDeleteMode && (
         <>
           <div
             className={clsx(
@@ -202,7 +202,7 @@ export default function SimpleCard({ artwork }: Prop) {
       onBlur={() => setIsFocus(false)}
     >
       {/* 선택모드일 때는 Link 제거, 아닐 때만 Link로 감싼다 */}
-      {isSelectMode || isDelete ? (
+      {isSelectMode || isDeleteMode ? (
         CardInner
       ) : (
         <Link href={`/artwork/${artwork.id}`} className="mb-2">
@@ -211,7 +211,7 @@ export default function SimpleCard({ artwork }: Prop) {
       )}
       <div className="w-full px-1">
         {/* artwork.title에 green 적용 */}
-        {isSelectMode || isDelete ? (
+        {isSelectMode || isDeleteMode ? (
           <p
             className={clsx(
               'line-clamp-1 text-left text-base font-semibold hover:text-whiteAlpha-700 active:text-whiteAlpha-800 2xs:text-xl',

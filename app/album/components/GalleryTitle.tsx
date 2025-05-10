@@ -42,10 +42,10 @@ export default function GalleryTitle({ pageName }: Props) {
   const { data: userInfo } = useMyInfo();
   // TODO: link URL 서버에서 데이터 요청
   const { data: pageInfo } = useGalleryPageInfo(pageName);
-  const { isDelete, setIsDelete } = useDeleteModeStore(
+  const { isDeleteMode, setIsDeleteMode } = useDeleteModeStore(
     useShallow((state) => ({
-      isDelete: state.isDelete,
-      setIsDelete: state.setIsDelete,
+      isDeleteMode: state.isDeleteMode,
+      setIsDeleteMode: state.setIsDeleteMode,
     }))
   );
 
@@ -90,17 +90,17 @@ export default function GalleryTitle({ pageName }: Props) {
     router.push('/');
   };
   const handleDeleteButtonClick = () => {
-    if (isDelete) {
-      setIsDelete(false); // 삭제 모드 취소
+    if (isDeleteMode) {
+      setIsDeleteMode(false); // 삭제 모드 취소
       setFanarts([]);
     } else {
-      setIsDelete(true);
+      setIsDeleteMode(true);
     }
   };
   // 페이지 벗어날 때 편집 모드 초기화
   useEffect(() => {
     return () => {
-      setIsDelete(false);
+      setIsDeleteMode(false);
       setFanarts([]);
     };
   }, []);
@@ -171,10 +171,12 @@ export default function GalleryTitle({ pageName }: Props) {
                     additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
                   >
                     <MdDelete
-                      className={`mr-1 ${isDelete ? activeColor : inactiveColor}`}
+                      className={`mr-1 ${isDeleteMode ? activeColor : inactiveColor}`}
                       size={20}
                     />
-                    <span className={isDelete ? activeColor : inactiveColor}>
+                    <span
+                      className={isDeleteMode ? activeColor : inactiveColor}
+                    >
                       삭제
                     </span>
                   </Button>
