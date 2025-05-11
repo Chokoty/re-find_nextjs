@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
-import { FaAngleLeft } from 'react-icons/fa6';
 import { LuExternalLink } from 'react-icons/lu';
 import { MdAdd, MdClose, MdDelete } from 'react-icons/md';
 import { useShallow } from 'zustand/react/shallow';
@@ -64,6 +63,9 @@ export default function GalleryTitle({ pageName }: Props) {
     queryClient.invalidateQueries({ queryKey });
   };
   const handleOpenAddFanartToAlbumFinderModal = () => {
+    if (isDeleteMode) {
+      setIsDeleteMode(false);
+    }
     showAddFanartToAlbumFinderModal({
       applyCustomMaxWidth: true,
       id: albumName,
@@ -135,60 +137,48 @@ export default function GalleryTitle({ pageName }: Props) {
         </>
       ) : (
         <>
-          <div className="flex w-full items-center justify-between">
-            <Button
-              intent="link-gray"
-              onClick={handleBackButton}
-              additionalClass="p-0 h-7 min-h-7"
-            >
-              <FaAngleLeft className="mr-1" />
-              <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-                팬아트 갤러리로 돌아가기
-              </p>
-            </Button>
-            {userInfo &&
-              (owned ? (
-                <div className="flex items-center gap-1">
-                  <Button
-                    intent="ghost-gray"
-                    onClick={handleOpenAddFanartToAlbumFinderModal}
-                    additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
-                  >
-                    <MdAdd
-                      className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
-                      size={20}
-                    />
-                    <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-                      추가
-                    </span>
-                  </Button>
-                  <Button
-                    intent="ghost-gray"
-                    onClick={handleDeleteButtonClick}
-                    additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
-                  >
-                    {isDeleteMode ? (
-                      <>
-                        <MdClose className="mr-1 text-red-300" size={16} />
-                        <span className="text-red-300">삭제취소</span>
-                      </>
-                    ) : (
-                      <>
-                        <MdDelete
-                          className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
-                          size={20}
-                        />
-                        <span className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700">
-                          삭제
-                        </span>
-                      </>
-                    )}
-                  </Button>
-                </div>
-              ) : (
-                <SelectionModeButton />
-              ))}
-          </div>
+          {userInfo &&
+            (owned ? (
+              <div className="flex w-full items-center justify-between">
+                <Button
+                  intent="ghost-gray"
+                  onClick={handleOpenAddFanartToAlbumFinderModal}
+                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
+                >
+                  <MdAdd
+                    className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                    size={20}
+                  />
+                  <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+                    팬아트 추가
+                  </span>
+                </Button>
+                <Button
+                  intent="ghost-gray"
+                  onClick={handleDeleteButtonClick}
+                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
+                >
+                  {isDeleteMode ? (
+                    <>
+                      <MdClose className="mr-1 text-red-300" size={16} />
+                      <span className="text-red-300">삭제취소</span>
+                    </>
+                  ) : (
+                    <>
+                      <MdDelete
+                        className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                        size={20}
+                      />
+                      <span className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700">
+                        삭제
+                      </span>
+                    </>
+                  )}
+                </Button>
+              </div>
+            ) : (
+              <SelectionModeButton />
+            ))}
           <div className="w-full">
             {/* <h1 className={titleClassName}>{title}</h1> */}
             {owned ? (
