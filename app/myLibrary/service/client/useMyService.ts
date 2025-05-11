@@ -69,7 +69,7 @@ export function useSubscribeArtist({
   getArtistInfo,
 }: {
   author: string;
-  getArtistInfo: RefetchFn;
+  getArtistInfo: () => void;
 }) {
   return useMutation(queryOptions.subscribeArtist({ author, getArtistInfo }));
 }
@@ -78,7 +78,7 @@ export function useUnsubscribeArtist({
   getArtistInfo,
 }: {
   author: string;
-  getArtistInfo: RefetchFn;
+  getArtistInfo: () => void;
 }) {
   return useMutation(queryOptions.unsubscribeArtist({ author, getArtistInfo }));
 }

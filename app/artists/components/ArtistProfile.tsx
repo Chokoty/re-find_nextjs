@@ -10,10 +10,7 @@ import { useShallow } from 'zustand/react/shallow';
 import SubscribeConfirmModal from '@/app/artists/components/SubscribeConfirmModal';
 import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
-import {
-  useSubscribeArtist,
-  useUnsubscribeArtist,
-} from '@/app/myLibrary/service/client/useMyService';
+import Alert from '@/components/Alert';
 import Button, { type CustomVariantProps } from '@/components/Button';
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
@@ -28,57 +25,28 @@ import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
 interface Props {
   nickname: string;
-  profile: AuthorOverview;
 }
 
-export default function ArtistProfile({ nickname, profile }: Props) {
-  const {
-    author_url,
-    author_nickname,
-    author_prof_url,
-    best_cnt,
-    goldhand_cnt,
-    wak_cnt,
-    isd_cnt,
-    gomem_cnt,
-    following = false, // 추후 따로 빼달라고 하기(?) 아니면 클라에서 처리하기
-  } = profile;
+export default function ArtistProfile({ nickname }: Props) {
   const { rankCriteria, sortRankCriteria } = useArtistSearchInfoStore(
     useShallow((state) => ({
       rankCriteria: state.rankCriteria,
       sortRankCriteria: state.sortRankCriteria,
     }))
   );
-  const { data: clientArtistInfo, refetch } = useArtistInfo(nickname);
-  const { mutate: subscribeArtist } = useSubscribeArtist({
-    author: nickname,
-    getArtistInfo: refetch,
-  });
+  const { data: artistInfo, isError, isLoading } = useArtistInfo(nickname);
   const { show } = useModal(SubscribeConfirmModal);
-  const { mutate: unSubscribeArtist } = useUnsubscribeArtist({
-    author: nickname,
-    getArtistInfo: refetch,
-  });
-  const handleSubscribe = () => {
-    if (!clientArtistInfo) return;
-    if (clientArtistInfo.following) {
-      unSubscribeArtist();
-      return;
-    }
-    subscribeArtist();
-  };
 
   const openSubscribeConfirmModal = () => {
-    if (!clientArtistInfo) return;
+    if (!artistInfo) return;
     show({
-      // animateDir: 'bottom',
-      handleSubscribe,
-      isSubscribed: clientArtistInfo.following,
+      nickname,
+      isSubscribed: artistInfo.following,
     });
   };
 
   const member_link = useResponsiveLink(
-    author_url.split('/').pop() ?? '',
+    (artistInfo?.author_url ?? '').split('/').pop() ?? '',
     'member'
   );
   const handleCopyLink = () => {
@@ -92,6 +60,35 @@ export default function ArtistProfile({ nickname, profile }: Props) {
       toast.success('링크를 클립보드에 복사했어요.');
     });
   };
+
+  if (isLoading) {
+    return <div>아티스트 정보를 가져오고 있습니다...</div>;
+  }
+
+  if (!artistInfo) {
+    return (
+      <div className="flex flex-col items-center justify-center p-4 text-center text-gray-600 dark:text-gray-400">
+        <p className="text-lg font-semibold">
+          아티스트 정보를 불러올 수 없습니다.
+        </p>
+        {/* <p className="mt-2">잠시 후 다시 시도해주세요.</p> */}
+      </div>
+    );
+  }
+  const {
+    author_url,
+    author_nickname,
+    author_prof_url,
+    best_cnt,
+    goldhand_cnt,
+    wak_cnt,
+    isd_cnt,
+    gomem_cnt,
+  } = artistInfo;
+
+  if (isError) {
+    return <Alert />;
+  }
 
   const total = best_cnt + goldhand_cnt + wak_cnt + isd_cnt + gomem_cnt;
   return (
@@ -139,9 +136,9 @@ export default function ArtistProfile({ nickname, profile }: Props) {
           총 작품 수&nbsp;
           {<CountUp end={total ?? 0} className="text-green-highlight" />}개
         </p>
-        <SortTypeIcons artist={profile} />
+        <SortTypeIcons artist={artistInfo} />
         <ViewTypeIcons
-          artist={profile}
+          artist={artistInfo}
           rankCriteria={rankCriteria}
           sortRankCriteria={sortRankCriteria}
         />
@@ -171,15 +168,13 @@ export default function ArtistProfile({ nickname, profile }: Props) {
             <p className="">2024 리캡</p>
           </Button>
         </Link>
-        {clientArtistInfo && (
+        {artistInfo && (
           <Button
             size="lg"
             additionalClass="rounded-full max-w-[73px] text-base font-semibold "
             onClick={openSubscribeConfirmModal}
           >
-            <p className="">
-              {clientArtistInfo.following ? '구독 중' : '+ 구독'}
-            </p>
+            <p className="">{artistInfo.following ? '구독 중' : '+ 구독'}</p>
           </Button>
         )}
       </div>

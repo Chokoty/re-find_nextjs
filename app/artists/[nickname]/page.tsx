@@ -61,7 +61,7 @@ export default async function page({ params: { nickname } }: Params) {
       <NotFound nickname={decodedNickname} />
     ) : (
       <div className="mb-8 mt-16 flex w-full flex-col items-center">
-        <ArtistProfile nickname={decodedNickname} profile={result} />
+        <ArtistProfile nickname={decodedNickname} />
         <Hydrate state={{ queries: [query] }}>
           <Suspense>
             <DetailedArtists nickname={decodedNickname} artistInfo={result} />
@@ -75,7 +75,7 @@ export default async function page({ params: { nickname } }: Params) {
     <NotFound nickname={decodedNickname} />
   ) : (
     <div className="mb-8 mt-16 flex w-full flex-col items-center">
-      <ArtistProfile nickname={decodedNickname} profile={result} />
+      <ArtistProfile nickname={decodedNickname} />
       <Suspense>
         <DetailedArtists nickname={decodedNickname} artistInfo={result} />
       </Suspense>
