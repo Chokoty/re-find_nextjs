@@ -1,9 +1,9 @@
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
+import toast from 'react-hot-toast';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { IoSearchOutline } from 'react-icons/io5';
 import { useInView } from 'react-intersection-observer';
 import { PuffLoader } from 'react-spinners';
 import { useDebounce } from 'react-use';
@@ -21,7 +21,6 @@ export default function AddFanartToAlbumFinderModal(
   props: Record<string, unknown>
 ) {
   const { hide } = useModal();
-  // const router = useRouter();
   const onClose = () => {
     hide();
   };
@@ -46,6 +45,7 @@ export default function AddFanartToAlbumFinderModal(
       items: selected,
       handleOnSuccess: () => {
         refreshAlbumArtworks();
+        toast.success('새로운 팬아트가 앨범에 추가되었습니다.');
         onClose();
       },
     });
@@ -94,14 +94,14 @@ export default function AddFanartToAlbumFinderModal(
   const isInputNotEmpty = input.length > 0;
 
   return (
-    <section className="relative m-auto flex h-[80vh] w-full max-w-[760px] flex-col rounded-2xl bg-white dark:bg-dark-card sm:w-full">
-      <h1 className="px-6 py-8 text-xl font-bold">
+    <section className="m-auto flex h-[80vh] w-[90%] flex-col rounded-2xl bg-white dark:bg-dark-card md:w-full md:max-w-[760px]">
+      <h1 className="px-3 py-8 text-xl font-bold 2xs:px-6">
         앨범에 추가할 팬아트를 찾아보세요
       </h1>
-      <div className="flex size-full flex-col items-center justify-between px-6 pb-8 text-center text-sm 2xs:text-base md:pb-6 lg:px-8">
-        <div className="relative h-10 w-full max-w-[400px]">
+      <div className="flex size-full flex-col items-center justify-between px-3 pb-8 text-center text-sm 2xs:px-6 2xs:text-base md:max-w-[500px] md:pb-6 lg:px-8">
+        <div className="relative h-10 w-full">
           <div className="absolute left-1 top-0 z-[2] flex h-full w-10 items-center justify-center">
-            <FaSearch
+            <IoSearchOutline
               className={clsx('size-5', {
                 'text-green-highlight': isInputNotEmpty,
                 'text-gray-600 dark:text-whiteAlpha-500': !isInputNotEmpty,

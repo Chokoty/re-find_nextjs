@@ -29,7 +29,7 @@ export default function CustomAlbumRow({
   return (
     <div
       onClick={handleRowClick}
-      className={`relative mb-4 flex w-full cursor-pointer items-center justify-between overflow-hidden rounded-md border-b-base border-gray-300 px-2 pb-1 transition-all duration-300 dark:border-whiteAlpha-300 dark:hover:bg-whiteAlpha-300 ${
+      className={`relative mb-4 flex w-full cursor-pointer items-center justify-between gap-1 overflow-hidden rounded-md border-b-base border-gray-300 px-2 pb-1 transition-all duration-300 dark:border-whiteAlpha-300 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 ${
         disabled ? 'pointer-events-none opacity-70' : '' // ✅ hover 효과 제거
       }`}
     >

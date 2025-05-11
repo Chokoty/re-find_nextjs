@@ -81,7 +81,7 @@ export default function MobileActionBar() {
     showAddFanartsToCustomAlbumModal({
       fanarts,
       animateDir: 'bottom',
-      applyCustomMaxWidth: true,
+      // applyCustomMaxWidth: true,
       handleAfterSuccessCallback: exitModes,
     });
   };
@@ -107,7 +107,7 @@ export default function MobileActionBar() {
           </button>
         </div>
       ),
-      { duration: 1000, style: { minWidth: 220 } }
+      { style: { minWidth: 220 } }
     );
   };
 
