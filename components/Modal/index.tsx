@@ -101,7 +101,7 @@ export default function Modal({ Component, modalProps, hide }: Props) {
             tabIndex={-1}
             ref={modalRef}
             className={clsx(
-              `flex h-full justify-center transition-all duration-500 ease-out sm:mx-auto sm:w-full ${applyCustomMaxWidth ? 'sm:max-w-fit' : 'sm:max-w-[435px]'}`,
+              `flex size-full justify-center transition-all duration-500 ease-out sm:mx-auto ${applyCustomMaxWidth ? 'sm:max-w-fit' : 'sm:max-w-[435px]'}`,
               {
                 [className]: true,
                 'mb-[60px] w-full': position === 'bottom',

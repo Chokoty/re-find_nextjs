@@ -104,18 +104,31 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
   // 모바일 헤더 표시
   if (isMobile) {
     return (
-      <div className="flex items-center justify-center gap-2 md:hidden">
-        <div className="flex size-[48px] items-center justify-center rounded-full shadow-sm hover:bg-white dark:shadow-none hover:dark:bg-dark-card">
-          <Image
-            width={100}
-            height={100}
-            className="size-[32px] rounded-full object-cover"
-            src={똥강아지1}
-            alt={''}
-            unoptimized
-          />
+      <div className="flex w-full items-center justify-between">
+        <div className="mr-2 size-11 rounded-full p-2 transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 md:mr-4">
+          <Link href="/">
+            <Image
+              alt="리파인드 로고"
+              width={32}
+              height={32}
+              src={Logo}
+              priority
+            />
+          </Link>
         </div>
-        <h2>모바일 헤더입니다</h2>
+        <div className="flex items-center justify-center gap-2 md:hidden">
+          <div className="flex size-[48px] items-center justify-center rounded-full shadow-sm hover:bg-white dark:shadow-none hover:dark:bg-dark-card">
+            <Image
+              width={100}
+              height={100}
+              className="size-[32px] rounded-full object-cover"
+              src={똥강아지1}
+              alt={''}
+              unoptimized
+            />
+          </div>
+          {/* <h2>모바일 헤더입니다</h2> */}
+        </div>
       </div>
     );
   }
