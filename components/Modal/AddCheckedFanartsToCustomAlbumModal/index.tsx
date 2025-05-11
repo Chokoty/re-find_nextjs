@@ -69,7 +69,7 @@ export default function AddCheckedFanartsToCustomAlbumModal(
     setSelected((prevSelected) => (prevSelected === id ? null : id));
   };
   return (
-    <section className="mx-5 my-auto flex h-[560px] w-full flex-col items-center justify-center rounded-md bg-white p-4 shadow-xl dark:bg-dark-card 2xs:mx-auto md:m-auto md:h-[550px] md:w-full md:max-w-[760px]">
+    <section className="m-auto flex h-[560px] w-[90%] flex-col items-center justify-center rounded-2xl bg-white p-4 shadow-xl dark:bg-dark-card md:h-[550px] md:w-full md:max-w-[760px]">
       <h1 className="mb-4 w-full text-xl font-bold">
         팬아트를 추가할 앨범을 선택하세요
       </h1>

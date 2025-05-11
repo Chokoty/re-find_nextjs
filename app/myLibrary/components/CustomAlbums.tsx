@@ -41,9 +41,6 @@ export default function CustomAlbums() {
             list: user.albums,
           }}
           customSwiperOptions={{
-            style: {
-              // padding: '0 2rem',
-            },
             spaceBetween: 8,
             breakpoints: {
               480: {

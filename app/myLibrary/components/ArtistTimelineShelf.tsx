@@ -47,9 +47,6 @@ export default function ArtistTimelineShelf() {
             list: artworks,
           }}
           customSwiperOptions={{
-            style: {
-              // padding: '0 2rem',
-            },
             spaceBetween: 8,
             breakpoints: {
               480: {

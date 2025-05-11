@@ -25,9 +25,6 @@ export default function BoardList() {
           list: UPDATED_GALLERY_LIST,
         }}
         customSwiperOptions={{
-          style: {
-            // padding: '0 2rem',
-          },
           spaceBetween: 8,
           breakpoints: {
             768: {

@@ -2,7 +2,9 @@
 
 import 'swiper/css';
 
+import { useQueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import type { SwiperOptions } from 'swiper/types';
@@ -15,10 +17,11 @@ import GalleryFanartCard from '@/app/album/components/Card/GalleryFanartCard';
 import GalleryLikedAlbumCard from '@/app/album/components/Card/GalleryLikedAlbumCard';
 import AddButton from '@/app/myLibrary/components/AddButton';
 import { useCreateCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
+import queryOptions from '@/service/client/queries';
 
 interface CustomSwiperParams extends SwiperOptions {
   // 다른 타입을 추가하거나 필요에 따라 수정
-  style: Record<string, string>;
+  // style: Record<string, string>;
 }
 
 type SliderType = 'fanart' | 'album' | 'board' | 'liked' | 'custom';
@@ -33,13 +36,13 @@ type Props = {
 };
 
 export default function GallerySlider({ customSwiperOptions, data }: Props) {
-  const { style: customStyle, ...customOptions } = customSwiperOptions || {};
+  // const { style: customStyle, ...customOptions } = customSwiperOptions || {};
   const swiperParams = {
     // centerInsufficientSlides
     style: {
       width: '100%',
       padding: '0',
-      ...(customStyle || {}),
+      // ...(customStyle || {}),
     },
     allowTouchMove: true,
     className: 'mySwiper2 md:!px-8',
@@ -59,12 +62,19 @@ export default function GallerySlider({ customSwiperOptions, data }: Props) {
         spaceBetween: 20,
       },
     },
-    ...customOptions,
+    ...customSwiperOptions,
   };
 
   const router = useRouter();
   const handleOnSuccess = (albumId: string) => {
+    refreshAlbumArtworks();
+    toast.success('새로운 앨범이 추가되었습니다.');
     router.push(`/album/${albumId}`);
+  };
+  const { queryKey } = queryOptions.myInfo();
+  const queryClient = useQueryClient();
+  const refreshAlbumArtworks = () => {
+    queryClient.invalidateQueries({ queryKey });
   };
   const { mutate: createCustomAlbum, status } = useCreateCustomAlbum(
     [],

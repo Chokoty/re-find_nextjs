@@ -4,6 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
 
 import { useCreateCustomAlbum } from '@/app/myLibrary/service/client/useMyService';
 import queryOptions from '@/service/client/queries';
@@ -16,6 +17,7 @@ export default function CustomAlbumsList() {
   const router = useRouter();
   const handleOnSuccess = (albumId: string) => {
     refreshAlbumArtworks();
+    toast.success('새로운 앨범이 추가되었습니다.');
     router.push(`/album/${albumId}`);
   };
   const { mutate: createCustomAlbum, status } = useCreateCustomAlbum(
