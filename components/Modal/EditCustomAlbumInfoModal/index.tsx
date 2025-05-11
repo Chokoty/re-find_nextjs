@@ -1,5 +1,6 @@
 import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { IoClose } from 'react-icons/io5';
 import { MdInfo } from 'react-icons/md';
 
@@ -16,9 +17,13 @@ export default function EditCustomAlbumInfoModal(
   const initialDescription = props.initialDescription as string;
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
+  const { queryKey } = queryOptions.galleryPageInfo(albumName);
+  const queryClient = useQueryClient();
+
   const onClose = () => {
     hide();
   };
+
   const refreshAlbumInfo = () => {
     queryClient.invalidateQueries({ queryKey });
   };
@@ -31,17 +36,14 @@ export default function EditCustomAlbumInfoModal(
     },
     handleOnSuccess: () => {
       refreshAlbumInfo();
+      toast.success('앨범 정보가 수정되었습니다.');
       onClose();
     },
   });
 
-  const { queryKey } = queryOptions.galleryPageInfo(albumName);
-  const queryClient = useQueryClient();
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     editCustomAlbumInfo();
-    onClose();
   };
 
   return (

@@ -31,9 +31,8 @@ const queryOptions = {
     handleOnSuccess: () => void;
   }) => ({
     mutationFn: () => myService.putCustomAlbum(albumId, info),
-    onSucess: () => {
+    onSuccess: () => {
       handleOnSuccess();
-      toast.success('앨범 정보가 수정되었습니다.');
     },
   }),
   addFanartsInToCustomAlbum: ({
