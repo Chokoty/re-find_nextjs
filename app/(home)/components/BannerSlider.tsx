@@ -53,12 +53,12 @@ const events: EventData[] = [
   //   link: '/album/halloween',
   //   linkContent: <>할로윈 특집 팬아트 보러가기</>,
   // },
-  {
-    title: '2024 리파인드 리캡',
-    linkColor: 'green',
-    link: '/recap2024',
-    linkContent: <>2024 리파인드 돌아보기</>,
-  },
+  // {
+  //   title: '2024 리파인드 리캡',
+  //   linkColor: 'green',
+  //   link: '/recap2024',
+  //   linkContent: <>2024 리파인드 돌아보기</>,
+  // },
   {
     title: '❤️‍🔥 이세돌 데뷔 3주년 축하드립니다!!! ❤️‍🔥',
     linkColor: 'pink',

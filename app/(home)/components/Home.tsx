@@ -6,7 +6,6 @@ import { Suspense, useEffect } from 'react';
 import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
 import Footer from '@/app/(home)/components/Footer';
 import HomeMobile from '@/app/(home)/components/HomeMobile';
-import RefindRecapNotificationModal from '@/app/(home)/components/RefindRecapNotificationModal';
 import BoardList from '@/app/album/components/BoardList';
 import GalleryTitle from '@/app/album/components/GalleryTitle';
 import MemberAlbum from '@/app/album/components/MemberAlbum';
@@ -23,15 +22,10 @@ export default function Home() {
     key: 'showAppInstallModal',
     initialValue: false,
   });
-
-  const [isOpenAuthorRecapModal, setIsOpenAuthorRecapModal] = useLocalStorage({
-    key: 'showRefindRecapModal',
-    initialValue: false,
-  });
   const { show } = useModal(AppInstallModal);
-  const { show: showRefindRecapNotification } = useModal(
-    RefindRecapNotificationModal
-  );
+  // const { show: showRefindRecapNotification } = useModal(
+  //   RefindRecapNotificationModal
+  // );
   const isMobile = useResponsive();
   const openPwaInstallModal = () => {
     show({ animateDir: 'bottom', position: 'bottom', setStorage: setValue });
@@ -51,15 +45,6 @@ export default function Home() {
       openPwaInstallModal();
     }
   }, [isMobile]);
-
-  useEffect(() => {
-    if (!isOpenAuthorRecapModal) {
-      showRefindRecapNotification({
-        animateDir: 'bottom',
-        setStorage: setIsOpenAuthorRecapModal,
-      });
-    }
-  }, []);
 
   return (
     <div className="flex w-full flex-col items-center justify-start">

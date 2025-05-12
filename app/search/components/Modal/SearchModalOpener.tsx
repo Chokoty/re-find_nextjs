@@ -53,7 +53,7 @@ export default function SearchModalOpener() {
             placeholder={placeholderText}
           />
         </div>
-        <Link
+        {/* <Link
           href="/recap2024"
           className="group absolute right-[-120px] z-[3] hidden h-12 w-auto items-center rounded-full border border-green-highlight px-4 font-medium text-green-highlight hover:bg-blackAlpha-200 active:bg-blackAlpha-300 dark:border-none dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-300 md:flex"
           style={{ top: 0 }}
@@ -63,7 +63,7 @@ export default function SearchModalOpener() {
               🎉RE:CAP
             </span>
           </Tooltip>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

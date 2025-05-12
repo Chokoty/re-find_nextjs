@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import type { setValueParams } from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 
+// TODO: 추후 재사용을 위해 제거 x
 export default function RefindRecapNotificationModal(
   props: Record<string, unknown>
 ) {

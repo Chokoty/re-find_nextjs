@@ -7,6 +7,7 @@ import toast from 'react-hot-toast';
 import { ImLink } from 'react-icons/im';
 import { useShallow } from 'zustand/react/shallow';
 
+import NotFound from '@/app/artists/components/NotFound';
 import SubscribeConfirmModal from '@/app/artists/components/SubscribeConfirmModal';
 import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
@@ -14,16 +15,10 @@ import Alert from '@/components/Alert';
 import Button, { type CustomVariantProps } from '@/components/Button';
 import SortTypeIcons from '@/components/Icons/SortTypeIcons';
 import ViewTypeIcons from '@/components/Icons/ViewTypeIcons';
-import Popover, {
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/components/Popover';
+import Popover, { PopoverTrigger } from '@/components/Popover';
 import Tooltip from '@/components/Tooltip';
 import useModal from '@/hooks/useModal';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
-
-import NotFound from './NotFound';
 
 interface Props {
   nickname: string;
@@ -101,17 +96,6 @@ export default function ArtistProfile({ nickname }: Props) {
             referrerPolicy="no-referrer" // 네이버 리소스 서버에서 요청 오리진 검증 우회
           />
         </PopoverTrigger>
-        <PopoverContent position="bottom-center">
-          <PopoverBody>
-            <p className="my-2 text-center text-lg font-bold">
-              작가님들의 2024 활동 돌아보기
-              {/* 좋아요, 댓글 부탁드려요! */}
-            </p>
-            <p className="text-center text-base font-light">
-              아래 2024 리캡 버튼을 눌러서 확인해보세요!
-            </p>
-          </PopoverBody>
-        </PopoverContent>
       </Popover>
       <div className="my-2 flex items-center justify-center gap-1">
         <div className="size-10" />
@@ -150,17 +134,6 @@ export default function ArtistProfile({ nickname }: Props) {
             additionalClass=" flex rounded-full text-whiteAlpha-900 font-semibold h-[48px] p-4"
           >
             <p className="text-white">왁물원</p>
-          </Button>
-        </Link>
-        <Link
-          href={`/artists/${nickname}/recap2024`}
-          className="link-to-wakzoo_detail"
-        >
-          <Button
-            intent={`solid-purple` as CustomVariantProps['intent']}
-            additionalClass="rounded-full text-whiteAlpha-900 font-semibold dark:text-blackAlpha-900   text-base h-[48px] p-4"
-          >
-            <p className="">2024 리캡</p>
           </Button>
         </Link>
         {artistInfo && (

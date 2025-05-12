@@ -542,4 +542,9 @@ export const UPDATE_LOGS: UpdateLog[] = [
     content:
       'RE:CAP 2024 리파인드 돌아보기를 오픈했습니다. 작가님 개별리캡은 작가페이지에서 보실 수 있습니다.',
   },
+  {
+    id: 56,
+    date: '2025.05.12',
+    content: 'RE:CAP 2024 리파인드 돌아보기 서비스를 종료했습니다.',
+  },
 ];
