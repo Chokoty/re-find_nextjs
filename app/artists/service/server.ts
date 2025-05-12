@@ -1,4 +1,4 @@
-// 작가 정보가져오기
+// 작가 정보가져오기 (서버 사이드 > 클라이언트 사이드)
 import axios from 'axios';
 
 export const getAuthorInfo = async (nickname: string) => {

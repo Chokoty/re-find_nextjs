@@ -71,9 +71,9 @@ export function useGalleryPageInfo(id: string) {
 //   };
 // }
 
-// export function useArtworkDetail(artworkId: number) {
-//   return useQuery(queryOptions.artworkDetail(artworkId));
-// }
+export function useArtworkDetail(artworkId: number) {
+  return useQuery(queryOptions.artworkDetail(artworkId));
+}
 
 // export function useArtworks({
 //   isIsdPick,

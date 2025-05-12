@@ -18,7 +18,6 @@ import { useResponsive } from '@/hooks/useResponsive';
 
 type Props = {
   nickname: string;
-  artistInfo: AuthorOverview;
 };
 
 export default function DetailedArtists({ nickname }: Props) {

@@ -23,6 +23,8 @@ import Tooltip from '@/components/Tooltip';
 import useModal from '@/hooks/useModal';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
+import NotFound from './NotFound';
+
 interface Props {
   nickname: string;
 }
@@ -64,17 +66,10 @@ export default function ArtistProfile({ nickname }: Props) {
   if (isLoading) {
     return <div>아티스트 정보를 가져오고 있습니다...</div>;
   }
-
-  if (!artistInfo) {
-    return (
-      <div className="flex flex-col items-center justify-center p-4 text-center text-gray-600 dark:text-gray-400">
-        <p className="text-lg font-semibold">
-          아티스트 정보를 불러올 수 없습니다.
-        </p>
-        {/* <p className="mt-2">잠시 후 다시 시도해주세요.</p> */}
-      </div>
-    );
+  if (!artistInfo || artistInfo.author_nickname === '') {
+    return <NotFound nickname={nickname} />;
   }
+
   const {
     author_url,
     author_nickname,
