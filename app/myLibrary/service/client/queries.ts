@@ -60,10 +60,6 @@ const queryOptions = {
     onSuccess: () => {
       handleOnSuccess?.();
     },
-    onError: (error: any) => {
-      // TODO: 에러처리하기 //error obj (status, data)
-      toast.error(`${error.response.status}: ${error.response.data.message}`);
-    },
   }),
   updateLikedArticles: () => ({
     queryKey: queryKeys.updateLikedArticles(),
