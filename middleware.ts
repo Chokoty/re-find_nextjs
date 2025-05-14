@@ -8,7 +8,7 @@ export default function middleware(req: NextRequest) {
   if (pathname === '/album/AprilFool' || pathname === '/album/Shuko') {
     return NextResponse.redirect(new URL('/album', req.nextUrl));
   }
-  const recap2024Pattern = /^\/artists\/[^\/]+\/recap2024(\/.*)?$/;
+  const recap2024Pattern = /^\/artists\/[^/]+\/recap2024(\/.*)?$/;
   if (
     pathname === '/recap2024' ||
     pathname.startsWith('/recap2024/') ||
@@ -28,6 +28,9 @@ export default function middleware(req: NextRequest) {
     const loginUrl = new URL('/login', req.url);
     return NextResponse.redirect(loginUrl);
   }
+
+  // 모든 조건에 해당하지 않으면 요청을 계속 진행
+  return NextResponse.next();
 }
 
 export const config = {

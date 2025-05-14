@@ -1,15 +1,7 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 
-// export class ApiClientError extends Error {
-//   constructor(
-//     public statusCode: number,
-//     public data: { message?: string; content?: string }
-//   ) {
-//     super(`API 요청 실패 (상태 코드: ${statusCode})`);
-//     this.name = 'ApiClientError';
-//   }
-// }
+import { ApiError } from '@/lib/error-utils';
 
 interface HTTPInstance {
   get<T>(url: string, config?: AxiosRequestConfig): Promise<T>;
@@ -96,18 +88,13 @@ class Service {
 
       return response.data;
     } catch (error) {
-      console.log('error test', error);
       if (axios.isAxiosError(error)) {
-        // 모든 데이터 형태를 그대로 전파
-        throw {
-          statusCode: error.response?.status || 500,
-          data: error.response?.data || { message: 'Unknown error' },
-        };
+        throw new ApiError(
+          error.response?.status || 500,
+          error.response?.data || { message: 'Unknown error' }
+        );
       }
-      throw {
-        statusCode: 500,
-        data: { message: 'System error' },
-      };
+      throw new ApiError(500, { message: 'System error' });
     }
   }
 }

@@ -109,3 +109,13 @@ export function translateRefindAppErrorMessage(e: RefindAppError): string {
     ? e.message
     : translationMap[e.message] || '알 수 없는 오류';
 }
+
+export class ApiError extends Error {
+  constructor(
+    public statusCode: number,
+    public data: { message: string }
+  ) {
+    super(data.message);
+    this.name = 'ApiError';
+  }
+}
