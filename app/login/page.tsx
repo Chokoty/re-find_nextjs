@@ -1,9 +1,9 @@
+'use client';
+
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { IoClose } from 'react-icons/io5';
 
 import NaverButton from '@/components/Button/NaverButton';
-import useModal from '@/hooks/useModal';
 import { Logo } from '@/lib/images';
 
 const redirect_uri = `${
@@ -15,8 +15,7 @@ const client_id = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
 const testApiBase = process.env.NEXT_PUBLIC_DEV_CLIENT_URL;
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL;
 
-export default function LoginModal() {
-  const { hide } = useModal();
+export default function LoginPage() {
   const pathname = usePathname();
   const goToNaverLogin = () => {
     // window.location.href = `https://nid.naver.com/oauth2.0/authorize?client_id=${client_id}&response_type=code&redirect_uri=${redirect_uri}&state=abcd`;
@@ -25,15 +24,9 @@ export default function LoginModal() {
   };
 
   return (
-    <section className="relative m-auto size-full bg-white shadow-xl dark:bg-dark-card md:h-[291px] md:w-[430px] md:rounded-md">
-      <button
-        className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300"
-        onClick={hide}
-      >
-        <IoClose className="size-8" />
-      </button>
-      <div className="flex size-full flex-col items-center justify-end px-6 py-8 text-center text-sm 2xs:text-base md:py-6 lg:px-8">
-        <div className="absolute left-1/2 top-[45%] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center md:top-[40%]">
+    <section className="h-[calc(100vh-60px)] w-full bg-white shadow-xl dark:bg-dark-card">
+      <div className="flex size-full flex-col items-center justify-center text-center text-sm 2xs:text-base">
+        <div className="flex w-full flex-col items-center justify-center">
           <Image
             alt="리파인드 로고"
             width={48}
@@ -45,9 +38,11 @@ export default function LoginModal() {
           />
           <h1 className="mt-2 text-xl font-semibold">리파인드 로그인</h1>
         </div>
-        <NaverButton onClick={goToNaverLogin}>
-          네이버 아이디로 로그인
-        </NaverButton>
+        <div className="w-2/3 sm:w-1/2">
+          <NaverButton onClick={goToNaverLogin}>
+            네이버 아이디로 로그인
+          </NaverButton>
+        </div>
       </div>
     </section>
   );
