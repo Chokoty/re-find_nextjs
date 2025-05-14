@@ -5,7 +5,6 @@ import DetailedGallery from '@/app/album/components/DetailedGallery';
 import GalleryTitle from '@/app/album/components/GalleryTitle';
 import TopBackground from '@/app/album/components/TopBackground';
 import queryOptions from '@/app/album/service/client/queries';
-import { getGalleryPageInfo } from '@/app/album/service/server';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 

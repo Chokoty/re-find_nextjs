@@ -11,8 +11,8 @@ import queryOptions from '@/service/client/queries';
 import { useMyInfo } from '@/service/client/useCommonService';
 
 export default function CustomAlbumsList() {
-  const { data: user } = useMyInfo();
-  const total = user?.albums.length || 0;
+  const { data: userInfo } = useMyInfo();
+  const total = userInfo?.albums.length || 0;
 
   const router = useRouter();
   const handleOnSuccess = (albumId: string) => {
@@ -60,7 +60,7 @@ export default function CustomAlbumsList() {
         </button>
       </div>
       <ul className="grid w-full grid-cols-2 gap-1 xs:grid-cols-3 xs:gap-2 2xs:gap-4 sm:grid-cols-4 md:grid-cols-3 2md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
-        {user?.albums.map((album) => (
+        {userInfo?.albums.map((album) => (
           <li key={album.id} className="mx-auto max-w-[200px] list-none">
             <Link
               href={`/album/${album.id}?viewType=masonry`}

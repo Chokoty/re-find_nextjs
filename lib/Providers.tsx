@@ -1,5 +1,6 @@
 'use client';
 
+import type { Query } from '@tanstack/react-query';
 import {
   MutationCache,
   QueryCache,
@@ -33,7 +34,7 @@ export function Providers({ children }: React.PropsWithChildren) {
         // 1. useQuery 훅이 작동할때 에러가 발생한다면 에러 토스트알림을 띄웁니다.(useQuery's onError callback -> deprecated)
         // //FIX: tanstack query v4부터 deprecated되었다 소리가..
         queryCache: new QueryCache({
-          onError: (error) => handleError(error),
+          onError: (error, query) => handleError(error, query),
         }),
         // 2. useMutation 훅이 작동할때 에러가 발생한다면 에러 토스트알림을 띄웁니다.
         mutationCache: new MutationCache({
@@ -43,8 +44,13 @@ export function Providers({ children }: React.PropsWithChildren) {
   );
 
   // 에러핸들링 함수 만약 에러클래스를 여러개 정의한다면 에러별로 공통된 에러핸들링을 정의할 수 있습니다.
-  const handleError = (error: unknown) => {
+  const handleError = (
+    error: unknown,
+    query?: Query<unknown, unknown, unknown>
+  ) => {
     console.error('Global Error Handler:', error);
+    // myInfo일 경우 따로 toast를 띄우지 않을 것
+    if (query?.meta?.skipGlobalErrorHandler) return;
 
     if (isAxiosError(error) && error.code === 'ECONNABORTED') {
       toast.error('요청 시간이 초과되었습니다. 다시 시도해주세요.');

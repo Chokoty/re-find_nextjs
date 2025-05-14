@@ -16,7 +16,7 @@ export default function AddCheckedFanartsToCustomAlbumModal(
   props: Record<string, unknown>
 ) {
   const [selected, setSelected] = useState<string | null>(null);
-  const { data: user } = useMyInfo();
+  const { data: userInfo } = useMyInfo();
   const { hide } = useModal();
   const fanarts = props.fanarts as number[];
   const handleAfterSuccessCallback =
@@ -75,8 +75,8 @@ export default function AddCheckedFanartsToCustomAlbumModal(
       </h1>
       <div className="flex size-full flex-col items-center justify-between pt-3 text-center text-sm 2xs:text-base md:px-2">
         <div className="h-[400px] w-full overflow-auto">
-          {user &&
-            user.albums.map((album) => (
+          {userInfo &&
+            userInfo.albums.map((album) => (
               <CustomAlbumRow
                 key={album.id}
                 album={album}

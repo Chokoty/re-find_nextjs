@@ -1,3 +1,5 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
@@ -13,7 +15,7 @@ const GallerySlider = dynamic(
 );
 
 export default function CustomAlbums() {
-  const { data: user } = useMyInfo();
+  const { data: userInfo } = useMyInfo();
   return (
     <div className="mb-10 flex w-full flex-col p-2 md:px-6">
       <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
@@ -34,11 +36,11 @@ export default function CustomAlbums() {
           </p>
         </Link>
       </div>
-      {user && (
+      {userInfo && (
         <GallerySlider
           data={{
             type: 'custom',
-            list: user.albums,
+            list: userInfo.albums,
           }}
           customSwiperOptions={{
             spaceBetween: 8,

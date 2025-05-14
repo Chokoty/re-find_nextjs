@@ -21,6 +21,7 @@ const queryOptions = {
   galleryPageInfo: (id: string) => ({
     queryKey: queryKeys.galleryPageInfo(id), // queryKey 설정
     queryFn: () => GalleryService.getGalleryPageInfo(id), // 메서드 호출
+    enabled: id !== 'galleryHome',
   }),
   galleryArtworks: ({
     galleryType,

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import PageButton from '@/app/(home)/components/PageButton';
 import { useMyInfo } from '@/service/client/useCommonService';
@@ -7,7 +7,6 @@ const buttons = [
   { text: '갤러리', path: '/album' },
   { text: '작가', path: '/artists' },
   { text: '이벤트', path: '/events' },
-  // { text: '내 라이브러리', path: '/myLibrary' },
 ];
 
 export default function PageButtonList({
@@ -16,7 +15,7 @@ export default function PageButtonList({
   scrollContainerRef: React.RefObject<HTMLDivElement>;
 }) {
   const [hasScrolled, setHasScrolled] = useState(false);
-  const { isFetching, status, data, refetch } = useMyInfo();
+  const { data } = useMyInfo();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,26 +35,6 @@ export default function PageButtonList({
       }
     };
   }, [scrollContainerRef]);
-
-  // ✅ 로그아웃 후 자동으로 refetch 실행하여 "내 라이브러리" 버튼 제거
-  useEffect(() => {
-    if (!data) {
-      refetch();
-    }
-  }, [data, refetch]);
-  // // ✅ 로그아웃 후 자동으로 refetch 실행
-  // useEffect(() => {
-  //   const handleStorageChange = (event: StorageEvent) => {
-  //     if (event.key === 'logout') {
-  //       refetch(); // 🚀 로그아웃 감지 시 강제 리렌더링
-  //     }
-  //   };
-
-  //   window.addEventListener('storage', handleStorageChange);
-  //   return () => {
-  //     window.removeEventListener('storage', handleStorageChange);
-  //   };
-  // }, [refetch]);
 
   return (
     <div

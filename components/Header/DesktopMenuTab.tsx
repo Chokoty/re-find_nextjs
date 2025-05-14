@@ -1,14 +1,12 @@
+import { useQueryClient } from '@tanstack/react-query';
 import type { StaticImageData } from 'next/image';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
-import type { IconType } from 'react-icons';
 import { FaUserEdit } from 'react-icons/fa';
-import { FiMenu } from 'react-icons/fi';
 import { LuLogOut } from 'react-icons/lu';
 
-import Divider from '@/components/Divider';
 import LoginModal from '@/components/LoginModal';
 import Tooltip from '@/components/Tooltip';
 import useModal from '@/hooks/useModal';
@@ -30,14 +28,8 @@ import {
   팬치1,
   팬치2,
 } from '@/lib/images';
+import queryOptions from '@/service/client/queries';
 import { useLogout, useMyInfo } from '@/service/client/useCommonService';
-
-type RouterItem = {
-  path: string;
-  name: string;
-  icon?: IconType; // 선택적 속성
-  className: string;
-};
 
 // 프로필 이미지 선택 함수 (호버 여부 추가)
 const getUserImage = (
@@ -68,19 +60,15 @@ const getUserImage = (
 
 export default function DesktopMenuTab() {
   const router = useRouter();
-  const { show } = useModal(LoginModal); // 사용자 정보 가져오기
-  const { isFetching, status, data } = useMyInfo();
+  const queryClient = useQueryClient();
+  const { queryKey } = queryOptions.myInfo();
+  const { show } = useModal(LoginModal);
+  const { data: userData } = useMyInfo();
   const { refetch: logoutRefetch } = useLogout(); // 로그아웃 요청
-  const [userData, setUserData] = useState<UserInfo | null>(data ?? null);
+
   const [isHovered, setIsHovered] = useState(false); // 호버 상태 관리
   const [isMenuOpen, setIsMenuOpen] = useState(false); // 메뉴 토글 상태
   const menuRef = useRef<HTMLDivElement>(null);
-  // const { refetch } = useLogout();
-
-  useEffect(() => {
-    setUserData(data ?? null);
-  }, [data]);
-
   const handleClick = () => {
     show({ isBackdropClick: true });
   };
@@ -89,12 +77,10 @@ export default function DesktopMenuTab() {
   const handleLogout = async () => {
     try {
       await logoutRefetch(); // 서버에서 로그아웃 요청 실행
+      // queryClient.invalidateQueries({ queryKey });
+      queryClient.removeQueries({ queryKey }); // 즉시 캐시 삭제!
       setIsMenuOpen(false);
-      setUserData(null); // 로컬 상태에서 사용자 정보 제거
-      await router.push('/'); // 🚀 홈으로 이동 후
-      setTimeout(() => {
-        window.location.reload(); // 🚀 홈에서 새로고침
-      }, 100); // 100ms 대기 후 새로고침
+      router.push('/');
     } catch (error) {
       console.error('로그아웃 중 오류 발생:', error);
     }

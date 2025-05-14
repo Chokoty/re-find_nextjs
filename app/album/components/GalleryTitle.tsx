@@ -3,7 +3,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import { LuExternalLink } from 'react-icons/lu';
 import { MdAdd, MdClose, MdDelete } from 'react-icons/md';
@@ -32,7 +32,6 @@ const descriptionClassName =
   'text-base md:text-lg lg:text-xl  text-wrap max-w-[280px] md:max-w-[530px]  break-keep';
 
 export default function GalleryTitle({ pageName }: Props) {
-  const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const sortTypeInit = searchParams.get('sortType') ?? '';
@@ -88,9 +87,6 @@ export default function GalleryTitle({ pageName }: Props) {
     return hiddenNames.includes(n);
   };
 
-  const handleBackButton = () => {
-    router.push('/');
-  };
   const handleDeleteButtonClick = () => {
     if (isDeleteMode) {
       setIsDeleteMode(false); // 삭제 모드 취소
@@ -128,95 +124,86 @@ export default function GalleryTitle({ pageName }: Props) {
 
   return (
     <div className="my-6 flex w-full flex-col items-start justify-start pl-2 md:pl-8">
-      {pageType === 'galleryHome' ? (
-        <>
-          <p className={`font-semibold ${descriptionClassName}`}>
-            {description}
-          </p>
-          <GalleryHomeTitle />
-        </>
-      ) : (
-        <>
-          {userInfo &&
-            (owned ? (
-              <div className="flex w-full items-center justify-between">
-                <Button
-                  intent="ghost-gray"
-                  onClick={handleOpenAddFanartToAlbumFinderModal}
-                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
-                >
-                  <MdAdd
-                    className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
-                    size={20}
-                  />
-                  <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-                    팬아트 추가
-                  </span>
-                </Button>
-                <Button
-                  intent="ghost-gray"
-                  onClick={handleDeleteButtonClick}
-                  additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
-                >
-                  {isDeleteMode ? (
-                    <>
-                      <MdClose className="mr-1 text-red-300" size={16} />
-                      <span className="text-red-300">삭제취소</span>
-                    </>
-                  ) : (
-                    <>
-                      <MdDelete
-                        className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
-                        size={20}
-                      />
-                      <span className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700">
-                        삭제
-                      </span>
-                    </>
-                  )}
-                </Button>
-              </div>
-            ) : (
-              <SelectionModeButton />
-            ))}
-          <div className="w-full">
-            {/* <h1 className={titleClassName}>{title}</h1> */}
-            {owned ? (
-              <button
-                type="button"
-                className={`m-0 mt-1.5 cursor-pointer break-keep p-0 font-pop text-4xl sm:text-5xl`}
-                onClick={showEditModal}
-                style={{ outline: 'none' }}
+      <>
+        {userInfo &&
+          (owned ? (
+            <div className="flex w-full items-center justify-between">
+              <Button
+                intent="ghost-gray"
+                onClick={handleOpenAddFanartToAlbumFinderModal}
+                additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
               >
-                {title}
-              </button>
-            ) : (
-              <h1 className={titleClassName}>{title}</h1>
-            )}
-            <div className="mb-6 mt-1.5">
-              <p className={`font-bold ${descriptionClassName}`}>
-                {description}
-                {linkUrl && (
-                  <Link
-                    href={linkUrl}
-                    target="_blank"
-                    className="link-to-wakzoo mt-1 flex items-center text-green-highlight hover:underline dark:text-pink-highlight"
-                  >
-                    {linkTitle}
-                    <LuExternalLink className="ml-2 text-lg font-semibold 2xs:block" />
-                  </Link>
+                <MdAdd
+                  className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                  size={20}
+                />
+                <span className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+                  팬아트 추가
+                </span>
+              </Button>
+              <Button
+                intent="ghost-gray"
+                onClick={handleDeleteButtonClick}
+                additionalClass="m-0 p-1.5 h-7 min-h-7 text-sm"
+              >
+                {isDeleteMode ? (
+                  <>
+                    <MdClose className="mr-1 text-red-300" size={16} />
+                    <span className="text-red-300">삭제취소</span>
+                  </>
+                ) : (
+                  <>
+                    <MdDelete
+                      className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700"
+                      size={20}
+                    />
+                    <span className="mr-1 text-blackAlpha-700 dark:text-whiteAlpha-700">
+                      삭제
+                    </span>
+                  </>
                 )}
-              </p>
+              </Button>
             </div>
+          ) : (
+            <SelectionModeButton />
+          ))}
+        <div className="w-full">
+          {/* <h1 className={titleClassName}>{title}</h1> */}
+          {owned ? (
+            <button
+              type="button"
+              className={`m-0 mt-1.5 cursor-pointer break-keep p-0 font-pop text-4xl sm:text-5xl`}
+              onClick={showEditModal}
+              style={{ outline: 'none' }}
+            >
+              {title}
+            </button>
+          ) : (
+            <h1 className={titleClassName}>{title}</h1>
+          )}
+          <div className="mb-6 mt-1.5">
+            <p className={`font-bold ${descriptionClassName}`}>
+              {description}
+              {linkUrl && (
+                <Link
+                  href={linkUrl}
+                  target="_blank"
+                  className="link-to-wakzoo mt-1 flex items-center text-green-highlight hover:underline dark:text-pink-highlight"
+                >
+                  {linkTitle}
+                  <LuExternalLink className="ml-2 text-lg font-semibold 2xs:block" />
+                </Link>
+              )}
+            </p>
           </div>
-          <div className="flex w-full items-center justify-between">
-            <ShareLinkButton />
-            <div className="2md:hidden">
-              {!shouldHideTotalCounter(albumName) && <TotalCounter />}
-            </div>
+        </div>
+        <div className="flex w-full items-center justify-between">
+          <ShareLinkButton />
+          <div className="2md:hidden">
+            {!shouldHideTotalCounter(albumName) && <TotalCounter />}
           </div>
-        </>
-      )}
+        </div>
+      </>
     </div>
   );
 }

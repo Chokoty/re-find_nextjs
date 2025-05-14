@@ -51,10 +51,10 @@ export default function MobileTabBar() {
   const router = useRouter();
   const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
   const isDeleteMode = useDeleteModeStore((state) => state.isDeleteMode);
-  const { isFetching, status, data } = useMyInfo();
+  const { data: userInfo } = useMyInfo();
   const { show } = useModal(LoginModal);
   const handleClick = (path: string) => {
-    if (data) {
+    if (userInfo) {
       router.push(path);
     } else {
       show({ isBackdropClick: true, size: 'full' });

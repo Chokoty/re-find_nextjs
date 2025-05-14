@@ -39,6 +39,7 @@ const queryOptions = {
   myInfo: () => ({
     queryKey: queryKeys.myInfo(),
     queryFn: () => CommonService.myInfo(),
+    meta: { skipGlobalErrorHandler: true },
     // gcTime: 0,
   }),
   logout: () => ({

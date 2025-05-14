@@ -1,14 +1,9 @@
-'use client';
-
 import ArtistTimelineShelf from '@/app/myLibrary/components/ArtistTimelineShelf';
 import CustomAlbums from '@/app/myLibrary/components/CustomAlbums';
 import LikeArtistShelf from '@/app/myLibrary/components/LikeArtistShelf';
 import LikeFanartShelf from '@/app/myLibrary/components/LikeFanartShelf';
-// import { useLogout } from '@/service/client/useCommonService';
 
 export default function MyLibrary() {
-  // const { refetch } = useLogout();
-
   return (
     <div className="w-full p-2">
       <div className="w-full rounded-xl border-[1px] border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card">
