@@ -1,19 +1,25 @@
 'use client';
 
-import Image from 'next/image';
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
+import EmblaCarouselSkeletonLoading from '@/app/album/components/Skeleton/EmblaCarouselSkeletonLoading';
 import { useSubscribedArtists } from '@/app/myLibrary/service/client/useMyService';
 
-export default function LikeArtistShelf() {
-  const { data } = useSubscribedArtists();
+const EmblaCarousel = dynamic(
+  () => import('@/app/album/components/Slider/EmblaCarousel'),
+  {
+    ssr: false,
+    loading: () => <EmblaCarouselSkeletonLoading type="artist" />,
+  }
+);
 
-  /**
-   {"status":"success","list":[{"nick":"라면조리기","profimg":"https://cafeptthumb-phinf.pstatic.net/MjAyMzA0MDFfOTkg/MDAxNjgwMzI4ODM5NDE1.TQDFFDUmP5alAfbzK3Rwe_lt5VVl92k98MYRC8jjghgg.FCx7oxr63R-qSr9sAmg1SKYyFjiYmMq-BaOxDLaTJn0g.JPEG/600_%25281%2529.jpg?type=s3"}]}
-   */
+export default function LikeArtistShelf() {
+  const { data: artists } = useSubscribedArtists();
+
   return (
-    <div className="mb-10 flex w-full flex-col p-2 md:px-6">
-      <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
+    <div className="mt-7 flex w-full flex-col md:mt-10">
+      <div className="mb-2 flex w-full content-end justify-between gap-4 pl-2 pr-1 md:mb-4 md:pl-8 md:pr-2">
         <Link
           href="/myLibrary/likeArtist"
           className="flex items-center hover:underline"
@@ -31,32 +37,14 @@ export default function LikeArtistShelf() {
           </p>
         </Link>
       </div>
-      <ul className="grid w-full grid-cols-2 gap-6 2xs:grid-cols-3 sm:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6">
-        {data?.list &&
-          data.list.map(({ nick, profimg }) => (
-            <li key={nick} className="max-w-[200px] list-none">
-              <Link
-                className="link-to-profile flex size-full flex-col items-center justify-center gap-4 rounded-md p-2 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:p-4 "
-                href={`/artists/${nick}`}
-                prefetch={false}
-              >
-                <div className="relative size-[85px] sm:size-[100px] xl:size-[130px] 2xl:size-[160px]">
-                  <Image
-                    className="rounded-full object-cover"
-                    src={profimg}
-                    alt={nick}
-                    sizes="(max-width: 1000px) 10vw, 15vw"
-                    quality={100}
-                    fill
-                    priority
-                    unoptimized
-                  />
-                </div>
-                <p className="w-full text-start">{nick}</p>
-              </Link>
-            </li>
-          ))}
-      </ul>
+      {artists && (
+        <EmblaCarousel
+          data={{
+            type: 'artist',
+            list: artists.list,
+          }}
+        />
+      )}
     </div>
   );
 }

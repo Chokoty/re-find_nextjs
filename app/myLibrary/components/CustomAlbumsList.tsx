@@ -67,7 +67,7 @@ export default function CustomAlbumsList() {
               className="flex flex-col items-center gap-4 rounded-md transition hover:bg-gray-100 dark:hover:bg-gray-800 2xs:p-2"
               prefetch={false}
             >
-              <div className="aspect-square  relative size-[100px] overflow-hidden rounded-md 2xl:size-[130px]">
+              <div className="aspect-square relative size-[100px] overflow-hidden rounded-md 2xl:size-[130px]">
                 <Image
                   src={
                     album.cover_image === ''

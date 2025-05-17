@@ -8,7 +8,7 @@ import Footer from '@/app/(home)/components/Footer';
 import HomeMobile from '@/app/(home)/components/HomeMobile';
 import BoardList from '@/app/album/components/BoardList';
 import GalleryTitle from '@/app/album/components/GalleryTitle';
-import MemberAlbum from '@/app/album/components/MemberAlbum';
+import MemberAlbum from '@/app/album/components/MemberList';
 import RefindPick from '@/app/album/components/RefindPick';
 import LeftSection from '@/components/LeftSection';
 import AppInstallModal from '@/components/Modal/AppInstallModal';

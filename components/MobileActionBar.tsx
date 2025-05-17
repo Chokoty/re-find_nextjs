@@ -208,8 +208,7 @@ export default function MobileActionBar() {
       >
         {fanarts.length > 0 && (
           <div
-            className={`${modeConfig[currentMode].color} absolute bottom-full left-1/2 z-10 mb-2
-                 -translate-x-1/2 rounded-full px-2.5 py-1 text-sm font-semibold text-white shadow`}
+            className={`${modeConfig[currentMode].color} absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-full px-2.5 py-1 text-sm font-semibold text-white shadow`}
           >
             {fanarts.length}
           </div>

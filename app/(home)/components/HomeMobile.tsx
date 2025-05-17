@@ -8,7 +8,7 @@ import { FaBookOpen } from 'react-icons/fa';
 import Footer from '@/app/(home)/components/Footer';
 import BoardList from '@/app/album/components/BoardList';
 import GalleryTitle from '@/app/album/components/GalleryTitle';
-import MemberAlbum from '@/app/album/components/MemberAlbum';
+import MemberAlbum from '@/app/album/components/MemberList';
 import RefindPick from '@/app/album/components/RefindPick';
 import { SOURCE_URL } from '@/app/more/lib/const';
 import MoreButtons from '@/components/Button/MoreButtons';
@@ -22,6 +22,7 @@ export default function HomeMobile() {
       ref={scrollContainerRef} // 스크롤 이벤트 연결
       className="flex w-full flex-col items-center justify-start px-3 md:hidden"
     >
+      {/* TODO: 이거 왜 있는 것이며 요소에서 안 보이는것인지? */}
       <Suspense>
         <GalleryTitle
           pageName="galleryHome"

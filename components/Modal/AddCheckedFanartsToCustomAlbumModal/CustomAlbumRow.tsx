@@ -54,7 +54,7 @@ export default function CustomAlbumRow({
               cover_image === '' ? 'https://placehold.co/375x375' : cover_image
             }
             alt={name}
-            className="rounded-lg bg-[#f5f5f5] object-cover transition "
+            className="rounded-lg bg-[#f5f5f5] object-cover transition"
             priority
             unoptimized
           />

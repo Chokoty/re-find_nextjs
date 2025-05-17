@@ -1,8 +1,5 @@
-import Image from 'next/image';
 import Link from 'next/link';
-import { FaArrowRightLong } from 'react-icons/fa6';
 
-import { getStaticImage } from '@/app/album/lib/getStaticImage';
 import type { Gallery } from '@/types';
 
 type Prop = {
@@ -22,32 +19,31 @@ const PASTEL_COLORS = {
 export default function GalleryBoardCard({
   album: { title, id, description, type, author, query },
 }: Prop) {
-  const boardUrl = query || '';
-
+  // const boardUrl = query || '';
   // const boardUrl = `/search?board=${value}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
 
-  const transformedValue =
-    id === 'gomem' ? 'gomem' : id === 'wakgood' ? 'woowakgood' : id;
+  const transformedValue = id === 'wakgood' ? 'woowakgood' : id;
   const bgColor =
     PASTEL_COLORS[id as keyof typeof PASTEL_COLORS] || 'bg-teal-200';
   return (
     <Link
       href={`/album/${transformedValue}?viewType=masonry&sortType=latest`}
       prefetch={false}
-      className="m-auto flex h-[280px] w-full flex-col items-center justify-start gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200"
+      className="m-auto flex h-[205px] w-full flex-col items-center justify-start gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[240px]"
     >
       <div
-        className={`relative flex size-[180px] min-h-[180px] w-full rounded-lg ${bgColor}`}
-      />
-      <div className="absolute right-6 top-6 flex items-center justify-center rounded-[16px] bg-blackAlpha-500 px-2.5 py-1.5 md:px-3 md:py-2 min-[840px]:px-3.5 min-[840px]:py-2.5">
-        <p className="text-xs font-normal text-white md:text-sm">게시판</p>
+        className={`relative flex size-[120px] w-full rounded-lg md:size-[156px] ${bgColor}`}
+      >
+        <div className="absolute right-2 top-2 flex items-center justify-center rounded-2xl bg-blackAlpha-500 px-2.5 py-1.5 md:px-3 md:py-2">
+          <p className="text-xs font-normal text-white md:text-sm">게시판</p>
+        </div>
       </div>
       <div className="flex w-full items-center justify-between">
-        <div className="flex flex-col items-start gap-1 pr-0 min-[840px]:pr-2 min-[1055px]:pr-5 min-[1400px]:pr-[25px] min-[1600px]:pr-[30px]">
-          <p className="line-clamp-1 text-base font-bold dark:text-white">
+        <div className="flex flex-col items-start gap-1 pr-0 md:pr-3">
+          <p className="line-clamp-2 text-base font-bold dark:text-white">
             {title}
           </p>
-          <p className="line-clamp-2 text-sm font-normal text-blackAlpha-700 dark:text-whiteAlpha-600 min-[1055px]:text-sm">
+          <p className="line-clamp-2 text-sm font-normal text-blackAlpha-700 dark:text-whiteAlpha-600">
             {description}
           </p>
         </div>

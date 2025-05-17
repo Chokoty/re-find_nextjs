@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 
 import BoardList from '@/app/album/components/BoardList';
 import GalleryTitle from '@/app/album/components/GalleryTitle';
-import MemberAlbum from '@/app/album/components/MemberAlbum';
+import MemberAlbum from '@/app/album/components/MemberList';
 import RefindPick from '@/app/album/components/RefindPick';
 import TopBackground from '@/app/album/components/TopBackground';
 

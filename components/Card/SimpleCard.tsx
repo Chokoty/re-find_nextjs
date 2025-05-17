@@ -131,7 +131,7 @@ export default function SimpleCard({ artwork }: Prop) {
           className={clsx(
             'absolute right-2 top-2 flex size-8 items-center justify-center rounded-full border-2 text-green-600 shadow-lg transition-all duration-300',
             {
-              'border-green-600  bg-green-500 text-white': isCheck,
+              'border-green-600 bg-green-500 text-white': isCheck,
               'border-gray-300 bg-white text-gray-400 group-hover:border-green-400 group-hover:text-green-500':
                 !isCheck,
             }

@@ -23,6 +23,7 @@
     "clsx": "^2.1.0",
     "cross-env": "^7.0.3",
     "date-fns": "^3.4.0",
+    "embla-carousel-react": "^8.6.0",
     "file-saver": "^2.0.5",
     "hamburger-react": "^2.5.0",
     "html2canvas": "^1.4.1",

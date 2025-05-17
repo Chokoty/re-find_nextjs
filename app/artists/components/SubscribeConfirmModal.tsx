@@ -97,14 +97,11 @@ export default function SubscribeConfirmModal(props: Record<string, unknown>) {
           type="button"
           onClick={confirm}
           disabled={isAnyPending}
-          className={`
-    h-10 w-full rounded-md px-4 font-semibold text-white transition sm:w-auto
-    ${
-      isSubscribed
-        ? 'bg-red-500 hover:bg-red-600 active:bg-red-700 disabled:bg-red-200 dark:disabled:bg-red-900'
-        : 'bg-green-500 hover:bg-green-600 active:bg-green-700 disabled:bg-green-200 dark:disabled:bg-green-900'
-    }
-  `}
+          className={`h-10 w-full rounded-md px-4 font-semibold text-white transition sm:w-auto ${
+            isSubscribed
+              ? 'bg-red-500 hover:bg-red-600 active:bg-red-700 disabled:bg-red-200 dark:disabled:bg-red-900'
+              : 'bg-green-500 hover:bg-green-600 active:bg-green-700 disabled:bg-green-200 dark:disabled:bg-green-900'
+          } `}
         >
           {isSubscribed ? '구독 취소' : '구독하기'}
         </button>

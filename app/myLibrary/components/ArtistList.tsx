@@ -20,27 +20,13 @@ export default function ArtistList() {
         <TotalCount total={total} />
       </div>
       {/* body */}
-      <ul
-        className="
-            grid w-full grid-cols-1
-            gap-6
-            xs:grid-cols-2
-            sm:grid-cols-3
-            2md:grid-cols-4
-            lg:grid-cols-5
-            xl:grid-cols-6
-            2xl:grid-cols-8
-          "
-      >
+      <ul className="grid w-full grid-cols-1 gap-6 xs:grid-cols-2 sm:grid-cols-3 2md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8">
         {data?.list &&
           data.list.map(({ nick, profimg }) => (
             <li key={nick} className="mx-auto max-w-[200px] list-none">
               <Link
                 href={`/artists/${nick}`}
-                className="
-                    flex flex-col items-center gap-4 rounded-md p-2
-                    transition hover:bg-gray-100 dark:hover:bg-gray-800
-                  "
+                className="flex flex-col items-center gap-4 rounded-md p-2 transition hover:bg-gray-100 dark:hover:bg-gray-800"
                 prefetch={false}
               >
                 <div className="relative size-[85px] md:size-[100px] xl:size-[120px]">
