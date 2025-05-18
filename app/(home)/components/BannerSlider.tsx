@@ -1,14 +1,11 @@
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+'use client';
 
+import dynamic from 'next/dynamic';
+import type { StaticImageData } from 'next/image';
 import { PiGiftBold, PiRankingFill } from 'react-icons/pi';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Banner from '@/app/(home)/components/Slide/Banner';
-import Event from '@/app/(home)/components/Slide/Event';
+import EmblaCarouselSkeletonLoading from '@/app/album/components/Skeleton/EmblaCarouselSkeletonLoading';
+import { MainBanner } from '@/lib/images';
 
 type LinkColor = 'green' | 'pink' | 'blue' | 'purple' | 'yellow';
 
@@ -20,14 +17,24 @@ interface EventData {
   isOutLink?: boolean; // 선택적 속성
 }
 
-const swiperSlideStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
-};
+const EmblaCarousel = dynamic(
+  () => import('@/app/album/components/Slider/EmblaCarousel'),
+  {
+    ssr: false,
+    loading: () => <EmblaCarouselSkeletonLoading type="banner" />,
+  }
+);
 
-const events: EventData[] = [
+const events: (
+  | EventData
+  | { type: 'image'; imageData: StaticImageData; link: string; alt?: string }
+)[] = [
+  {
+    type: 'image',
+    imageData: MainBanner,
+    link: '/more/about', // 배너 클릭 시 이동할 링크
+    alt: '메인 배너',
+  },
   // {
   //   title: '이세계아이돌 1,000일 기념 🎉 역조공 프로젝트!',
   //   linkColor: 'green',
@@ -91,38 +98,13 @@ const events: EventData[] = [
 
 export default function BannerSlider() {
   return (
-    <div className="mb-1 mt-4 w-full md:w-3/5">
-      <Swiper
-        className="mySwiper"
-        spaceBetween={20} // 슬라이드 간격 추가
-        // navigation={true}
-        pagination={{ clickable: true }}
-        modules={[Autoplay, Navigation, Pagination]}
-        autoplay={{
-          delay: 10000,
-          disableOnInteraction: false,
+    <div className="mt-7 flex w-full flex-col md:mt-10 md:w-11/12">
+      <EmblaCarousel
+        data={{
+          type: 'banner',
+          list: events,
         }}
-        loop={true}
-        grabCursor={true}
-        style={{
-          paddingBottom: '2.5rem',
-        }}
-      >
-        <SwiperSlide style={swiperSlideStyle}>
-          <Banner />
-        </SwiperSlide>
-        {events.map((event, index) => (
-          <SwiperSlide key={index} style={swiperSlideStyle}>
-            <Event
-              title={event.title}
-              linkColor={event.linkColor}
-              link={event.link}
-              linkContent={event.linkContent}
-              isOutLink={event.isOutLink || false} // Optional, defaults to false if not present
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      />
     </div>
   );
 }

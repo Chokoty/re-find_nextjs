@@ -2,7 +2,10 @@
 
 import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
+import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useCallback, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
@@ -10,6 +13,7 @@ import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 import MoreButton from '@/app/album/components/Button/MoreButton';
 import ArtistCard from '@/app/album/components/Card/ArtistCard';
+import BannerCard from '@/app/album/components/Card/BannerCard';
 import GalleryAlbumCard from '@/app/album/components/Card/GalleryAlbumCard';
 import GalleryBoardCard from '@/app/album/components/Card/GalleryBoardCard';
 import GalleryCustomCard from '@/app/album/components/Card/GalleryCustomCard';
@@ -28,7 +32,8 @@ type SliderType =
   | 'liked'
   | 'custom'
   | 'member'
-  | 'artist';
+  | 'artist'
+  | 'banner';
 
 type Props = {
   data: {
@@ -39,19 +44,26 @@ type Props = {
 
 export default function EmblaGallerySlider({ data }: Props) {
   const isMobile = useResponsive();
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
-    align: 'start',
-    dragFree: isMobile,
-    // skipSnaps: true,
-    watchDrag: isMobile,
-    containScroll: 'trimSnaps',
-  });
+  // Autoplay 플러그인을 banner 타입에만 적용
+  const plugins =
+    data.type === 'banner' ? [Autoplay({ playOnInit: true, delay: 3000 })] : [];
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: data.type === 'banner',
+      align: 'start',
+      dragFree: isMobile,
+      // skipSnaps: true,
+      watchDrag: isMobile,
+      containScroll: 'trimSnaps',
+    },
+    plugins
+    // []
+  );
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
   // 반응형 값 계산
-  const slidesToMove = isMobile ? 1 : 3;
+  const slidesToMove = data.type === 'banner' ? 1 : isMobile ? 1 : 3;
   const slideWidth = isMobile ? 144 : 180;
 
   // Embla 옵션 동적 업데이트
@@ -152,6 +164,38 @@ export default function EmblaGallerySlider({ data }: Props) {
             <ArtistCard artist={d} />
           </div>
         ));
+      case 'banner':
+        return data.list.map((d: any, idx) => {
+          if (idx === 0 && d.type === 'image') {
+            // 첫 번째는 이미지 배너
+            return (
+              <Link
+                href={d.link}
+                key="banner-image"
+                className="flex items-center justify-center"
+                style={{ flex: '0 0 100%', minWidth: 0, paddingLeft: '1rem' }}
+              >
+                <Image
+                  className="m-auto rounded-2xl"
+                  width={750}
+                  height={134}
+                  priority
+                  quality={100}
+                  src={d.imageData}
+                  alt={d.alt || '배너'}
+                />
+              </Link>
+            );
+          }
+          return (
+            <div
+              key={d.title || idx}
+              style={{ flex: '0 0 100%', minWidth: 0, paddingLeft: '1rem' }}
+            >
+              <BannerCard event={d} />
+            </div>
+          );
+        });
       case 'custom':
         return (
           <>
@@ -190,7 +234,12 @@ export default function EmblaGallerySlider({ data }: Props) {
 
   return (
     <div className="group relative">
-      <div className="w-full overflow-hidden pl-2 md:pl-8" ref={emblaRef}>
+      <div
+        className={clsx('w-full overflow-hidden', {
+          'pl-2 md:pl-8': data.type !== 'banner',
+        })}
+        ref={emblaRef}
+      >
         <div
           className={clsx('flex touch-pan-y touch-pinch-zoom', {
             'gap-2.5': data.type === 'liked',

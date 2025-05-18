@@ -1,9 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import React, { Suspense, useRef } from 'react';
+import { Suspense, useRef } from 'react';
 
-import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
+import BannerSlider from '@/app/(home)/components/BannerSlider';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
@@ -19,14 +18,6 @@ export default function SearchMobile() {
       });
     }
   };
-  const BannerSlider = dynamic(
-    () => import('@/app/(home)/components/BannerSlider'),
-    {
-      ssr: false,
-      loading: () => <BannerSkeleton />,
-    }
-  );
-
   return (
     <div
       ref={scrollContainerRef} // 스크롤 이벤트 연결

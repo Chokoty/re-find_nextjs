@@ -302,21 +302,6 @@ body {
   background: var(--background);
 }
 
-/* swiper pagination bullet customize */
-.swiper-pagination .swiper-pagination-bullet {
-  width: 0.7rem;
-  height: 0.7rem;
-  background-color: #a0a0a0;
-}
-
-.swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--green-200);
-}
-
-.swiper-wrapper {
-  align-items: center;
-}
-
 /* 스크롤바 스타일 */
 .custom-scrollbar::-webkit-scrollbar {
   width: 10px;

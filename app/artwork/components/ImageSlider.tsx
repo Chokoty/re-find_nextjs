@@ -1,8 +1,8 @@
-import 'swiper/css';
+'use client';
 
-import clsx from 'clsx';
+import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { useCallback } from 'react';
 
 interface Props {
   urls: string[];
@@ -21,34 +21,54 @@ export default function ImageSlider({
   size = 'base',
   handleClickImage,
 }: Props) {
+  const [emblaRef] = useEmblaCarousel({
+    slidesToScroll: 'auto',
+    align: 'start',
+    containScroll: 'trimSnaps',
+    dragFree: true,
+  });
+
+  const handleClick = useCallback(
+    (url: string) => () => {
+      handleClickImage(url);
+    },
+    [handleClickImage]
+  );
+
   return (
-    <Swiper slidesPerView={3.5} spaceBetween={8} centerInsufficientSlides>
-      {urls.map((url, idx) => (
-        <SwiperSlide key={url}>
-          <button
-            className="rounded-[16px] border-base border-blackAlpha-200 dark:border-none"
-            onClick={() => handleClickImage(url)}
+    <div className="embla overflow-hidden" ref={emblaRef}>
+      <div className="embla__container flex gap-2">
+        {urls.map((url, idx) => (
+          <div
+            key={url}
+            className="embla__slide min-w-[calc(33.333%_-_16px)] flex-[0_0_auto]"
           >
-            <Image
-              // fill
-              className={clsx('rounded-[16px] bg-[#f5f5f5] object-cover', {
-                'size-[100px]': size === 'small',
-                'size-[130px]': size === 'base',
-                'size-[150px]': size === 'large',
-              })}
-              onContextMenu={(e: React.MouseEvent<HTMLImageElement>) => {
-                e.preventDefault();
-              }}
-              priority
-              width={sizeMap[size].w}
-              height={sizeMap[size].h}
-              src={url}
-              alt={`${idx + 1}번째 이미지`}
-              unoptimized
-            />
-          </button>
-        </SwiperSlide>
-      ))}
-    </Swiper>
+            <button
+              className="rounded-[16px] border-base border-blackAlpha-200 dark:border-none"
+              onClick={handleClick(url)}
+            >
+              <Image
+                className={`rounded-[16px] bg-[#f5f5f5] object-cover ${
+                  size === 'small'
+                    ? 'size-[100px]'
+                    : size === 'base'
+                      ? 'size-[130px]'
+                      : 'size-[150px]'
+                }`}
+                onContextMenu={(e: React.MouseEvent<HTMLImageElement>) => {
+                  e.preventDefault();
+                }}
+                priority
+                width={sizeMap[size].w}
+                height={sizeMap[size].h}
+                src={url}
+                alt={`${idx + 1}번째 이미지`}
+                unoptimized
+              />
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

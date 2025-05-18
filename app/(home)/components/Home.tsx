@@ -1,9 +1,8 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { Suspense, useEffect } from 'react';
 
-import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
+import BannerSlider from '@/app/(home)/components/BannerSlider';
 import Footer from '@/app/(home)/components/Footer';
 import HomeMobile from '@/app/(home)/components/HomeMobile';
 import BoardList from '@/app/album/components/BoardList';
@@ -30,13 +29,6 @@ export default function Home() {
   const openPwaInstallModal = () => {
     show({ animateDir: 'bottom', position: 'bottom', setStorage: setValue });
   };
-  const BannerSlider = dynamic(
-    () => import('@/app/(home)/components/BannerSlider'),
-    {
-      ssr: false,
-      loading: () => <BannerSkeleton />,
-    }
-  );
   useEffect(() => {
     const isDisPlayModeFullScreen = window.matchMedia(
       '(display-mode: fullscreen)'

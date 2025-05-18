@@ -5,7 +5,8 @@ type SliderType =
   | 'liked'
   | 'custom'
   | 'member'
-  | 'artist';
+  | 'artist'
+  | 'banner';
 
 const wrapperHeight = {
   fanart: 'h-[220px] md:h-[256px]',
@@ -15,6 +16,7 @@ const wrapperHeight = {
   custom: 'h-[178px] md:h-[212px]',
   member: 'h-[200px] md:h-[230px]',
   artist: 'h-[177px] md:h-[207px]',
+  banner: 'h-[150px] 2xs:h-[170px] ',
 };
 
 const imageHeight = {
@@ -25,6 +27,7 @@ const imageHeight = {
   custom: 'size-[120px] md:size-[156px]',
   member: 'size-[120px] md:size-[150px]',
   artist: 'size-[120px] md:size-[150px]',
+  banner: 'h-[110px] 2xs:h-[130px]',
 };
 
 export default function EmblaCarouselSkeletonLoading({
@@ -32,6 +35,16 @@ export default function EmblaCarouselSkeletonLoading({
 }: {
   type: SliderType;
 }) {
+  if (type === 'banner') {
+    return (
+      <div
+        role="status"
+        className={`flex w-full animate-pulse ${wrapperHeight[type]}`}
+      >
+        <GalleryAlbumSkeleton type={type} />
+      </div>
+    );
+  }
   return (
     <div
       role="status"
@@ -59,7 +72,7 @@ const GalleryAlbumSkeleton = ({ type }: { type: SliderType }) => {
       <div
         className={`w-full bg-gray-125 dark:bg-gray-700 ${borderRadius} ${imageHeight[type]}`}
       />
-      {type !== 'liked' && (
+      {type !== 'liked' && type !== 'banner' && (
         <div className="mt-3 h-7 w-11/12 rounded-md bg-gray-125 dark:bg-gray-700" />
       )}
     </div>

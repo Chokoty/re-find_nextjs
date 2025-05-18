@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import React from 'react';
 
-type Props = {
+type EventProps = {
   title: string;
   linkContent: React.ReactNode;
   linkColor: 'pink' | 'purple' | 'blue' | 'green' | 'yellow';
@@ -17,17 +16,12 @@ const colors = {
   yellow: 'bg-yellow-200 hover:bg-yellow-300 active:bg-yellow-400',
 };
 
-export default function Event({
-  title,
-  linkContent,
-  linkColor,
-  link,
-  isOutLink,
-}: Props) {
+export default function BannerCard({ event }: { event: EventProps }) {
+  const { title, linkContent, linkColor, link, isOutLink } = event;
   const linkClassName = colors[linkColor];
 
   return (
-    <div className="flex max-h-[114px] w-full flex-col items-center justify-center rounded-2xl bg-white py-3 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2 2xs:py-6 md:py-11">
+    <div className="flex max-h-[134px] w-full flex-col items-center justify-center rounded-2xl bg-white py-3 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2 2xs:py-6 md:py-11">
       <p className="mb-2 text-base font-bold 2xs:text-xl md:mb-4">{title}</p>
       {isOutLink ? (
         <Link
