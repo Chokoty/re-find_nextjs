@@ -4,7 +4,7 @@ import { FaArrowUp } from 'react-icons/fa';
 import Tooltip from '@/components/Tooltip';
 
 interface BackToTopButtonProps {
-  scrollContainerRef: React.RefObject<HTMLDivElement>;
+  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export default function BackToTopButton({

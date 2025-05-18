@@ -2,6 +2,7 @@
 
 import dynamic from 'next/dynamic';
 import type { StaticImageData } from 'next/image';
+import type { JSX } from 'react';
 import { PiGiftBold, PiRankingFill } from 'react-icons/pi';
 
 import EmblaCarouselSkeletonLoading from '@/app/album/components/Skeleton/EmblaCarouselSkeletonLoading';

@@ -9,10 +9,14 @@ import WaktyHall from '@/app/events/components/WaktyHall';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 
-type Params = { params: { keyword: string } };
+type Params = { params: Promise<{ keyword: string }> };
 
 // Image url 고민
-export function generateMetadata({ params: { keyword } }: Params): Metadata {
+export async function generateMetadata(props: Params): Promise<Metadata> {
+  const params = await props.params;
+
+  const { keyword } = params;
+
   const { title, description, url } = siteConfig.events.detailed(keyword);
   return {
     title,
@@ -37,7 +41,11 @@ export function generateMetadata({ params: { keyword } }: Params): Metadata {
   };
 }
 
-export default async function Page({ params: { keyword } }: Params) {
+export default async function Page(props: Params) {
+  const params = await props.params;
+
+  const { keyword } = params;
+
   const decodedKeyword = decodeURIComponent(keyword);
 
   if (keyword === 'randomGacha') {

@@ -8,7 +8,7 @@ import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import Button from '@/components/Button';
 
 type Prop = {
-  inputRef?: React.RefObject<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
   addHistoryKeyword: (keyword: string) => void;
   onClose?: () => void;
   focusBar?: () => void;

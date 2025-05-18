@@ -8,10 +8,14 @@ import queryOptions from '@/app/album/service/client/queries';
 import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 
-type Params = { params: { name: string } };
+type Params = { params: Promise<{ name: string }> };
 
 // Image url 고민
-export function generateMetadata({ params: { name } }: Params): Metadata {
+export async function generateMetadata(props: Params): Promise<Metadata> {
+  const params = await props.params;
+
+  const { name } = params;
+
   const { title, description, url } = siteConfig.album.detailed(name);
   return {
     title,
@@ -36,7 +40,11 @@ export function generateMetadata({ params: { name } }: Params): Metadata {
   };
 }
 
-export default async function page({ params: { name } }: Params) {
+export default async function page(props: Params) {
+  const params = await props.params;
+
+  const { name } = params;
+
   if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
     const { queryKey, queryFn } = queryOptions.galleryArtworks({
       // query: endpoint ?? '',

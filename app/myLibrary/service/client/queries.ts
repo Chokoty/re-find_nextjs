@@ -79,10 +79,10 @@ const queryOptions = {
       // toast.success('구독이 추가되었습니다.');
       getArtistInfo();
     },
-    onError: (data: ArtistSubscribeResponse) => {
-      console.log(data);
-      toast.error('구독 기능 준비 중입니다.');
-    },
+    // onError: (data: ArtistSubscribeResponse) => {
+    //   console.log(data);
+    //   toast.error('구독 기능 준비 중입니다.');
+    // },
   }),
   unsubscribeArtist: ({
     author,
@@ -97,10 +97,10 @@ const queryOptions = {
       // toast.success(`${author} 작가님 구독을 취소했습니다.`);
       getArtistInfo();
     },
-    onError: (data: ArtistSubscribeResponse) => {
-      console.log(data);
-      toast.error('구독 기능 준비 중입니다.');
-    },
+    // onError: (data: ArtistSubscribeResponse) => {
+    //   console.log(data);
+    //   toast.error('구독 기능 준비 중입니다.');
+    // },
   }),
   subscribedArtists: () => ({
     queryKey: queryKeys.subscribedArtists(),

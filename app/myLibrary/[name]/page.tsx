@@ -8,7 +8,7 @@ import BackToLibraryLink from '@/app/myLibrary/components/BackToLibraryLink';
 import CommonTitle from '@/app/myLibrary/components/CommonHeader';
 import CustomAlbumsList from '@/app/myLibrary/components/CustomAlbumsList';
 
-type Params = { params: { name: string } };
+type Params = { params: Promise<{ name: string }> };
 
 const SECTION_CONFIG: Record<
   string,
@@ -38,7 +38,11 @@ const SECTION_CONFIG: Record<
   },
 };
 
-export default function Page({ params: { name } }: Params) {
+export default async function Page(props: Params) {
+  const params = await props.params;
+
+  const { name } = params;
+
   const section = SECTION_CONFIG[name];
 
   return (

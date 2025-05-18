@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import type { JSX } from 'react';
 import { MdInfoOutline, MdOutlineContactSupport } from 'react-icons/md';
 import { PiGiftBold } from 'react-icons/pi';
 

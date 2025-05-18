@@ -19,10 +19,14 @@ import {
 } from '@/hooks/useFormatNumberToCompactString';
 
 type Params = {
-  params: { nickname: string };
+  params: Promise<{ nickname: string }>;
 };
 
-export default async function Recap2024({ params: { nickname } }: Params) {
+export default async function Recap2024(props: Params) {
+  const params = await props.params;
+
+  const { nickname } = params;
+
   const { statistics, best_article, monthly_top_articles } =
     await getAuthorRecapResults(nickname);
   // const bestOfYearInfo = await getBestOfYearFanartInfo(nickname);

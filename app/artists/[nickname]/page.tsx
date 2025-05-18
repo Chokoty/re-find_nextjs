@@ -8,11 +8,15 @@ import { siteConfig } from '@/lib/config';
 import { getDehydratedInfiniteQuery, Hydrate } from '@/lib/react-query';
 
 type Params = {
-  params: { nickname: string };
+  params: Promise<{ nickname: string }>;
 };
 
 // Image url 고민
-export function generateMetadata({ params: { nickname } }: Params): Metadata {
+export async function generateMetadata(props: Params): Promise<Metadata> {
+  const params = await props.params;
+
+  const { nickname } = params;
+
   const { title, description, url } = siteConfig.artists.detailed(nickname);
   return {
     title,
@@ -37,7 +41,11 @@ export function generateMetadata({ params: { nickname } }: Params): Metadata {
   };
 }
 
-export default async function page({ params: { nickname } }: Params) {
+export default async function page(props: Params) {
+  const params = await props.params;
+
+  const { nickname } = params;
+
   const decodedNickname = decodeURIComponent(nickname);
   // TODO: 서버사이드 api > 클라이언트사이드 api로 변경하기
   // const result = await getAuthorInfo(nickname);

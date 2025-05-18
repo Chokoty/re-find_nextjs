@@ -6,11 +6,13 @@ import LeftSection from '@/components/LeftSection';
 import PageContentForMore from '@/components/PageContentForMore';
 import { siteConfig } from '@/lib/config';
 
-type Params = { params: { id: string } };
+type Params = { params: Promise<{ id: string }> };
 
-export async function generateMetadata({
-  params: { id },
-}: Params): Promise<Metadata> {
+export async function generateMetadata(props: Params): Promise<Metadata> {
+  const params = await props.params;
+
+  const { id } = params;
+
   const itemData = await getArtworkDetail(parseInt(id));
   const { title, description, imageUrl, path } = siteConfig.artwork(itemData);
   return {
@@ -36,7 +38,11 @@ export async function generateMetadata({
   };
 }
 
-export default function ArtworkPage({ params: { id } }: Params) {
+export default async function ArtworkPage(props: Params) {
+  const params = await props.params;
+
+  const { id } = params;
+
   // const artwork = await getArtworkDetail(parseInt(id));
   return (
     <div className="flex w-full flex-col items-center justify-start">

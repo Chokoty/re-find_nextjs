@@ -10,7 +10,7 @@ const buttons = [
 export default function PageButtonListForSearch({
   scrollContainerRef,
 }: {
-  scrollContainerRef: React.RefObject<HTMLDivElement>;
+  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
 }) {
   const [hasScrolled, setHasScrolled] = useState(false);
 
