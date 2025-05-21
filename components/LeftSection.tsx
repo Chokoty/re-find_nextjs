@@ -4,7 +4,6 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 import { FaArrowUp, FaBookOpen } from 'react-icons/fa';
-import { IoGrid, IoGridOutline } from 'react-icons/io5';
 import {
   TbLayoutSidebarLeftCollapseFilled,
   TbLayoutSidebarRightCollapseFilled,
@@ -17,16 +16,13 @@ import { SOURCE_URL } from '@/app/more/lib/const';
 import MoreButtons from '@/components/Button/MoreButtons';
 import Tooltip from '@/components/Tooltip';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
+import { useSideMenuStore } from '@/store/sideMenuStore';
 
 export default function LeftSection() {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const { isOpen, toggle } = useSideMenuStore();
   const [isBackToTopVisible, setIsBackToTopVisible] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false); // 마우스 오버 상태
   const scrollContainerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 참조
-
-  const toggleSection = () => {
-    setIsOpen((prev) => !prev);
-  };
 
   const toggleBackToTopVisibility = () => {
     if (scrollContainerRef.current) {
@@ -70,13 +66,8 @@ export default function LeftSection() {
       } flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
       <header className="z-10 flex w-full items-center justify-start gap-2 px-3 py-4 shadow-md dark:border-dark-myText">
-        {/* <Tooltip
-          label={isOpen ? '리파인드 메뉴 숨기기' : '리파인드 메뉴 펼치기'}
-          position={isOpen ? 'top-center' : 'right-center'}
-          bg="gray-150"
-        > */}
         <button
-          onClick={toggleSection}
+          onClick={toggle}
           className="ml-1 flex items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
         >
           {isOpen ? (
@@ -88,7 +79,6 @@ export default function LeftSection() {
             <TbLayoutSidebarRightCollapseFilled className="size-8" />
           )}
         </button>
-        {/* </Tooltip> */}
       </header>
       {isOpen && (
         <div
