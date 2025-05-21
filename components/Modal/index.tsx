@@ -101,10 +101,11 @@ export default function Modal({ Component, modalProps, hide }: Props) {
             tabIndex={-1}
             ref={modalRef}
             className={clsx(
-              `flex size-full justify-center transition-all duration-500 ease-out sm:mx-auto ${applyCustomMaxWidth ? 'sm:max-w-fit' : 'sm:max-w-[435px]'}`,
+              `flex w-full justify-center transition-all duration-500 ease-out sm:mx-auto ${applyCustomMaxWidth ? 'sm:max-w-fit' : 'sm:max-w-[435px]'}`,
               {
                 [className]: true,
-                'mb-[60px] w-full': position === 'bottom',
+                'mb-[60px]': position === 'bottom',
+                'h-full': modalProps?.size,
               }
             )}
             onClick={(e) => e.stopPropagation()} // modal 바깥 클릭시 닫히지 않도록 설정
