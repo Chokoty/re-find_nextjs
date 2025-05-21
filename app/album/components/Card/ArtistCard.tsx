@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function ArtistCard({ artist }: { artist: SbuscribedArtist }) {
+export default function ArtistCard({ artist }: { artist: SubscribedArtist }) {
   const { nick, profimg } = artist;
   return (
     <Link
