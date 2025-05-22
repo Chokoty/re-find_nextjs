@@ -79,24 +79,24 @@ export default function LeftSection() {
   return (
     <section
       className={`relative hidden h-full overflow-hidden md:flex ${
-        isOpen ? 'w-[360px]' : 'w-[60px]'
+        isOpen ? 'w-[360px]' : 'w-[72px]'
       } flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
       <header className="z-10 flex w-full items-center justify-start gap-2 px-3 pb-1 pt-3 shadow-md dark:border-dark-myText">
         <button
           onClick={toggle}
-          className="group ml-1 flex h-10 items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
+          className="group flex h-10 items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
         >
           {isOpen ? (
-            <Tooltip label="리파인드 패널 접기">
-              <div className="flex items-center justify-start gap-2">
+            <Tooltip label="리파인드 패널 접기" position="top-center">
+              <div className="ml-2 flex items-center justify-start gap-2">
                 <TbLayoutSidebarLeftCollapseFilled className="size-8" />
                 <p className="text-xl">리파인드 패널</p>
               </div>
             </Tooltip>
           ) : (
             <Tooltip label="리파인드 패널 열기" position="right-center">
-              <div className="flex items-center justify-start gap-2">
+              <div className="ml-2 flex items-center justify-center">
                 <TbLayoutSidebarRightCollapseFilled className="size-8" />
               </div>
             </Tooltip>
@@ -123,7 +123,7 @@ export default function LeftSection() {
                   setActiveTab(btn.key);
                   toggle(); // 사이드바 열기
                 }}
-                className="flex size-10 items-center justify-center rounded-xl bg-gray-100 text-center text-xs font-semibold text-gray-700 transition hover:bg-gray-200 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3"
+                className="flex size-12 items-center justify-center rounded-xl bg-gray-100 text-center text-xs font-semibold text-gray-700 transition hover:bg-gray-200 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3"
               >
                 {btn.key === 'image' ? (
                   <Image
@@ -158,7 +158,7 @@ export default function LeftSection() {
                 <Link
                   href={`/album/${album.id}?viewType=masonry`}
                   prefetch={false}
-                  className="flex size-10 items-center justify-center rounded-xl bg-gray-100 text-gray-700 transition hover:bg-gray-200 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3"
+                  className="flex size-12 items-center justify-center rounded-xl bg-gray-100 text-gray-700 transition hover:bg-gray-200 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3"
                 >
                   <Image
                     src={
@@ -167,11 +167,11 @@ export default function LeftSection() {
                         : album.cover_image
                     }
                     alt={album.name}
-                    width={40}
-                    height={40}
+                    width={48}
+                    height={48}
                     className="rounded-xl object-cover"
                     unoptimized
-                    style={{ width: '40px', height: '40px' }} // ✅ 확정 크기 강제
+                    style={{ width: '48px', height: '48px' }} // ✅ 확정 크기 강제
                   />
                 </Link>
               </Tooltip>
@@ -190,7 +190,7 @@ export default function LeftSection() {
           onMouseLeave={() => setIsHovered(false)}
         >
           <div
-            className={`sticky top-0 z-20 mb-1 flex h-16 w-full min-w-[360px] items-center justify-start gap-2 bg-white py-4 pl-3 shadow-md transition-colors dark:bg-dark-card`}
+            className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 bg-white py-4 pl-3 shadow-md transition-colors dark:bg-dark-card`}
           >
             {leftTabButtons.map((btn) => {
               const isSelected = activeTab === btn.key;
