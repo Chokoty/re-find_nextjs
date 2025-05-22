@@ -288,10 +288,10 @@ declare global {
 
   export interface SubscribedArtistsResponse {
     status: string; // 'success'
-    list: SbuscribedArtist[];
+    list: SubscribedArtist[];
   }
 
-  type SbuscribedArtist = {
+  type SubscribedArtist = {
     nick: string;
     profimg: stirng;
   };

@@ -160,7 +160,11 @@ export default function EmblaGallerySlider({ data }: Props) {
         ));
       case 'artist':
         return data.list.map((d: any) => (
-          <div key={d.id} className={slideClass} style={{ width: slideWidth }}>
+          <div
+            key={d.nick}
+            className={slideClass}
+            style={{ width: slideWidth }}
+          >
             <ArtistCard artist={d} />
           </div>
         ));
@@ -204,7 +208,7 @@ export default function EmblaGallerySlider({ data }: Props) {
             </div>
             {data.list.map((d: any) => (
               <div
-                key={d.name}
+                key={d.id}
                 className={slideClass}
                 style={{ width: slideWidth }}
               >
