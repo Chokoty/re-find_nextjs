@@ -186,7 +186,7 @@ export default function UserProfile() {
               unoptimized
             />
             <div className="absolute inset-0 flex items-center justify-center rounded-full bg-opacity-0 transition group-hover:bg-opacity-50">
-              <MdOutlineModeEditOutline className="size-8 text-white opacity-0 transition group-hover:opacity-100" />
+              <MdOutlineModeEditOutline className="size-10 text-white opacity-0 transition group-hover:opacity-100" />
             </div>
           </div>
           <p className="text-left text-xl font-extrabold md:text-2xl">

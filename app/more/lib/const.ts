@@ -45,6 +45,23 @@ export const SUPPORT_INFOS = [
   },
 ];
 
+export const DEFAULT_CREDIT_COLOR =
+  'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-100';
+
+export const CONTRIBUTE_COLORS: Record<string, string> = {
+  팀장: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100',
+  검색엔진: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100',
+  기획: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100',
+  '배너 디자인':
+    'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-100',
+  'BE 개발': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100',
+  'FE 개발': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100',
+  QA: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100',
+  'UX 디자인': 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-100',
+  AI연구: 'bg-gray-300 text-gray-800 dark:bg-gray-600 dark:text-gray-100',
+  보안: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100',
+};
+
 export const DEVELOPERS: Developer[] = [
   {
     group: 'member',
@@ -52,7 +69,7 @@ export const DEVELOPERS: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/N8dX1e0GCf7CmHWtLoksOA',
     profURL: 레루루,
-    contribute: ['팀장', '검색엔진', '백엔드 개발'],
+    contribute: ['팀장', '검색엔진', 'BE 개발'],
   },
   {
     group: 'member',
@@ -60,7 +77,7 @@ export const DEVELOPERS: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/fZ8VSlTngMBcoxspZWPPDw',
     profURL: 초코넛밀크티,
-    contribute: ['기획', 'UX 디자인', '프론트엔드 개발'],
+    contribute: ['기획', 'UX 디자인', 'FE 개발'],
   },
   {
     group: 'member',
@@ -124,7 +141,7 @@ export const DEVELOPERS: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/pOPKPO_oxEcNS6b1i73B2g',
     profURL: 그적미적,
-    contribute: ['프론트엔드 개발'],
+    contribute: ['FE 개발'],
   },
   {
     group: 'member',
@@ -132,7 +149,7 @@ export const DEVELOPERS: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/QT_1TSjBK6C4WyE4n2k1zA',
     profURL: 카미루,
-    contribute: ['UX 디자인', '프론트엔드 개발'],
+    contribute: ['UX 디자인', 'FE 개발'],
   },
   {
     group: 'member',
@@ -148,7 +165,7 @@ export const DEVELOPERS: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/T8zKwDjv8_CiE3Pvo-FHVw',
     profURL: NotFoundProfileURL,
-    contribute: ['백엔드, AI연구'],
+    contribute: ['BE 개발', 'AI연구'],
   },
   {
     group: 'member',
@@ -164,7 +181,7 @@ export const DEVELOPERS: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/2ZB1kx_FI9Qhs-jaAORemw',
     profURL: 녹두레기,
-    contribute: ['백엔드'],
+    contribute: ['BE 개발'],
   },
   {
     group: 'member',
@@ -172,7 +189,7 @@ export const DEVELOPERS: Developer[] = [
     writerURL:
       'https://cafe.naver.com/ca-fe/cafes/27842958/members/ILudmLEjWir3qKfErZ5xNg',
     profURL: NotFoundProfileURL,
-    contribute: ['백엔드'],
+    contribute: ['BE 개발'],
   },
   {
     group: 'credit',

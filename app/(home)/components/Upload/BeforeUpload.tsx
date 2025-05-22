@@ -1,4 +1,4 @@
-import UpdateBoard from '@/app/(home)/components/Upload/UpdateBoard';
+// import UpdateBoard from '@/app/(home)/components/Upload/UpdateBoard';
 import UploadImages from '@/app/(home)/components/Upload/UploadImages';
 
 // const UploadImages = dynamic(() => import('@/components/common/UploadImages'), {
@@ -12,7 +12,7 @@ export default function BeforeUpload() {
       {/* 이미지 업로드 */}
       <UploadImages />
       {/* 게시판 업데이트 현황 */}
-      <UpdateBoard />
+      {/* <UpdateBoard /> */}
     </div>
   );
 }

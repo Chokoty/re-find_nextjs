@@ -12,17 +12,30 @@ import {
 import RandomGacha from '@/app/(home)/components/RandomGacha';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
+import UpdateBoard from '@/app/(home)/components/Upload/UpdateBoard';
 import { SOURCE_URL } from '@/app/more/lib/const';
 import MoreButtons from '@/components/Button/MoreButtons';
 import Tooltip from '@/components/Tooltip';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import { useSideMenuStore } from '@/store/sideMenuStore';
 
+const leftTabButtons: {
+  key: 'image' | 'update' | 'more';
+  label: string;
+}[] = [
+  { key: 'image', label: '이미지 검색' },
+  { key: 'update', label: '업데이트 현황' },
+  { key: 'more', label: '좀더' },
+];
+
 export default function LeftSection() {
   const { isOpen, toggle } = useSideMenuStore();
   const [isBackToTopVisible, setIsBackToTopVisible] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false); // 마우스 오버 상태
   const scrollContainerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 참조
+  const [activeTab, setActiveTab] = useState<'image' | 'update' | 'more'>(
+    'image'
+  );
 
   const toggleBackToTopVisibility = () => {
     if (scrollContainerRef.current) {
@@ -65,7 +78,7 @@ export default function LeftSection() {
         isOpen ? 'w-[360px]' : 'w-[60px]'
       } flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
-      <header className="z-10 flex w-full items-center justify-start gap-2 px-3 py-4 shadow-md dark:border-dark-myText">
+      <header className="z-10 flex w-full items-center justify-start gap-2 p-3 shadow-md dark:border-dark-myText">
         <button
           onClick={toggle}
           className="ml-1 flex items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
@@ -89,38 +102,80 @@ export default function LeftSection() {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <TopTitle />
+          <div
+            className={`sticky top-0 z-20 mb-1 flex h-16 w-full min-w-[360px] items-center justify-start gap-2 bg-white py-4 pl-3 shadow-md transition-colors dark:bg-dark-card`}
+          >
+            {leftTabButtons.map((btn) => {
+              const isSelected = activeTab === btn.key;
+              return (
+                <button
+                  key={btn.key}
+                  onClick={() => setActiveTab(btn.key)}
+                  className={`flex h-10 min-w-16 items-center justify-center rounded-full px-3 py-1 text-base font-bold ${
+                    isSelected
+                      ? 'bg-gray-900 text-white dark:bg-whiteAlpha-900 dark:text-blackAlpha-900'
+                      : 'bg-light-button text-blackAlpha-900 hover:bg-light-button-hover active:bg-gray-800 group-hover:bg-light-card-2 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3'
+                  }`}
+                >
+                  {btn.label}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* 버튼에 따라 내용 조건부 렌더링 */}
+          {activeTab === 'image' && (
+            <div className="w-full p-1">
+              <TopTitle />
+              <Upload scrollToTop={scrollToTop} />
+            </div>
+          )}
+          {activeTab === 'update' && (
+            <div className="w-full p-4">
+              <UpdateBoard />
+            </div>
+          )}
+          {activeTab === 'more' && (
+            <div className="flex w-full flex-col items-center gap-4 p-4">
+              <MoreButtons />
+              <Link
+                className="link-to-wakzoo inline-block"
+                href={SOURCE_URL}
+                target="_blank"
+              >
+                <div className="inline-flex min-h-10 items-center justify-center rounded-md bg-purple-500 px-4 text-gray-50 transition hover:bg-purple-600 active:bg-purple-700">
+                  <AiFillExperiment className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
+                  <p className="text-sm xs:text-base">
+                    (beta)이세돌 팬아트 키워드 AI
+                  </p>
+                </div>
+              </Link>
+              <Link
+                className="mt-2 inline-block md:hidden"
+                href="/more/install-info"
+              >
+                <div className="inline-flex min-h-10 items-center justify-start rounded-md bg-gray-700 px-4 text-gray-50 transition hover:bg-gray-800 active:bg-gray-900">
+                  <FaBookOpen className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
+                  <p className="text-sm xs:text-base">
+                    (안드로이드/IOS)리파인드 홈화면 설치 가이드
+                  </p>
+                </div>
+              </Link>
+              <UpdateLogBoard />
+              <RandomGacha />
+            </div>
+          )}
+
+          {/* <TopTitle />
           <Upload scrollToTop={scrollToTop} />
           <RandomGacha />
           <div className="mb-4">
             <MoreButtons />
           </div>
-          <Link
-            className="link-to-wakzoo inline-block"
-            href={SOURCE_URL}
-            target="_blank"
-          >
-            <div className="inline-flex min-h-10 items-center justify-center rounded-md bg-purple-500 px-4 text-gray-50 transition hover:bg-purple-600 active:bg-purple-700">
-              <AiFillExperiment className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
-              <p className="text-sm xs:text-base">
-                (beta)이세돌 팬아트를 키워드로 찾아주는 AI
-              </p>
-            </div>
-          </Link>
-          <Link
-            className="mt-2 inline-block md:hidden"
-            href="/more/install-info"
-          >
-            <div className="inline-flex min-h-10 items-center justify-start rounded-md bg-gray-700 px-4 text-gray-50 transition hover:bg-gray-800 active:bg-gray-900">
-              <FaBookOpen className="mr-1.5 size-4 xs:mr-2 xs:size-5" />
-              <p className="text-sm xs:text-base">
-                (안드로이드/IOS)리파인드 홈화면 설치 가이드
-              </p>
-            </div>
-          </Link>
+        
           <div className="p-4">
             <UpdateLogBoard />
-          </div>
+          </div> */}
         </div>
       )}
       {/* Back to Top Button */}

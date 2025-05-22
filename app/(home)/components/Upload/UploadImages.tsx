@@ -41,9 +41,9 @@ export default function UploadImages() {
         'my-4 flex w-full flex-col items-center justify-center gap-6 rounded-lg bg-white py-4 dark:bg-dark-card'
       }
     >
-      {/* image draggable area */}
+      {/* image draggable area w-[90%] */}
       <div
-        className={`w-[90%] max-w-[300px] cursor-pointer rounded-2xl border-4 border-dashed border-[#6d6d6d] p-4 hover:border-gray-900 active:border-green-highlight dark:hover:border-gray-150 dark:active:border-pink-highlight ${isDragActive ? 'border-green-highlight dark:border-pink-highlight' : ''}`}
+        className={`w-[300px] cursor-pointer rounded-2xl border-4 border-dashed border-[#6d6d6d] p-4 hover:border-gray-900 active:border-green-highlight dark:hover:border-gray-150 dark:active:border-pink-highlight ${isDragActive ? 'border-green-highlight dark:border-pink-highlight' : ''}`}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onClick={handleClick}

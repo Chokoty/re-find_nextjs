@@ -3,6 +3,7 @@
 import Image, { type StaticImageData } from 'next/image';
 import Link from 'next/link';
 
+import { CONTRIBUTE_COLORS, DEFAULT_CREDIT_COLOR } from '@/app/more/lib/const';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 import { NotFoundProfileURL } from '@/lib/const';
 
@@ -11,6 +12,7 @@ interface Props {
   profURL: string | StaticImageData;
   nickname: string;
   board: string[];
+  group: 'member' | 'credit';
 }
 
 export default function DeveloperProfileCard({
@@ -18,6 +20,7 @@ export default function DeveloperProfileCard({
   profURL,
   nickname,
   board,
+  group,
 }: Props) {
   const member_link = useResponsiveLink(
     writerURL.split('/').pop() || 'default',
@@ -45,7 +48,12 @@ export default function DeveloperProfileCard({
             {board.map((item, index) => (
               <span
                 key={index}
-                className="rounded-full bg-teal-500 px-[15px] py-1 text-sm font-semibold text-white dark:bg-red-100 dark:text-gray-900"
+                className={`rounded-2xl px-[15px] py-1 text-sm font-semibold ${
+                  group === 'credit'
+                    ? DEFAULT_CREDIT_COLOR
+                    : CONTRIBUTE_COLORS[item] ||
+                      'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-white'
+                }`}
               >
                 {item || '---'}
               </span>
