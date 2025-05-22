@@ -81,7 +81,7 @@ export default function LeftSection() {
         isOpen ? 'w-[360px]' : 'w-[60px]'
       } flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
-      <header className="z-10 flex w-full items-center justify-start gap-2 p-3 shadow-md dark:border-dark-myText">
+      <header className="z-10 flex w-full items-center justify-start gap-2 px-3 pb-1 pt-3 shadow-md dark:border-dark-myText">
         <button
           onClick={toggle}
           className="group ml-1 flex h-10 items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
@@ -102,8 +102,10 @@ export default function LeftSection() {
           )}
         </button>
       </header>
-
-      <hr className="my-1 w-8 border-t border-gray-300 dark:border-whiteAlpha-300" />
+      {!isOpen && (
+        <hr className="my-1 w-8 border-t border-gray-300 dark:border-whiteAlpha-300" />
+      )}
+      {/* 사이드바가 열려 있을 때만 보이는 버튼 */}
       {/* 사이드바가 접혀 있을 때만 탭 버튼 목록 */}
       {!isOpen && (
         <div className="mt-2 flex flex-col items-center gap-2">
@@ -113,7 +115,7 @@ export default function LeftSection() {
               label={btn.label}
               position="right-center"
               delay={100}
-              fontSize="text-lg"
+              fontSize="text-base"
             >
               <button
                 onClick={() => {
@@ -139,6 +141,9 @@ export default function LeftSection() {
             </Tooltip>
           ))}
         </div>
+      )}
+      {!isOpen && (
+        <hr className="my-3 w-8 border-t border-gray-300 dark:border-whiteAlpha-300" />
       )}
       {isOpen && (
         <div
