@@ -42,6 +42,16 @@ const queryOptions = {
     meta: { skipGlobalErrorHandler: true },
     // gcTime: 0,
   }),
+  updateMyInfo: ({
+    nick,
+    profImgType,
+    handleOnSuccess,
+  }: UserInfoUpdateParams & { handleOnSuccess: () => void }) => ({
+    mutationFn: () => CommonService.updateMyInfo({ nick, profImgType }),
+    onSuccess: () => {
+      handleOnSuccess();
+    },
+  }),
   logout: () => ({
     queryKey: queryKeys.logout(),
     queryFn: () => CommonService.logout(),
