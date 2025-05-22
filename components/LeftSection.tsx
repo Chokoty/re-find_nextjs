@@ -1,9 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 import { FaArrowUp, FaBookOpen } from 'react-icons/fa';
+import { MdOutlineMoreHoriz, MdOutlineUpdate } from 'react-icons/md';
 import {
   TbLayoutSidebarLeftCollapseFilled,
   TbLayoutSidebarRightCollapseFilled,
@@ -17,6 +19,7 @@ import { SOURCE_URL } from '@/app/more/lib/const';
 import MoreButtons from '@/components/Button/MoreButtons';
 import Tooltip from '@/components/Tooltip';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
+import { UploadHoverImage } from '@/lib/images';
 import { useSideMenuStore } from '@/store/sideMenuStore';
 
 const leftTabButtons: {
@@ -81,18 +84,62 @@ export default function LeftSection() {
       <header className="z-10 flex w-full items-center justify-start gap-2 p-3 shadow-md dark:border-dark-myText">
         <button
           onClick={toggle}
-          className="ml-1 flex items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
+          className="group ml-1 flex h-10 items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
         >
           {isOpen ? (
-            <div className="flex items-center justify-start gap-2">
-              <TbLayoutSidebarLeftCollapseFilled className="size-8" />
-              <p className="text-xl">리파인드 메뉴</p>
-            </div>
+            <Tooltip label="리파인드 패널 접기">
+              <div className="flex items-center justify-start gap-2">
+                <TbLayoutSidebarLeftCollapseFilled className="size-8" />
+                <p className="text-xl">리파인드 패널</p>
+              </div>
+            </Tooltip>
           ) : (
-            <TbLayoutSidebarRightCollapseFilled className="size-8" />
+            <Tooltip label="리파인드 패널 열기" position="right-center">
+              <div className="flex items-center justify-start gap-2">
+                <TbLayoutSidebarRightCollapseFilled className="size-8" />
+              </div>
+            </Tooltip>
           )}
         </button>
       </header>
+
+      <hr className="my-1 w-8 border-t border-gray-300 dark:border-whiteAlpha-300" />
+      {/* 사이드바가 접혀 있을 때만 탭 버튼 목록 */}
+      {!isOpen && (
+        <div className="mt-2 flex flex-col items-center gap-2">
+          {leftTabButtons.map((btn) => (
+            <Tooltip
+              key={btn.key}
+              label={btn.label}
+              position="right-center"
+              delay={100}
+              fontSize="text-lg"
+            >
+              <button
+                onClick={() => {
+                  setActiveTab(btn.key);
+                  toggle(); // 사이드바 열기
+                }}
+                className="flex size-10 items-center justify-center rounded-xl bg-gray-100 text-center text-xs font-semibold text-gray-700 transition hover:bg-gray-200 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3"
+              >
+                {btn.key === 'image' ? (
+                  <Image
+                    src={UploadHoverImage}
+                    alt="리파인드 로고2"
+                    width={48}
+                    height={48}
+                    className="rounded"
+                  />
+                ) : btn.key === 'update' ? (
+                  <MdOutlineUpdate className="text-3xl" />
+                ) : btn.key === 'more' ? (
+                  <MdOutlineMoreHoriz className="text-3xl" />
+                ) : null}
+              </button>
+            </Tooltip>
+          ))}
+        </div>
+      )}
       {isOpen && (
         <div
           ref={scrollContainerRef} // 스크롤 이벤트 연결
