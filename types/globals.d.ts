@@ -309,6 +309,36 @@ declare global {
     albums: CustomAlbumInfos[];
   };
 
+  export type ProfImgType =
+    | '뚤기1'
+    | '뚤기2'
+    | '똥강아지1'
+    | '똥강아지2'
+    | '박쥐1'
+    | '박쥐2'
+    | '주폭도1'
+    | '주폭도2'
+    | '세균이1'
+    | '세균이2'
+    | '라니1'
+    | '라니2'
+    | '이파리1'
+    | '이파리2'
+    | '팬치1'
+    | '팬치2'
+    | '';
+
+  export type UserInfoUpdateParams = {
+    nick: string;
+    profImgType: ProfImgType;
+  };
+
+  export type UpdatedUserInfoResponse = {
+    status: string;
+    message: string;
+    updated: any[];
+  };
+
   export type CustomAlbumEditParams = {
     name: string;
     description?: string;

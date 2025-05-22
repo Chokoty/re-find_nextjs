@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import queryOptions from '@/service/client/queries';
 import type { GetLoginQueryParams } from '@/types';
@@ -25,4 +25,14 @@ export function useMyInfo() {
 
 export function useLogout() {
   return useQuery(queryOptions.logout());
+}
+
+export function useUpdateMyInfo({
+  nick,
+  profImgType,
+  handleOnSuccess,
+}: UserInfoUpdateParams & { handleOnSuccess: () => void }) {
+  return useMutation(
+    queryOptions.updateMyInfo({ nick, profImgType, handleOnSuccess })
+  );
 }

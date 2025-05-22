@@ -29,6 +29,14 @@ class CommonService extends Service {
     return this.http.get<UserInfo>(url);
   }
 
+  updateMyInfo({ nick, profImgType }: UserInfoUpdateParams) {
+    const url = '/v2/me/update';
+    return this.http.post<UpdatedUserInfoResponse>(url, {
+      nick,
+      profImgType,
+    });
+  }
+
   logout() {
     const url = '/v2/me/logout';
     return this.http.get(url);
