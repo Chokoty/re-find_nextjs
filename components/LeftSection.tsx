@@ -20,6 +20,7 @@ import MoreButtons from '@/components/Button/MoreButtons';
 import Tooltip from '@/components/Tooltip';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import { UploadHoverImage } from '@/lib/images';
+import { useMyInfo } from '@/service/client/useCommonService';
 import { useSideMenuStore } from '@/store/sideMenuStore';
 
 const leftTabButtons: {
@@ -39,7 +40,7 @@ export default function LeftSection() {
   const [activeTab, setActiveTab] = useState<'image' | 'update' | 'more'>(
     'image'
   );
-
+  const { data: userInfo } = useMyInfo();
   const toggleBackToTopVisibility = () => {
     if (scrollContainerRef.current) {
       const { scrollTop } = scrollContainerRef.current;
@@ -142,9 +143,43 @@ export default function LeftSection() {
           ))}
         </div>
       )}
-      {!isOpen && (
-        <hr className="my-3 w-8 border-t border-gray-300 dark:border-whiteAlpha-300" />
+      {!isOpen && userInfo?.albums && userInfo.albums.length > 0 && (
+        <div className="flex w-full flex-col items-center justify-start gap-2 rounded-lg bg-white dark:bg-dark-card">
+          <hr className="mb-1 mt-3 w-8 border-t border-gray-300 dark:border-whiteAlpha-300" />
+          <div className="flex flex-col items-center gap-2">
+            {userInfo.albums.map((album) => (
+              <Tooltip
+                key={album.id}
+                label={album.name}
+                position="right-center"
+                delay={100}
+                fontSize="text-base"
+              >
+                <Link
+                  href={`/album/${album.id}?viewType=masonry`}
+                  prefetch={false}
+                  className="flex size-10 items-center justify-center rounded-xl bg-gray-100 text-gray-700 transition hover:bg-gray-200 dark:bg-dark-card-2 dark:text-white dark:hover:bg-dark-card-3"
+                >
+                  <Image
+                    src={
+                      album.cover_image === ''
+                        ? 'https://placehold.co/100x100'
+                        : album.cover_image
+                    }
+                    alt={album.name}
+                    width={40}
+                    height={40}
+                    className="rounded-xl object-cover"
+                    unoptimized
+                    style={{ width: '40px', height: '40px' }} // ✅ 확정 크기 강제
+                  />
+                </Link>
+              </Tooltip>
+            ))}
+          </div>
+        </div>
       )}
+
       {isOpen && (
         <div
           ref={scrollContainerRef} // 스크롤 이벤트 연결
