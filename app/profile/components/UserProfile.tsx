@@ -118,7 +118,9 @@ const IconSelectionModal = ({
                   </div>
                 )}
               </div>
-              <p className="mt-1 text-center text-sm text-white">{icon.name}</p>
+              <p className="mt-1 text-center text-sm text-white">
+                {icon.name.endsWith('1') ? icon.name.slice(0, -1) : icon.name}
+              </p>
             </div>
           ))}
         </div>
@@ -188,7 +190,10 @@ export default function UserProfile() {
               width={120}
               height={120}
               className="rounded-full object-cover transition group-hover:brightness-50"
-              src={getUserImage(userData?.profimg as ProfImgType)}
+              src={
+                userData?.profimg ||
+                'https://re-find.xyz/static/images/profile/이파리1.webp'
+              }
               alt={userData?.nick || '프로필 이미지'}
               unoptimized
             />
