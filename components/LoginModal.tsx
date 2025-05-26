@@ -25,7 +25,7 @@ export default function LoginModal() {
   };
 
   return (
-    <section className="relative m-auto size-full bg-white shadow-xl dark:bg-dark-card md:h-[291px] md:w-[430px] md:rounded-md">
+    <section className="relative m-auto size-full bg-white shadow-xl dark:bg-dark-card sm:h-[291px] md:w-[430px] md:rounded-md">
       <button
         className="absolute right-[10px] top-[10px] flex size-9 items-center justify-center rounded-full transition hover:bg-gray-200 active:bg-gray-300 dark:hover:bg-whiteAlpha-200 dark:active:bg-whiteAlpha-300"
         onClick={hide}

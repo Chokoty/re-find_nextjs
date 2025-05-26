@@ -44,7 +44,7 @@ export default function DetailedArtwork({ artworkId }: { artworkId: number }) {
       <div className="relative hidden lg:block">
         <BackToButton />
       </div>
-      <div className="border-light-card2 flex w-full max-w-[400px] flex-col items-center justify-center gap-4 rounded-[32px] border-base p-4 shadow-sm md:max-w-[860px] md:flex-row md:items-start">
+      <div className="md:border-light-card2 flex w-full max-w-[400px] flex-col items-center justify-center gap-4 rounded-[32px] p-4 shadow-sm md:max-w-[860px] md:flex-row md:items-start md:border-base">
         <ImageSection
           title={title}
           imgSrc={img_url}

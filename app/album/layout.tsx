@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 
 import BackToTopButton from '@/components/BackToTopButton';
 import LeftSection from '@/components/LeftSection';
-import PageContent from '@/components/PageContent';
 import PageContentForMore from '@/components/PageContentForMore';
 import { siteConfig } from '@/lib/config';
 

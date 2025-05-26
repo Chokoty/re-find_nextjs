@@ -16,6 +16,7 @@ import Tooltip from '@/components/Tooltip';
 import { useResponsive } from '@/hooks/useResponsive';
 import { useScroll } from '@/hooks/useScroll';
 import { Logo, 똥강아지1 } from '@/lib/images';
+import { useMyInfo } from '@/service/client/useCommonService';
 
 const Modals = dynamic(() => import('@/components/Modal/Modals'), {
   ssr: false,
@@ -71,11 +72,14 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
   const name = pathNameParts[pathNameParts.length - 1];
+  const { data: userData } = useMyInfo();
 
   const isMorePath = pathname.startsWith('/more');
   const isEvents = pathname.startsWith('/events');
   const isRegister = pathname.startsWith('/register');
   const isRegisterSucess = pathname.startsWith('/register_success');
+  const isCallbackPath = pathname.startsWith('/callback');
+  const isLoginPath = pathname.startsWith('/login');
 
   // // 이벤트 혹은 더보기 페이지일 경우 헤더를 다르게 표시
   // if (isMorePath || isEvents || isRegister || isRegisterSucess) {
@@ -101,6 +105,8 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
   //   );
   // }
 
+  if (isCallbackPath) return;
+
   // 모바일 헤더 표시
   if (isMobile) {
     return (
@@ -118,14 +124,19 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
         </div>
         <div className="flex items-center justify-center gap-2 md:hidden">
           <div className="flex size-[48px] items-center justify-center rounded-full shadow-sm hover:bg-white dark:shadow-none hover:dark:bg-dark-card">
-            <Image
-              width={100}
-              height={100}
-              className="size-[32px] rounded-full object-cover"
-              src={똥강아지1}
-              alt={''}
-              unoptimized
-            />
+            {userData && (
+              <Image
+                width={100}
+                height={100}
+                className="size-[32px] rounded-full object-cover"
+                src={
+                  userData.profimg ||
+                  'https://re-find.xyz/static/images/profile/이파리1.webp'
+                }
+                alt="유저 프로필 이미지"
+                unoptimized
+              />
+            )}
           </div>
           {/* <h2>모바일 헤더입니다</h2> */}
         </div>
@@ -151,10 +162,14 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
         </div>
         <DesktopHeaderTab />
       </div>
-      <Suspense>
-        <SearchModalOpener />
-      </Suspense>
-      <DesktopMenuTab />
+      {!isLoginPath && (
+        <>
+          <Suspense>
+            <SearchModalOpener />
+          </Suspense>
+          <DesktopMenuTab />
+        </>
+      )}
     </>
   );
 };
