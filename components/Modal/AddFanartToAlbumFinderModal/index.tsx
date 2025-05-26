@@ -48,6 +48,7 @@ export default function AddFanartToAlbumFinderModal(
         toast.success('새로운 팬아트가 앨범에 추가되었습니다.');
         onClose();
       },
+      handleOnError: onClose,
     });
   const handleAddToCustomAlbum = () => {
     if (!selected) return;

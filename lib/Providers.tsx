@@ -9,6 +9,7 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { isAxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
 import { ThemeProvider } from 'next-themes';
 import React, { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -19,6 +20,7 @@ import {
 } from '@/lib/error-utils';
 
 export function Providers({ children }: React.PropsWithChildren) {
+  const router = useRouter();
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -63,17 +65,15 @@ export function Providers({ children }: React.PropsWithChildren) {
       return;
     }
 
+    // 추가 특수 처리 (예: 401 에러 시 로그인 페이지 이동)
+    if (normalizedError.statusCode === 401) {
+      router.push('/login');
+      return;
+    }
     const userMessage = translateRefindAppErrorMessage(normalizedError);
     toast.error(userMessage);
-
-    // 추가 특수 처리 (예: 401 에러 시 로그인 페이지 이동)
-    // TODO: login 페이지를 만들지? toast에 버튼으로 경로이동 처리할지?
-    if (normalizedError.statusCode === 401) {
-      // router.push('/login');
-    }
   };
 
-  // TODO: 여전히flash가 존재한다. chakra때문인가? 나중에 지우고 다시 테스트해보기
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <Toaster position="bottom-center" />

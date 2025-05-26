@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 
 import myService from '@/app/myLibrary/service/client/myService';
+import { extractRefindAppError } from '@/lib/error-utils';
 import type { DeleteArtworkParams } from '@/types';
 
 const queryKeys = {
@@ -24,29 +25,45 @@ const queryOptions = {
     albumId,
     info,
     handleOnSuccess,
+    handleOnError,
   }: {
     albumId: string;
     info: CustomAlbumEditParams;
     handleOnSuccess: () => void;
+    handleOnError: () => void;
   }) => ({
     mutationFn: () => myService.putCustomAlbum(albumId, info),
     onSuccess: () => {
       handleOnSuccess();
+    },
+    onError: (error: unknown) => {
+      const normalizedError = extractRefindAppError(error);
+      if (normalizedError.statusCode === 401) {
+        handleOnError();
+      }
     },
   }),
   addFanartsInToCustomAlbum: ({
     albumId,
     items,
     handleOnSuccess,
+    handleOnError,
   }: {
     albumId: string;
     items: number[];
     handleOnSuccess: () => void;
+    handleOnError: () => void;
   }) => ({
     mutationFn: () => myService.putFanartsInToCustomAlbum(albumId, items),
     onSuccess: (data: any) => {
       console.log('putFanartsInToCustomAlbum', data);
       handleOnSuccess();
+    },
+    onError: (error: unknown) => {
+      const normalizedError = extractRefindAppError(error);
+      if (normalizedError.statusCode === 401) {
+        handleOnError();
+      }
     },
   }),
   deleteCustomAlbum: ({
@@ -54,11 +71,18 @@ const queryOptions = {
     artworksIdList,
     isDeleteAlbum = false,
     handleOnSuccess,
+    handleOnError,
   }: DeleteArtworkParams) => ({
     mutationFn: () =>
       myService.deleteCustomAlbum({ albumId, artworksIdList, isDeleteAlbum }),
     onSuccess: () => {
       handleOnSuccess?.();
+    },
+    onError: (error: unknown) => {
+      const normalizedError = extractRefindAppError(error);
+      if (normalizedError.statusCode === 401) {
+        handleOnError?.();
+      }
     },
   }),
   updateLikedArticles: () => ({
@@ -69,9 +93,11 @@ const queryOptions = {
   subscribeArtist: ({
     author,
     getArtistInfo,
+    handleOnError,
   }: {
     author: string;
     getArtistInfo: () => void;
+    handleOnError: () => void;
   }) => ({
     mutationFn: () => myService.subscribeArtist(author),
     onSuccess: (data: ArtistSubscribeResponse) => {
@@ -79,17 +105,21 @@ const queryOptions = {
       // toast.success('구독이 추가되었습니다.');
       getArtistInfo();
     },
-    // onError: (data: ArtistSubscribeResponse) => {
-    //   console.log(data);
-    //   toast.error('구독 기능 준비 중입니다.');
-    // },
+    onError: (error: unknown) => {
+      const normalizedError = extractRefindAppError(error);
+      if (normalizedError.statusCode === 401) {
+        handleOnError();
+      }
+    },
   }),
   unsubscribeArtist: ({
     author,
     getArtistInfo,
+    handleOnError,
   }: {
     author: string;
     getArtistInfo: () => void;
+    handleOnError: () => void;
   }) => ({
     mutationFn: () => myService.unsubscribeArtist(author),
     onSuccess: (data: ArtistSubscribeResponse) => {
@@ -97,10 +127,12 @@ const queryOptions = {
       // toast.success(`${author} 작가님 구독을 취소했습니다.`);
       getArtistInfo();
     },
-    // onError: (data: ArtistSubscribeResponse) => {
-    //   console.log(data);
-    //   toast.error('구독 기능 준비 중입니다.');
-    // },
+    onError: (error: unknown) => {
+      const normalizedError = extractRefindAppError(error);
+      if (normalizedError.statusCode === 401) {
+        handleOnError();
+      }
+    },
   }),
   subscribedArtists: () => ({
     queryKey: queryKeys.subscribedArtists(),

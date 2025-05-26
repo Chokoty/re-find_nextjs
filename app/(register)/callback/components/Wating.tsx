@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
+import Button from '@/components/Button';
 import { useLogin } from '@/service/client/useCommonService';
 
 export default function Wating() {
@@ -34,6 +35,22 @@ export default function Wating() {
     return () => clearTimeout(timer);
   }, []);
 
+  if (isError) {
+    return (
+      <div className="flex flex-col items-center justify-center gap-4 p-4 text-center">
+        <h4>에러가 발생했습니다.</h4>
+        <Button
+          intent="solid-green"
+          onClick={() => {
+            router.push('/');
+          }}
+        >
+          홈으로
+        </Button>
+      </div>
+    );
+  }
+
   return (
     <>
       <h1
@@ -41,7 +58,6 @@ export default function Wating() {
       >
         잠시만 기다려주세요
       </h1>
-      {isError && <h4>에러가 발생했습니다. 홈 버튼 추가 하기..</h4>}
     </>
   );
 }

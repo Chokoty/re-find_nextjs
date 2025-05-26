@@ -37,6 +37,7 @@ export default function SubscribeConfirmModal(props: Record<string, unknown>) {
         refreshAlbumArtworks();
         close();
       },
+      handleOnError: close,
     });
   const { mutate: unSubscribeArtist, isPending: isPendingUnsubscribe } =
     useUnsubscribeArtist({
@@ -46,6 +47,7 @@ export default function SubscribeConfirmModal(props: Record<string, unknown>) {
         refreshAlbumArtworks();
         close();
       },
+      handleOnError: close,
     });
   const handleSubscribe = () => {
     if (isSubscribed) {

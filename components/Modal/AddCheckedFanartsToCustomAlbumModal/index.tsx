@@ -31,6 +31,7 @@ export default function AddCheckedFanartsToCustomAlbumModal(
         if (!selected) return;
         showAlbumAddedToast(selected);
       },
+      handleOnError: hide,
     });
 
   function showAlbumAddedToast(albumId: string) {

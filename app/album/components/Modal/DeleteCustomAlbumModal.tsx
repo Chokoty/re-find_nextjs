@@ -19,6 +19,7 @@ export default function DeleteCustomAlbumModal(props: Record<string, unknown>) {
       hide();
       onSuccess();
     },
+    handleOnError: hide,
   });
   const onClose = () => {
     hide();

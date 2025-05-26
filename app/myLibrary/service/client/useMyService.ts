@@ -34,13 +34,20 @@ export function useEditCustomAlbum({
   albumId,
   info,
   handleOnSuccess,
+  handleOnError,
 }: {
   albumId: string;
   info: CustomAlbumEditParams;
   handleOnSuccess: () => void;
+  handleOnError: () => void;
 }) {
   return useMutation(
-    queryOptions.editCustomAlbuminfo({ albumId, info, handleOnSuccess })
+    queryOptions.editCustomAlbuminfo({
+      albumId,
+      info,
+      handleOnSuccess,
+      handleOnError,
+    })
   );
 }
 
@@ -49,6 +56,7 @@ export function useDeleteCustomAlbum({
   artworksIdList,
   isDeleteAlbum = false,
   handleOnSuccess,
+  handleOnError,
 }: DeleteArtworkParams) {
   return useMutation(
     queryOptions.deleteCustomAlbum({
@@ -56,6 +64,7 @@ export function useDeleteCustomAlbum({
       artworksIdList,
       isDeleteAlbum,
       handleOnSuccess,
+      handleOnError,
     })
   );
 }
@@ -67,20 +76,28 @@ export function useUpdateLikedArticles() {
 export function useSubscribeArtist({
   author,
   getArtistInfo,
+  handleOnError,
 }: {
   author: string;
   getArtistInfo: () => void;
+  handleOnError: () => void;
 }) {
-  return useMutation(queryOptions.subscribeArtist({ author, getArtistInfo }));
+  return useMutation(
+    queryOptions.subscribeArtist({ author, getArtistInfo, handleOnError })
+  );
 }
 export function useUnsubscribeArtist({
   author,
   getArtistInfo,
+  handleOnError,
 }: {
   author: string;
   getArtistInfo: () => void;
+  handleOnError: () => void;
 }) {
-  return useMutation(queryOptions.unsubscribeArtist({ author, getArtistInfo }));
+  return useMutation(
+    queryOptions.unsubscribeArtist({ author, getArtistInfo, handleOnError })
+  );
 }
 
 export function useSubscribedArtists() {
@@ -91,12 +108,19 @@ export function ussAddFanartsInToCustomAlbum({
   albumId,
   items,
   handleOnSuccess,
+  handleOnError,
 }: {
   albumId: string;
   items: number[];
   handleOnSuccess: () => void;
+  handleOnError: () => void;
 }) {
   return useMutation(
-    queryOptions.addFanartsInToCustomAlbum({ albumId, items, handleOnSuccess })
+    queryOptions.addFanartsInToCustomAlbum({
+      albumId,
+      items,
+      handleOnSuccess,
+      handleOnError,
+    })
   );
 }

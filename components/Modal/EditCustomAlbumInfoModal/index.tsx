@@ -39,6 +39,7 @@ export default function EditCustomAlbumInfoModal(
       toast.success('앨범 정보가 수정되었습니다.');
       onClose();
     },
+    handleOnError: onClose,
   });
 
   const handleSubmit = (e: React.FormEvent) => {
