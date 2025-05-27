@@ -21,7 +21,7 @@ export default function BannerCard({ event }: { event: EventProps }) {
   const linkClassName = colors[linkColor];
 
   return (
-    <div className="flex max-h-[134px] w-full flex-col items-center justify-center rounded-2xl bg-white py-3 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2 2xs:py-6 md:py-11">
+    <div className="flex max-h-[134px] w-full max-w-[750px] flex-col items-center justify-center rounded-2xl bg-white py-3 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2 2xs:py-6 md:py-11">
       <p className="mb-2 text-base font-bold 2xs:text-xl md:mb-4">{title}</p>
       {isOutLink ? (
         <Link
