@@ -36,8 +36,8 @@ export default function Credit() {
       </div> */}
       {/* <MyConfetti /> */}
       <div className="flex size-full w-full items-center">
-        <div className="mt-10 flex  flex-col items-center justify-center text-2xl">
-          <h2 className="mb-6  text-4xl">도와주신 작가님들</h2>
+        <div className="mt-10 flex flex-col items-center justify-center text-2xl">
+          <h2 className="mb-6 text-4xl">도와주신 작가님들</h2>
           <div className="flex flex-wrap">
             {CREDIT.map((author, index) => (
               <div key={author} className="w-1/3">

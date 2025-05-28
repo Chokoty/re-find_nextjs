@@ -9,8 +9,8 @@ interface TotalCountProps {
 const TotalCount = ({ total }: TotalCountProps) => {
   return (
     <p className="flex items-center">
-      총&nbsp;
-      <CountUp end={total} className="text-green-highlight" />명
+      <span>총</span>
+      <CountUp end={total} className="pl-1 pr-0.5 text-green-highlight" />명
     </p>
   );
 };

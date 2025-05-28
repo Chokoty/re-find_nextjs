@@ -33,7 +33,7 @@ export default function EventFanarts() {
   };
 
   return (
-    <div className="mt-4 flex w-full max-w-[540px] flex-col items-center justify-start rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card">
+    <div className="my-4 flex w-full max-w-[540px] flex-col items-center justify-start rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card-2">
       <div className="flex w-full flex-row items-center justify-between">
         <p className="text-lg font-bold">특집 팬아트 가챠</p>
         <p className="text-lg font-bold">총 {RANDOM_FANARTS.length} 개</p>

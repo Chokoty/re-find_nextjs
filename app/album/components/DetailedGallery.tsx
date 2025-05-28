@@ -5,9 +5,9 @@ import { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
-import GALLERY_LIST from '@/app/gallery/lib/const';
-import { useGalleryArtworks } from '@/app/gallery/service/client/useGalleryService';
-import { useFanartTotalCountStore } from '@/app/gallery/store/fanartTotalCountStore';
+import GALLERY_LIST from '@/app/album/lib/const';
+import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
+import { useFanartTotalCountStore } from '@/app/album/store/fanartTotalCountStore';
 import Alert from '@/components/Alert';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
 import MasonryView from '@/components/View/MasonryView';
@@ -28,7 +28,8 @@ export default function DetailedGallery({ value: galleryType }: Props) {
 
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');
-  const name = pathNameParts[pathNameParts.length - 1];
+  const albumName = pathNameParts[pathNameParts.length - 1];
+  const parentPath = pathNameParts[pathNameParts.length - 2];
   // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
   const shouldHideTotalCounter = (n: string) => {
     const hiddenNames = [
@@ -56,23 +57,10 @@ export default function DetailedGallery({ value: galleryType }: Props) {
   const [activeView, setActiveView] = useState(
     viewTypeInit !== '' ? viewTypeInit : 'masonry'
   ); // 초기 뷰 설정
-  // const [sortType, setSortType] = useState(
-  //   // sortTypeInit !== '' ? sortTypeInit : isIsdPick ? 'latest' : 'alzaltak'
-  //   albumType === 'keyword' || isIsdPick ? 'latest' : 'alzaltak'
-
-  //   // sortTypeInit !== ''
-  //   //   ? sortTypeInit
-  //   //   : isIsdPick || albumType === 'keyword'
-  //   //     ? 'latest'
-  //   //     : 'alzaltak'
-  // ); // 초기 상태 설정'
   const [sortType, setSortType] = useState(() => {
     if (sortTypeInit !== '') {
       return sortTypeInit;
     }
-    // if (albumType === 'keyword' || isIsdPick) {
-    //   return 'latest';
-    // }
     return 'alzaltak';
   }); // 초기 상태 설정'
 
@@ -85,14 +73,11 @@ export default function DetailedGallery({ value: galleryType }: Props) {
 
   const updateURL = (SortType: string, ViewType: string, member?: string) => {
     const params = new URLSearchParams();
-    // if (isIsdPick && member) {
-    //   params.append('member', member);
-    // }
     params.append('viewType', ViewType);
     params.append('sortType', SortType);
     // URL에 query string 추가
     const queryString = params.toString();
-    router.push(`/gallery/${name}?${queryString}`);
+    router.push(`/${parentPath}/${albumName}?${queryString}`);
   };
 
   // 정렬 선택하기
@@ -102,15 +87,6 @@ export default function DetailedGallery({ value: galleryType }: Props) {
       setSortType(menuText);
 
       updateURL(menuText, activeView, selected);
-      // const params = new URLSearchParams();
-      // if (isIsdPick) {
-      //   params.append('member', selected);
-      // }
-      // params.append('sortType', menuText);
-      // params.append('viewType', activeView);
-      // // URL에 query string 추가
-      // const queryString = params.toString();
-      // router.push(`/gallery/${name}?${queryString}`);
     },
     [sortType]
   );
@@ -157,7 +133,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
         handleShowDeleted={handleShowDeleted}
         onMemberClick={handleMemberClick}
         topOffset={59}
-        hasTotalCounter={!shouldHideTotalCounter(name) && !!total}
+        hasTotalCounter={!shouldHideTotalCounter(albumName) && !!total}
         // isIsdPick={isIsdPick}
       />
       {status === 'pending' ? (

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { ROWS_PER_PAGE } from '@/app/search/lib/const';
 import { getPeriod } from '@/app/search/lib/date';
 import Service from '@/lib/service';
@@ -32,11 +34,17 @@ class SearchService extends Service {
     const boardCategory = getBoardCategory({ board, category });
     const etc = `${criteria}${range}${boardCategory}${period}`;
     const url =
-      `/search_txt?query=${q}&ranktype=${rankType}&case_sensitive=${sensitive}&per_page=${ROWS_PER_PAGE}&page=${page}`.concat(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/search_txt?query=${q}&ranktype=${rankType}&case_sensitive=${sensitive}&per_page=${ROWS_PER_PAGE}&page=${page}`.concat(
         etc
       );
-    const response = await this.http.get<SearchResult>(url);
-    return response;
+    // const response = await this.http.get<SearchResult>(url);
+    // return response;
+
+    const response = await axios.get<SearchResult>(url, {
+      // search_txt의 경우 v2 migration 예정이 없어 CORS를 미포함하여 요청을 해야함.
+      withCredentials: false, // CORS 관련 자격 증명 미포함
+    });
+    return response.data;
   }
 }
 

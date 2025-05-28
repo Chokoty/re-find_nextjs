@@ -7,7 +7,7 @@ import { HashLoader } from 'react-spinners';
 import { useShallow } from 'zustand/react/shallow';
 
 import { convertBoardParams } from '@/app/artists/lib/convertParams';
-import { useArtistInfo } from '@/app/artists/service/client/useArtistService';
+import { useArtistArtworks } from '@/app/artists/service/client/useArtistService';
 import { useArtistSearchInfoStore } from '@/app/artists/store/artistSearchInfoStore';
 import Alert from '@/components/Alert';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
@@ -18,7 +18,6 @@ import { useResponsive } from '@/hooks/useResponsive';
 
 type Props = {
   nickname: string;
-  artistInfo: AuthorOverview;
 };
 
 export default function DetailedArtists({ nickname }: Props) {
@@ -44,13 +43,12 @@ export default function DetailedArtists({ nickname }: Props) {
     useShallow((state) => ({ rankCriteria: state.rankCriteria }))
   );
 
-  const { fetchNextPage, artworks, status, isFetchingNextPage } = useArtistInfo(
-    {
+  const { fetchNextPage, artworks, status, isFetchingNextPage } =
+    useArtistArtworks({
       nickname,
       sortType,
       board: rankCriteria ? convertBoardParams(rankCriteria) : null,
-    }
-  );
+    });
 
   const pathname = usePathname();
   const pathNameParts = pathname.split('/');

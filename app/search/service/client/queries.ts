@@ -47,7 +47,8 @@ const queryOptions = {
     category,
     dateType,
     rankType,
-  }: GetSearchResultParams) => ({
+    enabled = false, // 기본 초기 실행 x
+  }: GetSearchResultParams & { enabled?: boolean }) => ({
     queryKey: queryKeys.searchResults({
       q,
       title,
@@ -62,6 +63,7 @@ const queryOptions = {
       dateType,
       rankType,
     }),
+    enabled,
     queryFn: ({ pageParam }: { pageParam: number }) =>
       SearchService.getSearchResults({
         q,

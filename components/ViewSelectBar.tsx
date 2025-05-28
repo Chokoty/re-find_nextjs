@@ -5,10 +5,9 @@ import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
 import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import { RiFullscreenFill } from 'react-icons/ri';
 
-import TotalCounter from '@/app/gallery/components/TotalCounter';
-import { MEMBERS } from '@/app/gallery/lib/const';
+import TotalCounter from '@/app/album/components/TotalCounter';
+import { MEMBERS } from '@/app/album/lib/const';
 import Button from '@/components/Button';
 import Menu, { MenuButton, MenuItem, MenuList } from '@/components/Menu';
 import Popover, {

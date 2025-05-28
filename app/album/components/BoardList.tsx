@@ -1,43 +1,27 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 
-import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
+import EmblaCarouselSkeletonLoading from '@/app/album/components/Skeleton/EmblaCarouselSkeletonLoading';
+import { UPDATED_GALLERY_LIST } from '@/app/album/lib/const';
 
-const GallerySlider = dynamic(
-  () => import('@/app/gallery/components/Slider/GallerySlider'),
+const EmblaCarousel = dynamic(
+  () => import('@/app/album/components/Slider/EmblaCarousel'),
   {
     ssr: false,
-    loading: () => <GalleryAlbumSliderSkeleton />,
+    loading: () => <EmblaCarouselSkeletonLoading type="board" />,
   }
 );
-
 export default function BoardList() {
   return (
-    <div className="mt-20 flex w-full flex-col">
-      <div className="mb-2 w-full px-8 md:mb-4">
-        <p className="text-left text-xl font-extrabold md:text-2xl">
-          게시판 업데이트 현황
-        </p>
-      </div>
-      <GallerySlider
-        type="board"
-        customSwiperOptions={{
-          style: {
-            // padding: '0 2rem',
-          },
-          spaceBetween: 8,
-          breakpoints: {
-            480: {
-              slidesPerView: 2.5,
-              spaceBetween: 10,
-            },
-            1055: {
-              slidesPerView: 3.5,
-              spaceBetween: 16,
-            },
-            // 1024: {
-            //   slidesPerView: 3.5,
-            // },
-          },
+    <div className="mt-7 flex w-full flex-col md:mt-10">
+      <p className="mb-2 pl-2 text-left text-xl font-extrabold md:mb-4 md:pl-8 md:text-2xl">
+        왁물원 게시판 앨범
+      </p>
+      <EmblaCarousel
+        data={{
+          type: 'board',
+          list: UPDATED_GALLERY_LIST,
         }}
       />
     </div>

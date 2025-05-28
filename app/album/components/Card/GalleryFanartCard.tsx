@@ -5,7 +5,7 @@ import { FaArrowRightLong } from 'react-icons/fa6';
 import { FiClock } from 'react-icons/fi';
 import { MdPerson } from 'react-icons/md';
 
-import RankingBadge from '@/app/gallery/components/Badge/RankingBadge';
+import RankingBadge from '@/app/album/components/Badge/RankingBadge';
 import { formatNumberToEnglishUnit } from '@/hooks/useFormatNumberToCompactString';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
 
@@ -95,7 +95,7 @@ export default function GalleryFanartCard({ artwork, num }: Props) {
           {artwork?.title}
         </p>
         <Link className="link-to-profile" href={`/artists/${authorName}`}>
-          <p className=" cursor-pointer text-left text-sm font-medium text-blackAlpha-700 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-pink-highlight">
+          <p className="cursor-pointer text-left text-sm font-medium text-blackAlpha-700 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-pink-highlight">
             작가: {authorName}
           </p>
         </Link>

@@ -1,4 +1,4 @@
-import GalleryService from '@/app/gallery/service/client/GalleryService';
+import GalleryService from '@/app/album/service/client/GalleryService';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
@@ -18,6 +18,11 @@ const queryKeys = {
 };
 
 const queryOptions = {
+  galleryPageInfo: (id: string) => ({
+    queryKey: queryKeys.galleryPageInfo(id), // queryKey 설정
+    queryFn: () => GalleryService.getGalleryPageInfo(id), // 메서드 호출
+    enabled: id !== 'galleryHome',
+  }),
   galleryArtworks: ({
     galleryType,
     sortType,
@@ -50,11 +55,6 @@ const queryOptions = {
     queryKey: queryKeys.galleries(), // queryKey 설정
     queryFn: () => GalleryService.getGalleries(), // 메서드 호출
   }),
-
-  // galleryPageInfo: (id: string) => ({
-  //   queryKey: queryKeys.galleryPageInfo(id), // queryKey 설정
-  //   queryFn: () => GalleryService.getGalleryPageInfo(id), // 메서드 호출
-  // }),
 };
 
 export default queryOptions;

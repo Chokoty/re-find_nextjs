@@ -26,7 +26,7 @@ export default function ImageSection({
   };
 
   return (
-    <div className="flex w-full flex-col items-center md:w-[508px] ">
+    <div className="flex w-full flex-col items-center md:w-[508px]">
       <div className="size-full max-w-[350px] rounded-[16px] border-base border-blackAlpha-200 bg-[#f5f5f5] dark:border-none">
         <Image
           className="pointer-events-none max-h-[350px] rounded-[16px] bg-[#f5f5f5] object-cover"

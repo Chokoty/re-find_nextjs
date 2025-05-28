@@ -44,12 +44,18 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
   // const uploadDate = getUploadDate(data.upload_date);
   const uploadTimeDiff = useUploadTimeDiff(data.upload_date);
 
+  // 스크롤 맨 위로 올리기
+  const handleResetFiles = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // 스크롤 맨 위로 부드럽게 이동
+    resetFiles(); // 기존 함수 호출
+  };
+
   return (
     <div className="flex w-full max-w-[500px] flex-col items-center justify-center rounded-b-2xl border border-gray-200 p-4 dark:border-whiteAlpha-300">
       {ids?.length === 0 ? (
         <Description />
       ) : (
-        <div className=" flex w-full flex-col items-center justify-center rounded-b-2xl bg-white dark:bg-dark-card">
+        <div className="flex w-full flex-col items-center justify-center rounded-b-2xl bg-white dark:bg-dark-card">
           <div className="flex w-full flex-col items-center justify-between gap-4">
             <div className="flex w-full flex-row items-center justify-between">
               <Link
@@ -57,7 +63,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
                 href={board_link}
                 target="_blank"
               >
-                <p className="text-lg font-bold 2xs:text-xl">
+                <p className="text-lg font-bold">
                   {data.board.replace(/&#\d+;/g, '').trim()}
                 </p>
                 <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
@@ -65,7 +71,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
               <Badge intent="secondary" size="lg">
                 <div className="flex items-center">
                   <FaRegClock className="mr-1 text-sm text-green-800 dark:text-green-200" />
-                  <p className="text-sm text-green-800 dark:text-green-200 2xs:text-base">
+                  <p className="text-sm text-green-800 dark:text-green-200">
                     {uploadTimeDiff}
                     {/* {uploadDate} */}
                   </p>
@@ -76,7 +82,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
               className="mb-4 w-full text-green-highlight dark:text-pink-highlight"
               href={`/artwork/${ids[0].id}`}
             >
-              <p className="text-xl font-bold 2xs:text-2xl">{data.title}</p>
+              <p className="text-xl font-bold">{data.title}</p>
             </Link>
           </div>
           <AuthorProfileCard
@@ -120,7 +126,7 @@ export default function ImageSearchResult({ searchTime, data }: Props) {
       <p className="m-5 text-center text-xl">
         검색시간: <span className="font-semibold">{searchTime / 1000}s</span>
       </p>
-      <Button onClick={resetFiles} size="lg" intent="solid-blue">
+      <Button onClick={handleResetFiles} size="lg" intent="solid-blue">
         다른 이미지 검색
       </Button>
     </div>

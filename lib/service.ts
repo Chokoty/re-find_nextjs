@@ -1,6 +1,8 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import axios from 'axios';
 
+import { ApiError } from '@/lib/error-utils';
+
 interface HTTPInstance {
   get<T>(url: string, config?: AxiosRequestConfig): Promise<T>;
   delete<T>(url: string, config?: AxiosRequestConfig): Promise<T>;
@@ -23,7 +25,7 @@ class Service {
   // private headers: Record<string, string>;
 
   constructor() {
-    this.baseURL = process.env.NEXT_PUBLIC_NEW_SERVER_URL!;
+    this.baseURL = process.env.NEXT_PUBLIC_SERVER_URL!;
 
     // this.headers = {
     //   csrf: 'token',
@@ -33,7 +35,7 @@ class Service {
     const axiosInstance: AxiosInstance = axios.create({
       baseURL: this.baseURL,
       timeout: 30000, // 30초동안 응답이 없으면 요청 중단
-      // withCredentials: true,
+      withCredentials: true, // test
       // headers: {
       //   'Content-Type': 'application/json',
       //   ...this.headers,
@@ -86,8 +88,13 @@ class Service {
 
       return response.data;
     } catch (error) {
-      console.error('Error:', error);
-      throw error;
+      if (axios.isAxiosError(error)) {
+        throw new ApiError(
+          error.response?.status || 500,
+          error.response?.data || { message: 'Unknown error' }
+        );
+      }
+      throw new ApiError(500, { message: 'System error' });
     }
   }
 }

@@ -63,7 +63,10 @@ const config: Config = {
         'dark-myText-2': 'var(--darkmode-myText-2)',
         'dark-background': 'var(--darkmode-bg)',
         'light-background': 'var(--lightmode-bg)',
+        'light-background-2': 'var(--lightmode-bg-2)',
         // card color (white mode is bg-white)
+        'light-button': 'var(--lightmode-button)',
+        'light-button-hover': 'var(--lightmode-button-hover)',
         'light-card': 'var(--lightmode-card-bg)',
         'light-card-2': 'var(--lightmode-card-bg-2)',
         'dark-card': 'var(--darkmode-card-bg)',
@@ -266,6 +269,10 @@ const config: Config = {
           800: 'var(--pink-800)',
           900: 'var(--pink-900)',
         },
+        icon: {
+          naver: '#02C759',
+          naverDark: '#48484B',
+        },
       },
       borderWidth: {
         base: '1px',
@@ -282,12 +289,22 @@ const config: Config = {
         lg: 'rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,rgba(0, 0, 0, 0.2) 0px 5px 10px,rgba(0, 0, 0, 0.4) 0px 15px 40px',
         navTop: '0 2px 4px 0 hsla(0,0%,80.8%,.5)',
         navTopDark: '0 2px 6px 0 hsl(0deg 0.17% 44.65% / 31%)',
+        navTopDark2: '0 4px 10px 0 rgba(0, 0, 0, 0.6)', // 더 진한 검은색 그림자
+        navBottomDark: '0 -4px 10px 0 rgba(0, 0, 0, 0.4)',
         navBottom: '0 -2px 4px 0 rgba(33,37,41,.08)',
       },
       gridTemplateColumns: {
         'auto-fit': 'repeat(auto-fit, minmax(236px, 1fr))',
       },
       keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeInOut: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.3' },
+        },
         modalRenderFromBottom: {
           '0%': { opacity: '0', transform: 'translateY(100%)' }, // 최하단으로부터 시작
           '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -310,6 +327,8 @@ const config: Config = {
         },
       },
       animation: {
+        'fade-in': 'fadeIn 1s ease-in forwards',
+        'fade-in-out': 'fadeInOut 1.7s ease-in-out infinite',
         modalRender: 'modalRender 0.2s ease-out',
         modalRenderFromTop: 'modalRenderFromTop 0.3s ease-out',
         modalRenderFromBottom: 'modalRenderFromBottom 0.3s ease-out',

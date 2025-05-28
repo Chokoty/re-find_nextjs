@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { FaSearch } from 'react-icons/fa';
-import { MdHomeFilled } from 'react-icons/md';
+import { IoSearchOutline } from 'react-icons/io5';
 
 import SearchModal from '@/app/search/components/Modal/SearchModal';
 import Tooltip from '@/components/Tooltip';
@@ -41,30 +40,30 @@ export default function SearchModalOpener() {
 
   return (
     <div className="flex w-full">
-      <div className=" relative m-auto h-12 w-[70%] max-w-[400px] ">
+      <div className="relative m-auto h-12 w-full max-w-[400px] md:w-[70%]">
         <div
           onClick={handleInputClick}
           className="group size-full cursor-pointer"
         >
-          <div className=" absolute left-0 top-0 z-[2] size-full cursor-pointer">
-            <FaSearch className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-400 dark:text-dark-myText-2" />
+          <div className="absolute left-0 top-0 z-[2] size-full cursor-pointer">
+            <IoSearchOutline className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-400 dark:text-dark-myText-2" />
           </div>
           <input
             className={`relative size-full cursor-pointer rounded-full border border-gray-100 bg-light-card pl-12 pr-4 transition group-hover:border-green-highlight group-hover:bg-light-card-2 dark:border-dark-card-2 dark:bg-dark-card-2 dark:group-hover:bg-dark-card-3 ${placeHolderColor}`}
             placeholder={placeholderText}
           />
         </div>
-        <Link
+        {/* <Link
           href="/recap2024"
-          className="group absolute right-[-120px] z-[3] hidden h-12 w-auto  items-center rounded-full border border-green-highlight  px-4 font-medium text-green-highlight   hover:bg-blackAlpha-200  active:bg-blackAlpha-300 dark:border-none dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-300 md:flex"
+          className="group absolute right-[-120px] z-[3] hidden h-12 w-auto items-center rounded-full border border-green-highlight px-4 font-medium text-green-highlight hover:bg-blackAlpha-200 active:bg-blackAlpha-300 dark:border-none dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-300 md:flex"
           style={{ top: 0 }}
         >
           <Tooltip label={'2024 리캡'}>
-            <span className="font-pop  text-base font-medium text-green-highlight hover:scale-105">
+            <span className="font-pop text-base font-medium text-green-highlight hover:scale-105">
               🎉RE:CAP
             </span>
           </Tooltip>
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

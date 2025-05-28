@@ -18,7 +18,8 @@ export function useSearchResults({
   category,
   dateType,
   rankType,
-}: GetSearchResultParams) {
+  enabled,
+}: GetSearchResultParams & { enabled?: boolean }) {
   const {
     data,
     fetchNextPage, // 다음 페이지를 호출하는 함수
@@ -26,6 +27,7 @@ export function useSearchResults({
     // hasNextPage, // 다음 페이지를 가지고 있는지(마지막 페이지인지 판단 t/f)
     isLoading,
     isError,
+    refetch,
   } = useInfiniteQuery(
     queryOptions.searchResults({
       q,
@@ -40,6 +42,7 @@ export function useSearchResults({
       category,
       dateType,
       rankType,
+      enabled,
     })
   );
 
@@ -51,6 +54,7 @@ export function useSearchResults({
 
   return {
     total,
+    refetch,
     searchResults,
     fetchNextPage,
     isFetchingNextPage,

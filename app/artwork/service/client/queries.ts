@@ -21,6 +21,7 @@ const queryOptions = {
       if (lastPage.lastPage) return;
       return lastPageParam + 1;
     },
+    meta: { skipGlobalErrorHandler: true },
   }),
 };
 

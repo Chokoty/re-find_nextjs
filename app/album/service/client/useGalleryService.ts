@@ -1,7 +1,7 @@
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
-import queryOptions from '@/app/gallery/service/client/queries';
+import queryOptions from '@/app/album/service/client/queries';
 import type {
   GetIsdNoticeArtworksParams,
   GetKeywordGalleryArtworksParams,
@@ -17,6 +17,7 @@ export function useGalleryArtworks({
   const {
     data,
     status,
+    refetch,
     fetchNextPage, // 다음 페이지를 호출하는 함수
     isFetchingNextPage, // 다음 페이지를 호출 중인지 = isLoading과 같은 개념
     // hasNextPage, // 다음 페이지를 가지고 있는지(마지막 페이지인지 판단 t/f)
@@ -33,6 +34,7 @@ export function useGalleryArtworks({
   return {
     total,
     status,
+    refetch,
     artworks,
     fetchNextPage,
     isFetchingNextPage,
@@ -43,9 +45,9 @@ export function useGalleryList() {
   return useQuery(queryOptions.galleries());
 }
 
-// export function useGalleryPageInfo(id: string) {
-//   return useQuery(queryOptions.galleryPageInfo(id));
-// }
+export function useGalleryPageInfo(id: string) {
+  return useQuery(queryOptions.galleryPageInfo(id));
+}
 // export function useNoticeArtworks({
 //   member,
 //   ranktype,
@@ -69,9 +71,9 @@ export function useGalleryList() {
 //   };
 // }
 
-// export function useArtworkDetail(artworkId: number) {
-//   return useQuery(queryOptions.artworkDetail(artworkId));
-// }
+export function useArtworkDetail(artworkId: number) {
+  return useQuery(queryOptions.artworkDetail(artworkId));
+}
 
 // export function useArtworks({
 //   isIsdPick,
