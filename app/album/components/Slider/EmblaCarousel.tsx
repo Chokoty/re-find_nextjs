@@ -194,7 +194,7 @@ export default function EmblaGallerySlider({ data }: Props) {
           return (
             <div
               key={d.title || idx}
-              style={{ flex: '0 0 100%', minWidth: 0, paddingLeft: '2rem' }}
+              style={{ flex: '0 0 100%', minWidth: 0, paddingLeft: '1rem' }}
             >
               <BannerCard event={d} />
             </div>
