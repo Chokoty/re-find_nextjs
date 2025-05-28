@@ -29,18 +29,25 @@ export default function UpdateCard({ update }: Prop) {
     'menu'
   );
 
+  const cleanedBoard = update.board
+    .replace(/&#\d+;/g, '')
+    .replace(/^[^a-zA-Z0-9가-힣]+/, '') // 문자나 숫자가 아닌 맨 앞부분 제거
+    .trim();
+
   const matchingGallery = UPDATED_GALLERY_LIST.find(
-    (gallery) => gallery.title === update.board.replace(/&#\d+;/g, '').trim()
-  ) || { id: '' };
+    (gallery) => gallery.title === cleanedBoard
+  ) || { value: '' };
 
+  // const matchingGallery = UPDATED_GALLERY_LIST.find(
+  //   (gallery) => gallery.title === update.board.replace(/&#\d+;/g, '').trim()
+  // ) || { value: '' };
   const board_link = `/gallery/${
-    matchingGallery.id === 'gomem'
+    matchingGallery.value === 'gomemBoard'
       ? 'gomem'
-      : matchingGallery.id === 'wakgood'
+      : matchingGallery.value === 'wakgoodBoard'
         ? 'woowakgood'
-        : matchingGallery.id
+        : matchingGallery.value
   }?viewType=masonry&sortType=latest`;
-
   // const board_link = `/gallery/${BOARD_MAP[update.board]}?viewType=masonry&sortType=latest`;
   // const boardUrl = `/search?board=${BOARD_MAP[update.board]}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
 
@@ -56,7 +63,7 @@ export default function UpdateCard({ update }: Prop) {
   }
 
   return (
-    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-whiteAlpha-300 dark:bg-dark-card md:h-[144px] ">
+    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-whiteAlpha-300 dark:bg-dark-card md:h-[144px]">
       <Link href={article_link} className="mr-3">
         <div className="flex w-max items-center justify-center">
           <Image
@@ -74,8 +81,8 @@ export default function UpdateCard({ update }: Prop) {
         <div className="flex flex-col items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2xs:gap-2">
           <Link
             className="flex items-center"
-            href={matchingGallery.id !== '' ? board_link : menu_link}
-            {...(matchingGallery.id !== '' ? {} : { target: '_blank' })}
+            href={matchingGallery.value !== '' ? board_link : menu_link}
+            {...(matchingGallery.value !== '' ? {} : { target: '_blank' })}
           >
             <p className="text-sm 2xs:text-base md:text-lg">
               {update.board.replace(/&#\d+;/g, '').trim()}
