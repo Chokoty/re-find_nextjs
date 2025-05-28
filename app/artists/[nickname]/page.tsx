@@ -51,29 +51,29 @@ export default async function page(props: Params) {
   // const result = await getAuthorInfo(nickname);
   // const { author_nickname, num_artworks } = result;
   // 배포 서버에서 실행할 경우
-  if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
-    const { queryKey, queryFn } = queryOptions.artistArtworks({
-      nickname: decodedNickname,
-      sortType: 'latest',
-      board: null,
-    });
-    const query = await getDehydratedInfiniteQuery({
-      queryKey,
-      queryFn,
-      initialPageParam: 1,
-    });
+  // if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+  //   const { queryKey, queryFn } = queryOptions.artistArtworks({
+  //     nickname: decodedNickname,
+  //     sortType: 'latest',
+  //     board: null,
+  //   });
+  //   const query = await getDehydratedInfiniteQuery({
+  //     queryKey,
+  //     queryFn,
+  //     initialPageParam: 1,
+  //   });
 
-    return (
-      <div className="mb-8 mt-16 flex w-full flex-col items-center">
-        <ArtistProfile nickname={decodedNickname} />
-        <Hydrate state={{ queries: [query] }}>
-          <Suspense>
-            <DetailedArtists nickname={decodedNickname} />
-          </Suspense>
-        </Hydrate>
-      </div>
-    );
-  }
+  //   return (
+  //     <div className="mb-8 mt-16 flex w-full flex-col items-center">
+  //       <ArtistProfile nickname={decodedNickname} />
+  //       <Hydrate state={{ queries: [query] }}>
+  //         <Suspense>
+  //           <DetailedArtists nickname={decodedNickname} />
+  //         </Suspense>
+  //       </Hydrate>
+  //     </div>
+  //   );
+  // }
   // 로컬에서 실행할 경우
   return (
     <div className="mb-8 mt-16 flex w-full flex-col items-center">

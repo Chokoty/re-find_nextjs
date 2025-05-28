@@ -45,37 +45,37 @@ export default async function page(props: Params) {
 
   const { name } = params;
 
-  if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
-    const { queryKey, queryFn } = queryOptions.galleryArtworks({
-      // query: endpoint ?? '',
-      galleryType: name,
-      // sortType: 'alzaltak',
-      sortType: 'latest',
-    });
-    // 쿼리 생성
-    const query = await getDehydratedInfiniteQuery({
-      queryKey,
-      queryFn,
-      initialPageParam: 1,
-    });
+  // if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+  //   const { queryKey, queryFn } = queryOptions.galleryArtworks({
+  //     // query: endpoint ?? '',
+  //     galleryType: name,
+  //     // sortType: 'alzaltak',
+  //     sortType: 'latest',
+  //   });
+  //   // 쿼리 생성
+  //   const query = await getDehydratedInfiniteQuery({
+  //     queryKey,
+  //     queryFn,
+  //     initialPageParam: 1,
+  //   });
 
-    return (
-      <div className="w-full">
-        <TopBackground pageName={name}>
-          <Suspense>
-            <GalleryTitle pageName={name} />
-          </Suspense>
-        </TopBackground>
-        <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px] sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
-          <Hydrate state={{ queries: [query] }}>
-            <Suspense>
-              <DetailedGallery value={name} />
-            </Suspense>
-          </Hydrate>
-        </section>
-      </div>
-    );
-  }
+  //   return (
+  //     <div className="w-full">
+  //       <TopBackground pageName={name}>
+  //         <Suspense>
+  //           <GalleryTitle pageName={name} />
+  //         </Suspense>
+  //       </TopBackground>
+  //       <section className="relative top-[-50px] z-[2] w-full 2xs:top-[-200px] sm:top-[-80px] md:top-[-120px] 2md:top-[-150px] lg:top-[-160px] xl:top-[-280px] 2xl:top-[-240px]">
+  //         <Hydrate state={{ queries: [query] }}>
+  //           <Suspense>
+  //             <DetailedGallery value={name} />
+  //           </Suspense>
+  //         </Hydrate>
+  //       </section>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="w-full">
