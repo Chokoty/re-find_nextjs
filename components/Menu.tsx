@@ -16,8 +16,8 @@ type MenuContextType = {
   visible: boolean;
   onToggle: () => void;
   onClose: (e?: Event) => void;
-  innerContentRef: React.RefObject<HTMLDivElement>;
-  buttonRef: React.RefObject<HTMLButtonElement>;
+  innerContentRef: React.RefObject<HTMLDivElement | null>;
+  buttonRef: React.RefObject<HTMLButtonElement | null>;
 };
 
 const MenuContext = createContext<MenuContextType>({

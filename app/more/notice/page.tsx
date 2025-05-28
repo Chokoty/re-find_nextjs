@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 
 import UpdateLog from '@/app/more/components/UpdateLog';
+import PageTitle from '@/components/PageTitle';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
@@ -25,9 +26,15 @@ export const metadata: Metadata = {
   icons: siteConfig.icons,
 };
 
+const topTitle = {
+  title: '공지사항',
+  description: '',
+};
+
 export default function Notice() {
   return (
-    <div className="p-4">
+    <div className="flex flex-col gap-8 p-3">
+      <PageTitle topTitle={topTitle} />
       <UpdateLog />
     </div>
   );

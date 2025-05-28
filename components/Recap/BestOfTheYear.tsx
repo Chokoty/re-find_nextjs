@@ -40,7 +40,7 @@ export default function BestOfTheYear({
   ] as StatisticsData;
 
   return (
-    <div className="mt-[70px]  flex flex-col items-center">
+    <div className="mt-[70px] flex flex-col items-center">
       <h3 className="font-sbAggro text-5xl font-bold">올해의 베스트 팬아트</h3>
       <h4 className="mb-12 mt-2 text-3xl">
         왁물원 기준 조회수, 좋아요, 댓글수 종합 1위
@@ -116,7 +116,7 @@ const FanartInfo = ({
         alt={altObj[type]}
         width={800} // 적절한 너비 (커스터마이징 가능)
         height={800} // 적절한 높이 (커스터마이징 가능)
-        className="  h-[450px] w-[300px] bg-[#f5f5f5] object-cover"
+        className="h-[450px] w-[300px] bg-[#f5f5f5] object-cover"
         unoptimized
       />
       <p className="">

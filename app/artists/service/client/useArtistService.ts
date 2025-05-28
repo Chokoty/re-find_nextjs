@@ -1,21 +1,27 @@
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
 
 import queryOptions from '@/app/artists/service/client/queries';
-import type { GetArtistInfoParams, GetArtistListParams } from '@/types';
+import type { GetArtistArtworksParams, GetArtistListParams } from '@/types';
 
-export function useArtistInfo({
+export function useArtistInfo(nickname: string) {
+  return useQuery(queryOptions.artistInfo(nickname));
+}
+
+export function useArtistArtworks({
   nickname,
   sortType,
   board,
-}: GetArtistInfoParams) {
+}: GetArtistArtworksParams) {
   const {
     data,
     status,
     fetchNextPage, // 다음 페이지를 호출하는 함수
     isFetchingNextPage, // 다음 페이지를 호출 중인지 = isLoading과 같은 개념
     // hasNextPage, // 다음 페이지를 가지고 있는지(마지막 페이지인지 판단 t/f)
-  } = useInfiniteQuery(queryOptions.artistInfo({ nickname, sortType, board }));
+  } = useInfiniteQuery(
+    queryOptions.artistArtworks({ nickname, sortType, board })
+  );
 
   const artworks = useMemo(() => {
     // console.log(data);

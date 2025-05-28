@@ -1,19 +1,27 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import GalleryAlbumSliderSkeleton from '@/app/gallery/components/Skeleton/GalleryAlbumSliderSkeleton';
+import EmblaCarouselSkeletonLoading from '@/app/album/components/Skeleton/EmblaCarouselSkeletonLoading';
+import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
 
-const GallerySlider = dynamic(
-  () => import('@/app/gallery/components/Slider/GallerySlider'),
+const EmblaCarousel = dynamic(
+  () => import('@/app/album/components/Slider/EmblaCarousel'),
   {
     ssr: false,
-    loading: () => <GalleryAlbumSliderSkeleton />,
+    loading: () => <EmblaCarouselSkeletonLoading type="liked" />,
   }
 );
+
 export default function ArtistTimelineShelf() {
+  const { artworks } = useGalleryArtworks({
+    sortType: 'recent',
+    galleryType: 'artistTimeline',
+  });
   return (
-    <div className="mb-10 flex w-full flex-col p-2 md:px-6">
-      <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
+    <div className="mt-7 flex w-full flex-col md:mt-10">
+      <div className="mb-2 flex w-full content-end justify-between gap-4 pl-2 pr-1 md:mb-4 md:pl-8 md:pr-2">
         <Link
           href="/myLibrary/artistTimeline"
           className="flex items-center hover:underline"
@@ -31,28 +39,14 @@ export default function ArtistTimelineShelf() {
           </p>
         </Link>
       </div>
-      <GallerySlider
-        type="album"
-        customSwiperOptions={{
-          style: {
-            // padding: '0 2rem',
-          },
-          spaceBetween: 8,
-          breakpoints: {
-            480: {
-              slidesPerView: 2.5,
-              spaceBetween: 10,
-            },
-            1055: {
-              slidesPerView: 3.5,
-              spaceBetween: 16,
-            },
-            // 1024: {
-            //   slidesPerView: 3.5,
-            // },
-          },
-        }}
-      />
+      {artworks && (
+        <EmblaCarousel
+          data={{
+            type: 'liked',
+            list: artworks,
+          }}
+        />
+      )}
     </div>
   );
 }

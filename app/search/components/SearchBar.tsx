@@ -1,14 +1,14 @@
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { IoSearchOutline } from 'react-icons/io5';
 import { useShallow } from 'zustand/react/shallow';
 
 import { useSearchFilterStore } from '@/app/search/store/searchFilerStore';
 import Button from '@/components/Button';
 
 type Prop = {
-  inputRef?: React.RefObject<HTMLInputElement>;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
   addHistoryKeyword: (keyword: string) => void;
   onClose?: () => void;
   focusBar?: () => void;
@@ -90,7 +90,7 @@ export default function SearchBar({
             className="absolute left-2.5 top-1/2 flex size-8 -translate-y-1/2 items-center justify-center"
             onClick={onSearchButtonClick}
           >
-            <FaSearch className="size-5 text-gray-600 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-green-highlight" />
+            <IoSearchOutline className="size-5 text-gray-600 hover:text-green-highlight dark:text-whiteAlpha-700 dark:hover:text-green-highlight" />
           </button>
         </div>
         <input

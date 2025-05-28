@@ -1,14 +1,12 @@
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
+'use client';
 
+import dynamic from 'next/dynamic';
+import type { StaticImageData } from 'next/image';
+import type { JSX } from 'react';
 import { PiGiftBold, PiRankingFill } from 'react-icons/pi';
-import { Autoplay, Navigation, Pagination } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Banner from '@/app/(home)/components/Slide/Banner';
-import Event from '@/app/(home)/components/Slide/Event';
+import EmblaCarouselSkeletonLoading from '@/app/album/components/Skeleton/EmblaCarouselSkeletonLoading';
+import { MainBanner } from '@/lib/images';
 
 type LinkColor = 'green' | 'pink' | 'blue' | 'purple' | 'yellow';
 
@@ -20,14 +18,24 @@ interface EventData {
   isOutLink?: boolean; // 선택적 속성
 }
 
-const swiperSlideStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: '100%',
-};
+const EmblaCarousel = dynamic(
+  () => import('@/app/album/components/Slider/EmblaCarousel'),
+  {
+    ssr: false,
+    loading: () => <EmblaCarouselSkeletonLoading type="banner" />,
+  }
+);
 
-const events: EventData[] = [
+const events: (
+  | EventData
+  | { type: 'image'; imageData: StaticImageData; link: string; alt?: string }
+)[] = [
+  {
+    type: 'image',
+    imageData: MainBanner,
+    link: '/more/about', // 배너 클릭 시 이동할 링크
+    alt: '메인 배너',
+  },
   // {
   //   title: '이세계아이돌 1,000일 기념 🎉 역조공 프로젝트!',
   //   linkColor: 'green',
@@ -38,31 +46,31 @@ const events: EventData[] = [
   // {
   //   title: '🎂 징버거님의 생일 기념 갤러리 추가',
   //   linkColor: 'yellow',
-  //   link: '/gallery/jingburgerBirthday',
+  //   link: '/album/jingburgerBirthday',
   //   linkContent: <>부가땅 생일 기념 갤러리 보러가기</>,
   // },
   // {
   //   title: '이세돌 1000일 기념 갤러리 추가',
   //   linkColor: 'pink',
-  //   link: '/gallery/thousand',
+  //   link: '/album/thousand',
   //   linkContent: <>이세돌 1000일 기념 갤러리 보러가기</>,
   // },
   // {
   //   title: '🎃 Trick or Treat! 해피 할로윈',
   //   linkColor: 'yellow',
-  //   link: '/gallery/halloween',
+  //   link: '/album/halloween',
   //   linkContent: <>할로윈 특집 팬아트 보러가기</>,
   // },
-  {
-    title: '2024 리파인드 리캡',
-    linkColor: 'green',
-    link: '/recap2024',
-    linkContent: <>2024 리파인드 돌아보기</>,
-  },
+  // {
+  //   title: '2024 리파인드 리캡',
+  //   linkColor: 'green',
+  //   link: '/recap2024',
+  //   linkContent: <>2024 리파인드 돌아보기</>,
+  // },
   {
     title: '❤️‍🔥 이세돌 데뷔 3주년 축하드립니다!!! ❤️‍🔥',
     linkColor: 'pink',
-    link: '/gallery/isd3year',
+    link: '/album/isd3year',
     linkContent: <>이세돌 3주년 기념 팬아트 보러가기</>,
   },
   {
@@ -91,37 +99,13 @@ const events: EventData[] = [
 
 export default function BannerSlider() {
   return (
-    <div className="mb-1 w-full">
-      <Swiper
-        className="mySwiper"
-        // navigation={true}
-        pagination={{ clickable: true }}
-        modules={[Autoplay, Navigation, Pagination]}
-        autoplay={{
-          delay: 10000,
-          disableOnInteraction: false,
+    <div className="mt-7 flex w-full max-w-[800px] flex-col md:mt-10 md:w-11/12">
+      <EmblaCarousel
+        data={{
+          type: 'banner',
+          list: events,
         }}
-        loop={true}
-        grabCursor={true}
-        style={{
-          paddingBottom: '2.5rem',
-        }}
-      >
-        <SwiperSlide style={swiperSlideStyle}>
-          <Banner />
-        </SwiperSlide>
-        {events.map((event, index) => (
-          <SwiperSlide key={index} style={swiperSlideStyle}>
-            <Event
-              title={event.title}
-              linkColor={event.linkColor}
-              link={event.link}
-              linkContent={event.linkContent}
-              isOutLink={event.isOutLink || false} // Optional, defaults to false if not present
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      />
     </div>
   );
 }

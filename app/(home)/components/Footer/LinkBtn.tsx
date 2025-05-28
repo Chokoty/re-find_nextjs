@@ -19,7 +19,7 @@ const SoopButton = () => (
   <Link
     href="https://ch.sooplive.co.kr/ecvhao"
     target="_blank"
-    className="flex size-10 items-center justify-center  rounded-lg bg-custom-dark shadow-md"
+    className="flex size-10 items-center justify-center rounded-lg bg-custom-dark shadow-md"
   >
     <Image
       className="size-9"

@@ -3,8 +3,8 @@
 import clsx from 'clsx';
 import React, { useEffect, useRef, useState } from 'react';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
-import { FaSearch } from 'react-icons/fa';
 import { IoIosCloseCircle } from 'react-icons/io';
+import { IoSearchOutline } from 'react-icons/io5';
 import { useDebounce } from 'react-use';
 import { useShallow } from 'zustand/react/shallow';
 
@@ -48,7 +48,7 @@ export default function ArtistsSearchInput() {
   return (
     <div className="relative h-10 w-full max-w-[400px]">
       <div className="absolute left-1 top-0 z-[2] flex h-full w-10 items-center justify-center">
-        <FaSearch
+        <IoSearchOutline
           className={clsx('size-5', {
             'text-green-highlight': isInputNotEmpty,
             'text-gray-600 dark:text-whiteAlpha-500': !isInputNotEmpty,

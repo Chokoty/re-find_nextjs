@@ -13,7 +13,6 @@
     "@typescript-eslint",
     "prettier",
     "react",
-    "react-hooks",
     "simple-import-sort",
     "import",
     "@tanstack/query"
@@ -24,7 +23,6 @@
     "eslint:recommended",
     "plugin:prettier/recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@next/next/recommended",
     "plugin:storybook/recommended",

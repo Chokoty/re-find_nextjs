@@ -25,10 +25,3 @@ export function CopyRecapLinkButton() {
     </Button>
   );
 }
-
-// <Button
-//   intent={`solid-purple` as CustomVariantProps['intent']}
-//   additionalClass="rounded-full text-whiteAlpha-900 font-semibold dark:text-blackAlpha-900   text-base h-[48px] p-4"
-// >
-//   <p className="">2024 리캡</p>
-// </Button>;

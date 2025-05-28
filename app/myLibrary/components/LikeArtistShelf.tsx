@@ -1,11 +1,25 @@
+'use client';
+
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
-import ArtistList from '@/app/myLibrary/components/ArtistList';
+import EmblaCarouselSkeletonLoading from '@/app/album/components/Skeleton/EmblaCarouselSkeletonLoading';
+import { useSubscribedArtists } from '@/app/myLibrary/service/client/useMyService';
+
+const EmblaCarousel = dynamic(
+  () => import('@/app/album/components/Slider/EmblaCarousel'),
+  {
+    ssr: false,
+    loading: () => <EmblaCarouselSkeletonLoading type="artist" />,
+  }
+);
 
 export default function LikeArtistShelf() {
+  const { data: artists } = useSubscribedArtists();
+
   return (
-    <div className="mb-10 flex w-full flex-col p-2 md:px-6">
-      <div className="mb-12 flex w-full content-end justify-between gap-4 md:mb-4">
+    <div className="mt-7 flex w-full flex-col md:mt-10">
+      <div className="mb-2 flex w-full content-end justify-between gap-4 pl-2 pr-1 md:mb-4 md:pl-8 md:pr-2">
         <Link
           href="/myLibrary/likeArtist"
           className="flex items-center hover:underline"
@@ -23,7 +37,14 @@ export default function LikeArtistShelf() {
           </p>
         </Link>
       </div>
-      <ArtistList />
+      {artists && (
+        <EmblaCarousel
+          data={{
+            type: 'artist',
+            list: artists.list,
+          }}
+        />
+      )}
     </div>
   );
 }

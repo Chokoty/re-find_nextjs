@@ -72,19 +72,45 @@ declare global {
     is_hyum: boolean;
   }
 
-  export interface GalleryArtworks {
-    lastPage: boolean;
-    total: number;
-    list: GalleryArtworkList[];
+  // export interface AlbumInfo {
+  //   id: string;
+  //   title: string;
+  //   description: string;
+  //   cover_image: string;
+  //   query: string;
+  //   author: string;
+  //   subTitle: string;
+  // }
+  export interface AlbumInfo {
+    id: string;
+    title: string;
+    description: string;
+    cover_image: string;
+    query: string;
+    author: string;
+    subTitle: string;
+    linkTitle?: string;
+    linkUrl?: string;
+    owned?: boolean;
   }
 
-  export interface GalleryArtworkList extends ArtworkList {
+  export interface AlbumList {
+    albums: AlbumInfo[];
+  }
+
+  export interface AlbumArtworks {
+    lastPage: boolean;
+    total: number;
+    list: AlbumArtworkList[];
+  }
+
+  export interface AlbumArtworkList extends ArtworkList {
     author: null | string;
     is_shukkou: boolean;
     is_hyum: boolean;
   }
 
-  export interface ArtworkDetail extends GalleryArtworkList {
+  export interface ArtworkDetail extends AlbumArtworkList {
     prof_url: null | string;
   }
 
@@ -162,6 +188,7 @@ declare global {
   // }
 
   export interface AuthorOverview extends AuthorCommon {
+    following?: boolean;
     num_artworks: number;
     author_nickname: string;
     author_url: string;
@@ -234,4 +261,88 @@ declare global {
     author_url: string;
     date: string;
   }
+
+  // login
+  export interface NaverloginResponse {
+    status: 'success';
+    state: 'register' | 'login';
+    redirect_uri: string;
+  }
+
+  export interface CustomAlbumAddResponse {
+    album: string; // id (ex. "user--8cb6")
+    message: string;
+    sliced: boolean; // 입력한 게시글이 제한을 넘어갔는지 여부
+    status: string; // 'success'
+  }
+
+  export interface CustomAlbumEditResponse {
+    status: string; // 'success'
+    edited: string[]; // ["name", "articles"] or ["name"] or ["articles"]
+  }
+
+  export interface ArtistSubscribeResponse {
+    status: string; // 'success'
+    message: string;
+  }
+
+  export interface SubscribedArtistsResponse {
+    status: string; // 'success'
+    list: SubscribedArtist[];
+  }
+
+  type SubscribedArtist = {
+    nick: string;
+    profimg: stirng;
+  };
+
+  export type CustomAlbumInfos = {
+    id: string;
+    name: string;
+    cover_image: string;
+  };
+
+  export type UserInfo = {
+    naver_id: string;
+    nick: string;
+    profimg: string;
+    albums: CustomAlbumInfos[];
+  };
+
+  export type ProfImgType =
+    | '뚤기1'
+    | '뚤기2'
+    | '똥강아지1'
+    | '똥강아지2'
+    | '박쥐1'
+    | '박쥐2'
+    | '주폭도1'
+    | '주폭도2'
+    | '세균이1'
+    | '세균이2'
+    | '라니1'
+    | '라니2'
+    | '이파리1'
+    | '이파리2'
+    | '팬치1'
+    | '팬치2'
+    | '';
+
+  export type UserInfoUpdateParams = {
+    nick: string;
+    profImgType: ProfImgType;
+  };
+
+  export type UpdatedUserInfoResponse = {
+    status: string;
+    message: string;
+    updated: any[];
+  };
+
+  export type CustomAlbumEditParams = {
+    name: string;
+    description?: string;
+    articles?: number[];
+    is_public?: boolean;
+  };
 }

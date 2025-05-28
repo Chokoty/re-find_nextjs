@@ -39,7 +39,7 @@ export default function SearchHistory({
       </div>
       {recentSearches.map((q, index) => (
         <div
-          className="flex w-full items-center justify-between rounded-lg "
+          className="flex w-full items-center justify-between rounded-lg"
           key={index}
         >
           <Button

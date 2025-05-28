@@ -5,7 +5,7 @@ import { LuExternalLink } from 'react-icons/lu';
 import { MdArrowForwardIos, MdPerson } from 'react-icons/md';
 
 import BOARD_LIST from '@/app/(home)/lib/const';
-import { BOARD_MAP, UPDATED_GALLERY_LIST } from '@/app/gallery/lib/const';
+import { BOARD_MAP, UPDATED_GALLERY_LIST } from '@/app/album/lib/const';
 import Badge from '@/components/Badge';
 import { useModifiedImageUrl } from '@/hooks/useModifiedImageUrl';
 import { useResponsiveLink } from '@/hooks/useResponsiveLink';
@@ -29,25 +29,18 @@ export default function UpdateCard({ update }: Prop) {
     'menu'
   );
 
-  const cleanedBoard = update.board
-    .replace(/&#\d+;/g, '')
-    .replace(/^[^a-zA-Z0-9가-힣]+/, '') // 문자나 숫자가 아닌 맨 앞부분 제거
-    .trim();
-
   const matchingGallery = UPDATED_GALLERY_LIST.find(
-    (gallery) => gallery.title === cleanedBoard
-  ) || { value: '' };
+    (gallery) => gallery.title === update.board.replace(/&#\d+;/g, '').trim()
+  ) || { id: '' };
 
-  // const matchingGallery = UPDATED_GALLERY_LIST.find(
-  //   (gallery) => gallery.title === update.board.replace(/&#\d+;/g, '').trim()
-  // ) || { value: '' };
-  const board_link = `/gallery/${
-    matchingGallery.value === 'gomemBoard'
+  const board_link = `/album/${
+    matchingGallery.id === 'gomem'
       ? 'gomem'
-      : matchingGallery.value === 'wakgoodBoard'
+      : matchingGallery.id === 'wakgood'
         ? 'woowakgood'
-        : matchingGallery.value
+        : matchingGallery.id
   }?viewType=masonry&sortType=latest`;
+
   // const board_link = `/gallery/${BOARD_MAP[update.board]}?viewType=masonry&sortType=latest`;
   // const boardUrl = `/search?board=${BOARD_MAP[update.board]}&category=all&datetype=all&ranktype=latest&sensitive=false&title=false&content=false&author=false&viewType=gallery`;
 
@@ -63,7 +56,7 @@ export default function UpdateCard({ update }: Prop) {
   }
 
   return (
-    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-whiteAlpha-300 dark:bg-dark-card md:h-[144px]">
+    <div className="flex h-auto w-full flex-row items-center justify-between border-b border-gray-300 bg-white py-4 dark:border-whiteAlpha-300 dark:bg-dark-card">
       <Link href={article_link} className="mr-3">
         <div className="flex w-max items-center justify-center">
           <Image
@@ -72,25 +65,25 @@ export default function UpdateCard({ update }: Prop) {
             height={100}
             src={getImageSrc()}
             alt={update.info.title}
-            className="size-20 rounded-lg object-cover md:size-24"
+            className="size-20 rounded-lg object-cover"
             unoptimized
           />
         </div>
       </Link>
-      <div className="flex h-20 flex-1 flex-col items-start justify-between 2xs:flex-row md:h-24">
+      <div className="flex h-20 flex-1 flex-col items-start justify-between pt-2 2xs:flex-row">
         <div className="flex flex-col items-start justify-between gap-1 text-green-highlight dark:text-pink-highlight 2xs:gap-2">
           <Link
             className="flex items-center"
-            href={matchingGallery.value !== '' ? board_link : menu_link}
-            {...(matchingGallery.value !== '' ? {} : { target: '_blank' })}
+            href={matchingGallery.id !== '' ? board_link : menu_link}
+            {...(matchingGallery.id !== '' ? {} : { target: '_blank' })}
           >
-            <p className="text-sm 2xs:text-base md:text-lg">
+            <p className="text-sm">
               {update.board.replace(/&#\d+;/g, '').trim()}
             </p>
             <MdArrowForwardIos className="ml-2 hidden text-sm 2xs:block" />
           </Link>
           <Link className="flex items-center" href={article_link}>
-            <p className="line-clamp-1 text-base font-semibold 2xs:text-lg md:text-xl">
+            <p className="line-clamp-1 text-base font-semibold">
               {update.info.title}
             </p>
             {/* {matchingGallery.value === '' ? (
@@ -105,7 +98,7 @@ export default function UpdateCard({ update }: Prop) {
               href={`/artists/${update.info.nickname}`}
             >
               <MdPerson className="mr-0.5 size-4 text-red-800 dark:text-red-200" />
-              <p className="line-clamp-1 max-w-16 text-sm text-red-800 dark:text-red-200 2xs:max-w-20 2xs:text-base sm:max-w-32 md:text-lg">
+              <p className="line-clamp-1 max-w-16 text-sm text-red-800 dark:text-red-200">
                 {update.info.nickname}
               </p>
             </Link>
@@ -113,7 +106,7 @@ export default function UpdateCard({ update }: Prop) {
           <Badge intent="secondary" size="lg">
             <div className="flex items-center">
               <FaRegClock className="mr-0.5 text-sm text-green-800 dark:text-green-200" />
-              <p className="line-clamp-1 max-w-16 text-sm text-green-800 dark:text-green-200 2xs:max-w-20 2xs:text-base sm:max-w-32 md:text-lg">
+              <p className="line-clamp-1 max-w-16 text-sm text-green-800 dark:text-green-200">
                 {uploadTimeDiff}
               </p>
             </div>

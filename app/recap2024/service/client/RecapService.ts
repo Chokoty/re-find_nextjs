@@ -1,3 +1,4 @@
+// FIX: 담다님 개인 server 만료로 인한 사용 x
 import Service from '@/lib/service';
 import type { AuthorRecapResult, TotalRecapResult } from '@/types';
 

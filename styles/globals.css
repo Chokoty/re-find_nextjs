@@ -233,18 +233,21 @@
   --telegram-900: #003f5e;
   /* custom color */
   --darkmode-bg: #000000;
-  --lightmode-bg: #ffffff;
+  --lightmode-bg: #f5f6fb;
+  --lightmode-bg-2: #ffffff;
   /* --darkmode-bg: #121212; */
   /* --lightmode-bg: #f8f9fa; */
   /* --myblack-100: #282828;
   --myblack-200: #24292e; */
   --lightmode-card-bg: #f1f1f1;
   --lightmode-card-bg-2: #dedede;
+  --lightmode-button: #e9e9e9;
+  --lightmode-button-hover: #e2e2e2;
   /* --darkmode-card-bg: #262424; */
   --darkmode-card-bg: #121212;
   --darkmode-card-bg-2: #1f1f1f;
   --darkmode-card-bg-3: #2a2a2a;
-  --darkmode-footer-bg: #292929;
+  --darkmode-footer-bg: #282828;
   --mainColor-100: #01bda1;
   --mainColor-200: #ef80b1;
   --darkmode-soopColor: #17181c;
@@ -299,17 +302,52 @@ body {
   background: var(--background);
 }
 
-/* swiper pagination bullet customize */
-.swiper-pagination .swiper-pagination-bullet {
-  width: 0.7rem;
-  height: 0.7rem;
-  background-color: #a0a0a0;
+/* 스크롤바 스타일 */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
 }
 
-.swiper-pagination .swiper-pagination-bullet-active {
-  background-color: var(--green-200);
+/* .custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* 배경색 제거 
+} */
+
+/* .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* 스크롤바 색상 
+} */
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* 호버 상태 색상 */
 }
 
-.swiper-wrapper {
-  align-items: center;
+/* 기본적으로 스크롤바를 숨김 */
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 10px; /* 스크롤바 공간 유지 */
+}
+.scrollbar-hidden::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0); /* 완전 투명 */
+  height: 100px;
+  opacity: 0;
+  transition:
+    background 0.3s ease-in-out,
+    opacity 2s ease-in-out; /* 사라질 때 2초 */
+  border-radius: 5px;
+}
+
+/* hover 시 스크롤바를 보이게 함 */
+.scrollbar-visible::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.8); /* 흐린 회색 */
+  height: 100px;
+  opacity: 1;
+  transition:
+    background 0.3s ease-in-out,
+    opacity 0.3s ease-in-out; /* 나타날 때 0.3초 */
+}
+
+/* hover 시 더 진하게 */
+.scrollbar-visible::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 1); /* 진한 회색 */
 }

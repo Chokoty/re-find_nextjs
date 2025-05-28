@@ -1,5 +1,9 @@
 import DeveloperProfileCard from '@/app/more/components/Card/DeveloperProfileCard';
-import { DEVELOPERS } from '@/app/more/lib/const';
+import {
+  CONTRIBUTE_COLORS,
+  DEFAULT_CREDIT_COLOR,
+  DEVELOPERS,
+} from '@/app/more/lib/const';
 
 type Prop = {
   type: 'member' | 'credit';
@@ -19,6 +23,7 @@ export default function ProfileList({ type }: Prop) {
             profURL={item.profURL}
             nickname={item.nickname}
             board={item.contribute}
+            group={type}
           />
         ))}
       </div>

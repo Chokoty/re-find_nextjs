@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import type { setValueParams } from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 
+// TODO: 추후 재사용을 위해 제거 x
 export default function RefindRecapNotificationModal(
   props: Record<string, unknown>
 ) {
@@ -34,7 +35,7 @@ export default function RefindRecapNotificationModal(
       <h2 className="mt-4 text-center text-xl font-bold lg:text-2xl">
         2024년 리파인드 돌아보기
       </h2>
-      <div className="m-5 flex flex-col items-center justify-start gap-2 break-keep  px-8 text-start text-sm lg:text-base">
+      <div className="m-5 flex flex-col items-center justify-start gap-2 break-keep px-8 text-start text-sm lg:text-base">
         <p className="">
           2025년을 맞이하여 리파인드에서 2024리캡 페이지를 만들어 보았습니다!
         </p>

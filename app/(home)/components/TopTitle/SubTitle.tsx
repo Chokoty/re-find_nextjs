@@ -16,14 +16,12 @@ export default function SubTitle() {
   }, []);
 
   return (
-    <div className="flex items-center gap-[10px]">
-      <p className="text-lg font-bold text-green-highlight dark:text-pink-highlight md:text-xl lg:text-2xl xl:text-3xl">
+    <div className="flex w-[340px] shrink-0 grow-0 items-center justify-center gap-[10px] font-pop">
+      <p className="text-lg text-green-highlight dark:text-pink-highlight md:text-xl">
         {SUB_TITLES[currentIndex]}
       </p>
-      <p className="text-lg font-bold md:text-xl lg:text-2xl xl:text-3xl">
-        팬아트
-      </p>
-      <div className="h-[22px] w-[78px] overflow-hidden rounded-2xl shadow-wakdoo md:h-[28px] md:w-[98px] lg:h-[33px]  lg:w-[116px] xl:h-[40px] xl:w-[140px]">
+      <p className="text-lg md:text-xl">팬아트</p>
+      <div className="h-[22px] w-[78px] overflow-hidden rounded-2xl shadow-wakdoo md:h-[28px] md:w-[98px]">
         <Image
           src={RealWakGood}
           alt="실사왁굳"
@@ -34,9 +32,7 @@ export default function SubTitle() {
           // placeholder="blur"
         />
       </div>
-      <p className="text-lg font-bold md:text-xl lg:text-2xl xl:text-3xl">
-        출처 찾기
-      </p>
+      <p className="text-lg md:text-xl">출처 찾기</p>
     </div>
   );
 }

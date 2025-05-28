@@ -3,8 +3,12 @@ import '@/styles/globals.css';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import type { Metadata, Viewport } from 'next';
 import NextTopLoader from 'nextjs-toploader';
+import { Suspense } from 'react';
 
+import AlbumSelectionSaveButton from '@/components/Button/AlbumSelectionSaveButton';
+import FanartsInAlbumDeleteButton from '@/components/Button/FanartsInAlbumDeleteButton';
 import Header from '@/components/Header';
+import MobileActionBar from '@/components/MobileActionBar';
 import MobileTabBar from '@/components/MobileTabBar';
 import { siteConfig } from '@/lib/config';
 import { oneMobilePop, pretendard } from '@/lib/fonts';
@@ -63,11 +67,23 @@ export default function RootLayout({
           {/* <main className="overflow-x-hidden py-[calc(60px+16px)]"> */}
           <main className="overflow-x-hidden pt-[calc(60px)]">{children}</main>
           <MobileTabBar />
+          <Suspense>
+            <MobileActionBar />
+          </Suspense>
+          <AlbumSelectionSaveButton />
+          <Suspense>
+            {/* TODO: Popover 를 활용하여 삭제 버튼 쪽에 위치 변경하기 */}
+            <FanartsInAlbumDeleteButton />
+          </Suspense>
           <div id="modal-root" />
         </Providers>
       </body>
-      <GoogleAnalytics gaId={GA_ID} />
-      <GoogleTagManager gtmId={GTM_ID} />
+      {!process.env.NEXT_PUBLIC_IS_LOCAL && (
+        <>
+          <GoogleAnalytics gaId={GA_ID} />
+          <GoogleTagManager gtmId={GTM_ID} />
+        </>
+      )}
     </html>
   );
 }

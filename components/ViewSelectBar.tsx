@@ -5,10 +5,9 @@ import { BiSolidDashboard } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { IoGrid } from 'react-icons/io5';
 import { MdMoreHoriz, MdOutlineKeyboardArrowDown } from 'react-icons/md';
-import { RiFullscreenFill } from 'react-icons/ri';
 
-import TotalCounter from '@/app/gallery/components/TotalCounter';
-import { MEMBERS } from '@/app/gallery/lib/const';
+import TotalCounter from '@/app/album/components/TotalCounter';
+import { MEMBERS } from '@/app/album/lib/const';
 import Button from '@/components/Button';
 import Menu, { MenuButton, MenuItem, MenuList } from '@/components/Menu';
 import Popover, {
@@ -30,6 +29,7 @@ type Props = {
   topOffset: number;
   isIsdPick?: boolean;
   hasTotalCounter?: boolean;
+  isArtist?: boolean;
 };
 
 export default function ViewSelectBar({
@@ -43,6 +43,7 @@ export default function ViewSelectBar({
   onMemberClick,
   isIsdPick = false,
   hasTotalCounter = false,
+  isArtist = false,
 }: Props) {
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -144,7 +145,7 @@ export default function ViewSelectBar({
                 </MenuItem>
               ))}
             {isIsdPick === false &&
-              MENU_ITEMS.map((item) => (
+              (isArtist ? MENU_ITEMS.slice(0, -3) : MENU_ITEMS).map((item) => (
                 <MenuItem
                   key={item.id}
                   onClick={() => onMenuItemClick(item.id)}

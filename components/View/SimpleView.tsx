@@ -1,4 +1,4 @@
-import SimpleCards from '@/components/Card/SimpleCards';
+import SimpleCard from '@/components/Card/SimpleCard';
 
 type Props = {
   artworks: ArtworkList[];
@@ -9,11 +9,11 @@ export default function SimpleView({ artworks, isDeletedVisible }: Props) {
   const content = () => {
     if (isDeletedVisible) {
       return artworks.map((artwork, index) => (
-        <SimpleCards key={index} artwork={artwork} />
+        <SimpleCard key={index} artwork={artwork} />
       ));
     }
     return artworks.map((artwork, index) =>
-      !artwork.deleted ? <SimpleCards key={index} artwork={artwork} /> : null
+      !artwork.deleted ? <SimpleCard key={index} artwork={artwork} /> : null
     );
   };
 

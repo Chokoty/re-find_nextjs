@@ -1,4 +1,4 @@
-export const test: GalleryArtworkList[] = [
+export const test: any[] = [
   {
     id: 15438532,
     url: 'https://cafe.naver.com/steamindiegame/15438532',

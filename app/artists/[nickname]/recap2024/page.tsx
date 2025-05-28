@@ -1,4 +1,5 @@
 // import MonthlyArtShowcase from '@/app/recap2024/components/MonthlyArtShowcase';
+
 import TopContent from '@/app/recap2024/components/TopContent';
 import { convertBestArticleToMonthlyArray } from '@/app/recap2024/lib/convertBestArticleToMonthlyArray';
 import type { StatisticsData } from '@/app/recap2024/page';
@@ -18,10 +19,14 @@ import {
 } from '@/hooks/useFormatNumberToCompactString';
 
 type Params = {
-  params: { nickname: string };
+  params: Promise<{ nickname: string }>;
 };
 
-export default async function Recap2024({ params: { nickname } }: Params) {
+export default async function Recap2024(props: Params) {
+  const params = await props.params;
+
+  const { nickname } = params;
+
   const { statistics, best_article, monthly_top_articles } =
     await getAuthorRecapResults(nickname);
   // const bestOfYearInfo = await getBestOfYearFanartInfo(nickname);
@@ -32,7 +37,7 @@ export default async function Recap2024({ params: { nickname } }: Params) {
       <div className="flex size-full h-screen w-full flex-col items-center justify-start bg-recap-pattern p-8 py-16 text-whiteAlpha-900">
         <BackToArtistButton />
 
-        <p className="my-10 text-2xl font-semibold text-white  2xs:text-4xl">
+        <p className="my-10 text-2xl font-semibold text-white 2xs:text-4xl">
           {`${decodeURIComponent(nickname)} 작가님은 2024년에 팬아트를 올리지 않았습니다.`}
         </p>
       </div>

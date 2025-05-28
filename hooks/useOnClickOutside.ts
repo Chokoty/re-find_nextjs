@@ -6,7 +6,7 @@ type Event = MouseEvent | TouchEvent;
 // 데스크탑과 모바일 기기 모두에서 element 외부 클릭 이벤트를 감지합니다.
 // 이벤트가 발생하면 element 외부에서 발생한 것인지 확인하고, 외부에서 발생한 경우 핸들러를 호출합니다.
 export const useOnClickOutside = <T extends HTMLElement = HTMLElement>(
-  ref: RefObject<T>,
+  ref: RefObject<T | null>,
   handler: (event: Event) => void
 ) => {
   useEffect(() => {

@@ -23,6 +23,8 @@ export type FileWithPreview = File & {
   preview: string;
 };
 
+export type GetLoginQueryParams = { code: string | null; state: string | null };
+
 // artists
 export type SortTotalCriteria = keyof Pick<
   AuthorCommon,
@@ -62,8 +64,7 @@ export interface Member {
 }
 
 export interface Gallery {
-  id: number;
-  value: string;
+  id: string;
   type: string;
   title: string;
   subTitle: string;
@@ -88,10 +89,17 @@ export type DateType = {
 };
 
 // service (api)
+export type DeleteArtworkParams = {
+  albumId: string;
+  artworksIdList: number[];
+  isDeleteAlbum?: boolean;
+  handleOnSuccess?: () => void;
+  handleOnError?: () => void;
+};
 
 export type GetKeywordGalleryArtworksParams = {
-  query: string;
-  sortType: string;
+  galleryType: string;
+  sortType?: string;
 };
 
 export type GetIsdNoticeArtworksParams = {
@@ -104,7 +112,7 @@ export type GetRecommendArtworksParams = {
   ap?: number;
 };
 
-export type GetArtistInfoParams = {
+export type GetArtistArtworksParams = {
   nickname: string;
   sortType: string;
   board: string | null;

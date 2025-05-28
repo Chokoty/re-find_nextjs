@@ -1,49 +1,34 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 
-import BannerSkeleton from '@/app/(home)/components/BannerSkeleton';
+import BannerSlider from '@/app/(home)/components/BannerSlider';
 import Footer from '@/app/(home)/components/Footer';
-import RandomGacha from '@/app/(home)/components/RandomGacha';
-import RefindRecapNotificationModal from '@/app/(home)/components/RefindRecapNotificationModal';
-import TopTitle from '@/app/(home)/components/TopTitle';
-import Upload from '@/app/(home)/components/Upload';
-import MoreButtons from '@/components/Button/MoreButtons';
+import HomeMobile from '@/app/(home)/components/HomeMobile';
+import BoardList from '@/app/album/components/BoardList';
+import GalleryTitle from '@/app/album/components/GalleryTitle';
+import MemberAlbum from '@/app/album/components/MemberList';
+import RefindPick from '@/app/album/components/RefindPick';
+import LeftSection from '@/components/LeftSection';
 import AppInstallModal from '@/components/Modal/AppInstallModal';
-import UpdateLogBoard from '@/components/UpdateLogBoard';
+import PageContent from '@/components/PageContent';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
-// import { useRouter } from 'next/navigation';
-
-const BannerSlider = dynamic(
-  () => import('@/app/(home)/components/BannerSlider'),
-  {
-    ssr: false,
-    loading: () => <BannerSkeleton />,
-  }
-);
 
 export default function Home() {
   const [value, setValue] = useLocalStorage({
     key: 'showAppInstallModal',
     initialValue: false,
   });
-
-  const [isOpenAuthorRecapModal, setIsOpenAuthorRecapModal] = useLocalStorage({
-    key: 'showRefindRecapModal',
-    initialValue: false,
-  });
   const { show } = useModal(AppInstallModal);
-  const { show: showRefindRecapNotification } = useModal(
-    RefindRecapNotificationModal
-  );
+  // const { show: showRefindRecapNotification } = useModal(
+  //   RefindRecapNotificationModal
+  // );
   const isMobile = useResponsive();
   const openPwaInstallModal = () => {
     show({ animateDir: 'bottom', position: 'bottom', setStorage: setValue });
   };
-
   useEffect(() => {
     const isDisPlayModeFullScreen = window.matchMedia(
       '(display-mode: fullscreen)'
@@ -53,35 +38,28 @@ export default function Home() {
     }
   }, [isMobile]);
 
-  useEffect(() => {
-    if (!isOpenAuthorRecapModal) {
-      showRefindRecapNotification({
-        animateDir: 'bottom',
-        setStorage: setIsOpenAuthorRecapModal,
-      });
-    }
-  }, []);
-
   return (
-    <div className="mx-auto mt-2 flex w-full max-w-[1208px] flex-wrap items-start justify-center gap-6 px-2.5 pb-[60px] md:px-4">
-      {/* desktop: left / mobile: top */}
-      <section className="flex w-full max-w-[700px] flex-col items-center justify-center">
-        <BannerSlider />
-        <TopTitle />
-        <Upload />
-      </section>
-      {/* desktop: right / mobile: bottom */}
-      <section className="flex max-w-[360px] flex-col items-center justify-center">
-        <div className="hidden w-full flex-col items-center rounded-2xl bg-white px-6 pb-4 pt-6 shadow-cardBox dark:bg-dark-card md:flex">
-          <h2 className="w-full text-start text-xl font-bold leading-5">
-            좀 더!
-          </h2>
-          <MoreButtons />
-        </div>
-        <RandomGacha />
-        <UpdateLogBoard />
-        <Footer />
-      </section>
+    <div className="flex w-full flex-col items-center justify-start">
+      {/* /** 모바일 레이아웃 */}
+      <HomeMobile />
+      {/* /** 데스크톱 레이아웃 */}
+      <div className="mx-auto mt-2 hidden h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 md:flex">
+        <LeftSection />
+        <PageContent>
+          <Suspense>
+            <GalleryTitle
+              pageName="galleryHome"
+              // title="팬아트 갤러리"
+              // description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
+            />
+          </Suspense>
+          <RefindPick />
+          <BoardList />
+          <MemberAlbum />
+          <BannerSlider />
+          <Footer />
+        </PageContent>
+      </div>
     </div>
   );
 }

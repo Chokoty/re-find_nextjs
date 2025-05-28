@@ -13,8 +13,7 @@ export const BUTTON_LIST = [
 
 const GALLERY_LIST: Gallery[] = [
   {
-    id: 0,
-    value: 'halloween',
+    id: 'halloween',
     type: 'keyword',
     title: '할로윈 팬아트',
     subTitle: '🎃 할로윈 특집 🎃',
@@ -24,8 +23,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
   },
   {
-    id: 1,
-    value: 'christmas',
+    id: 'christmas',
     type: 'keyword',
     title: '크리스마스 팬아트',
     subTitle: '🎅🏼 크리스마스 특집 🎄',
@@ -35,8 +33,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
   },
   {
-    id: 2,
-    value: 'rewind2year',
+    id: 'rewind2year',
     type: 'special',
     title: '이세돌 2주년 팬아트',
     subTitle: ' ❤️‍🔥 이세돌 2주년 ❤️‍🔥',
@@ -46,8 +43,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=리와인드&query=rewind&query=re:wind&query=데뷔%202주년',
   },
   {
-    id: 3,
-    value: 'viichanBirthday',
+    id: 'viichanBirthday',
     type: 'special',
     title: '비챤님 생일 팬아트',
     subTitle: '🎂 비챤님 생일 팬아트 🎂',
@@ -56,8 +52,7 @@ const GALLERY_LIST: Gallery[] = [
     query: 'gallery?member=viichan&since=20240116&until=20240116',
   },
   {
-    id: 4,
-    value: 'lilpaBirthday',
+    id: 'lilpaBirthday',
     type: 'special',
     title: '릴파님 생일 팬아트',
     subTitle: '🎂 릴파님 생일 팬아트 🎂',
@@ -66,8 +61,7 @@ const GALLERY_LIST: Gallery[] = [
     query: 'gallery?member=lilpa&since=20240309&until=20240309',
   },
   {
-    id: 5,
-    value: 'kissingYou',
+    id: 'kissingYou',
     type: 'special',
     title: '이세돌 키싱유 팬아트',
     description: '오랜만에 돌아온 이세계아이돌 단체 커버곡 키싱유!',
@@ -79,8 +73,7 @@ const GALLERY_LIST: Gallery[] = [
     linkTitle: 'Kissing You(키싱유) COVER',
   },
   {
-    id: 6,
-    value: 'tiffanyWouldYouMia',
+    id: 'tiffanyWouldYouMia',
     type: 'special',
     title: 'RE:START',
     description: '오랜 기다림 끝에 돌아온 티파니님을 환영합니다!',
@@ -92,8 +85,7 @@ const GALLERY_LIST: Gallery[] = [
     linkTitle: '우주미아(Would You M.I.A) MV',
   },
   {
-    id: 7,
-    value: 'newIne',
+    id: 'newIne',
     type: 'special',
     title: '뉴 아이네',
     description:
@@ -104,8 +96,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=아이네&since=20240427&title=&query=뉴이네&query=아이네&query=콘서트&query=에버퍼플&query=EVER PURPLE&query=아단콘',
   },
   {
-    id: 8,
-    value: 'jururuBirthday',
+    id: 'jururuBirthday',
     type: 'special',
     title: '주르르님 생일 팬아트',
     subTitle: '🎂 주르르님 생일 팬아트 🎂',
@@ -115,8 +106,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=주르르&title=&content=&since=20240609&until=20240611&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이',
   },
   {
-    id: 9,
-    value: 'newnewLilpa',
+    id: 'newnewLilpa',
     type: 'special',
     title: '뉴뉴릴파',
     subTitle: 'NEW NEW 릴파 공개',
@@ -127,8 +117,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=릴파&since=20240629&title=&content=&query=뉴뉴&query=릴파콘&query=릴단콘&query=콘서트&query=going&query=Going',
   },
   {
-    id: 10,
-    value: 'deadCat',
+    id: 'deadCat',
     type: 'special',
     title: '데드캣',
     subTitle: '고세구님 뉴의상 데드캣',
@@ -138,8 +127,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?&board=isd&board=best&category=고세구&since=20240718&title=&content=&query=dead&query=cat&query=데드&query=캣&query=켓&query=강시&query=키랏&query=처음 보냐&query=뉴의상&query=빌런&query=신의상&query=qfr',
   },
   {
-    id: 11,
-    value: 'chanDanCon',
+    id: 'chanDanCon',
     type: 'special',
     title: '역광',
     subTitle: '챤단콘',
@@ -152,8 +140,7 @@ const GALLERY_LIST: Gallery[] = [
     linkTitle: '역광 콘서트 보러가기',
   },
   {
-    id: 12,
-    value: 'thousand',
+    id: 'thousand',
     type: 'special',
     title: '1000일 기념 팬아트',
     subTitle: '이세계 아이돌 1000일!',
@@ -165,8 +152,7 @@ const GALLERY_LIST: Gallery[] = [
   },
 
   {
-    id: 13,
-    value: 'jingburgerBirthday',
+    id: 'jingburgerBirthday',
     type: 'special',
     title: '징버거님 생일 팬아트',
     subTitle: '🎂 징버거님 생일 팬아트 🎂',
@@ -176,8 +162,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=best&category=징버거&title=&content=&since=20241007&until=20241009&query=생일&query=생축&query=탄신&query=해피&query=DAY&query=축하&query=탄죠비&query=오메데&query=데이&query=부가&query=버거',
   },
   {
-    id: 14,
-    value: 'isdPick',
+    id: 'isdPick',
     type: 'special',
     title: '이세돌픽 팬아트',
     subTitle: '이세돌이 고른 팬아트',
@@ -186,8 +171,7 @@ const GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=isd_notice&author&case_sensitive=false&title',
   },
   {
-    id: 15,
-    value: 'halloween',
+    id: 'halloween',
     type: 'keyword',
     title: '할로윈 팬아트',
     subTitle: '🎃 할로윈 특집 🎃',
@@ -197,8 +181,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=할로윈',
   },
   {
-    id: 16,
-    value: 'iseLab',
+    id: 'iseLab',
     type: 'special',
     title: '이세랩 팬아트',
     subTitle: '이세랩 팬아트',
@@ -208,8 +191,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&content=&query=이세랩&query=ISE-Lab&query=데드캣&query=징마담&query=행동대장',
   },
   {
-    id: 17,
-    value: 'christmas',
+    id: 'christmas',
     type: 'keyword',
     title: '크리스마스 팬아트',
     subTitle: '🎅🏼 크리스마스 특집 🎄',
@@ -219,8 +201,7 @@ const GALLERY_LIST: Gallery[] = [
       'artworks?board=isd&board=gomem&board=wak&board=best&board=goldhand&case_sensitive=false&title&query=크리스마스',
   },
   {
-    id: 18,
-    value: 'isd3year',
+    id: 'isd3year',
     type: 'special',
     title: '이세돌 3주년 팬아트',
     subTitle: ' ❤️‍🔥 이세돌 3주년 ❤️‍🔥',
@@ -232,7 +213,7 @@ const GALLERY_LIST: Gallery[] = [
 
   // {
   //   id: 8,
-  //   value: 'Shuko',
+  //   id: 'Shuko',
   //   type: 'special',
   //   title: '기간한정 슛코☆팬아트',
   //   subTitle: '기간한정 슛코☆팬아트', // '😉 응 없어~ 😉',
@@ -240,7 +221,7 @@ const GALLERY_LIST: Gallery[] = [
   // },
   // {
   //   id: 9,
-  //   value: 'AprilFool',
+  //   id: 'AprilFool',
   //   type: 'special',
   //   title: '진짜 만우절 팬아트',
   //   subTitle: '😉 진짜 만우절 팬아트 😉',
@@ -251,8 +232,7 @@ const GALLERY_LIST: Gallery[] = [
 
 export const UPDATED_GALLERY_LIST: Gallery[] = [
   {
-    id: 0,
-    value: 'bestBoard',
+    id: 'best',
     type: 'board',
     title: 'BEST 팬아트 게시판',
     subTitle: '',
@@ -261,8 +241,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=best&case_sensitive=false',
   },
   {
-    id: 1,
-    value: 'goldhandBoard',
+    id: 'goldhand',
     type: 'board',
     title: '금손 작가들의 방',
     subTitle: '',
@@ -271,8 +250,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=goldhand&case_sensitive=false',
   },
   {
-    id: 2,
-    value: 'isdBoard',
+    id: 'isd',
     type: 'board',
     title: '이세돌┃팬아트',
     subTitle: '',
@@ -281,8 +259,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=isd&case_sensitive=false',
   },
   {
-    id: 3,
-    value: 'gomemBoard',
+    id: 'gomem',
     type: 'board',
     title: '고멤┃팬아트',
     subTitle: '',
@@ -291,8 +268,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=gomem&case_sensitive=false',
   },
   {
-    id: 4,
-    value: 'wakgoodBoard',
+    id: 'wakgood',
     type: 'board',
     title: '우왁굳 팬아트',
     subTitle: '',
@@ -301,8 +277,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=wak&case_sensitive=false',
   },
   {
-    id: 5,
-    value: 'unofficialBoard',
+    id: 'wallpaper',
     type: 'board',
     title: '왁타버스 불법 배경',
     subTitle: '',
@@ -311,8 +286,7 @@ export const UPDATED_GALLERY_LIST: Gallery[] = [
     query: 'artworks?board=wallpaper&case_sensitive=false',
   },
   {
-    id: 6,
-    value: 'isdPhoto',
+    id: 'isdPhoto',
     type: 'board',
     title: '이세돌 사진관',
     subTitle: '',
@@ -426,7 +400,7 @@ export const BOARD_MAP: Record<string, string> = UPDATED_GALLERY_LIST.reduce(
     // 매핑 객체에 추가
     return {
       ...acc,
-      [cleanTitle]: gallery.value,
+      [cleanTitle]: gallery.id,
     };
   },
   {}

@@ -15,41 +15,42 @@ const topTitle = {
 
 export default async function ArtistsPage() {
   // 배포 서버에서 실행할 경우
-  if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
-    const { queryKey, queryFn } = queryOptions.artistList({
-      q: '',
-      ranktype: 'likes',
-      board: null,
-    });
+  // if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+  //   const { queryKey, queryFn } = queryOptions.artistList({
+  //     q: '',
+  //     ranktype: 'likes',
+  //     board: null,
+  //   });
 
-    const query = await getDehydratedInfiniteQuery({
-      queryKey,
-      queryFn,
-      initialPageParam: 1,
-    });
+  //   const query = await getDehydratedInfiniteQuery({
+  //     queryKey,
+  //     queryFn,
+  //     initialPageParam: 1,
+  //   });
 
-    return (
-      <div className="flex w-full flex-col items-center justify-center px-2.5 py-4 md:px-4">
-        <PageTitle topTitle={topTitle} />
-        <div className="mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
-          <ArtistsSearchInput />
-          <RankSortButtonGroup />
-          <TotalSortButtonGroup />
-          <Hydrate state={{ queries: [query] }}>
-            <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
-              {/* <Maintenance /> */}
-              <ArtistList />
-            </div>
-          </Hydrate>
-        </div>
-      </div>
-    );
-  }
+  //   return (
+  //     <div className="flex w-full flex-col items-center justify-center gap-4 px-3 py-4">
+  //       <PageTitle topTitle={topTitle} />
+  //       <div className="mx-auto mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
+  //         <ArtistsSearchInput />
+  //         <RankSortButtonGroup />
+  //         <TotalSortButtonGroup />
+  //         <Hydrate state={{ queries: [query] }}>
+  //           <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
+  //             {/* <Maintenance /> */}
+  //             <ArtistList />
+  //           </div>
+  //         </Hydrate>
+  //       </div>
+  //     </div>
+  //   );
+  // }
   // 로컬에서 실행할 경우
   return (
-    <div className="flex w-full flex-col items-center justify-center px-2.5 py-4 md:px-4">
+    // <div className="flex w-full  items-center justify-center px-2.5 py-4 md:px-4">
+    <div className="flex w-full flex-col items-center justify-center gap-4 px-3 py-4">
       <PageTitle topTitle={topTitle} />
-      <div className="mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
+      <div className="mx-auto mt-12 flex w-full max-w-screen-lg flex-col items-center justify-center gap-4">
         <ArtistsSearchInput />
         <RankSortButtonGroup />
         <TotalSortButtonGroup />

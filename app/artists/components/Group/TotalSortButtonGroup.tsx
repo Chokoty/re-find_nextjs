@@ -19,7 +19,7 @@ export default function TotalSortButtonGroup() {
     );
 
   return (
-    <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-cardBox dark:bg-dark-card">
+    <div className="flex w-full flex-col items-center rounded-2xl bg-white p-4 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2">
       <ul className="flex list-none flex-wrap justify-center gap-4">
         {SORT_TYPES.map((sortType, index) => (
           <li key={index}>
@@ -28,7 +28,7 @@ export default function TotalSortButtonGroup() {
               additionalClass={
                 totalCountCriteria === sortType.value
                   ? 'bg-green-highlight hover:bg-green-highlight dark:bg-green-highlight dark:hover:bg-green-highlight dark:text-gray-900 text-gray-900'
-                  : 'dark:bg-whiteAlpha-200 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 dark:text-white text-gray-900'
+                  : 'dark:bg-whiteAlpha-200 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400 bg-light-button hover:bg-light-button-hover active:bg-gray-300 dark:text-white text-gray-900'
               }
             >
               <p>{sortType.name}</p>

@@ -22,23 +22,23 @@ export const siteConfig = {
     description: '왁타버스의 모든 팬아트를 한 곳에서 확인해보세요!',
     url: '/',
   },
-  gallery: {
+  album: {
     main: {
       title: '리파인드 | 팬아트 갤러리',
       description: '왁물원에 올라온 팬아트를 모아놓은 갤러리입니다.',
-      url: '/gallery',
+      url: '/album',
     },
     Shuko: {
       title: '리파인드 | 기간한정 슛코☆ 갤러리',
       description: '4월1일 한정 슛코☆팬아트를 모아놓은 갤러리입니다.',
-      url: '/gallery/Shuko',
+      url: '/album/Shuko',
     },
     detailed(name: string) {
       const mappedName = GalleryMap[name as keyof typeof GalleryMap] || name;
       return {
         title: `리파인드 | ${mappedName} 갤러리`,
         description: `왁물원에 올라온 ${mappedName} 팬아트를 모아놓은 갤러리입니다.`,
-        url: `/gallery/${name}`,
+        url: `/album/${name}`,
       };
     },
   },
