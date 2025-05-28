@@ -18,7 +18,7 @@ export default function middleware(req: NextRequest) {
   }
 
   // 보호할 경로 목록
-  const protectedRoutes = ['/myLibrary'];
+  const protectedRoutes = ['/myLibrary', '/profile'];
 
   // 인증되지 않은 사용자가 보호된 경로 접근 시 로그인 페이지로 리다이렉트
   if (
@@ -40,5 +40,6 @@ export const config = {
     '/artists/:artist/recap2024',
     '/recap2024',
     '/myLibrary/:path*',
+    '/profile',
   ],
 };
