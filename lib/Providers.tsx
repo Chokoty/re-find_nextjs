@@ -67,7 +67,8 @@ export function Providers({ children }: React.PropsWithChildren) {
 
     // 추가 특수 처리 (예: 401 에러 시 로그인 페이지 이동)
     if (normalizedError.statusCode === 401) {
-      router.push('/login');
+      toast.error('서비스 준비중입니다.');
+      // router.push('/login');
       return;
     }
     const userMessage = translateRefindAppErrorMessage(normalizedError);

@@ -111,16 +111,17 @@ export default function MobileTabBar() {
           );
 
           if (type === 'button') {
-            return (
-              <button
-                key={name}
-                className={tabClassName}
-                onClick={() => handleClick(eachPath)}
-                type="button"
-              >
-                {content}
-              </button>
-            );
+            // return (
+            //   <button
+            //     key={name}
+            //     className={tabClassName}
+            //     onClick={() => handleClick(eachPath)}
+            //     type="button"
+            //   >
+            //     {content}
+            //   </button>
+            // );
+            return;
           }
           return (
             <Link href={eachPath} key={name} className={tabClassName}>

@@ -24,10 +24,10 @@ export default function Counter() {
               <CountUp end={parseInt(counts.total_counter)} duration={2} />
             </p>
             <Tooltip
-              hasArrow
+              // hasArrow
               label="오늘 발견한 이미지 출처 수"
-              bg="gray-150"
-              color="black"
+              // bg="gray-150"
+              // color="black"
             >
               <Badge rounded="full">
                 +

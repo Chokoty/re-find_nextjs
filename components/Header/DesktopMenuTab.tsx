@@ -155,12 +155,13 @@ export default function DesktopMenuTab() {
           )}
         </div>
       ) : (
-        <button
-          className="hidden px-2.5 font-semibold transition hover:text-green-highlight md:block"
-          onClick={handleClick}
-        >
-          로그인
-        </button>
+        // <button
+        //   className="hidden px-2.5 font-semibold transition hover:text-green-highlight md:block"
+        //   onClick={handleClick}
+        // >
+        //   로그인
+        // </button>
+        <></>
       )}
     </div>
   );
