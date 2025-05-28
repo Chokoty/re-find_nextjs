@@ -76,10 +76,10 @@ export default function DesktopMenuTab() {
   // 로그아웃 기능: 홈으로 이동 + 사용자 정보 초기화
   const handleLogout = async () => {
     try {
-      await logoutRefetch(); // 서버에서 로그아웃 요청 실행
-      // queryClient.invalidateQueries({ queryKey });
       queryClient.removeQueries({ queryKey }); // 즉시 캐시 삭제!
       setIsMenuOpen(false);
+      await logoutRefetch(); // 서버에서 로그아웃 요청 실행
+      // queryClient.invalidateQueries({ queryKey });
       router.push('/');
     } catch (error) {
       console.error('로그아웃 중 오류 발생:', error);
