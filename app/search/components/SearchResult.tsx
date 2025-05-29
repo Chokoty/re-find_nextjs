@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
+import type { ReadonlyURLSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import CountUp from 'react-countup';
 import { useInView } from 'react-intersection-observer';
@@ -17,8 +18,11 @@ import MasonryView from '@/components/View/MasonryView';
 import { NotSearch } from '@/lib/images';
 
 // 검색시 3번 렌더링되는거 최적화하기(옵션 상태때문)
-export default function SearchResult() {
-  const searchParams = useSearchParams();
+export default function SearchResult({
+  searchParams,
+}: {
+  searchParams: ReadonlyURLSearchParams;
+}) {
   const router = useRouter();
   const q = searchParams.get('q') ?? '';
   const {
