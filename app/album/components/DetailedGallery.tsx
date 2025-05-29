@@ -14,6 +14,7 @@ import MasonryView from '@/components/View/MasonryView';
 import SimpleView from '@/components/View/SimpleView';
 import ViewSelectBar from '@/components/ViewSelectBar';
 import { useResponsive } from '@/hooks/useResponsive';
+import { useSideMenuStore } from '@/store/sideMenuStore';
 
 type Props = {
   value: string;
@@ -30,6 +31,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
   const pathNameParts = pathname.split('/');
   const albumName = pathNameParts[pathNameParts.length - 1];
   const parentPath = pathNameParts[pathNameParts.length - 2];
+  const { isOpen: isSideMenuOpen } = useSideMenuStore();
   // 특정 이름에 대해 hasTotalCounter를 false로 설정하는 함수
   const shouldHideTotalCounter = (n: string) => {
     const hiddenNames = [
@@ -152,6 +154,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
                 }
                 // isIsdPick={isIsdPick}
                 isDeletedVisible={isDeletedVisible}
+                isSideMenuOpen={isSideMenuOpen}
               />
             )}
             {activeView === 'grid' && (

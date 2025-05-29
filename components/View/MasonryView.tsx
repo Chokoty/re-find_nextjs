@@ -7,12 +7,14 @@ type Props = {
   artworks: ArtworkList[];
   isDeletedVisible: boolean;
   isIsdPick?: boolean;
+  isSideMenuOpen?: boolean;
 };
 
 export default function MasonryView({
   artworks,
   isDeletedVisible,
   isIsdPick = false,
+  isSideMenuOpen = false,
 }: Props) {
   const content = () => {
     if (isDeletedVisible) {
@@ -53,10 +55,18 @@ export default function MasonryView({
     }
   };
 
-  return (
-    <ResponsiveMasonry
-      className="w-full"
-      columnsCountBreakPoints={{
+  const columnsCountBreakPoints = isSideMenuOpen
+    ? {
+        349: 1,
+        739: 2,
+        983: 3,
+        1184: 4,
+        1421: 5,
+        1658: 6,
+        1959: 7,
+        2203: 8,
+      }
+    : {
         349: 2,
         739: 3,
         983: 4,
@@ -65,7 +75,12 @@ export default function MasonryView({
         1658: 7,
         1959: 8,
         2203: 9,
-      }}
+      };
+
+  return (
+    <ResponsiveMasonry
+      className="w-full"
+      columnsCountBreakPoints={columnsCountBreakPoints}
     >
       <Masonry gutter="10px">{content()}</Masonry>
     </ResponsiveMasonry>
