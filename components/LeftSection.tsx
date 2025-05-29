@@ -19,6 +19,7 @@ import { SOURCE_URL } from '@/app/more/lib/const';
 import MoreButtons from '@/components/Button/MoreButtons';
 import Tooltip from '@/components/Tooltip';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
+import { useResponsive } from '@/hooks/useResponsive';
 import { UploadHoverImage } from '@/lib/images';
 import { useMyInfo } from '@/service/client/useCommonService';
 import { useSideMenuStore } from '@/store/sideMenuStore';
@@ -34,6 +35,7 @@ const leftTabButtons: {
 
 export default function LeftSection() {
   const { isOpen, toggle } = useSideMenuStore();
+  const isMobile = useResponsive();
   const [isBackToTopVisible, setIsBackToTopVisible] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false); // 마우스 오버 상태
   const scrollContainerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 참조
@@ -84,7 +86,11 @@ export default function LeftSection() {
     >
       <header className="z-10 flex w-full items-center justify-start gap-2 px-3 pb-1 pt-3 shadow-md dark:border-dark-myText">
         {isOpen ? (
-          <Tooltip label="리파인드 패널 접기" position="top-center">
+          <Tooltip
+            label="리파인드 패널 접기"
+            position="top-center"
+            forceHide={!isOpen || isMobile}
+          >
             <button
               onClick={toggle}
               className="group flex h-10 items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
@@ -100,7 +106,7 @@ export default function LeftSection() {
           <Tooltip
             label="리파인드 패널 열기"
             position="right-center"
-            forceHide={!isOpen}
+            forceHide={!isOpen || isMobile}
           >
             <button
               onClick={toggle}

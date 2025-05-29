@@ -35,11 +35,30 @@ export default function Tooltip({
     setShow(false);
   };
 
+  // useEffect(() => {
+  //   if (forceHide && show) {
+  //     setShow(false);
+  //     if (delayTimeout.current) clearTimeout(delayTimeout.current);
+  //   }
+  // }, [forceHide]);
   useEffect(() => {
-    if (forceHide && show) {
+    const handleHide = () => {
       setShow(false);
       if (delayTimeout.current) clearTimeout(delayTimeout.current);
+    };
+
+    if (forceHide) {
+      handleHide(); // 바로 닫아버림
     }
+
+    window.addEventListener('resize', handleHide);
+    window.addEventListener('scroll', handleHide, true);
+
+    return () => {
+      window.removeEventListener('resize', handleHide);
+      window.removeEventListener('scroll', handleHide, true);
+      if (delayTimeout.current) clearTimeout(delayTimeout.current);
+    };
   }, [forceHide]);
 
   const tooltipStyles = () => {
