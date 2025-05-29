@@ -81,7 +81,6 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
         )}
         onClick={isSelectMode || isDeleteMode ? handleToggleCheck : undefined}
         onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
       >
         <Image
           width={357}
