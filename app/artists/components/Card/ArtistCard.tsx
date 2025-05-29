@@ -30,8 +30,6 @@ export default function ArtistCard({
   const isMobile = useResponsive();
   const [isMobileLayout, setIsMobileLayout] = useState(isMobile);
   const [isVisible, setIsVisible] = useState(false);
-  // const [isComponentNarrow, setIsComponentNarrow] = useState(false);
-  // const [isComponentMobile, setIsComponentMobile] = useState(false);
   const { isOpen: isSideMenuOpen } = useSideMenuStore();
   const highlightText = (text: string) => {
     const regex = new RegExp(inputText, 'gi');
