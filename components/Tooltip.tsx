@@ -10,6 +10,7 @@ type Props = {
   delay?: number;
   position?: 'bottom-center' | 'left-center' | 'top-center' | 'right-center';
   fontSize?: string;
+  forceHide?: boolean;
 };
 
 export default function Tooltip({
@@ -18,6 +19,7 @@ export default function Tooltip({
   position = 'bottom-center',
   delay = 100,
   fontSize = 'text-sm',
+  forceHide = false,
 }: Props) {
   const [show, setShow] = useState(false);
   const [coords, setCoords] = useState<DOMRect | null>(null);
@@ -34,10 +36,11 @@ export default function Tooltip({
   };
 
   useEffect(() => {
-    return () => {
+    if (forceHide && show) {
+      setShow(false);
       if (delayTimeout.current) clearTimeout(delayTimeout.current);
-    };
-  }, []);
+    }
+  }, [forceHide]);
 
   const tooltipStyles = () => {
     if (!coords) return {};

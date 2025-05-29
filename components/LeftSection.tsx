@@ -83,26 +83,36 @@ export default function LeftSection() {
       } flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
       <header className="z-10 flex w-full items-center justify-start gap-2 px-3 pb-1 pt-3 shadow-md dark:border-dark-myText">
-        <button
-          onClick={toggle}
-          className="group flex h-10 items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
-        >
-          {isOpen ? (
-            <Tooltip label="리파인드 패널 접기" position="top-center">
+        {isOpen ? (
+          <Tooltip label="리파인드 패널 접기" position="top-center">
+            <button
+              onClick={toggle}
+              className="group flex h-10 items-center justify-start rounded py-1 dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
+              type="button"
+            >
               <div className="ml-2 flex items-center justify-start gap-2">
                 <TbLayoutSidebarLeftCollapseFilled className="size-8" />
                 <p className="text-xl">리파인드 패널</p>
               </div>
-            </Tooltip>
-          ) : (
-            <Tooltip label="리파인드 패널 열기" position="right-center">
-              <div className="ml-2 flex items-center justify-center">
-                <TbLayoutSidebarRightCollapseFilled className="size-8" />
-              </div>
-            </Tooltip>
-          )}
-        </button>
+            </button>
+          </Tooltip>
+        ) : (
+          <Tooltip
+            label="리파인드 패널 열기"
+            position="right-center"
+            forceHide={!isOpen}
+          >
+            <button
+              onClick={toggle}
+              className="ml-2 flex h-10 items-center justify-center rounded dark:text-whiteAlpha-700 dark:hover:text-whiteAlpha-900"
+              type="button"
+            >
+              <TbLayoutSidebarRightCollapseFilled className="size-8" />
+            </button>
+          </Tooltip>
+        )}
       </header>
+
       {!isOpen && (
         <hr className="my-1 w-8 border-t border-gray-300 dark:border-whiteAlpha-300" />
       )}
