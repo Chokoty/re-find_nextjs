@@ -136,6 +136,9 @@ export default function DetailedGallery({ value: galleryType }: Props) {
         onMemberClick={handleMemberClick}
         topOffset={59}
         hasTotalCounter={!shouldHideTotalCounter(albumName) && !!total}
+        hasRightButtonArea={
+          galleryType !== 'likedFanarts' && galleryType !== 'artistTimeline'
+        }
         // isIsdPick={isIsdPick}
       />
       {status === 'pending' ? (

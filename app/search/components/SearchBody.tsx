@@ -1,9 +1,10 @@
 'use client';
 
-import { useResponsive } from '@/hooks/useResponsive';
+import { useSearchParams } from 'next/navigation';
+
 import UpdateBoard from '@/app/(home)/components/Upload/UpdateBoard';
 import SearchResult from '@/app/search/components/SearchResult';
-import { useSearchParams } from 'next/navigation';
+import { useResponsive } from '@/hooks/useResponsive';
 
 export default function SearchBody() {
   const isMobile = useResponsive();
