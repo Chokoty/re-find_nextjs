@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import type { Toast } from 'react-hot-toast';
 import toast from 'react-hot-toast';
 import { ClipLoader } from 'react-spinners';
 
@@ -36,7 +37,7 @@ export default function AddCheckedFanartsToCustomAlbumModal(
 
   function showAlbumAddedToast(albumId: string) {
     toast.custom(
-      (t) => (
+      (t: Toast) => (
         <div
           className={`flex items-center justify-between rounded bg-white px-4 py-3 shadow-lg dark:bg-dark-card ${t.visible ? 'animate-enter' : 'animate-leave'}`}
           style={{ minWidth: 320 }}
