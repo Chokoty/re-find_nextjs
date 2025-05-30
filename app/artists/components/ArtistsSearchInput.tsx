@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { BsFillQuestionCircleFill } from 'react-icons/bs';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { IoSearchOutline } from 'react-icons/io5';
@@ -16,7 +16,6 @@ import Popover, {
 } from '@/components/Popover';
 
 export default function ArtistsSearchInput() {
-  const inputRef = useRef<HTMLInputElement>(null);
   const [input, setInput] = useState('');
   const { setDebounceValue } = useArtistSearchInfoStore(
     useShallow((state) => ({
@@ -40,10 +39,6 @@ export default function ArtistsSearchInput() {
     [input]
   );
 
-  useEffect(() => {
-    inputRef.current?.focus();
-  }, []);
-
   const isInputNotEmpty = input.length > 0;
   return (
     <div className="relative h-10 w-full max-w-[400px]">
@@ -56,7 +51,6 @@ export default function ArtistsSearchInput() {
         />
       </div>
       <input
-        ref={inputRef}
         className="relative size-full cursor-text rounded-full border border-gray-200 bg-gray-100 pl-12 pr-14 outline-none transition placeholder:text-gray-500 hover:border-green-highlight hover:bg-white focus:border-green-highlight focus:outline-none focus:ring-1 focus:ring-green-highlight dark:border-whiteAlpha-300 dark:bg-whiteAlpha-200 dark:placeholder:text-whiteAlpha-600 dark:hover:bg-dark-card 2xs:pr-24"
         placeholder="왁물원 닉네임"
         value={input}
