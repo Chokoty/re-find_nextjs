@@ -256,7 +256,7 @@ export default function EmblaGallerySlider({ data }: Props) {
       {/* 네비게이션 버튼 */}
       {canScrollPrev && (
         <button
-          className={`bg-black/20 text-white/60 hover:bg-black/60 absolute left-4 top-1/2 z-10 hidden -translate-y-1/2 cursor-pointer rounded-full border-none p-2.5 opacity-0 transition hover:text-white group-hover:opacity-100 dark:bg-dark-card-2 dark:hover:bg-dark-card-3 md:block`}
+          className={`text-white/60 absolute left-4 top-1/2 z-10 hidden -translate-y-1/2 cursor-pointer rounded-full border-none bg-white p-2.5 opacity-0 shadow-md transition hover:bg-light-button-hover group-hover:opacity-100 dark:bg-dark-card-2 dark:hover:bg-dark-card-3 md:block`}
           type="button"
           onClick={() => handleScroll('prev')}
           aria-label="이전 슬라이드"
@@ -266,7 +266,7 @@ export default function EmblaGallerySlider({ data }: Props) {
       )}
       {canScrollNext && (
         <button
-          className={`bg-black/20 text-white/60 hover:bg-black/60 absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 cursor-pointer rounded-full border-none p-2.5 opacity-0 transition hover:text-white group-hover:opacity-100 dark:bg-dark-card-2 dark:hover:bg-dark-card-3 md:block`}
+          className={`text-white/60 absolute right-4 top-1/2 z-10 hidden -translate-y-1/2 cursor-pointer rounded-full border-none bg-white p-2.5 opacity-0 shadow-md transition hover:bg-light-button-hover group-hover:opacity-100 dark:bg-dark-card-2 dark:hover:bg-dark-card-3 md:block`}
           onClick={() => handleScroll('next')}
           aria-label="다음 슬라이드"
         >

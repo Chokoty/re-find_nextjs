@@ -13,9 +13,9 @@ export default function SearchModalOpener() {
     const isNotSearch = q === null; // default
     const isFullSearch = !isNotSearch && q.length === 0;
     const searchedTextColor =
-      'placeholder:text-light-myText dark:placeholder:text-dark-myText-2';
+      'placeholder:text-light-myText-2 dark:placeholder:text-dark-myText-2';
     const noteSearchedTextColor =
-      'placeholder:text-light-myText dark:placeholder:text-dark-myText-2';
+      'placeholder:text-light-myText-2 dark:placeholder:text-dark-myText-2';
     // 'placeholder:text-gray-500 dark:placeholder:text-whiteAlpha-400';
     if (isNotSearch) {
       return {

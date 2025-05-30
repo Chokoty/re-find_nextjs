@@ -27,7 +27,7 @@ export default function MemberCard({ member }: { member: MemberType }) {
       </div>
       <div className="w-full">
         <p className="w-full text-start font-bold">{name}</p>
-        <p className="w-full text-start text-[14px] leading-6 text-blackAlpha-700 dark:text-whiteAlpha-600">{`"${greetings}"`}</p>
+        <p className="w-full text-start text-[14px] leading-6 text-[var(--text-description)] dark:text-whiteAlpha-600">{`"${greetings}"`}</p>
       </div>
     </Link>
   );

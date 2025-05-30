@@ -48,7 +48,7 @@ export default function GalleryAlbumCard({
           <p className="line-clamp-1 text-base font-bold dark:text-white">
             {title}
           </p>
-          <p className="line-clamp-2 text-sm font-normal text-blackAlpha-700 dark:text-whiteAlpha-600">
+          <p className="line-clamp-2 text-sm font-normal text-[var(--text-description)] dark:text-whiteAlpha-600">
             {description}
           </p>
         </div>

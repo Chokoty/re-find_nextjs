@@ -32,7 +32,7 @@ export default function RefindPick() {
           href="/refindPick"
           className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
         >
-          <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+          <p className="font-bold text-blackAlpha-700 dark:text-whiteAlpha-700">
             모두보기
           </p>
         </Link>

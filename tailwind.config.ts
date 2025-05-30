@@ -59,6 +59,7 @@ const config: Config = {
         // border: 'var(--border)',
         // background color
         'light-myText': 'var(--myText)',
+        'light-myText-2': 'var(--myText-2)',
         'dark-myText': 'var(--darkmode-myText)',
         'dark-myText-2': 'var(--darkmode-myText-2)',
         'dark-background': 'var(--darkmode-bg)',
