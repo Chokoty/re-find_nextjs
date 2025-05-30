@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import type { ReadonlyURLSearchParams } from 'next/navigation';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect } from 'react';
 import CountUp from 'react-countup';
@@ -18,13 +17,12 @@ import MasonryView from '@/components/View/MasonryView';
 import { NotSearch } from '@/lib/images';
 
 // 검색시 3번 렌더링되는거 최적화하기(옵션 상태때문)
-export default function SearchResult({
-  searchParams,
-}: {
-  searchParams: ReadonlyURLSearchParams;
-}) {
+export default function SearchResult() {
   const router = useRouter();
-  const q = searchParams.get('q') ?? '';
+  const searchParams = useSearchParams();
+  const q = searchParams.get('q');
+  const searchQuery = q ?? '';
+  const isEnabled = q !== null;
   const {
     board,
     category,
@@ -80,7 +78,7 @@ export default function SearchResult({
     isFetchingNextPage,
     isLoading,
   } = useSearchResults({
-    q,
+    q: searchQuery,
     board,
     category,
     dateType,
@@ -92,7 +90,7 @@ export default function SearchResult({
     viewCountLimit,
     likeCountLimit,
     commentCountLimit,
-    enabled: true,
+    enabled: isEnabled,
   });
 
   // 무한 스크롤
@@ -116,6 +114,9 @@ export default function SearchResult({
 
   if (isError) {
     return <Alert />;
+  }
+  if (!isEnabled) {
+    return null;
   }
   if (!searchResults || searchResults.length === 0 || (total ?? 0) === 0) {
     return (
@@ -141,7 +142,7 @@ export default function SearchResult({
         <div className="flex w-full flex-col items-center justify-center">
           <div className="mt-4 flex w-full flex-wrap items-baseline gap-2 p-4">
             <h4 className="text-xl font-bold">{`${
-              q.length === 0 ? '전체검색' : `'${q}'`
+              searchQuery.length === 0 ? '전체검색' : `'${searchQuery}'`
             }`}</h4>
             <h4 className="text-xl font-bold">에 대한 검색결과 입니다.</h4>
             <div className="flex items-center gap-1">
@@ -174,7 +175,7 @@ export default function SearchResult({
                 <SearchCard
                   index={index}
                   item={item}
-                  searchText={q}
+                  searchText={searchQuery}
                   isTitleSearch={hasTitle}
                   isContentSearch={hasContent}
                   isAuthorSearch={hasAuthor}

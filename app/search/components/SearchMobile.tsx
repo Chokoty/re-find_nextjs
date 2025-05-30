@@ -1,14 +1,16 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { Suspense, useRef } from 'react';
 
-import BannerSlider from '@/app/(home)/components/BannerSlider';
 import TopTitle from '@/app/(home)/components/TopTitle';
 import Upload from '@/app/(home)/components/Upload';
+import UpdateBoard from '@/app/(home)/components/Upload/UpdateBoard';
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
 
 export default function SearchMobile() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 참조
+  const searchParams = useSearchParams();
 
   const scrollToTop = () => {
     if (scrollContainerRef.current) {
@@ -26,9 +28,13 @@ export default function SearchMobile() {
       <Suspense>
         <SearchModalOpener />
       </Suspense>
-      <BannerSlider />
-      <TopTitle />
-      <Upload scrollToTop={scrollToTop} />
+      {searchParams.get('q') === null && (
+        <>
+          <TopTitle />
+          <Upload scrollToTop={scrollToTop} />
+          <UpdateBoard />
+        </>
+      )}
     </div>
   );
 }
