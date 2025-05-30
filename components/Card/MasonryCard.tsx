@@ -71,7 +71,8 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
       {/* CardImage 영역 */}
       <div
         ref={cardRef}
-        tabIndex={isSelectMode || isDeleteMode ? 0 : undefined}
+        // tabIndex={isSelectMode || isDeleteMode ? 0 : undefined}
+        tabIndex={0}
         className={clsx(
           'group relative w-full rounded-[16px] border-base border-blackAlpha-200 dark:border-none',
           {
@@ -80,7 +81,6 @@ export default function MasonryCard({ artwork, isIsdPick = false }: Props) {
         )}
         onClick={isSelectMode || isDeleteMode ? handleToggleCheck : undefined}
         onFocus={() => setIsFocus(true)}
-        onBlur={() => setIsFocus(false)}
       >
         <Image
           width={357}

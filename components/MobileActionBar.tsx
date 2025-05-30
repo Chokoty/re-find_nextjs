@@ -4,6 +4,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import clsx from 'clsx';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import type { Toast } from 'react-hot-toast';
 import toast from 'react-hot-toast';
 import {
   MdClose,
@@ -94,7 +95,7 @@ export default function MobileActionBar() {
 
   const showWarningToast = (message: string) => {
     toast(
-      (t) => (
+      (t: Toast) => (
         <div className="flex items-center gap-2">
           <MdWarningAmber size={24} color="#fbbf24" />
           <span>{message}</span>

@@ -38,7 +38,9 @@ export default function SearchLayout({
   return (
     <div className="flex w-full flex-col items-center justify-start">
       {/* /** 모바일 레이아웃 */}
-      <SearchMobile />
+      <Suspense>
+        <SearchMobile />
+      </Suspense>
       <div className="flex w-full flex-col items-center justify-center pb-[60px] md:hidden">
         {children}
       </div>

@@ -5,6 +5,7 @@ import React, { Suspense, useRef } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
 import { FaBookOpen } from 'react-icons/fa';
 
+import BannerSlider from '@/app/(home)/components/BannerSlider';
 import Footer from '@/app/(home)/components/Footer';
 import BoardList from '@/app/album/components/BoardList';
 import GalleryTitle from '@/app/album/components/GalleryTitle';
@@ -33,6 +34,7 @@ export default function HomeMobile() {
       <RefindPick />
       <BoardList />
       <MemberAlbum />
+      <BannerSlider />
       <div className="mb-4 mt-10">
         <MoreButtons />
       </div>

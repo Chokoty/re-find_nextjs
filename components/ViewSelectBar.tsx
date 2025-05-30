@@ -30,6 +30,7 @@ type Props = {
   isIsdPick?: boolean;
   hasTotalCounter?: boolean;
   isArtist?: boolean;
+  hasRightButtonArea?: boolean;
 };
 
 export default function ViewSelectBar({
@@ -44,6 +45,7 @@ export default function ViewSelectBar({
   isIsdPick = false,
   hasTotalCounter = false,
   isArtist = false,
+  hasRightButtonArea = true,
 }: Props) {
   const sortLabel =
     MENU_ITEMS.find((item) => item.id === selectedMenu)?.label ?? '알잘딱순';
@@ -104,75 +106,83 @@ export default function ViewSelectBar({
           <TotalCounter />
         </p>
       )}
-      <div className="flex items-center justify-center gap-4">
-        {isIsdPick && (
+      {!hasRightButtonArea ? (
+        <></>
+      ) : (
+        <div className="flex items-center justify-center gap-4">
+          {isIsdPick && (
+            <Menu>
+              <MenuButton
+                size="lg"
+                rightIcon={<MdOutlineKeyboardArrowDown />}
+                rightMobileIcon={<FaUser />}
+              >
+                {memberName}
+              </MenuButton>
+              <MenuList>
+                {memberList.map((member) => (
+                  <MenuItem
+                    key={member.id}
+                    onClick={() => onMemberClick?.(member.value)}
+                  >
+                    {member.name}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          )}
           <Menu>
             <MenuButton
               size="lg"
               rightIcon={<MdOutlineKeyboardArrowDown />}
-              rightMobileIcon={<FaUser />}
+              rightMobileIcon={<MdOutlineKeyboardArrowDown />}
             >
-              {memberName}
+              {sortLabel}
             </MenuButton>
             <MenuList>
-              {memberList.map((member) => (
-                <MenuItem
-                  key={member.id}
-                  onClick={() => onMemberClick?.(member.value)}
-                >
-                  {member.name}
-                </MenuItem>
-              ))}
+              {isIsdPick === true &&
+                MENU_ITEMS.filter((item) => item.isdPick === true).map(
+                  (item) => (
+                    <MenuItem
+                      key={item.id}
+                      onClick={() => onMenuItemClick(item.id)}
+                    >
+                      {item.label}
+                    </MenuItem>
+                  )
+                )}
+              {isIsdPick === false &&
+                (isArtist ? MENU_ITEMS.slice(0, -3) : MENU_ITEMS).map(
+                  (item) => (
+                    <MenuItem
+                      key={item.id}
+                      onClick={() => onMenuItemClick(item.id)}
+                    >
+                      {item.label}
+                    </MenuItem>
+                  )
+                )}
             </MenuList>
           </Menu>
-        )}
-        <Menu>
-          <MenuButton
-            size="lg"
-            rightIcon={<MdOutlineKeyboardArrowDown />}
-            rightMobileIcon={<MdOutlineKeyboardArrowDown />}
-          >
-            {sortLabel}
-          </MenuButton>
-          <MenuList>
-            {isIsdPick === true &&
-              MENU_ITEMS.filter((item) => item.isdPick === true).map((item) => (
-                <MenuItem
-                  key={item.id}
-                  onClick={() => onMenuItemClick(item.id)}
-                >
-                  {item.label}
-                </MenuItem>
-              ))}
-            {isIsdPick === false &&
-              (isArtist ? MENU_ITEMS.slice(0, -3) : MENU_ITEMS).map((item) => (
-                <MenuItem
-                  key={item.id}
-                  onClick={() => onMenuItemClick(item.id)}
-                >
-                  {item.label}
-                </MenuItem>
-              ))}
-          </MenuList>
-        </Menu>
-        <Popover>
-          <PopoverTrigger size="lg">
-            <div className="flex size-10 items-center justify-center rounded-full bg-gray-100 dark:bg-whiteAlpha-200">
-              <MdMoreHoriz className="size-6" />
-            </div>
-          </PopoverTrigger>
-          <PopoverContent size="sm" hasCloseButton={false}>
-            <PopoverBody>
-              <div className="flex flex-col items-start justify-center">
-                <p className="px-4 py-2 text-sm">뷰 옵션</p>
-                <Button intent="ghost-gray" onClick={handleShowDeleted}>
-                  혐잘딱 게시글 {isDeletedVisible ? '가리기' : '보이기'}
-                </Button>
+          <Popover>
+            <PopoverTrigger size="lg">
+              <div className="flex size-10 items-center justify-center rounded-full bg-gray-100 dark:bg-whiteAlpha-200">
+                <MdMoreHoriz className="size-6" />
               </div>
-            </PopoverBody>
-          </PopoverContent>
-        </Popover>
-      </div>
+            </PopoverTrigger>
+            <PopoverContent size="sm" hasCloseButton={false}>
+              <PopoverBody>
+                <div className="flex flex-col items-start justify-center">
+                  <p className="px-4 py-2 text-sm">뷰 옵션</p>
+                  <Button intent="ghost-gray" onClick={handleShowDeleted}>
+                    혐잘딱 게시글 {isDeletedVisible ? '가리기' : '보이기'}
+                  </Button>
+                </div>
+              </PopoverBody>
+            </PopoverContent>
+          </Popover>
+        </div>
+      )}
     </div>
   );
 }

@@ -125,17 +125,19 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
         <div className="flex items-center justify-center gap-2 md:hidden">
           <div className="flex size-[48px] items-center justify-center rounded-full shadow-sm hover:bg-white dark:shadow-none hover:dark:bg-dark-card">
             {userData && (
-              <Image
-                width={100}
-                height={100}
-                className="size-[32px] rounded-full object-cover"
-                src={
-                  userData.profimg ||
-                  'https://re-find.xyz/static/images/profile/이파리1.webp'
-                }
-                alt="유저 프로필 이미지"
-                unoptimized
-              />
+              <Link href="/profile">
+                <Image
+                  width={100}
+                  height={100}
+                  className="size-[32px] rounded-full object-cover"
+                  src={
+                    userData.profimg ||
+                    'https://re-find.xyz/static/images/profile/이파리1.webp'
+                  }
+                  alt="유저 프로필 이미지"
+                  unoptimized
+                />
+              </Link>
             )}
           </div>
           {/* <h2>모바일 헤더입니다</h2> */}
