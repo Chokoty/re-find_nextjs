@@ -46,12 +46,14 @@ export default function EmblaGallerySlider({ data }: Props) {
   const isMobile = useResponsive();
   // Autoplay 플러그인을 banner 타입에만 적용
   const plugins =
-    data.type === 'banner' ? [Autoplay({ playOnInit: true, delay: 3000 })] : [];
+    data.type === 'banner'
+      ? [Autoplay({ playOnInit: true, delay: 3000, stopOnInteraction: false })]
+      : [];
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
       loop: data.type === 'banner',
       align: 'start',
-      dragFree: isMobile,
+      dragFree: isMobile && data.type !== 'banner',
       // skipSnaps: true,
       watchDrag: isMobile,
       containScroll: 'trimSnaps',
