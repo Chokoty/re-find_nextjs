@@ -13,7 +13,10 @@ import useModal from '@/hooks/useModal';
 import queryOptions1 from '@/service/client/queries';
 
 export default function FanartsInAlbumDeleteButton() {
-  const fanarts = useCheckFanartStore((state) => state.fanarts);
+  const { fanarts, setFanarts } = useCheckFanartStore((state) => ({
+    fanarts: state.fanarts,
+    setFanarts: state.setFanarts,
+  }));
   const isDeleteMode = useDeleteModeStore((state) => state.isDeleteMode);
   const [isShow, setIsShow] = useState(true);
   const pathname = usePathname();
@@ -38,19 +41,21 @@ export default function FanartsInAlbumDeleteButton() {
 
   const { show: showDeleteCustomAlbumModal } = useModal(DeleteCustomAlbumModal);
 
-  const showSaveButton = () => {
+  const showButton = () => {
     setIsShow(true); // 모달이 닫히면 버튼 보이기
   };
   const handleDeleteFanartsInCustomAlbum = () => {
     showDeleteCustomAlbumModal({
       animateDir: 'bottom',
       albumName,
-      showSaveButton,
+      showButton,
       isDeleteAlbum: false,
       articles: fanarts,
       onSuccess: () => {
         refreshAlbumArtworks();
+        setFanarts([]); // 팬아트 삭제 후 팬아트 목록 초기화
       },
+      onModalClose: showButton,
     });
     setIsShow(false); // 모달이 열리면 버튼 숨기기
   };
@@ -59,7 +64,7 @@ export default function FanartsInAlbumDeleteButton() {
     showDeleteCustomAlbumModal({
       animateDir: 'bottom',
       albumName,
-      showSaveButton,
+      showButton,
       isDeleteAlbum: true,
       articles: [],
       onSuccess: () => {

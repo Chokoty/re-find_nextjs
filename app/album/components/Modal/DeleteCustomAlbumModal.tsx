@@ -10,6 +10,7 @@ export default function DeleteCustomAlbumModal(props: Record<string, unknown>) {
   const isDeleteAlbum = props.isDeleteAlbum as boolean;
   const articles = props.articles as number[];
   const onSuccess = props.onSuccess as () => void;
+  const onModalClose = props.onModalClose as () => void;
   const { hide } = useModal();
   const { mutate: deleteCustomAlbumInfo, isPending } = useDeleteCustomAlbum({
     albumId: albumName,
@@ -18,6 +19,7 @@ export default function DeleteCustomAlbumModal(props: Record<string, unknown>) {
     handleOnSuccess: () => {
       hide();
       onSuccess();
+      onModalClose?.();
     },
     handleOnError: hide,
   });

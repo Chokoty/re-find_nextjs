@@ -77,6 +77,11 @@ const queryOptions = {
       myService.deleteCustomAlbum({ albumId, artworksIdList, isDeleteAlbum }),
     onSuccess: () => {
       handleOnSuccess?.();
+      if (isDeleteAlbum) {
+        toast.success('앨범이 삭제되었습니다.');
+      } else {
+        toast.success(`${artworksIdList.length}개 항목이 삭제되었습니다`);
+      }
     },
     onError: (error: unknown) => {
       const normalizedError = extractRefindAppError(error);

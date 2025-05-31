@@ -159,13 +159,13 @@ export default function MobileActionBar() {
           onClick: handleDeleteCustomAlbum,
         },
         {
-          key: 'album_delete',
+          key: 'fanart_delete',
           label: '팬아트삭제',
           icon: MdDelete,
           onClick: handleDeleteFanartsInCustomAlbum,
         },
         {
-          key: 'cancel',
+          key: 'cancel_cancel',
           label: '취소',
           icon: MdClose,
           onClick: exitModes,
@@ -182,7 +182,7 @@ export default function MobileActionBar() {
           onClick: onSave,
         },
         {
-          key: 'cancel',
+          key: 'cancel_select',
           label: '선택취소',
           icon: MdClose,
           onClick: exitModes,
