@@ -55,7 +55,6 @@ export default function FanartsInAlbumDeleteButton() {
         refreshAlbumArtworks();
         setFanarts([]); // 팬아트 삭제 후 팬아트 목록 초기화
       },
-      onModalClose: showButton,
     });
     setIsShow(false); // 모달이 열리면 버튼 숨기기
   };

@@ -9,7 +9,10 @@ import AddCheckedFanartsToCustomAlbumModal from '@/components/Modal/AddCheckedFa
 import useModal from '@/hooks/useModal';
 
 export default function AlbumSelectionSaveButton() {
-  const fanarts = useCheckFanartStore((state) => state.fanarts);
+  const { fanarts, setFanarts } = useCheckFanartStore((state) => ({
+    fanarts: state.fanarts,
+    setFanarts: state.setFanarts,
+  }));
   const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
   const [isShow, setIsShow] = useState(true);
 
@@ -25,7 +28,10 @@ export default function AlbumSelectionSaveButton() {
     showAddFanartsToCustomAlbumModal({
       fanarts,
       animateDir: 'bottom',
-      handleAfterSuccessCallback: showSaveButton,
+      handleAfterSuccessCallback: () => {
+        showSaveButton();
+        setFanarts([]); // 팬아트 저장 후 팬아트 목록 초기화
+      },
     });
     setIsShow(false); // 모달이 열리면 버튼 숨기기
   };
