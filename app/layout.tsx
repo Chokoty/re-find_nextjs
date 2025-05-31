@@ -69,9 +69,7 @@ export default function RootLayout({
           <MobileTabBar />
           <Suspense>
             <MobileActionBar />
-          </Suspense>
-          <AlbumSelectionSaveButton />
-          <Suspense>
+            <AlbumSelectionSaveButton />
             {/* TODO: Popover 를 활용하여 삭제 버튼 쪽에 위치 변경하기 */}
             <FanartsInAlbumDeleteButton />
           </Suspense>

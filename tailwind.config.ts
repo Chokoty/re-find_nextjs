@@ -338,6 +338,7 @@ const config: Config = {
       fontFamily: {
         pop: ['var(--font-one-mobile-pop)'],
         sbAggro: ['SBAggroB', 'sans-serif'],
+        roboto: ['Roboto', 'sans-serif'],
       },
       backgroundImage: {
         'recap-pattern': "url('/static/images/recap_pattern.webp')",
