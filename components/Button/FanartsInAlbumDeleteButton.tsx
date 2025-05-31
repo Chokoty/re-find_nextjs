@@ -3,6 +3,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 import DeleteCustomAlbumModal from '@/app/album/components/Modal/DeleteCustomAlbumModal';
 import queryOptions2 from '@/app/album/service/client/queries';
@@ -53,6 +54,7 @@ export default function FanartsInAlbumDeleteButton() {
       articles: fanarts,
       onSuccess: () => {
         refreshAlbumArtworks();
+        toast.success(`${fanarts.length}개 항목이 삭제되었습니다`);
         setFanarts([]); // 팬아트 삭제 후 팬아트 목록 초기화
       },
     });
@@ -68,6 +70,7 @@ export default function FanartsInAlbumDeleteButton() {
       articles: [],
       onSuccess: () => {
         refreshMyinfo();
+        toast.success('앨범이 삭제되었습니다');
         router.back();
       },
     });

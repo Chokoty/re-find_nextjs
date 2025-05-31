@@ -82,15 +82,15 @@ export default function MobileActionBar() {
     showAddFanartsToCustomAlbumModal({
       fanarts,
       animateDir: 'bottom',
+      onSuccess: () => {
+        refreshAlbumArtworks();
+        setFanarts([]); // 팬아트 저장 후 팬아트 목록 초기화
+      },
       // applyCustomMaxWidth: true,
-      handleAfterSuccessCallback: exitModes,
+      // onCancel: () => {
+      //   setSelectMode(false);
+      // },
     });
-  };
-
-  const exitModes = () => {
-    setSelectMode(false);
-    setIsDeleteMode(false);
-    setFanarts([]);
   };
 
   const showWarningToast = (message: string) => {
@@ -127,7 +127,7 @@ export default function MobileActionBar() {
       onSuccess: () => {
         refreshAlbumArtworks();
         toast.success(`${fanarts.length}개 항목이 삭제되었습니다`);
-        exitModes();
+        setIsDeleteMode(false);
       },
     });
   };
@@ -168,7 +168,10 @@ export default function MobileActionBar() {
           key: 'cancel_cancel',
           label: '취소',
           icon: MdClose,
-          onClick: exitModes,
+          onClick: () => {
+            setIsDeleteMode(false);
+            setFanarts([]); // 팬아트 목록 초기화
+          },
         },
       ],
     },
@@ -185,7 +188,10 @@ export default function MobileActionBar() {
           key: 'cancel_select',
           label: '선택취소',
           icon: MdClose,
-          onClick: exitModes,
+          onClick: () => {
+            setSelectMode(false);
+            setFanarts([]); // 팬아트 목록 초기화
+          },
         },
       ],
     },

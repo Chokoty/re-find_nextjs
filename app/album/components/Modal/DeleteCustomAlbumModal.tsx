@@ -17,14 +17,14 @@ export default function DeleteCustomAlbumModal(props: Record<string, unknown>) {
     isDeleteAlbum,
     handleOnSuccess: () => {
       hide();
-      showButton();
+      showButton?.();
       onSuccess();
     },
     handleOnError: hide,
   });
   const onClose = () => {
     hide();
-    showButton();
+    showButton?.();
   };
 
   const onDelete = () => {
