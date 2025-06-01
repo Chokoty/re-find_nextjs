@@ -183,7 +183,7 @@ export default function EmblaGallerySlider({ data }: Props) {
               >
                 <Image
                   className="m-auto rounded-2xl"
-                  width={750}
+                  width={700}
                   height={134}
                   priority
                   quality={100}
@@ -196,7 +196,11 @@ export default function EmblaGallerySlider({ data }: Props) {
           return (
             <div
               key={d.title || idx}
-              style={{ flex: '0 0 100%', minWidth: 0, paddingLeft: '1rem' }}
+              style={{
+                flex: '0 0 100%',
+                minWidth: 0,
+                paddingLeft: isMobile ? '1rem' : '8rem',
+              }}
             >
               <BannerCard event={d} />
             </div>

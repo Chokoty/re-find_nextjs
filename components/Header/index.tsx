@@ -32,13 +32,14 @@ export default function Header() {
   return (
     <header
       className={clsx('fixed top-0 z-[200] h-[64px] w-full transition', {
-        'bg-white dark:bg-dark-background': !isNotScrollingGalleryPage,
-        'bg-blackAlpha-500 backdrop-blur': isNotScrollingGalleryPage,
+        'bg-light-background dark:bg-dark-background':
+          !isNotScrollingGalleryPage,
+        'bg-blackAlpha-100 backdrop-blur': isNotScrollingGalleryPage,
       })}
     >
       <nav
         className={clsx(
-          'flex size-full items-center justify-between px-4 shadow-navTop transition',
+          'flex size-full items-center justify-between px-4 transition',
           {
             'dark:shadow-navTopDark2': isScrolling,
             'dark:shadow-none': !isScrolling,
@@ -149,7 +150,7 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
   return (
     <>
       <div className="flex items-center justify-center md:min-w-[80px]">
-        <div className="mr-2 size-11 rounded-full p-2 transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 md:mr-4">
+        <div className="mr-2 size-11 rounded-full p-2 transition dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 md:mr-4">
           <Link href="/">
             <Tooltip label="re:find">
               <Image

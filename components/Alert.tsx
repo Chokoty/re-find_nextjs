@@ -5,7 +5,7 @@ export default function Alert() {
     <div className="mx-auto flex min-h-[150px] w-11/12 items-center justify-center">
       <div
         // datatype="alert"
-        className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-gray-200 p-4"
+        className="flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-light-button p-4"
       >
         <div className="flex items-center">
           <GoAlertFill className="mr-1 size-5 text-red-600" />

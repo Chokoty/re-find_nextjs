@@ -14,10 +14,10 @@ const PageContent = ({ children }: PageContentProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null); // 내부 스크롤 컨테이너 참조
   const [isHovered, setIsHovered] = useState(false); // hover 상태 관리
   return (
-    <section className="hidden h-full w-2/3 grow flex-col items-center justify-start overflow-hidden rounded-lg border-base border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card md:flex">
+    <section className="hidden h-full w-2/3 grow flex-col items-center justify-start overflow-hidden rounded-lg border-base border-gray-200 bg-white shadow-sm dark:border-0 dark:bg-dark-card md:flex">
       <div
         ref={scrollContainerRef} // 참조 전달
-        className={`custom-scrollbar flex size-full flex-col items-center justify-start overflow-y-auto border-dark-myText bg-white shadow-sm transition-all duration-300 dark:border-0 dark:bg-dark-card ${
+        className={`custom-scrollbar flex size-full flex-col items-center justify-start overflow-y-auto bg-white shadow-sm transition-all duration-300 dark:border-0 dark:bg-dark-card ${
           isHovered ? 'scrollbar-visible' : 'scrollbar-hidden'
         }`}
         onMouseEnter={() => setIsHovered(true)}

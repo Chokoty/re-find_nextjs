@@ -46,20 +46,25 @@ export const SUPPORT_INFOS = [
 ];
 
 export const DEFAULT_CREDIT_COLOR =
-  'bg-gray-200 text-gray-800 dark:bg-gray-700 dark:text-gray-100';
+  'border border-gray-400 text-gray-800 dark:border-gray-500 dark:text-gray-100';
 
 export const CONTRIBUTE_COLORS: Record<string, string> = {
-  팀장: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100',
-  검색엔진: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100',
-  기획: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100',
+  팀장: 'border border-red-400 text-red-800 dark:border-red-600 dark:text-red-100',
+  검색엔진:
+    'border border-green-400 text-green-800 dark:border-green-600 dark:text-green-100',
+  기획: 'border border-green-400 text-green-800 dark:border-green-600 dark:text-green-100',
   '배너 디자인':
-    'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-100',
-  'BE 개발': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100',
-  'FE 개발': 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100',
-  QA: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100',
-  'UX 디자인': 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-100',
-  AI연구: 'bg-gray-300 text-gray-800 dark:bg-gray-600 dark:text-gray-100',
-  보안: 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-100',
+    'border border-orange-400 text-orange-800 dark:border-orange-600 dark:text-orange-100',
+  'BE 개발':
+    'border border-blue-400 text-blue-800 dark:border-blue-600 dark:text-blue-100',
+  'FE 개발':
+    'border border-blue-400 text-blue-800 dark:border-blue-600 dark:text-blue-100',
+  QA: 'border border-yellow-400 text-yellow-800 dark:border-yellow-600 dark:text-yellow-100',
+  'UX 디자인':
+    'border border-pink-400 text-pink-800 dark:border-pink-600 dark:text-pink-100',
+  AI연구:
+    'border border-gray-500 text-gray-800 dark:border-gray-600 dark:text-gray-100',
+  보안: 'border border-purple-400 text-purple-800 dark:border-purple-600 dark:text-purple-100',
 };
 
 export const DEVELOPERS: Developer[] = [

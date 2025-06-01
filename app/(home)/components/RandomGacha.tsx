@@ -31,7 +31,9 @@ export default function RandomGacha() {
           href="/events/randomGacha"
           className="decoration-purple-500 hover:underline"
         >
-          <p className="text-sm text-whiteAlpha-700">더보기</p>
+          <p className="text-sm font-bold text-blackAlpha-700 dark:text-whiteAlpha-700">
+            더보기
+          </p>
         </Link>
       </div>
       <Fanart
@@ -42,7 +44,7 @@ export default function RandomGacha() {
       />
       <div className="flex w-full flex-col items-center justify-center gap-2">
         <Button
-          additionalClass="event-randomGacha rounded-xl w-[60%] text-base font-bold gap-1.5"
+          additionalClass="event-randomGacha rounded-xl w-[80%] text-base font-bold gap-1.5"
           intent="solid-purple"
           size="lg"
           onClick={showRandomFanart}
@@ -108,9 +110,9 @@ const Fanart = ({
 
   if (isLoading || isFetching || !data) {
     return (
-      <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-gray-100 dark:bg-dark-card-2">
+      <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-light-button dark:bg-dark-card-2">
         {isFetching ? (
-          <p className="w-full text-center text-3xl font-bold">{displayText}</p>
+          <p className="w-full text-center text-4xl font-bold">{displayText}</p>
         ) : (
           <BsQuestionLg className="size-20" />
         )}

@@ -84,7 +84,7 @@ export default function Events() {
       {events.map((event, index) => (
         <div
           key={index}
-          className="mx-auto flex min-h-[120px] w-full max-w-[540px] flex-col items-center justify-between rounded-2xl bg-white p-5 shadow-[rgba(0,_0,_0,_0.1)_-3px_4px_14px_0px] dark:bg-dark-card-2"
+          className="mx-auto flex min-h-[120px] w-full max-w-[540px] flex-col items-center justify-between rounded-2xl bg-light-card p-5 shadow-sm dark:bg-dark-card-2"
         >
           <p className="mb-2 w-full px-4 text-center text-lg font-bold">
             {event.title}

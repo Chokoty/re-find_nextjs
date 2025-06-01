@@ -97,7 +97,7 @@ function PopoverTrigger({
           'size-8': size === '2md',
           'size-10': size === 'lg',
           'size-32': size === '9xl',
-          'bg-transparent text-blackAlpha-900 hover:bg-gray-100 active:bg-gray-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
+          'bg-transparent text-blackAlpha-900 hover:bg-light-button-hover active:bg-gray-200 dark:text-whiteAlpha-900 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400':
             color === 'main',
           'bg-transition text-white hover:bg-blackAlpha-300 active:bg-blackAlpha-400':
             color === 'sub',
@@ -203,7 +203,7 @@ function PopoverContent({
 
 function PopoverHeader({ children }: { children: React.ReactNode }) {
   return (
-    <header className="border-b-base border-gray-200 px-3 py-2 dark:border-whiteAlpha-300">
+    <header className="border-b-base border-gray-200 p-4 dark:border-whiteAlpha-300">
       {children}
     </header>
   );

@@ -42,7 +42,7 @@ export default function RefindPickAllList() {
 
   return (
     <div
-      className={`mt-4 grid gap-4 px-6 pb-8 ${gridColsClass} lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6`}
+      className={`mt-8 grid gap-4 px-6 pb-8 ${gridColsClass} lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6`}
     >
       {gallery?.albums.map((album) => (
         <GalleryAlbumCard key={album.id} album={album} />

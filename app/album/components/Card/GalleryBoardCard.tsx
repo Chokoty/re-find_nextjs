@@ -29,7 +29,7 @@ export default function GalleryBoardCard({
     <Link
       href={`/album/${transformedValue}?viewType=masonry&sortType=latest`}
       prefetch={false}
-      className="m-auto flex h-[205px] w-full flex-col items-center justify-start gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[240px]"
+      className="m-auto flex h-[205px] w-full flex-col items-center justify-start gap-2 rounded-md p-3 transition hover:bg-light-button-hover active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[240px]"
     >
       <div
         className={`relative flex size-[120px] w-full rounded-lg md:size-[156px] ${bgColor}`}

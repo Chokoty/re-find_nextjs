@@ -49,7 +49,7 @@ export default function SearchModalOpener() {
             <IoSearchOutline className="absolute left-4 top-1/2 size-5 -translate-y-1/2 text-gray-400 dark:text-dark-myText-2" />
           </div>
           <input
-            className={`relative size-full cursor-pointer rounded-full border border-gray-100 bg-light-card pl-12 pr-4 transition group-hover:border-green-highlight group-hover:bg-light-card-2 dark:border-dark-card-2 dark:bg-dark-card-2 dark:group-hover:bg-dark-card-3 ${placeHolderColor}`}
+            className={`relative size-full cursor-pointer rounded-full border-base border-gray-200 bg-white pl-12 pr-4 transition group-hover:border-green-highlight dark:border-dark-card-2 dark:bg-dark-card-2 dark:group-hover:bg-dark-card-3 ${placeHolderColor}`}
             placeholder={placeholderText}
           />
         </div>

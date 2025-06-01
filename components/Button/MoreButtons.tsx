@@ -15,7 +15,7 @@ type ButtonProp = {
 };
 
 const containerClassName =
-  'shadow-base dark:shadow-none flex h-32 w-36 cursor-pointer flex-col items-center justify-between rounded-2xl bg-white dark:bg-dark-card-2 p-4 transition hover:bg-gray-200 dark:hover:bg-whiteAlpha-300 active:bg-gray-300 dark:active:bg-whiteAlpha-400';
+  'shadow-base dark:shadow-none flex h-32 w-36 cursor-pointer flex-col items-center justify-between rounded-2xl bg-light-button dark:bg-dark-card-2 p-4 transition hover:bg-light-button-hover dark:hover:bg-whiteAlpha-300 active:bg-gray-300 dark:active:bg-whiteAlpha-400';
 const iconWrapperClassName = 'p-2';
 const buttonClassName = 'text-xl font-semibold';
 const iconClassName = 'size-8';

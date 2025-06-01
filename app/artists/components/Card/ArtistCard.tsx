@@ -77,7 +77,7 @@ export default function ArtistCard({
       // href={`/artists/${nick}/recap2024`}
       className={`link-to-profile relative mb-4 flex w-full items-center justify-center border-b-base border-gray-300 pb-4 transition-all duration-300 dark:border-whiteAlpha-300 ${animateClassName}`}
     >
-      <div className="flex size-full min-h-[250px] flex-col items-center justify-center gap-4 rounded-2xl p-4 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 2xs:min-h-[150px] md:min-h-[168px] md:justify-between lg:flex-row lg:py-0">
+      <div className="flex size-full min-h-[250px] flex-col items-center justify-center gap-4 rounded-2xl p-4 transition hover:bg-light-button-hover active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 2xs:min-h-[150px] md:min-h-[168px] md:justify-between lg:flex-row lg:py-0">
         <div className="flex flex-col items-center gap-4 2xs:flex-row">
           <p className="text-lg font-bold">{nth <= 100 ? nth : '-'}</p>
           <div className="size-20 md:size-24">

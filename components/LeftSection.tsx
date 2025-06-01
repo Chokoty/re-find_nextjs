@@ -20,6 +20,7 @@ import MoreButtons from '@/components/Button/MoreButtons';
 import Tooltip from '@/components/Tooltip';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import { useResponsive } from '@/hooks/useResponsive';
+import { useScrollShadow } from '@/hooks/useScrollShadow';
 import { UploadHoverImage } from '@/lib/images';
 import { useMyInfo } from '@/service/client/useCommonService';
 import { useSideMenuStore } from '@/store/sideMenuStore';
@@ -42,6 +43,7 @@ export default function LeftSection() {
   const [activeTab, setActiveTab] = useState<'image' | 'update' | 'more'>(
     'image'
   );
+  const hasScrolled = useScrollShadow(scrollContainerRef);
   const { data: userInfo } = useMyInfo();
   const toggleBackToTopVisibility = () => {
     if (scrollContainerRef.current) {
@@ -80,11 +82,11 @@ export default function LeftSection() {
 
   return (
     <section
-      className={`relative hidden h-full overflow-hidden md:flex ${
+      className={`relative hidden h-full overflow-hidden border-base border-gray-200 dark:border-0 md:flex ${
         isOpen ? 'w-[360px]' : 'w-[72px]'
       } flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
-      <header className="z-10 flex w-full items-center justify-start gap-2 px-3 pb-1 pt-3 shadow-md dark:border-dark-myText">
+      <header className="z-10 flex w-full items-center justify-start gap-2 px-3 pb-1 pt-3 dark:border-dark-myText">
         {isOpen ? (
           <Tooltip
             label="리파인드 패널 접기"
@@ -206,7 +208,7 @@ export default function LeftSection() {
           onMouseLeave={() => setIsHovered(false)}
         >
           <div
-            className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 bg-white py-4 pl-3 shadow-md transition-colors dark:bg-dark-card`}
+            className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 bg-white py-4 pl-3 transition-colors dark:bg-dark-card ${hasScrolled ? 'shadow-md' : ''} `}
           >
             {leftTabButtons.map((btn) => {
               const isSelected = activeTab === btn.key;

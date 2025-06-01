@@ -11,7 +11,7 @@ export default function MemberCard({ member }: { member: MemberType }) {
     <Link
       href={`/album/${value}?viewType=masonry&sortType=latest`}
       prefetch={false}
-      className="m-auto flex h-[200px] max-w-[144px] flex-col items-center justify-start gap-2 rounded-md p-3 transition hover:bg-gray-200 active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[230px] md:w-full md:max-w-[180px]"
+      className="m-auto flex h-[200px] max-w-[144px] flex-col items-center justify-start gap-2 rounded-md p-3 transition hover:bg-light-button-hover active:bg-whiteAlpha-400 dark:hover:bg-whiteAlpha-300 dark:active:bg-black-200 md:h-[230px] md:w-full md:max-w-[180px]"
     >
       <div className="relative size-[120px] md:size-[150px]">
         <Image

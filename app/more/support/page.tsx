@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 };
 
 const IconsMap = {
-  0: <BsChatDots size="60px" />,
-  1: <FaBug size="60px" />,
+  0: <BsChatDots size="32px" />,
+  1: <FaBug size="32px" />,
 } as const;
 
 type IconKeyType = keyof typeof IconsMap;
@@ -46,13 +46,13 @@ export default function Support() {
       <div className="flex flex-wrap items-center justify-center gap-10">
         {SUPPORT_INFOS.map((info, index) => (
           <Link
-            className="flex h-[144px] w-[160px] flex-col items-center justify-center rounded-lg border-base border-gray-200 bg-white p-4 shadow-base transition hover:bg-gray-200 active:bg-gray-300 dark:border-whiteAlpha-300 dark:bg-dark-card dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400"
+            className="flex h-32 w-36 flex-col items-center justify-center rounded-2xl bg-light-button p-4 shadow-base transition hover:bg-light-button-hover active:bg-gray-300 dark:border-whiteAlpha-300 dark:bg-dark-card-2 dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-400"
             key={index}
             href={info.url}
             target="_blank"
           >
             {IconsMap[index as IconKeyType]}
-            <p className="mt-6 text-2xl">{info.title}</p>
+            <p className="mt-6 text-xl font-semibold">{info.title}</p>
           </Link>
         ))}
       </div>

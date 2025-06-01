@@ -54,10 +54,10 @@ export default async function ArtistsPage() {
         <ArtistsSearchInput />
         <RankSortButtonGroup />
         <TotalSortButtonGroup />
-        <div className="w-full rounded-2xl bg-white shadow-cardBox dark:bg-dark-card">
-          {/* <Maintenance /> */}
-          <ArtistList />
-        </div>
+        <ArtistList />
+        {/* <div className="w-full rounded-2xl border-base bg-white px-6 pt-6 dark:border-whiteAlpha-300 dark:bg-dark-card">
+          <Maintenance />
+        </div> */}
       </div>
     </div>
   );

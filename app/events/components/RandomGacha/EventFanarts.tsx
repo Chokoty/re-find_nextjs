@@ -54,7 +54,7 @@ export default function EventFanarts() {
                   selectedEvent?.key === item.key && item.color === 'green',
                 'bg-pink-300 dark:bg-pink-500':
                   selectedEvent?.key === item.key && item.color === 'pink',
-                'bg-gray-100 text-gray-800 hover:bg-gray-200 active:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-300':
+                'bg-light-button text-gray-800 hover:bg-light-button-hover active:bg-gray-200 dark:bg-whiteAlpha-200 dark:text-white dark:hover:bg-whiteAlpha-300 dark:active:bg-whiteAlpha-300':
                   selectedEvent?.key !== item.key,
               }
             )}
@@ -69,7 +69,7 @@ export default function EventFanarts() {
         isFetching={isFetching}
         isError={status === 'error'}
         loadingContent={
-          <p>
+          <p className="mt-4 text-center text-gray-500 dark:text-whiteAlpha-600">
             {selectedEvent
               ? '아래 버튼을 눌러 랜덤가챠를 시도할 수 있어요!'
               : '먼저 위 버튼을 눌러 특집을 선택해주세요.'}
