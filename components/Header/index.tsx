@@ -112,8 +112,8 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
   if (isMobile) {
     return (
       <div className="flex w-full items-center justify-between">
-        <div className="mr-2 size-11 rounded-full p-2 transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 md:mr-4">
-          <Link href="/">
+        <div className="size-7 rounded-full transition hover:bg-blackAlpha-100 active:bg-blackAlpha-200 dark:hover:bg-whiteAlpha-100 dark:active:bg-whiteAlpha-300 md:mr-4 md:size-11 md:p-2">
+          <Link href="/" className="flex items-center">
             <Image
               alt="리파인드 로고"
               width={32}
@@ -121,6 +121,9 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
               src={Logo}
               priority
             />
+            <span className="scale-y-105 pl-1.5 font-roboto text-2xl font-semibold tracking-tighter">
+              RE:FIND
+            </span>
           </Link>
         </div>
         <div className="flex items-center justify-center gap-2 md:hidden">

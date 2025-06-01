@@ -20,8 +20,8 @@ export default function AddCheckedFanartsToCustomAlbumModal(
   const { data: userInfo } = useMyInfo();
   const { hide } = useModal();
   const fanarts = props.fanarts as number[];
-  const handleAfterSuccessCallback =
-    props.handleAfterSuccessCallback as () => void;
+  const onSuccess = props.onSuccess as () => void;
+  const onCancel = props.onCancel as () => void;
 
   const { mutate: addFanartsIntoCustomAlbum, isPending } =
     ussAddFanartsInToCustomAlbum({
@@ -30,6 +30,7 @@ export default function AddCheckedFanartsToCustomAlbumModal(
       handleOnSuccess: () => {
         handleClose();
         if (!selected) return;
+        onSuccess();
         showAlbumAddedToast(selected);
       },
       handleOnError: hide,
@@ -59,7 +60,7 @@ export default function AddCheckedFanartsToCustomAlbumModal(
 
   const handleClose = () => {
     hide();
-    handleAfterSuccessCallback();
+    onCancel?.();
   };
   const handleAddToCustomAlbum = () => {
     // console.log(fanarts);

@@ -6,7 +6,7 @@ import useModal from '@/hooks/useModal';
 
 export default function DeleteCustomAlbumModal(props: Record<string, unknown>) {
   const albumName = props.albumName as string;
-  const showSaveButton = props.showSaveButton as () => void;
+  const showButton = props.showButton as () => void;
   const isDeleteAlbum = props.isDeleteAlbum as boolean;
   const articles = props.articles as number[];
   const onSuccess = props.onSuccess as () => void;
@@ -17,13 +17,14 @@ export default function DeleteCustomAlbumModal(props: Record<string, unknown>) {
     isDeleteAlbum,
     handleOnSuccess: () => {
       hide();
+      showButton?.();
       onSuccess();
     },
     handleOnError: hide,
   });
   const onClose = () => {
     hide();
-    showSaveButton?.();
+    showButton?.();
   };
 
   const onDelete = () => {

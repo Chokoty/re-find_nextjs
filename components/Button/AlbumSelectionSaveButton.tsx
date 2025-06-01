@@ -1,7 +1,10 @@
 'use client';
 
+import { useQueryClient } from '@tanstack/react-query';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
+import queryOptions from '@/app/album/service/client/queries';
 import { useCheckFanartStore } from '@/app/album/store/checkFanartStore';
 import { useSelectModeStore } from '@/app/album/store/selectModeStore';
 import Button from '@/components/Button';
@@ -9,13 +12,30 @@ import AddCheckedFanartsToCustomAlbumModal from '@/components/Modal/AddCheckedFa
 import useModal from '@/hooks/useModal';
 
 export default function AlbumSelectionSaveButton() {
-  const fanarts = useCheckFanartStore((state) => state.fanarts);
+  const { fanarts, setFanarts } = useCheckFanartStore((state) => ({
+    fanarts: state.fanarts,
+    setFanarts: state.setFanarts,
+  }));
   const isSelectMode = useSelectModeStore((state) => state.isSelectMode);
   const [isShow, setIsShow] = useState(true);
+  const pathname = usePathname();
+  const pathNameParts = pathname.split('/');
+  const albumName = pathNameParts[pathNameParts.length - 1];
+  const searchParams = useSearchParams();
+  const sortTypeInit = searchParams.get('sortType') ?? '';
+  const { queryKey: galleryArtworksKey } = queryOptions.galleryArtworks({
+    sortType: sortTypeInit === '' ? 'alzaltak' : sortTypeInit,
+    galleryType: albumName,
+  });
+
+  const queryClient = useQueryClient();
 
   const { show: showAddFanartsToCustomAlbumModal } = useModal(
     AddCheckedFanartsToCustomAlbumModal
   );
+  const refreshAlbumArtworks = () => {
+    queryClient.invalidateQueries({ queryKey: galleryArtworksKey });
+  };
 
   const showSaveButton = () => {
     setIsShow(true); // 모달이 닫히면 버튼 보이기
@@ -25,7 +45,14 @@ export default function AlbumSelectionSaveButton() {
     showAddFanartsToCustomAlbumModal({
       fanarts,
       animateDir: 'bottom',
-      handleAfterSuccessCallback: showSaveButton,
+      onSuccess: () => {
+        refreshAlbumArtworks(); // 팬아트 저장 후 앨범 아트워크 목록 새로고침
+        showSaveButton();
+        setFanarts([]); // 팬아트 저장 후 팬아트 목록 초기화
+      },
+      onCancel: () => {
+        setIsShow(true);
+      },
     });
     setIsShow(false); // 모달이 열리면 버튼 숨기기
   };

@@ -22,11 +22,7 @@ export default function LogoutButton() {
   };
 
   return (
-    <Button
-      intent="solid-red"
-      onClick={handleLogout}
-      additionalClass="w-full mx-2"
-    >
+    <Button intent="solid-red" onClick={handleLogout} additionalClass="w-full">
       로그아웃
     </Button>
   );
