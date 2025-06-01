@@ -5,7 +5,7 @@ import Divider from '@/components/Divider';
 
 export default function Footer() {
   return (
-    <footer className="mb-5 mt-12 flex w-[90%] flex-col justify-center gap-8">
+    <footer className="mb-16 mt-12 flex w-[90%] flex-col justify-center gap-8">
       <Divider />
       <LinkBtns />
       <div className="mb-4 mt-5 px-2 text-gray-600 dark:text-whiteAlpha-700">

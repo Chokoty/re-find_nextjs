@@ -109,7 +109,7 @@ export default function DesktopMenuTab() {
         <div className="relative" ref={menuRef}>
           <Tooltip label={userData.nick}>
             <div
-              className="flex size-[48px] cursor-pointer items-center justify-center rounded-full shadow-sm hover:bg-white dark:shadow-none hover:dark:bg-dark-card"
+              className="flex size-[48px] cursor-pointer items-center justify-center rounded-full border-base bg-white shadow-sm hover:scale-105 dark:border-none dark:bg-dark-card dark:shadow-none hover:dark:bg-dark-card"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
