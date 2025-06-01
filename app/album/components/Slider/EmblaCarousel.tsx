@@ -56,7 +56,7 @@ export default function EmblaGallerySlider({ data }: Props) {
       dragFree: isMobile && data.type !== 'banner',
       // skipSnaps: true,
       watchDrag: isMobile,
-      containScroll: 'trimSnaps',
+      containScroll: isMobile && data.type === 'banner' ? false : 'trimSnaps',
     },
     plugins
     // []
@@ -199,7 +199,9 @@ export default function EmblaGallerySlider({ data }: Props) {
               style={{
                 flex: '0 0 100%',
                 minWidth: 0,
-                paddingLeft: isMobile ? '1rem' : '8rem',
+                paddingLeft: '0.7rem',
+                display: 'flex',
+                justifyContent: 'center',
               }}
             >
               <BannerCard event={d} />
