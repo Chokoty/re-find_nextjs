@@ -60,7 +60,11 @@ export default function Fanart({
   if (isFetching || isLoading || !data) {
     return (
       <div className="my-4 flex min-h-[312px] w-full flex-col items-center justify-center rounded-2xl bg-light-button dark:bg-whiteAlpha-200 sm:min-h-[400px]">
-        {isFetching ? <p>{displayText}</p> : loadingContent}
+        {isFetching ? (
+          <p className="text-2xl md:text-3xl">{displayText}</p>
+        ) : (
+          loadingContent
+        )}
       </div>
     );
   }

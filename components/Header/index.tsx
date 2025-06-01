@@ -8,14 +8,12 @@ import { usePathname } from 'next/navigation';
 import { Suspense } from 'react';
 
 import SearchModalOpener from '@/app/search/components/Modal/SearchModalOpener';
-import BackButton from '@/components/Button/BackButton';
-import WorldcupSkipButton from '@/components/Button/WorldcupSkipButton';
 import DesktopHeaderTab from '@/components/Header/DesktopHeaderTab';
 import DesktopMenuTab from '@/components/Header/DesktopMenuTab';
 import Tooltip from '@/components/Tooltip';
 import { useResponsive } from '@/hooks/useResponsive';
 import { useScroll } from '@/hooks/useScroll';
-import { Logo, 똥강아지1 } from '@/lib/images';
+import { Logo } from '@/lib/images';
 import { useMyInfo } from '@/service/client/useCommonService';
 
 const Modals = dynamic(() => import('@/components/Modal/Modals'), {
@@ -23,19 +21,14 @@ const Modals = dynamic(() => import('@/components/Modal/Modals'), {
 });
 
 export default function Header() {
-  const pathname = usePathname();
-  const isGalleryPage = pathname.includes('/album');
   const isScrolling = useScroll(60);
-  const isNotScrollingGalleryPage = isGalleryPage && !isScrolling;
   const isMobile = useResponsive();
 
   return (
     <header
-      className={clsx('fixed top-0 z-[200] h-[64px] w-full transition', {
-        'bg-light-background dark:bg-dark-background':
-          !isNotScrollingGalleryPage,
-        'bg-blackAlpha-100 backdrop-blur': isNotScrollingGalleryPage,
-      })}
+      className={clsx(
+        'fixed top-0 z-[200] h-[64px] w-full bg-light-background transition dark:bg-dark-background'
+      )}
     >
       <nav
         className={clsx(

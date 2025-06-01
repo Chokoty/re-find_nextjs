@@ -112,7 +112,7 @@ const Fanart = ({
     return (
       <div className="flex min-h-[200px] w-full flex-col items-center justify-center rounded-2xl bg-light-button dark:bg-dark-card-2">
         {isFetching ? (
-          <p className="w-full text-center text-4xl font-bold">{displayText}</p>
+          <p className="w-full text-center text-2xl">{displayText}</p>
         ) : (
           <BsQuestionLg className="size-20" />
         )}
