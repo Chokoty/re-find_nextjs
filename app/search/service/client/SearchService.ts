@@ -34,7 +34,7 @@ class SearchService extends Service {
     const boardCategory = getBoardCategory({ board, category });
     const etc = `${criteria}${range}${boardCategory}${period}`;
     const url =
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/search_txt?query=${q}&ranktype=${rankType}&case_sensitive=${sensitive}&per_page=${ROWS_PER_PAGE}&page=${page}`.concat(
+      `${process.env.NEXT_PUBLIC_SERVER_URL!}/search_txt?query=${q}&ranktype=${rankType}&case_sensitive=${sensitive}&per_page=${ROWS_PER_PAGE}&page=${page}`.concat(
         etc
       );
     // const response = await this.http.get<SearchResult>(url);

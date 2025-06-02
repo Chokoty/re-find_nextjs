@@ -36,13 +36,6 @@ export default function Home() {
     if (!value && isMobile && !isDisPlayModeFullScreen) {
       openPwaInstallModal();
     }
-
-    console.log(
-      process.env.NEXT_PUBLIC_IS_LOCAL,
-      process.env.NEXT_PUBLIC_IS_LOCAL
-        ? process.env.NEXT_PUBLIC_DEV_CLIENT_URL
-        : process.env.NEXT_PUBLIC_CLIENT_URL
-    );
   }, [isMobile]);
 
   return (

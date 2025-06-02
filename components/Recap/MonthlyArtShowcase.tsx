@@ -48,7 +48,7 @@ export default function MonthlyArtShowcase({
                   src={
                     img_url === ''
                       ? 'https://placehold.co/375x375'
-                      : `${process.env.NEXT_PUBLIC_PROXY_URL}/${img_url}`
+                      : `${process.env.NEXT_PUBLIC_PROXY_URL!}/${img_url}`
                   }
                   alt={`${month} 팬아트`}
                   width={800}

@@ -6,7 +6,7 @@ import { getDehydratedQueries, Hydrate } from '@/lib/react-query';
 export const revalidate = 60;
 
 export default async function HomePage() {
-  if (!process.env.NEXT_PUBLIC_IS_LOCAL) {
+  if (!process.env.NEXT_PUBLIC_IS_LOCAL!) {
     const { queryKey: uKey, queryFn: uFn } = queryOptions.updates();
     const { queryKey: cKey, queryFn: cFn } = queryOptions.counts();
 

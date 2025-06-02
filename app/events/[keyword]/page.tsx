@@ -62,7 +62,7 @@ export default async function Page(props: Params) {
   }
 
   // ✅ 환경 변수를 안전하게 체크 (undefined 방지)
-  const isLocal = process.env.NEXT_PUBLIC_IS_LOCAL === 'true';
+  const isLocal = process.env.NEXT_PUBLIC_IS_LOCAL! === 'true';
 
   if (!isLocal) {
     // ✅ 서버에서 실행될 경우 window 사용 방지

@@ -51,7 +51,7 @@ export default function BestOfTheYear({
             <Image
               src={
                 modifiedUrl800
-                  ? `${process.env.NEXT_PUBLIC_PROXY_URL}/highres${modifiedUrl800}`
+                  ? `${process.env.NEXT_PUBLIC_PROXY_URL!}/highres${modifiedUrl800}`
                   : 'https://placehold.co/375x375'
               }
               alt={'올해 베스트 팬아트'}
