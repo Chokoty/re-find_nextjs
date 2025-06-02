@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 
 import NaverButton from '@/components/Button/NaverButton';
 import { Logo } from '@/lib/images';
@@ -12,9 +11,10 @@ const redirect_uri = `${
     : process.env.NEXT_PUBLIC_CLIENT_URL
 }/register`;
 const client_id = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
-const clientUrl = process.env.NEXT_PUBLIC_IS_LOCAL!
-  ? process.env.NEXT_PUBLIC_DEV_CLIENT_URL
-  : process.env.NEXT_PUBLIC_CLIENT_URL!;
+const clientUrl =
+  process.env.NODE_ENV === 'production'
+    ? process.env.NEXT_PUBLIC_DEV_CLIENT_URL
+    : process.env.NEXT_PUBLIC_CLIENT_URL!;
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL!;
 
 export default function LoginPage() {

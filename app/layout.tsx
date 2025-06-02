@@ -76,7 +76,7 @@ export default function RootLayout({
           <div id="modal-root" />
         </Providers>
       </body>
-      {!process.env.NEXT_PUBLIC_IS_LOCAL! && (
+      {process.env.NODE_ENV === 'production' && (
         <>
           <GoogleAnalytics gaId={GA_ID} />
           <GoogleTagManager gtmId={GTM_ID} />
