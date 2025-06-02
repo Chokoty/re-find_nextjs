@@ -12,7 +12,7 @@ const redirect_uri = `${
 }/register`;
 const client_id = process.env.NEXT_PUBLIC_NAVER_CLIENT_ID;
 const clientUrl =
-  process.env.NODE_ENV === 'production'
+  process.env.NODE_ENV !== 'production'
     ? process.env.NEXT_PUBLIC_DEV_CLIENT_URL
     : process.env.NEXT_PUBLIC_CLIENT_URL!;
 const serverUrl = process.env.NEXT_PUBLIC_SERVER_URL!;
