@@ -39,8 +39,9 @@ export default function Home() {
 
     console.log(
       process.env.NEXT_PUBLIC_IS_LOCAL,
-      process.env.NEXT_PUBLIC_GA_ID,
-      process.env.NEXT_PUBLIC_GTM_ID
+      process.env.NEXT_PUBLIC_IS_LOCAL
+        ? process.env.NEXT_PUBLIC_DEV_CLIENT_URL
+        : process.env.NEXT_PUBLIC_CLIENT_URL
     );
   }, [isMobile]);
 

@@ -76,12 +76,12 @@ export default function RootLayout({
           <div id="modal-root" />
         </Providers>
       </body>
-      {!process.env.NEXT_PUBLIC_IS_LOCAL && (
-        <>
-          <GoogleAnalytics gaId={GA_ID} />
-          <GoogleTagManager gtmId={GTM_ID} />
-        </>
-      )}
+      <>
+        <GoogleAnalytics gaId={GA_ID} />
+        <GoogleTagManager gtmId={GTM_ID} />
+      </>
+      {/* {!process.env.NEXT_PUBLIC_IS_LOCAL && (
+      )} */}
     </html>
   );
 }
