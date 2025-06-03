@@ -17,12 +17,12 @@ export default function Footer() {
         <Link href="/more/support">
           <p className="text-sm">문의 및 지원</p>
         </Link>
-        <div className="mb-6 flex w-full items-start justify-start gap-2">
-          <Link href="/more/support">
+        <div className="mb-6 mt-2 flex w-full items-start justify-start gap-2">
+          <Link href="/terms">
             <p className="text-sm">서비스 이용약관 </p>
           </Link>
           |
-          <Link href="/more/support">
+          <Link href="/privacy">
             <p className="text-sm">개인정보 처리방침</p>
           </Link>
         </div>

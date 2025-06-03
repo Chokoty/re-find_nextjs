@@ -120,7 +120,7 @@ const HeaderContent = ({ isMobile }: { isMobile: boolean }) => {
           </Link>
         </div>
         <div className="flex items-center justify-center gap-2 md:hidden">
-          <div className="flex size-[48px] items-center justify-center rounded-full dark:bg-blackAlpha-900 dark:shadow-none hover:dark:bg-dark-card">
+          <div className="flex size-[48px] items-center justify-center rounded-full bg-white dark:border-none dark:bg-blackAlpha-900 dark:shadow-none hover:dark:bg-dark-card md:border-base md:shadow-sm">
             {userData && (
               <Link href="/profile">
                 <Image
