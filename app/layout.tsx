@@ -1,3 +1,4 @@
+import 'overlayscrollbars/overlayscrollbars.css';
 import '@/styles/globals.css';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';

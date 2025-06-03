@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { AiFillExperiment } from 'react-icons/ai';
-import { FaArrowUp, FaBookOpen } from 'react-icons/fa';
+import { FaBookOpen } from 'react-icons/fa';
 import { MdOutlineMoreHoriz, MdOutlineUpdate } from 'react-icons/md';
 import {
   TbLayoutSidebarLeftCollapseFilled,
@@ -17,10 +17,10 @@ import Upload from '@/app/(home)/components/Upload';
 import UpdateBoard from '@/app/(home)/components/Upload/UpdateBoard';
 import { SOURCE_URL } from '@/app/more/lib/const';
 import MoreButtons from '@/components/Button/MoreButtons';
+import CustomScrollContainer from '@/components/CustomScrollContainer';
 import Tooltip from '@/components/Tooltip';
 import UpdateLogBoard from '@/components/UpdateLogBoard';
 import { useResponsive } from '@/hooks/useResponsive';
-import { useScrollShadow } from '@/hooks/useScrollShadow';
 import { UploadHoverImage } from '@/lib/images';
 import { useMyInfo } from '@/service/client/useCommonService';
 import { useSideMenuStore } from '@/store/sideMenuStore';
@@ -37,52 +37,14 @@ const leftTabButtons: {
 export default function LeftSection() {
   const { isOpen, toggle } = useSideMenuStore();
   const isMobile = useResponsive();
-  const [isBackToTopVisible, setIsBackToTopVisible] = useState<boolean>(false);
-  const [isHovered, setIsHovered] = useState<boolean>(false); // 마우스 오버 상태
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null); // 스크롤 컨테이너 참조
   const [activeTab, setActiveTab] = useState<'image' | 'update' | 'more'>(
     'image'
   );
-  const hasScrolled = useScrollShadow(scrollContainerRef);
   const { data: userInfo } = useMyInfo();
-  const toggleBackToTopVisibility = () => {
-    if (scrollContainerRef.current) {
-      const { scrollTop } = scrollContainerRef.current;
-      if (scrollTop > 300) {
-        setIsBackToTopVisible(true);
-      } else {
-        setIsBackToTopVisible(false);
-      }
-    }
-  };
-
-  const scrollToTop = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    }
-  };
-
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', toggleBackToTopVisibility);
-    }
-    return () => {
-      if (scrollContainer) {
-        scrollContainer.removeEventListener(
-          'scroll',
-          toggleBackToTopVisibility
-        );
-      }
-    };
-  }, []);
 
   return (
     <section
-      className={`relative hidden h-full overflow-hidden border-base border-gray-200 dark:border-0 md:flex ${
+      className={`hidden h-full overflow-hidden border-base border-gray-200 dark:border-0 md:flex ${
         isOpen ? 'w-[360px]' : 'w-[72px]'
       } flex-col items-center justify-start rounded-lg bg-white dark:bg-dark-card`}
     >
@@ -197,18 +159,10 @@ export default function LeftSection() {
           </div>
         </div>
       )}
-
       {isOpen && (
-        <div
-          ref={scrollContainerRef} // 스크롤 이벤트 연결
-          className={`custom-scrollbar flex flex-col items-center overflow-y-auto transition-all duration-300 ${
-            isHovered ? 'scrollbar-visible' : 'scrollbar-hidden'
-          }`}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
+        <CustomScrollContainer className="flex size-full flex-col items-center overflow-y-auto bg-white transition-all duration-300 dark:bg-dark-card">
           <div
-            className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 bg-white py-4 pl-3 transition-colors dark:bg-dark-card ${hasScrolled ? 'shadow-md' : ''} `}
+            className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 bg-white py-4 pl-3 transition-colors dark:bg-dark-card`}
           >
             {leftTabButtons.map((btn) => {
               const isSelected = activeTab === btn.key;
@@ -227,12 +181,10 @@ export default function LeftSection() {
               );
             })}
           </div>
-
-          {/* 버튼에 따라 내용 조건부 렌더링 */}
           {activeTab === 'image' && (
             <div className="w-full p-1">
               <TopTitle />
-              <Upload scrollToTop={scrollToTop} />
+              <Upload />
             </div>
           )}
           {activeTab === 'update' && (
@@ -270,31 +222,7 @@ export default function LeftSection() {
               <RandomGacha />
             </div>
           )}
-
-          {/* <TopTitle />
-          <Upload scrollToTop={scrollToTop} />
-          <RandomGacha />
-          <div className="mb-4">
-            <MoreButtons />
-          </div>
-        
-          <div className="p-4">
-            <UpdateLogBoard />
-          </div> */}
-        </div>
-      )}
-      {/* Back to Top Button */}
-      {isBackToTopVisible && (
-        <div className="absolute bottom-4 right-4 z-[200]">
-          <Tooltip label="맨 위로" position="left-center">
-            <button
-              onClick={scrollToTop}
-              className="flex size-[50px] cursor-pointer items-center justify-center rounded-full border-none bg-white px-[15px] py-2.5 text-xl shadow-md transition-all hover:bg-gray-50 active:bg-gray-100 dark:bg-dark-footer dark:hover:bg-gray-800 dark:active:bg-gray-900"
-            >
-              <FaArrowUp />
-            </button>
-          </Tooltip>
-        </div>
+        </CustomScrollContainer>
       )}
     </section>
   );

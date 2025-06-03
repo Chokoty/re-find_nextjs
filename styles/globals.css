@@ -369,3 +369,36 @@ body {
 .scrollbar-visible::-webkit-scrollbar-thumb:hover {
   background: rgba(85, 85, 85, 1); /* 진한 회색 */
 }
+
+/* OverlayScrollbars 커스텀 테마 */
+.os-theme-custom {
+  --os-size: 13px;
+  --os-padding-perpendicular: 2px;
+  --os-padding-axis: 0px;
+  --os-track-border-radius: 4px;
+  --os-track-bg: transparent;
+  --os-handle-border-radius: 4px;
+  --os-handle-bg: rgba(156, 163, 175, 0.3); /* gray-400 with opacity */
+  --os-handle-bg-hover: rgba(156, 163, 175, 0.6);
+  --os-handle-bg-active: rgba(156, 163, 175, 0.8);
+}
+
+/* 다크모드 스크롤바 */
+.dark .os-theme-custom {
+  --os-handle-bg: rgba(255, 255, 255, 0.2);
+  --os-handle-bg-hover: rgba(255, 255, 255, 0.4);
+  --os-handle-bg-active: rgba(255, 255, 255, 0.6);
+}
+
+/* 호버 시 스크롤바 애니메이션 */
+.os-theme-custom .os-scrollbar {
+  transition: opacity 0.3s ease;
+}
+
+/* .os-theme-custom.os-scrollbar-horizontal {
+  --os-size: 10px;
+}
+
+.os-theme-custom.os-scrollbar-vertical {
+  --os-size: 10px;
+} */

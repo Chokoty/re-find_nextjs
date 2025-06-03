@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 
+import PageButtonListForSearch from '@/app/(home)/components/PageButtonListForSearch';
 import Loading from '@/app/search/components/Loading';
 import SearchMobile from '@/app/search/components/SearchMobile';
-import BackToTopButton from '@/components/BackToTopButton';
+import CustomScrollContainer from '@/components/CustomScrollContainer';
 import LeftSection from '@/components/LeftSection';
-import PageContentForSearch from '@/components/PageContentForSearch';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
@@ -47,13 +47,15 @@ export default function SearchLayout({
       {/* /** 데스크톱 레이아웃 */}
       <div className="mx-auto mt-1 hidden h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 md:flex">
         <LeftSection />
-        <PageContentForSearch>
-          {children}
-          <Suspense>
-            <Loading />
-          </Suspense>
-          <BackToTopButton />
-        </PageContentForSearch>
+        <section className="flex h-full w-2/3 grow flex-col items-center justify-start overflow-hidden rounded-lg border-base border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card">
+          <CustomScrollContainer className="flex size-full flex-col items-center justify-start bg-white shadow-sm dark:border-0 dark:bg-dark-card">
+            <PageButtonListForSearch />
+            {children}
+            <Suspense>
+              <Loading />
+            </Suspense>
+          </CustomScrollContainer>
+        </section>
       </div>
     </div>
   );

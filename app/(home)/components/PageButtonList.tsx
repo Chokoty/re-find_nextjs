@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+'use client';
 
 import PageButton from '@/app/(home)/components/PageButton';
 import { useMyInfo } from '@/service/client/useCommonService';
@@ -9,40 +9,12 @@ const buttons = [
   { text: '이벤트', path: '/events' },
 ];
 
-export default function PageButtonList({
-  scrollContainerRef,
-}: {
-  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
-}) {
-  const [hasScrolled, setHasScrolled] = useState(false);
+export default function PageButtonList() {
   const { data } = useMyInfo();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollContainerRef.current) {
-        setHasScrolled(scrollContainerRef.current.scrollTop > 0); // 스크롤 위치가 0보다 크면 true
-      }
-    };
-
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener('scroll', handleScroll);
-    }
-
-    return () => {
-      if (container) {
-        container.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, [scrollContainerRef]);
 
   return (
     <div
-      className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 py-4 pl-8 transition-colors ${
-        hasScrolled
-          ? 'bg-white shadow-md dark:bg-dark-card' // 스크롤 시 배경색 추가
-          : 'bg-transparent' // 맨 위에서는 배경색 제거
-      }`}
+      className={`sticky top-0 z-20 mb-1 flex h-16 w-full items-center justify-start gap-2 bg-white py-4 pl-8 shadow-md transition-colors dark:bg-dark-card`}
     >
       {buttons.map((button, index) => (
         <PageButton key={index} text={button.text} path={button.path} />

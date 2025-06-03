@@ -1,46 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import type { OverlayScrollbarsComponentRef } from 'overlayscrollbars-react';
 import { FaArrowUp } from 'react-icons/fa';
 
 import Tooltip from '@/components/Tooltip';
 
 interface BackToTopButtonProps {
-  scrollContainerRef: React.RefObject<HTMLDivElement | null>;
+  scrollContainerRef: React.RefObject<OverlayScrollbarsComponentRef | null>;
 }
 
 export default function BackToTopButton({
   scrollContainerRef,
 }: BackToTopButtonProps) {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (scrollContainerRef.current) {
-        setIsVisible(scrollContainerRef.current.scrollTop > 300);
-      }
-    };
-
-    const scrollContainer = scrollContainerRef.current;
-    if (scrollContainer) {
-      scrollContainer.addEventListener('scroll', handleScroll);
-    }
-
-    return () => {
-      if (scrollContainer) {
-        scrollContainer.removeEventListener('scroll', handleScroll);
-      }
-    };
-  }, [scrollContainerRef]);
-
   const scrollToTop = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
+    const osInstance = scrollContainerRef.current?.osInstance();
+    const viewport = osInstance?.elements().viewport;
+    if (viewport) {
+      viewport.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
     }
   };
-
-  if (!isVisible) return null;
 
   return (
     <div className="absolute bottom-4 right-6 z-[200]">

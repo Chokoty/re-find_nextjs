@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
+import CustomScrollContainer from '@/components/CustomScrollContainer';
 import LeftSection from '@/components/LeftSection';
-import PageContentForMore from '@/components/PageContentForMore';
 import { siteConfig } from '@/lib/config';
 
 export const metadata: Metadata = {
@@ -40,7 +40,11 @@ export default function MoreLayout({
       {/** 데스크톱 레이아웃 */}
       <div className="mx-auto mt-1 hidden h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 md:flex">
         <LeftSection />
-        <PageContentForMore>{children}</PageContentForMore>
+        <section className="flex h-full w-2/3 grow flex-col items-center justify-start overflow-hidden rounded-lg border-base border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card">
+          <CustomScrollContainer className="flex size-full flex-col items-center justify-start bg-white shadow-sm dark:border-0 dark:bg-dark-card">
+            {children}
+          </CustomScrollContainer>
+        </section>
       </div>
     </div>
   );

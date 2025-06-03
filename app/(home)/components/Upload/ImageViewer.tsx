@@ -16,7 +16,7 @@ import useModal from '@/hooks/useModal';
 
 type Prop = {
   hashs: string[];
-  scrollToTop: () => void;
+  scrollToTop?: () => void;
 };
 
 export default function ImageViewer({ hashs, scrollToTop }: Prop) {
@@ -52,7 +52,7 @@ export default function ImageViewer({ hashs, scrollToTop }: Prop) {
   }, [data]);
 
   const handleResetFiles = () => {
-    scrollToTop();
+    scrollToTop?.();
     resetFiles();
   };
 

@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 
 import DetailedArtwork from '@/app/artwork/components/DetailedArtwork';
 import { getArtworkDetail } from '@/app/artwork/service/server';
+import CustomScrollContainer from '@/components/CustomScrollContainer';
 import LeftSection from '@/components/LeftSection';
-import PageContentForMore from '@/components/PageContentForMore';
 import { siteConfig } from '@/lib/config';
 
 type Params = { params: Promise<{ id: string }> };
@@ -54,9 +54,11 @@ export default async function ArtworkPage(props: Params) {
       {/** 데스크톱 레이아웃 */}
       <div className="mx-auto mt-1 hidden h-[calc(100vh-72px)] w-full items-start justify-center gap-2 overflow-hidden px-2 md:flex">
         <LeftSection />
-        <PageContentForMore>
-          <DetailedArtwork artworkId={parseInt(id)} />
-        </PageContentForMore>
+        <section className="flex h-full w-2/3 grow flex-col items-center justify-start overflow-hidden rounded-lg border-base border-dark-myText bg-white shadow-sm dark:border-0 dark:bg-dark-card">
+          <CustomScrollContainer className="flex size-full flex-col items-center justify-start bg-white shadow-sm dark:border-0 dark:bg-dark-card">
+            <DetailedArtwork artworkId={parseInt(id)} />
+          </CustomScrollContainer>
+        </section>
       </div>
     </div>
   );
