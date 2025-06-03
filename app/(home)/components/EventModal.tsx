@@ -1,10 +1,10 @@
 import { IoClose } from 'react-icons/io5';
 
-import { TARGET_COUNT } from '@/app/(home)/lib/const';
+import { EVENT_TITLE, TARGET_COUNT } from '@/app/(home)/lib/const';
 import useModal from '@/hooks/useModal';
 
 export default function EventModal() {
-  const targetCountText = TARGET_COUNT.toString().slice(0, 1);
+  const targetCountText = TARGET_COUNT.toString().slice(0, 2);
 
   const { hide } = useModal();
   const onClose = () => {
@@ -54,16 +54,14 @@ export default function EventModal() {
         </p>
         <br />
         <br />
-        <p className="text-center font-bold text-[#ef5a9a]">
-          {`"마이크 테스트 / FRAME / LOGIN / 먼 길을 돌아"`}
-        </p>
+        <p className="text-center font-bold text-[#ef5a9a]">{EVENT_TITLE}</p>
         <br />
         <br />
         <p>
           <span className="font-bold text-[#ef5a9a]">
             rerurureruru@gmail.com
           </span>{' '}
-          또는 리파인드 소개 페이지 내 초코널 밀크티 개발자 프로필에서&nbsp;
+          또는 리파인드 소개 페이지 내 초코넛밀크티 개발자 프로필에서&nbsp;
           <span className="font-bold text-[#ef5a9a]">왁물원 쪽지</span>
           또는 문의, 지원 페이지 내&nbsp;
           <span className="font-bold text-[#ef5a9a]">기타 문의</span>를 통해
