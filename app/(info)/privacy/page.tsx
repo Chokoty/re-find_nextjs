@@ -7,7 +7,7 @@ import type { TermSection } from '@/constants/privacy';
 import { PRIVACY } from '@/constants/privacy';
 
 const PrivacyPage = () => {
-  console.log('privacy page rendered')
+  console.log('privacy page rendered');
   return (
     <div className="mx-auto max-w-4xl rounded-lg p-8 shadow-lg">
       <h1 className="mb-6 text-3xl font-bold">{PRIVACY.title}</h1>

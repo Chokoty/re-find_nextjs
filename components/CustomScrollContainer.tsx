@@ -2,7 +2,7 @@
 
 import type { OverlayScrollbars } from 'overlayscrollbars';
 import type {
-  type OverlayScrollbarsComponentProps,
+  OverlayScrollbarsComponentProps,
   OverlayScrollbarsComponentRef,
 } from 'overlayscrollbars-react';
 import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
