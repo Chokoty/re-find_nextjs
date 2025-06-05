@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
 
 import NaverButton from '@/components/Button/NaverButton';
 import { useVerificationRequest } from '@/service/client/useCommonService';
@@ -11,6 +12,7 @@ export default function Register() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [animate, setAnimate] = useState(false);
   const [input, setInput] = useState('');
+  const [isVerificationSent, setIsVerificationSent] = useState(false);
 
   const {
     isFetching: verifyIsFetcing,
@@ -24,12 +26,22 @@ export default function Register() {
   }, []);
 
   const isError = verifyStatus === 'error';
-  const isFetching = verifyIsFetcing;
-  const isDisabledButton = isFetching || !input.length;
+  const isDisabledButton =
+    verifyIsFetcing || !input.length || isVerificationSent;
   const animateClassName = 'opacity-100 transition-opacity duration-1000';
+
   const handleVerificationRequest = async () => {
-    await verify();
+    try {
+      await verify();
+      if (verifyStatus !== 'error') {
+        setIsVerificationSent(true);
+        toast.success('인증 메일을 발송했습니다. 메일함을 확인해주세요!');
+      }
+    } catch (error) {
+      console.error('메일 인증 요청 중 오류:', error);
+    }
   };
+
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
@@ -48,7 +60,8 @@ export default function Register() {
         >
           RE:FIND에 오신 것을 환영해요.
           <br />
-          서비스를 이용하기 위해 네이버 메일을 인증해주세요.
+          서비스를 이용하기 위해 <b className="text-[#06bd34]">네이버 메일</b>을
+          인증해주세요.
         </p>
         <div
           className={`${animate ? `${animateClassName} delay-[600ms]` : 'opacity-0'} flex flex-col gap-2.5`}
@@ -66,6 +79,7 @@ export default function Register() {
             placeholder="example@naver.com"
             value={input}
             onChange={handleSearch}
+            disabled={isVerificationSent}
           />
           <span className="text-xs text-blackAlpha-800 dark:text-whiteAlpha-800">
             이메일 수신이 가능해야해요.

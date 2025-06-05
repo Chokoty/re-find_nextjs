@@ -40,7 +40,7 @@ export default function LoginPage() {
           />
           <h1 className="mt-2 text-xl font-semibold">리파인드 로그인</h1>
         </div>
-        <div className="mt-5 w-2/3 sm:w-1/2">
+        <div className="mt-5 w-2/3 sm:w-[500px]">
           <NaverButton onClick={goToNaverLogin}>
             네이버 아이디로 로그인
           </NaverButton>
