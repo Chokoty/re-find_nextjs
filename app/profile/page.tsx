@@ -1,4 +1,5 @@
-import LogoutButton from '@/app/profile/components/LogoutButton';
+import AuthActionButton from '@/app/profile/components/AuthActionButton';
+import Footer from '@/app/profile/components/Footer';
 import UserProfile from '@/app/profile/components/UserProfile';
 
 export default function MyLibrary() {
@@ -14,9 +15,11 @@ export default function MyLibrary() {
           <UserProfile />
         </div>
       </div>
-      <div className="w-full md:hidden">
-        <LogoutButton />
+      <div className="flex w-full flex-col items-center justify-center gap-2 md:hidden">
+        <AuthActionButton type="logout" />
+        <AuthActionButton type="unregister" />
       </div>
+      <Footer />
     </div>
   );
 }

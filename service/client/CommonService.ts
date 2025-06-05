@@ -42,6 +42,11 @@ class CommonService extends Service {
     return this.http.get(url);
   }
 
+  unregister() {
+    const url = '/v2/me/unregister';
+    return this.http.delete(url);
+  }
+
   // updateLikedArticles() {
   //   const url = '/v2/update_liked_articles';
   //   return this.http.get(url);

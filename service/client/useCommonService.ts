@@ -27,6 +27,10 @@ export function useLogout() {
   return useQuery(queryOptions.logout());
 }
 
+export function useUnregister() {
+  return useQuery(queryOptions.unregister());
+}
+
 export function useUpdateMyInfo({
   nick,
   profImgType,

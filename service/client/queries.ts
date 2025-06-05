@@ -11,6 +11,7 @@ const queryKeys = {
     ['requestNaverLoginInServer', currentPageUrl] as const,
   myInfo: () => ['myInfo'] as const,
   logout: () => ['logout'] as const,
+  unregister: () => ['unregister'] as const,
 };
 
 const queryOptions = {
@@ -55,6 +56,11 @@ const queryOptions = {
   logout: () => ({
     queryKey: queryKeys.logout(),
     queryFn: () => CommonService.logout(),
+    enabled: false, // 초기에는 호출하지 않음
+  }),
+  unregister: () => ({
+    queryKey: queryKeys.unregister(),
+    queryFn: () => CommonService.unregister(),
     enabled: false, // 초기에는 호출하지 않음
   }),
 };
