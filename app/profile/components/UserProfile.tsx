@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 import { FaCheck } from 'react-icons/fa';
 import { MdOutlineModeEditOutline } from 'react-icons/md';
 
+import Button from '@/components/Button';
 import {
   똥강아지1,
   똥강아지2,
@@ -29,8 +30,11 @@ import {
 import queryOptions from '@/service/client/queries';
 import { useMyInfo, useUpdateMyInfo } from '@/service/client/useCommonService';
 
+// '원본'을 제외한 ProfImgType 정의
+type SelectableProfImgType = Exclude<ProfImgType, '원본'>;
+
 // 아이콘 이름과 이미지 매핑
-const iconMap: Record<ProfImgType, StaticImageData> = {
+const iconMap: Record<SelectableProfImgType, StaticImageData> = {
   똥강아지1,
   똥강아지2,
   뚤기1,
@@ -51,13 +55,15 @@ const iconMap: Record<ProfImgType, StaticImageData> = {
 };
 
 // 선택 가능한 아이콘 리스트
-const icons = Object.entries(iconMap)
+const icons = (
+  Object.entries(iconMap) as [SelectableProfImgType, StaticImageData][]
+)
   .filter(([name]) => name.endsWith('1'))
   .map(([name, img]) => ({ name, img }));
 
 // 현재 프로필 이미지 가져오기
-const getUserImage = (profImgType: ProfImgType | undefined) =>
-  iconMap[profImgType || '이파리1'] || 이파리1;
+// const getUserImage = (profImgType: ProfImgType | undefined) =>
+//   iconMap[profImgType || '이파리1'] || 이파리1;
 
 // 아이콘 선택 모달
 const IconSelectionModal = ({
@@ -65,19 +71,23 @@ const IconSelectionModal = ({
   setSelectedIcon,
   onClose,
   onSave,
+  onSaveOriginal,
   isSaving,
 }: {
-  selectedIcon: ProfImgType | null;
-  setSelectedIcon: (icon: ProfImgType) => void;
+  selectedIcon: SelectableProfImgType | null;
+  setSelectedIcon: (icon: SelectableProfImgType) => void;
   onClose: () => void;
   onSave: () => void;
+  onSaveOriginal: () => void;
   isSaving: boolean;
 }) => {
-  const [hoveredIcon, setHoveredIcon] = useState<ProfImgType | null>(null);
+  const [hoveredIcon, setHoveredIcon] = useState<SelectableProfImgType | null>(
+    null
+  );
 
-  function getHoverImage(iconName: ProfImgType): StaticImageData {
+  function getHoverImage(iconName: SelectableProfImgType): StaticImageData {
     if (iconName.endsWith('1')) {
-      const hoverName = `${iconName.slice(0, -1)}2` as ProfImgType;
+      const hoverName = `${iconName.slice(0, -1)}2` as SelectableProfImgType;
       return iconMap[hoverName] || iconMap[iconName];
     }
     return iconMap[iconName];
@@ -86,21 +96,37 @@ const IconSelectionModal = ({
   return (
     <div className="bg-black fixed inset-0 z-50 flex items-center justify-center bg-opacity-50">
       <div className="w-80 rounded-lg bg-white p-6 shadow-lg dark:bg-dark-card">
-        <h2 className="mb-4 text-xl font-bold">프로필 아이콘 선택</h2>
+        <h2 className="mb-1 text-xl font-bold">프로필 아이콘 선택</h2>
+        <p className="mb-4 text-sm">
+          왁물원 이미지로 변경하려면{' '}
+          <Button
+            intent="link-green"
+            onClick={onSaveOriginal}
+            disabled={isSaving}
+            additionalClass="p-0 align-baseline"
+          >
+            되돌리기
+          </Button>
+          하세요
+        </p>
         <div className="grid grid-cols-4 gap-4">
           {icons.map((icon) => (
             <div
               key={icon.name}
               className="relative cursor-pointer transition"
-              onClick={() => setSelectedIcon(icon.name as ProfImgType)}
-              onMouseEnter={() => setHoveredIcon(icon.name as ProfImgType)}
+              onClick={() =>
+                setSelectedIcon(icon.name as SelectableProfImgType)
+              }
+              onMouseEnter={() =>
+                setHoveredIcon(icon.name as SelectableProfImgType)
+              }
               onMouseLeave={() => setHoveredIcon(null)}
             >
               <div className="relative">
                 <Image
                   src={
                     hoveredIcon === icon.name
-                      ? getHoverImage(icon.name as ProfImgType)
+                      ? getHoverImage(icon.name as SelectableProfImgType)
                       : icon.img
                   }
                   alt={`${icon.name} 아이콘`}
@@ -148,7 +174,8 @@ export default function UserProfile() {
   const { data: userData } = useMyInfo();
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedIcon, setSelectedIcon] = useState<ProfImgType | null>(null);
+  const [selectedIcon, setSelectedIcon] =
+    useState<SelectableProfImgType | null>(null);
 
   const queryClient = useQueryClient();
   const { queryKey } = queryOptions.myInfo();
@@ -166,6 +193,13 @@ export default function UserProfile() {
     handleOnSuccess,
   });
 
+  const { mutate: updateMyInfoToOriginal, isPending: isPendingOriginal } =
+    useUpdateMyInfo({
+      nick: userData?.nick || '',
+      profImgType: '원본',
+      handleOnSuccess,
+    });
+
   const handleImageClick = () => {
     setIsModalOpen(true);
     setSelectedIcon(null);
@@ -174,6 +208,10 @@ export default function UserProfile() {
   const handleSave = () => {
     if (!selectedIcon) return;
     updateMyInfo();
+  };
+
+  const handleSaveOriginal = () => {
+    updateMyInfoToOriginal();
   };
 
   return (
@@ -212,7 +250,8 @@ export default function UserProfile() {
           setSelectedIcon={setSelectedIcon}
           onClose={() => setIsModalOpen(false)}
           onSave={handleSave}
-          isSaving={isPending}
+          onSaveOriginal={handleSaveOriginal}
+          isSaving={isPending || isPendingOriginal}
         />
       )}
     </div>

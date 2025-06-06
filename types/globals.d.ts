@@ -326,6 +326,7 @@ declare global {
     | '이파리2'
     | '팬치1'
     | '팬치2'
+    | '원본'
     | '';
 
   export type UserInfoUpdateParams = {
