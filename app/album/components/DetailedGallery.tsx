@@ -127,7 +127,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     setTotal(total);
   }, [total]);
 
-  if (pageInfo?.is_public === false) {
+  if (!pageInfo?.owned && pageInfo?.is_public === false) {
     return null;
   }
 

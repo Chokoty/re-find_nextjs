@@ -16,7 +16,7 @@ type Props = {
 export default function ShareLinkButton({
   albumName,
   owned = false,
-  isAlbumPublic = false,
+  isAlbumPublic,
 }: Props) {
   const { queryKey } = queryOptions.galleryPageInfo(albumName);
   const queryClient = useQueryClient();
@@ -50,7 +50,10 @@ export default function ShareLinkButton({
     editCustomAlbumInfo();
   };
 
-  console.log(isAlbumPublic);
+  const isActuallyPublic =
+    isAlbumPublic === undefined || isAlbumPublic === true;
+
+  console.log(isActuallyPublic, isAlbumPublic);
 
   return (
     <div className="flex items-center gap-2">
@@ -79,17 +82,17 @@ export default function ShareLinkButton({
       {/* 공유하기 버튼 */}
       <Button
         additionalClass={`rounded-full transition-colors ${
-          isAlbumPublic
+          isActuallyPublic
             ? 'bg-green-highlight dark:hover:bg-pink-400 dark:active:bg-pink-500 dark:bg-pink-highlight hover:bg-teal-500 active:bg-teal-600'
             : 'bg-gray-400 dark:bg-gray-600 hover:bg-gray-500 active:bg-gray-600 cursor-not-allowed dark:hover:bg-gray-400 dark:active:bg-gray-500'
         }`}
-        onClick={isAlbumPublic ? handleCopyLink : undefined}
-        disabled={!isAlbumPublic}
+        onClick={isActuallyPublic ? handleCopyLink : undefined}
+        disabled={!isActuallyPublic}
       >
         <MdShare
-          className={`mr-2 ${isAlbumPublic ? 'text-white' : 'text-gray-300'}`}
+          className={`mr-2 ${isActuallyPublic ? 'text-white' : 'text-gray-300'}`}
         />
-        <p className={isAlbumPublic ? 'text-white' : 'text-gray-300'}>
+        <p className={isActuallyPublic ? 'text-white' : 'text-gray-300'}>
           <span className="hidden 2xs:inline-block">갤러리</span> 공유하기
         </p>
       </Button>

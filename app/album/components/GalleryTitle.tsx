@@ -123,7 +123,7 @@ export default function GalleryTitle({ pageName }: Props) {
     });
   };
 
-  if (is_public === false) {
+  if (!owned && is_public === false) {
     return (
       <div className="my-6 w-full text-center text-sm text-gray-500 dark:text-gray-400">
         이 앨범은 현재 <strong>비공개</strong> 상태입니다. 본인에게만 보입니다.
