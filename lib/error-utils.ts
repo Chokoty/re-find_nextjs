@@ -98,6 +98,7 @@ export function translateRefindAppErrorMessage(e: RefindAppError): string {
     // 기타
     'Network Error': '네트워크 연결 상태를 확인해주세요',
     'Unknown error': '알 수 없는 오류가 발생했습니다',
+    ratelimited: '일시적으로 요청이 제한되었습니다. 10분 후 다시 시도해주세요',
     // '이미 존재합니다.': '이미 존재합니다.',
     // '갤러리를 찾을 수 없습니다.': '갤러리를 찾을 수 없습니다.',
     // 필요시 추가
