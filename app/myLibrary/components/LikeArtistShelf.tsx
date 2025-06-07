@@ -19,7 +19,7 @@ export default function LikeArtistShelf() {
 
   return (
     <div className="mt-7 flex w-full flex-col md:mt-10">
-      <div className="mb-2 flex w-full content-end justify-between gap-4 pl-2 pr-1 md:mb-4 md:pl-8 md:pr-2">
+      <div className="mb-2 flex w-full content-end justify-between gap-4 px-2 md:mb-4 md:px-8">
         <Link
           href="/myLibrary/likeArtist"
           className="flex items-center hover:underline"

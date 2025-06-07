@@ -22,7 +22,7 @@ export default function RefindPick() {
       {/* <p className="mb-2 pl-2 text-left text-xl font-extrabold md:mb-4 md:pl-8 md:text-2xl">
         리파인드 추천 앨범
       </p> */}
-      <div className="mb-2 flex w-full content-end justify-between gap-4 pl-2 pr-1 md:mb-4 md:pl-8 md:pr-2">
+      <div className="mb-2 flex w-full content-end justify-between gap-4 px-2 md:mb-4 md:px-8">
         <Link href="/refindPick" className="flex items-center hover:underline">
           <p className="text-left text-xl font-extrabold md:text-2xl">
             리파인드 추천 앨범

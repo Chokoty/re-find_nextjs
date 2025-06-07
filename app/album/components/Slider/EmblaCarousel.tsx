@@ -245,7 +245,11 @@ export default function EmblaGallerySlider({ data }: Props) {
   };
 
   return (
-    <div className="group relative">
+    <div
+      className={clsx('group relative', {
+        'max-w-[800px] md:w-11/12': data.type === 'banner',
+      })}
+    >
       <div
         className={clsx('w-full overflow-hidden', {
           'pl-2 md:pl-8': data.type !== 'banner',

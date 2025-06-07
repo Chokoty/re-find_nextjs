@@ -99,7 +99,7 @@ const events: (
 
 export default function BannerSlider() {
   return (
-    <div className="mt-7 flex w-full max-w-[800px] flex-col md:mt-10 md:w-11/12">
+    <div className="mt-7 flex w-full items-center justify-center md:mt-10">
       <EmblaCarousel
         data={{
           type: 'banner',
