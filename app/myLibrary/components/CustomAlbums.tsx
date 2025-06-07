@@ -27,7 +27,7 @@ export default function CustomAlbums() {
             나만의 팬아트 앨범
           </p>
         </Link>
-        {userInfo && userInfo.albums.length > 1 && (
+        {userInfo && userInfo.albums.length > 0 && (
           <Link
             href="/myLibrary/customAlbums"
             className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"

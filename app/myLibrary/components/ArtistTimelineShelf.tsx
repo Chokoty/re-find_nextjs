@@ -30,7 +30,7 @@ export default function ArtistTimelineShelf() {
             구독중인 작가 팬아트 타임라인
           </p>
         </Link>
-        {artworks && artworks.length > 1 && (
+        {artworks && artworks.length > 0 && (
           <Link
             href="/myLibrary/artistTimeline"
             className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
@@ -42,7 +42,7 @@ export default function ArtistTimelineShelf() {
         )}
       </div>
       {artworks &&
-        (artworks.length > 1 ? (
+        (artworks.length > 0 ? (
           <EmblaCarousel
             data={{
               type: 'liked',

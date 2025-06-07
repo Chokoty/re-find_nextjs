@@ -59,7 +59,7 @@ export default function LikeFanartShelf() {
               </p>
             </button>
           )}
-          {artworks && artworks.length > 1 && (
+          {artworks && artworks.length > 0 && (
             <Link
               href="/myLibrary/likedFanarts"
               className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
@@ -72,7 +72,7 @@ export default function LikeFanartShelf() {
         </div>
       </div>
       {artworks &&
-        (artworks.length > 1 ? (
+        (artworks.length > 0 ? (
           <EmblaCarousel
             data={{
               type: 'liked',

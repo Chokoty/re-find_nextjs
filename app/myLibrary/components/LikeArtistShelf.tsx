@@ -28,7 +28,7 @@ export default function LikeArtistShelf() {
             구독중인 작가
           </p>
         </Link>
-        {artists && artists.list.length > 1 && (
+        {artists && artists.list.length > 0 && (
           <Link
             href="/myLibrary/likeArtist"
             className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
@@ -40,7 +40,7 @@ export default function LikeArtistShelf() {
         )}
       </div>
       {artists &&
-        (artists.list.length > 1 ? (
+        (artists.list.length > 0 ? (
           <EmblaCarousel
             data={{
               type: 'artist',
