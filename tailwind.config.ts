@@ -1,6 +1,7 @@
 import aspectRatio from '@tailwindcss/aspect-ratio';
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import type { PluginAPI } from 'tailwindcss/types/config';
 
 const config: Config = {
   content: [
@@ -362,6 +363,13 @@ const config: Config = {
         { values: theme('textShadow') }
       );
     }),
+    function ({ addUtilities }: PluginAPI) {
+      addUtilities({
+        '.user-drag-none': {
+          '-webkit-user-drag': 'none',
+        },
+      });
+    },
     aspectRatio, // aspect-ratio 플러그인 추가
   ],
   darkMode: 'class',

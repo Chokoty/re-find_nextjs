@@ -15,7 +15,7 @@ export default function MemberCard({ member }: { member: MemberType }) {
     >
       <div className="relative size-[120px] md:size-[150px]">
         <Image
-          className="rounded-full object-cover"
+          className="select-none rounded-full object-cover user-drag-none"
           src={staticImage}
           alt={name}
           sizes="(max-width: 1000px) 10vw, 15vw"

@@ -32,7 +32,7 @@ export default function GalleryAlbumCard({
     >
       <div className="relative flex size-[120px] md:size-[156px]">
         <Image
-          className="rounded-lg object-cover"
+          className="select-none rounded-lg object-cover user-drag-none"
           src={
             cover_image === '' ? 'https://placehold.co/375x375' : cover_image
           }
