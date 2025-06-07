@@ -1,9 +1,7 @@
 'use client';
 
-import React from 'react';
-
+import { TERMS } from '@/app/(info)/constants/terms';
 import { renderTextWithLinks } from '@/app/(info)/lib/renderTextWithLinks';
-import { TERMS } from '@/constants/terms';
 
 const TermsPage = () => {
   return (
