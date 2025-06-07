@@ -32,7 +32,6 @@ export default function EditCustomAlbumInfoModal(
     info: {
       name: title,
       description,
-      is_public: true,
     },
     handleOnSuccess: () => {
       refreshAlbumInfo();

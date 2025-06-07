@@ -6,7 +6,10 @@ import { useInView } from 'react-intersection-observer';
 import HashLoader from 'react-spinners/HashLoader';
 
 import GALLERY_LIST from '@/app/album/lib/const';
-import { useGalleryArtworks } from '@/app/album/service/client/useGalleryService';
+import {
+  useGalleryArtworks,
+  useGalleryPageInfo,
+} from '@/app/album/service/client/useGalleryService';
 import { useFanartTotalCountStore } from '@/app/album/store/fanartTotalCountStore';
 import Alert from '@/components/Alert';
 import ViewSkeleton from '@/components/Skeleton/ViewSkeleton';
@@ -72,6 +75,7 @@ export default function DetailedGallery({ value: galleryType }: Props) {
   const { setTotal } = useFanartTotalCountStore((state) => ({
     setTotal: state.setTotal,
   }));
+  const { data: pageInfo } = useGalleryPageInfo(galleryType);
 
   const updateURL = (SortType: string, ViewType: string, member?: string) => {
     const params = new URLSearchParams();
@@ -122,6 +126,10 @@ export default function DetailedGallery({ value: galleryType }: Props) {
     if (!total) return;
     setTotal(total);
   }, [total]);
+
+  if (pageInfo?.is_public === false) {
+    return null;
+  }
 
   return (
     <>

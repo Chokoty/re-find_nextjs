@@ -92,6 +92,7 @@ declare global {
     linkTitle?: string;
     linkUrl?: string;
     owned?: boolean;
+    is_public?: boolean;
   }
 
   export interface AlbumList {
@@ -341,7 +342,7 @@ declare global {
   };
 
   export type CustomAlbumEditParams = {
-    name: string;
+    name?: string;
     description?: string;
     articles?: number[];
     is_public?: boolean;

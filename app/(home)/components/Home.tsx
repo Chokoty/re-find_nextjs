@@ -16,6 +16,7 @@ import AppInstallModal from '@/components/Modal/AppInstallModal';
 import useLocalStorage from '@/hooks/useLocalStorage';
 import useModal from '@/hooks/useModal';
 import { useResponsive } from '@/hooks/useResponsive';
+// import ThisWeekTop from '@/app/album/components/ThisWeekTop';
 
 export default function Home() {
   const [value, setValue] = useLocalStorage({
@@ -56,6 +57,7 @@ export default function Home() {
                 // description="왁물원에 올라온 모든 팬아트들을 한 곳에서!"
               />
             </Suspense>
+            {/* <ThisWeekTop /> */}
             <RefindPick />
             <BoardList />
             <MemberAlbum />

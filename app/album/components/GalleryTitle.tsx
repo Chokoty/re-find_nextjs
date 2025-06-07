@@ -110,6 +110,7 @@ export default function GalleryTitle({ pageName }: Props) {
     linkTitle,
     linkUrl,
     owned,
+    is_public,
   } = pageInfo;
 
   const showEditModal = () => {
@@ -121,6 +122,14 @@ export default function GalleryTitle({ pageName }: Props) {
       isBackdropClick: true,
     });
   };
+
+  if (is_public === false) {
+    return (
+      <div className="my-6 w-full text-center text-sm text-gray-500 dark:text-gray-400">
+        이 앨범은 현재 <strong>비공개</strong> 상태입니다. 본인에게만 보입니다.
+      </div>
+    );
+  }
 
   return (
     <div className="my-6 flex w-full flex-col items-start justify-start pl-2 md:pl-8">
@@ -198,7 +207,11 @@ export default function GalleryTitle({ pageName }: Props) {
           </div>
         </div>
         <div className="flex w-full items-center justify-between">
-          <ShareLinkButton />
+          <ShareLinkButton
+            owned={owned}
+            isAlbumPublic={is_public}
+            albumName={pageName}
+          />
           <div className="2md:hidden">
             {!shouldHideTotalCounter(albumName) && <TotalCounter />}
           </div>

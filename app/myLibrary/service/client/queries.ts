@@ -30,7 +30,7 @@ const queryOptions = {
     albumId: string;
     info: CustomAlbumEditParams;
     handleOnSuccess: () => void;
-    handleOnError: () => void;
+    handleOnError?: () => void;
   }) => ({
     mutationFn: () => myService.putCustomAlbum(albumId, info),
     onSuccess: () => {
@@ -39,7 +39,7 @@ const queryOptions = {
     onError: (error: unknown) => {
       const normalizedError = extractRefindAppError(error);
       if (normalizedError.statusCode === 401) {
-        handleOnError();
+        handleOnError?.();
       }
     },
   }),

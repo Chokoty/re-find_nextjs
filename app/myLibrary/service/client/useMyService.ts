@@ -39,7 +39,7 @@ export function useEditCustomAlbum({
   albumId: string;
   info: CustomAlbumEditParams;
   handleOnSuccess: () => void;
-  handleOnError: () => void;
+  handleOnError?: () => void;
 }) {
   return useMutation(
     queryOptions.editCustomAlbuminfo({
