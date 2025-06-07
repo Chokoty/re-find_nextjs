@@ -39,7 +39,7 @@ export default function DetailedArtwork({ artworkId }: { artworkId: number }) {
     return <Alert />;
   }
   return (
-    <div className="flex size-full flex-col items-center justify-center p-3">
+    <div className="flex size-full h-screen flex-col items-center p-3">
       {/* 상단(정보 - 제목,작가,날짜,게시판, 말머리, vlc) */}
       <div className="relative hidden lg:block">
         <BackToButton />

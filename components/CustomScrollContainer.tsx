@@ -48,7 +48,7 @@ export default function CustomScrollContainer({
         ref={scrollContainerRef}
         className={className}
         options={{
-          overflow: { x: 'hidden', y: 'scroll' },
+          // overflow: { x: 'hidden', y: 'hidden' },
           scrollbars: {
             theme: 'os-theme-custom',
             visibility: isHovered ? 'visible' : 'auto',
