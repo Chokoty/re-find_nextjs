@@ -28,23 +28,31 @@ export default function LikeArtistShelf() {
             구독중인 작가
           </p>
         </Link>
-        <Link
-          href="/myLibrary/likeArtist"
-          className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
-        >
-          <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-            모두보기
-          </p>
-        </Link>
+        {artists && artists.list.length > 1 && (
+          <Link
+            href="/myLibrary/likeArtist"
+            className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
+          >
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+              모두보기
+            </p>
+          </Link>
+        )}
       </div>
-      {artists && (
-        <EmblaCarousel
-          data={{
-            type: 'artist',
-            list: artists.list,
-          }}
-        />
-      )}
+      {artists &&
+        (artists.list.length > 1 ? (
+          <EmblaCarousel
+            data={{
+              type: 'artist',
+              list: artists.list,
+            }}
+          />
+        ) : (
+          <p className="my-6 w-full px-2 text-center text-sm text-gray-500 dark:text-gray-400">
+            구독 중인 작가가 없습니다. 리파인드 작가 페이지에서 구독을
+            시작해보세요
+          </p>
+        ))}
     </div>
   );
 }

@@ -30,23 +30,31 @@ export default function ArtistTimelineShelf() {
             구독중인 작가 팬아트 타임라인
           </p>
         </Link>
-        <Link
-          href="/myLibrary/artistTimeline"
-          className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
-        >
-          <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-            모두보기
-          </p>
-        </Link>
+        {artworks && artworks.length > 1 && (
+          <Link
+            href="/myLibrary/artistTimeline"
+            className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
+          >
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+              모두보기
+            </p>
+          </Link>
+        )}
       </div>
-      {artworks && (
-        <EmblaCarousel
-          data={{
-            type: 'liked',
-            list: artworks,
-          }}
-        />
-      )}
+      {artworks &&
+        (artworks.length > 1 ? (
+          <EmblaCarousel
+            data={{
+              type: 'liked',
+              list: artworks,
+            }}
+          />
+        ) : (
+          <p className="my-6 w-full px-2 text-center text-sm text-gray-500 dark:text-gray-400">
+            아직 구독 중인 작가가 없어요. 마음에 드는 작가를 구독하면 최신
+            팬아트를 이곳에서 볼 수 있어요!
+          </p>
+        ))}
     </div>
   );
 }

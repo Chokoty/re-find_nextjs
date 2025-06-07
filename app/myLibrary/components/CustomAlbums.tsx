@@ -27,14 +27,16 @@ export default function CustomAlbums() {
             나만의 팬아트 앨범
           </p>
         </Link>
-        <Link
-          href="/myLibrary/customAlbums"
-          className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
-        >
-          <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
-            모두보기
-          </p>
-        </Link>
+        {userInfo && userInfo.albums.length > 1 && (
+          <Link
+            href="/myLibrary/customAlbums"
+            className="flex items-center text-blackAlpha-700 hover:underline dark:text-whiteAlpha-700"
+          >
+            <p className="text-blackAlpha-700 dark:text-whiteAlpha-700">
+              모두보기
+            </p>
+          </Link>
+        )}
       </div>
       {userInfo && (
         <EmblaCarousel
