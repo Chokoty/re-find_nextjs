@@ -18,11 +18,15 @@ const queryKeys = {
 };
 
 const queryOptions = {
-  galleryPageInfo: (id: string) => ({
-    queryKey: queryKeys.galleryPageInfo(id), // queryKey 설정
-    queryFn: () => GalleryService.getGalleryPageInfo(id), // 메서드 호출
-    enabled: id !== 'galleryHome',
-  }),
+  galleryPageInfo: (id: string) => {
+    const shouldFetch =
+      id !== 'artistTimeline' && id !== 'likedFanarts' && id !== 'galleryHome';
+    return {
+      queryKey: queryKeys.galleryPageInfo(id), // queryKey 설정
+      queryFn: () => GalleryService.getGalleryPageInfo(id), // 메서드 호출
+      enabled: shouldFetch, // ✅ 조건적으로 요청을 비활성화
+    };
+  },
   galleryArtworks: ({
     galleryType,
     sortType,
