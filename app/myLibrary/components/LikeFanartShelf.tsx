@@ -76,16 +76,7 @@ export default function LikeFanartShelf() {
           <EmblaCarousel
             data={{
               type: 'liked',
-              list: Object.values(
-                // FIX: 업데이트 쪽 게시글 겹치는 현상으로 인한 임시방편
-                artworks.reduce(
-                  (acc: Record<number, AlbumArtworkList>, artwork) => {
-                    acc[artwork.id] = artwork; // 같은 id가 있으면 덮어쓰기
-                    return acc;
-                  },
-                  {}
-                )
-              ),
+              list: artworks,
             }}
           />
         ) : (
